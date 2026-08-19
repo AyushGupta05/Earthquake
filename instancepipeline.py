@@ -57,7 +57,7 @@ class InstanceEarthquakeDataset(Dataset):
         magnitude = self.magnitudes[idx]
         waveform = self.h5_file["data"][trace_name]
         waveform_window = waveform[:, p_arrival:p_arrival + self.timelength]
-        waveform_window = torch.tensor(waveform_window, dtype=torch.float32)
+        waveform_window = torch.from_numpy(np.asarray(waveform_window, dtype=np.float32))
         if self.transform:
             waveform_window = self.transform(waveform_window)
         waveform_window = (waveform_window - mean) / (std + 1e-8)
@@ -80,13 +80,13 @@ def get_data_loaders ():
 
     val_dataset = InstanceEarthquakeDataset(
         metadata_df=val_df,
-        hdf5_path="data/Instance_events_counts_10k.hdf5",
+        hdf5_path="data/Instance_events_counts.hdf5",
          timelength = 300
     )
 
     test_dataset = InstanceEarthquakeDataset(
         metadata_df=test_df,
-        hdf5_path="data/Instance_events_counts_10k.hdf5",
+        hdf5_path="data/Instance_events_counts.hdf5",
         timelength = 300
     )
     train_loader = DataLoader(
