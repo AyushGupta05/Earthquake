@@ -92,26 +92,29 @@ def get_data_loaders ():
     train_dataset,
     batch_size=128,
     shuffle=True,
-    num_workers=2,
+    num_workers=4,
     pin_memory=torch.cuda.is_available(),
-    persistent_workers=True
+    persistent_workers=True,
+    prefetch_factor=4
 )
     val_loader = DataLoader(
         val_dataset,
         batch_size=128,
         shuffle=False,
-        num_workers=2,
+        num_workers=4,
         pin_memory=torch.cuda.is_available(),
-        persistent_workers=True
+        persistent_workers=True,
+        prefetch_factor=4
     )
 
     test_loader = DataLoader(
         test_dataset,
         batch_size=128,
         shuffle=False,
-        num_workers=2,
+        num_workers=4,
         pin_memory=torch.cuda.is_available(),
-        persistent_workers=True
+        persistent_workers=True,
+        prefetch_factor=4
     )
 
     return train_loader, val_loader, test_loader
