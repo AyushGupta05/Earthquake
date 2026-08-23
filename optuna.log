@@ -1,0 +1,20 @@
+/home/ec2-user/Earthquake/instancepipeline.py:21: DtypeWarning: Columns (23,24,26,27) have mixed types. Specify dtype option on import or set low_memory=False.
+  test_df = pd.read_csv("test_metadata.csv")
+/home/ec2-user/Earthquake/instancepipeline.py:24: DtypeWarning: Columns (23,24,26,27) have mixed types. Specify dtype option on import or set low_memory=False.
+  val_df = pd.read_csv("val_metadata.csv")
+Using cuda
+[I 2026-08-23 18:57:18,545] Using an existing study with name 'earthquake_architecture_search' instead of creating a new one.
+
+============================================================
+Trial 9
+============================================================
+Number of layers: 2
+Filters: [64, 128]
+Kernel sizes: 7
+BatchNorm: False
+Dropout: 0.2
+FC size: 128
+Pooling: MaxPool1d
+============================================================
+Trainable parameters: 75,521
+Batch 200 | MSE: 3.4312 | MAE: 0.7687 | Accuracy ±0.2: 19.40%

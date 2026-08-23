@@ -20,16 +20,16 @@ from sklearn.model_selection import train_test_split
 
 test_df = pd.read_csv("test_metadata.csv")
 
-train_df = pd.read_csv("train_hyperparams_metadata.csv")
+train_df = pd.read_csv("train_architecture_data.csv")
 val_df = pd.read_csv("val_metadata.csv")
 
 mean = torch.tensor(
-    np.load("train_mean_hyperparams.npy"),
+    np.load("train_mean_architecture.npy"),
     dtype=torch.float32
 ).reshape(3, 1)
 
 std = torch.tensor(
-    np.load("train_std_hyperparams.npy"),
+    np.load("train_std_architecture.npy"),
     dtype=torch.float32
 ).reshape(3, 1)
 class InstanceEarthquakeDataset(Dataset):
@@ -90,26 +90,26 @@ def get_data_loaders ():
     )
     train_loader = DataLoader(
     train_dataset,
-    batch_size=32,
+    batch_size=128,
     shuffle=True,
-    num_workers=4,
+    num_workers=2,
     pin_memory=torch.cuda.is_available(),
     persistent_workers=True
 )
     val_loader = DataLoader(
         val_dataset,
-        batch_size=32,
+        batch_size=128,
         shuffle=False,
-        num_workers=4,
+        num_workers=2,
         pin_memory=torch.cuda.is_available(),
         persistent_workers=True
     )
 
     test_loader = DataLoader(
         test_dataset,
-        batch_size=32,
+        batch_size=128,
         shuffle=False,
-        num_workers=4,
+        num_workers=2,
         pin_memory=torch.cuda.is_available(),
         persistent_workers=True
     )

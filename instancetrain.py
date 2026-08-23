@@ -316,7 +316,7 @@ if __name__ == "__main__":
         )
     )
 
-    study.optimize(objective,n_trials=1) 
+    study.optimize(objective,n_trials=5) 
  
     results_df = study.trials_dataframe() 
  
