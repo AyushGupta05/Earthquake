@@ -305,14 +305,18 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
     print (f"Using {device}") 
 
-    study = optuna.create_study( 
-        study_name="earthquake_architecture_search", 
-        storage="sqlite:///architecture_search.db", 
-        direction="minimize", 
-        load_if_exists=True 
-    ) 
+    study = optuna.create_study(
+        study_name="earthquake_architecture_search",
+        storage="sqlite:///architecture_search.db",
+        direction="minimize",
+        load_if_exists=True,
+        pruner=optuna.pruners.MedianPruner(
+            n_startup_trials=5,
+            n_warmup_steps=3
+        )
+    )
 
-    study.optimize(objective,n_trials=30) 
+    study.optimize(objective,n_trials=1) 
  
     results_df = study.trials_dataframe() 
  

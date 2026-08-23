@@ -17,22 +17,21 @@ import numpy as np
 import h5py as h5
 from sklearn.model_selection import train_test_split
 
-metadata = pd.read_csv("metadata/metadata_Instance_events_10k.csv")
+
 test_df = pd.read_csv("test_metadata.csv")
 
-train_df = pd.read_csv("train_metadata.csv")
+train_df = pd.read_csv("train_hyperparams_metadata.csv")
 val_df = pd.read_csv("val_metadata.csv")
 
 mean = torch.tensor(
-    np.load("train_mean.npy"),
+    np.load("train_mean_hyperparams.npy"),
     dtype=torch.float32
-).squeeze(0)
+).reshape(3, 1)
 
 std = torch.tensor(
-    np.load("train_std.npy"),
+    np.load("train_std_hyperparams.npy"),
     dtype=torch.float32
-).squeeze(0)
-
+).reshape(3, 1)
 class InstanceEarthquakeDataset(Dataset):
 
     def __init__(self, metadata_df, hdf5_path, timelength, transform = None):
@@ -75,18 +74,18 @@ class InstanceEarthquakeDataset(Dataset):
 def get_data_loaders ():
     
 
-    train_dataset = InstanceEarthquakeDataset(metadata_df=train_df,hdf5_path="data/Instance_events_counts_10k.hdf5",
+    train_dataset = InstanceEarthquakeDataset(metadata_df=train_df,hdf5_path="/data/Instance_events_counts.hdf5",
                                             timelength = 300)
 
     val_dataset = InstanceEarthquakeDataset(
         metadata_df=val_df,
-        hdf5_path="data/Instance_events_counts.hdf5",
+        hdf5_path="/data/Instance_events_counts.hdf5",
          timelength = 300
     )
 
     test_dataset = InstanceEarthquakeDataset(
         metadata_df=test_df,
-        hdf5_path="data/Instance_events_counts.hdf5",
+        hdf5_path="/data/Instance_events_counts.hdf5",
         timelength = 300
     )
     train_loader = DataLoader(
