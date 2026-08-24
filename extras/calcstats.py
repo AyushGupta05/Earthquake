@@ -1,12 +1,18 @@
+from pathlib import Path
+
 import pandas as pd
 import h5py as h5
 import numpy as np
 
-train_ids = pd.read_csv("train_full_metadata.csv")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+ARCHITECTURE_DIR = PROJECT_ROOT / "architechturesearch"
+HYPERPARAM_DIR = PROJECT_ROOT / "hyperparamsearch"
 
-train_optimize_architecture = pd.read_csv("train_architecture_data.csv")
+train_ids = pd.read_csv(PROJECT_ROOT / "train_full_metadata.csv")
 
-train_optimize_hyperparams = pd.read_csv("train_hyperparams_metadata.csv")
+train_optimize_architecture = pd.read_csv(ARCHITECTURE_DIR / "data" / "train_architecture_data.csv")
+
+train_optimize_hyperparams = pd.read_csv(HYPERPARAM_DIR / "train_hyperparams_metadata.csv")
 
 waveforms = h5.File(
     "/data/Instance_events_counts.hdf5",
@@ -115,16 +121,16 @@ print("Hyperparameter mean:", meanhyperparams)
 
 print("Hyperparameter std:", stdhyperparams)
 
-np.save("train_mean_full.npy", meanfull)
+np.save(PROJECT_ROOT / "train_mean_full.npy", meanfull)
 
-np.save("train_std_full.npy", stdfull)
+np.save(PROJECT_ROOT / "train_std_full.npy", stdfull)
 
-np.save("train_mean_architecture.npy", meanarchitecture)
+np.save(ARCHITECTURE_DIR / "train_mean_architecture.npy", meanarchitecture)
 
-np.save("train_std_architecture.npy", stdarchitecture)
+np.save(ARCHITECTURE_DIR / "train_std_architecture.npy", stdarchitecture)
 
-np.save("train_mean_hyperparams.npy", meanhyperparams)
+np.save(HYPERPARAM_DIR / "train_mean_hyperparams.npy", meanhyperparams)
 
-np.save("train_std_hyperparams.npy", stdhyperparams)
+np.save(HYPERPARAM_DIR / "train_std_hyperparams.npy", stdhyperparams)
 
 waveforms.close()

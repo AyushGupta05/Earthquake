@@ -1,3 +1,7 @@
+from pathlib import Path
+
+MODULE_DIR = Path(__file__).resolve().parent
+
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 # acess problems
@@ -18,18 +22,14 @@ import h5py as h5
 from sklearn.model_selection import train_test_split
 
 
-test_df = pd.read_csv("test_metadata.csv")
-
-train_df = pd.read_csv("train_architecture_data.csv")
-val_df = pd.read_csv("val_metadata.csv")
 
 mean = torch.tensor(
-    np.load("train_mean_architecture.npy"),
+    np.load(MODULE_DIR / "train_mean_architecture.npy"),
     dtype=torch.float32
 ).reshape(3, 1)
 
 std = torch.tensor(
-    np.load("train_std_architecture.npy"),
+    np.load(MODULE_DIR / "train_std_architecture.npy"),
     dtype=torch.float32
 ).reshape(3, 1)
 class InstanceEarthquakeDataset(Dataset):
@@ -69,25 +69,57 @@ class InstanceEarthquakeDataset(Dataset):
         state["h5_file"] = None
         return state
 
+class cacheEarthquakeDataset(Dataset):
+    def __init__(self, path, split):
+        self.path = path
+        self.split = split
+        self.h5_file = None
+        self.waveforms = None
+        self.targets = None
+    
+        with h5.File(path, "r") as file:
+            self.length = file[f"{split}/targets"].shape[0]
 
+    def _open(self):
+        if self.h5_file is None:
+            self.h5_file = h5.File(self.path, "r")
+            self.waveforms = self.h5_file[
+                f"{self.split}/waveforms"
+            ]
+            self.targets = self.h5_file[
+                f"{self.split}/targets"
+            ]
+
+    def __len__(self):
+        return self.length
+
+    def __getitem__(self, index):
+        self._open()
+
+        waveform = torch.from_numpy(self.waveforms[index])
+        target = torch.tensor(
+            self.targets[index],
+            dtype=torch.float32,
+        )
+
+        return waveform, target
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        state["h5_file"] = None
+        state["waveforms"] = None
+        state["targets"] = None
+        return state
 
 def get_data_loaders ():
     
 
-    train_dataset = InstanceEarthquakeDataset(metadata_df=train_df,hdf5_path="/data/Instance_events_counts.hdf5",
-                                            timelength = 300)
+    train_dataset = cacheEarthquakeDataset("/data/Instance_windows.hdf5","train",)
 
-    val_dataset = InstanceEarthquakeDataset(
-        metadata_df=val_df,
-        hdf5_path="/data/Instance_events_counts.hdf5",
-         timelength = 300
-    )
+    val_dataset = cacheEarthquakeDataset("/data/Instance_windows.hdf5","val",)
 
-    test_dataset = InstanceEarthquakeDataset(
-        metadata_df=test_df,
-        hdf5_path="/data/Instance_events_counts.hdf5",
-        timelength = 300
-    )
+    test_dataset = cacheEarthquakeDataset("/data/Instance_windows.hdf5","test")
+    
     train_loader = DataLoader(
     train_dataset,
     batch_size=128,
@@ -113,7 +145,7 @@ def get_data_loaders ():
         shuffle=False,
         num_workers=4,
         pin_memory=torch.cuda.is_available(),
-        persistent_workers=True,
+        persistent_workers=False,
         prefetch_factor=4
     )
 

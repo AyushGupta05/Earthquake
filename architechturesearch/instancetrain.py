@@ -1,4 +1,12 @@
-from instancepipeline import get_data_loaders 
+from pathlib import Path
+
+MODULE_DIR = Path(__file__).resolve().parent
+DATA_DIR = MODULE_DIR / "data"
+
+try:
+    from .instancepipeline import get_data_loaders
+except ImportError:
+    from instancepipeline import get_data_loaders 
 import torch 
 import torch.nn as nn 
 import torchmetrics 
@@ -123,7 +131,7 @@ def evaluate_metrics(model, dataloader, device):
      
     return mse_value, mae.compute().item(),mse_value ** 0.5, correct / total * 100 
  
-def run_experiment(model, train_loader, val_loader, device, num_epochs = 40, lr = 0.001, weight_decay = 1e-4, checkpoint_path = "Baseline_Instance_params1.pth"): 
+def run_experiment(model, train_loader, val_loader, device, num_epochs = 40, lr = 0.001, weight_decay = 1e-4, checkpoint_path = DATA_DIR / "Baseline_Instance_params1.pth"): 
     model = model.to(device) 
     trainable_params = sum(p.numel()for p in model.parameters()if p.requires_grad) 
  
@@ -251,7 +259,7 @@ def objective (trial):
     best_accuracy = None 
     best_epoch = None 
  
-    for epoch in range(10): 
+    for epoch in range(17): 
  
         train_epoch(model, 
             train_loader, 
@@ -299,7 +307,8 @@ def objective (trial):
     return best_rmse 
  
  
-if __name__ == "__main__": 
+if __name__ == "__main__":
+    DATA_DIR.mkdir(exist_ok=True) 
     train_loader, val_loader, test_loader = get_data_loaders() 
  
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
@@ -307,7 +316,7 @@ if __name__ == "__main__":
 
     study = optuna.create_study(
         study_name="earthquake_architecture_search",
-        storage="sqlite:///architecture_search.db",
+        storage="sqlite:///" + str(DATA_DIR / "architecture_search.db"),
         direction="minimize",
         load_if_exists=True,
         pruner=optuna.pruners.MedianPruner(
@@ -316,11 +325,11 @@ if __name__ == "__main__":
         )
     )
 
-    study.optimize(objective,n_trials=5) 
+    study.optimize(objective,n_trials=30) 
  
     results_df = study.trials_dataframe() 
  
-    results_df.to_csv("architecture_search_results.csv",index=False)    
+    results_df.to_csv(DATA_DIR / "architecture_search_results.csv", index=False)    
 
     print("Best RMSE:") 
     print(study.best_value) 
