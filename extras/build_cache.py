@@ -4,21 +4,28 @@ import sys
 import torch
 from torch.utils.data import DataLoader
 import pandas as pd
+from tqdm import tqdm
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 ARCHITECTURE_DIR = PROJECT_ROOT / "architechturesearch"
 if str(ARCHITECTURE_DIR) not in sys.path:
     sys.path.insert(0, str(ARCHITECTURE_DIR))
 
-from instancepipeline import InstanceEarthquakeDataset
+from architechturesearch.instancepipeline import InstanceEarthquakeDataset
 
 
 
-train_df = pd.read_csv(ARCHITECTURE_DIR / "data" / "train_architecture_data.csv")
-val_df = pd.read_csv(PROJECT_ROOT / "val_metadata.csv", low_memory=False)
-test_df = pd.read_csv(PROJECT_ROOT / "test_metadata.csv", low_memory=False)
+train_df = pd.read_csv(
+    PROJECT_ROOT / "train_full_metadata.csv",
+    low_memory=False
+)
+
 
 SOURCE = "/data/Instance_events_counts.hdf5"
-OUTPUT = "/data/Instance_windows.hdf5"
+OUTPUT = "/data/Instance_windows_full.hdf5"
 
 
 def convert_split(output_file, split_name, dataframe):
@@ -55,7 +62,13 @@ def convert_split(output_file, split_name, dataframe):
 
     position = 0
 
-    for batch_number, (x, y) in enumerate(loader):
+    for batch_number, (x, y) in enumerate(
+        tqdm(
+            loader,
+            desc=f"Converting {split_name}",
+            unit="batch"
+        )
+    ):
         batch_size = x.shape[0]
         end = position + batch_size
 
@@ -64,18 +77,11 @@ def convert_split(output_file, split_name, dataframe):
 
         position = end
 
-        if batch_number % 100 == 0:
-            print(
-                f"{split_name}: {position:,}/{count:,}",
-                flush=True,
-            )
-
 
 def main():
     with h5py.File(OUTPUT, "w") as output_file:
         convert_split(output_file, "train", train_df)
-        convert_split(output_file, "val", val_df)
-        convert_split(output_file, "test", test_df)
+
 
     print(f"Created {OUTPUT}")
 

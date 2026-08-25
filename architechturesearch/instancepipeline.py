@@ -43,18 +43,20 @@ class InstanceEarthquakeDataset(Dataset):
         self.p_arrivals = metadata_df["trace_P_arrival_sample"].to_numpy()
         self.magnitudes = metadata_df["source_magnitude"].to_numpy()
         self.h5_file = None
+        self.data_group = None
     def __len__(self):
         return len(self.trace_names)
     def __getitem__(self,idx):
         if self.h5_file is None:
             self.h5_file = h5.File(self.hdf5_path, "r")
+            self.data_group = self.h5_file["data"]
         
         
         
         trace_name = self.trace_names[idx]
         p_arrival = int(self.p_arrivals[idx])
         magnitude = self.magnitudes[idx]
-        waveform = self.h5_file["data"][trace_name]
+        waveform = self.data_group[trace_name]
         waveform_window = waveform[:, p_arrival:p_arrival + self.timelength]
         waveform_window = torch.from_numpy(np.asarray(waveform_window, dtype=np.float32))
         if self.transform:
@@ -67,6 +69,7 @@ class InstanceEarthquakeDataset(Dataset):
     def __getstate__(self):
         state = self.__dict__.copy()
         state["h5_file"] = None
+        state["data_group"] = None
         return state
 
 class cacheEarthquakeDataset(Dataset):
