@@ -24,12 +24,12 @@ from sklearn.model_selection import train_test_split
 
 
 mean = torch.tensor(
-    np.load(MODULE_DIR / "train_mean_architecture.npy"),
+    np.load(MODULE_DIR / "train_mean_hyperparams.npy"),
     dtype=torch.float32
 ).reshape(3, 1)
 
 std = torch.tensor(
-    np.load(MODULE_DIR / "train_std_architecture.npy"),
+    np.load(MODULE_DIR / "train_std_hyperparams.npy"),
     dtype=torch.float32
 ).reshape(3, 1)
 class InstanceEarthquakeDataset(Dataset):
@@ -117,11 +117,11 @@ class cacheEarthquakeDataset(Dataset):
 def get_data_loaders ():
     
 
-    train_dataset = cacheEarthquakeDataset("/data/Instance_windows.hdf5","train",)
+    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_hyperparams.hdf5","train",)
 
-    val_dataset = cacheEarthquakeDataset("/data/Instance_windows.hdf5","val",)
+    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_hyperparams.hdf5","val",)
 
-    test_dataset = cacheEarthquakeDataset("/data/Instance_windows.hdf5","test")
+    test_dataset = cacheEarthquakeDataset("/data/Instance_windows_hyperparams.hdf5","test")
     
     train_loader = DataLoader(
     train_dataset,
