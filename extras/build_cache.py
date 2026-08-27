@@ -14,11 +14,11 @@ ARCHITECTURE_DIR = PROJECT_ROOT / "architechturesearch"
 if str(ARCHITECTURE_DIR) not in sys.path:
     sys.path.insert(0, str(ARCHITECTURE_DIR))
 
-from hyperparamsearch.instancepipeline import InstanceEarthquakeDataset
+from fullmodeltrain.instancepipeline import InstanceEarthquakeDataset
 
 
 
-train_df = pd.read_csv(PROJECT_ROOT / "hyperparamsearch" / "train_hyperparams_metadata.csv",low_memory=False)
+train_df = pd.read_csv(PROJECT_ROOT / "train_full_metadata.csv" ,low_memory=False)
 
 val_df = pd.read_csv(PROJECT_ROOT / "val_metadata.csv",low_memory=False)
 
@@ -29,7 +29,7 @@ test_df = pd.read_csv(
 
 
 SOURCE = "/data/Instance_events_counts.hdf5"
-OUTPUT = "/data/Instance_windows_hyperparams.hdf5"
+OUTPUT = "/data/Instance_windows_full.hdf5"
 
 
 
