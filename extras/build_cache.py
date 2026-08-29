@@ -29,7 +29,7 @@ test_df = pd.read_csv(
 
 
 SOURCE = "/data/Instance_events_counts.hdf5"
-OUTPUT = "/data/Instance_windows_full.hdf5"
+OUTPUT = "/data/Instance_windows_fullnn.hdf5"
 
 
 
