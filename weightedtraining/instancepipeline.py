@@ -104,6 +104,7 @@ class cacheEarthquakeDataset(Dataset):
             self.targets[index],
             dtype=torch.float32,
         )
+        target = target - TARGET_MEAN
         
         return waveform, target
 
@@ -117,11 +118,11 @@ class cacheEarthquakeDataset(Dataset):
 def get_data_loaders ():
     
 
-    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","train",)
+    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_hyperparams.hdf5","train",)
 
-    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","val",)
+    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_hyperparams.hdf5","val",)
 
-    test_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","test")
+    test_dataset = cacheEarthquakeDataset("/data/Instance_windows_hyperparams.hdf5","test")
     
     train_loader = DataLoader(
     train_dataset,
