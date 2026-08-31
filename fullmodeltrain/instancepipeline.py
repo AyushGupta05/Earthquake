@@ -104,7 +104,8 @@ class cacheEarthquakeDataset(Dataset):
             self.targets[index],
             dtype=torch.float32,
         )
-        target -= TARGET_MEAN
+        target = target - TARGET_MEAN 
+        
 
         return waveform, target
 
@@ -116,6 +117,48 @@ class cacheEarthquakeDataset(Dataset):
         return state
 
 def get_data_loaders ():
+    
+
+    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","train",)
+
+    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","val",)
+
+    test_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","test")
+    
+    train_loader = DataLoader(
+    train_dataset,
+    batch_size=128,
+    shuffle=True,
+    num_workers=4,
+    pin_memory=torch.cuda.is_available(),
+    persistent_workers=True,
+    prefetch_factor=4
+)
+    val_loader = DataLoader(
+        val_dataset,
+        batch_size=128,
+        shuffle=False,
+        num_workers=4,
+        pin_memory=torch.cuda.is_available(),
+        persistent_workers=True,
+        prefetch_factor=4
+    )
+
+    test_loader = DataLoader(
+        test_dataset,
+        batch_size=128,
+        shuffle=False,
+        num_workers=4,
+        pin_memory=torch.cuda.is_available(),
+        persistent_workers=False,
+        prefetch_factor=4
+    )
+
+    return train_loader, val_loader, test_loader
+
+
+
+def get_data_loaders2 ():
     
 
     train_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","train",)
@@ -154,6 +197,5 @@ def get_data_loaders ():
     )
 
     return train_loader, val_loader, test_loader
-
 
 

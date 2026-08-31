@@ -145,8 +145,8 @@ def evaluate_metrics(model, dataloader, device):
     return mse_value, mae.compute().item(), mse_value ** 0.5, correct / total * 100
 
 
-def run_experiment(model,train_loader,val_loader,device,num_epochs=200,lr=0.000494,weight_decay=1.511446e-07,
-    checkpoint_path=DATA_DIR / "best_model_abovemean.pth"
+def run_experiment(model,train_loader,val_loader,device,num_epochs=100,lr=0.000494,weight_decay=1.511446e-07,
+    checkpoint_path=DATA_DIR / "best_model_fullabovemean.pth"
 ):
     model = model.to(device)
 

@@ -104,8 +104,7 @@ class cacheEarthquakeDataset(Dataset):
             self.targets[index],
             dtype=torch.float32,
         )
-        target -= TARGET_MEAN
-
+        
         return waveform, target
 
     def __getstate__(self):
