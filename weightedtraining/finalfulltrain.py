@@ -71,7 +71,7 @@ class EarthquakeCNN(nn.Module):
 
 class WeightedHuberLoss(nn.Module):
 
-    def __init__(self, threshold, beta, target_mean = TARGET_MEAN, delta = 1.0):
+    def __init__(self, threshold = 3.6, beta = 5, target_mean = TARGET_MEAN, delta = 1.0):
         super().__init__()
 
         self.threshold = threshold
