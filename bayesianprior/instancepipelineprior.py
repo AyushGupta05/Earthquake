@@ -61,7 +61,7 @@ class InstanceEarthquakeDataset(Dataset):
         waveform_window = torch.from_numpy(np.asarray(waveform_window, dtype=np.float32))
         if self.transform:
             waveform_window = self.transform(waveform_window)
-        waveform_window = (waveform_window - mean) / (std + 1e-8)
+        #waveform_window = (waveform_window - mean) / (std + 1e-8)
         magnitude = torch.tensor(magnitude, dtype=torch.float32)
 
         return waveform_window, magnitude
@@ -104,9 +104,8 @@ class cacheEarthquakeDataset(Dataset):
             self.targets[index],
             dtype=torch.float32,
         )
-        target = target - TARGET_MEAN 
         
-
+        
         return waveform, target
 
     def __getstate__(self):
@@ -158,44 +157,11 @@ def get_data_loaders ():
 
 
 
-def get_data_loaders2 ():
-    
+train_loader, val_loader, test_loader = get_data_loaders()
 
-    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","train",)
-
-    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","val",)
-
-    test_dataset = cacheEarthquakeDataset("/data/Instance_windows_fullnn.hdf5","test")
-    
-    train_loader = DataLoader(
-    train_dataset,
-    batch_size=128,
-    shuffle=True,
-    num_workers=4,
-    pin_memory=torch.cuda.is_available(),
-    persistent_workers=True,
-    prefetch_factor=4
-)
-    val_loader = DataLoader(
-        val_dataset,
-        batch_size=128,
-        shuffle=False,
-        num_workers=4,
-        pin_memory=torch.cuda.is_available(),
-        persistent_workers=True,
-        prefetch_factor=4
-    )
-
-    test_loader = DataLoader(
-        test_dataset,
-        batch_size=128,
-        shuffle=False,
-        num_workers=4,
-        pin_memory=torch.cuda.is_available(),
-        persistent_workers=False,
-        prefetch_factor=4
-    )
-
-    return train_loader, val_loader, test_loader
-
-
+print("Train samples:", len(train_loader.dataset))
+print("Validation samples:", len(val_loader.dataset))
+print("Test samples:", len(test_loader.dataset))
+print("Train batches:", len(train_loader))
+print("Val batches:", len(val_loader))
+print("Test batches:", len(test_loader))

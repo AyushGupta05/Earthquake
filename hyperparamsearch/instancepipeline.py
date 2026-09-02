@@ -21,6 +21,7 @@ import numpy as np
 import h5py as h5
 from sklearn.model_selection import train_test_split
 
+TARGET_MEAN = 2.28802128052746
 
 
 mean = torch.tensor(
@@ -104,7 +105,7 @@ class cacheEarthquakeDataset(Dataset):
             self.targets[index],
             dtype=torch.float32,
         )
-
+        target = target - TARGET_MEAN
         return waveform, target
 
     def __getstate__(self):

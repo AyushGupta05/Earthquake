@@ -4,15 +4,27 @@ MODULE_DIR = Path(__file__).resolve().parent
 DATA_DIR = MODULE_DIR / "data"
 
 try:
-    from .instancepipeline import get_data_loaders, TARGET_MEAN
+    from .instancepipelineprior import get_data_loaders
 except ImportError:
-    from instancepipeline import get_data_loaders, TARGET_MEAN
+    from instancepipelineprior import get_data_loaders
 
 import torch
 import torch.nn as nn
 import torchmetrics
 import optuna
+MIN_MAGNITUDE = 0.0
+MAX_MAGNITUDE = 6.6
+BIN_WIDTH = 0.1
 
+
+
+BIN_CENTERS = torch.arange(
+    MIN_MAGNITUDE + BIN_WIDTH / 2,
+    MAX_MAGNITUDE,
+    BIN_WIDTH,
+    dtype=torch.float32
+)
+NUM_BINS = len(BIN_CENTERS)
 
 class EarthquakeCNN(nn.Module):
 
@@ -58,7 +70,7 @@ class EarthquakeCNN(nn.Module):
             nn.Linear(512, 128),
             nn.ReLU(),
             nn.Dropout(0.5),
-            nn.Linear(128, 1)
+            nn.Linear(128, NUM_BINS)
         )
 
     def forward(self, x):
@@ -67,17 +79,20 @@ class EarthquakeCNN(nn.Module):
         x = self.classifier(x)
 
         return x
+def logits_to_magnitude(logits,bin_centers):
+    probabilities = torch.softmax(logits,dim=1)
 
+    predictions = torch.sum(probabilities* bin_centers.unsqueeze(0),dim=1)
+    return predictions
 
 class WeightedHuberLoss(nn.Module):
 
-    def __init__(self, threshold = 3.6, beta = 5, target_mean = TARGET_MEAN, delta = 1.0):
+    def __init__(self, threshold = 3.6, beta = 5,  delta = 1.0):
         super().__init__()
 
         self.threshold = threshold
         self.beta = beta
-        self.target_mean = target_mean
-        self.delta = delta
+
 
         self.huber = nn.HuberLoss(
             delta=delta,
@@ -86,18 +101,11 @@ class WeightedHuberLoss(nn.Module):
 
     def forward(self, predictions, targets):
 
-        individual_losses = self.huber(
-            predictions,
-            targets
+        individual_losses = self.huber(predictions,targets)
+
+        
+        weights = (1.0+ self.beta* torch.clamp(targets - self.threshold,min=0.0)
         )
-
-        actual_magnitudes = targets + self.target_mean
-
-        weights = 1.0 + self.beta * torch.clamp(
-            actual_magnitudes - self.threshold,
-            min=0.0
-        )
-
         weighted_loss = (
             weights * individual_losses
         ).mean()
@@ -114,6 +122,7 @@ def train_epoch(model, train_loader, loss_function, optimizer, device):
     total = 0
     tolerance = 0.2
     log_interval = 200
+    bin_centers = BIN_CENTERS.to(device)
 
     for batch_idx, (data, target) in enumerate(train_loader):
         data = data.to(device, non_blocking=True)
@@ -121,7 +130,9 @@ def train_epoch(model, train_loader, loss_function, optimizer, device):
 
         optimizer.zero_grad(set_to_none=True)
 
-        output = model(data).squeeze(-1)
+        logits = model(data)
+        output = logits_to_magnitude(logits,bin_centers)
+
         loss = loss_function(output, target)
 
         loss.backward()
@@ -163,15 +174,21 @@ def evaluate_metrics(model, dataloader, device):
     mse = torchmetrics.MeanSquaredError().to(device)
 
     tolerance = 0.2
+    bin_centers = BIN_CENTERS.to(device)
 
     with torch.no_grad():
         for waveforms, magnitudes in dataloader:
-            waveforms = waveforms.to(device, non_blocking=True)
-            magnitudes = magnitudes.to(device, non_blocking=True)
 
-            predictions = model(waveforms).squeeze(-1)
+            waveforms = waveforms.to(device,non_blocking=True)
 
-            correct += (torch.abs(predictions - magnitudes) <= tolerance).sum().item()
+            magnitudes = magnitudes.to(device,non_blocking=True)
+
+            logits = model(waveforms)
+
+            predictions = logits_to_magnitude(logits,bin_centers)
+
+            correct += (torch.abs(predictions - magnitudes)<= tolerance).sum().item()
+
             total += magnitudes.size(0)
 
             mae.update(predictions, magnitudes)
@@ -179,8 +196,7 @@ def evaluate_metrics(model, dataloader, device):
 
     mse_value = mse.compute().item()
 
-    return mse_value, mae.compute().item(), mse_value ** 0.5, correct / total * 100
-
+    return (mse_value, mae.compute().item(),mse_value ** 0.5,correct / total * 100)
 
 def evaluate_by_magnitude(model, dataloader, device, magnitude_threshold):
     model.eval()
@@ -188,26 +204,21 @@ def evaluate_by_magnitude(model, dataloader, device, magnitude_threshold):
     all_predictions = []
     all_targets = []
 
+    bin_centers = BIN_CENTERS.to(device)
+
     with torch.no_grad():
         for waveforms, magnitudes in dataloader:
             waveforms = waveforms.to(device, non_blocking=True)
             magnitudes = magnitudes.to(device, non_blocking=True)
 
-            predictions = model(waveforms).squeeze(-1)
+            logits = model(waveforms)
+            predictions = logits_to_magnitude(logits, bin_centers)
 
-            actual_predictions = predictions + TARGET_MEAN
-            actual_magnitudes = magnitudes + TARGET_MEAN
-
-            mask = actual_magnitudes >= magnitude_threshold
+            mask = magnitudes >= magnitude_threshold
 
             if mask.any():
-                all_predictions.append(
-                    actual_predictions[mask].cpu()
-                )
-
-                all_targets.append(
-                    actual_magnitudes[mask].cpu()
-                )
+                all_predictions.append(predictions[mask].cpu())
+                all_targets.append(magnitudes[mask].cpu())
 
     if len(all_predictions) == 0:
         return float("nan"), float("nan"), float("nan"), 0
@@ -218,15 +229,9 @@ def evaluate_by_magnitude(model, dataloader, device, magnitude_threshold):
     errors = all_predictions - all_targets
 
     mae = torch.abs(errors).mean().item()
-
-    mse = torch.mean(
-        errors ** 2
-    ).item()
-
+    mse = torch.mean(errors ** 2).item()
     rmse = mse ** 0.5
-
     bias = errors.mean().item()
-
     count = all_targets.size(0)
 
     return mae, rmse, bias, count
@@ -253,7 +258,7 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
     loss_function = WeightedHuberLoss(
         threshold=threshold,
         beta=beta,
-        target_mean=TARGET_MEAN,
+        
         delta=1.0
     )
 

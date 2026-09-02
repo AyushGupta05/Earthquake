@@ -29,7 +29,7 @@ test_df = pd.read_csv(
 
 
 SOURCE = "/data/Instance_events_counts.hdf5"
-OUTPUT = "/data/Instance_windows_fullnn.hdf5"
+OUTPUT = "/data/Instance_windows_1s.hdf5"
 
 
 
@@ -37,7 +37,7 @@ def convert_split(output_file, split_name, dataframe):
     dataset = InstanceEarthquakeDataset(
         dataframe,
         hdf5_path=SOURCE,
-        timelength=300,
+        timelength=100,
     )
 
     # Workers only read the source file. The main process alone writes OUTPUT.
@@ -55,7 +55,7 @@ def convert_split(output_file, split_name, dataframe):
 
     waveforms = output_file.create_dataset(
         f"{split_name}/waveforms",
-        shape=(count, 3, 300),
+        shape=(count, 3, 100),
         dtype="float32",
     )
 
