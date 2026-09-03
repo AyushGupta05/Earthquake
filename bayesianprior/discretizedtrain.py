@@ -25,6 +25,10 @@ BIN_CENTERS = torch.arange(
     dtype=torch.float32
 )
 NUM_BINS = len(BIN_CENTERS)
+def magnitude_to_bin(targets):
+    target_bins = ((targets - MIN_MAGNITUDE) / BIN_WIDTH).long()
+    target_bins = torch.clamp(target_bins, 0, NUM_BINS - 1)
+    return target_bins
 
 class EarthquakeCNN(nn.Module):
 
@@ -112,8 +116,7 @@ class WeightedHuberLoss(nn.Module):
 
         return weighted_loss
 
-
-def train_epoch(model, train_loader, loss_function, optimizer, device):
+def train_epoch(model, train_loader, huber_loss_function, cross_entropy_loss_function, gamma, optimizer, device):
     model.train()
 
     running_loss = 0.0
@@ -131,9 +134,14 @@ def train_epoch(model, train_loader, loss_function, optimizer, device):
         optimizer.zero_grad(set_to_none=True)
 
         logits = model(data)
-        output = logits_to_magnitude(logits,bin_centers)
+        predictions = logits_to_magnitude(logits, bin_centers)
 
-        loss = loss_function(output, target)
+        target_bins = magnitude_to_bin(target)
+
+        huber_loss = huber_loss_function(predictions, target)
+        cross_loss = cross_entropy_loss_function(logits, target_bins)
+
+        loss = huber_loss + gamma * cross_loss
 
         loss.backward()
         optimizer.step()
@@ -141,8 +149,8 @@ def train_epoch(model, train_loader, loss_function, optimizer, device):
         batch_size = data.size(0)
 
         running_loss += loss.item() * batch_size
-        running_mae += torch.abs(output - target).sum().item()
-        correct += (torch.abs(output - target) <= tolerance).sum().item()
+        running_mae += torch.abs(predictions - target).sum().item()
+        correct += (torch.abs(predictions - target) <= tolerance).sum().item()
         total += batch_size
 
         if (batch_idx + 1) % log_interval == 0:
@@ -154,7 +162,9 @@ def train_epoch(model, train_loader, loss_function, optimizer, device):
                 f"Batch {batch_idx + 1} | "
                 f"Loss: {avg_loss:.4f} | "
                 f"MAE: {avg_mae:.4f} | "
-                f"Accuracy ±0.2: {accuracy:.2f}%"
+                f"Accuracy ±0.2: {accuracy:.2f}% | "
+                f"Huber: {huber_loss.item():.4f} | "
+                f"CE: {cross_loss.item():.4f}"
             )
 
     epoch_loss = running_loss / total
@@ -254,13 +264,21 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
         lr=lr,
         weight_decay=weight_decay
     )
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+    optimizer,
+    mode="min",
+    factor=0.1,
+    patience=3
+)
 
-    loss_function = WeightedHuberLoss(
+    huber_loss_function = WeightedHuberLoss(
         threshold=threshold,
         beta=beta,
         
         delta=1.0
     )
+    cross_entropy_loss_function = nn.CrossEntropyLoss()
+    gamma = 0.8
 
     best_rmse = float("inf")
     best_epoch = 0
@@ -271,7 +289,9 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
         train_loss, train_mae, train_accuracy = train_epoch(
             model,
             train_loader,
-            loss_function,
+            huber_loss_function,
+            cross_entropy_loss_function,
+            gamma,
             optimizer,
             device
         )
@@ -281,6 +301,7 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
             val_loader,
             device
         )
+        scheduler.step(val_rmse)
 
         print(
             f"Train | "
@@ -307,6 +328,7 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
                 "optimizer_state_dict": optimizer.state_dict(),
                 "threshold": threshold,
                 "beta": beta,
+                "gamma" :gamma,
                 "val_rmse": val_rmse,
                 "val_mae": val_mae,
                 "val_mse": val_mse,
@@ -393,7 +415,7 @@ if __name__ == "__main__":
 
     print(f"Using {device}")
 
-    checkpoint_path = DATA_DIR / "best_model_weighted2.pth"
+    checkpoint_path = DATA_DIR / "best_model_huberandcrosspoint8.pth"
 
     # Create fresh model
     model = EarthquakeCNN().to(device)
@@ -405,8 +427,8 @@ if __name__ == "__main__":
         val_loader=val_loader,
         device=device,
         threshold=3.5,
-        beta=4,
-        num_epochs=300,
+        beta=5,
+        num_epochs=40,
         lr=0.000494,
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path

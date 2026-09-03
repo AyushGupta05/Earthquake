@@ -249,6 +249,12 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
         lr=lr,
         weight_decay=weight_decay
     )
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+    optimizer,
+    mode="min",
+    factor=0.1,
+    patience=3
+)
 
     loss_function = WeightedHuberLoss(
         threshold=threshold,
@@ -276,6 +282,7 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
             val_loader,
             device
         )
+        scheduler.step(val_rmse)
 
         print(
             f"Train | "
@@ -401,7 +408,7 @@ if __name__ == "__main__":
         device=device,
         threshold=3.5,
         beta=4,
-        num_epochs=300,
+        num_epochs=120,
         lr=0.000494,
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path
