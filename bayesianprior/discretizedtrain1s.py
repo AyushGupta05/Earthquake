@@ -6,7 +6,7 @@ DATA_DIR = MODULE_DIR / "data"
 try:
     from .instancepipelineprior import get_data_loaders
 except ImportError:
-    from instancepipelineprior import get_data_loaders
+    from instancepipeline import get_data_loaders
 
 import torch
 import torch.nn as nn
@@ -278,7 +278,7 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
         delta=1.0
     )
     cross_entropy_loss_function = nn.CrossEntropyLoss()
-    gamma = 0.1
+    gamma = 0.2
 
     best_rmse = float("inf")
     best_epoch = 0
@@ -416,7 +416,7 @@ if __name__ == "__main__":
 
     print(f"Using {device}")
 
-    checkpoint_path = DATA_DIR / "best_model_huberandcrosspoint1.pth"
+    checkpoint_path = DATA_DIR / "best_model_huberandcross1s.pth"
 
     # Create fresh model
     model = EarthquakeCNN().to(device)
@@ -429,7 +429,7 @@ if __name__ == "__main__":
         device=device,
         threshold=3.5,
         beta=5,
-        num_epochs=40,
+        num_epochs=100,
         lr=0.000494,
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path

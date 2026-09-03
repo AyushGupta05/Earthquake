@@ -119,9 +119,9 @@ class cacheEarthquakeDataset(Dataset):
 def get_data_loaders ():
     
 
-    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","train",)
+    train_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","train")
 
-    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","val",)
+    val_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","val")
 
     test_dataset = cacheEarthquakeDataset("/data/Instance_windows_full.hdf5","test")
     
