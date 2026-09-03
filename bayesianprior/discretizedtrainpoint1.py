@@ -278,37 +278,10 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
         delta=1.0
     )
     cross_entropy_loss_function = nn.CrossEntropyLoss()
-    gamma = 0.2
-    start_epoch = 0
+    gamma = 0.075
+
     best_rmse = float("inf")
     best_epoch = 0
-    resume = True
-    if resume and checkpoint_path.exists():
-
-        checkpoint = torch.load(
-            checkpoint_path,
-            map_location=device
-        )
-
-        model.load_state_dict(
-            checkpoint["model_state_dict"]
-        )
-
-        optimizer.load_state_dict(
-            checkpoint["optimizer_state_dict"]
-        )
-
-        start_epoch = checkpoint["epoch"]
-
-        best_epoch = checkpoint["epoch"]
-        best_rmse = checkpoint["val_rmse"]
-
-        print(
-            f"Resuming from epoch {start_epoch} | "
-            f"Best RMSE: {best_rmse:.4f}"
-        )
-
-    
 
     for epoch in range(num_epochs):
         print(f"\nEpoch {epoch + 1}/{num_epochs}")
@@ -443,7 +416,7 @@ if __name__ == "__main__":
 
     print(f"Using {device}")
 
-    checkpoint_path = DATA_DIR / "best_model_huberandcrosspoint2.pth"
+    checkpoint_path = DATA_DIR / "best_model_huberandcrosspoint05.pth"
 
     # Create fresh model
     model = EarthquakeCNN().to(device)
