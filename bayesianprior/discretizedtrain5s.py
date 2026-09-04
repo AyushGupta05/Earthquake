@@ -4,9 +4,9 @@ MODULE_DIR = Path(__file__).resolve().parent
 DATA_DIR = MODULE_DIR / "data"
 
 try:
-    from .instancepipelineprior import get_data_loaders
+    from .instancepipeline5s import get_data_loaders
 except ImportError:
-    from instancepipeline import get_data_loaders
+    from instancepipeline5s import get_data_loaders
 
 import torch
 import torch.nn as nn
