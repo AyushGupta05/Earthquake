@@ -429,7 +429,7 @@ if __name__ == "__main__":
         device=device,
         threshold=3.5,
         beta=5,
-        num_epochs=100,
+        num_epochs=50,
         lr=0.000494,
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path

@@ -416,7 +416,7 @@ if __name__ == "__main__":
 
     print(f"Using {device}")
 
-    checkpoint_path = DATA_DIR / "best_model_huberandcross1s075.pth"
+    checkpoint_path = DATA_DIR / "best_model_huberandcross5s075.pth"
 
     # Create fresh model
     model = EarthquakeCNN().to(device)
@@ -429,7 +429,7 @@ if __name__ == "__main__":
         device=device,
         threshold=3.5,
         beta=5,
-        num_epochs=100,
+        num_epochs=50,
         lr=0.000494,
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path
