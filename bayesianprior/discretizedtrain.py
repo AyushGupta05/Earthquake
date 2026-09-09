@@ -26,7 +26,7 @@ BIN_CENTERS = torch.arange(
 )
 NUM_BINS = len(BIN_CENTERS)
 def magnitude_to_bin(targets):
-    target_bins = ((targets - MIN_MAGNITUDE) / BIN_WIDTH).long()
+    target_bins = torch.floor((targets - MIN_MAGNITUDE) / BIN_WIDTH + 1e-5).long()
     target_bins = torch.clamp(target_bins, 0, NUM_BINS - 1)
     return target_bins
 
@@ -278,11 +278,11 @@ def run_experiment(model,train_loader,val_loader,device,threshold,beta,num_epoch
         delta=1.0
     )
     cross_entropy_loss_function = nn.CrossEntropyLoss()
-    gamma = 0.2
+    gamma = 0.075
     start_epoch = 0
     best_rmse = float("inf")
     best_epoch = 0
-    resume = True
+    resume = False
     if resume and checkpoint_path.exists():
 
         checkpoint = torch.load(
@@ -443,7 +443,7 @@ if __name__ == "__main__":
 
     print(f"Using {device}")
 
-    checkpoint_path = DATA_DIR / "best_model_huberandcrosspoint2.pth"
+    checkpoint_path = DATA_DIR / "best_model_huberandcross3sfixed.pth"
 
     # Create fresh model
     model = EarthquakeCNN().to(device)
@@ -461,7 +461,8 @@ if __name__ == "__main__":
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path
     )
-
+    print("\nTraining complete. Test evaluation intentionally skipped for now.")
+    raise SystemExit
     # At this point `model` is already the best validation model
 
     test_mse, test_mae, test_rmse, test_accuracy = evaluate_metrics(

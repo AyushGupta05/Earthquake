@@ -26,7 +26,7 @@ BIN_CENTERS = torch.arange(
 )
 NUM_BINS = len(BIN_CENTERS)
 def magnitude_to_bin(targets):
-    target_bins = ((targets - MIN_MAGNITUDE) / BIN_WIDTH).long()
+    target_bins = torch.floor((targets - MIN_MAGNITUDE) / BIN_WIDTH + 1e-5).long()
     target_bins = torch.clamp(target_bins, 0, NUM_BINS - 1)
     return target_bins
 
@@ -416,7 +416,7 @@ if __name__ == "__main__":
 
     print(f"Using {device}")
 
-    checkpoint_path = DATA_DIR / "best_model_huberandcross5s075.pth"
+    checkpoint_path = DATA_DIR / "best_model_huberandcross5s075fixed.pth"
 
     # Create fresh model
     model = EarthquakeCNN().to(device)
@@ -434,7 +434,8 @@ if __name__ == "__main__":
         weight_decay=1.511446e-07,
         checkpoint_path=checkpoint_path
     )
-
+    print("\nTraining complete. Test evaluation intentionally skipped for now.")
+    raise SystemExit
     # At this point `model` is already the best validation model
 
     test_mse, test_mae, test_rmse, test_accuracy = evaluate_metrics(
