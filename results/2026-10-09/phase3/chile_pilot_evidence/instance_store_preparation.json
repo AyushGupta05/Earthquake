@@ -1,0 +1,17 @@
+{
+  "device": "/dev/nvme1n1",
+  "serial": "AWS2512AFEF89D0E0922",
+  "bytes": 250000000000,
+  "mount": "/mnt/eew-fast",
+  "filesystem": "xfs",
+  "options": [
+    "nosuid",
+    "nodev",
+    "noexec"
+  ],
+  "fstab_changed": false,
+  "precondition": "Verified unique instance-storage serial, no filesystem signature, no child partitions or mounts; task-owned worker",
+  "purpose": "Rebuildable station cache; preserve durable checkpoints on root EBS",
+  "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
+  "status": "formatted and mounted; export not launched"
+}

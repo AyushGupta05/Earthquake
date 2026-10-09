@@ -1,0 +1,71 @@
+{
+  "inventory": "/mnt/eew-research/instance/responses.tgz",
+  "inventory_sha256": "71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2",
+  "root": "/home/ec2-user/Earthquake",
+  "data": "/data",
+  "output": "/mnt/eew-research/runs",
+  "initial_run": "/mnt/eew-research/runs/instrument_residual_1s_1bbf4f4d67e5_2b94eb7e7f00",
+  "batch_size": 2048,
+  "extract_batch_size": 256,
+  "device": "cuda",
+  "prepare_only": false,
+  "seconds": 1,
+  "max_per_event": 4,
+  "epochs": 15,
+  "seeds": [
+    20261009,
+    20261010
+  ],
+  "controls": [
+    "frozen",
+    "censored",
+    "hurdle",
+    "hurdle_truncated",
+    "uncensored",
+    "discriminative"
+  ],
+  "fit": {
+    "epochs": 15,
+    "batch_size": 2048,
+    "learning_rate": 0.0005,
+    "weight_decay": 0.0001,
+    "width": 64,
+    "sigma_floor": 0.03
+  },
+  "runtime_flags": {
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cuda_device_name": "NVIDIA A10G"
+  },
+  "selection": "Fixed final epoch; every arm/seed reported; no validation selection",
+  "update_status": "Normalized likelihood heuristic from frozen cost-sensitive p1; not true Bayes guarantee",
+  "gain_invariance_scope": "Innovation statistic only; H1 includes count-dependent and station/site features",
+  "train_records": 197676,
+  "train_events": 47273,
+  "parameter_counts": {
+    "frozen_seed20261009": 0,
+    "censored_seed20261009": 21187,
+    "hurdle_seed20261009": 21187,
+    "hurdle_truncated_seed20261009": 21187,
+    "uncensored_seed20261009": 21187,
+    "discriminative_seed20261009": 21187,
+    "frozen_seed20261010": 0,
+    "censored_seed20261010": 21187,
+    "hurdle_seed20261010": 21187,
+    "hurdle_truncated_seed20261010": 21187,
+    "uncensored_seed20261010": 21187,
+    "discriminative_seed20261010": 21187
+  },
+  "torch_version": "2.8.0+cu128",
+  "python_version": "3.9.25",
+  "wall_seconds": 1035.3672723349882,
+  "status": "complete",
+  "validation_status": "Reused exploratory event-disjoint VAL; mostly seen stations,13M>=4events, noM>=6",
+  "causality_limit": "Released INSTANCE full-record processing and catalogue P pick remain; no TEST read",
+  "nll_comparison": "Uncensored Z has a different sample space; compare its NLL only to same-space controls"
+}

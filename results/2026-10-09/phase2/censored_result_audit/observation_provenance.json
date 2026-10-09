@@ -1,0 +1,42 @@
+{
+  "files": {
+    "/data/Instance_windows_1s.hdf5": {
+      "bytes": 1395742596,
+      "mtime_ns": 1788361262476842721
+    },
+    "/data/Instance_windows_5s.hdf5": {
+      "bytes": 6960137796,
+      "mtime_ns": 1788461010938629366
+    },
+    "/data/Instance_events_counts.hdf5": {
+      "bytes": 167443494776,
+      "mtime_ns": 1786807349000000000
+    }
+  },
+  "raw_identity_checks": {
+    "train": 197676,
+    "val": 96993
+  },
+  "raw_metadata_cache_bytes": {
+    "maximum": 134217728,
+    "minimum": 33554432,
+    "initial": 134217728
+  },
+  "identity_scope": "Every selected TRAIN and all VAL 500-sample ENZ cache rows checked against named raw trace; every corresponding100-sample prefix identical",
+  "invalid_reasons": {
+    "1": "response_not_usable",
+    "2": "invalid_sensitivity",
+    "4": "unknown_unit",
+    "8": "first_peak_floor_or_nonfinite",
+    "16": "13_block_floor_or_nonfinite",
+    "32": "35_block_floor_or_nonfinite",
+    "64": "earlier_update_unavailable"
+  },
+  "native_floor": 1e-12,
+  "baseline_samples": 10,
+  "unit_codes": {
+    "0": "unknown",
+    "1": "velocity",
+    "2": "acceleration"
+  }
+}

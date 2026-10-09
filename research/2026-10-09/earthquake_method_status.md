@@ -1,6 +1,6 @@
 # Method status and decisions
 
-9 October 2026, 19:50 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
+9 October 2026, 20:07 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
@@ -13,7 +13,7 @@
 | Static instrument/site features | Same distribution head and parameter count, two seeds, all TRAIN | Strongest completed practical gain: improves MAE, MedAE, M≥4 MAE and CVaR95 at all three times. Station effects and gain/unit information explain much of it; not a new probability principle. |
 | Sensitivity-normalized amplitude features | Added observed-prefix amplitudes to the static model | Further clear gain at 5 s; smaller tradeoffs at 1/3 s. Not full instrument-response deconvolution. |
 | Conditional future-amplitude growth | MSE, unconditional density, magnitude-conditioned density, detached control | Completed grid rejected: conditional likelihood worsens ordinary error at all three times; small tail gains do not preserve worst-error performance. |
-| Censored observed-amplitude innovations | Frozen matched 1 s distribution; new 1→3→5 peak evidence; tied/free hurdle, uncensored and discriminative controls | Reviewed and running. Full raw-prefix identity and baseline replay gates precede fitting. The frozen starting point means this pilot cannot itself improve 1 s. |
+| Censored observed-amplitude innovations | Frozen matched 1 s distribution; new 1→3→5 peak evidence; tied/free hurdle, uncensored and discriminative controls | Completed and independently audited. Improves the stale 1 s forecast but loses to full-prefix inference; the tied mechanism loses likelihood fit to its free-hurdle control. Sub-second continuation rejected. [Results](earthquake_censored_results.md). |
 | Prefix affine projection | Re-estimate/remove trend using only each observed prefix, with a last-sample guard control | Reviewed; first raw-control seed finished, remaining controls queued. This checks a preprocessing concern, not universal raw-stream causality. |
 | Proper distribution scores | Huber/CE, ordinary CRPS, fixed-tail CRPS, TRAIN-marginal weighted CRPS, ranked log score | Reviewed, two-seed full-TRAIN 1/3/5 grid queued. Known scores strengthen the comparison before adding another proposed method. |
 | Chile TEAM-style external baseline | Published architecture adaptation, full 25+100 epoch budget; TRAIN-only selection | Running on dedicated AWS A10G. DEV scoring follows completed training; TEST remains sealed. |
@@ -28,6 +28,6 @@ The all-static model's completed exploratory scores are:
 
 These are means of two seed probability distributions with the distribution mean as the decision. The same validation contains 3,711 earthquakes, only 13 M≥4 and one M≥5; it has been used repeatedly during this research. Record-level sample size does not turn those 13 earthquakes into many independent large events. [Full results and event-bootstrap intervals](earthquake_instrument_full_results.md).
 
-The next mechanism decision depends on the censored pilot and proper-score controls. A finer .2→.5→1→3→5 update could test the first-second case, but requires a newly trained short-prefix starting distribution and matched controls. Geometry-aware or source-growth proposals also have close prior art and identifiability limits; they are hypotheses, not accepted contributions.
+The censored pilot does not earn a finer sub-second extension. Proper-score controls remain queued; a frozen, event-cross-fitted reference distribution is being investigated as a way to focus threshold errors without magnitude-label reweighting. This is not yet implemented or a novelty claim. Geometry-aware or source-growth proposals also have close prior art and identifiability limits; they are hypotheses, not accepted contributions.
 
 [Live checkpoint](START_HERE.md) · [Current literature](earthquake_current_competitors.md) · [External data audit](earthquake_external_validation_expansion.md) · [AWS resource controls](aws_execution_note.md)

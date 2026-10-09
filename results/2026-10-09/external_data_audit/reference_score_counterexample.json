@@ -1,0 +1,11 @@
+{
+  "experiment": "Binary analytic counterexample, not earthquake performance",
+  "truth": 0.1,
+  "epsilon": 0.01,
+  "grid_step": 1e-05,
+  "ordinary_brier_minimizer": 0.1,
+  "self_weighted_brier_minimizer": 0.24513000000000001,
+  "fixed_reference_minimizer": 0.1,
+  "formula": "E[(p-Y)^2]/(.01+p*(1-p)) is not proper; frozen reference denominator is constant in candidate p",
+  "stop_gradient_caveat": "A detached current-p weight yields a different optimization vector field than the derivative of this reported score; it does not make the forecast-dependent score proper."
+}

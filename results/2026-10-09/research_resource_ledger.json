@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T19:45:00Z",
+  "updated_utc": "2026-10-09T20:02:12.348668+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4312.64,
@@ -53,7 +53,24 @@
         "automatic_stop_rearmed": true
       },
       "current_36h_compute_estimate_usd": 36.216,
-      "current_worker_resource_allowance_usd": 60
+      "current_worker_resource_allowance_usd": 60,
+      "instance_store": {
+        "device": "/dev/nvme1n1",
+        "serial": "AWS2512AFEF89D0E0922",
+        "bytes": 250000000000,
+        "mount": "/mnt/eew-fast",
+        "filesystem": "xfs",
+        "options": [
+          "nosuid",
+          "nodev",
+          "noexec"
+        ],
+        "fstab_changed": false,
+        "precondition": "Verified unique instance-storage serial, no filesystem signature, no child partitions or mounts; task-owned worker",
+        "purpose": "Rebuildable station cache; preserve durable checkpoints on root EBS",
+        "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
+        "status": "formatted and mounted; export not launched"
+      }
     }
   ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
@@ -220,7 +237,8 @@
       "censored_epochs": 15,
       "initial_raw_control_status": "complete exit0 at2026-10-09T19:36:14Z",
       "censored_started_utc": "2026-10-09T19:36:24Z",
-      "censored_run": "/mnt/eew-research/runs/censored_innovation_6c1510b97725_c9dd74d23d87"
+      "censored_run": "/mnt/eew-research/runs/censored_innovation_6c1510b97725_c9dd74d23d87",
+      "censored_status": "complete exit0 at2026-10-09T19:53:46Z; independent scientific audit underway"
     },
     "proper_scores": {
       "status": "waiting_for_successful_predecessor",

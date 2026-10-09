@@ -1,0 +1,48 @@
+[
+  {
+    "command": [
+      "lsblk",
+      "-o",
+      "NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS,MODEL,SERIAL"
+    ],
+    "exit": 0,
+    "stdout": "NAME            SIZE TYPE FSTYPE MOUNTPOINTS   MODEL                            SERIAL\nnvme0n1          80G disk                      Amazon Elastic Block Store       vol08516b3f2cf8db117\n\u251c\u2500nvme0n1p1      80G part xfs    /mnt/eew-data                                  \n\u2502                                /                                              \n\u251c\u2500nvme0n1p127     1M part                                                       \n\u2514\u2500nvme0n1p128    10M part vfat   /boot/efi                                      \nnvme1n1       232.8G disk                      Amazon EC2 NVMe Instance Storage AWS2512AFEF89D0E0922\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "sudo",
+      "-n",
+      "wipefs",
+      "--no-act",
+      "/dev/nvme1n1"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "sudo",
+      "-n",
+      "blkid",
+      "-p",
+      "/dev/nvme1n1"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "sudo",
+      "-n",
+      "blockdev",
+      "--getsize64",
+      "/dev/nvme1n1"
+    ],
+    "exit": 0,
+    "stdout": "250000000000\n",
+    "stderr": ""
+  }
+]
