@@ -11,6 +11,7 @@ from pathlib import Path
 import torch
 
 from flat_station_cache import file_sha256
+from flat_station_proof import proof_batch_plan
 from training_artifacts import atomic_json_save, json_sha256, load_epoch_recovery
 
 MIGRATION_SCHEMA = 'team-flat-checkpoint-migration-v1'
@@ -56,16 +57,19 @@ def validate_determinism_audit(audit, config, actual_flags):
 
 
 def validate_proof(proof, *, origin_sha256, origin_audit_sha256, old_config, backend, old_implementation, new_implementation, runtime):
+    identities = old_config['pretraining_identity']
+    plan = proof_batch_plan(identities['fit_stations']['records'], identities['calibration_stations']['records'],
+                            old_config['pretrain_batch_size'])
     required = {'schema': PROOF_SCHEMA, 'passed': True, 'origin_checkpoint_sha256': origin_sha256,
                 'origin_determinism_audit_sha256': origin_audit_sha256,
                 'old_config_sha256': json_sha256(old_config), 'backend': backend,
                 'old_implementation_sha256': old_implementation,
                 'new_implementation_sha256': new_implementation, 'runtime': runtime,
-                'epoch_boundary_restore_tested': True, 'partial_batch_tested': True,
+                'epoch_boundary_restore_tested': True, **plan,
                 'cutoff_and_label_noise_traced': True}
     if any(proof.get(key) != value for key, value in required.items()):
         raise ValueError('Equivalence proof is not for this checkpoint, backend, implementation and runtime')
-    if proof.get('epochs') != 2 or proof.get('steps_per_epoch', 0) < 3:
+    if proof.get('epochs') != 2 or proof.get('steps_per_epoch') != len(plan['fit_batch_sizes']):
         raise ValueError('Proof must cover two epochs, multiple updates and an epoch-boundary restore')
     checks = proof.get('checks', {})
     expected = {'batch_and_noise_trace', 'loss_gradient_update_trace', 'model_optimizer_scheduler_rng', 'calibration'}
@@ -73,7 +77,6 @@ def validate_proof(proof, *, origin_sha256, origin_audit_sha256, old_config, bac
             or not isinstance(value['original'], str) or len(value['original']) != 64
             or value['original'] != value['flat'] for value in checks.values()):
         raise ValueError('Equivalence proof must contain equal complete trace hashes')
-    identities = old_config['pretraining_identity']
     if (proof.get('fit_membership') != identities['fit_stations']
             or proof.get('calibration_membership') != identities['calibration_stations']):
         raise ValueError('Proof does not bind the original fitting/calibration station memberships')

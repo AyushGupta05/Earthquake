@@ -130,18 +130,38 @@ def _probe_one(trainer, origin, fit, calibration, fit_indices, calibration_indic
     return {key: state_digest(value) for key, value in traces.items()}
 
 
+def proof_batch_plan(fit_records, calibration_records, batch_size):
+    """Exercise production final-batch shapes, including exact divisibility."""
+    if batch_size < 2 or calibration_records < 1:
+        raise ValueError('Proof requires batch_size>=2 and nonempty calibration')
+    fit_remainder = fit_records % batch_size
+    calibration_remainder = calibration_records % batch_size
+    fit_count = 2 * batch_size + (fit_remainder or batch_size)
+    if fit_records < fit_count:
+        raise ValueError('Proof requires enough fitting stations for three production-shaped updates')
+    calibration_count = min(calibration_records, batch_size + calibration_remainder)
+    fit_sizes = [batch_size, batch_size, fit_remainder or batch_size]
+    calibration_sizes = [min(batch_size, calibration_count - start)
+                         for start in range(0, calibration_count, batch_size)]
+    return {'batch_size': batch_size, 'fit_probe_records': fit_count,
+            'calibration_probe_records': calibration_count,
+            'fit_batch_sizes': fit_sizes, 'calibration_batch_sizes': calibration_sizes,
+            'actual_fit_remainder': fit_remainder, 'actual_calibration_remainder': calibration_remainder,
+            'actual_remainders_tested': True,
+            'partial_batch_tested': bool(fit_remainder or calibration_remainder)}
+
+
 def prove_updates(trainer, origin, original_fit, original_calibration, flat_fit, flat_calibration, *, device, max_seconds=120):
-    """Two short epochs, including a final partial batch and one restored boundary."""
+    """Two short epochs with production final-batch shapes and a restored boundary."""
     batch_size = origin['config']['pretrain_batch_size']
-    needed = 2 * batch_size + 1
-    if batch_size < 2 or min(len(original_fit), len(flat_fit)) < needed:
-        raise ValueError('Proof needs batch_size>=2 and at least 2*batch_size+1 fitting stations')
+    plan = proof_batch_plan(len(original_fit), len(original_calibration), batch_size)
+    needed = plan['fit_probe_records']
     if len(original_fit) != len(flat_fit) or len(original_calibration) != len(flat_calibration):
         raise ValueError('Original and flat station memberships have different lengths')
     # Deterministically cover early and late station indices. Selection uses no
     # runtime RNG and is recorded; this is a bounded subset, not a full epoch.
     fit_indices = [int(index) for index in __import__('numpy').linspace(0, len(original_fit) - 1, needed, dtype=int)]
-    calibration_indices = list(range(min(batch_size + 1, len(original_calibration))))
+    calibration_indices = list(range(plan['calibration_probe_records']))
     if not calibration_indices:
         raise ValueError('Proof requires held-out TRAIN calibration stations')
     original_rng = capture_random_state()
@@ -157,7 +177,7 @@ def prove_updates(trainer, origin, original_fit, original_calibration, flat_fit,
         raise AssertionError('Original/flat traces differ: ' + ', '.join(key for key in original if original[key] != flat[key]))
     return {'checks': {key: {'original': original[key], 'flat': flat[key]} for key in original},
             'epochs': 2, 'steps_per_epoch': 3, 'epoch_boundary_restore_tested': True,
-            'partial_batch_tested': True, 'cutoff_and_label_noise_traced': True,
+            **plan, 'cutoff_and_label_noise_traced': True,
             'selected_fit_station_indices': fit_indices, 'selected_calibration_station_indices': calibration_indices,
-            'batch_size': batch_size, 'probe_seconds': max_seconds - max(0, deadline - time.monotonic()),
+            'probe_seconds': max_seconds - max(0, deadline - time.monotonic()),
             'scope': 'bounded recorded subsets; not universal training equivalence'}

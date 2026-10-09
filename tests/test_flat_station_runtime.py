@@ -19,7 +19,7 @@ from flat_station_cache import FlatStationCache, export_flat_station_cache, file
 from flat_station_runtime import backend_identity, install_flat_backend, strict_runtime
 from flat_station_migration import (PROOF_SCHEMA, create_migration, load_origin_checkpoint,
     validate_migrated_resume, validate_proof, validate_transition, validate_determinism_audit)
-from flat_station_proof import prove_updates, state_digest
+from flat_station_proof import proof_batch_plan, prove_updates, state_digest
 from training_artifacts import atomic_json_save, json_sha256, load_epoch_recovery
 from run_team_flat import trainer_arguments
 
@@ -103,12 +103,29 @@ class FlatStationRuntimeTests(unittest.TestCase):
 
     def test_actual_batch_cutoff_noise_loss_gradient_update_and_rng_equivalence(self):
         self.assertEqual(self.proof['steps_per_epoch'], 3)
-        self.assertTrue(self.proof['partial_batch_tested'])
+        expected_partial = bool(self.config['pretraining_identity']['fit_stations']['records'] % 2
+                                or self.config['pretraining_identity']['calibration_stations']['records'] % 2)
+        self.assertEqual(self.proof['partial_batch_tested'], expected_partial)
+        self.assertTrue(self.proof['actual_remainders_tested'])
         self.assertTrue(self.proof['epoch_boundary_restore_tested'])
         for trace in self.proof['checks'].values():
             self.assertEqual(trace['original'], trace['flat'])
         self.assertTrue((self.events['fit'].frame.MA > 4).any())
         self.assertEqual(file_sha256(self.origin_path), self.origin_sha)
+
+    def test_probe_matches_actual_chile_and_divisible_final_batch_shapes(self):
+        actual = proof_batch_plan(776742, 86353, 64)
+        self.assertEqual(actual['fit_batch_sizes'], [64, 64, 38])
+        self.assertEqual(actual['calibration_batch_sizes'], [64, 17])
+        self.assertEqual(actual['fit_probe_records'], 166)
+        self.assertEqual(actual['calibration_probe_records'], 81)
+        divisible = proof_batch_plan(20, 4, 2)
+        self.assertEqual(divisible['fit_batch_sizes'], [2, 2, 2])
+        self.assertEqual(divisible['calibration_batch_sizes'], [2])
+        self.assertFalse(divisible['partial_batch_tested'])
+        short_calibration = proof_batch_plan(10, 1, 2)
+        self.assertEqual(short_calibration['calibration_batch_sizes'], [1])
+        self.assertTrue(short_calibration['partial_batch_tested'])
 
     def test_context_records_changed_implementation_and_owns_tensor_storage(self):
         before = trainer.runtime_identity(torch.device('cpu'))
@@ -156,7 +173,7 @@ class FlatStationRuntimeTests(unittest.TestCase):
                     old_implementation=self.old_impl, new_implementation=self.new_impl)
 
     def test_proof_rejects_mismatched_origin_runtime_membership_and_failed_comparison(self):
-        for change in ('origin', 'runtime', 'membership', 'trace', 'partial'):
+        for change in ('origin', 'runtime', 'membership', 'trace', 'partial', 'batch_shape'):
             proof = copy.deepcopy(self.proof)
             if change == 'origin':
                 proof['origin_checkpoint_sha256'] = 'different'
@@ -166,8 +183,10 @@ class FlatStationRuntimeTests(unittest.TestCase):
                 proof['fit_membership']['records'] -= 1
             elif change == 'trace':
                 proof['checks']['loss_gradient_update_trace']['flat'] = '0' * 64
+            elif change == 'batch_shape':
+                proof['fit_batch_sizes'][-1] = 1 if proof['fit_batch_sizes'][-1] != 1 else 2
             else:
-                proof['partial_batch_tested'] = False
+                proof['partial_batch_tested'] = not proof['partial_batch_tested']
             with self.subTest(change=change), self.assertRaises(ValueError):
                 validate_proof(proof, origin_sha256=self.origin_sha, origin_audit_sha256=self.audit_sha, old_config=self.config,
                     backend=self.backend, old_implementation=self.old_impl, new_implementation=self.new_impl, runtime=self.runtime)

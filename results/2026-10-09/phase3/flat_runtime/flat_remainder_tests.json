@@ -1,0 +1,34 @@
+{
+  "checked_utc": "2026-10-09T20:38:04.469972+00:00",
+  "worker": "172.31.36.211",
+  "directory": "/home/ec2-user/eew-work/flat-runtime-cpu-tests",
+  "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 timeout --signal=TERM --kill-after=10s 180s /opt/pytorch/bin/python -m unittest discover -s tests -p test_flat_station_runtime.py -v",
+  "tests": 10,
+  "seconds": 19.905,
+  "result": "PASS",
+  "GPU_used": false,
+  "real_cache_used": false,
+  "live_process_changed": false,
+  "actual_chile_proof_fit_batch_sizes": [
+    64,
+    64,
+    38
+  ],
+  "actual_chile_proof_calibration_batch_sizes": [
+    64,
+    17
+  ],
+  "exact_divisibility_tested": true,
+  "source_sha256": {
+    "research/2026-10-09/phase3/flat_station_migration.py": "f79c498fcb70730d4de3df38c18743607e085f5aa04cdceffdafc89a92cd1ee7",
+    "research/2026-10-09/phase3/flat_station_proof.py": "36402f6b24ff95b236a96a07768db06076e6914686d5d85d6a8efa975995f46b",
+    "tests/test_flat_station_runtime.py": "20754db68981ba0089b2d667fbec64375a65d791758b395fc3019728499b572a"
+  },
+  "autoreview": {
+    "engine": "codex",
+    "result": "clean",
+    "actionable_findings": 0,
+    "confidence": 0.96,
+    "result_file": "work/flat_remainder_review.json"
+  }
+}
