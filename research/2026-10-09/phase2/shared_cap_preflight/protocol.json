@@ -1,0 +1,88 @@
+{
+  "schema": "shared-cap-contrast-preflight-v1",
+  "prespecified_utc": "2026-10-09T20:43:19.804859+00:00",
+  "registration": "Local protocol fixed before loading real TRAIN targets; no external registration",
+  "task": "Conditional observed-contrast likelihood diagnostic; true magnitude is an evaluation covariate, not deployed inference",
+  "source_run": "/mnt/eew-research/runs/censored_innovation_6c1510b97725_c9dd74d23d87",
+  "source_file": "train_observations.npz",
+  "source_sha256": "16e40eb8c69d1bbcbad107d11241d0c2670ae93313ba1f061c11d00cec202612",
+  "expected_rows": 197676,
+  "data_scope": "TRAIN only; no VAL/TEST files or raw waveform reads",
+  "required_columns": [
+    "z",
+    "valid",
+    "above_floor",
+    "invalid_reason_code",
+    "physical_unit_z",
+    "targets",
+    "row_index",
+    "event_ids",
+    "trace_names"
+  ],
+  "observation": "d13=Z13;d15=Z35+max(0,Z13), recovering log10 disjoint-block-peak ratios to first1s peak",
+  "baseline": "Existing fixed first10post-Psamples; not pre-P noise; positive gain division only, not full response removal",
+  "validity": "Fit full2D only where original valid[:,1] true, finite Z/labels and unit1/2; preserve all excluded IDs/reasons. Evaluate3s on valid[:,0],5s on valid[:,1]. No threshold or censoring changes",
+  "unit_codes": {
+    "1": "velocity",
+    "2": "acceleration"
+  },
+  "event_split": "SHA256(UTF8(salt + U+001F + exact event_id)).digest()[0] & 1; fit fold0 evaluate1 and reverse; same assignment across unit strata",
+  "split_salt": "shared-cap-eventfold-v1-20261009",
+  "fit_weighting": "Equal valid TRAIN event weight within each native-unit stratum; inverse count of included records per event, then normalize total weight to1",
+  "evaluation_weighting": "Average eligible station-record NLL within each event, then equal event mean within unit; rows retained and event support counts reported",
+  "model_names": [
+    "linear_gaussian",
+    "moment_matched",
+    "shared_cap"
+  ],
+  "primary_comparison": "shared_cap vs independently fitted moment_matched; same-parameter moment_match_from_shared_cap also scored as a counterfactual, not an independently trained arm",
+  "cap_offsets_magnitude_units": [
+    -0.5,
+    0.0,
+    0.5
+  ],
+  "cap_parameterization": "s1=8sigmoid(r1),s2=s1+4sigmoid(r2),s3=s2+4sigmoid(r3); kappa=.05+2.95sigmoid(rk); weights=softmax(w1,w2,0)",
+  "cap_mean": "b[0:2] + kappa*(min(M,s2+offset)-min(M,s1+offset), min(M,s3+offset)-min(M,s1+offset)); a single state offset is shared across all blocks",
+  "noise_covariance": "C=0.03^2 I + L L^T, L lower triangular with softplus diagonal; independent of M and cap state; full2x2 residual covariance",
+  "moment_match": "mu=sum(w*mu_k); covariance=C+sum(w*(mu_k-mu)(mu_k-mu)^T); include full determinant in every Gaussian",
+  "linear_reference": "Two affine conditional means in M centered at3; same covariance family. Fewer parameters, coarse reference only",
+  "initializations": [
+    20261009,
+    20261010
+  ],
+  "initialization": "Base caps[3.5,4.2,4.8],kappa1,weights uniform; b initialized to fit-fold weighted residual mean at base curve; C initialized from fit-fold weighted centered residual covariance with eigenvalues floored at0.03^2+1e-6; fixed seeded jitter0.01 on raw parameters. Moment_matched/shared_cap start byte-identical",
+  "optimizer": {
+    "name": "Torch CPU float64 LBFGS",
+    "max_iter": 100,
+    "max_eval": 140,
+    "history_size": 20,
+    "line_search": "strong_wolfe",
+    "tolerance_grad": 1e-07,
+    "tolerance_change": 1e-10
+  },
+  "fit_objective": "5s full2D conditional weighted NLL only; no fitting/selection on held fold. 3s scored from the first-coordinate model marginal,1s has no contrast and identity likelihood1",
+  "reporting": [
+    "fit convergence/finite parameters",
+    "3s marginal and5s joint NLL",
+    "event-macro scores at allM,M>=4,M>=4.5,M>=5 when present",
+    "paired event-bootstrap95% interval,500 resamples seed20261019",
+    "marginal PIT histograms10bins by unit/M>=4",
+    "all raw per-row log likelihoods,split/identity/mask hashes and parameters",
+    "same-parameter mixture-vs-moment-matched scores",
+    "excluded/valid counts and magnitude support per fold/unit"
+  ],
+  "decision": "Only earn a later posterior pilot if shared_cap has lower held-event5s jointNLL than refitted moment_matched in both eventfolds and both starts in each unit stratum, pooled paired-bootstrap upper95% difference<0, no3s marginal-NLL deterioration averaged over folds in either start/unit, and noM>=4 conditional-NLL deterioration averaged over folds when at least10held events per unit. Otherwise reject or mark support-inconclusive; never claim magnitude accuracy from this diagnostic",
+  "minimum_support": "Require>=100fit events and>=30held events per unit/fold; report and skip insufficient strata. Any missing stratum prevents a general two-unit pass",
+  "failure_gates": [
+    "source hash/row count/schema or identity mismatch",
+    "same event assigned across fit/held",
+    "inconsistent per-event magnitude beyond1e-5",
+    "nonfinite likelihood/gradient/fit parameters",
+    "nonpositive covariance or normalization error",
+    "future-coordinate dependence in3s marginal",
+    "uninformative-cap null likelihood depends on M",
+    "protocol hash changed"
+  ],
+  "resource_bound": "CPU only,CUDA_VISIBLE_DEVICES empty,oneTorch CPU thread; <=30minutes total fit runtime; <=1GiB artifacts; no shared dependency changes",
+  "claim_limit": "Empirical cap-state density; no identifiable physical rupture/stressdrop/depth state, no new information, no1s result, no real EEW accuracy or novelty claim"
+}

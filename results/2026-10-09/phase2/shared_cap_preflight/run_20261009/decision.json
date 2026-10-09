@@ -1,0 +1,171 @@
+{
+  "checks": [
+    {
+      "test": "unit1_seed20261009_held0_5s",
+      "delta": 1.0302498387737558e-06,
+      "pass": false
+    },
+    {
+      "test": "unit1_seed20261009_held1_5s",
+      "delta": -0.00014110300298851575,
+      "pass": true
+    },
+    {
+      "test": "unit1_seed20261009_3s_all_fold_mean",
+      "delta": -6.974629013381441e-05,
+      "pass": true
+    },
+    {
+      "test": "unit1_seed20261009_3s_M_ge_4.0_fold_mean",
+      "delta": 0.009821348510223676,
+      "pass": false
+    },
+    {
+      "test": "unit1_seed20261009_5s_M_ge_4.0_fold_mean",
+      "delta": 0.011898284459705921,
+      "pass": false
+    },
+    {
+      "test": "unit1_seed20261009_5s_pooled_bootstrap",
+      "delta": -6.93127638364739e-05,
+      "pass": false
+    },
+    {
+      "test": "unit1_seed20261010_held0_5s",
+      "delta": -1.3188913061720764e-05,
+      "pass": true
+    },
+    {
+      "test": "unit1_seed20261010_held1_5s",
+      "delta": -0.0001397465030883588,
+      "pass": true
+    },
+    {
+      "test": "unit1_seed20261010_3s_all_fold_mean",
+      "delta": -0.00010033390722609479,
+      "pass": true
+    },
+    {
+      "test": "unit1_seed20261010_3s_M_ge_4.0_fold_mean",
+      "delta": 0.008326711318769497,
+      "pass": false
+    },
+    {
+      "test": "unit1_seed20261010_5s_M_ge_4.0_fold_mean",
+      "delta": 0.011755340528074448,
+      "pass": false
+    },
+    {
+      "test": "unit1_seed20261010_5s_pooled_bootstrap",
+      "delta": -7.582339238914835e-05,
+      "pass": false
+    },
+    {
+      "test": "unit2_seed20261009_held0_5s",
+      "delta": 0.002101124609914351,
+      "pass": false
+    },
+    {
+      "test": "unit2_seed20261009_held1_5s",
+      "delta": -0.0001426886450712206,
+      "pass": true
+    },
+    {
+      "test": "unit2_seed20261009_3s_all_fold_mean",
+      "delta": 0.0004434571406796081,
+      "pass": false
+    },
+    {
+      "test": "unit2_seed20261009_3s_M_ge_4.0_fold_mean",
+      "delta": -0.005199865996235009,
+      "pass": true
+    },
+    {
+      "test": "unit2_seed20261009_5s_M_ge_4.0_fold_mean",
+      "delta": 0.027328737478299087,
+      "pass": false
+    },
+    {
+      "test": "unit2_seed20261009_5s_pooled_bootstrap",
+      "delta": 0.0009905205897068668,
+      "pass": false
+    },
+    {
+      "test": "unit2_seed20261010_held0_5s",
+      "delta": 0.0001661064045582472,
+      "pass": false
+    },
+    {
+      "test": "unit2_seed20261010_held1_5s",
+      "delta": -0.0001043884879248641,
+      "pass": true
+    },
+    {
+      "test": "unit2_seed20261010_3s_all_fold_mean",
+      "delta": -0.00026086706008089655,
+      "pass": true
+    },
+    {
+      "test": "unit2_seed20261010_3s_M_ge_4.0_fold_mean",
+      "delta": -0.024157253619596947,
+      "pass": true
+    },
+    {
+      "test": "unit2_seed20261010_5s_M_ge_4.0_fold_mean",
+      "delta": -0.011679880094707523,
+      "pass": true
+    },
+    {
+      "test": "unit2_seed20261010_5s_pooled_bootstrap",
+      "delta": 3.2221503767214374e-05,
+      "pass": false
+    }
+  ],
+  "paired_event_bootstrap_5s": {
+    "unit1_seed20261009": {
+      "events": 47043,
+      "mean_delta": -6.93127638364739e-05,
+      "ci95": [
+        -0.0001395447080213863,
+        1.500141457000058e-06
+      ],
+      "resamples": 500,
+      "seed": 20261019
+    },
+    "unit1_seed20261010": {
+      "events": 47043,
+      "mean_delta": -7.582339238914835e-05,
+      "ci95": [
+        -0.00015609946940820356,
+        1.1736118147254886e-05
+      ],
+      "resamples": 500,
+      "seed": 20261019
+    },
+    "unit2_seed20261009": {
+      "events": 25113,
+      "mean_delta": 0.0009905205897068668,
+      "ci95": [
+        0.0005419242643495167,
+        0.0014443899311078097
+      ],
+      "resamples": 500,
+      "seed": 20261019
+    },
+    "unit2_seed20261010": {
+      "events": 25113,
+      "mean_delta": 3.2221503767214374e-05,
+      "ci95": [
+        -0.0006061648912197136,
+        0.0006072613017983265
+      ],
+      "resamples": 500,
+      "seed": 20261019
+    }
+  },
+  "support_notes": [],
+  "all_numeric_gates_pass": false,
+  "general_two_unit_followup_gate": false,
+  "interpretation": "Likelihood diagnostic only. True M is given; no magnitude prediction or 1s improvement tested.",
+  "skipped": []
+}
