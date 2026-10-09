@@ -64,6 +64,52 @@ index operation before training. It was stopped, the target array was read once
 then indexed in memory, and a fresh run completed. That failed launch is not an
 additional independent replicate.
 
+## Full-data baseline follow-up
+
+The next run used all 979,487 training recordings, the same weighted objective,
+and ten fixed epochs. This was specified before seeing its final result. The
+larger recording sample materially improved generalization; the compact backbone
+is now a stronger baseline than the original CNN at every requested duration.
+
+| Seconds | MAE | Median absolute error | M>=4 MAE | CVaR95 |
+|---|---:|---:|---:|---:|
+| 1 | 0.393817 | 0.296240 | 0.852204 | 1.400782 |
+| 3 | 0.341039 | 0.255332 | 0.700873 | 1.252884 |
+| 5 | 0.319085 | 0.235269 | 0.637486 | 1.204154 |
+
+All four recording-level measures improve over the original CNN. This is one
+seed on reused validation and a standard compact backbone, so it establishes
+neither novelty nor an independent comparison against published benchmarks.
+Runtime was 422.9 seconds including audit/load/evaluation. An SSH interruption
+occurred after epoch seven, but the remote run completed and its final model,
+metrics and predictions were verified after reconnecting. A matched full-data
+sequential run is underway. Future jobs use persistent redirected logs.
+
+## CVaR loss-control follow-up
+
+The fixed beta=15, CVaR coefficient=0.1 combination produced the following
+exploratory results. It was one member of the predeclared eight-setting grid;
+highlighting it after observing validation is post-selection analysis.
+
+| Seconds | MAE | Median absolute error | M>=4 MAE | CVaR95 |
+|---|---:|---:|---:|---:|
+| 1 | 0.411817 | 0.316889 | 0.877068 | 1.393698 |
+| 3 | 0.360137 | 0.272592 | 0.721664 | 1.273892 |
+| 5 | 0.330756 | 0.242786 | 0.630628 | 1.226457 |
+
+All four measures improve at 1 and 3 seconds. The five-second median worsens by
+0.004032; the one-second event-macro MAE also worsens by 0.000651. Consequently
+the interpretation depends on whether recordings or earthquakes are weighted
+equally. Its single M>=5 validation event still has worse absolute error.
+
+A 2,000-draw paired bootstrap resamples whole events, preserving all station
+recordings in each cluster. At one second the descriptive 95% interval for MAE
+change is [-0.003338, -0.001666], for M>=4 MAE [-0.039674, -0.007843], and for
+CVaR95 [-0.025793, -0.015926]. Median and event-macro MAE intervals include zero.
+These intervals do not adjust for adaptive selection or dependence among
+aftershocks. They must not be presented as confirmatory significance or evidence
+for performance on magnitude 6–8 events absent from this validation split.
+
 ## Next falsifiable hypothesis
 
 `resolution_distillation.py` predicts a current magnitude CDF and a vector of

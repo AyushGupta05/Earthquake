@@ -192,3 +192,98 @@ Suggested implementation map (recommendations, not a claim that preprocessing is
 [USGS gmprocess](https://ghsc.code-pages.usgs.gov/esi/groundmotion-processing/contents/manual/instrument_response.html) states that sensitivity-only conversion is generally acceptable for flat-response accelerometers, whereas seismometers need response treatment; its workflow also checks sensitivity and units consistency. A sensitivity-normalized HH/EH experiment is an approximation and must be labelled accordingly. [ObsPy removal of sensitivity](https://docs.obspy.org/packages/autogen/obspy.core.trace.Trace.remove_sensitivity.html) is distinct from [full response deconvolution](https://docs.obspy.org/packages/autogen/obspy.core.trace.Trace.remove_response.html), whose default processing includes mean removal and tapering. Applying an FFT inverse to a prefix does not use future samples, but edge effects and lack of streaming equivalence still need checking.
 
 For strict real-time verification, compare the winning model on a subset re-extracted from original continuous miniSEED using causal detrending/filter state and appropriately initialized response processing. For a cheap current-data ablation, remove a prefix-estimated trend again: a linear projection fitted on the prefix cancels a previously removed global linear trend algebraically, aside from finite precision. It does not undo nonlocal resampling or frequency-domain response leakage. An invariance test should replace all samples after the forecast deadline before preprocessing and confirm the prediction is unchanged. Avoid downloading the 156 GB ground-motion dataset merely to claim physical causality from a crop.
+
+## Follow-up: closest prior art for the resolution head (9 October 2026)
+
+**Novelty assessment revised downward:** predicting how much future information will reduce uncertainty, training a neural value head for this quantity, sharing its backbone with a predictor, and bounding it by current uncertainty are already established. The strongest verified match is DIME. A useful EEW contribution remains possible, but it must be positioned as a concrete modification and validated against this precedent.
+
+| Primary source | Verified proximity and implication |
+|---|---|
+| [Gadgil, Covert & Lee, *Estimating Conditional Mutual Information for Dynamic Feature Selection*, ICLR 2024](https://arxiv.org/html/2306.03301v3) | DIME trains a value network on observed prediction-loss improvement. Appendix A.3 derives the regression optimum as Var(E[Y\|observed,new]\|observed). Appendix C uses shared predictor/value backbones and sigmoid times current entropy to bound the output. These directly anticipate the general resolution-head idea. |
+| [Covert et al., *Learning to Maximize Mutual Information for Dynamic Feature Selection*, ICML 2023](https://proceedings.mlr.press/v202/covert23a.html) | Amortized selection policies minimize next-observation prediction loss; its regression formulation minimizes expected remaining conditional variance. |
+| [Ma et al., EDDI, ICML 2019](https://proceedings.mlr.press/v97/ma19c.html) | A partial VAE supports expected-information-gain acquisition. This establishes the broader value-of-unobserved-information framing; our discriminative targets would avoid generating missing waveforms. |
+| [Achenchabe et al., *Early Classification of Time Series: Cost-based Optimization Criterion and Algorithms*, 2020 preprint](https://arxiv.org/abs/2005.09945) | Anticipates future prediction benefit against the cost of delaying a decision. Adaptive waiting is a mature problem, not a new EEW principle. |
+| [Manca, Kunze & Fay, *Predicting Uncertainty Reduction in Online Alarm Flood Classification*, IFAC-PapersOnLine 59(25), 119–124, 2025](https://doi.org/10.1016/j.ifacol.2025.11.935) | Directly relevant title and task: predicting future resolution of class ambiguity. Publication details verified at the [authors' university bibliography](https://bibliographie.ub.rub.de/work/461459); the publisher full text was inaccessible in this session. Do not claim detailed architectural equivalence without obtaining that text. |
+| [Allen, Ferro & Kwasniok, *A conditional decomposition of proper scores*, 2023](https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.4478) | Conditional reliability/resolution decomposition of proper scores is established. It helps diagnose whether apparent information gain instead reflects correction of a biased forecast. |
+
+The earlier sources on progressive future-window distillation, ensemble distribution distillation, and calibrated probability forecast martingales remain relevant. A search of EEW terms with future-posterior, information-gain and distillation terminology did not locate a directly matching threshold-wise revision-energy training objective. That is a search result, not proof of priority. Earthquake catalogue forecasting papers about the magnitude of the next event address a different task from estimating the magnitude of an event already underway.
+
+### What the target actually measures
+
+The following identities are derived here to audit the proposal; the probability identities themselves are standard. Let A be early information and G=(A,Z) nested later information. At cutoff a, let B=1[Y≤a], F=E[B|A] and T=E[B|G]. Then
+
+```
+R(A) = E[(T−F)^2 | A]
+     = F(1−F) − E[T(1−T) | A]
+     = E[(F−B)^2 − (T−B)^2 | A].
+```
+
+Thus threshold resolution is the expected value of later information under Brier loss. Summing with fixed nonnegative cutoff weights gives the expected reduction in the corresponding ranked probability score / discretized CRPS. It is not automatically the expected reduction in MAE or the magnitude median's error. Its value depends on the chosen future horizon and sensor set.
+
+For arbitrary trained early prediction f, even if T is a good later forecast, the learned squared target instead satisfies
+
+```
+mu(A) = E[T | A]
+E[(T−f)^2 | A] = Var(T | A) + (mu(A)−f)^2.
+```
+
+This combines future-observation variability and predictable forecast drift. Until drift is small on held-out events, use the name **predicted revision energy**, not a pure resolvable-uncertainty estimate. This also corrects the earlier proposed cap: f(1−f) is an ideal-posterior bound, not a valid bound for an arbitrary trained f. For f=.01 and T=.9, the target is .7921 while f(1−f)=.0099. A capped head can therefore be incapable of representing exactly the confident rare-event failures we want to study. Start with sigmoid in [0,1] or a nonnegative head; compare the tighter cap separately after calibration. Alternatively learn mu and a bounded conditional variance v≤mu(1−mu), with energy v+(mu−f)^2.
+
+Do not reduce the current predictive variance by subtracting R: the future observation has not arrived. Do not infer the sign of a magnitude correction from R: squared revision loses that sign. Both operations would confuse the value of future data with data already available.
+
+### A precise modification worth testing: teacher-conditioned ordinal gain targets
+
+DIME's observed-loss target suggests the matched comparison. Define, at each cutoff,
+
+```
+D = (f−B)^2 − (T−B)^2                     # observed Brier gain
+Z = (T−f)^2                               # teacher revision target
+L_value = mean_j w_j (r_j(A)−stopgrad(target_j))^2.
+```
+
+If T is the true nested later posterior, conditioning on G yields
+
+```
+E[D | G] = (T−f)^2 = Z.
+```
+
+Consequently Z is a Rao–Blackwellized version of D: it has the same conditional mean given A and no greater conditional target variance. This holds for any A-measurable f, though interpreting that mean as pure information resolution additionally requires f=F. Z is also nonnegative, whereas individual observed gains D can be negative. The potentially useful modification is to train the early representation with these threshold-wise teacher-conditioned targets for multiple horizons, alongside supervised ordinal scoring and optional CDF distillation. Neither the variance-reduction identity nor using CDFs alone is new theory.
+
+With an imperfect later teacher T and true later probability p=E[B|G], the targets no longer agree:
+
+```
+Z − E[D | G] = 2 (T−f)(T−p).
+```
+
+Teacher miscalibration can therefore trade lower target noise for bias. Cross-fit teachers by event, calibrate using held-out training events, and test both targets. The strongest experiment is exactly this bias–variance tradeoff rather than a generic claim of better uncertainty.
+
+A simple analytical check: an early probability F=.3 followed by equally probable later probabilities T=.1 or .5 has R=.04. The squared-revision target is always .04, while the observed Brier-gain target has conditional variance .0272. Both have mean .04. This is an illustrative calculation, not evidence of improvement on earthquake data.
+
+### Optional multi-horizon consistency extension
+
+For ideal nested forecasts at 1, 3 and 5 seconds, the two innovations are conditionally orthogonal. At every cutoff,
+
+```
+R_1→5(X1) = R_1→3(X1) + E[R_3→5(X3) | X1].
+```
+
+This provides an information-budget constraint across horizons, rather than a pointwise rule that entropy must decrease. A trainable extension can regress r_1→5−r_1→3 onto a detached r_3→5 target, using early inputs only on the left. Its population target is the conditional mean, so a sample's two sides need not match exactly. Avoid backpropagating through both sides in a way that makes later variability collapse to satisfy a pointwise penalty. The identity follows ordinary martingale variance decomposition; a methodological claim would concern a stable learning objective and its measured benefit, not discovery of that identity. This extension should follow, rather than precede, evidence that the simpler head helps.
+
+### Falsifiable fixed-horizon experiment
+
+At a fixed 1-, 3-, or 5-second deadline, r(A) is a function of the same observations already available to the predictor. It cannot add information to a Bayes-optimal predictor. Its plausible benefit is better finite-data representation learning. Adaptive waiting or adding stations can use it as a decision value, but that does not establish a lower 1-second error.
+
+Use the same encoder, parameter budget, teacher folds, batches and training steps for these variants:
+
+1. Supervised magnitude/ordinal objective alone.
+2. Supervised plus CDF future-teacher distillation, without a revision head loss.
+3. Variant 2 plus a head trained on current uncertainty or current prediction error: auxiliary-learning control.
+4. Variant 2 plus observed Brier-gain targets D: the relevant DIME-style adaptation.
+5. Variant 2 plus teacher-conditioned squared revision Z: the proposed target modification.
+6. Variant 5 with encoder gradients from the auxiliary head detached: diagnostic-only control. If the point gain disappears, it supports the shared-representation mechanism.
+
+An additional shuffled-future control may shuffle teachers across events within coarse early-prediction/entropy groups; it should never shuffle across train/validation boundaries. It tests whether learning specific future predictability matters beyond a generic auxiliary target. Treat it as a negative control, not a calibration method.
+
+Report both point performance and whether the auxiliary quantity means what is claimed: event-weighted MAE/RMSE and median error at each fixed deadline; high-magnitude bias/MAE with event counts; largest-error quantiles; ordinal score/calibration; predicted versus realized revision-energy curves; predictable drift; and observed Brier gain within resolution bins. Bootstrap whole events, not station records. Compare at least two seeds for screening, then more seeds and an independent event/region dataset for a positive candidate. Current held-out scarcity above magnitude 5 prevents a strong high-magnitude state-of-the-art claim regardless of an average numerical gain.
+
+A defensible provisional description is: **an ordinal, future-teacher revision objective for early magnitude inference, evaluated as a modification of neural value-of-information learning**. Whether the modification constitutes a publishable method depends on a clear empirical advantage over the matched DIME target, ordinary future distillation, and proper ordinal-loss controls.
