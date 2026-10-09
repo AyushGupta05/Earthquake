@@ -1,0 +1,205 @@
+{
+  "scope": "Synthetic mathematics only; no earthquake data, no representation learning.",
+  "design": {
+    "repetitions": 5000,
+    "train_records_per_repetition": 250,
+    "seed_start": 100000,
+    "tail_prevalence": 0.05,
+    "true_q0": 0.1,
+    "true_q1": 0.8,
+    "growth_marginal": 0.135,
+    "gamma": 1.0,
+    "magnitude_values": [
+      2,
+      5
+    ]
+  },
+  "population": {
+    "baseline_and_oracle": {
+      "p_tail": 0.05,
+      "probability_squared_error": 0.0,
+      "expected_nll": 0.19851524334587256,
+      "overall_mean_prediction_mae": 0.28500000000000003,
+      "tail_mean_prediction_mae": 2.8499999999999996,
+      "median_prediction": 2
+    },
+    "misspecified_q": {
+      "p_tail": 0.08663288814653752,
+      "probability_squared_error": 0.0013419684939567293,
+      "expected_nll": 0.20839030415046655,
+      "overall_mean_prediction_mae": 0.38390879799565136,
+      "tail_mean_prediction_mae": 2.7401013355603876,
+      "median_prediction": 2
+    }
+  },
+  "known_q_efficiency": {
+    "growth_to_label_information_ratio": 0.1993149218582745,
+    "asymptotic_variance_ratio_composite_to_label": 1.110951984430511,
+    "finite_sample_variance_ratio": 1.101686742706705
+  },
+  "saturated_empirical_q_max_probability_difference": 1.3877787807814457e-17,
+  "arms": {
+    "magnitude_only": {
+      "p_tail": {
+        "mean": 0.049892,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "probability_squared_error": {
+        "mean": 0.0001864512,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "expected_nll": {
+        "mean": 0.20064292349130264,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "overall_mean_prediction_mae": {
+        "mean": 0.2847084,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "tail_mean_prediction_mae": {
+        "mean": 2.850324,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      }
+    },
+    "joint_nll_separate_heads": {
+      "p_tail": {
+        "mean": 0.049892,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "probability_squared_error": {
+        "mean": 0.0001864512,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "expected_nll": {
+        "mean": 0.20064292349130264,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "overall_mean_prediction_mae": {
+        "mean": 0.2847084,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "tail_mean_prediction_mae": {
+        "mean": 2.850324,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      }
+    },
+    "aux_growth_mse_separate_heads": {
+      "p_tail": {
+        "mean": 0.049892,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "probability_squared_error": {
+        "mean": 0.0001864512,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "expected_nll": {
+        "mean": 0.20064292349130264,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "overall_mean_prediction_mae": {
+        "mean": 0.2847084,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      },
+      "tail_mean_prediction_mae": {
+        "mean": 2.850324,
+        "paired_change_from_magnitude_only": 0.0,
+        "paired_change_monte_carlo_se": 0.0
+      }
+    },
+    "composite_oracle_q": {
+      "p_tail": {
+        "mean": 0.05014467629367668,
+        "paired_change_from_magnitude_only": 0.0002526762936766823,
+        "paired_change_monte_carlo_se": 6.637277691518492e-05
+      },
+      "probability_squared_error": {
+        "mean": 0.00020541889635754149,
+        "paired_change_from_magnitude_only": 1.8967696357541478e-05,
+        "paired_change_monte_carlo_se": 1.9588970072153584e-06
+      },
+      "expected_nll": {
+        "mean": 0.2008321666439557,
+        "paired_change_from_magnitude_only": 0.00018924315265304834,
+        "paired_change_monte_carlo_se": 1.9713188609128128e-05
+      },
+      "overall_mean_prediction_mae": {
+        "mean": 0.285390625992927,
+        "paired_change_from_magnitude_only": 0.0006822259929270498,
+        "paired_change_monte_carlo_se": 0.00017920649767099928
+      },
+      "tail_mean_prediction_mae": {
+        "mean": 2.84956597111897,
+        "paired_change_from_magnitude_only": -0.0007580288810299287,
+        "paired_change_monte_carlo_se": 0.00019911833074555472
+      }
+    },
+    "composite_misspecified_q0_0_02": {
+      "p_tail": {
+        "mean": 0.08648853244865973,
+        "paired_change_from_magnitude_only": 0.036596532448659735,
+        "paired_change_monte_carlo_se": 0.0001410872235549457
+      },
+      "probability_squared_error": {
+        "mean": 0.0016191169287276543,
+        "paired_change_from_magnitude_only": 0.0014326657287276542,
+        "paired_change_monte_carlo_se": 1.8109337701958905e-05
+      },
+      "expected_nll": {
+        "mean": 0.209496274543125,
+        "paired_change_from_magnitude_only": 0.008853351051822368,
+        "paired_change_monte_carlo_se": 0.00012152642352179862
+      },
+      "overall_mean_prediction_mae": {
+        "mean": 0.3835190376113813,
+        "paired_change_from_magnitude_only": 0.09881063761138129,
+        "paired_change_monte_carlo_se": 0.00038093550359835334
+      },
+      "tail_mean_prediction_mae": {
+        "mean": 2.7405344026540206,
+        "paired_change_from_magnitude_only": -0.10978959734597911,
+        "paired_change_monte_carlo_se": 0.000423261670664837
+      }
+    },
+    "composite_same_sample_empirical_q": {
+      "p_tail": {
+        "mean": 0.049892,
+        "paired_change_from_magnitude_only": -2.6555146970252962e-18,
+        "paired_change_monte_carlo_se": 7.139960587509378e-20
+      },
+      "probability_squared_error": {
+        "mean": 0.00018645119999999998,
+        "paired_change_from_magnitude_only": -1.748309884450766e-20,
+        "paired_change_monte_carlo_se": 2.774266179983048e-21
+      },
+      "expected_nll": {
+        "mean": 0.20064292349130264,
+        "paired_change_from_magnitude_only": 2.2648549702353195e-18,
+        "paired_change_monte_carlo_se": 1.4052495993916954e-19
+      },
+      "overall_mean_prediction_mae": {
+        "mean": 0.2847084,
+        "paired_change_from_magnitude_only": -7.37188088351104e-18,
+        "paired_change_monte_carlo_se": 2.9151731500815467e-19
+      },
+      "tail_mean_prediction_mae": {
+        "mean": 2.850324,
+        "paired_change_from_magnitude_only": -4.973799150320701e-18,
+        "paired_change_monte_carlo_se": 6.609854398370329e-19
+      }
+    }
+  }
+}

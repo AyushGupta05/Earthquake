@@ -1,0 +1,31 @@
+{
+  "files_sha256": {
+    "research/2026-10-09/phase2/future_growth.py": "44e24e839ed12a5405086dbbbe18e63db8a29fd45848c2e44755e1882fe182a9",
+    "research/2026-10-09/phase2/train_future_growth.py": "b22cd14abfa3ad6d6d3012dc7e4e5994bbef765ab231d30a32a65cd82fe3f92e",
+    "research/2026-10-09/phase2/FUTURE_GROWTH.md": "f8983e22b48cf4c5610ba64cac107745e9d94db6b9f788195f4e5e2024adcf39",
+    "tests/test_future_growth.py": "065a50465e321300e1bb668cf2abd5e235d987518b3b657fb18efaeb3cfacb00"
+  },
+  "test_command": "CUDA_VISIBLE_DEVICES=\"\" .venv/bin/python -m unittest discover -s tests -p test_future_growth.py -v",
+  "test_host": "instancebaseline",
+  "focused_tests_passed": 14,
+  "test_scope": "CPU only; temporary synthetic fixtures. Includes exact detached backbone updates, numeric event sampling regression, and one toy epoch plus final artifacts.",
+  "real_target_exports": 0,
+  "real_training_launches": 0,
+  "math_review": "growth_review_result.json: clean, confidence 0.98",
+  "math_checks": {
+    "tests": 6,
+    "synthetic_repetitions": 5000,
+    "known_q_variance_ratio": 1.101686742706705
+  },
+  "review_accepted_fixes": [
+    "Preserve inferred numeric source_id dtype during seeded event sampling; convert only for stored/comparison identity.",
+    "Compare string identity copies across TRAIN/VAL split types without changing the numeric sampling dtype."
+  ],
+  "implementation_review": {
+    "path": "future_growth_review_result.json",
+    "status": "clean",
+    "confidence": 0.94,
+    "accepted_fixes": 2
+  },
+  "ready_for_parent": "Review complete; parent controls commits, real TRAIN target export, and GPU experiment queue."
+}

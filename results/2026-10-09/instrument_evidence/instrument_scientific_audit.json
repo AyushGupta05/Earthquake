@@ -1,0 +1,2715 @@
+{
+  "source_metadata": {
+    "train": {
+      "path": "/home/ec2-user/Earthquake/train_full_metadata.csv",
+      "rows": 979487,
+      "bytes": 1086237448,
+      "mtime_ns": 1787213864273272272,
+      "sha256": "168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d"
+    },
+    "val": {
+      "path": "/home/ec2-user/Earthquake/val_metadata.csv",
+      "rows": 96993,
+      "bytes": 107098082,
+      "mtime_ns": 1787213868089859077,
+      "sha256": "3e1b2781559fc1da8c1d1de03af3148f4399c556df84741ae1e38b32d476698f"
+    }
+  },
+  "inputs": {
+    "station_metadata.csv.gz": "1a7f1df9d5d3553b38c333adb240d87f94aea607c178d80e30f511e3d9e31f82",
+    "audit_labels.csv.gz": "f9c8a38c9dd8f899ed46b5b310028706755a955b30b96420861d8551cee34f1c",
+    "responses.tgz": "71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2"
+  },
+  "instrument_inventory_code_sha256": "9a942c4773e5c18264aa2db432ba4669f965004aeb9a1f67f25a67d6c812c227",
+  "audit_script_sha256": "a30b610bb9ee73538380dc7bf6420a132f1668b8f741b9d809ee5ec0212b04f4",
+  "counts": {
+    "train": 979487,
+    "val": 96993,
+    "fit": 197676,
+    "train_events": 47273,
+    "val_events": 3711,
+    "event_overlap": 0,
+    "trace_overlap": 0
+  },
+  "composition_family": [
+    {
+      "split": "train",
+      "station_channels": "EH",
+      "records": 195665,
+      "events": 37238,
+      "stations": 166,
+      "tail_records": 2843,
+      "tail_events": 306,
+      "tail_fraction": 0.014529936370837911,
+      "mean_magnitude": 2.184827639076994
+    },
+    {
+      "split": "train",
+      "station_channels": "EN",
+      "records": 3,
+      "events": 3,
+      "stations": 1,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 2.266666666666667
+    },
+    {
+      "split": "train",
+      "station_channels": "HH",
+      "records": 507366,
+      "events": 46519,
+      "stations": 374,
+      "tail_records": 10685,
+      "tail_events": 322,
+      "tail_fraction": 0.02105974779547703,
+      "mean_magnitude": 2.342490628067312
+    },
+    {
+      "split": "train",
+      "station_channels": "HL",
+      "records": 6569,
+      "events": 6520,
+      "stations": 7,
+      "tail_records": 155,
+      "tail_events": 139,
+      "tail_fraction": 0.02359567666311463,
+      "mean_magnitude": 2.2571928756279496
+    },
+    {
+      "split": "train",
+      "station_channels": "HN",
+      "records": 269884,
+      "events": 31930,
+      "stations": 259,
+      "tail_records": 4720,
+      "tail_events": 248,
+      "tail_fraction": 0.017488995272042805,
+      "mean_magnitude": 2.261187769560255
+    },
+    {
+      "split": "val",
+      "station_channels": "EH",
+      "records": 20536,
+      "events": 3201,
+      "stations": 83,
+      "tail_records": 131,
+      "tail_events": 13,
+      "tail_fraction": 0.006379041682898325,
+      "mean_magnitude": 1.9810284378652123
+    },
+    {
+      "split": "val",
+      "station_channels": "HH",
+      "records": 44927,
+      "events": 3708,
+      "stations": 324,
+      "tail_records": 551,
+      "tail_events": 13,
+      "tail_fraction": 0.01226433992921851,
+      "mean_magnitude": 2.2303292007033635
+    },
+    {
+      "split": "val",
+      "station_channels": "HN",
+      "records": 31530,
+      "events": 3607,
+      "stations": 223,
+      "tail_records": 345,
+      "tail_events": 13,
+      "tail_fraction": 0.010941960038058992,
+      "mean_magnitude": 2.128845543926419
+    }
+  ],
+  "composition_magnitude_type_family": [
+    {
+      "split": "train",
+      "source_magnitude_type": "ML",
+      "station_channels": "EH",
+      "records": 189102,
+      "events": 35817,
+      "stations": 164,
+      "tail_records": 1026,
+      "tail_events": 135,
+      "tail_fraction": 0.005425643303613923,
+      "mean_magnitude": 2.152733974257279
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "ML",
+      "station_channels": "EN",
+      "records": 3,
+      "events": 3,
+      "stations": 1,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 2.266666666666667
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "ML",
+      "station_channels": "HH",
+      "records": 485664,
+      "events": 44674,
+      "stations": 371,
+      "tail_records": 4238,
+      "tail_events": 147,
+      "tail_fraction": 0.008726197535744877,
+      "mean_magnitude": 2.298220374579957
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "ML",
+      "station_channels": "HL",
+      "records": 6256,
+      "events": 6214,
+      "stations": 7,
+      "tail_records": 67,
+      "tail_events": 54,
+      "tail_fraction": 0.010709718670076727,
+      "mean_magnitude": 2.209255115089514
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "ML",
+      "station_channels": "HN",
+      "records": 260040,
+      "events": 30743,
+      "stations": 257,
+      "tail_records": 1721,
+      "tail_events": 109,
+      "tail_fraction": 0.006618212582679588,
+      "mean_magnitude": 2.2211309798492542
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Md",
+      "station_channels": "EH",
+      "records": 2089,
+      "events": 994,
+      "stations": 111,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.451651507898516
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Md",
+      "station_channels": "HH",
+      "records": 5735,
+      "events": 1399,
+      "stations": 290,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.7530601569311246
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Md",
+      "station_channels": "HL",
+      "records": 105,
+      "events": 105,
+      "stations": 5,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.744761904761905
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Md",
+      "station_channels": "HN",
+      "records": 2365,
+      "events": 828,
+      "stations": 175,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.578520084566596
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 4474,
+      "events": 427,
+      "stations": 133,
+      "tail_records": 1817,
+      "tail_events": 171,
+      "tail_fraction": 0.4061242735806884,
+      "mean_magnitude": 3.8836611533303533
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 15967,
+      "events": 446,
+      "stations": 345,
+      "tail_records": 6447,
+      "tail_events": 175,
+      "tail_fraction": 0.40377027619465145,
+      "mean_magnitude": 3.90075781298929
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Mw",
+      "station_channels": "HL",
+      "records": 208,
+      "events": 201,
+      "stations": 7,
+      "tail_records": 88,
+      "tail_events": 85,
+      "tail_fraction": 0.4230769230769231,
+      "mean_magnitude": 3.9576923076923074
+    },
+    {
+      "split": "train",
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 7479,
+      "events": 359,
+      "stations": 224,
+      "tail_records": 2999,
+      "tail_events": 139,
+      "tail_fraction": 0.4009894370905201,
+      "mean_magnitude": 3.869808797967643
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "ML",
+      "station_channels": "EH",
+      "records": 20023,
+      "events": 3145,
+      "stations": 83,
+      "tail_records": 25,
+      "tail_events": 3,
+      "tail_fraction": 0.00124856415122609,
+      "mean_magnitude": 1.9468661039804227
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "ML",
+      "station_channels": "HH",
+      "records": 43781,
+      "events": 3644,
+      "stations": 324,
+      "tail_records": 211,
+      "tail_events": 3,
+      "tail_fraction": 0.00481944222379571,
+      "mean_magnitude": 2.193826088942692
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "ML",
+      "station_channels": "HN",
+      "records": 30671,
+      "events": 3546,
+      "stations": 223,
+      "tail_records": 93,
+      "tail_events": 3,
+      "tail_fraction": 0.0030321802354015192,
+      "mean_magnitude": 2.087913664373512
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "Md",
+      "station_channels": "EH",
+      "records": 82,
+      "events": 24,
+      "stations": 25,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.1707317073170733
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "Md",
+      "station_channels": "HH",
+      "records": 118,
+      "events": 31,
+      "stations": 71,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.5940677966101695
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "Md",
+      "station_channels": "HN",
+      "records": 81,
+      "events": 28,
+      "stations": 39,
+      "tail_records": 0,
+      "tail_events": 0,
+      "tail_fraction": 0.0,
+      "mean_magnitude": 1.334567901234568
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 431,
+      "events": 32,
+      "stations": 71,
+      "tail_records": 106,
+      "tail_events": 10,
+      "tail_fraction": 0.2459396751740139,
+      "mean_magnitude": 3.7222737819025515
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 1028,
+      "events": 33,
+      "stations": 270,
+      "tail_records": 340,
+      "tail_events": 10,
+      "tail_fraction": 0.33073929961089493,
+      "mean_magnitude": 3.857976653696498
+    },
+    {
+      "split": "val",
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 778,
+      "events": 33,
+      "stations": 180,
+      "tail_records": 252,
+      "tail_events": 10,
+      "tail_fraction": 0.32390745501285345,
+      "mean_magnitude": 3.8251928020565553
+    }
+  ],
+  "station_overlap": {
+    "station_id_full_train": {
+      "train_unique": 561,
+      "val_unique": 458,
+      "overlapping_unique": 428,
+      "val_records_seen": 95036,
+      "val_records_seen_fraction": 0.9798232862165311,
+      "tail_records_seen": 1010,
+      "unseen_val_identities": [
+        "IV.CADC",
+        "IV.CROCE",
+        "IV.EMCN",
+        "IV.EVRN",
+        "IV.GAVE",
+        "IV.MBFT",
+        "IV.MFNL",
+        "IV.MML1",
+        "IV.MTGR",
+        "IV.PANTE",
+        "IV.PZUN",
+        "IV.SICLA",
+        "IX.CGG3",
+        "IX.CLT3",
+        "IX.CSG3",
+        "IX.LGS3",
+        "IX.MNT3",
+        "IX.PGN3",
+        "IX.PST3",
+        "IX.SFL3",
+        "IX.VDS3",
+        "IX.VGG3",
+        "MN.VAE",
+        "TV.SU26",
+        "YD.T1411",
+        "YD.T1412",
+        "YD.T1413",
+        "YD.T1414",
+        "YD.T1415",
+        "ZM.T1361"
+      ]
+    },
+    "station_id_sampled_train": {
+      "train_unique": 543,
+      "val_unique": 458,
+      "overlapping_unique": 415,
+      "val_records_seen": 94299,
+      "val_records_seen_fraction": 0.9722247997278154,
+      "tail_records_seen": 996,
+      "unseen_val_identities": [
+        "IV.CAAM",
+        "IV.CADC",
+        "IV.CAGG",
+        "IV.CPOZ",
+        "IV.CROCE",
+        "IV.EMCN",
+        "IV.EVRN",
+        "IV.GAVE",
+        "IV.MBAL",
+        "IV.MBFT",
+        "IV.MFNL",
+        "IV.MML1",
+        "IV.MTGR",
+        "IV.PANTE",
+        "IV.PZUN",
+        "IV.SICLA",
+        "IX.AND3",
+        "IX.CGG3",
+        "IX.CLT3",
+        "IX.CSG3",
+        "IX.LGS3",
+        "IX.MNT3",
+        "IX.MRN3",
+        "IX.NSC3",
+        "IX.PGN3",
+        "IX.PST3",
+        "IX.RDM3",
+        "IX.SFL3",
+        "IX.SNR3",
+        "IX.VDP3",
+        "IX.VDS3",
+        "IX.VGG3",
+        "MN.VAE",
+        "NI.PURA",
+        "ST.PANI",
+        "ST.ZIAN",
+        "TV.SU26",
+        "YD.T1411",
+        "YD.T1412",
+        "YD.T1413",
+        "YD.T1414",
+        "YD.T1415",
+        "ZM.T1361"
+      ]
+    },
+    "instrument_id_full_train": {
+      "train_unique": 807,
+      "val_unique": 630,
+      "overlapping_unique": 573,
+      "val_records_seen": 93797,
+      "val_records_seen_fraction": 0.9670491684966956,
+      "tail_records_seen": 1000,
+      "unseen_val_identities": [
+        "GU.BURY..HN",
+        "IV.CADC..HN",
+        "IV.CING..HN",
+        "IV.CROCE..HH",
+        "IV.EMCN..HN",
+        "IV.EVRN..HN",
+        "IV.FAVR..HN",
+        "IV.GALF..HN",
+        "IV.GAVE..EH",
+        "IV.GAVE..HN",
+        "IV.LNSS..HN",
+        "IV.LPEL..HN",
+        "IV.MBAL..HN",
+        "IV.MBFT..HH",
+        "IV.MBFT..HN",
+        "IV.MFNL..HH",
+        "IV.MML1..EH",
+        "IV.MML1..HN",
+        "IV.MTGR..HH",
+        "IV.NOV..HN",
+        "IV.PANTE..HH",
+        "IV.PZUN..HH",
+        "IV.PZUN..HN",
+        "IV.SICLA..EH",
+        "IV.SSY..HN",
+        "IX.CGG3.02.HN",
+        "IX.CLT3.01.HN",
+        "IX.CLT3.02.HH",
+        "IX.CSG3.01.HN",
+        "IX.LGS3.01.HN",
+        "IX.MNT3.01.HN",
+        "IX.MNT3.02.HH",
+        "IX.PGN3.01.HN",
+        "IX.PGN3.02.HH",
+        "IX.PST3.01.HN",
+        "IX.PST3.02.HH",
+        "IX.RSF3.01.HN",
+        "IX.SFL3.01.HN",
+        "IX.VDS3.01.HN",
+        "IX.VGG3.01.HN",
+        "MN.PDG..HN",
+        "MN.VAE..HH",
+        "ST.CARE..EH",
+        "ST.OZOL..EH",
+        "ST.PANI..EH",
+        "TV.SU26..HH",
+        "YD.T1411..EH",
+        "YD.T1411..HN",
+        "YD.T1412..EH",
+        "YD.T1412..HN",
+        "YD.T1413..EH",
+        "YD.T1413..HN",
+        "YD.T1414..EH",
+        "YD.T1414..HN",
+        "YD.T1415..HN",
+        "ZM.T1361..EH",
+        "ZM.T1361..HN"
+      ]
+    },
+    "instrument_id_sampled_train": {
+      "train_unique": 774,
+      "val_unique": 630,
+      "overlapping_unique": 549,
+      "val_records_seen": 93039,
+      "val_records_seen_fraction": 0.9592341715381523,
+      "tail_records_seen": 981,
+      "unseen_val_identities": [
+        "GU.BURY..HN",
+        "IV.CAAM..HH",
+        "IV.CADC..HN",
+        "IV.CAGG..EH",
+        "IV.CING..HN",
+        "IV.CPOZ..HH",
+        "IV.CROCE..HH",
+        "IV.EMCN..HN",
+        "IV.EVRN..HN",
+        "IV.FAVR..HN",
+        "IV.GALF..HN",
+        "IV.GAVE..EH",
+        "IV.GAVE..HN",
+        "IV.GRIS..HN",
+        "IV.LNSS..HN",
+        "IV.LPEL..HN",
+        "IV.MBAL..EH",
+        "IV.MBAL..HN",
+        "IV.MBFT..HH",
+        "IV.MBFT..HN",
+        "IV.MFNL..HH",
+        "IV.MML1..EH",
+        "IV.MML1..HN",
+        "IV.MTGR..HH",
+        "IV.NOV..HN",
+        "IV.PANTE..HH",
+        "IV.PZUN..HH",
+        "IV.PZUN..HN",
+        "IV.SICLA..EH",
+        "IV.SSY..HN",
+        "IX.AND3.01.HN",
+        "IX.AND3.02.HH",
+        "IX.CGG3.02.HN",
+        "IX.CLT3.01.HN",
+        "IX.CLT3.02.HH",
+        "IX.COL3.01.HN",
+        "IX.CSG3.01.HN",
+        "IX.LGS3.01.HN",
+        "IX.MNT3.01.HN",
+        "IX.MNT3.02.HH",
+        "IX.MRN3.01.HN",
+        "IX.NSC3.01.HN",
+        "IX.NSC3.02.HH",
+        "IX.PGN3.01.HN",
+        "IX.PGN3.02.HH",
+        "IX.PST3.01.HN",
+        "IX.PST3.02.HH",
+        "IX.RDM3.01.HN",
+        "IX.RDM3.02.HH",
+        "IX.RSF3.01.HN",
+        "IX.SCL3.02.HH",
+        "IX.SFL3.01.HN",
+        "IX.SNR3.01.HN",
+        "IX.SNR3.02.HH",
+        "IX.SRN3.01.HN",
+        "IX.SSB3.01.HN",
+        "IX.VDP3.01.HN",
+        "IX.VDS3.01.HN",
+        "IX.VGG3.01.HN",
+        "MN.BLY..HN",
+        "MN.PDG..HN",
+        "MN.VAE..HH",
+        "NI.PURA..HH",
+        "ST.CARE..EH",
+        "ST.OZOL..EH",
+        "ST.PANI..EH",
+        "ST.PANI..HN",
+        "ST.ZIAN..EH",
+        "ST.ZIAN..HN",
+        "TV.SU26..HH",
+        "YD.T1411..EH",
+        "YD.T1411..HN",
+        "YD.T1412..EH",
+        "YD.T1412..HN",
+        "YD.T1413..EH",
+        "YD.T1413..HN",
+        "YD.T1414..EH",
+        "YD.T1414..HN",
+        "YD.T1415..HN",
+        "ZM.T1361..EH",
+        "ZM.T1361..HN"
+      ]
+    }
+  },
+  "fingerprints": {
+    "all34": {
+      "columns": [
+        "family_HH",
+        "family_EH",
+        "family_HN",
+        "family_HL",
+        "family_EN",
+        "family_unknown",
+        "station_elevation_m",
+        "station_elevation_m_missing",
+        "station_vs_30_mps",
+        "station_vs_30_mps_missing",
+        "E_response_missing",
+        "E_log10_sensitivity",
+        "E_velocity",
+        "E_acceleration",
+        "E_log1p_sensitivity_frequency_hz",
+        "E_sensitivity_frequency_hz_missing",
+        "E_log1p_native_sample_rate_hz",
+        "E_native_sample_rate_hz_missing",
+        "N_response_missing",
+        "N_log10_sensitivity",
+        "N_velocity",
+        "N_acceleration",
+        "N_log1p_sensitivity_frequency_hz",
+        "N_sensitivity_frequency_hz_missing",
+        "N_log1p_native_sample_rate_hz",
+        "N_native_sample_rate_hz_missing",
+        "Z_response_missing",
+        "Z_log10_sensitivity",
+        "Z_velocity",
+        "Z_acceleration",
+        "Z_log1p_sensitivity_frequency_hz",
+        "Z_sensitivity_frequency_hz_missing",
+        "Z_log1p_native_sample_rate_hz",
+        "Z_native_sample_rate_hz_missing"
+      ],
+      "distinct_signatures": 1011,
+      "signatures_identifying_one_station": 1002,
+      "fraction_all_records_in_single_station_signature": 0.9966483353151011,
+      "fraction_val_records_in_single_station_signature": 0.9961234315878466,
+      "val_signature_seen_full_train_fraction": 0.9579247986968131,
+      "val_signature_seen_sampled_train_fraction": 0.9488107389193035
+    },
+    "site_only": {
+      "columns": [
+        "station_elevation_m",
+        "station_elevation_m_missing",
+        "station_vs_30_mps",
+        "station_vs_30_mps_missing"
+      ],
+      "distinct_signatures": 576,
+      "signatures_identifying_one_station": 561,
+      "fraction_all_records_in_single_station_signature": 0.9928470570749108,
+      "fraction_val_records_in_single_station_signature": 0.9900714484550431,
+      "val_signature_seen_full_train_fraction": 0.980029486663986,
+      "val_signature_seen_sampled_train_fraction": 0.9724310001752704
+    },
+    "gain_units_masks": {
+      "columns": [
+        "E_response_missing",
+        "E_log10_sensitivity",
+        "E_velocity",
+        "E_acceleration",
+        "N_response_missing",
+        "N_log10_sensitivity",
+        "N_velocity",
+        "N_acceleration",
+        "Z_response_missing",
+        "Z_log10_sensitivity",
+        "Z_velocity",
+        "Z_acceleration"
+      ],
+      "distinct_signatures": 176,
+      "signatures_identifying_one_station": 105,
+      "fraction_all_records_in_single_station_signature": 0.058836206896551724,
+      "fraction_val_records_in_single_station_signature": 0.04542595857433011,
+      "val_signature_seen_full_train_fraction": 0.9923602734217933,
+      "val_signature_seen_sampled_train_fraction": 0.9899992782984339
+    },
+    "family_only": {
+      "columns": [
+        "family_HH",
+        "family_EH",
+        "family_HN",
+        "family_HL",
+        "family_EN",
+        "family_unknown"
+      ],
+      "distinct_signatures": 5,
+      "signatures_identifying_one_station": 1,
+      "fraction_all_records_in_single_station_signature": 2.786860879904875e-06,
+      "fraction_val_records_in_single_station_signature": 0.0,
+      "val_signature_seen_full_train_fraction": 1.0,
+      "val_signature_seen_sampled_train_fraction": 1.0
+    }
+  },
+  "prediction_diagnostics": {
+    "1s_predictions.npz": {
+      "sha256": "d92eef26354188cd69e6c98b52a32ac2f13970a37bb7f676e08b0fb5920736cb",
+      "comparisons": {
+        "instrument": {
+          "family": [
+            {
+              "station_channels": "EH",
+              "records": 20536,
+              "events": 3201,
+              "baseline_mae": 0.39132859558818145,
+              "alternative_mae": 0.3268626955986539,
+              "paired_mae_difference": -0.0644658999895275,
+              "fraction_records_improved": 0.5892578885858979
+            },
+            {
+              "station_channels": "HH",
+              "records": 44927,
+              "events": 3708,
+              "baseline_mae": 0.390387119919803,
+              "alternative_mae": 0.36848128506908,
+              "paired_mae_difference": -0.021905834850722884,
+              "fraction_records_improved": 0.5724619939012175
+            },
+            {
+              "station_channels": "HN",
+              "records": 31530,
+              "events": 3607,
+              "baseline_mae": 0.4367833532652,
+              "alternative_mae": 0.42279205153240884,
+              "paired_mae_difference": -0.013991301732791199,
+              "fraction_records_improved": 0.5197272438947035
+            }
+          ],
+          "magnitude_type": [
+            {
+              "source_magnitude_type": "ML",
+              "records": 94475,
+              "events": 3647,
+              "baseline_mae": 0.3972585305643876,
+              "alternative_mae": 0.3718204300685652,
+              "paired_mae_difference": -0.025438100495822392,
+              "fraction_records_improved": 0.5572161947605186
+            },
+            {
+              "source_magnitude_type": "Md",
+              "records": 281,
+              "events": 31,
+              "baseline_mae": 0.5002859591583443,
+              "alternative_mae": 0.43376402439407435,
+              "paired_mae_difference": -0.06652193476427003,
+              "fraction_records_improved": 0.604982206405694
+            },
+            {
+              "source_magnitude_type": "Mw",
+              "records": 2237,
+              "events": 33,
+              "baseline_mae": 0.7489697248518667,
+              "alternative_mae": 0.6026918079333643,
+              "paired_mae_difference": -0.14627791691850234,
+              "fraction_records_improved": 0.6231560125167636
+            }
+          ],
+          "tail_family": [
+            {
+              "station_channels": "EH",
+              "records": 131,
+              "events": 13,
+              "baseline_mae": 0.816607698022304,
+              "alternative_mae": 0.7148199488469923,
+              "paired_mae_difference": -0.10178774917531164,
+              "fraction_records_improved": 0.7557251908396947
+            },
+            {
+              "station_channels": "HH",
+              "records": 551,
+              "events": 13,
+              "baseline_mae": 0.5648614023510373,
+              "alternative_mae": 0.5827251893581324,
+              "paired_mae_difference": 0.017863787007095015,
+              "fraction_records_improved": 0.4192377495462795
+            },
+            {
+              "station_channels": "HN",
+              "records": 345,
+              "events": 13,
+              "baseline_mae": 1.3799172128744297,
+              "alternative_mae": 0.910933511179057,
+              "paired_mae_difference": -0.46898370169537273,
+              "fraction_records_improved": 0.7130434782608696
+            }
+          ],
+          "tail_event": [
+            {
+              "source_id": "18263671",
+              "source_magnitude": 4.0,
+              "records": 136,
+              "events": 1,
+              "baseline_mae": 0.638831684084896,
+              "alternative_mae": 0.6187842758553939,
+              "paired_mae_difference": -0.020047408229502163,
+              "fraction_records_improved": 0.5294117647058824
+            },
+            {
+              "source_id": "18379751",
+              "source_magnitude": 4.4,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.7358928378560994,
+              "alternative_mae": 0.7230083936941909,
+              "paired_mae_difference": -0.012884444161908488,
+              "fraction_records_improved": 0.3516483516483517
+            },
+            {
+              "source_id": "18596591",
+              "source_magnitude": 4.0,
+              "records": 81,
+              "events": 1,
+              "baseline_mae": 0.7835505338665529,
+              "alternative_mae": 0.562287821268153,
+              "paired_mae_difference": -0.2212627125983999,
+              "fraction_records_improved": 0.7407407407407407
+            },
+            {
+              "source_id": "18673351",
+              "source_magnitude": 4.6,
+              "records": 72,
+              "events": 1,
+              "baseline_mae": 0.9051995722944758,
+              "alternative_mae": 0.49188496163769446,
+              "paired_mae_difference": -0.4133146106567813,
+              "fraction_records_improved": 0.7916666666666666
+            },
+            {
+              "source_id": "19004961",
+              "source_magnitude": 4.3,
+              "records": 43,
+              "events": 1,
+              "baseline_mae": 0.9762982557430779,
+              "alternative_mae": 0.8889405471336747,
+              "paired_mae_difference": -0.08735770860940284,
+              "fraction_records_improved": 0.5116279069767442
+            },
+            {
+              "source_id": "20046641",
+              "source_magnitude": 4.3,
+              "records": 45,
+              "events": 1,
+              "baseline_mae": 0.677635438054271,
+              "alternative_mae": 0.44991471549258366,
+              "paired_mae_difference": -0.2277207225616875,
+              "fraction_records_improved": 0.5777777777777777
+            },
+            {
+              "source_id": "20362671",
+              "source_magnitude": 4.6,
+              "records": 101,
+              "events": 1,
+              "baseline_mae": 1.1155902118401557,
+              "alternative_mae": 0.8953516476758349,
+              "paired_mae_difference": -0.22023856416432094,
+              "fraction_records_improved": 0.6138613861386139
+            },
+            {
+              "source_id": "20375681",
+              "source_magnitude": 5.1,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 1.436629019032917,
+              "alternative_mae": 1.1650830532270005,
+              "paired_mae_difference": -0.2715459658059166,
+              "fraction_records_improved": 0.6263736263736264
+            },
+            {
+              "source_id": "20379371",
+              "source_magnitude": 4.4,
+              "records": 75,
+              "events": 1,
+              "baseline_mae": 1.0622360990922162,
+              "alternative_mae": 0.9040259139909144,
+              "paired_mae_difference": -0.1582101851013022,
+              "fraction_records_improved": 0.6
+            },
+            {
+              "source_id": "20415201",
+              "source_magnitude": 4.6,
+              "records": 102,
+              "events": 1,
+              "baseline_mae": 0.924562262357235,
+              "alternative_mae": 0.9578108425011661,
+              "paired_mae_difference": 0.03324858014393116,
+              "fraction_records_improved": 0.30392156862745096
+            },
+            {
+              "source_id": "20787491",
+              "source_magnitude": 4.0,
+              "records": 29,
+              "events": 1,
+              "baseline_mae": 0.5301135972183011,
+              "alternative_mae": 0.3111734862992825,
+              "paired_mae_difference": -0.21894011091901858,
+              "fraction_records_improved": 0.7241379310344828
+            },
+            {
+              "source_id": "20845861",
+              "source_magnitude": 4.6,
+              "records": 73,
+              "events": 1,
+              "baseline_mae": 0.5505140570623811,
+              "alternative_mae": 0.5369330983299833,
+              "paired_mae_difference": -0.013580958732397789,
+              "fraction_records_improved": 0.4246575342465753
+            },
+            {
+              "source_id": "21119351",
+              "source_magnitude": 4.0,
+              "records": 88,
+              "events": 1,
+              "baseline_mae": 0.7543205606215142,
+              "alternative_mae": 0.33458092205552425,
+              "paired_mae_difference": -0.41973963856598995,
+              "fraction_records_improved": 0.6818181818181818
+            }
+          ],
+          "events_improved": 2705,
+          "events_total": 3711,
+          "tail_events_improved": 12,
+          "tail_event_macro_delta": -0.17319957307405362,
+          "tail_event_leave_one_out_delta_range": [
+            -0.19040358584221903,
+            -0.15265456761639226
+          ]
+        },
+        "instrument_native": {
+          "family": [
+            {
+              "station_channels": "EH",
+              "records": 20536,
+              "events": 3201,
+              "baseline_mae": 0.39132859558818145,
+              "alternative_mae": 0.3246559597428628,
+              "paired_mae_difference": -0.06667263584531867,
+              "fraction_records_improved": 0.592520451889365
+            },
+            {
+              "station_channels": "HH",
+              "records": 44927,
+              "events": 3708,
+              "baseline_mae": 0.390387119919803,
+              "alternative_mae": 0.36897696311704525,
+              "paired_mae_difference": -0.021410156802757672,
+              "fraction_records_improved": 0.5684332361386248
+            },
+            {
+              "station_channels": "HN",
+              "records": 31530,
+              "events": 3607,
+              "baseline_mae": 0.4367833532652,
+              "alternative_mae": 0.420869009303162,
+              "paired_mae_difference": -0.015914343962038016,
+              "fraction_records_improved": 0.5228353948620361
+            }
+          ],
+          "magnitude_type": [
+            {
+              "source_magnitude_type": "ML",
+              "records": 94475,
+              "events": 3647,
+              "baseline_mae": 0.3972585305643876,
+              "alternative_mae": 0.371045093939124,
+              "paired_mae_difference": -0.026213436625263695,
+              "fraction_records_improved": 0.5568033871394549
+            },
+            {
+              "source_magnitude_type": "Md",
+              "records": 281,
+              "events": 31,
+              "baseline_mae": 0.5002859591583443,
+              "alternative_mae": 0.4274520460036401,
+              "paired_mae_difference": -0.0728339131547043,
+              "fraction_records_improved": 0.6120996441281139
+            },
+            {
+              "source_magnitude_type": "Mw",
+              "records": 2237,
+              "events": 33,
+              "baseline_mae": 0.7489697248518667,
+              "alternative_mae": 0.5988213677880503,
+              "paired_mae_difference": -0.15014835706381646,
+              "fraction_records_improved": 0.6325435851586947
+            }
+          ],
+          "tail_family": [
+            {
+              "station_channels": "EH",
+              "records": 131,
+              "events": 13,
+              "baseline_mae": 0.816607698022304,
+              "alternative_mae": 0.7118478643960491,
+              "paired_mae_difference": -0.10475983362625492,
+              "fraction_records_improved": 0.7404580152671756
+            },
+            {
+              "station_channels": "HH",
+              "records": 551,
+              "events": 13,
+              "baseline_mae": 0.5648614023510373,
+              "alternative_mae": 0.5787230182846383,
+              "paired_mae_difference": 0.013861615933601057,
+              "fraction_records_improved": 0.4246823956442831
+            },
+            {
+              "station_channels": "HN",
+              "records": 345,
+              "events": 13,
+              "baseline_mae": 1.3799172128744297,
+              "alternative_mae": 0.9013135608942043,
+              "paired_mae_difference": -0.47860365198022514,
+              "fraction_records_improved": 0.7275362318840579
+            }
+          ],
+          "tail_event": [
+            {
+              "source_id": "18263671",
+              "source_magnitude": 4.0,
+              "records": 136,
+              "events": 1,
+              "baseline_mae": 0.638831684084896,
+              "alternative_mae": 0.6196413453457211,
+              "paired_mae_difference": -0.01919033873917488,
+              "fraction_records_improved": 0.5441176470588235
+            },
+            {
+              "source_id": "18379751",
+              "source_magnitude": 4.4,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.7358928378560994,
+              "alternative_mae": 0.7273788652660184,
+              "paired_mae_difference": -0.00851397259008077,
+              "fraction_records_improved": 0.38461538461538464
+            },
+            {
+              "source_id": "18596591",
+              "source_magnitude": 4.0,
+              "records": 81,
+              "events": 1,
+              "baseline_mae": 0.7835505338665529,
+              "alternative_mae": 0.5481366065864018,
+              "paired_mae_difference": -0.235413927280151,
+              "fraction_records_improved": 0.7037037037037037
+            },
+            {
+              "source_id": "18673351",
+              "source_magnitude": 4.6,
+              "records": 72,
+              "events": 1,
+              "baseline_mae": 0.9051995722944758,
+              "alternative_mae": 0.4813353552102819,
+              "paired_mae_difference": -0.42386421708419386,
+              "fraction_records_improved": 0.7916666666666666
+            },
+            {
+              "source_id": "19004961",
+              "source_magnitude": 4.3,
+              "records": 43,
+              "events": 1,
+              "baseline_mae": 0.9762982557430779,
+              "alternative_mae": 0.8814906024152414,
+              "paired_mae_difference": -0.09480765332783653,
+              "fraction_records_improved": 0.5116279069767442
+            },
+            {
+              "source_id": "20046641",
+              "source_magnitude": 4.3,
+              "records": 45,
+              "events": 1,
+              "baseline_mae": 0.677635438054271,
+              "alternative_mae": 0.43320282097027474,
+              "paired_mae_difference": -0.24443261708399613,
+              "fraction_records_improved": 0.5555555555555556
+            },
+            {
+              "source_id": "20362671",
+              "source_magnitude": 4.6,
+              "records": 101,
+              "events": 1,
+              "baseline_mae": 1.1155902118401557,
+              "alternative_mae": 0.8972918692004701,
+              "paired_mae_difference": -0.21829834263968553,
+              "fraction_records_improved": 0.5742574257425742
+            },
+            {
+              "source_id": "20375681",
+              "source_magnitude": 5.1,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 1.436629019032917,
+              "alternative_mae": 1.149086276120659,
+              "paired_mae_difference": -0.287542742912258,
+              "fraction_records_improved": 0.6483516483516484
+            },
+            {
+              "source_id": "20379371",
+              "source_magnitude": 4.4,
+              "records": 75,
+              "events": 1,
+              "baseline_mae": 1.0622360990922162,
+              "alternative_mae": 0.891414704587133,
+              "paired_mae_difference": -0.17082139450508332,
+              "fraction_records_improved": 0.5866666666666667
+            },
+            {
+              "source_id": "20415201",
+              "source_magnitude": 4.6,
+              "records": 102,
+              "events": 1,
+              "baseline_mae": 0.924562262357235,
+              "alternative_mae": 0.955349368354496,
+              "paired_mae_difference": 0.030787105997261185,
+              "fraction_records_improved": 0.3333333333333333
+            },
+            {
+              "source_id": "20787491",
+              "source_magnitude": 4.0,
+              "records": 29,
+              "events": 1,
+              "baseline_mae": 0.5301135972183011,
+              "alternative_mae": 0.3002766942788681,
+              "paired_mae_difference": -0.22983690293943285,
+              "fraction_records_improved": 0.6551724137931034
+            },
+            {
+              "source_id": "20845861",
+              "source_magnitude": 4.6,
+              "records": 73,
+              "events": 1,
+              "baseline_mae": 0.5505140570623811,
+              "alternative_mae": 0.531773866878933,
+              "paired_mae_difference": -0.0187401901834481,
+              "fraction_records_improved": 0.4931506849315068
+            },
+            {
+              "source_id": "21119351",
+              "source_magnitude": 4.0,
+              "records": 88,
+              "events": 1,
+              "baseline_mae": 0.7543205606215142,
+              "alternative_mae": 0.33116947509279615,
+              "paired_mae_difference": -0.4231510855287181,
+              "fraction_records_improved": 0.7045454545454546
+            }
+          ],
+          "events_improved": 2659,
+          "events_total": 3711,
+          "tail_events_improved": 12,
+          "tail_event_macro_delta": -0.18029432913975368,
+          "tail_event_leave_one_out_delta_range": [
+            -0.19788444873450495,
+            -0.15999683847771703
+          ]
+        }
+      }
+    },
+    "3s_predictions.npz": {
+      "sha256": "d77393a6ab06e83b31124fa5837ac42c6f909a2f7e80c06851da0e4e4c03e43d",
+      "comparisons": {
+        "instrument": {
+          "family": [
+            {
+              "station_channels": "EH",
+              "records": 20536,
+              "events": 3201,
+              "baseline_mae": 0.3354842243339549,
+              "alternative_mae": 0.27415955118561214,
+              "paired_mae_difference": -0.061324673148342834,
+              "fraction_records_improved": 0.595539540319439
+            },
+            {
+              "station_channels": "HH",
+              "records": 44927,
+              "events": 3708,
+              "baseline_mae": 0.3477675247031283,
+              "alternative_mae": 0.3280522325006657,
+              "paired_mae_difference": -0.019715292202462625,
+              "fraction_records_improved": 0.5736416854007612
+            },
+            {
+              "station_channels": "HN",
+              "records": 31530,
+              "events": 3607,
+              "baseline_mae": 0.38394502153946064,
+              "alternative_mae": 0.36743302824266905,
+              "paired_mae_difference": -0.016511993296791566,
+              "fraction_records_improved": 0.537139232477006
+            }
+          ],
+          "magnitude_type": [
+            {
+              "source_magnitude_type": "ML",
+              "records": 94475,
+              "events": 3647,
+              "baseline_mae": 0.35127167559094663,
+              "alternative_mae": 0.3260231115672952,
+              "paired_mae_difference": -0.025248564023651398,
+              "fraction_records_improved": 0.5649325218311723
+            },
+            {
+              "source_magnitude_type": "Md",
+              "records": 281,
+              "events": 31,
+              "baseline_mae": 0.3871128440104284,
+              "alternative_mae": 0.3462177477652338,
+              "paired_mae_difference": -0.0408950962451946,
+              "fraction_records_improved": 0.597864768683274
+            },
+            {
+              "source_magnitude_type": "Mw",
+              "records": 2237,
+              "events": 33,
+              "baseline_mae": 0.591985642278554,
+              "alternative_mae": 0.4717862855405658,
+              "paired_mae_difference": -0.12019935673798818,
+              "fraction_records_improved": 0.6249441215914171
+            }
+          ],
+          "tail_family": [
+            {
+              "station_channels": "EH",
+              "records": 131,
+              "events": 13,
+              "baseline_mae": 0.6243748886277081,
+              "alternative_mae": 0.537453969309162,
+              "paired_mae_difference": -0.08692091931854601,
+              "fraction_records_improved": 0.7862595419847328
+            },
+            {
+              "station_channels": "HH",
+              "records": 551,
+              "events": 13,
+              "baseline_mae": 0.5057245600669129,
+              "alternative_mae": 0.5099511496681207,
+              "paired_mae_difference": 0.0042265896012077565,
+              "fraction_records_improved": 0.42105263157894735
+            },
+            {
+              "station_channels": "HN",
+              "records": 345,
+              "events": 13,
+              "baseline_mae": 1.125212629904808,
+              "alternative_mae": 0.7321092756339875,
+              "paired_mae_difference": -0.39310335427082044,
+              "fraction_records_improved": 0.7710144927536232
+            }
+          ],
+          "tail_event": [
+            {
+              "source_id": "18263671",
+              "source_magnitude": 4.0,
+              "records": 136,
+              "events": 1,
+              "baseline_mae": 0.6876325558197085,
+              "alternative_mae": 0.6577868047509294,
+              "paired_mae_difference": -0.029845751068779004,
+              "fraction_records_improved": 0.5073529411764706
+            },
+            {
+              "source_id": "18379751",
+              "source_magnitude": 4.4,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.7872175052962275,
+              "alternative_mae": 0.7861255055584242,
+              "paired_mae_difference": -0.0010919997378033498,
+              "fraction_records_improved": 0.3626373626373626
+            },
+            {
+              "source_id": "18596591",
+              "source_magnitude": 4.0,
+              "records": 81,
+              "events": 1,
+              "baseline_mae": 0.5428370955274496,
+              "alternative_mae": 0.35958186759041416,
+              "paired_mae_difference": -0.18325522793703544,
+              "fraction_records_improved": 0.6172839506172839
+            },
+            {
+              "source_id": "18673351",
+              "source_magnitude": 4.6,
+              "records": 72,
+              "events": 1,
+              "baseline_mae": 0.7453756409990635,
+              "alternative_mae": 0.43985481758850864,
+              "paired_mae_difference": -0.3055208234105549,
+              "fraction_records_improved": 0.7777777777777778
+            },
+            {
+              "source_id": "19004961",
+              "source_magnitude": 4.3,
+              "records": 43,
+              "events": 1,
+              "baseline_mae": 0.7505989617991112,
+              "alternative_mae": 0.6688323917730293,
+              "paired_mae_difference": -0.08176657002608181,
+              "fraction_records_improved": 0.4418604651162791
+            },
+            {
+              "source_id": "20046641",
+              "source_magnitude": 4.3,
+              "records": 45,
+              "events": 1,
+              "baseline_mae": 0.6289829664974901,
+              "alternative_mae": 0.41824628628227145,
+              "paired_mae_difference": -0.21073668021521869,
+              "fraction_records_improved": 0.5555555555555556
+            },
+            {
+              "source_id": "20362671",
+              "source_magnitude": 4.6,
+              "records": 101,
+              "events": 1,
+              "baseline_mae": 0.9044209164536821,
+              "alternative_mae": 0.7052307477256217,
+              "paired_mae_difference": -0.1991901687280604,
+              "fraction_records_improved": 0.6435643564356436
+            },
+            {
+              "source_id": "20375681",
+              "source_magnitude": 5.1,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 1.119511798184509,
+              "alternative_mae": 0.8680068629130716,
+              "paired_mae_difference": -0.2515049352714376,
+              "fraction_records_improved": 0.7472527472527473
+            },
+            {
+              "source_id": "20379371",
+              "source_magnitude": 4.4,
+              "records": 75,
+              "events": 1,
+              "baseline_mae": 0.7105850156256786,
+              "alternative_mae": 0.5284237162023534,
+              "paired_mae_difference": -0.18216129942332504,
+              "fraction_records_improved": 0.6666666666666666
+            },
+            {
+              "source_id": "20415201",
+              "source_magnitude": 4.6,
+              "records": 102,
+              "events": 1,
+              "baseline_mae": 0.8089303937355279,
+              "alternative_mae": 0.8079104331626834,
+              "paired_mae_difference": -0.0010199605728447635,
+              "fraction_records_improved": 0.4019607843137255
+            },
+            {
+              "source_id": "20787491",
+              "source_magnitude": 4.0,
+              "records": 29,
+              "events": 1,
+              "baseline_mae": 0.3318508876092674,
+              "alternative_mae": 0.191405282290044,
+              "paired_mae_difference": -0.14044560531922337,
+              "fraction_records_improved": 0.6551724137931034
+            },
+            {
+              "source_id": "20845861",
+              "source_magnitude": 4.6,
+              "records": 73,
+              "events": 1,
+              "baseline_mae": 0.49728287723729725,
+              "alternative_mae": 0.4415883013361511,
+              "paired_mae_difference": -0.055694575901146064,
+              "fraction_records_improved": 0.5753424657534246
+            },
+            {
+              "source_id": "21119351",
+              "source_magnitude": 4.0,
+              "records": 88,
+              "events": 1,
+              "baseline_mae": 0.5718392238961628,
+              "alternative_mae": 0.2790000123997843,
+              "paired_mae_difference": -0.29283921149637854,
+              "fraction_records_improved": 0.7272727272727273
+            }
+          ],
+          "events_improved": 2675,
+          "events_total": 3711,
+          "tail_events_improved": 13,
+          "tail_event_macro_delta": -0.14885175454676067,
+          "tail_event_leave_one_out_delta_range": [
+            -0.16117107071125367,
+            -0.13579599880811116
+          ]
+        },
+        "instrument_native": {
+          "family": [
+            {
+              "station_channels": "EH",
+              "records": 20536,
+              "events": 3201,
+              "baseline_mae": 0.3354842243339549,
+              "alternative_mae": 0.27076523038174155,
+              "paired_mae_difference": -0.06471899395221334,
+              "fraction_records_improved": 0.6037202960654461
+            },
+            {
+              "station_channels": "HH",
+              "records": 44927,
+              "events": 3708,
+              "baseline_mae": 0.3477675247031283,
+              "alternative_mae": 0.32796397519221115,
+              "paired_mae_difference": -0.019803549510917166,
+              "fraction_records_improved": 0.5665190197431389
+            },
+            {
+              "station_channels": "HN",
+              "records": 31530,
+              "events": 3607,
+              "baseline_mae": 0.38394502153946064,
+              "alternative_mae": 0.36825863754134475,
+              "paired_mae_difference": -0.015686383998115828,
+              "fraction_records_improved": 0.5319061211544561
+            }
+          ],
+          "magnitude_type": [
+            {
+              "source_magnitude_type": "ML",
+              "records": 94475,
+              "events": 3647,
+              "baseline_mae": 0.35127167559094663,
+              "alternative_mae": 0.32562714184187047,
+              "paired_mae_difference": -0.02564453374907609,
+              "fraction_records_improved": 0.5613019317279704
+            },
+            {
+              "source_magnitude_type": "Md",
+              "records": 281,
+              "events": 31,
+              "baseline_mae": 0.3871128440104284,
+              "alternative_mae": 0.3459764552005209,
+              "paired_mae_difference": -0.04113638880990751,
+              "fraction_records_improved": 0.604982206405694
+            },
+            {
+              "source_magnitude_type": "Mw",
+              "records": 2237,
+              "events": 33,
+              "baseline_mae": 0.591985642278554,
+              "alternative_mae": 0.46724341387414037,
+              "paired_mae_difference": -0.12474222840441361,
+              "fraction_records_improved": 0.6356727760393384
+            }
+          ],
+          "tail_family": [
+            {
+              "station_channels": "EH",
+              "records": 131,
+              "events": 13,
+              "baseline_mae": 0.6243748886277081,
+              "alternative_mae": 0.5381601097585588,
+              "paired_mae_difference": -0.0862147788691494,
+              "fraction_records_improved": 0.7633587786259542
+            },
+            {
+              "station_channels": "HH",
+              "records": 551,
+              "events": 13,
+              "baseline_mae": 0.5057245600669129,
+              "alternative_mae": 0.5030834681844445,
+              "paired_mae_difference": -0.002641091882468462,
+              "fraction_records_improved": 0.44283121597096187
+            },
+            {
+              "station_channels": "HN",
+              "records": 345,
+              "events": 13,
+              "baseline_mae": 1.125212629904808,
+              "alternative_mae": 0.731560626443258,
+              "paired_mae_difference": -0.39365200346155016,
+              "fraction_records_improved": 0.7681159420289855
+            }
+          ],
+          "tail_event": [
+            {
+              "source_id": "18263671",
+              "source_magnitude": 4.0,
+              "records": 136,
+              "events": 1,
+              "baseline_mae": 0.6876325558197085,
+              "alternative_mae": 0.6617601256458717,
+              "paired_mae_difference": -0.025872430173836735,
+              "fraction_records_improved": 0.47794117647058826
+            },
+            {
+              "source_id": "18379751",
+              "source_magnitude": 4.4,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.7872175052962275,
+              "alternative_mae": 0.7854238010983615,
+              "paired_mae_difference": -0.0017937041978658504,
+              "fraction_records_improved": 0.4065934065934066
+            },
+            {
+              "source_id": "18596591",
+              "source_magnitude": 4.0,
+              "records": 81,
+              "events": 1,
+              "baseline_mae": 0.5428370955274496,
+              "alternative_mae": 0.3522350370746917,
+              "paired_mae_difference": -0.1906020584527579,
+              "fraction_records_improved": 0.5802469135802469
+            },
+            {
+              "source_id": "18673351",
+              "source_magnitude": 4.6,
+              "records": 72,
+              "events": 1,
+              "baseline_mae": 0.7453756409990635,
+              "alternative_mae": 0.43991006365415886,
+              "paired_mae_difference": -0.3054655773449047,
+              "fraction_records_improved": 0.7638888888888888
+            },
+            {
+              "source_id": "19004961",
+              "source_magnitude": 4.3,
+              "records": 43,
+              "events": 1,
+              "baseline_mae": 0.7505989617991112,
+              "alternative_mae": 0.6604965536354666,
+              "paired_mae_difference": -0.09010240816364451,
+              "fraction_records_improved": 0.5348837209302325
+            },
+            {
+              "source_id": "20046641",
+              "source_magnitude": 4.3,
+              "records": 45,
+              "events": 1,
+              "baseline_mae": 0.6289829664974901,
+              "alternative_mae": 0.42054187863224557,
+              "paired_mae_difference": -0.20844108786524454,
+              "fraction_records_improved": 0.5555555555555556
+            },
+            {
+              "source_id": "20362671",
+              "source_magnitude": 4.6,
+              "records": 101,
+              "events": 1,
+              "baseline_mae": 0.9044209164536821,
+              "alternative_mae": 0.6958001742351031,
+              "paired_mae_difference": -0.20862074221857865,
+              "fraction_records_improved": 0.6831683168316832
+            },
+            {
+              "source_id": "20375681",
+              "source_magnitude": 5.1,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 1.119511798184509,
+              "alternative_mae": 0.8602445658928025,
+              "paired_mae_difference": -0.2592672322917066,
+              "fraction_records_improved": 0.7692307692307693
+            },
+            {
+              "source_id": "20379371",
+              "source_magnitude": 4.4,
+              "records": 75,
+              "events": 1,
+              "baseline_mae": 0.7105850156256786,
+              "alternative_mae": 0.5203699404117792,
+              "paired_mae_difference": -0.1902150752138993,
+              "fraction_records_improved": 0.6666666666666666
+            },
+            {
+              "source_id": "20415201",
+              "source_magnitude": 4.6,
+              "records": 102,
+              "events": 1,
+              "baseline_mae": 0.8089303937355279,
+              "alternative_mae": 0.7991548444517806,
+              "paired_mae_difference": -0.009775549283747274,
+              "fraction_records_improved": 0.43137254901960786
+            },
+            {
+              "source_id": "20787491",
+              "source_magnitude": 4.0,
+              "records": 29,
+              "events": 1,
+              "baseline_mae": 0.3318508876092674,
+              "alternative_mae": 0.19309428820478922,
+              "paired_mae_difference": -0.13875659940447813,
+              "fraction_records_improved": 0.6206896551724138
+            },
+            {
+              "source_id": "20845861",
+              "source_magnitude": 4.6,
+              "records": 73,
+              "events": 1,
+              "baseline_mae": 0.49728287723729725,
+              "alternative_mae": 0.4437639324598051,
+              "paired_mae_difference": -0.05351894477749207,
+              "fraction_records_improved": 0.589041095890411
+            },
+            {
+              "source_id": "21119351",
+              "source_magnitude": 4.0,
+              "records": 88,
+              "events": 1,
+              "baseline_mae": 0.5718392238961628,
+              "alternative_mae": 0.27260256097441915,
+              "paired_mae_difference": -0.29923666292174367,
+              "fraction_records_improved": 0.7159090909090909
+            }
+          ],
+          "events_improved": 2653,
+          "events_total": 3711,
+          "tail_events_improved": 13,
+          "tail_event_macro_delta": -0.1524360055623,
+          "tail_event_leave_one_out_delta_range": [
+            -0.16498953067600283,
+            -0.13968354124708293
+          ]
+        }
+      }
+    },
+    "5s_predictions.npz": {
+      "sha256": "a1b115291ec6b65fd1b3c66db2c364d90666069cce5e941530593d5273b49b01",
+      "comparisons": {
+        "instrument": {
+          "family": [
+            {
+              "station_channels": "EH",
+              "records": 20536,
+              "events": 3201,
+              "baseline_mae": 0.31139589266593243,
+              "alternative_mae": 0.2456213595007997,
+              "paired_mae_difference": -0.06577453316513267,
+              "fraction_records_improved": 0.6061063498246981
+            },
+            {
+              "station_channels": "HH",
+              "records": 44927,
+              "events": 3708,
+              "baseline_mae": 0.3239304052453454,
+              "alternative_mae": 0.3011743944831396,
+              "paired_mae_difference": -0.022756010762205778,
+              "fraction_records_improved": 0.5916709328466179
+            },
+            {
+              "station_channels": "HN",
+              "records": 31530,
+              "events": 3607,
+              "baseline_mae": 0.34454963732770677,
+              "alternative_mae": 0.3314467869135478,
+              "paired_mae_difference": -0.013102850414158975,
+              "fraction_records_improved": 0.5345068189026324
+            }
+          ],
+          "magnitude_type": [
+            {
+              "source_magnitude_type": "ML",
+              "records": 94475,
+              "events": 3647,
+              "baseline_mae": 0.3235855840032272,
+              "alternative_mae": 0.29685680173084095,
+              "paired_mae_difference": -0.026728782272386283,
+              "fraction_records_improved": 0.5757290288436094
+            },
+            {
+              "source_magnitude_type": "Md",
+              "records": 281,
+              "events": 31,
+              "baseline_mae": 0.3500867757322922,
+              "alternative_mae": 0.33775643462788635,
+              "paired_mae_difference": -0.01233034110440584,
+              "fraction_records_improved": 0.5551601423487544
+            },
+            {
+              "source_magnitude_type": "Mw",
+              "records": 2237,
+              "events": 33,
+              "baseline_mae": 0.5107621817175455,
+              "alternative_mae": 0.39562071943896526,
+              "paired_mae_difference": -0.11514146227858028,
+              "fraction_records_improved": 0.5963343763969602
+            }
+          ],
+          "tail_family": [
+            {
+              "station_channels": "EH",
+              "records": 131,
+              "events": 13,
+              "baseline_mae": 0.5249744369200428,
+              "alternative_mae": 0.4474116019585686,
+              "paired_mae_difference": -0.07756283496147406,
+              "fraction_records_improved": 0.7633587786259542
+            },
+            {
+              "station_channels": "HH",
+              "records": 551,
+              "events": 13,
+              "baseline_mae": 0.43670303373948816,
+              "alternative_mae": 0.4405575950921353,
+              "paired_mae_difference": 0.00385456135264718,
+              "fraction_records_improved": 0.426497277676951
+            },
+            {
+              "station_channels": "HN",
+              "records": 345,
+              "events": 13,
+              "baseline_mae": 1.005984360027535,
+              "alternative_mae": 0.6303065468794921,
+              "paired_mae_difference": -0.37567781314804305,
+              "fraction_records_improved": 0.7275362318840579
+            }
+          ],
+          "tail_event": [
+            {
+              "source_id": "18263671",
+              "source_magnitude": 4.0,
+              "records": 136,
+              "events": 1,
+              "baseline_mae": 0.6612770232422583,
+              "alternative_mae": 0.6452554670863044,
+              "paired_mae_difference": -0.01602155615595387,
+              "fraction_records_improved": 0.4264705882352941
+            },
+            {
+              "source_id": "18379751",
+              "source_magnitude": 4.4,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.8049690403875561,
+              "alternative_mae": 0.8319729203548577,
+              "paired_mae_difference": 0.027003879967301685,
+              "fraction_records_improved": 0.34065934065934067
+            },
+            {
+              "source_id": "18596591",
+              "source_magnitude": 4.0,
+              "records": 81,
+              "events": 1,
+              "baseline_mae": 0.49323807065162223,
+              "alternative_mae": 0.26732503977071065,
+              "paired_mae_difference": -0.22591303088091164,
+              "fraction_records_improved": 0.6790123456790124
+            },
+            {
+              "source_id": "18673351",
+              "source_magnitude": 4.6,
+              "records": 72,
+              "events": 1,
+              "baseline_mae": 0.6254249426842542,
+              "alternative_mae": 0.3924359007302972,
+              "paired_mae_difference": -0.23298904195395695,
+              "fraction_records_improved": 0.6527777777777778
+            },
+            {
+              "source_id": "19004961",
+              "source_magnitude": 4.3,
+              "records": 43,
+              "events": 1,
+              "baseline_mae": 0.5922252705519299,
+              "alternative_mae": 0.4951619791323578,
+              "paired_mae_difference": -0.09706329141957207,
+              "fraction_records_improved": 0.5581395348837209
+            },
+            {
+              "source_id": "20046641",
+              "source_magnitude": 4.3,
+              "records": 45,
+              "events": 1,
+              "baseline_mae": 0.5171587604959778,
+              "alternative_mae": 0.35651281203799257,
+              "paired_mae_difference": -0.16064594845798513,
+              "fraction_records_improved": 0.5333333333333333
+            },
+            {
+              "source_id": "20362671",
+              "source_magnitude": 4.6,
+              "records": 101,
+              "events": 1,
+              "baseline_mae": 0.7275101752398817,
+              "alternative_mae": 0.5153387623383158,
+              "paired_mae_difference": -0.21217141290156571,
+              "fraction_records_improved": 0.6435643564356436
+            },
+            {
+              "source_id": "20375681",
+              "source_magnitude": 5.1,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.8067455328424274,
+              "alternative_mae": 0.570793251125659,
+              "paired_mae_difference": -0.23595228171676844,
+              "fraction_records_improved": 0.7802197802197802
+            },
+            {
+              "source_id": "20379371",
+              "source_magnitude": 4.4,
+              "records": 75,
+              "events": 1,
+              "baseline_mae": 0.5178796860836676,
+              "alternative_mae": 0.3263055054359104,
+              "paired_mae_difference": -0.19157418064775722,
+              "fraction_records_improved": 0.68
+            },
+            {
+              "source_id": "20415201",
+              "source_magnitude": 4.6,
+              "records": 102,
+              "events": 1,
+              "baseline_mae": 0.8474565993391231,
+              "alternative_mae": 0.8504833701732794,
+              "paired_mae_difference": 0.003026770834156073,
+              "fraction_records_improved": 0.38235294117647056
+            },
+            {
+              "source_id": "20787491",
+              "source_magnitude": 4.0,
+              "records": 29,
+              "events": 1,
+              "baseline_mae": 0.366611948044044,
+              "alternative_mae": 0.19149660596909376,
+              "paired_mae_difference": -0.17511534207495025,
+              "fraction_records_improved": 0.5517241379310345
+            },
+            {
+              "source_id": "20845861",
+              "source_magnitude": 4.6,
+              "records": 73,
+              "events": 1,
+              "baseline_mae": 0.4382181141291901,
+              "alternative_mae": 0.3815606441548487,
+              "paired_mae_difference": -0.05665746997434135,
+              "fraction_records_improved": 0.6164383561643836
+            },
+            {
+              "source_id": "21119351",
+              "source_magnitude": 4.0,
+              "records": 88,
+              "events": 1,
+              "baseline_mae": 0.5086076039398407,
+              "alternative_mae": 0.22141969682890916,
+              "paired_mae_difference": -0.2871879071109316,
+              "fraction_records_improved": 0.6818181818181818
+            }
+          ],
+          "events_improved": 2691,
+          "events_total": 3711,
+          "tail_events_improved": 11,
+          "tail_event_macro_delta": -0.14317390865332588,
+          "tail_event_leave_one_out_delta_range": [
+            -0.15735539103837817,
+            -0.1311727421151921
+          ]
+        },
+        "instrument_native": {
+          "family": [
+            {
+              "station_channels": "EH",
+              "records": 20536,
+              "events": 3201,
+              "baseline_mae": 0.31139589266593243,
+              "alternative_mae": 0.2428273437082569,
+              "paired_mae_difference": -0.06856854895767547,
+              "fraction_records_improved": 0.6126801714063108
+            },
+            {
+              "station_channels": "HH",
+              "records": 44927,
+              "events": 3708,
+              "baseline_mae": 0.3239304052453454,
+              "alternative_mae": 0.3001603671626795,
+              "paired_mae_difference": -0.02377003808266588,
+              "fraction_records_improved": 0.5865737752353818
+            },
+            {
+              "station_channels": "HN",
+              "records": 31530,
+              "events": 3607,
+              "baseline_mae": 0.34454963732770677,
+              "alternative_mae": 0.333067588536285,
+              "paired_mae_difference": -0.011482048791421812,
+              "fraction_records_improved": 0.5320647002854424
+            }
+          ],
+          "magnitude_type": [
+            {
+              "source_magnitude_type": "ML",
+              "records": 94475,
+              "events": 3647,
+              "baseline_mae": 0.3235855840032272,
+              "alternative_mae": 0.2963463315195878,
+              "paired_mae_difference": -0.027239252483639384,
+              "fraction_records_improved": 0.5739190261974068
+            },
+            {
+              "source_magnitude_type": "Md",
+              "records": 281,
+              "events": 31,
+              "baseline_mae": 0.3500867757322922,
+              "alternative_mae": 0.3372281621033885,
+              "paired_mae_difference": -0.01285861362890361,
+              "fraction_records_improved": 0.5480427046263345
+            },
+            {
+              "source_magnitude_type": "Mw",
+              "records": 2237,
+              "events": 33,
+              "baseline_mae": 0.5107621817175455,
+              "alternative_mae": 0.3940757392022436,
+              "paired_mae_difference": -0.11668644251530196,
+              "fraction_records_improved": 0.597228430934287
+            }
+          ],
+          "tail_family": [
+            {
+              "station_channels": "EH",
+              "records": 131,
+              "events": 13,
+              "baseline_mae": 0.5249744369200428,
+              "alternative_mae": 0.45066141606288707,
+              "paired_mae_difference": -0.07431302085715566,
+              "fraction_records_improved": 0.7557251908396947
+            },
+            {
+              "station_channels": "HH",
+              "records": 551,
+              "events": 13,
+              "baseline_mae": 0.43670303373948816,
+              "alternative_mae": 0.44002611001102737,
+              "paired_mae_difference": 0.0033230762715392706,
+              "fraction_records_improved": 0.44283121597096187
+            },
+            {
+              "station_channels": "HN",
+              "records": 345,
+              "events": 13,
+              "baseline_mae": 1.005984360027535,
+              "alternative_mae": 0.625130747110048,
+              "paired_mae_difference": -0.380853612917487,
+              "fraction_records_improved": 0.7420289855072464
+            }
+          ],
+          "tail_event": [
+            {
+              "source_id": "18263671",
+              "source_magnitude": 4.0,
+              "records": 136,
+              "events": 1,
+              "baseline_mae": 0.6612770232422583,
+              "alternative_mae": 0.6523593813614964,
+              "paired_mae_difference": -0.008917641880761966,
+              "fraction_records_improved": 0.4411764705882353
+            },
+            {
+              "source_id": "18379751",
+              "source_magnitude": 4.4,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.8049690403875561,
+              "alternative_mae": 0.8367211227119205,
+              "paired_mae_difference": 0.03175208232436419,
+              "fraction_records_improved": 0.3516483516483517
+            },
+            {
+              "source_id": "18596591",
+              "source_magnitude": 4.0,
+              "records": 81,
+              "events": 1,
+              "baseline_mae": 0.49323807065162223,
+              "alternative_mae": 0.2654751975666141,
+              "paired_mae_difference": -0.22776287308500823,
+              "fraction_records_improved": 0.7283950617283951
+            },
+            {
+              "source_id": "18673351",
+              "source_magnitude": 4.6,
+              "records": 72,
+              "events": 1,
+              "baseline_mae": 0.6254249426842542,
+              "alternative_mae": 0.383890746444959,
+              "paired_mae_difference": -0.24153419623929512,
+              "fraction_records_improved": 0.6666666666666666
+            },
+            {
+              "source_id": "19004961",
+              "source_magnitude": 4.3,
+              "records": 43,
+              "events": 1,
+              "baseline_mae": 0.5922252705519299,
+              "alternative_mae": 0.49720328781846174,
+              "paired_mae_difference": -0.09502198273346797,
+              "fraction_records_improved": 0.4883720930232558
+            },
+            {
+              "source_id": "20046641",
+              "source_magnitude": 4.3,
+              "records": 45,
+              "events": 1,
+              "baseline_mae": 0.5171587604959778,
+              "alternative_mae": 0.35765125253454877,
+              "paired_mae_difference": -0.15950750796142896,
+              "fraction_records_improved": 0.5333333333333333
+            },
+            {
+              "source_id": "20362671",
+              "source_magnitude": 4.6,
+              "records": 101,
+              "events": 1,
+              "baseline_mae": 0.7275101752398817,
+              "alternative_mae": 0.506880684470245,
+              "paired_mae_difference": -0.22062949076963648,
+              "fraction_records_improved": 0.6732673267326733
+            },
+            {
+              "source_id": "20375681",
+              "source_magnitude": 5.1,
+              "records": 91,
+              "events": 1,
+              "baseline_mae": 0.8067455328424274,
+              "alternative_mae": 0.5641287369099163,
+              "paired_mae_difference": -0.24261679593251118,
+              "fraction_records_improved": 0.7692307692307693
+            },
+            {
+              "source_id": "20379371",
+              "source_magnitude": 4.4,
+              "records": 75,
+              "events": 1,
+              "baseline_mae": 0.5178796860836676,
+              "alternative_mae": 0.3237488860166184,
+              "paired_mae_difference": -0.1941308000670493,
+              "fraction_records_improved": 0.68
+            },
+            {
+              "source_id": "20415201",
+              "source_magnitude": 4.6,
+              "records": 102,
+              "events": 1,
+              "baseline_mae": 0.8474565993391231,
+              "alternative_mae": 0.8484445090293112,
+              "paired_mae_difference": 0.0009879096901879811,
+              "fraction_records_improved": 0.4215686274509804
+            },
+            {
+              "source_id": "20787491",
+              "source_magnitude": 4.0,
+              "records": 29,
+              "events": 1,
+              "baseline_mae": 0.366611948044044,
+              "alternative_mae": 0.18154988956972232,
+              "paired_mae_difference": -0.18506205847432167,
+              "fraction_records_improved": 0.6551724137931034
+            },
+            {
+              "source_id": "20845861",
+              "source_magnitude": 4.6,
+              "records": 73,
+              "events": 1,
+              "baseline_mae": 0.4382181141291901,
+              "alternative_mae": 0.3771472810270095,
+              "paired_mae_difference": -0.06107083310218051,
+              "fraction_records_improved": 0.6301369863013698
+            },
+            {
+              "source_id": "21119351",
+              "source_magnitude": 4.0,
+              "records": 88,
+              "events": 1,
+              "baseline_mae": 0.5086076039398407,
+              "alternative_mae": 0.22194432362641364,
+              "paired_mae_difference": -0.2866632803134271,
+              "fraction_records_improved": 0.6590909090909091
+            }
+          ],
+          "events_improved": 2720,
+          "events_total": 3711,
+          "tail_events_improved": 11,
+          "tail_event_macro_delta": -0.1453982668111182,
+          "tail_event_leave_one_out_delta_range": [
+            -0.16016079590574173,
+            -0.13362618235259247
+          ]
+        }
+      }
+    }
+  },
+  "sampling": {
+    "min_weight": 0.2018158485002864,
+    "max_weight": 11.553957326641395,
+    "effective_sample_size": 94605.99499174199,
+    "family_comparison": [
+      {
+        "family": "EH",
+        "full_records": 195665,
+        "sample_records": 35983,
+        "estimated_full_records": 196853.5
+      },
+      {
+        "family": "EN",
+        "full_records": 3,
+        "sample_records": 1,
+        "estimated_full_records": 9.500000000000002
+      },
+      {
+        "family": "HH",
+        "full_records": 507366,
+        "sample_records": 118847,
+        "estimated_full_records": 506072.75
+      },
+      {
+        "family": "HL",
+        "full_records": 6569,
+        "sample_records": 1833,
+        "estimated_full_records": 6699.25
+      },
+      {
+        "family": "HN",
+        "full_records": 269884,
+        "sample_records": 41012,
+        "estimated_full_records": 269852.0
+      }
+    ]
+  },
+  "feature_unique_values": {
+    "family_HH": 2,
+    "family_EH": 2,
+    "family_HN": 2,
+    "family_HL": 2,
+    "family_EN": 2,
+    "family_unknown": 1,
+    "station_elevation_m": 440,
+    "station_elevation_m_missing": 1,
+    "station_vs_30_mps": 322,
+    "station_vs_30_mps_missing": 1,
+    "E_response_missing": 2,
+    "E_log10_sensitivity": 173,
+    "E_velocity": 2,
+    "E_acceleration": 2,
+    "E_log1p_sensitivity_frequency_hz": 13,
+    "E_sensitivity_frequency_hz_missing": 2,
+    "E_log1p_native_sample_rate_hz": 7,
+    "E_native_sample_rate_hz_missing": 2,
+    "N_response_missing": 2,
+    "N_log10_sensitivity": 173,
+    "N_velocity": 2,
+    "N_acceleration": 2,
+    "N_log1p_sensitivity_frequency_hz": 13,
+    "N_sensitivity_frequency_hz_missing": 2,
+    "N_log1p_native_sample_rate_hz": 7,
+    "N_native_sample_rate_hz_missing": 2,
+    "Z_response_missing": 1,
+    "Z_log10_sensitivity": 173,
+    "Z_velocity": 2,
+    "Z_acceleration": 2,
+    "Z_log1p_sensitivity_frequency_hz": 12,
+    "Z_sensitivity_frequency_hz_missing": 1,
+    "Z_log1p_native_sample_rate_hz": 6,
+    "Z_native_sample_rate_hz_missing": 1
+  },
+  "tail_event_composition": [
+    {
+      "source_id": "18263671",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "ML",
+      "station_channels": "EH",
+      "records": 6,
+      "events": 1,
+      "stations": 6,
+      "tail_records": 6,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "18263671",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "ML",
+      "station_channels": "HH",
+      "records": 85,
+      "events": 1,
+      "stations": 85,
+      "tail_records": 85,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "18263671",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "ML",
+      "station_channels": "HN",
+      "records": 45,
+      "events": 1,
+      "stations": 45,
+      "tail_records": 45,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "18379751",
+      "source_magnitude": 4.4,
+      "source_magnitude_type": "ML",
+      "station_channels": "EH",
+      "records": 7,
+      "events": 1,
+      "stations": 7,
+      "tail_records": 7,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3999999999999995
+    },
+    {
+      "source_id": "18379751",
+      "source_magnitude": 4.4,
+      "source_magnitude_type": "ML",
+      "station_channels": "HH",
+      "records": 62,
+      "events": 1,
+      "stations": 62,
+      "tail_records": 62,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.399999999999999
+    },
+    {
+      "source_id": "18379751",
+      "source_magnitude": 4.4,
+      "source_magnitude_type": "ML",
+      "station_channels": "HN",
+      "records": 22,
+      "events": 1,
+      "stations": 22,
+      "tail_records": 22,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.400000000000002
+    },
+    {
+      "source_id": "18596591",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 23,
+      "events": 1,
+      "stations": 23,
+      "tail_records": 23,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "18596591",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 23,
+      "events": 1,
+      "stations": 23,
+      "tail_records": 23,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "18596591",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 35,
+      "events": 1,
+      "stations": 35,
+      "tail_records": 35,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "18673351",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 20,
+      "events": 1,
+      "stations": 20,
+      "tail_records": 20,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.599999999999999
+    },
+    {
+      "source_id": "18673351",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 24,
+      "events": 1,
+      "stations": 24,
+      "tail_records": 24,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6
+    },
+    {
+      "source_id": "18673351",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 28,
+      "events": 1,
+      "stations": 28,
+      "tail_records": 28,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6
+    },
+    {
+      "source_id": "19004961",
+      "source_magnitude": 4.3,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 1,
+      "events": 1,
+      "stations": 1,
+      "tail_records": 1,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3
+    },
+    {
+      "source_id": "19004961",
+      "source_magnitude": 4.3,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 24,
+      "events": 1,
+      "stations": 24,
+      "tail_records": 24,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3
+    },
+    {
+      "source_id": "19004961",
+      "source_magnitude": 4.3,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 18,
+      "events": 1,
+      "stations": 18,
+      "tail_records": 18,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3
+    },
+    {
+      "source_id": "20046641",
+      "source_magnitude": 4.3,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 3,
+      "events": 1,
+      "stations": 3,
+      "tail_records": 3,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3
+    },
+    {
+      "source_id": "20046641",
+      "source_magnitude": 4.3,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 31,
+      "events": 1,
+      "stations": 31,
+      "tail_records": 31,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3
+    },
+    {
+      "source_id": "20046641",
+      "source_magnitude": 4.3,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 11,
+      "events": 1,
+      "stations": 11,
+      "tail_records": 11,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.299999999999999
+    },
+    {
+      "source_id": "20362671",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 9,
+      "events": 1,
+      "stations": 9,
+      "tail_records": 9,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6
+    },
+    {
+      "source_id": "20362671",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 56,
+      "events": 1,
+      "stations": 56,
+      "tail_records": 56,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6000000000000005
+    },
+    {
+      "source_id": "20362671",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 36,
+      "events": 1,
+      "stations": 36,
+      "tail_records": 36,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.599999999999999
+    },
+    {
+      "source_id": "20375681",
+      "source_magnitude": 5.1,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 9,
+      "events": 1,
+      "stations": 9,
+      "tail_records": 9,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 5.1
+    },
+    {
+      "source_id": "20375681",
+      "source_magnitude": 5.1,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 49,
+      "events": 1,
+      "stations": 49,
+      "tail_records": 49,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 5.1000000000000005
+    },
+    {
+      "source_id": "20375681",
+      "source_magnitude": 5.1,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 33,
+      "events": 1,
+      "stations": 33,
+      "tail_records": 33,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 5.1
+    },
+    {
+      "source_id": "20379371",
+      "source_magnitude": 4.4,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 7,
+      "events": 1,
+      "stations": 7,
+      "tail_records": 7,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.3999999999999995
+    },
+    {
+      "source_id": "20379371",
+      "source_magnitude": 4.4,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 40,
+      "events": 1,
+      "stations": 40,
+      "tail_records": 40,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.4
+    },
+    {
+      "source_id": "20379371",
+      "source_magnitude": 4.4,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 28,
+      "events": 1,
+      "stations": 28,
+      "tail_records": 28,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.400000000000001
+    },
+    {
+      "source_id": "20415201",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "ML",
+      "station_channels": "EH",
+      "records": 12,
+      "events": 1,
+      "stations": 12,
+      "tail_records": 12,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6000000000000005
+    },
+    {
+      "source_id": "20415201",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "ML",
+      "station_channels": "HH",
+      "records": 64,
+      "events": 1,
+      "stations": 64,
+      "tail_records": 64,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6000000000000005
+    },
+    {
+      "source_id": "20415201",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "ML",
+      "station_channels": "HN",
+      "records": 26,
+      "events": 1,
+      "stations": 26,
+      "tail_records": 26,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6
+    },
+    {
+      "source_id": "20787491",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 3,
+      "events": 1,
+      "stations": 3,
+      "tail_records": 3,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "20787491",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 19,
+      "events": 1,
+      "stations": 19,
+      "tail_records": 19,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "20787491",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 7,
+      "events": 1,
+      "stations": 7,
+      "tail_records": 7,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "20845861",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 6,
+      "events": 1,
+      "stations": 6,
+      "tail_records": 6,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.6000000000000005
+    },
+    {
+      "source_id": "20845861",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 47,
+      "events": 1,
+      "stations": 47,
+      "tail_records": 47,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.599999999999999
+    },
+    {
+      "source_id": "20845861",
+      "source_magnitude": 4.6,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 20,
+      "events": 1,
+      "stations": 20,
+      "tail_records": 20,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.599999999999999
+    },
+    {
+      "source_id": "21119351",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "EH",
+      "records": 25,
+      "events": 1,
+      "stations": 25,
+      "tail_records": 25,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "21119351",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HH",
+      "records": 27,
+      "events": 1,
+      "stations": 27,
+      "tail_records": 27,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    },
+    {
+      "source_id": "21119351",
+      "source_magnitude": 4.0,
+      "source_magnitude_type": "Mw",
+      "station_channels": "HN",
+      "records": 36,
+      "events": 1,
+      "stations": 36,
+      "tail_records": 36,
+      "tail_events": 1,
+      "tail_fraction": 1.0,
+      "mean_magnitude": 4.0
+    }
+  ],
+  "identity_signatures_sha256": "f6d50f3ce39b685ce687280fa8cccf4d322d64caeb1a8fc63a457ed54ec7e787"
+}

@@ -1,12 +1,39 @@
 {
-  "updated_utc": "2026-10-09T17:16:00Z",
+  "updated_utc": "2026-10-09T18:22:37.301003+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4312.64,
   "main_credit_remaining_usd": 4137.32,
   "main_credit_expires": "2026-10-31",
   "billing_status": "Delayed console estimates; shared balance, not a reserved allocation",
-  "new_instances": [],
+  "new_instances": [
+    {
+      "id": "i-08b9781ed60d8497f",
+      "name": "EEW-Chile-worker-20261009",
+      "type": "g5.xlarge",
+      "gpu": "NVIDIA A10G,23028MiB",
+      "vcpus": 4,
+      "launched_utc": "2026-10-09T18:05:33Z",
+      "hourly_compute_usd": 1.006,
+      "price_source": "AWS Pricing GetProducts, Linux shared OnDemand, us-east-1",
+      "image": "ami-08d602da0f7c02256",
+      "image_owner": "898082745236 (AWS)",
+      "image_name": "Deep Learning OSS Nvidia Driver AMI GPU PyTorch2.8 (Amazon Linux2023)20260808",
+      "security_group": "sg-090fe8835f553328b",
+      "access": "Existing researcher public key; private SSH jump through existing earthquake instance; no IAM role",
+      "automatic_stop_utc": "2026-10-10T18:06:09.407794+00:00",
+      "automatic_stop_verified": true,
+      "shutdown_behavior": "stop",
+      "first_24h_compute_estimate_usd": 24.144,
+      "initial_24h_resource_allowance_usd": 40,
+      "root_volume": "vol-08516b3f2cf8db117",
+      "root_volume_gib": 80,
+      "root_encrypted": true,
+      "root_delete_on_termination": true,
+      "cleanup": "Preserve results; stop when not training; remove only task-owned worker/root and auxiliary resources when finished; reconcile before2026-10-30",
+      "public_ssh_rule": "Removed; private jump through original earthquake instance only"
+    }
+  ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
   "new_volumes": [
     {
@@ -26,6 +53,39 @@
     }
   ],
   "actual_incremental_settled_spend_usd": null,
-  "current_queue_max_seconds": 10800,
-  "quota": "User described 16 units; no increase requested; existing g5.xlarge only"
+  "current_queue_max_seconds": 22000,
+  "quota": {
+    "region": "us-east-1",
+    "type": "Running On-Demand G and VT vCPUs",
+    "applied": 16,
+    "observed_before_worker": 12,
+    "expected_after_worker": 16,
+    "increase_requested": false,
+    "source": "Authenticated AWS Service Quotas console"
+  },
+  "new_snapshots": [
+    {
+      "id": "snap-0fd34ed08a1a2d675",
+      "source_volume": "vol-01642a78ffb59234f",
+      "created_utc": "2026-10-09T18:18:59Z",
+      "purpose": "Verified Chile TRAIN/DEV cache worker clone",
+      "cleanup": "Delete only after worker clone is verified and snapshot no longer needed"
+    }
+  ],
+  "queues": {
+    "resolution_replication": {
+      "maximum_seconds": 22000,
+      "per_run_seconds": 2400
+    },
+    "instrument_factors": {
+      "maximum_seconds": 26400,
+      "per_window_seconds": 3600,
+      "serial_after_resolution": true
+    },
+    "future_growth_export": {
+      "maximum_seconds": 7200,
+      "cpu_only": true,
+      "training_only": true
+    }
+  }
 }

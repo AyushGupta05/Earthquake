@@ -1,0 +1,19 @@
+{
+  "files": {
+    "research/2026-10-09/phase2/instrument_factor_ablation.py": "ab112ff36cd4565cf41ae7dbafe15563c307187efa8ff8830c9ce13f960c91b4",
+    "tests/test_instrument_factor_ablation.py": "df4789259109098e98432450718292e71b08dadc0bd53eca264cbae9db9eedad"
+  },
+  "verification": {
+    "cpu_test_command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -B -m unittest discover -s tests -p test_instrument_factor_ablation.py -v",
+    "host": "instancebaseline",
+    "tests_passed": 11,
+    "wall_seconds_reported": 1.254,
+    "cuda_disabled": true,
+    "existing_dependencies_unchanged": true
+  },
+  "review_status": "clean: no accepted/actionable findings after accepted raw-probability persistence fix",
+  "review_result_sha256": "ff11c482411e5de511e6d92ae643a8817af63bd12ed8ac2a67557c425dda0179",
+  "accepted_findings_fixed": [
+    "Save float64 raw baseline probability matrix with identities and centers; complete synthetic artifact regression test added."
+  ]
+}
