@@ -1,6 +1,6 @@
 # Method status and decisions
 
-9 October 2026, 20:42 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
+9 October 2026, 20:56 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
@@ -16,7 +16,7 @@
 | Censored observed-amplitude innovations | Frozen matched 1 s distribution; new 1→3→5 peak evidence; tied/free hurdle, uncensored and discriminative controls | Completed and independently audited. Improves the stale 1 s forecast but loses to full-prefix inference; the tied mechanism loses likelihood fit to its free-hurdle control. Sub-second continuation rejected. [Results](earthquake_censored_results.md). |
 | Prefix affine projection | Re-estimate/remove trend using only each observed prefix, with a last-sample guard control | Completed six runs and independent AWS/local audit. Some bulk gains, but the single M≥5 event worsens under affine at all horizons in both seeds. Rejected for the primary objective. [Results](earthquake_affine_results.md). |
 | Residual-logit support bound | Exact per-record mean limits under ±5 corrections; exhaustive tests and actual AWS exports | M≥4 optimistic floors .0234/.0175/.0099, much smaller than observed errors. Bound is not the main aggregate bottleneck. [Audit](earthquake_residual_support_audit.md). |
-| Proper distribution scores | Huber/CE, ordinary CRPS, fixed-tail CRPS, TRAIN-marginal weighted CRPS, ranked log score | Reviewed, two-seed full-TRAIN 1/3/5 grid running since 20:41 UTC. Known scores strengthen the comparison before adding another proposed method. |
+| Proper distribution scores | Huber/CE, ordinary CRPS, fixed-tail CRPS, TRAIN-marginal weighted CRPS, ranked log score | Reviewed, two-seed full-TRAIN 1/3/5 grid running since 20:41 UTC. Completed 1 s CRPS improves MAE/CVaR but worsens M≥4 MAE (.8349 versus .6861 Huber); independent artifact audit passes. Same-runtime checkpoint replay remains pending. |
 | Causal physical prefix / correlated noise | Fixed protocol, two seeds, 48 synthetic conditions, exact marginalization and causal nulls | 14 tests and clean review; full covariance improves NLL in 11/12 comparisons but worsens all four one-second tail comparisons. No covariance-only GPU extension. [Preflight](earthquake_physical_prefix_preflight.md). |
 | Chile TEAM-style external baseline | Published architecture adaptation, full 25+100 epoch budget; TRAIN-only selection | Running on dedicated AWS A10G. DEV scoring follows completed training; TEST remains sealed. |
 
@@ -30,6 +30,6 @@ The all-static model's completed exploratory scores are:
 
 These are means of two seed probability distributions with the distribution mean as the decision. The same validation contains 3,711 earthquakes, only 13 M≥4 and one M≥5; it has been used repeatedly during this research. Record-level sample size does not turn those 13 earthquakes into many independent large events. [Full results and event-bootstrap intervals](earthquake_instrument_full_results.md).
 
-The censored pilot does not earn a finer sub-second extension. Proper-score controls are running; a frozen, event-cross-fitted reference distribution is being investigated as a way to focus threshold errors without magnitude-label reweighting. This is not yet implemented or a novelty claim. Geometry-aware or source-growth proposals also have close prior art and identifiability limits; they are hypotheses, not accepted contributions.
+The censored pilot does not earn a finer sub-second extension. Proper-score controls are running; a frozen, event-cross-fitted reference distribution is being investigated as a way to focus threshold errors without magnitude-label reweighting. The bounded pilot is now implemented: 12 focused CPU tests and clean Codex autoreview, awaiting GPU scheduling. [Frozen protocol](earthquake_context_reference_protocol.md). This is not a novelty claim. Geometry-aware or source-growth proposals also have close prior art and identifiability limits; they are hypotheses, not accepted contributions.
 
 [Live checkpoint](START_HERE.md) · [Current literature](earthquake_current_competitors.md) · [External data audit](earthquake_external_validation_expansion.md) · [AWS resource controls](aws_execution_note.md)

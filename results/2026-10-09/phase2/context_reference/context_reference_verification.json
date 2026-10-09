@@ -1,0 +1,35 @@
+{
+  "status": "ready_for_parent_scheduling_no_gpu_launched_no_commit",
+  "new_files": [
+    "research/2026-10-09/phase2/context_reference.py",
+    "research/2026-10-09/phase2/context_reference_train.py",
+    "tests/test_context_reference.py"
+  ],
+  "source_sha256": {
+    "research/2026-10-09/phase2/context_reference.py": "5880669f67653c127f06ddc9662673bb5ae555199ebbda773a833bf2a79f91cc",
+    "research/2026-10-09/phase2/context_reference_train.py": "fa256b5156e63e059cec4644bda44a051ec10fba0d67e1ea525dd50c1a6a7d64",
+    "tests/test_context_reference.py": "2cd50d937421177d716c2de69c563a610fc93d147b99bf1feafe89cea1abc6c5"
+  },
+  "aws_source_hash_match": true,
+  "cpu_tests": {
+    "count": 12,
+    "seconds": 1.724,
+    "result": "OK",
+    "cuda_visible_devices": "",
+    "command": "ssh instancebaseline: .venv/bin/python -m unittest discover -s tests -p test_context_reference.py -v"
+  },
+  "autoreview_command": "python3 /Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --prompt-file work/context_reference_review_prompt.txt --dataset work/context_reference_test_evidence.json --output work/context_reference_review.md --json-output work/context_reference_review.json",
+  "autoreview_scope": "Isolated clone with exactly three new files; read-only Codex review",
+  "autoreview": {
+    "findings": [],
+    "overall_correctness": "patch is correct",
+    "overall_explanation": "No concrete actionable defects found. Event-fold label isolation, reference feature exclusions, schemas, positive mean-one weights, matched student controls, score formulas, provenance, and last-written atomic completion are consistent with the stated pilot. Reviewed the supplied CPU test evidence; no tests or GPU jobs were run during this review.",
+    "overall_confidence": 0.93
+  },
+  "findings_accepted": [],
+  "findings_rejected": [],
+  "method_memo": "work/context_reference_method.md",
+  "alaska_cohort_memo": "work/benchmark_research/alaska/cohort_reconciliation.md",
+  "cli": "CUDA_VISIBLE_DEVICES=0 .venv/bin/python research/2026-10-09/phase2/context_reference_train.py --seconds 1 --inventory /path/to/pinned/responses.tgz --device cuda",
+  "protocol": "Repeat separately for1,3,5 seconds; defaults197676TRAIN rows,15student/referenceepochs,5eventfolds,6controls,2studentseeds; no validation selection"
+}
