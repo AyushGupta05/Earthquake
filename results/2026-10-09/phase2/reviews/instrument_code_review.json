@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "Static review found no actionable defects. The controls preserve matched dimensions, initialization and shuffle; apply inverse-sampling weights; isolate training normalization; exclude forbidden metadata; mask missing responses; and invert normalization before sensitivity correction. Identity checks respect the documented sampled raw-waveform scope. No tests or training were run during this review.",
+  "overall_confidence": 0.91
+}
