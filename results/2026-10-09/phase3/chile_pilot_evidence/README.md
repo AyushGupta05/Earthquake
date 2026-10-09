@@ -46,3 +46,11 @@ Preserve `pretrained_encoder.pth` and its manifest after all25 full-fit station 
 The one bounded synthetic GPU smoke exercised this exact wrapper SHA`d864fa298fccff2b3c1a19804a4815c8eab23c63353173b4db6fd59246fda586` with the productionTEAM model and a temporary synthetic runner, batch2×21stations×3000samples. Station and event forward/backward completed with36 and111 finite gradient tensors; station0.636s,event0.242s. No data were read. This validates supported operations for the exercised shapes; it does not establish fullbatch64 throughput or universal GPU repeatability.
 
 Evidence: `event16.json`,`event32.json`,`event64.json`,`station64.json` contain original logs, configs, memberships and histories; `summary.json` hashes those files; `full_run_forecast.json` contains formulas/scenarios; `deterministic_cuda_smoke.json` contains audit and synthetic results. Original checkpoints remain at the recorded worker run directories.
+
+## Full authoritative baseline and follow-up investigation
+
+Parent launched the full deterministic baseline at19:30:04UTC. Run identity is`team_transformer_06742dc492a1_7ec986ada2e7`, with25station+100event epochs, batch64 at both stages, all author options, TRAIN-calibration selection and DEV only after the complete budget/selection. The audit and initial timing are saved in`full_run_startup.json`; exact unexecuted recovery and pooled-model encoder-reuse commands are in`recovery_and_reuse_commands.md`.
+
+The first100 full-data station batches took22.9586s. Scaling those12,137batches/epoch and retaining pilot calibration time suggests about20.1h for pretraining and27–33h total using the earlier event-stage scenarios. This is a provisional scenario, not a confidence bound; the first completed full epoch and deterministic event throughput remain necessary. Parent authorized a35h process guard and36h OS stop under its$60worker allowance.
+
+`loader_optimization_memo.md` contains the separate read-only CPU/I/O investigation, a2.894s CPU-only512station equality probe, minimal future alternatives, and exact recovery/provenance implications. No live training setting, cache bytes or storage device was changed.

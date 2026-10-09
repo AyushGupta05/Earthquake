@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T19:38:00Z",
+  "updated_utc": "2026-10-09T19:45:00Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4312.64,
@@ -217,7 +217,37 @@
       "affine_records": 979487,
       "affine_epochs": 10,
       "censored_records": 197676,
-      "censored_epochs": 15
+      "censored_epochs": 15,
+      "initial_raw_control_status": "complete exit0 at2026-10-09T19:36:14Z",
+      "censored_started_utc": "2026-10-09T19:36:24Z",
+      "censored_run": "/mnt/eew-research/runs/censored_innovation_6c1510b97725_c9dd74d23d87"
+    },
+    "proper_scores": {
+      "status": "waiting_for_successful_predecessor",
+      "outer_maximum_seconds": 49000,
+      "predecessor_wait_max_seconds": 37600,
+      "each_window_seconds": 3600,
+      "durations": [
+        1,
+        3,
+        5
+      ],
+      "records": 979487,
+      "epochs": 15,
+      "seeds": [
+        20261009,
+        20261010
+      ],
+      "controls": [
+        "huber_ce",
+        "crps_ce",
+        "tail_crps_ce",
+        "marginal_crps_ce",
+        "ranked_bce_ce"
+      ],
+      "reviewed_commit": "f3f18e4",
+      "started_queue_utc": "2026-10-09T19:38:53Z",
+      "pid": 261601
     }
   },
   "continuation": {

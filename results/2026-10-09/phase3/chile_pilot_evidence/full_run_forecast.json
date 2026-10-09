@@ -35,5 +35,15 @@
     "Full TRAIN does not fit RAM and random station reads amplify HDF chunk I/O.",
     "Deterministic CUDA fullbatch throughput remains unmeasured.",
     "Two subset epochs cannot establish convergence."
-  ]
+  ],
+  "full_deterministic_first100": {
+    "training_seconds_first100": 22.958641529000033,
+    "station_batches_per_epoch": 12137,
+    "projected_pretrain25_hours_including_pilot_calibration": 20.079950274407878,
+    "combined_hours_with_default_event_scenarios": [
+      27.15717199610944,
+      32.8130474551509
+    ],
+    "warning": "Startup-inclusive100-batch estimate; first full epoch pending; event-stage deterministic throughput not measured."
+  }
 }
