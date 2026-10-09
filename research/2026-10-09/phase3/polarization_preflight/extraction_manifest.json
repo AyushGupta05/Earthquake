@@ -1,0 +1,99 @@
+{
+  "scope": "Immutable clean-reviewed extraction-only bundle; real extraction/fitting NOT run; excludes ridge_probe.py and future fitter work in progress",
+  "files": {
+    "features.py": {
+      "sha256": "417316ea2ff5c55384cefae4edecf4b98a5a1341c41558ea0ebf459afb9a5fec",
+      "bytes": 8000
+    },
+    "population.py": {
+      "sha256": "7a36778e9d433181a2bb82adc195de7b5c1a8d3579b3e04de8bf6415eb11610f",
+      "bytes": 5470
+    },
+    "extract_features.py": {
+      "sha256": "dce679f91046401d9c5d16f8e382be07fde17b5fae7d6608e949d6d79f22b5fe",
+      "bytes": 15398
+    },
+    "test_features.py": {
+      "sha256": "e95a6e195e568a767291ab953eadda1f345f3e8a85e2fc60db731eeeed3c5105",
+      "bytes": 5100
+    },
+    "test_population.py": {
+      "sha256": "cc18bd886128b13cdcb228e64f1a536a9dcc9f57d2b569899f459bc6f658fb99",
+      "bytes": 2809
+    },
+    "test_extract_features.py": {
+      "sha256": "91daaf794e02b11b0dad7c8a374ae447c65f81a672ca6cffeee9666493e49aac",
+      "bytes": 7922
+    },
+    "check_prefix_parity.py": {
+      "sha256": "143e960f56844fdccfc4be61760904d34cf6336e1bb7f3166257a4b68360f1f3",
+      "bytes": 1416
+    },
+    "prefix_parity.json": {
+      "sha256": "e4f8ec3a4ffec53704e51ab3faeb32ccc35d855cd27412fbda5abd4ff2aa2db7",
+      "bytes": 1501
+    },
+    "protocol.md": {
+      "sha256": "a9b12a88be3a46e96d0f3f208f64b7728d1a17bb132e146887694e40288a448b",
+      "bytes": 13656
+    },
+    "audit_metadata.py": {
+      "sha256": "6a8f47c8fa6966c533765118e7b397c293fcf87409d2d4cd42a7ac63a198720f",
+      "bytes": 7972
+    },
+    "test_audit_metadata.py": {
+      "sha256": "e03e6e37de7a01c5d9c15e2dcaa41f4c1c75b0015509213d1f5a5a1f875764c2",
+      "bytes": 3353
+    },
+    "IMPLEMENTATION.md": {
+      "sha256": "c8940780a3a1a801756e74dd2eb2c7dd456f3c118512e997ba917c37e38606c8",
+      "bytes": 3965
+    },
+    "extraction_tests.log": {
+      "sha256": "be690df54505d951a5bdd76b08602dc748e18d385f6e0677b79feac1c5b271b6",
+      "bytes": 2513
+    },
+    "extraction_review_context.txt": {
+      "sha256": "b15839f2b475cef23f6be20522984e186943f29c632783263464cc267a34d51f",
+      "bytes": 959
+    },
+    "extraction_review_result.json": {
+      "sha256": "6b3ad61c4b1868d79c5bded15d0bff41e2a1e68931b9f9e1808e8b404a3cefc9",
+      "bytes": 499
+    },
+    "extraction_review_result.txt": {
+      "sha256": "c09325530dca4e5f9e1fcadacf2a7e3bcd4b95a31ad4d1534572f794fb666dfa",
+      "bytes": 467
+    },
+    "extraction_review_first_result.json": {
+      "sha256": "b09abd015efd70af9cb30eadb71ded3a43188420e5cddbe19305e2adf02db021",
+      "bytes": 1353
+    },
+    "synthetic_timing.json": {
+      "sha256": "23cabf65056f2b7442b8885c8d866d18b099078cdee5dbc1e91ce501bfdeac52",
+      "bytes": 426
+    },
+    "metric_scale_addendum.md": {
+      "sha256": "6d83ce438aa94ced7805c35d7776be31b1fc1784a16ffbc10d653aaf6f7ee818",
+      "bytes": 994
+    }
+  },
+  "tests": 31,
+  "synthetic_parity_cases": 12,
+  "synthetic_parity_max_abs_difference": 2.671244947460849e-08,
+  "review_exit_code": 0,
+  "accepted_fixed": [
+    "Metadata-eligible unknown channel families now build static features from validated response epochs, respecting family_unknown schema"
+  ],
+  "review_command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex --no-web-search --prompt-file ../extraction_review_context.txt --output ../extraction_review_result.txt --json-output ../extraction_review_result.json",
+  "required_runtime_files": [
+    "audit_metadata.py",
+    "features.py",
+    "population.py",
+    "extract_features.py",
+    "protocol.md"
+  ],
+  "runtime": "NumPy/h5py,2CPUthreads,CUDAhidden; no Torch dependency",
+  "data_output_max_expected_bytes": 1000000000,
+  "suggested_outer_timeout_seconds": 1800
+}

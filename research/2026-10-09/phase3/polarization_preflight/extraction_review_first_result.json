@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Support every metadata-eligible family when building static features",
+      "body": "An otherwise eligible row with a channel family outside the pinned importer's FAMILIES list, such as BH with valid BHE/BHN/BHZ responses, passes metadata_reason(). However, Inventory.join() returns unsupported_family for those channels, causing static_and_response() to raise and abort the entire extraction after sampling. Protocol v2 does not exclude these families, and the static schema explicitly includes family_unknown. Build static descriptors from the already validated covering epochs so metadata eligibility and descriptor construction accept the same population.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "extract_features.py",
+        "line": 80
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The extraction wrapper admits channel families that its static-feature dependency subsequently rejects, allowing an eligible sampled row to abort extraction. Otherwise, source inspection found the pinned hashes, target isolation, prefix computations, covariance whitening, and sampling weights consistent with the contract. No tests or real extraction were run.",
+  "overall_confidence": 0.91
+}
