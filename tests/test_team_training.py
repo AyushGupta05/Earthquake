@@ -1,6 +1,7 @@
 """Focused split, data-isolation, proper-score and recovery tests."""
 
 import json
+import copy
 import math
 from pathlib import Path
 import sys
@@ -21,6 +22,9 @@ from train_team_lm import (
     author_station_blinding, main, make_plateau_scheduler, smooth_training_magnitudes,
     step_calibration_scheduler,
 )
+import train_team_lm
+from training_artifacts import EPOCH_SCHEMA, atomic_json_save, load_encoder_artifact, load_epoch_recovery, station_membership
+from team_lm import StationEncoder
 
 
 def fixture(directory, samples=1000):
@@ -49,6 +53,7 @@ def fixture(directory, samples=1000):
             values = np.arange(count * samples * 3, dtype=np.float32).reshape(count, samples, 3) * 1e-6
             group.create_dataset("waveforms", data=values)
             group.create_dataset("coords", data=np.tile([-21., -69., -.2], (count, 1)))
+            group.create_dataset("stations", data=[f"station_{j}" for j in range(count)], dtype=h5py.string_dtype())
     manifest = {"schema": "chile-team-prefix-v1", "source_test_waveforms_read": False,
                 "all_event_readback_verified": True, "sha256": file_sha256(path),
                 "source_sha256": "source-identity", "source_rows": 20, "cache_rows": 14,
@@ -225,6 +230,147 @@ class TeamTrainingTests(unittest.TestCase):
             saved = torch.load(output / "latest.pth", weights_only=True)
             self.assertIsNotNone(saved["scheduler"])
             self.assertEqual(saved["completed_epoch"], 1)
+            encoder_path = output / "pretrained_encoder.pth"
+            identity = run["pretraining_identity"]
+            weights, provenance = load_encoder_artifact(encoder_path, identity, file_sha256=file_sha256)
+            self.assertEqual(provenance["sha256"], file_sha256(encoder_path))
+            expected = torch.load(encoder_path, weights_only=True)["encoder"]
+            for key, tensor in weights.items():
+                torch.testing.assert_close(tensor, expected[key], rtol=0, atol=0)
+            imported_args = args.copy()
+            imported_args[imported_args.index("--aggregation") + 1] = "transformer"
+            imported_args.extend(["--pretrained-encoder", str(encoder_path)])
+            with patch.object(sys, "argv", imported_args), patch.object(EventDataset, "__getitem__", guarded_get), patch("torch.cuda.is_available", return_value=False):
+                main()
+            imported_dir, = Path(directory).glob("team_transformer_*")
+            imported = json.loads((imported_dir / "run.json").read_text())
+            self.assertEqual(imported["imported_encoder"]["sha256"], provenance["sha256"])
+            self.assertFalse((imported_dir / "pretrain_history.json").exists())
+            for field, replacement in (("training_cutoff", "author"), ("epochs", 25),
+                                       ("source_sha256", "other"), ("fit_ids_sha256", "other"),
+                                       ("label_noise", "none"), ("implementation_sha256", "other"),
+                                       ("partition", "dev"), ("test_used", True)):
+                changed = copy.deepcopy(identity)
+                changed[field] = replacement
+                with self.assertRaises(ValueError):
+                    load_encoder_artifact(encoder_path, changed, file_sha256=file_sha256)
+            changed = copy.deepcopy(identity)
+            changed["fit_stations"]["ordered_membership_sha256"] = "different-station-order"
+            with self.assertRaises(ValueError):
+                load_encoder_artifact(encoder_path, changed, file_sha256=file_sha256)
+
+    def test_encoder_rejects_legacy_file_missing_manifest_and_changed_bytes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "legacy.pth"
+            atomic_save({"encoder": StationEncoder().state_dict()}, path)
+            with self.assertRaises(ValueError):
+                load_encoder_artifact(path, {}, file_sha256=file_sha256)
+            Path(str(path) + ".manifest.json").write_text(json.dumps({"schema": "team-station-encoder-v1", "sha256": "changed"}))
+            with self.assertRaises(ValueError):
+                load_encoder_artifact(path, {}, file_sha256=file_sha256)
+
+    def test_station_membership_binds_ids_order_and_excludes_dev(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path, frame, _ = fixture(directory)
+            fit = EventDataset(path, frame.iloc[:4], training=True)
+            original = station_membership(fit)
+            self.assertEqual(original["records"], 7)
+            with h5py.File(path, "r+") as handle:
+                handle["data/event_01/stations"][0] = "different_station"
+            changed = station_membership(fit)
+            self.assertNotEqual(changed["ordered_membership_sha256"], original["ordered_membership_sha256"])
+            with self.assertRaises(ValueError):
+                station_membership(EventDataset(path, frame.iloc[12:]))
+
+    def assert_nested_exact(self, actual, expected):
+        if isinstance(expected, torch.Tensor):
+            torch.testing.assert_close(actual, expected, rtol=0, atol=0)
+        elif isinstance(expected, dict):
+            self.assertEqual(set(actual), set(expected))
+            for key in expected:
+                self.assert_nested_exact(actual[key], expected[key])
+        elif isinstance(expected, (tuple, list)):
+            self.assertEqual(len(actual), len(expected))
+            for left, right in zip(actual, expected):
+                self.assert_nested_exact(left, right)
+        else:
+            self.assertEqual(actual, expected)
+
+    def test_completed_epoch_resume_matches_uninterrupted_cpu_tensors_and_selection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path, _, _ = fixture(directory)
+            root = Path(directory)
+            args = ["train_team_lm", "--cache", str(path), "--aggregation", "pool", "--epochs", "2",
+                    "--pretrain-epochs", "2", "--batch-size", "2", "--pretrain-batch-size", "2",
+                    "--limit-fit-events", "4", "--magnitude-resampling", "1", "--skip-dev",
+                    "--station-blinding", "author", "--event-label-smoothing",
+                    "--lr-schedule", "author-plateau", "--selection", "calibration-nll"]
+            with patch.object(sys, "argv", args + ["--output", str(root / "continuous")]), patch("torch.cuda.is_available", return_value=False):
+                main()
+            continuous, = (root / "continuous").glob("team_pool_*")
+            expected = torch.load(continuous / "latest.pth", weights_only=True)
+            selected = torch.load(continuous / "model.pth", weights_only=True)["model"]
+            real_save = atomic_save
+            for stage, epoch in (("pretrain", 1), ("pretrain", 2), ("event", 1), ("event", 2)):
+                with self.subTest(stage=stage, epoch=epoch):
+                    def interrupted_save(value, destination):
+                        real_save(value, destination)
+                        if value.get("schema") == EPOCH_SCHEMA and value.get("stage") == stage and value.get("completed_epoch") == epoch:
+                            raise InterruptedError("Simulated interruption after complete atomic epoch save")
+                    output = root / f"resume_{stage}_{epoch}"
+                    argv = args + ["--output", str(output)]
+                    with patch.object(sys, "argv", argv), patch.object(train_team_lm, "atomic_save", interrupted_save), patch("torch.cuda.is_available", return_value=False):
+                        with self.assertRaises(InterruptedError):
+                            main()
+                    run, = output.glob("team_pool_*")
+                    # A failed control-metadata write may leave a partial temp
+                    # file, but must not publish a broken completion marker or
+                    # audit JSON that prevents recovery from the intact epoch.
+                    for control in ("resume_history.json", "run.json"):
+                        with self.assertRaises(TypeError):
+                            atomic_json_save({"incomplete": object()}, run / control)
+                        self.assertFalse((run / control).exists())
+                    saved = torch.load(run / "latest.pth", weights_only=True)
+                    config = saved["config"]
+                    memberships = json.loads((run / "split_manifest.json").read_text())
+                    changed = copy.deepcopy(config)
+                    changed["epochs"] += 1
+                    with self.assertRaises(ValueError):
+                        load_epoch_recovery(run / "latest.pth", changed, memberships)
+                    with patch.object(sys, "argv", argv + ["--resume", str(run / "latest.pth")]), patch("torch.cuda.is_available", return_value=False):
+                        main()
+                    actual = torch.load(run / "latest.pth", weights_only=True)
+                    for key in ("model", "optimizer", "scheduler", "torch_rng", "cuda_rng", "numpy_rng", "python_rng", "selection"):
+                        self.assert_nested_exact(actual[key], expected[key])
+                    self.assert_nested_exact(torch.load(run / "model.pth", weights_only=True)["model"], selected)
+                    self.assert_nested_exact(actual["run_state"]["best_model"], expected["run_state"]["best_model"])
+                    self.assertEqual(len(json.loads((run / "history.json").read_text())), 2)
+                    self.assertEqual(len(json.loads((run / "pretrain_history.json").read_text())), 2)
+                    self.assertEqual(len(json.loads((run / "resume_history.json").read_text())), 1)
+                    with self.assertRaises(ValueError):
+                        load_epoch_recovery(run / "latest.pth", config, memberships)
+
+    def test_epoch_recovery_rejects_legacy_checkpoint(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "latest.pth"
+            atomic_save({"model": {}, "completed_epoch": 1}, path)
+            with self.assertRaises(ValueError):
+                load_epoch_recovery(path, {}, {})
+
+    def test_atomic_control_metadata_failure_preserves_previous_complete_json(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for name in ("run.json", "resume_history.json"):
+                path = Path(directory) / name
+                atomic_json_save({"complete": 1}, path)
+                with self.assertRaises(TypeError):
+                    atomic_json_save({"incomplete": object()}, path)
+                self.assertEqual(json.loads(path.read_text()), {"complete": 1})
+                with patch("training_artifacts.os.replace", side_effect=OSError("disk full")):
+                    with self.assertRaises(OSError):
+                        atomic_json_save({"complete": 2}, path)
+                self.assertEqual(json.loads(path.read_text()), {"complete": 1})
+                atomic_json_save({"complete": 3}, path)
+                self.assertEqual(json.loads(path.read_text()), {"complete": 3})
 
     def test_gaussian_crps_and_quantiles_match_closed_form_standard_normal(self):
         mixture = {"means": torch.zeros(3, 1, dtype=torch.float64),

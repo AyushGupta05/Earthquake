@@ -9,10 +9,12 @@ paper's [-4,+25] second schedule requires the full 3000-sample cache.
 
 import argparse
 import hashlib
+import inspect
 import json
 import math
 import os
 from pathlib import Path
+import random
 import time
 import uuid
 
@@ -23,6 +25,10 @@ import torch
 from torch.utils.data import DataLoader, Dataset, Subset
 
 from team_lm import GaussianMixtureHead, TeamLM, mixture_log_prob, mixture_mean, mixture_nll, prepare_prefix
+import team_lm
+from training_artifacts import (EPOCH_SCHEMA, atomic_json_save, capture_random_state, json_sha256,
+                                load_encoder_artifact, load_epoch_recovery, pretraining_identity,
+                                restore_random_state, save_encoder_artifact, station_membership)
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -335,12 +341,31 @@ def atomic_save(value, destination):
     os.replace(temporary, destination)
 
 
-def checkpoint(model, optimizer, stage, epoch, config, selection, scheduler=None):
-    return {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "stage": stage,
+def checkpoint(model, optimizer, stage, epoch, config, selection, scheduler=None, *, out, run_state):
+    return {"schema": EPOCH_SCHEMA, "run_directory": str(out.resolve()),
+            "model": model.state_dict(), "optimizer": optimizer.state_dict(), "stage": stage,
             "completed_epoch": epoch, "config": config, "selection": selection,
             "scheduler": None if scheduler is None else scheduler.state_dict(),
-            "torch_rng": torch.get_rng_state(),
-            "cuda_rng": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else []}
+            "run_state": run_state, **capture_random_state()}
+
+
+def restore_optimizer_and_random(optimizer, scheduler, recovery):
+    optimizer.load_state_dict(recovery["optimizer"])
+    if (scheduler is None) != (recovery["scheduler"] is None):
+        raise ValueError("Resume cannot change the learning-rate schedule")
+    if scheduler is not None:
+        scheduler.load_state_dict(recovery["scheduler"])
+    restore_random_state(recovery)
+
+
+def runtime_identity(device):
+    return {"device": device.type, "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
+            "visible_cuda_devices": torch.cuda.device_count() if device.type == "cuda" else 0,
+            "torch_cuda": torch.version.cuda, "cudnn": torch.backends.cudnn.version(),
+            "threads": torch.get_num_threads(), "deterministic_algorithms": torch.are_deterministic_algorithms_enabled(),
+            "cudnn_deterministic": torch.backends.cudnn.deterministic,
+            "cudnn_benchmark": torch.backends.cudnn.benchmark,
+            "float32_matmul_precision": torch.get_float32_matmul_precision()}
 
 
 def smooth_training_magnitudes(targets, *, enabled, training=True):
@@ -418,6 +443,43 @@ def peak_cuda_memory(device):
             "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(device)}
 
 
+def train_station_epoch(model, loader, optimizer, parameters, device, config, epoch):
+    """One complete pretraining epoch; fingerprinted for encoder compatibility."""
+    model.train()
+    total, count, epoch_start = 0., 0, time.monotonic()
+    if device.type == "cuda":
+        torch.cuda.reset_peak_memory_stats(device)
+    for step, (x, y) in enumerate(loader, 1):
+        x, y = x.to(device), y.float().to(device)
+        y = smooth_training_magnitudes(y, enabled=True)
+        mixture = model.forward_single_station(x, training_cutoffs(len(y), device, config["pretrain_cutoff"]))
+        loss = mixture_nll(mixture, y, config["pretrain_density_epsilon"])
+        if not torch.isfinite(loss):
+            raise FloatingPointError("Nonfinite pretraining loss")
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(parameters, 1.)
+        optimizer.step()
+        total, count = total + float(loss.detach()) * len(y), count + len(y)
+        if step == 100:
+            print("TIMING", {"stage": "pretrain", "epoch": epoch + 1,
+                             "first_100_batches_seconds": time.monotonic() - epoch_start,
+                             "total_batches": len(loader), **peak_cuda_memory(device)}, flush=True)
+    return total / count, count, time.monotonic() - epoch_start
+
+
+def pretraining_implementation_sha256():
+    """Fingerprint station-only behavior, permitting independent event variants."""
+    components = (team_lm.StationEncoder, GaussianMixtureHead, team_lm._glorot,
+                  team_lm._relu_mlp, prepare_prefix, TeamLM.forward_single_station,
+                  mixture_nll, mixture_log_prob, StationDataset, training_cutoffs,
+                  smooth_training_magnitudes, train_station_epoch, evaluate_pretraining,
+                  make_plateau_scheduler, step_calibration_scheduler)
+    sources = {item.__qualname__: inspect.getsource(item) for item in components}
+    sources["constants"] = [team_lm.TRACE_SAMPLES, team_lm.SAMPLE_RATE, team_lm.PRE_P_SECONDS, list(TIMES)]
+    return json_sha256(sources)
+
+
 def training_cutoffs(count, device, schedule):
     if schedule == "discrete":
         return torch.tensor(TIMES, device=device)[torch.randint(3, (count,), device=device)]
@@ -435,6 +497,7 @@ def main():
     parser.add_argument("--aggregation", choices=("transformer", "pool"), required=True)
     parser.add_argument("--epochs", type=int, default=2)
     parser.add_argument("--pretrain-epochs", type=int, default=0)
+    parser.add_argument("--pretrained-encoder", type=Path, help="Verified station artifact; --pretrain-epochs specifies its required completed budget")
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--pretrain-batch-size", type=int, default=64)
     parser.add_argument("--workers", type=int, default=0)
@@ -448,23 +511,34 @@ def main():
     parser.add_argument("--calibration-fraction", type=float, default=.1)
     parser.add_argument("--selection", choices=("final", "calibration-nll"), default="final")
     parser.add_argument("--training-cutoff", choices=("discrete", "uniform-early", "author"), default="discrete")
+    parser.add_argument("--pretrain-cutoff", choices=("discrete", "uniform-early", "author"), help="Defaults to --training-cutoff")
     parser.add_argument("--density-epsilon", type=float, default=1e-6)
+    parser.add_argument("--pretrain-density-epsilon", type=float, help="Defaults to --density-epsilon")
     parser.add_argument("--limit-fit-events", type=int, default=0, help="Pilot only; zero uses all fitting events")
     parser.add_argument("--limit-dev-events", type=int, default=0, help="Pilot only; zero evaluates all DEV events")
     parser.add_argument("--skip-dev", action="store_true", help="TRAIN-only development: never load DEV waveforms or evaluate DEV")
+    parser.add_argument("--resume", type=Path, help="Continue a versioned completed-epoch checkpoint with unchanged original arguments")
     parser.add_argument("--output", type=Path, default=ROOT / "results/2026-10-09/phase3")
     args = parser.parse_args()
+    args.pretrain_cutoff = args.pretrain_cutoff or args.training_cutoff
+    args.pretrain_density_epsilon = args.density_epsilon if args.pretrain_density_epsilon is None else args.pretrain_density_epsilon
     if min(args.epochs, args.batch_size, args.pretrain_batch_size, args.max_stations) < 1 or min(args.pretrain_epochs, args.workers, args.limit_fit_events, args.limit_dev_events) < 0:
         raise ValueError("Invalid epoch/batch/worker/pilot limits")
     if not 0 <= args.station_drop < 1 or args.density_epsilon < 0 or not math.isfinite(args.density_epsilon):
         raise ValueError("Invalid station dropout or density floor")
     if args.station_blinding == "author" and args.station_drop:
         raise ValueError("Choose author station blinding or Bernoulli station dropout, not both")
+    if (args.pretrained_encoder is not None and args.pretrain_epochs < 1
+            or args.pretrain_density_epsilon < 0 or not math.isfinite(args.pretrain_density_epsilon)):
+        raise ValueError("Encoder import needs a positive required budget and a valid pretraining density floor")
     started = time.monotonic()
     torch.set_num_threads(2)
     torch.backends.cudnn.benchmark = False
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    random.seed(args.seed)
+    np.random.seed(args.seed)
     metadata, manifest = load_verified_metadata(args.cache)
-    if args.training_cutoff == "author" and manifest["stored_samples"] != 3000:
+    if (args.training_cutoff == "author" or args.pretrain_epochs and args.pretrain_cutoff == "author") and manifest["stored_samples"] != 3000:
         raise ValueError("The author's -4 to +25s training schedule requires a full 3000-sample cache")
     rows = split_original_train(metadata, args.calibration_fraction, args.seed)
     for split, limit in (("fit", args.limit_fit_events), ("dev", args.limit_dev_events)):
@@ -475,7 +549,10 @@ def main():
     split_manifest = {split: {"event_ids": metadata.EVENT.astype(str).iloc[ix].tolist(),
                             "source_rows": metadata.source_row_index.iloc[ix].tolist(),
                             "ids_sha256": id_digest(metadata.EVENT.iloc[ix])} for split, ix in rows.items()}
-    config = {**{k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()},
+    datasets = {split: EventDataset(args.cache, metadata.iloc[ix], training=split == "fit", max_stations=args.max_stations,
+                                    station_drop=args.station_drop if split == "fit" else 0., seed=args.seed,
+                                    stored_samples=manifest["stored_samples"]) for split, ix in rows.items()}
+    config = {**{k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items() if k != "resume"},
               "cache_sha256": manifest["sha256"], "source_sha256": manifest["source_sha256"],
               "metadata_sidecar_sha256": manifest["metadata_sidecar_sha256"],
               "metadata_sidecar_manifest_sha256": manifest["metadata_sidecar_manifest_sha256"],
@@ -484,22 +561,36 @@ def main():
               "dev_ids_sha256": split_manifest["dev"]["ids_sha256"],
               "learning_rate": 1e-4, "optimizer": "Adam", "gradient_clip_norm": 1.,
               "schema": manifest["schema"], "torch_version": str(torch.__version__),
+              "runtime": runtime_identity(device),
               "stored_samples": manifest["stored_samples"],
               "protocol": "Magnitude-only PyTorch port with TRAIN-heldout selection; no numerical TF-equivalence claim",
-              "source_sha256_files": {name: file_sha256(Path(__file__).with_name(name)) for name in ("train_team_lm.py", "team_lm.py")}}
+              "source_sha256_files": {name: file_sha256(Path(__file__).with_name(name)) for name in ("train_team_lm.py", "team_lm.py", "training_artifacts.py")}}
+    encoder_state = None
+    if args.pretrain_epochs:
+        config["pretraining_identity"] = pretraining_identity(
+            config, station_membership(datasets["fit"]), station_membership(datasets["calibration"]),
+            pretraining_implementation_sha256())
+        if args.pretrained_encoder is not None:
+            encoder_state, config["imported_encoder"] = load_encoder_artifact(
+                args.pretrained_encoder, config["pretraining_identity"], file_sha256=file_sha256)
     digest = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:12]
-    out = args.output / f"team_{args.aggregation}_{digest}_{uuid.uuid4().hex[:12]}"
-    out.mkdir(parents=True, exist_ok=False)
-    (out / "identity.json").write_text(json.dumps(config, indent=2, allow_nan=False) + "\n")
-    (out / "split_manifest.json").write_text(json.dumps(split_manifest, indent=2) + "\n")
+    recovery = None
+    if args.resume is not None:
+        recovery, out = load_epoch_recovery(args.resume, config, split_manifest)
+        audit_path = out / "resume_history.json"
+        audit = json.loads(audit_path.read_text()) if audit_path.exists() else []
+        audit.append({"checkpoint_sha256": file_sha256(args.resume), "stage": recovery["stage"],
+                      "completed_epoch": recovery["completed_epoch"], "unix_time": time.time()})
+        atomic_json_save(audit, audit_path)
+    else:
+        out = (args.output / f"team_{args.aggregation}_{digest}_{uuid.uuid4().hex[:12]}").resolve()
+        out.mkdir(parents=True, exist_ok=False)
+        (out / "identity.json").write_text(json.dumps(config, indent=2, allow_nan=False) + "\n")
+        (out / "split_manifest.json").write_text(json.dumps(split_manifest, indent=2) + "\n")
     print("RUN_DIRECTORY", out, flush=True)
-    datasets = {split: EventDataset(args.cache, metadata.iloc[ix], training=split == "fit", max_stations=args.max_stations,
-                                    station_drop=args.station_drop if split == "fit" else 0., seed=args.seed,
-                                    stored_samples=manifest["stored_samples"]) for split, ix in rows.items()}
     evaluation_loaders = {split: DataLoader(datasets[split], batch_size=args.batch_size, shuffle=False, num_workers=args.workers,
                                           collate_fn=collate_events)
                           for split in (("calibration",) if args.skip_dev else ("calibration", "dev"))}
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(args.seed)
     model = TeamLM(args.aggregation)
     # Keep shared density-head initializations independent of aggregator size.
@@ -507,10 +598,14 @@ def main():
     model.magnitude_head = GaussianMixtureHead()
     torch.manual_seed(args.seed + 2)
     model.single_station_head = GaussianMixtureHead()
+    if encoder_state is not None:
+        model.station_encoder.load_state_dict(encoder_state, strict=True)
     model.to(device)
+    if recovery is not None:
+        model.load_state_dict(recovery["model"], strict=True)
     torch.manual_seed(args.seed + 3)
-    pretrain_history = []
-    if args.pretrain_epochs:
+    pretrain_history = [] if recovery is None else recovery["run_state"]["pretrain_history"]
+    if args.pretrain_epochs and encoder_state is None and (recovery is None or recovery["stage"] == "pretrain"):
         station_data = StationDataset(datasets["fit"])
         parameters = list(model.station_encoder.parameters()) + list(model.single_station_head.parameters())
         optimizer = torch.optim.Adam(parameters, lr=1e-4)
@@ -518,55 +613,51 @@ def main():
         station_calibration = (DataLoader(StationDataset(datasets["calibration"], calibration=True),
                                          batch_size=args.pretrain_batch_size, shuffle=False, num_workers=args.workers)
                                if scheduler is not None else None)
-        for epoch in range(args.pretrain_epochs):
+        pretrain_start = 0
+        if recovery is not None:
+            restore_optimizer_and_random(optimizer, scheduler, recovery)
+            pretrain_start = recovery["completed_epoch"]
+        for epoch in range(pretrain_start, args.pretrain_epochs):
             generator = torch.Generator().manual_seed(args.seed + epoch)
             loader = DataLoader(station_data, batch_size=args.pretrain_batch_size, shuffle=True,
                                 generator=generator, num_workers=args.workers)
-            model.train()
-            total, count, epoch_start = 0., 0, time.monotonic()
-            if device.type == "cuda":
-                torch.cuda.reset_peak_memory_stats(device)
-            for step, (x, y) in enumerate(loader, 1):
-                x, y = x.to(device), y.float().to(device)
-                # Source label perturbation is TRAIN-only and only above M4.
-                y = smooth_training_magnitudes(y, enabled=True)
-                mixture = model.forward_single_station(x, training_cutoffs(len(y), device, args.training_cutoff))
-                loss = mixture_nll(mixture, y, args.density_epsilon)
-                if not torch.isfinite(loss):
-                    raise FloatingPointError("Nonfinite pretraining loss")
-                optimizer.zero_grad(set_to_none=True)
-                loss.backward()
-                torch.nn.utils.clip_grad_norm_(parameters, 1.)
-                optimizer.step()
-                total, count = total + float(loss.detach()) * len(y), count + len(y)
-                if step == 100:
-                    print("TIMING", {"stage": "pretrain", "epoch": epoch + 1,
-                                     "first_100_batches_seconds": time.monotonic() - epoch_start,
-                                     "total_batches": len(loader), **peak_cuda_memory(device)}, flush=True)
-            training_seconds = time.monotonic() - epoch_start
+            epoch_start = time.monotonic()
+            loss, count, training_seconds = train_station_epoch(model, loader, optimizer, parameters, device, config, epoch)
             calibration = None
             if station_calibration is not None:
                 calibration = evaluate_pretraining(model, station_calibration, device)
                 step_calibration_scheduler(scheduler, calibration, split="calibration")
-            pretrain_history.append({"epoch": epoch + 1, "loss": total / count, "stations": count,
+            pretrain_history.append({"epoch": epoch + 1, "loss": loss, "stations": count,
                                      "training_seconds": training_seconds,
                                      "epoch_seconds": time.monotonic() - epoch_start,
                                      "calibration": calibration, "learning_rate_next": optimizer.param_groups[0]["lr"],
                                      **peak_cuda_memory(device)})
-            atomic_save(checkpoint(model, optimizer, "pretrain", epoch + 1, config, {}, scheduler), out / "latest.pth")
+            state = {"pretrain_history": pretrain_history, "history": [], "best_model": None}
+            atomic_save(checkpoint(model, optimizer, "pretrain", epoch + 1, config, {}, scheduler,
+                                   out=out, run_state=state), out / "latest.pth")
             (out / "pretrain_history.json").write_text(json.dumps(pretrain_history, indent=2) + "\n")
             print("PRETRAIN", pretrain_history[-1], flush=True)
-        atomic_save({"encoder": model.station_encoder.state_dict(), "fit_ids_sha256": config["fit_ids_sha256"], "config": config}, out / "pretrained_encoder.pth")
+        save_encoder_artifact(out / "pretrained_encoder.pth", model.station_encoder,
+                              config["pretraining_identity"], config, out,
+                              atomic_save=atomic_save, file_sha256=file_sha256)
     # Pretraining has a separate head and optimizer; event-model fitting starts
     # its own Adam moments exactly as in the original two-stage procedure.
     parameters = [p for name, p in model.named_parameters() if not name.startswith("single_station_head.")]
     optimizer = torch.optim.Adam(parameters, lr=1e-4)
     scheduler = make_plateau_scheduler(optimizer, args.lr_schedule, "event")
     torch.manual_seed(args.seed + 4)
-    history, best_score, selected_epoch = [], math.inf, None
+    history, best_score, selected_epoch, best_model, event_start = [], math.inf, None, None, 0
+    if recovery is not None and recovery["stage"] == "event":
+        history = recovery["run_state"]["history"]
+        best_model = recovery["run_state"]["best_model"]
+        selected_epoch = recovery["selection"]["selected_epoch"]
+        selected_score = recovery["selection"]["best_calibration_nll"]
+        best_score = math.inf if selected_score is None else selected_score
+        event_start = recovery["completed_epoch"]
+        restore_optimizer_and_random(optimizer, scheduler, recovery)
     train_indices = resampling_indices(datasets["fit"].frame.MA.to_numpy(), args.magnitude_resampling)
     repeated_fit = Subset(datasets["fit"], train_indices.tolist())
-    for epoch in range(args.epochs):
+    for epoch in range(event_start, args.epochs):
         datasets["fit"].epoch = epoch
         generator = torch.Generator().manual_seed(args.seed + 1000 + epoch)
         loader = DataLoader(repeated_fit, batch_size=args.batch_size, shuffle=True, generator=generator,
@@ -598,22 +689,32 @@ def main():
         score = step_calibration_scheduler(scheduler, calibration, split="calibration")
         if args.selection == "calibration-nll" and score < best_score:
             best_score, selected_epoch = score, epoch + 1
-            atomic_save({"model": model.state_dict(), "epoch": selected_epoch, "calibration_score": score}, out / "selected.pth")
+            best_model = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+            atomic_save({"model": best_model, "epoch": selected_epoch, "calibration_score": score}, out / "selected.pth")
         if args.selection == "final":
             selected_epoch = epoch + 1
         selection = {"policy": args.selection, "selected_epoch": selected_epoch,
                      "best_calibration_nll": best_score if math.isfinite(best_score) else None}
-        atomic_save(checkpoint(model, optimizer, "event", epoch + 1, config, selection, scheduler), out / "latest.pth")
         log = {"epoch": epoch + 1, "train_loss": total / count, "events": count,
                "training_seconds": training_seconds,
                "epoch_seconds": time.monotonic() - epoch_start, "calibration": calibration,
                "learning_rate_next": optimizer.param_groups[0]["lr"], **peak_cuda_memory(device)}
         history.append(log)
+        state = {"pretrain_history": pretrain_history, "history": history, "best_model": best_model}
+        atomic_save(checkpoint(model, optimizer, "event", epoch + 1, config, selection, scheduler,
+                               out=out, run_state=state), out / "latest.pth")
         (out / "history.json").write_text(json.dumps(history, indent=2, allow_nan=False) + "\n")
         print("EPOCH", epoch + 1, "loss", log["train_loss"], "seconds", log["epoch_seconds"], "calibration_nll", score, flush=True)
     if args.selection == "calibration-nll":
-        chosen = torch.load(out / "selected.pth", map_location=device, weights_only=True)
-        model.load_state_dict(chosen["model"])
+        # The recovery checkpoint embeds selected weights; a crash between the
+        # two artifact writes cannot silently replace the selection with last.
+        model.load_state_dict(best_model, strict=True)
+        atomic_save({"model": best_model, "epoch": selected_epoch, "calibration_score": best_score}, out / "selected.pth")
+    # Epoch histories are embedded in latest.pth, so repair text outputs even
+    # when a crash happened just after an atomic checkpoint replacement.
+    if pretrain_history:
+        (out / "pretrain_history.json").write_text(json.dumps(pretrain_history, indent=2, allow_nan=False) + "\n")
+    (out / "history.json").write_text(json.dumps(history, indent=2, allow_nan=False) + "\n")
     # First DEV evaluation happens after the complete fixed budget and selection.
     dev_metrics = None
     if not args.skip_dev:
@@ -622,10 +723,12 @@ def main():
         np.savez_compressed(out / "dev_predictions.npz", **predictions)
     atomic_save({"model": model.state_dict(), "config": config, "selected_epoch": selected_epoch}, out / "model.pth")
     run = {**config, "selected_epoch": selected_epoch, "parameters": model.parameter_counts(),
-           "wall_seconds": time.monotonic() - started, "device": str(device),
+           "wall_seconds": time.monotonic() - started, "wall_seconds_scope": "current_invocation",
+           "recorded_training_seconds": sum(item["training_seconds"] for item in pretrain_history + history),
+           "resumed": recovery is not None, "device": str(device),
            "fit_events": len(datasets["fit"]), "calibration_events": len(datasets["calibration"]), "dev_events": len(datasets["dev"]),
            "dev_evaluated": not args.skip_dev, "test_reads": 0, "selection_used_dev": False}
-    (out / "run.json").write_text(json.dumps(run, indent=2, allow_nan=False) + "\n")
+    atomic_json_save(run, out / "run.json")
     for dataset in datasets.values():
         dataset.close()
     print("FINISHED", out, dev_metrics, flush=True)
