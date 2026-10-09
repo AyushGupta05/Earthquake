@@ -1,0 +1,22 @@
+{
+  "files": {
+    "research/2026-10-09/phase2/instrument_proper_scores.py": "6a7e9aabea3283925f65b12b961abd5eabea1b488cba0e7f71fdeb476aa8fded",
+    "research/2026-10-09/phase2/train_instrument_scores.py": "958d333b7afee846e0f5414adfa7b16dca83edece80892e0c17ef8b4db3cc40d",
+    "research/2026-10-09/phase2/INSTRUMENT_PROPER_SCORES.md": "3a302421c4f89591d215d77a1ff3b629c9616e8f5606e49f85b9bd4a35dd551a",
+    "tests/test_instrument_proper_scores.py": "d564f425e35bfd4553325d86dc0024115749bd6f809d739d1cb4b3993775c464"
+  },
+  "test_command": "ssh instancebaseline \"cd /home/ec2-user/Earthquake && CUDA_VISIBLE_DEVICES='' .venv/bin/python -m unittest discover -s tests -p test_instrument_proper_scores.py -v\"",
+  "result": "12 tests passed in 1.565s",
+  "cpu_only": true,
+  "gpu_launched": false,
+  "scope": "Synthetic focused tests; waveform extraction mocked only for full runner smoke; all original extraction/alignment checks reused",
+  "remote_sha256_matches": true,
+  "autoreview_command": "python3 /Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --prompt-file work/instrument_scores_review_prompt.txt --output work/instrument_scores_review.md --json-output work/instrument_scores_review.json",
+  "autoreview": "Clean; no accepted/actionable findings; patch correct confidence0.91; isolated four-file clone; no edits required",
+  "autoreview_result": {
+    "findings": [],
+    "overall_correctness": "patch is correct",
+    "overall_explanation": "No actionable defects found in the four-file bundle. The objectives match the specified grid, preserve the baseline Huber calculation, and share extraction, normalization, masking, initialization, and batch order. TRAIN-only prior construction and artifact provenance are consistent with the existing contracts. Review was read-only; tests and GPU jobs were not run.",
+    "overall_confidence": 0.91
+  }
+}

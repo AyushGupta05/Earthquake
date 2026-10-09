@@ -1,0 +1,150 @@
+[
+  {
+    "case": "event16",
+    "run_directory": "/home/ec2-user/eew-work/pilot-runs/team_transformer_5df0e33cf3c3_ecf03e380ab1",
+    "fit_events": 2048,
+    "batch_size": 16,
+    "station_batch_size": 64,
+    "epochs": [
+      {
+        "stage": "event",
+        "epoch": 1,
+        "presentations": 2229,
+        "training_batches": 140,
+        "first_100_batches_seconds": 40.29621876400006,
+        "training_seconds": 45.49835093999991,
+        "calibration_plus_selection_seconds": 44.68471174200022,
+        "epoch_seconds": 90.18306268200013,
+        "peak_allocated_gib": 8.186467170715332,
+        "peak_reserved_gib": 10.802734375
+      }
+    ],
+    "invocation_seconds": 309.77806069300004,
+    "setup_and_final_artifacts_seconds": 219.59499801099992,
+    "started": "2026-10-09T18:37:41Z",
+    "finished": "2026-10-09T18:42:57Z",
+    "exit": 0,
+    "dev_evaluated": false,
+    "evidence_sha256": "09a0b1c8975aa342943b7ec560894acc197f5e749d9a9c39303a6dc689b0200b"
+  },
+  {
+    "case": "event32",
+    "run_directory": "/home/ec2-user/eew-work/pilot-runs/team_transformer_c0002163327d_1511f64e79b3",
+    "fit_events": 4096,
+    "batch_size": 32,
+    "station_batch_size": 64,
+    "epochs": [
+      {
+        "stage": "event",
+        "epoch": 1,
+        "presentations": 4368,
+        "training_batches": 137,
+        "first_100_batches_seconds": 23.807066925000072,
+        "training_seconds": 31.853723289999834,
+        "calibration_plus_selection_seconds": 28.823555260000376,
+        "epoch_seconds": 60.67727855000021,
+        "peak_allocated_gib": 1.0614385604858398,
+        "peak_reserved_gib": 2.64453125
+      }
+    ],
+    "invocation_seconds": 259.2397334940001,
+    "setup_and_final_artifacts_seconds": 198.5624549439999,
+    "started": "2026-10-09T18:43:48Z",
+    "finished": "2026-10-09T18:48:12Z",
+    "exit": 0,
+    "dev_evaluated": false,
+    "evidence_sha256": "47d1cbd18cb4a38470d27c938281cf39dd41148c9717454500352f0b27047b7c"
+  },
+  {
+    "case": "event64",
+    "run_directory": "/home/ec2-user/eew-work/pilot-runs/team_transformer_242d34580624_666b3ff83f4e",
+    "fit_events": 8192,
+    "batch_size": 64,
+    "station_batch_size": 64,
+    "epochs": [
+      {
+        "stage": "event",
+        "epoch": 1,
+        "presentations": 8715,
+        "training_batches": 137,
+        "first_100_batches_seconds": 48.925357855000016,
+        "training_seconds": 66.18166955000004,
+        "calibration_plus_selection_seconds": 40.31927203099997,
+        "epoch_seconds": 106.500941581,
+        "peak_allocated_gib": 17.746991634368896,
+        "peak_reserved_gib": 20.431640625
+      },
+      {
+        "stage": "event",
+        "epoch": 2,
+        "presentations": 8715,
+        "training_batches": 137,
+        "first_100_batches_seconds": 26.870330695000007,
+        "training_seconds": 36.842515434000006,
+        "calibration_plus_selection_seconds": 22.044353503000025,
+        "epoch_seconds": 58.88686893700003,
+        "peak_allocated_gib": 15.995181560516357,
+        "peak_reserved_gib": 20.431640625
+      }
+    ],
+    "invocation_seconds": 406.80681722,
+    "setup_and_final_artifacts_seconds": 241.419006702,
+    "started": "2026-10-09T19:10:56Z",
+    "finished": "2026-10-09T19:17:46Z",
+    "exit": 0,
+    "dev_evaluated": false,
+    "evidence_sha256": "27235480e4a3a4f36549b6c9f3fb601ff6e369ec777b3f4b13dac27daa2ea1d1"
+  },
+  {
+    "case": "station64",
+    "run_directory": "/home/ec2-user/eew-work/pilot-runs/team_transformer_01af77e38029_1595f13760c3",
+    "fit_events": 1024,
+    "batch_size": 16,
+    "station_batch_size": 64,
+    "epochs": [
+      {
+        "stage": "pretrain",
+        "epoch": 1,
+        "presentations": 15259,
+        "training_batches": 239,
+        "first_100_batches_seconds": 17.947875540999917,
+        "training_seconds": 36.81910851800001,
+        "calibration_plus_selection_seconds": 107.28702681799996,
+        "epoch_seconds": 144.10613533599997,
+        "peak_allocated_gib": 5.18119478225708,
+        "peak_reserved_gib": 5.4296875
+      },
+      {
+        "stage": "pretrain",
+        "epoch": 2,
+        "presentations": 15259,
+        "training_batches": 239,
+        "first_100_batches_seconds": 13.65860313600001,
+        "training_seconds": 32.39196073100004,
+        "calibration_plus_selection_seconds": 105.02251713999999,
+        "epoch_seconds": 137.41447787100003,
+        "peak_allocated_gib": 5.181423664093018,
+        "peak_reserved_gib": 5.4296875
+      },
+      {
+        "stage": "event",
+        "epoch": 1,
+        "presentations": 1095,
+        "training_batches": null,
+        "first_100_batches_seconds": null,
+        "training_seconds": 6.206961828999965,
+        "calibration_plus_selection_seconds": 24.27542815100003,
+        "epoch_seconds": 30.482389979999994,
+        "peak_allocated_gib": 10.267844676971436,
+        "peak_reserved_gib": 12.419921875
+      }
+    ],
+    "invocation_seconds": 505.80429713500007,
+    "setup_and_final_artifacts_seconds": 193.80129394800008,
+    "started": "2026-10-09T19:18:50Z",
+    "finished": "2026-10-09T19:27:19Z",
+    "exit": 0,
+    "dev_evaluated": false,
+    "evidence_sha256": "1129817884f5bc3f4b1f3dc7e85146737af6d6531dd80d6b5b1592e33bb4f342"
+  }
+]

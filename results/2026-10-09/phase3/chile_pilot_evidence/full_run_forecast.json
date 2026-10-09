@@ -1,0 +1,39 @@
+{
+  "not_confidence_bounds": true,
+  "default_nondeterministic_pilot_scenarios": [
+    {
+      "scenario": "first_epoch_scaling",
+      "pretraining25_hours": 13.760567866461423,
+      "event100_hours": 12.733097180743025,
+      "total_hours": 26.49366504720445,
+      "compute_usd": 26.652627037487676
+    },
+    {
+      "scenario": "second_epoch_scaling",
+      "pretraining25_hours": 12.179849665751766,
+      "event100_hours": 7.0772217217015605,
+      "total_hours": 19.257071387453326,
+      "compute_usd": 19.372613815778045
+    }
+  ],
+  "planning_allowance_hours": [
+    24,
+    36
+  ],
+  "planning_compute_usd": [
+    24.144,
+    36.216
+  ],
+  "price_usd_per_hour": 1.006,
+  "price_source": "Parent research_resource_ledger.json updated2026-10-09T19:13:16Z, AWS Pricing GetProducts Linux shared OnDemand us-east-1",
+  "excludes": [
+    "storage",
+    "original worker",
+    "idle time outside these runs"
+  ],
+  "caveats": [
+    "Full TRAIN does not fit RAM and random station reads amplify HDF chunk I/O.",
+    "Deterministic CUDA fullbatch throughput remains unmeasured.",
+    "Two subset epochs cannot establish convergence."
+  ]
+}

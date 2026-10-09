@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T19:18:41Z",
+  "updated_utc": "2026-10-09T19:38:00Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4312.64,
@@ -21,7 +21,7 @@
       "image_name": "Deep Learning OSS Nvidia Driver AMI GPU PyTorch2.8 (Amazon Linux2023)20260808",
       "security_group": "sg-090fe8835f553328b",
       "access": "Existing researcher public key; private SSH jump through existing earthquake instance; no IAM role",
-      "automatic_stop_utc": "2026-10-10T19:10:26.051148Z",
+      "automatic_stop_utc": "2026-10-11T07:28:52.690056Z",
       "automatic_stop_verified": true,
       "shutdown_behavior": "stop",
       "first_24h_compute_estimate_usd": 24.144,
@@ -51,7 +51,9 @@
         "recovery_verified_utc": "2026-10-09T19:10:26Z",
         "data_mount_restored": true,
         "automatic_stop_rearmed": true
-      }
+      },
+      "current_36h_compute_estimate_usd": 36.216,
+      "current_worker_resource_allowance_usd": 60
     }
   ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
@@ -73,7 +75,7 @@
     }
   ],
   "actual_incremental_settled_spend_usd": null,
-  "current_queue_max_seconds": 22000,
+  "current_queue_max_seconds": 37600,
   "quota": {
     "region": "us-east-1",
     "type": "Running On-Demand G and VT vCPUs",
@@ -144,10 +146,13 @@
       "serial": true,
       "completed": [
         "event16",
-        "event32"
+        "event32",
+        "event64",
+        "station64"
       ],
-      "active": "event64_two_epochs",
-      "next": "station64_two_pretrain_epochs"
+      "active": null,
+      "next": null,
+      "status": "complete"
     },
     "instrument_growth": {
       "status": "complete",
@@ -179,6 +184,40 @@
       "contrasts": 9,
       "cpu_only": true,
       "maximum_seconds": 1200
+    },
+    "chile_full_baseline": {
+      "status": "running",
+      "worker": "i-08b9781ed60d8497f",
+      "started_utc": "2026-10-09T19:30:04Z",
+      "run": "/home/ec2-user/eew-work/full-runs/team_transformer_06742dc492a1_7ec986ada2e7",
+      "pretrain_epochs": 25,
+      "event_epochs": 100,
+      "seed": 20261009,
+      "station_batch_size": 64,
+      "event_batch_size": 64,
+      "deterministic": true,
+      "maximum_seconds": 126000,
+      "kill_grace_seconds": 120,
+      "selection": "TRAIN-internal calibration NLL",
+      "dev": "after completed fixed budget only",
+      "test_waveforms": false
+    },
+    "censored_then_affine": {
+      "status": "running",
+      "maximum_seconds": 37600,
+      "censored_seconds": 10800,
+      "each_affine_seconds": 3600,
+      "seed20261009_raw_started_utc": "2026-10-09T19:26:43Z",
+      "cache_review_commit": "8504094",
+      "cache_readiness_latch_released_utc": "2026-10-09T19:35:42Z",
+      "seeds": [
+        20261009,
+        20261010
+      ],
+      "affine_records": 979487,
+      "affine_epochs": 10,
+      "censored_records": 197676,
+      "censored_epochs": 15
     }
   },
   "continuation": {

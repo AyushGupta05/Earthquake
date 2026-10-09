@@ -1,6 +1,6 @@
 # Chile benchmark: current execution protocol
 
-Updated 9 October 2026. Acquisition and TRAIN-only hardware pilots are complete or progressing as recorded in the pilot artifacts. Full-budget training has not yet started at this checkpoint. No DEV scores or TEST waveform predictions have been produced.
+Updated 9 October 2026, 19:38 UTC. Acquisition and all four TRAIN-only hardware pilots are complete. The deterministic full-budget baseline started at 19:30:04 UTC. No full-run DEV scores or TEST waveform predictions have been produced.
 
 The [official TEAM-LM data](https://doi.org/10.5880/GFZ.2.4.2021.002) are now downloaded, extracted, audited and checksum verified. The older acquisition memo is historical; the following counts come from the actual HDF5 metadata using the author loader's chronological row-position split, not the dataset's different `SPLIT` column.
 
@@ -18,7 +18,7 @@ Chile provides no individual-station P picks. The implementation uses the suppli
 
 The reviewed implementation is a magnitude-only PyTorch adaptation of [TEAM-LM](https://arxiv.org/abs/2101.02010), with a waveform/amplitude encoder, coordinate embeddings, six attention blocks and a five-Gaussian mixture head. It is not claimed to be numerically identical to the original TensorFlow release. A pooling comparator shares input/encoder/head conventions but has fewer aggregation parameters; both differences must be reported. The original code is attributed in the implementation documentation.
 
-The intended full baseline uses the author's 25 station-pretraining and 100 event-training epoch budgets, random −4 to +25-second training cutoffs, magnitude resampling, station blinding, label smoothing for the specified large-event regime, and plateau learning-rate schedules. A deterministic launcher will record backend settings before the full run. Batch size is selected from TRAIN-only runtime/memory measurements, not prediction scores.
+The running full baseline uses the author's 25 station-pretraining and 100 event-training epoch budgets, random −4 to +25-second training cutoffs, magnitude resampling, station blinding, label smoothing for the specified large-event regime, and plateau learning-rate schedules. The deterministic launcher recorded strict deterministic algorithms, cuBLAS workspace configuration, cuDNN settings, source hashes and the full command before training. Batch size is selected from TRAIN-only runtime/memory measurements, not prediction scores.
 
 For seed 20261009, original TRAIN is split into 51,912 fitting and 5,767 event-disjoint calibration events, containing 776,742 and 86,353 station records respectively. Checkpoint selection and scheduling use only that calibration partition. It contains only two MA≥5.5 events, so it cannot support extensive tail tuning. The published DEV split is evaluated only after a fixed model has been selected; TEST remains sealed until the comparison and method choices are frozen. The internal TRAIN partition changes the original author's fitting/selection protocol and must be disclosed.
 
@@ -30,4 +30,6 @@ The dedicated task worker is `i-08b9781ed60d8497f`, currently g5.xlarge with one
 
 Code lives at `/home/ec2-user/eew-work/Earthquake`; pilot checkpoints and logs are under `/home/ec2-user/eew-work/pilot-runs` and `pilot-logs`. Atomic completed-epoch recovery retains optimizer, scheduler, random states, selected model and histories. Resume with the original configuration; a shortened pilot checkpoint is not silently reused as a completed full-budget pretraining artifact.
 
-The worker's verified automatic stop is 10 October 2026 at 19:10:26 UTC, with EC2 shutdown behavior STOP. Reboots require restoring the read-only bind mount and rearming the timer. The rejected L40S upgrade produced no L40S training. The $2,000 credit-only ceiling and 16 G/VT-vCPU quota remain in force; exact settled incremental billing is not yet available.
+The full run is `/home/ec2-user/eew-work/full-runs/team_transformer_06742dc492a1_7ec986ada2e7`. Its log is `/home/ec2-user/eew-work/full-logs/team_full_seed20261009_20261009T193004Z.log`. Both batch sizes are 64. The first 100 full-data station batches took 22.96 seconds; roughly 27–33 hours overall is a scenario, pending complete-epoch timing. The port uses lazy HDF loading with zero loader workers on four vCPUs; the author configuration used preloading and ten workers. This implementation difference affects throughput and is disclosed.
+
+The worker's verified automatic stop is 11 October 2026 at 07:28:52 UTC, with EC2 shutdown behavior STOP. Reboots require restoring the read-only bind mount and rearming the timer. The rejected L40S upgrade produced no L40S training. The $2,000 credit-only ceiling and 16 G/VT-vCPU quota remain in force; exact settled incremental billing is not yet available.

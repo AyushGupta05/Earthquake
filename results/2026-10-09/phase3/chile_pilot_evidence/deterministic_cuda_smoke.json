@@ -1,0 +1,54 @@
+{
+  "exit": 0,
+  "stdout": "DETERMINISTIC_RUNTIME {\"created_utc\": \"2026-10-09T19:29:02.353843+00:00\", \"cublas_workspace_config\": \":4096:8\", \"cuda_matmul_allow_tf32\": false, \"cudnn_allow_tf32\": true, \"cudnn_benchmark\": false, \"cudnn_deterministic\": true, \"deterministic_algorithms\": true, \"deterministic_warn_only\": false, \"float32_matmul_precision\": \"highest\", \"previous_cublas_workspace_config\": null, \"runner_arguments\": [\"--synthetic-smoke\"], \"runner_path\": \"/home/ec2-user/eew-work/deterministic-cuda-smoke/train_team_lm.py\", \"runner_sha256\": \"0ba999ab375d943c801bb5f58330e7449ad869b8ba872c71acbc3fab4550f62b\", \"schema\": \"team-deterministic-launch-v1\", \"torch_cuda\": \"12.9\", \"torch_version\": \"2.8.0+cu129\", \"wrapper_sha256\": \"d864fa298fccff2b3c1a19804a4815c8eab23c63353173b4db6fd59246fda586\"}\nCUDA_SMOKE {\"stage\": \"station\", \"loss\": 0.5584657788276672, \"finite_gradients\": true, \"gradient_tensors\": 36, \"seconds\": 0.6359490459999506, \"peak_allocated_bytes\": 130182144, \"peak_reserved_bytes\": 144703488}\nCUDA_SMOKE {\"stage\": \"event\", \"loss\": 0.17481854557991028, \"finite_gradients\": true, \"gradient_tensors\": 111, \"seconds\": 0.2421715820000827, \"peak_allocated_bytes\": 3771816960, \"peak_reserved_bytes\": 3953131520}\n",
+  "stderr": "/opt/pytorch/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.\n  import pynvml  # type: ignore[import]\n",
+  "audit": {
+    "schema": "team-deterministic-launch-v1",
+    "created_utc": "2026-10-09T19:29:02.353843+00:00",
+    "wrapper_sha256": "d864fa298fccff2b3c1a19804a4815c8eab23c63353173b4db6fd59246fda586",
+    "runner_sha256": "0ba999ab375d943c801bb5f58330e7449ad869b8ba872c71acbc3fab4550f62b",
+    "runner_path": "/home/ec2-user/eew-work/deterministic-cuda-smoke/train_team_lm.py",
+    "runner_arguments": [
+      "--synthetic-smoke"
+    ],
+    "torch_version": "2.8.0+cu129",
+    "torch_cuda": "12.9",
+    "cublas_workspace_config": ":4096:8",
+    "previous_cublas_workspace_config": null,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "float32_matmul_precision": "highest"
+  },
+  "result": {
+    "stages": [
+      {
+        "stage": "station",
+        "loss": 0.5584657788276672,
+        "finite_gradients": true,
+        "gradient_tensors": 36,
+        "seconds": 0.6359490459999506,
+        "peak_allocated_bytes": 130182144,
+        "peak_reserved_bytes": 144703488
+      },
+      {
+        "stage": "event",
+        "loss": 0.17481854557991028,
+        "finite_gradients": true,
+        "gradient_tensors": 111,
+        "seconds": 0.2421715820000827,
+        "peak_allocated_bytes": 3771816960,
+        "peak_reserved_bytes": 3953131520
+      }
+    ],
+    "batch": 2,
+    "stations": 21,
+    "samples": 3000,
+    "device": "NVIDIA A10G",
+    "data_reads": 0,
+    "dev_evaluated": false
+  }
+}
