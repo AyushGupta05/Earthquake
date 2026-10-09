@@ -1,0 +1,22 @@
+{
+  "status": "running",
+  "started_utc": "2026-10-09T20:16:43Z",
+  "unit": "eew-flat-cache-export-v1",
+  "worker": "i-08b9781ed60d8497f",
+  "main_pid": 7876,
+  "reviewed_commit": "823366d",
+  "source_code_sha256": "0656045e88b41a57716fca67d72dce38c738f35042b96f298c043c8d3e0ec009",
+  "source": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5",
+  "destination": "/mnt/eew-fast/chile-train-stations-v1",
+  "runtime_max_seconds": 10800,
+  "stop_grace_seconds": 60,
+  "root_io_read_bps": 25000000,
+  "verified_cgroup_io_max": "259:0 rbps=25000000 wbps=max riops=max wiops=max",
+  "cpu_quota_cores": 1,
+  "nice": 19,
+  "io_class": "idle",
+  "memory_max_bytes": 3221225472,
+  "log": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.log",
+  "durable_manifest_on_success": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.manifest.json",
+  "active_training_backend_changed": false
+}

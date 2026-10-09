@@ -1,0 +1,111 @@
+{
+  "schema": "residual-logit-closure-bound-v1",
+  "source_sha256": "0cb46245fd27083c14261b174a251b1772775d79df448059b15922d17589a887",
+  "windows": {
+    "1": {
+      "records": 96993,
+      "events": 3711,
+      "bound": 5.0,
+      "all_mean_error_floor": 0.000686277779194662,
+      "m4": {
+        "records": 1027,
+        "events": 13,
+        "mean_error_floor": 0.02337940836868601,
+        "fraction_target_above_max": 0.0691333982473223,
+        "upper_mean_quantiles": [
+          3.4247977156324074,
+          4.673330088362829,
+          5.931976030890379,
+          6.544332954627621,
+          6.548682478872487
+        ],
+        "fraction_provably_unable_to_reach_m4_median": 0.0009737098344693282
+      },
+      "m5": {
+        "records": 91,
+        "events": 1,
+        "mean_error_floor": 0.11039891586958274,
+        "fraction_target_above_max": 0.2087912087912088,
+        "upper_mean_quantiles": [
+          3.7754299390274113,
+          4.6852306297476005,
+          5.945352159004942,
+          6.5483519348622945,
+          6.5486820692872865
+        ]
+      },
+      "interpretation": "Optimistic hindsight per-record closure lower bound; not learned or attainable-network error. Small floor rejects the correction range as the sole explanation, not as a possible local constraint.",
+      "input_sha256": "c501b8e977b3dcc4b03ea6d16ab85b2a82ae1e76dcb74b60999dd47fd14c6c11"
+    },
+    "3": {
+      "records": 96993,
+      "events": 3711,
+      "bound": 5.0,
+      "all_mean_error_floor": 0.0007463787770216536,
+      "m4": {
+        "records": 1027,
+        "events": 13,
+        "mean_error_floor": 0.017455319187018932,
+        "fraction_target_above_max": 0.062317429406037,
+        "upper_mean_quantiles": [
+          3.6460437593838733,
+          4.576957114346054,
+          5.635017040895548,
+          6.523449888687226,
+          6.549027508288109
+        ],
+        "fraction_provably_unable_to_reach_m4_median": 0.0009737098344693282
+      },
+      "m5": {
+        "records": 91,
+        "events": 1,
+        "mean_error_floor": 0.0878822663668738,
+        "fraction_target_above_max": 0.2087912087912088,
+        "upper_mean_quantiles": [
+          4.261477896438998,
+          4.754906035800738,
+          5.939903513337547,
+          6.547365133788128,
+          6.549027508288109
+        ]
+      },
+      "interpretation": "Optimistic hindsight per-record closure lower bound; not learned or attainable-network error. Small floor rejects the correction range as the sole explanation, not as a possible local constraint.",
+      "input_sha256": "f9016e0ceb0336824eeffa027ad72b587b96951c9836cd7de449866f8f364a05"
+    },
+    "5": {
+      "records": 96993,
+      "events": 3711,
+      "bound": 5.0,
+      "all_mean_error_floor": 0.0007323369124460236,
+      "m4": {
+        "records": 1027,
+        "events": 13,
+        "mean_error_floor": 0.00990987248924847,
+        "fraction_target_above_max": 0.03992210321324245,
+        "upper_mean_quantiles": [
+          3.7427014790488786,
+          4.636183690793117,
+          5.4298500612784535,
+          6.512751298603098,
+          6.549028389374809
+        ],
+        "fraction_provably_unable_to_reach_m4_median": 0.0
+      },
+      "m5": {
+        "records": 91,
+        "events": 1,
+        "mean_error_floor": 0.0602193831198296,
+        "fraction_target_above_max": 0.17582417582417584,
+        "upper_mean_quantiles": [
+          4.5028385644713,
+          4.799595417488801,
+          5.9464567704067255,
+          6.546900554620987,
+          6.549000673334613
+        ]
+      },
+      "interpretation": "Optimistic hindsight per-record closure lower bound; not learned or attainable-network error. Small floor rejects the correction range as the sole explanation, not as a possible local constraint.",
+      "input_sha256": "084d5ac68ff5e34d444399c14bbdc34f6fa7bee7295c8b657fcb19eded43adb8"
+    }
+  }
+}

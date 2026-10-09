@@ -1,9 +1,9 @@
 {
-  "updated_utc": "2026-10-09T20:02:12.348668+00:00",
+  "updated_utc": "2026-10-09T20:19:43.747904+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
-  "estimated_total_credit_remaining_usd": 4312.64,
-  "main_credit_remaining_usd": 4137.32,
+  "estimated_total_credit_remaining_usd": 4293.82,
+  "main_credit_remaining_usd": 4118.5,
   "main_credit_expires": "2026-10-31",
   "billing_status": "Delayed console estimates; shared balance, not a reserved allocation",
   "new_instances": [
@@ -69,7 +69,7 @@
         "precondition": "Verified unique instance-storage serial, no filesystem signature, no child partitions or mounts; task-owned worker",
         "purpose": "Rebuildable station cache; preserve durable checkpoints on root EBS",
         "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
-        "status": "formatted and mounted; export not launched"
+        "status": "mounted; reviewed TRAIN-only export running since2026-10-09T20:16:43Z"
       }
     }
   ],
@@ -217,7 +217,20 @@
       "kill_grace_seconds": 120,
       "selection": "TRAIN-internal calibration NLL",
       "dev": "after completed fixed budget only",
-      "test_waveforms": false
+      "test_waveforms": false,
+      "first_epoch": {
+        "training_seconds": 2337.529977216,
+        "epoch_seconds": 2462.985974238,
+        "stations": 776742,
+        "calibration_nll": {
+          "1": 0.6770629861838985,
+          "3": 0.6440907544533406,
+          "5": 0.603204086013713
+        },
+        "uncontaminated_by_cache_export": true,
+        "remaining_station_only_projection_hours": 16.41990649492,
+        "projection_excludes_event_training": true
+      }
     },
     "censored_then_affine": {
       "status": "running",
@@ -238,7 +251,7 @@
       "initial_raw_control_status": "complete exit0 at2026-10-09T19:36:14Z",
       "censored_started_utc": "2026-10-09T19:36:24Z",
       "censored_run": "/mnt/eew-research/runs/censored_innovation_6c1510b97725_c9dd74d23d87",
-      "censored_status": "complete exit0 at2026-10-09T19:53:46Z; independent scientific audit underway"
+      "censored_status": "complete exit0; independent artifact/metric audit passed; scientific mechanism rejected; commit d91a1c3"
     },
     "proper_scores": {
       "status": "waiting_for_successful_predecessor",
@@ -266,6 +279,28 @@
       "reviewed_commit": "f3f18e4",
       "started_queue_utc": "2026-10-09T19:38:53Z",
       "pid": 261601
+    },
+    "chile_flat_cache_export": {
+      "status": "running",
+      "started_utc": "2026-10-09T20:16:43Z",
+      "unit": "eew-flat-cache-export-v1",
+      "worker": "i-08b9781ed60d8497f",
+      "main_pid": 7876,
+      "reviewed_commit": "823366d",
+      "source_code_sha256": "0656045e88b41a57716fca67d72dce38c738f35042b96f298c043c8d3e0ec009",
+      "source": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5",
+      "destination": "/mnt/eew-fast/chile-train-stations-v1",
+      "runtime_max_seconds": 10800,
+      "stop_grace_seconds": 60,
+      "root_io_read_bps": 25000000,
+      "verified_cgroup_io_max": "259:0 rbps=25000000 wbps=max riops=max wiops=max",
+      "cpu_quota_cores": 1,
+      "nice": 19,
+      "io_class": "idle",
+      "memory_max_bytes": 3221225472,
+      "log": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.log",
+      "durable_manifest_on_success": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.manifest.json",
+      "active_training_backend_changed": false
     }
   },
   "continuation": {
@@ -273,5 +308,19 @@
     "id": "continue-earthquake-research-and-aws-experiments",
     "interval_minutes": 30,
     "notifications": "Meaningful change, completion, failure or required input only"
+  },
+  "latest_credit_check": {
+    "checked_utc": "2026-10-09T20:19:43.747904+00:00",
+    "source": "Authenticated AWS Billing Credits UI, active-credit summary and main-credit service modal",
+    "estimated_total_remaining_usd": 4293.82,
+    "estimated_main_remaining_usd": 4118.5,
+    "main_expiration": "2026-10-31",
+    "confirmed_eligible_services": [
+      "Amazon Elastic Compute Cloud",
+      "AWS Data Transfer"
+    ],
+    "cadence_notice": "Estimated amounts update approximately every24hours; totals finalize with monthly invoice",
+    "limitation": "Shared account balance; not task-attributed spend or reservation",
+    "financial_or_account_settings_changed": false
   }
 }

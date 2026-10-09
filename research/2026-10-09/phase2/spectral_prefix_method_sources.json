@@ -1,0 +1,73 @@
+{
+  "accessed": "2026-10-09",
+  "memo_sha256": "8f8943406bd35e5a84025ffd0f8e0a52f4db132b39f86c36e4585cf8f00f42b0",
+  "status": "One untested physical hypothesis, novelty not established, no GPU implementation",
+  "sources": [
+    {
+      "title": "An evolutionary approach to real-time moment magnitude estimation via inversion of displacement spectra",
+      "year": 2011,
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2010GL045403",
+      "verified_sections": [
+        "2.2 Inversion Process",
+        "3.1 Data and Processing",
+        "3.2 Results"
+      ],
+      "boundary": "Existing evolutionary spectral Mw estimator; assumed catalogue locations in evaluation; full finite-prefix covariance not its reported implementation."
+    },
+    {
+      "title": "A probabilistic method for the estimation of earthquake source parameters from spectral inversion: application to the2016\u20132017 Central Italy seismic sequence",
+      "year": 2019,
+      "url": "https://academic.oup.com/gji/article/218/2/988/5484842",
+      "doi": "10.1093/gji/ggz206",
+      "verified_sections": [
+        "2 Generalized Brune model",
+        "3.1 Probabilistic framework"
+      ],
+      "boundary": "Joint parameter posterior; total log-spectrum data covariance explicitly diagonal I*MSE."
+    },
+    {
+      "title": "The debiased Whittle likelihood",
+      "year": 2019,
+      "url": "https://academic.oup.com/biomet/article/106/2/251/5318578",
+      "preprint": "https://arxiv.org/abs/1605.06718",
+      "verified_sections": [
+        "4.2 Combining with differencing or tapering"
+      ],
+      "boundary": "Finite-window/taper expected-periodogram correction already exists; assumes stationary process."
+    },
+    {
+      "title": "Uncertainty estimations for seismic source inversions",
+      "year": 2012,
+      "url": "https://academic.oup.com/gji/article/190/2/1243/645429",
+      "boundary": "Correlated source-inversion error covariance is established."
+    },
+    {
+      "title": "Full-waveform earthquake source inversion using simulation-based inference",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2410.23238",
+      "boundary": "Source neural density inference and realistic noise/covariance propagation already established."
+    },
+    {
+      "title": "Calibrating Conditional Risk",
+      "year": 2026,
+      "url": "https://arxiv.org/html/2604.20409v1",
+      "boundary": "Conditional expected loss regression is prior art."
+    },
+    {
+      "title": "Risk-Controlled Post-Processing of Decision Policies",
+      "year": 2026,
+      "url": "https://arxiv.org/html/2605.06479v1",
+      "verified_sections": [
+        "3 Problem Formulation and Population Oracle",
+        "4 Finite-Sample Post-Processing Algorithm"
+      ],
+      "boundary": "Conditional excess-risk threshold and held-out risk calibration are prior art; not all finite-sample guarantees automatically transfer to correlated station records."
+    },
+    {
+      "title": "Regression with Multi-Expert Deferral",
+      "year": 2024,
+      "url": "https://arxiv.org/abs/2403.19494",
+      "boundary": "Regression expert routing already established."
+    }
+  ]
+}
