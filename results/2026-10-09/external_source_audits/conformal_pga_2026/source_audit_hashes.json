@@ -1,0 +1,80 @@
+{
+  "archive_result_manifest_algorithm_note": "Expected checksum strings have 32 hex characters; compared against MD5, without deserializing files. README describes SHA-256 but these entries are MD5-length.",
+  "result_checks": [
+    {
+      "file": "results/alpha_sweep.json",
+      "expected": "0a08a6b7822b39d700cdad3a0eb6c991",
+      "actual_md5": "0a08a6b7822b39d700cdad3a0eb6c991",
+      "match_md5": true
+    },
+    {
+      "file": "results/evaluation_results.json",
+      "expected": "9a87618cb55daed2424df3f01bce9f6b",
+      "actual_md5": "2a3c1cf8f1938ffea8fbde3d221d4b57",
+      "match_md5": false
+    },
+    {
+      "file": "results/figure_data.npz",
+      "expected": "a89ddd95cb4117307ac5706cf5d7a7b0",
+      "actual_md5": "3ee0ae5526a4f87a4c796b814be16bca",
+      "match_md5": false
+    },
+    {
+      "file": "results/checkpoints/cnn_point_best.pt",
+      "expected": "462537738d598c9b44aea1fd1fdb6b04",
+      "actual_md5": "462537738d598c9b44aea1fd1fdb6b04",
+      "match_md5": true
+    },
+    {
+      "file": "results/checkpoints/cnn_quantile_best.pt",
+      "expected": "b2065039b8b17a9c52b96dcacd186e96",
+      "actual_md5": "b2065039b8b17a9c52b96dcacd186e96",
+      "match_md5": true
+    },
+    {
+      "file": "results/checkpoints/cnn_transformer_point_best.pt",
+      "expected": "adb830055ab7809bc73e1624f969d8a2",
+      "actual_md5": "adb830055ab7809bc73e1624f969d8a2",
+      "match_md5": true
+    },
+    {
+      "file": "results/checkpoints/cnn_transformer_quantile_best.pt",
+      "expected": "283250f8c47656744d548853b6bfd9f5",
+      "actual_md5": "283250f8c47656744d548853b6bfd9f5",
+      "match_md5": true
+    },
+    {
+      "file": "results/onset_perturbation.json",
+      "expected": "1ec144be0f82f2e45b945f33e7832e33",
+      "actual_md5": "1ec144be0f82f2e45b945f33e7832e33",
+      "match_md5": true
+    }
+  ],
+  "config": {
+    "expected": "e5678e6f79448de7358117894b8f24db",
+    "actual_md5": "cb762de030013d219f755f2ec75568c6",
+    "match_md5": false
+  },
+  "audited_file_sha256": {
+    "README.md": "da624a7a8c6494e4a2e25475e5b1eb6a83e88c37190321317099589be2eddefe",
+    "config.yaml": "344f3d202ceb7c63fdc6aa306d314ead9a7eee5a07ab4770a4c80c39e3275460",
+    "dataset.py": "10b7d4daaa55edec9dfc9f9b39711b2e37749017c5abf7a6818e94f3b69808ee",
+    "models.py": "e6b686067f220b07556e0c30e3bb0b863e38c1aace4507b169958012451d26a7",
+    "train.py": "e992a77e30f89c90114e2ca7da82f9a694efe0010d0fe2335622d9d7a0e2bbca",
+    "conformal.py": "cbfcb89f18edf5089f39d19548f16cac26a9f447b1fd0b2c3a89730f76d2164c",
+    "baselines.py": "11bc3bf8cf61c26a1d577e3f1b47b19d4e718a3d90c15fa45e61af9ef1ce8f01",
+    "generate_mondrian_cp.py": "52be847b9c22fd7b099ea07b145daf0d9591505528838c56580a5dd986b00eca",
+    "metrics.py": "e2bab06ff9f4851b49146ab349987d5e62271b05dbc085ad5559ebe7a13b6662",
+    "onset_perturbation.py": "5c0281c063e2a4f9be6e0a5284a3c1021398d594601a32f3ae8a973254729ee1",
+    "experiment_summary.md": "979750b8ab6b2d2d8a0877746dcd7766c5e9617db8f6489a2b5696eb56b478c2",
+    "reproducibility_manifest.json": "33e053f47f045c034212e2154c8d28739852994a3b11288f436334e70c5b1c46",
+    "results/split_events.json": "3df8bbbd8a9af9763654e44aa944f45c0aa87c0e5e58af4cbb17a81591c9f9d5",
+    "results/mondrian_cp.json": "479d6d1b7e9d2f615465c1177b440e1879b71fb1b8c378c81dbe48320ad5860c",
+    "results/evaluation_results.json": "7b8ebb1ff72bb3465b574997eb30ef8d5dfc3bf6a916bc11c806a1222d12a733",
+    "results/event_weighted_picp.json": "76a50643ef27fd0a20a9b0b0d97e7e81657d99dbedd84abe65d10af86cd6606e",
+    "threshold_exceedance.py": "7a9f454abcce5909731f1ccfc343a1e0c01ff2f4d160fe7db1952fd08041df9d",
+    "event_weighted_picp.py": "7f45594f0dc09b885187027f7ce328593274832da9900783a35555203a6e8606"
+  },
+  "source_scripts_executed": false,
+  "checkpoint_files_deserialized": false
+}
