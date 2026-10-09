@@ -1,0 +1,151 @@
+{
+  "numpy": "2.2.6",
+  "config": "{\n  \"Compilers\": {\n    \"c\": {\n      \"name\": \"clang\",\n      \"linker\": \"ld64\",\n      \"version\": \"15.0.0\",\n      \"commands\": \"cc\"\n    },\n    \"cython\": {\n      \"name\": \"cython\",\n      \"linker\": \"cython\",\n      \"version\": \"3.1.0\",\n      \"commands\": \"cython\"\n    },\n    \"c++\": {\n      \"name\": \"clang\",\n      \"linker\": \"ld64\",\n      \"version\": \"15.0.0\",\n      \"commands\": \"c++\"\n    }\n  },\n  \"Machine Information\": {\n    \"host\": {\n      \"cpu\": \"aarch64\",\n      \"family\": \"aarch64\",\n      \"endian\": \"little\",\n      \"system\": \"darwin\"\n    },\n    \"build\": {\n      \"cpu\": \"aarch64\",\n      \"family\": \"aarch64\",\n      \"endian\": \"little\",\n      \"system\": \"darwin\"\n    }\n  },\n  \"Build Dependencies\": {\n    \"blas\": {\n      \"name\": \"accelerate\",\n      \"found\": true,\n      \"version\": \"unknown\",\n      \"detection method\": \"system\",\n      \"include directory\": \"unknown\",\n      \"lib directory\": \"unknown\",\n      \"openblas configuration\": \"unknown\",\n      \"pc file directory\": \"unknown\"\n    },\n    \"lapack\": {\n      \"name\": \"accelerate\",\n      \"found\": true,\n      \"version\": \"unknown\",\n      \"detection method\": \"system\",\n      \"include directory\": \"unknown\",\n      \"lib directory\": \"unknown\",\n      \"openblas configuration\": \"unknown\",\n      \"pc file directory\": \"unknown\"\n    }\n  },\n  \"Python Information\": {\n    \"path\": \"/private/var/folders/w5/_8wgjw3j5cg6mgrth3s2kg9m0000gn/T/build-env-g9clshsu/bin/python\",\n    \"version\": \"3.10\"\n  },\n  \"SIMD Extensions\": {\n    \"baseline\": [\n      \"NEON\",\n      \"NEON_FP16\",\n      \"NEON_VFPV4\",\n      \"ASIMD\"\n    ],\n    \"found\": [\n      \"ASIMDHP\"\n    ],\n    \"not found\": [\n      \"ASIMDFHM\"\n    ]\n  }\n}\n",
+  "probes": [
+    {
+      "sensor": "velocity_like",
+      "seconds": 1,
+      "shape_a": [
+        9,
+        20
+      ],
+      "shape_b": [
+        20,
+        20
+      ],
+      "max_abs_input": [
+        0.31622776601683794,
+        1.3960638802015926
+      ],
+      "finite_matmul": true,
+      "matmul_einsum_max_error": 0.0,
+      "matmul_fsum_max_error": 8.881784197001252e-16,
+      "warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ]
+    },
+    {
+      "sensor": "velocity_like",
+      "seconds": 3,
+      "shape_a": [
+        9,
+        60
+      ],
+      "shape_b": [
+        60,
+        60
+      ],
+      "max_abs_input": [
+        0.18257418583505536,
+        1.3960638802015926
+      ],
+      "finite_matmul": true,
+      "matmul_einsum_max_error": 0.0,
+      "matmul_fsum_max_error": 1.7763568394002505e-15,
+      "warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ]
+    },
+    {
+      "sensor": "velocity_like",
+      "seconds": 5,
+      "shape_a": [
+        9,
+        100
+      ],
+      "shape_b": [
+        100,
+        100
+      ],
+      "max_abs_input": [
+        0.1414213562373095,
+        1.3960638802015926
+      ],
+      "finite_matmul": true,
+      "matmul_einsum_max_error": 0.0,
+      "matmul_fsum_max_error": 1.7763568394002505e-15,
+      "warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ]
+    },
+    {
+      "sensor": "acceleration_like",
+      "seconds": 1,
+      "shape_a": [
+        9,
+        20
+      ],
+      "shape_b": [
+        20,
+        20
+      ],
+      "max_abs_input": [
+        0.31622776601683794,
+        4.523214331943374
+      ],
+      "finite_matmul": true,
+      "matmul_einsum_max_error": 0.0,
+      "matmul_fsum_max_error": 8.881784197001252e-16,
+      "warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ]
+    },
+    {
+      "sensor": "acceleration_like",
+      "seconds": 3,
+      "shape_a": [
+        9,
+        60
+      ],
+      "shape_b": [
+        60,
+        60
+      ],
+      "max_abs_input": [
+        0.18257418583505536,
+        4.523214331943374
+      ],
+      "finite_matmul": true,
+      "matmul_einsum_max_error": 0.0,
+      "matmul_fsum_max_error": 8.881784197001252e-16,
+      "warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ]
+    },
+    {
+      "sensor": "acceleration_like",
+      "seconds": 5,
+      "shape_a": [
+        9,
+        100
+      ],
+      "shape_b": [
+        100,
+        100
+      ],
+      "max_abs_input": [
+        0.1414213562373095,
+        4.523214331943374
+      ],
+      "finite_matmul": true,
+      "matmul_einsum_max_error": 0.0,
+      "matmul_fsum_max_error": 7.771561172376096e-16,
+      "warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ]
+    }
+  ],
+  "conclusion": "All outputs finite and agree with explicit contraction and math.fsum. Avoid this local Accelerate matmul warning path with explicit unoptimized einsum; no warnings suppressed."
+}

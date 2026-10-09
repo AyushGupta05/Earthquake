@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-10-09T20:23:14.378650+00:00",
+  "worker": "172.31.36.211",
+  "directory": "/home/ec2-user/eew-work/flat-runtime-cpu-tests",
+  "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 timeout --signal=TERM --kill-after=10s 180s /opt/pytorch/bin/python -m unittest discover -s tests -p test_flat_station_runtime.py -v",
+  "tests": 9,
+  "seconds": 16.884,
+  "result": "PASS",
+  "data": "small synthetic HDF/CSV fixtures only",
+  "GPU_used": false,
+  "live_trainer_changed": false,
+  "scope": "CPU bitwise two-epoch station update traces plus subprocess proof/preparation/resume to full fixture completion",
+  "proven_limits": "No CUDA, real-checkpoint migration or universal full-run equivalence claim",
+  "test_setup_fixes": [
+    "Hash IEEE infinity scheduler sentinels without lossy JSON",
+    "Clone optimizer tensor storage so each path starts from an independent immutable state"
+  ],
+  "source_sha256": {
+    "research/2026-10-09/phase3/flat_station_runtime.py": "43e65f551c02f7eb49fc1c02ae03f051b438146d98d901776a8144a05eecfd2c",
+    "research/2026-10-09/phase3/flat_station_migration.py": "6a81d0d7c2b2d87ee75b31802a66ae01932d4e7c4f626d3ce669df05b06727f8",
+    "research/2026-10-09/phase3/flat_station_proof.py": "43b69af61111fce72fb894dbc7287ae8f2ee65f5154b7362e953dec85b19dedc",
+    "research/2026-10-09/phase3/run_team_flat.py": "1e71ead482829e1a82718c17b0cdff9ea9fbf8c884e3493372d6f0113232993c",
+    "tests/test_flat_station_runtime.py": "b7c689399255f78fc269e17d192edcede521bba7ea8b9c30d47f2110553ef0bf"
+  },
+  "autoreview": {
+    "engine": "codex",
+    "result": "clean",
+    "actionable_findings": 0,
+    "confidence": 0.88,
+    "result_file": "work/flat_runtime_review.json"
+  }
+}

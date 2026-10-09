@@ -1,6 +1,6 @@
 # Method status and decisions
 
-9 October 2026, 20:21 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
+9 October 2026, 20:35 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
@@ -14,9 +14,10 @@
 | Sensitivity-normalized amplitude features | Added observed-prefix amplitudes to the static model | Further clear gain at 5 s; smaller tradeoffs at 1/3 s. Not full instrument-response deconvolution. |
 | Conditional future-amplitude growth | MSE, unconditional density, magnitude-conditioned density, detached control | Completed grid rejected: conditional likelihood worsens ordinary error at all three times; small tail gains do not preserve worst-error performance. |
 | Censored observed-amplitude innovations | Frozen matched 1 s distribution; new 1→3→5 peak evidence; tied/free hurdle, uncensored and discriminative controls | Completed and independently audited. Improves the stale 1 s forecast but loses to full-prefix inference; the tied mechanism loses likelihood fit to its free-hurdle control. Sub-second continuation rejected. [Results](earthquake_censored_results.md). |
-| Prefix affine projection | Re-estimate/remove trend using only each observed prefix, with a last-sample guard control | Reviewed; first raw-control seed finished, remaining controls queued. This checks a preprocessing concern, not universal raw-stream causality. |
+| Prefix affine projection | Re-estimate/remove trend using only each observed prefix, with a last-sample guard control | Reviewed; both raw-control seeds and first-seed affine variants finished; second-seed affine variants running. This checks a preprocessing concern, not universal raw-stream causality. |
 | Residual-logit support bound | Exact per-record mean limits under ±5 corrections; exhaustive tests and actual AWS exports | M≥4 optimistic floors .0234/.0175/.0099, much smaller than observed errors. Bound is not the main aggregate bottleneck. [Audit](earthquake_residual_support_audit.md). |
 | Proper distribution scores | Huber/CE, ordinary CRPS, fixed-tail CRPS, TRAIN-marginal weighted CRPS, ranked log score | Reviewed, two-seed full-TRAIN 1/3/5 grid queued. Known scores strengthen the comparison before adding another proposed method. |
+| Causal physical prefix / correlated noise | Fixed protocol, two seeds, 48 synthetic conditions, exact marginalization and causal nulls | 14 tests and clean review; full covariance improves NLL in 11/12 comparisons but worsens all four one-second tail comparisons. No covariance-only GPU extension. [Preflight](earthquake_physical_prefix_preflight.md). |
 | Chile TEAM-style external baseline | Published architecture adaptation, full 25+100 epoch budget; TRAIN-only selection | Running on dedicated AWS A10G. DEV scoring follows completed training; TEST remains sealed. |
 
 The all-static model's completed exploratory scores are:
