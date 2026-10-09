@@ -122,12 +122,23 @@ def export_targets(root, data_dir, output, max_per_event=0, sample_limit=0):
     }
     aligned = 0
     with h5py.File(raw_path, "r") as raw, h5py.File(cache_path, "r") as cache:
+        # The released counts file has a roughly 46 MiB group lookup heap.
+        # Its default 32 MiB metadata cache rereads that heap for each lookup.
+        # This changes I/O caching only; source arrays and target math are identical.
+        metadata_cache = raw.id.get_mdc_config()
+        metadata_cache.max_size = 128 * 1024**2
+        metadata_cache.min_size = 32 * 1024**2
+        metadata_cache.initial_size = 128 * 1024**2
+        metadata_cache.set_initial_size = 1
+        raw.id.set_mdc_config(metadata_cache)
+        raw_traces = raw["data"]
         validate_cache(cache["train"], frame)
+        cached_waveforms = cache["train/waveforms"]
         for j, i in enumerate(rows):
             name, p = arrays["trace_names"][j], int(arrays["p_samples"][j])
-            if name not in raw["data"]:
+            if name not in raw_traces:
                 continue
-            ds = raw["data"][name]
+            ds = raw_traces[name]
             if ds.ndim != 2 or ds.shape[0] != 3:
                 raise ValueError(f"Expected INSTANCE ENZ trace for {name}")
             if p + 500 > ds.shape[1]:
@@ -135,7 +146,7 @@ def export_targets(root, data_dir, output, max_per_event=0, sample_limit=0):
             # Validate every selected available trace, not only matching labels.
             early = np.asarray(ds[:, p:p + 500], dtype=np.float32)
             expected = (early - mean) / (std + np.float32(1e-8))
-            if not np.array_equal(cache["train/waveforms"][i], expected):
+            if not np.array_equal(cached_waveforms[i], expected):
                 raise ValueError(f"Exact raw/cache prefix identity mismatch at TRAIN row {i}")
             aligned += 1
             if p < SAMPLE_RATE:
