@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T21:29:00Z",
+  "updated_utc": "2026-10-09T21:55:00Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4293.82,
@@ -203,7 +203,7 @@
       "maximum_seconds": 1200
     },
     "chile_full_baseline": {
-      "status": "resuming from complete epoch2; startup verification inprogress",
+      "status": "running epoch4; completed epoch3 on reviewed flat cache",
       "worker": "i-08b9781ed60d8497f",
       "started_utc": "2026-10-09T19:30:04Z",
       "run": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z",
@@ -231,14 +231,35 @@
         "remaining_station_only_projection_hours": 16.41990649492,
         "projection_excludes_event_training": true
       },
-      "completed_pretrain_epochs": 2,
+      "completed_pretrain_epochs": 3,
       "original_run": "/home/ec2-user/eew-work/full-runs/team_transformer_06742dc492a1_7ec986ada2e7",
       "resume_started_utc": "2026-10-09T21:28:57Z",
       "resume_timeout_seconds": 118867,
       "resume_log": "/home/ec2-user/eew-work/full-logs/team_flat_resume_epoch02_20261009T212857Z.log",
       "resume_launcher_pid": 12905,
       "original_process_deadline_utc": "2026-10-11T06:30:04Z",
-      "partial_work": "Original unpublished epoch3 discarded; resumed training recomputes epoch3 fromvalidatedepoch2"
+      "partial_work": "Original unpublished epoch3 discarded; resumed training recomputes epoch3 fromvalidatedepoch2",
+      "first_flat_epoch": {
+        "epoch": 3,
+        "loss": 0.4017742340622176,
+        "stations": 776742,
+        "training_seconds": 957.6943512750004,
+        "epoch_seconds": 976.684106355,
+        "calibration": {
+          "1": {
+            "proper_nll": 0.6665630696031063
+          },
+          "3": {
+            "proper_nll": 0.6254508388482003
+          },
+          "5": {
+            "proper_nll": 0.5679338356827699
+          }
+        },
+        "learning_rate_next": 0.0001,
+        "peak_cuda_allocated_bytes": 5612597760,
+        "peak_cuda_reserved_bytes": 5876219904
+      }
     },
     "censored_then_affine": {
       "status": "complete",
@@ -328,7 +349,7 @@
       "durable_events": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.events.json"
     },
     "chile_flat_runtime": {
-      "status": "CUDA bounded proof passed; migration prepared; resume launched and startup checks in progress",
+      "status": "CUDA bounded proof passed; migration and startup validation passed; epoch3 complete",
       "reviewed_commit": "98c9d13",
       "cpu_tests": 10,
       "original_process_deadline_utc": "2026-10-11T06:30:04Z",
@@ -399,6 +420,20 @@
       "fits": 24,
       "cuda_initialized": false,
       "commit": "e27b860"
+    },
+    "polarization_extraction": {
+      "status": "running",
+      "started_utc": "2026-10-09T21:50:19Z",
+      "maximum_seconds": 1800,
+      "kill_grace_seconds": 60,
+      "cpu_threads": 2,
+      "cuda_visible": false,
+      "reviewed_commit": "de5fe8b",
+      "extraction_manifest_sha256": "b0ef777b9aac96e7913f874327fbd927434787d39cb27694b2555887476fafac",
+      "tests_aws": 31,
+      "rows_sampled": 112660,
+      "run": "/mnt/eew-research/runs/polarization_preflight_v2",
+      "new_resources": false
     }
   },
   "continuation": {
