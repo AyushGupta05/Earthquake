@@ -1,4 +1,4 @@
-"""Research prototype: nested future-CDF distillation and resolution prediction.
+"""Research prototype: nested future-CDF distillation and revision energy.
 
 Let Z_k = 1[Y <= k], X_t be the observed waveform prefix, F_t,k a current
 CDF, and T_s,k a frozen teacher CDF using the FULL longer prefix X_s, s > t.
@@ -8,9 +8,12 @@ For ideal conditional forecasts and nested information,
     R_t,s,k = E[(T_s,k - F_t,k)^2 | X_t]
             = Var(T_s,k | X_t) <= F_t,k * (1 - F_t,k).
 
-This motivates r = F(1-F) sigmoid(a) with 65 boundary-specific head outputs.
-It estimates how much threshold uncertainty might be resolved by a specified
-future observation, not magnitude error or a guaranteed confidence interval.
+Under ideal calibration, r = F(1-F) sigmoid(a) bounds 65 boundary-specific
+outputs. With imperfect forecasts that envelope can exclude large corrections
+to confidently wrong predictions. The "unit" option uses r = sigmoid(a) to
+estimate empirical squared CDF revision, which is always in [0,1] per boundary
+without a calibration assumption. Neither output is magnitude error or a
+guaranteed confidence interval.
 The five-second forecast has no resolution output because no later data is
 available here. Default resolution horizons are 1->3 and 3->5 seconds.
 
@@ -34,7 +37,8 @@ supervised-only and distillation-only controls on held-out earthquakes.
 Teacher inputs are sliced from the same example tensor and always include
 the current prefix. Train/fold/event identity and teacher training provenance
 must still be enforced by the runner: freezing alone does not prevent leakage.
-This module makes no novelty or calibration guarantee.
+This module makes no novelty or calibration guarantee. DIME (ICLR 2024,
+arXiv:2306.03301) is relevant prior art for conditional-variance/value heads.
 """
 
 import math
@@ -63,10 +67,14 @@ def cdf_from_logits(logits):
     return logits.softmax(-1).cumsum(-1)[:, :-1].clamp(0.0, 1.0)
 
 
-def bounded_resolution(cdf, head_logits, detach_envelope=True):
-    """Bound conditional expected resolution, not each realized innovation."""
+def bounded_resolution(cdf, head_logits, detach_envelope=True, envelope="bernoulli"):
+    """Unit revision energy, or an ideal-calibrated Bernoulli-envelope ablation."""
     if cdf.shape != head_logits.shape:
         raise ValueError("CDF and resolution head must have matching shapes")
+    if envelope == "unit":
+        return head_logits.sigmoid()
+    if envelope != "bernoulli":
+        raise ValueError("Resolution envelope must be 'unit' or 'bernoulli'")
     envelope_cdf = cdf.detach() if detach_envelope else cdf
     return envelope_cdf * (1 - envelope_cdf) * head_logits.sigmoid()
 
@@ -83,16 +91,21 @@ class ResolutionDistillationModel(nn.Module):
     """
 
     def __init__(self, channels=3, num_bins=66, hidden_dim=128,
-                 future_horizons=None, detach_resolution_envelope=True):
+                 future_horizons=None, detach_resolution_envelope=True,
+                 resolution_envelope="bernoulli", detach_resolution_features=False):
         super().__init__()
+        if resolution_envelope not in ("unit", "bernoulli"):
+            raise ValueError("Resolution envelope must be 'unit' or 'bernoulli'")
         self.future_horizons = _horizon_mapping(future_horizons)
         self.detach_resolution_envelope = detach_resolution_envelope
+        self.resolution_envelope = resolution_envelope
+        self.detach_resolution_features = detach_resolution_features
         self.backbone = MagnitudeDistributionModel(
             mode="independent", channels=channels, num_bins=num_bins, hidden_dim=hidden_dim
         )
         self.resolution_head = nn.Linear(hidden_dim, num_bins - 1)
-        # Neutral 50% of threshold uncertainty; this is initialization, not
-        # evidence that half the uncertainty actually resolves in two seconds.
+        # Midpoint of the selected envelope is initialization, not evidence
+        # about how much revision/uncertainty resolves in two seconds.
         nn.init.zeros_(self.resolution_head.weight)
         nn.init.zeros_(self.resolution_head.bias)
 
@@ -113,8 +126,10 @@ class ResolutionDistillationModel(nn.Module):
             logits = self.backbone.decoder(state)
             cdf = cdf_from_logits(logits)
             future = self.future_horizons.get(duration)
+            auxiliary_state = state.detach() if self.detach_resolution_features else state
             resolution = (
-                bounded_resolution(cdf, self.resolution_head(state), self.detach_resolution_envelope)
+                bounded_resolution(cdf, self.resolution_head(auxiliary_state),
+                                   self.detach_resolution_envelope, self.resolution_envelope)
                 if future is not None else None
             )
             forecasts[duration] = {

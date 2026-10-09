@@ -63,6 +63,24 @@ class ResolutionDistillationTests(unittest.TestCase):
         self.assertTrue(torch.isfinite(head.grad).all())
         self.assertGreater(head.grad.abs().sum().item(), 0)
 
+    def test_unit_envelope_can_represent_confidently_wrong_revision(self):
+        current = torch.tensor([[.01]])
+        teacher = torch.tensor([[.9]])
+        target = (teacher - current).square()
+        head = torch.logit(target)
+        unit = bounded_resolution(current, head, envelope="unit")
+        bernoulli = bounded_resolution(current, head, envelope="bernoulli")
+        torch.testing.assert_close(unit, target)
+        self.assertLess(bernoulli.item(), .01)
+        self.assertGreater(unit.item(), .79)
+
+    def test_auxiliary_feature_detachment_keeps_encoder_out_of_head_loss(self):
+        model = ResolutionDistillationModel(resolution_envelope="unit", detach_resolution_features=True)
+        prediction = model.forward_with_resolution(torch.randn(2, 3, 100))[1]["resolution"]
+        prediction.sum().backward()
+        self.assertIsNotNone(model.resolution_head.bias.grad)
+        self.assertTrue(all(parameter.grad is None for parameter in model.backbone.parameters()))
+
     def test_nested_teacher_uses_full_prefix_and_remains_frozen(self):
         teacher = RecordingTeacher()
         frozen = FrozenNestedTeacher(teacher)
