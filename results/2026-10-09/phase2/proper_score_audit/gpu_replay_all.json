@@ -1,0 +1,258 @@
+{
+  "status": "PASS",
+  "runtime": {
+    "python": "3.9.25",
+    "torch": "2.8.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91002,
+    "device": "cuda",
+    "device_name": "NVIDIA A10G",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "NVIDIA_TF32_OVERRIDE": null
+  },
+  "source_sha256": "902c220d696736d5e687d8919389861a7ae95be6eede0c64377635ac1f4e79bf",
+  "horizons": [
+    {
+      "status": "PASS",
+      "run": "/mnt/eew-research/runs/instrument_scores_1s_ed6e8d1cb99d_cf5e44fc7c1e",
+      "seconds": 1,
+      "validation_records": 96993,
+      "models": {
+        "huber_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.7811032426706674e-08,
+          "max_abs_mean": 1.1222592505218225e-07,
+          "checkpoint_sha256": "38d98a881c4aafe2e5a2763bb1d04ce3402ec4ba9bf514da15d1cf3e409e10ab"
+        },
+        "huber_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.1708299824396704e-08,
+          "max_abs_mean": 1.196607213472984e-07,
+          "checkpoint_sha256": "b9220cdda651378cc3e3dc1c1158b7f047544e71bbaf01eac48f4d717fe5666f"
+        },
+        "crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.569093632802776e-08,
+          "max_abs_mean": 1.0584484529434249e-07,
+          "checkpoint_sha256": "52130b436494fda47bfd9c79546e434ed801425427d3d99f57c56a02ef1346d0"
+        },
+        "crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.8934551260230137e-08,
+          "max_abs_mean": 9.446340078306114e-08,
+          "checkpoint_sha256": "5153a72f6810a8634af7366bb48d77f36b81ac6bf14533970356558f13404eb1"
+        },
+        "tail_crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.489865242287891e-08,
+          "max_abs_mean": 1.2305904614682615e-07,
+          "checkpoint_sha256": "28fced0648d23b1c8e45ea6188582668c5a324750f2e06ae60a9de9b1f68deba"
+        },
+        "tail_crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.1253875881477313e-08,
+          "max_abs_mean": 8.893914713747863e-08,
+          "checkpoint_sha256": "b5ba39a0b6d88037c9a8cccda8de451816e84bc4102a03efb8fd1444d89f5282"
+        },
+        "marginal_crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.4892351130058046e-08,
+          "max_abs_mean": 1.1042277960127584e-07,
+          "checkpoint_sha256": "4959557439221c1a73e7df05866b8ecd28be89788e0fb168d257b2f12546c1f8"
+        },
+        "marginal_crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.7040428896007995e-08,
+          "max_abs_mean": 1.3713933120631799e-07,
+          "checkpoint_sha256": "ce02610e2f4ee618bd6046f30e0a2576df606893623d430f95bb7bba4dc14c19"
+        },
+        "ranked_bce_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.8527713302750612e-08,
+          "max_abs_mean": 9.430697937607985e-08,
+          "checkpoint_sha256": "6e763d53823688240d7d118fb5b6384b7f6b811e56cc66b1cbae94ce8ac21343"
+        },
+        "ranked_bce_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.4885466748104648e-08,
+          "max_abs_mean": 1.1647964972128525e-07,
+          "checkpoint_sha256": "21604a0072947c83df3df21f33e0a358257d61cc41fc31879eddca06c34d6d4f"
+        }
+      },
+      "failed_checks": [],
+      "raw_backbone_max_abs_logit": 0.0,
+      "raw_backbone_pass": true,
+      "artifact_manifest_sha256": "280b11cd1464e502d2d6fab58b85b59280482d7be3959eea12524542afee12f9",
+      "cnn_batch_size": 256,
+      "head_batch_size": 2048,
+      "peak_gpu_bytes": 175836672,
+      "wall_seconds": 19.96378105104668,
+      "limits": "Full validation correspondence replay reuses pinned feature functions; no TEST or training waveforms read."
+    },
+    {
+      "status": "PASS",
+      "run": "/mnt/eew-research/runs/instrument_scores_3s_091b0511b303_a29c0e7200e8",
+      "seconds": 3,
+      "validation_records": 96993,
+      "models": {
+        "huber_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.940403398543623e-08,
+          "max_abs_mean": 1.1136739959029828e-07,
+          "checkpoint_sha256": "50df3c959d886a403e8ccbcd05dd054a2c1ca271684b6a05c29edc0a58917b8f"
+        },
+        "huber_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.6774888972624922e-08,
+          "max_abs_mean": 1.0487474055967714e-07,
+          "checkpoint_sha256": "6f9a09cd9b59dfff78a622a71bf125d7a1106173eefc72d198157fe25429ee9b"
+        },
+        "crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.4901018030588631e-08,
+          "max_abs_mean": 1.2633281222318816e-07,
+          "checkpoint_sha256": "a36f956589899b087403265e5f3d3a4a8b0cd941b09a0b8227b83f998a887bf2"
+        },
+        "crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.896700079801917e-08,
+          "max_abs_mean": 1.1343653320163245e-07,
+          "checkpoint_sha256": "290333412e341ab271d4311d54fc6ef779eaa45669568bd71b9731b34c438284"
+        },
+        "tail_crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.4897767020016772e-08,
+          "max_abs_mean": 1.139726400586044e-07,
+          "checkpoint_sha256": "7c39aae01107ee4d035b8b5349dadd271644b9af786e6b0f889e797c1647cce3"
+        },
+        "tail_crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.2889011908056034e-08,
+          "max_abs_mean": 1.1525289323820608e-07,
+          "checkpoint_sha256": "c42a0718c1c8bd0293039b28f9e6a88a3e4cdbb94efde306232aeb27a0f7d849"
+        },
+        "marginal_crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.4897826194903985e-08,
+          "max_abs_mean": 1.0685409370213459e-07,
+          "checkpoint_sha256": "0687568898f77b1004f85cf7992a811f498963abe0b0904f281ebd4031c8c3db"
+        },
+        "marginal_crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.4900930878081198e-08,
+          "max_abs_mean": 1.1594209329933287e-07,
+          "checkpoint_sha256": "124b97860d3314ee25b3fb55538abc759e497f98e4f2c57bd4360e2881886342"
+        },
+        "ranked_bce_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 1.490032097706262e-08,
+          "max_abs_mean": 9.578992050967779e-08,
+          "checkpoint_sha256": "7aa35c10e1c9dfa3d34fc1d9d78324141e18233dba5dd477d8847e5873a214cc"
+        },
+        "ranked_bce_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.581868163709089e-08,
+          "max_abs_mean": 1.129563965586693e-07,
+          "checkpoint_sha256": "bab65e93ef6bc5d6842ecfe4040d0eb5f30899531ca50f6e573263b23c69af74"
+        }
+      },
+      "failed_checks": [],
+      "raw_backbone_max_abs_logit": 0.0,
+      "raw_backbone_pass": true,
+      "artifact_manifest_sha256": "0c059c506548a4e3f90f8f4dd4f808409f47b8ae3106663daa4335e0289522a6",
+      "cnn_batch_size": 256,
+      "head_batch_size": 2048,
+      "peak_gpu_bytes": 176376832,
+      "wall_seconds": 19.90797639801167,
+      "limits": "Full validation correspondence replay reuses pinned feature functions; no TEST or training waveforms read."
+    },
+    {
+      "status": "PASS",
+      "run": "/mnt/eew-research/runs/instrument_scores_5s_86a2c209421d_e1f9c6294bd6",
+      "seconds": 5,
+      "validation_records": 96993,
+      "models": {
+        "huber_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.9702117654295535e-08,
+          "max_abs_mean": 1.419184097914915e-07,
+          "checkpoint_sha256": "bec0ca755534bfc98ec3f12f3fa72c0127ffe0c98ce293bb61cdb3dd71764f16"
+        },
+        "huber_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.876272775509392e-08,
+          "max_abs_mean": 1.1563736903770973e-07,
+          "checkpoint_sha256": "f83e7849832397634c4ac379519d6c03d5f951d687f8b490ea4302c153c58e50"
+        },
+        "crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.9158005454554825e-08,
+          "max_abs_mean": 1.1364275080721353e-07,
+          "checkpoint_sha256": "d9b168d6d412009953aeb17410a369cbb453b95cf88d92efef24cdca561ffb57"
+        },
+        "crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.401337262369907e-08,
+          "max_abs_mean": 1.1154491012408813e-07,
+          "checkpoint_sha256": "bfefefbb299d0ddc73fb1808dac4031c5fbcf4a0e75bfa3dff0c98b878bf249b"
+        },
+        "tail_crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.9719900207503258e-08,
+          "max_abs_mean": 2.1684210604331318e-07,
+          "checkpoint_sha256": "90621b9d0267591cb3ac1306300acf0a42810704f039fe030de2694cddf5c9c1"
+        },
+        "tail_crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.951987476684792e-08,
+          "max_abs_mean": 1.1969399639423295e-07,
+          "checkpoint_sha256": "41ac86c6560f224072c04a766ffc9d2266a32eed0e15276e14dbdec92f13c980"
+        },
+        "marginal_crps_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.9365276099646564e-08,
+          "max_abs_mean": 1.1248244367430105e-07,
+          "checkpoint_sha256": "4d736ee4b6e2219248f21d2abc5bd117b4913ee478b8209f89b915c357d39a14"
+        },
+        "marginal_crps_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.8817798702895914e-08,
+          "max_abs_mean": 1.1498510147770536e-07,
+          "checkpoint_sha256": "40fba190ea2f62f18400286f334dcc0b91553834f74365937515f0a5c13896ff"
+        },
+        "ranked_bce_ce_seed20261009": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.9463246176142377e-08,
+          "max_abs_mean": 1.233742715483328e-07,
+          "checkpoint_sha256": "857a440eafef1fa23ce5a277cb7d283ecf8a17393040cd771e63881d166c4360"
+        },
+        "ranked_bce_ce_seed20261010": {
+          "pass_tolerance": true,
+          "max_abs_probability": 2.9372159260354636e-08,
+          "max_abs_mean": 1.21687174657175e-07,
+          "checkpoint_sha256": "ca9a2546328e79048cb4cac272382824a959ebca686afc970ca8ab26a766282c"
+        }
+      },
+      "failed_checks": [],
+      "raw_backbone_max_abs_logit": 0.0,
+      "raw_backbone_pass": true,
+      "artifact_manifest_sha256": "60741de27490833cb35eafc87495f1646458d9f3e2dfb80646ad1a5dcc9f2243",
+      "cnn_batch_size": 256,
+      "head_batch_size": 2048,
+      "peak_gpu_bytes": 177102336,
+      "wall_seconds": 21.176456860033795,
+      "limits": "Full validation correspondence replay reuses pinned feature functions; no TEST or training waveforms read."
+    }
+  ],
+  "tolerances": {
+    "logit_atol": 0.002,
+    "logit_rtol": 0.0002,
+    "probability_atol": 0.0002,
+    "mean_atol": 0.002
+  }
+}

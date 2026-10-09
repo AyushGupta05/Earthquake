@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "No actionable defects found. The interval diagnostics distinguish continuous coverage from clipped-category coverage. GPU replay matches the producer\u2019s batching, normalization, model equations, runtime identity, and existing tolerances, and rejects nonfinite PMFs before reductions. Review was read-only; no tests or GPU work were run.",
+  "overall_confidence": 0.91
+}

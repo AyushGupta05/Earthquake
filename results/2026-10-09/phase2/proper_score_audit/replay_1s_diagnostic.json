@@ -1,0 +1,134 @@
+{
+  "status": "DIAGNOSTIC_ONLY_NOT_A_PASS",
+  "run": "/mnt/eew-research/runs/instrument_scores_1s_ed6e8d1cb99d_cf5e44fc7c1e",
+  "seconds": 1,
+  "samples": 32,
+  "validation_row_indices": [
+    0,
+    6466,
+    12932,
+    19398,
+    25864,
+    32330,
+    38796,
+    45262,
+    51729,
+    58195,
+    64661,
+    65475,
+    65476,
+    65477,
+    65478,
+    65479,
+    65480,
+    65481,
+    65482,
+    65483,
+    65484,
+    65485,
+    65486,
+    65487,
+    65488,
+    65489,
+    65490,
+    71127,
+    77593,
+    84059,
+    90525,
+    96992
+  ],
+  "validation_trace_names": [
+    "17965101.IV.ARVD..HH",
+    "18112041.IV.MMO1..EH",
+    "18313301.OX.AGOR..HH",
+    "18499351.IV.T1221..HN",
+    "18697521.IV.NRCA..HN",
+    "18939961.IV.T1220..HN",
+    "19162401.IV.MML1..HN",
+    "19411691.IV.SMA1..EH",
+    "19706281.IV.PE3..EH",
+    "20029511.IV.NRCA..HH",
+    "20345671.IV.NARO..HH",
+    "20375681.IV.ACER..HH",
+    "20375681.IV.ACER..HN",
+    "20375681.IV.AMUR..HH",
+    "20375681.IV.APRC..HH",
+    "20375681.IV.APRC..HN",
+    "20375681.IV.BIOG..HH",
+    "20375681.IV.BIOG..HN",
+    "20375681.IV.BSSO..HN",
+    "20375681.IV.CAAM..HH",
+    "20375681.IV.CAFE..HH",
+    "20375681.IV.CAFE..HN",
+    "20375681.IV.CAMP..HH",
+    "20375681.IV.CERA..HH",
+    "20375681.IV.CERA..HN",
+    "20375681.IV.CERT..HH",
+    "20375681.IV.CIGN..HH",
+    "20545501.IV.INTR..HN",
+    "20792801.IV.CSLB..HH",
+    "21036801.IV.T1299..EH",
+    "21153141.IV.RM33..EH",
+    "21320231.IV.VVLD..HH"
+  ],
+  "raw_backbone_max_abs_logit": 0.032642364501953125,
+  "models": {
+    "huber_ce_seed20261009": {
+      "max_abs_probability": 0.0001725286087240277,
+      "max_abs_mean": 0.000858364275773773
+    },
+    "huber_ce_seed20261010": {
+      "max_abs_probability": 0.00017244128137122727,
+      "max_abs_mean": 0.001380037365526848
+    },
+    "crps_ce_seed20261009": {
+      "max_abs_probability": 0.000143113701949929,
+      "max_abs_mean": 0.0013761818726437023
+    },
+    "crps_ce_seed20261010": {
+      "max_abs_probability": 0.00021915811934901386,
+      "max_abs_mean": 0.001704684702672761
+    },
+    "tail_crps_ce_seed20261009": {
+      "max_abs_probability": 0.00015174520894338517,
+      "max_abs_mean": 0.0012494896907841264
+    },
+    "tail_crps_ce_seed20261010": {
+      "max_abs_probability": 0.0002488379114002903,
+      "max_abs_mean": 0.002071801262432985
+    },
+    "marginal_crps_ce_seed20261009": {
+      "max_abs_probability": 0.0002935243257830844,
+      "max_abs_mean": 0.0022773458577555195
+    },
+    "marginal_crps_ce_seed20261010": {
+      "max_abs_probability": 0.0002180376873720663,
+      "max_abs_mean": 0.0014883719993334817
+    },
+    "ranked_bce_ce_seed20261009": {
+      "max_abs_probability": 0.00016420344076056859,
+      "max_abs_mean": 0.0012519392922937195
+    },
+    "ranked_bce_ce_seed20261010": {
+      "max_abs_probability": 0.00027114082284716845,
+      "max_abs_mean": 0.0026429525784768064
+    }
+  },
+  "replay_source_sha256": "60f4c27568ef286786407ed2e8d059d97a738d4306fbd723c2fc2120c13d34f1",
+  "wall_seconds": 14.614708622044418,
+  "scope": "CPU sample inference, pinned feature functions reused; no exhaustive model inference or raw-data reprocessing.",
+  "tolerances": {
+    "probability": 0.0002,
+    "mean": 0.002,
+    "raw_logits_atol": 0.002,
+    "raw_logits_rtol": 0.0002
+  },
+  "original_tolerance_failures": [
+    "CPU backbone differs beyond existing reference tolerance",
+    "Saved checkpoint/PMF sample disagreement: crps_ce_seed20261010",
+    "Saved checkpoint/PMF sample disagreement: tail_crps_ce_seed20261010",
+    "Saved checkpoint/PMF sample disagreement: marginal_crps_ce_seed20261009",
+    "Saved checkpoint/PMF sample disagreement: marginal_crps_ce_seed20261010",
+    "Saved checkpoint/PMF sample disagreement: ranked_bce_ce_seed20261010"
+  ]
+}
