@@ -1,0 +1,91 @@
+{
+  "scope": "Read-only code/research and response-XML schema inspection; no signal arrays, models, code implementation, training or AWS operations",
+  "date": "2026-10-09",
+  "local_source_sha256": {
+    "work/repo/research/2026-10-09/phase2/sequential_models.py": "17bf8529ffa00e51dc64885cf2bc09e6b83f8ad573040a2bd0f441fa2957ff44",
+    "work/repo/research/2026-10-09/phase2/train_sequential.py": "0879691623eb11fe6850fac8ce0cf1eccf02fd03bc9ea1c5e2a364dea214ed19",
+    "work/repo/research/2026-10-09/phase2/affine_prefix_control.py": "59cc87f6a22e12e55bd3b320179917c9e3797ae15e455af5f8651a2ab1d1b092",
+    "work/repo/research/2026-10-09/phase2/train_affine_prefix.py": "5d231e3217e0220818008240a2cd3727e4630cf8222566acf2e9749f0be63235",
+    "work/repo/research/2026-10-09/phase2/instrument_residual.py": "727c7eb9e1b657f1122b4c085186812e170ff2b323855644f1fa030b2cb47ade",
+    "work/repo/research/2026-10-09/phase2/instrument_inventory.py": "9a942c4773e5c18264aa2db432ba4669f965004aeb9a1f67f25a67d6c812c227",
+    "work/repo/research/2026-10-09/phase2/future_growth.py": "44e24e839ed12a5405086dbbbe18e63db8a29fd45848c2e44755e1882fe182a9",
+    "work/repo/research/2026-10-09/phase2/resolution_distillation.py": "f9288212eddd6bb4d90ad4058b77f6f2c1a1accba8b3bf3a5a032776874c662d",
+    "work/repo/research/2026-10-09/phase3/team_lm.py": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+    "work/repo/research/2026-10-09/earthquake_recent_architecture_audit.md": "0c4e6a1622f5b6236549777be8d5180884586fa0e38bf94ffbb6b23372ce36bc",
+    "work/repo/research/2026-10-09/earthquake_instrument_factor_results.md": "3d55ff461b441418dc39dc1f8893b2cd85fb6dadcc35c276e5199263a8baafda",
+    "work/repo/research/2026-10-09/earthquake_affine_results.md": "a17e4fb95ee21498bda024758e05fc831102dafc025f2f4e274c5c104d009804"
+  },
+  "primary_sources": [
+    {
+      "title": "FiLM: Visual Reasoning with a General Conditioning Layer",
+      "url": "https://arxiv.org/abs/1709.07871",
+      "boundary": "General feature-wise affine conditioning, not seismology-specific."
+    },
+    {
+      "title": "Feature-wise linear modulation-conditioned convolutional neural network for site amplification prediction",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6794461",
+      "boundary": "2026 author preprint; site-profile modulation of CNN motion features, not early source magnitude."
+    },
+    {
+      "title": "ConProSeis: Prototype-driven contrastive learning enables transferable seismic representation",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0952197626016015",
+      "doi": "10.1016/j.engappai.2026.115317",
+      "boundary": "Publisher abstract/introduction and section snippets inspected; exact full augmentation implementation not verified."
+    },
+    {
+      "title": "CREIME",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022JB024595",
+      "boundary": "Primary full text Appendix C includes counts versus physical-unit input matched-cohort comparison."
+    },
+    {
+      "title": "Causal and uncertainty-aware instrument correction in broad-band seismology",
+      "url": "https://academic.oup.com/gji/article/246/3/ggag265/8729092",
+      "doi": "10.1093/gji/ggag265",
+      "boundary": "Primary publisher indexed full text; direct open failed. Known causal regularization and response-uncertainty propagation."
+    },
+    {
+      "title": "TEAM-LM",
+      "url": "https://academic.oup.com/gji/article/226/2/1086/6223459",
+      "boundary": "Primary publisher full text; observed-prefix amplitude retained, end-to-end Gaussian mixtures."
+    },
+    {
+      "title": "MagNet",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GL085976",
+      "boundary": "Raw waveform network and station/site learning, no explicit response correction."
+    },
+    {
+      "title": "INSTANCE dataset",
+      "url": "https://essd.copernicus.org/articles/13/5509/2021/",
+      "boundary": "Full-record release processing prevents raw-stream causality claim."
+    },
+    {
+      "title": "ObsPy sensitivity removal",
+      "url": "https://docs.obspy.org/packages/autogen/obspy.core.trace.Trace.remove_sensitivity.html",
+      "boundary": "Sensitivity removal distinct from full response deconvolution."
+    }
+  ],
+  "xml_schema_probe": {
+    "archive_sha256": "71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2",
+    "xml_members": 632,
+    "examined_nonempty_response_schemas": 3,
+    "stage_counts": [
+      6,
+      6,
+      4
+    ],
+    "stage_types_observed": [
+      "PolesZeros",
+      "StageGain",
+      "Coefficients",
+      "Decimation",
+      "FIR"
+    ],
+    "boundary": "Schema existence only; no new completeness/evalresp/epoch audit and no waveform reading"
+  },
+  "memo_sha256": "f94e75d17307f0b3a0f0fdd0b4fac635c83967f97ffe8de40e5b6c1b0ab12101",
+  "memo_validation": {
+    "balanced_display_math": true,
+    "no_implementation_or_training": true,
+    "word_count": 2477
+  }
+}

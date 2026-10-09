@@ -1,0 +1,62 @@
+# Frozen TRAIN-only polarization information diagnostic, v1
+
+Locked 2026-10-09 21:18:02 UTC, after reading the TRAIN header and prior shape/source audits, **before reading new TRAIN targets or fitting**. This is an information diagnostic, not a distribution method or an EEW accuracy claim. No VAL/TEST arrays are permitted.
+
+## Scope and data gates
+
+Use original INSTANCE TRAIN identities only. The expected metadata SHA256 is `168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d`; response archive SHA256 is `71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2`. Raw source is `/data/Instance_events_counts.hdf5`, named datasets `data/{trace_name}`. Expected layout is ENZ, channels×samples, counts, 100 Hz. Read only the named TRAIN traces, never enumerate or sample arbitrary HDF event keys.
+
+Required segment is `[P−200,P+500)`, where P is the benchmark integer manual P sample. At deadline t=1/3/5, only `[P−200,P+100t)` can affect a feature. The pre-P segment is `[P−200,P)`. A valid segment has finite samples, complete coverage and no padding. No catalogue S time, source geometry, magnitude type, trace-wide SNR/extrema or future statistic is an input. Manual-P alignment and released whole-record preprocessing remain benchmark limitations; prefix-only computation does not turn these arrays into raw causal streams.
+
+All three components must have one unambiguous response epoch covering the entire required 7 s segment; positive finite sensitivities; the same known input unit (`m/s` or `m/s^2`); and counts output. Require native E/N orientation within 1 degree of azimuth90/0, dip0, and Z dip−90 within1degree (Z azimuth immaterial). Do not assume channel letters override missing orientation. Do not invent a rotation from uncertain metadata. Divide each axis by its own sensitivity; call this approximate native-unit scaling, not full deconvolution. Keep velocity and acceleration strata explicit; never directly add their covariances.
+
+Primary population is the same complete-case intersection for every arm at all three deadlines. Exclude a row uniformly for missing coverage, response, orientation, mixed units, invalid target, nonfinite waveform, or negligible pre-P/post-P variance on any axis (`RMS <= 1e-12` in native units). Report separate reason masks and eligibility by unit/family/station/event. Missing values never become physical zeros. No model imputation or fallback arm is fitted in this diagnostic. If <90% of otherwise valid sampled records remain, overall-population conclusions are forbidden; the supported subset can still be described. This threshold does not license changing eligibility after seeing errors.
+
+## New splits and fixed population
+
+Do not reuse the original CNN, its hidden features, any fitted head, its logits, or its global normalization: they already saw these TRAIN events/stations. The baseline consists of the **85 named descriptors** (51 prefix summaries plus34 static response/site fields), recomputed and fit from scratch. Use the existing mathematical formulas for the51 prefix summaries on raw counts with prefix demeaning; record the resulting numerical difference from historical globally standardized inputs. All arms share exactly this definition, masks, sampling, normalization and target rows. This is not replay of the current residual model.
+
+For an ID s, assign hash `int.from_bytes(SHA256(salt + '\0' + s)[:8], 'big') % 10`. Salt `polarization-event-v1` assigns events0/1 to evaluation,2–9 to fitting. Salt `polarization-station-v1` assigns station groups0/1 to held stations,2–9 to seen stations. Group all channel families/locations/epochs of each network.station together. Merge station aliases whose inventory coordinates are within100m and elevations within50m, using connected components; missing coordinates retain network.station grouping and are flagged in the split audit. No response or waveform target enters the partition. Persist complete identities and disjointness assertions.
+
+Fit only fitting events at seen stations. Two evaluations use the **same held events**: seen-station records (event-heldout) and held-station records (joint station/event-heldout). Also report paired event-macro comparisons on events represented in both evaluation subsets. No refit between evaluation subsets. Source spatial proximity is not held out by this design and must be disclosed.
+
+Select the15,000 fitting events with lowest SHA256 under salt `polarization-fit-sample-v1` (or all if fewer), then up to4 eligible records/event using trace-name hash salt `polarization-record-v1`. Evaluation uses all eligible held events and up to4 records/event **per evaluation subset**, by the same trace rule. Sampling is independent of magnitude. Inverse recording-sampling weights `N_eligible(event,subset)/N_selected(event,subset)`, normalized to mean1, restore the eligible record population. Uniform event subsampling adds only a common factor. The fit cap is60,000 rows; evaluation cap40,000 per subset, deterministically by event hash if needed. Persist dropped counts; no rare-target-driven resampling.
+
+## Measurements and three arms
+
+All covariance estimates use an independently demeaned pre-P block or the currently observed post-P prefix. Physical arrays are formed by per-axis sensitivity division. Compute feature arrays in float64; never estimate response/normalization from held events.
+
+**B:85 descriptors.** Current51 prefix formulas and34 static fields only. Reserve all42 additional input slots but set them to zero after normalization.
+
+**D:diagonal/marginal noise.** B plus21 features: per-axis native log10 pre-P RMS (3); log10 prefix RMS / pre-P RMS (3); per-axis normalized pre-P FFT power in the same five existing bands (15). These expose noise level and marginal spectrum without cross-component dependence. The42-slot schema is fixed; the other21 slots are zero.
+
+**F:full cross-component.** D plus21 features: pre-P and prefix zero-lag pair correlations for EN/EZ/NZ (6); prefix normalized pair cross-correlations at lags−5/+5 samples (6, use only overlapping observed samples); three log1p generalized covariance eigenvalues; and six entries of the unit-norm outer product of the leading post-P covariance eigenvector. The latter removes eigenvector sign ambiguity, not sensor-orientation dependence. For covariance `C`, regularize noise as `C_n + 0.01*trace(C_n)/3*I`; compute generalized eigenvalues with an SPD solver. Do not subtract noise and clip a matrix to PSD. If the leading post-P eigengap is <=1e-6 times its largest eigenvalue, set its outer-product features to zero and record the degeneracy (same validity population, no geometry interpretation). Prefix amplitudes remain in B; whitening is not a replacement for amplitude.
+
+Eigenvalue features encode cross-component and noise geometry but do not identify source depth by themselves. The direct-head comparison is the intended test; **no latent-geometry head** is authorized by this protocol.
+
+## Fixed CPU fit and outputs
+
+Use a small fixed random-feature ridge diagnostic, avoiding hyperparameter search: standardized inputs clipped to±8; concatenation of the127 input slots,128 fixed ReLU random features and an intercept. Random matrix entries are iid N(0,1/127), bias iid N(0,1), with seeds20261009 and20261010; identical draws and dimensions across arms, masks applied before projection. Train normalizers and the resulting feature-basis normalizer on fitting rows only, with sampling weights. Ridge minimizes weighted mean squared error plus `0.01*||coefficients||²`; intercept unpenalized. Targets are magnitude, log10(max(hypocentral_distance_km,1)), and log1p(depth_km), standardized using fit-only weights and solved jointly with separate output coefficients. Target geometry never feeds magnitude predictions. This is a fixed-capacity nonlinear information probe, not a claim that ridge is the best baseline.
+
+There are18 fits:3 deadlines×3 arms×2 random-feature seeds; each returns all3 target outputs and evaluates both held subsets. No magnitude reweighting, validation selection, early stopping, seed selection or ensemble selection. Report each seed and their mean prediction, weighted record metrics and unweighted event-macro metrics, per-unit/family errors, sample counts and complete identities. Report MAE/RMSE for all targets, magnitude MedAE/CVaR95, M≥4/M≥5 magnitude MAE and bias. No likelihood/calibration claim: this pilot does not predict a density.
+
+Total fitting+scoring wall-clock cap **1800 seconds**,2 CPU threads, CUDA disabled. No automatic larger model, data reduction or changed hyperparameters if the cap expires; mark incomplete and report completed fits only without declaring success. Extraction and schema audit are separately scheduled and timed; no GPU extraction is needed.
+
+## Fixed decision gate
+
+Use1000 fixed event bootstrap replicates (seed20261011), paired arms and paired records; station dependence remains an uncertainty limitation. D−B measures marginal-noise information; **F−D is the primary cross-component contrast**. A development gate requires the ensemble F−D to meet all of the following at1,3,5s in both held subsets: magnitude MAE no worse by more than0.002; MedAE no worse by more than0.002; M≥4 event-macro MAE at least0.02 lower; and at least5% lower event-macro MAE for either distance or depth at every deadline. Select the same geometry target for the all-deadline claim, not a different target at each time. Both individual seeds must have nonpositive M≥4 event-macro MAE difference at every horizon/subset. Require at least20 independent M≥4 events in each evaluated subset; otherwise the tail gate is inconclusive. M≥5 is descriptive if fewer than20 events.
+
+For passing claims, additionally require the upper95% paired-bootstrap bound for the all-event magnitude MAE difference <=0.005 and the upper95% bound for M≥4 event-macro MAE difference <0 at all horizons/subsets. This is a deliberately stringent exploratory investment gate, not a formal familywise confirmatory test. One horizon improving does not pass the all-duration objective. If D improves but F does not, conclude marginal noise may help and reject the polarization mechanism. If F helps magnitude without improving geometry, it is cross-component evidence, not verified geometry correction. Even a pass only earns a later same-input method comparison, not novelty or published-benchmark superiority.
+
+## Tests required before extraction/fitting authorization
+
+1. Feature suffix mutation leaves every earlier deadline bit-identical; pre-P history is fixed; no filter/interpolation reaches outside the selected segment.
+2. Independent sign flips preserve all B/D marginal descriptors but alter appropriate cross-component signs; a constructed identical-marginal/different-correlation pair is distinguished only by F.
+3. Joint positive per-axis count/gain scaling leaves native new features invariant away from fixed floors. Do not claim full B invariance because B retains counts.
+4. Isotropic/noise-only and near-singular covariance fixtures stay finite; generalized eigenvalues nonnegative up to declared tolerance; leading-eigenvector degeneracy handled without arbitrary directions.
+5. Response ambiguity, mixed units, noncanonical/missing orientation, epoch crossing, invalid picks, short pre-P, trace mismatch and nonfinite values fail closed with reasons.
+6. Exact event/station grouping, co-located alias union, no TRAIN/evaluation overlap, label-independent sampling, exact restoration weights, masks and identical parameter count/draws across arms.
+7. Fit-only normalization, paired identical predictions when added slots are zero, source/feature/identity hashes, row preservation, deterministic seeds, and hard runtime cap.
+8. A synthetic null has targets independent of cross-component structure conditional on B/D; report effect and bootstrap false-positive result. An informative synthetic control changes cross-component structure with the target while holding marginals fixed. These verify the diagnostic; constructed success is not EEW improvement.
+
+Any protocol change must receive a new version/hash before fitting and explain its reason. No real-target-informed change to thresholds or feature definitions is allowed.

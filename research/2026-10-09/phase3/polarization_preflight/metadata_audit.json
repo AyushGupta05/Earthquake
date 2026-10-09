@@ -1,0 +1,131 @@
+{
+  "counts": {
+    "metadata_response_orientation_eligible": 963631,
+    "metadata_window_2s_pre_5s_post": 979484,
+    "path_ep_distance_km_finite_nonnegative": 979487,
+    "path_hyp_distance_km_finite_nonnegative": 979487,
+    "response_all_matched": 974384,
+    "source_depth_km_finite_nonnegative": 979487,
+    "train_rows": 979487
+  },
+  "data_format": {
+    "component_order": "b'ENZ'",
+    "dimension_order": "b'CW'",
+    "instrument_response": "b'not restituted'",
+    "measurement": "b'velocity/acceleration'",
+    "unit": "b'counts'"
+  },
+  "failure_reasons_nonexclusive": {
+    "epoch_boundary": 5100,
+    "orientation": 15856,
+    "response": 5103,
+    "units": 5103,
+    "window": 3
+  },
+  "hashes": {
+    "/home/ec2-user/Earthquake/research/2026-10-09/phase2/instrument_inventory.py": "9a942c4773e5c18264aa2db432ba4669f965004aeb9a1f67f25a67d6c812c227",
+    "/home/ec2-user/Earthquake/train_full_metadata.csv": "168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d",
+    "/mnt/eew-research/instance/responses.tgz": "71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2"
+  },
+  "limits": "Eligibility counts are metadata-only; waveform finiteness/variance and exhaustive HDF presence are untested",
+  "orientation_validity": {
+    "False": 15856,
+    "True": 963631
+  },
+  "protocol_sha256": "686e427bce3e587e17985346a93cf59a5e685517b1c810e83c20d3bae2edda29",
+  "scope": "TRAIN metadata and TRAIN shapes only; no waveform values, no magnitude column, no VAL/TEST",
+  "seconds": 56.50353400502354,
+  "train_cache_shapes": {
+    "1": {
+      "dtype": "float32",
+      "path": "/data/Instance_windows_1s.hdf5",
+      "shape": [
+        979487,
+        3,
+        100
+      ]
+    },
+    "3": {
+      "dtype": "float32",
+      "path": "/data/Instance_windows_full.hdf5",
+      "shape": [
+        979487,
+        3,
+        300
+      ]
+    },
+    "5": {
+      "dtype": "float32",
+      "path": "/data/Instance_windows_5s.hdf5",
+      "shape": [
+        979487,
+        3,
+        500
+      ]
+    }
+  },
+  "train_shape_examples": {
+    "10000541.IV.ARRO..EH": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.IV.ASSB..HH": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.IV.ATCC..EH": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.IV.ATCC..HN": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.IV.CAMP..HH": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.IV.CESI..HH": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.MN.AQU..HH": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    },
+    "10000541.MN.AQU..HL": {
+      "dtype": "int32",
+      "shape": [
+        3,
+        12000
+      ]
+    }
+  },
+  "unit_patterns": {
+    "m/s/m/s/m/s": 697929,
+    "m/s^2/m/s^2/m/s^2": 276455,
+    "missing/missing/m/s": 5100,
+    "missing/missing/missing": 3
+  }
+}

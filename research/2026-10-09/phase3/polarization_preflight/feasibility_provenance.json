@@ -1,0 +1,25 @@
+{
+  "scope": "metadata-only feasibility audit; review clean; real waveform extraction and fitting not started",
+  "audit_protocol": "protocol_v1.md",
+  "implementation_protocol": "protocol.md v2",
+  "hashes": {
+    "audit_metadata.py": "6a8f47c8fa6966c533765118e7b397c293fcf87409d2d4cd42a7ac63a198720f",
+    "test_audit_metadata.py": "e03e6e37de7a01c5d9c15e2dcaa41f4c1c75b0015509213d1f5a5a1f875764c2",
+    "metadata_audit.json": "6b28eb6ffab48c9b84018981b98d646eacd59e3e586430347bd83de05badeeab",
+    "review_result.json": "a33f556b579fab49cf10331a3ca8958f69287855865eb0c5230d2fb0f8ffd6bf",
+    "protocol.md": "a9b12a88be3a46e96d0f3f208f64b7728d1a17bb132e146887694e40288a448b",
+    "protocol_v1.md": "686e427bce3e587e17985346a93cf59a5e685517b1c810e83c20d3bae2edda29",
+    "tests.log": "dd199550e281bee30a0a13999923e3cbf23f0d2f0517e7b05229433edb8e730c"
+  },
+  "tests": 6,
+  "review_exit_code": 0,
+  "review_command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex --no-web-search --prompt-file ../review_context.txt --output ../review_result.txt --json-output ../review_result.json",
+  "accepted_findings_fixed": [
+    "Competing response epoch beginning within required window",
+    "Properties must come from same epoch as required-window coverage"
+  ],
+  "failed_attempts": [
+    "First audit used nonexistent Instance_windows_3s.hdf5; corrected to verified Instance_windows_full.hdf5",
+    "One review failed structured validation due absolute finding path; reran with relative paths"
+  ]
+}

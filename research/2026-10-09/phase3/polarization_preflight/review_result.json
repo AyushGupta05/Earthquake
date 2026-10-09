@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "No actionable defects found within the metadata-only audit scope. Field selection excludes magnitude and S-arrival columns; HDF access uses named TRAIN traces and TRAIN cache shapes without waveform reads. Response coverage, unit compatibility, and orientation checks match the stated rules. The protocol and importer hashes match the inspected files, and the 3-second cache path is correct. Tests were inspected but not run, as requested.",
+  "overall_confidence": 0.9
+}
