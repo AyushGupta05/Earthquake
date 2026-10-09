@@ -1,0 +1,29 @@
+{
+  "checked_utc": "2026-10-09T20:04:32.678013+00:00",
+  "worker": "172.31.36.211",
+  "directory": "/home/ec2-user/eew-work/flat-cache-cpu-tests",
+  "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 /opt/pytorch/bin/python -m unittest discover -s tests -p test_flat_station_cache.py -v",
+  "tests": 12,
+  "seconds": 0.262,
+  "result": "PASS",
+  "torch_imported": false,
+  "real_data_exported": false,
+  "local_system_python": "Could not import h5py; no local packages changed",
+  "source_sha256": {
+    "research/2026-10-09/phase3/flat_station_cache.py": "0656045e88b41a57716fca67d72dce38c738f35042b96f298c043c8d3e0ec009",
+    "research/2026-10-09/phase3/FLAT_CACHE_PLAN.md": "7b2c00b4f5372950a9c67092f19e3ca1276dbd09b048e60ac8ebca6cc0971ee5",
+    "tests/test_flat_station_cache.py": "130e1237585d172000582713f59acbb513daa7213957ea9d587e0e56dd542e64"
+  },
+  "accepted_review_fixes": [
+    "require externally pinned metadata CSV SHA",
+    "compare timing and sample metadata without lossy integer truncation"
+  ],
+  "autoreview": {
+    "engine": "codex",
+    "initial_findings": 2,
+    "accepted_findings": 2,
+    "final_findings": 0,
+    "result": "clean",
+    "result_file": "work/flat_cache_review.json"
+  }
+}
