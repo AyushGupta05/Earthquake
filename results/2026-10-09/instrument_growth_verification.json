@@ -1,0 +1,30 @@
+{
+  "scope": "Only the three new owned files; no GPU or actual-data training, no commits. Synced to original AWS host solely for CPU verification.",
+  "source_sha256": {
+    "research/2026-10-09/phase2/instrument_growth.py": "8458cd1834d445278dc83c5e0099fb4d9b1ae529412b3e404a1ae2816ed217b7",
+    "research/2026-10-09/phase2/INSTRUMENT_GROWTH.md": "9b32ea0e1d9c8bfe78391fb9f067068cdfacd2470ddbc86e1b95790ae067d57b",
+    "tests/test_instrument_growth.py": "1cc58578f68be33963722735cf869ef3a78912c759676dd5d3bf74b71a87516d"
+  },
+  "remote_sha256_verified": true,
+  "source_base_commit": "26690e229c50ccb98f41ae3359863613b2e67623",
+  "tests": {
+    "command": "CUDA_VISIBLE_DEVICES=\"\" .venv/bin/python -m unittest discover -s tests -p test_instrument_growth.py -v",
+    "host": "instancebaseline",
+    "count": 10,
+    "result": "all passed",
+    "elapsed_seconds": 2.287,
+    "key_evidence": [
+      "bitwise original instrument_residual.fit_one replay for both seeds",
+      "detached magnitude update equality with auxiliary weight100",
+      "aligned TRAIN targets, missingness, coverage and source rejection",
+      "complete synthetic output artifact audit"
+    ]
+  },
+  "review": {
+    "engine": "codex",
+    "command": "autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex with saved prompt/output paths",
+    "result": "clean; no actionable findings",
+    "confidence": 0.94,
+    "result_file": "work/instrument_research/instrument_growth_review_result.json"
+  }
+}
