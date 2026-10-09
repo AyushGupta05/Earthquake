@@ -45,6 +45,14 @@ Both caches contain 67,293 TRAIN+DEV events and 1,049,297 station records. Schem
 
 Each cache stores a pandas table at `metadata/event_metadata`, groups at `data/{EVENT}/...`, and `splits/{train,dev}_event_ids` plus `splits/{train,dev}_source_rows`. Use the full cache for the original random training cutoffs through +25 seconds or a training-only future teacher. The compact cache supports an early-window training adaptation.
 
+### Metadata sidecar for the AWS runtime
+
+AWS Python 3.9/PyTables 3.9.2 is incompatible with the shared NumPy 2.0.2 wheel. The shared training environment was not downgraded. Each cache instead has an adjacent `<cache>.metadata.csv` and `<cache>.metadata.csv.manifest.json`; this avoids PyTables at training time without changing the cache bytes or hashes.
+
+Both CSVs contain exactly `EVENT,MA,TIME,source_row_index,benchmark_split`, 67,293 TRAIN+DEV rows, and are 4,129,245 bytes with identical SHA256 `8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1`. Each manifest binds the CSV to the corresponding cache SHA256 and records `origin=metadata/event_metadata`, row/column counts and provenance. Small copies of these manifests are committed in the data-results directory; CSV data stay outside Git.
+
+Sidecars were generated with Python `csv.writer` from the verified local cache table, preserving Python float round-trip strings. `pandas.read_csv` with `float_precision='round_trip'`, MA/TIME float64, source_row_index int64 and string IDs/split fields matched the source dataframe exactly. EVENT IDs and source rows also matched both HDF split lists. The training loader should check the CSV and cache checksums and these exact memberships before using the sidecar. No TEST rows or waveform values enter it.
+
 ## Verification and commands
 
 Every exported waveform was read back and compared exactly to the source slice cast to float32. Every coordinate and station identifier also matched exactly. Maximum absolute float32 conversion error was 9.313e-10 m/s in both caches; no nonzero source values underflowed to zero. Independent full-file SHA256 and reopened membership checks passed. A deterministic 69-event sample, including split boundaries and the largest TRAIN event, confirmed identical first-1000 waveforms, coordinates and station identifiers across caches. No TEST waveform values were read.
