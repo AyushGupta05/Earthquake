@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T20:19:43.747904+00:00",
+  "updated_utc": "2026-10-09T20:42:09Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4293.82,
@@ -233,7 +233,7 @@
       }
     },
     "censored_then_affine": {
-      "status": "running",
+      "status": "complete",
       "maximum_seconds": 37600,
       "censored_seconds": 10800,
       "each_affine_seconds": 3600,
@@ -251,10 +251,20 @@
       "initial_raw_control_status": "complete exit0 at2026-10-09T19:36:14Z",
       "censored_started_utc": "2026-10-09T19:36:24Z",
       "censored_run": "/mnt/eew-research/runs/censored_innovation_6c1510b97725_c9dd74d23d87",
-      "censored_status": "complete exit0; independent artifact/metric audit passed; scientific mechanism rejected; commit d91a1c3"
+      "censored_status": "complete exit0; independent artifact/metric audit passed; scientific mechanism rejected; commit d91a1c3",
+      "affine_completed_controls": [
+        "raw_seed20261009",
+        "raw_seed20261010",
+        "affine_seed20261009",
+        "affine_seed20261010",
+        "affine_guard1_seed20261009",
+        "affine_guard1_seed20261010"
+      ],
+      "affine_remaining_controls": [],
+      "affine_scientific_outcome": "Fails high-magnitude objective; independent AWS/local six-run point audit passed"
     },
     "proper_scores": {
-      "status": "waiting_for_successful_predecessor",
+      "status": "running",
       "outer_maximum_seconds": 49000,
       "predecessor_wait_max_seconds": 37600,
       "each_window_seconds": 3600,
@@ -278,7 +288,9 @@
       ],
       "reviewed_commit": "f3f18e4",
       "started_queue_utc": "2026-10-09T19:38:53Z",
-      "pid": 261601
+      "pid": 261601,
+      "training_started_utc": "2026-10-09T20:41:24Z",
+      "log_directory": "results/2026-10-09/phase2/job_logs/proper_scores_20261009T204124Z"
     },
     "chile_flat_cache_export": {
       "status": "running",
@@ -301,6 +313,15 @@
       "log": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.log",
       "durable_manifest_on_success": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.manifest.json",
       "active_training_backend_changed": false
+    },
+    "chile_flat_runtime": {
+      "status": "reviewed_cpu_only_cuda_proof_pending",
+      "reviewed_commit": "98c9d13",
+      "cpu_tests": 10,
+      "original_process_deadline_utc": "2026-10-11T06:30:04Z",
+      "absolute_deadline_preserved_on_migration": true,
+      "deployed_new_sources": true,
+      "live_trainer_changed": false
     }
   },
   "continuation": {

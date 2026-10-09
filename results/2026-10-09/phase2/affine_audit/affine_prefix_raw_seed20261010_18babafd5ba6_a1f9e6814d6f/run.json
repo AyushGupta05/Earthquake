@@ -1,0 +1,62 @@
+{
+  "control": "raw",
+  "seed": 20261010,
+  "epochs": 10,
+  "batch_size": 512,
+  "max_per_event": 10000000,
+  "device": "cuda",
+  "deterministic": true,
+  "output": "/mnt/eew-research/runs",
+  "mode": "independent",
+  "objective": "weighted Huber(delta=1,beta=5,threshold=3.5)+.075CE",
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "cosine_eta_min": 3e-05,
+  "train_records": 979487,
+  "train_rows_sha256": "140cc844a19b7619a11580ca25e059a7c9800670768298956bf6cb6a86a5b653",
+  "train_targets_sha256": "1eb12c574affd83ea5b9b7fa9403d1c7aa9914580239a21a58ea4542bf62b1b1",
+  "train_weights_sha256": "4993b1d3cafc4a3eccd69c9935427fa5de129ece95cfb8f6ee41db0d828b696b",
+  "metadata_sha256": {
+    "train": "168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d",
+    "val": "3e1b2781559fc1da8c1d1de03af3148f4399c556df84741ae1e38b32d476698f"
+  },
+  "validation_identity_sha256": {
+    "targets": "34c89ef38cc263fdcf3ea3016a9f795a30ec04c476506cfd06ee720f550d5dc5",
+    "event_ids": "53d2990bbddde002fedf9fb3372f0a3fbf7631f021064bb0c3331a5b49cd097d",
+    "trace_names": "edda25b25ffbb310e4eb1236a94950ee8ce2b2f085e9fd1cb2d125b42905bdce",
+    "centers": "858338211e89f5cbd9468f3e6d818e434bb704d4dd581ea476ebe180bf95e7cf"
+  },
+  "cache_stat_not_content_hash": {
+    "path": "/data/Instance_windows_5s.hdf5",
+    "size": 6960137796,
+    "mtime_ns": 1788461010938629366
+  },
+  "initial_model_sha256": "d33eec17746626794a4f226b15f6371e88d27838d24c32233196fa658b8ef49e",
+  "runtime": {
+    "python": "3.9.25",
+    "torch": "2.8.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91002,
+    "device": "cuda",
+    "device_name": "NVIDIA A10G",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "NVIDIA_TF32_OVERRIDE": null
+  },
+  "selection": "Fixed final epoch; reused VAL monitoring only; no TEST inference",
+  "limitation": "Ideal affine-subtraction invariance only; release quantization/resampling causality remains unverified",
+  "parameters": {
+    "total": 355682,
+    "trainable": 355682,
+    "encoder": 248096,
+    "state_update": 99072,
+    "decoder": 8514,
+    "gate": 0
+  },
+  "wall_seconds": 510.46776005101856,
+  "final_model_sha256": "c56c7843f78b599ca4eee029c27f8a6ff8b2dbf5b3715fab8d3a6967de6840b7"
+}

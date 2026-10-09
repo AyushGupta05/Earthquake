@@ -10,6 +10,7 @@ Current reports:
 - [Full TRAIN replication](earthquake_instrument_full_results.md): gains survive all 979,487 training records.
 - [Instrument feature ablations](earthquake_instrument_factor_results.md): gain/unit and station-related information.
 - [Instrument scientific audit](earthquake_instrument_scientific_audit.md): station fingerprints, sensor families and per-event evidence.
+- [Affine-prefix results](earthquake_affine_results.md): completed six-run control; high-magnitude objective not met.
 - [Residual support audit](earthquake_residual_support_audit.md): exact limits of the existing bounded logit correction.
 - [Physical prefix preflight](earthquake_physical_prefix_preflight.md): causal synthetic controls; covariance alone fails the tail objective.
 - [Censored sequential results](earthquake_censored_results.md): completed likelihood/update controls and independent audit; no sub-second continuation.
@@ -26,7 +27,7 @@ Current reports:
 
 Reviewed implementations are committed and pushed to `AyushGupta05/Earthquake` on `main`. Recent commits include `75caeb7` (full-data results and audits), `01023ca` (deterministic controls and completed negative results), `d655c3a` (censored/uncensored sequential updates), `8504094` (reviewed sequential-export I/O fix), `f3f18e4` (proper-score controls/full Chile launch), `b5f8ad1` (method and external-data audits), `d91a1c3` (censored negative result), `823366d` (verified cache exporter), and `1d7510d` (residual support audit and cache launch). Focused tests and clean Codex reviews are retained with the experiments.
 
-Resolution replication, instrument-factor ablations, full TRAIN instrument replication and future-growth target extraction are complete. The matched future-growth grid is complete and rejected. All four TRAIN-only Chile hardware pilots passed. The full deterministic TEAM-style baseline started at 19:30 UTC with 25 station-pretraining and 100 event-training epochs. The censored amplitude-innovation pilot completed and failed the intended mechanism comparison; deterministic affine-prefix controls are running on the original worker; a reviewed five-arm proper-score experiment is queued afterward. Chile TEST waveforms have not been loaded. The dedicated worker has a 35-hour process limit and a verified automatic stop at 07:28:52 UTC on 11 October; the authorized experiment ceiling remains $2,000 in AWS credits.
+Resolution replication, instrument-factor ablations, full TRAIN instrument replication and future-growth target extraction are complete. The matched future-growth grid is complete and rejected. All four TRAIN-only Chile hardware pilots passed. The full deterministic TEAM-style baseline started at 19:30 UTC with 25 station-pretraining and 100 event-training epochs. The censored amplitude-innovation pilot completed and failed the intended mechanism comparison; deterministic affine-prefix controls are complete and fail the high-magnitude objective; the reviewed five-arm proper-score experiment is running on the original worker. Chile TEST waveforms have not been loaded. The dedicated worker has a 35-hour process limit and a verified automatic stop at 07:28:52 UTC on 11 October; the authorized experiment ceiling remains $2,000 in AWS credits.
 
 Historical reports remain available for transparency:
 
