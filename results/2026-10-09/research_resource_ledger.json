@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T18:22:37.301003+00:00",
+  "updated_utc": "2026-10-09T19:13:16Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4312.64,
@@ -21,7 +21,7 @@
       "image_name": "Deep Learning OSS Nvidia Driver AMI GPU PyTorch2.8 (Amazon Linux2023)20260808",
       "security_group": "sg-090fe8835f553328b",
       "access": "Existing researcher public key; private SSH jump through existing earthquake instance; no IAM role",
-      "automatic_stop_utc": "2026-10-10T18:06:09.407794+00:00",
+      "automatic_stop_utc": "2026-10-10T19:10:26.051148Z",
       "automatic_stop_verified": true,
       "shutdown_behavior": "stop",
       "first_24h_compute_estimate_usd": 24.144,
@@ -31,7 +31,27 @@
       "root_encrypted": true,
       "root_delete_on_termination": true,
       "cleanup": "Preserve results; stop when not training; remove only task-owned worker/root and auxiliary resources when finished; reconcile before2026-10-30",
-      "public_ssh_rule": "Removed; private jump through original earthquake instance only"
+      "public_ssh_rule": "Removed; private jump through original earthquake instance only",
+      "data": {
+        "path": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5",
+        "storage": "existing task-created80GiBroot; read-only bindmount",
+        "bytes": 30432938039,
+        "sha256": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb",
+        "transfer": "private-network SSH, transient EC2InstanceConnect public key; transfer private key removed after completion",
+        "free_gib_after_copy": 22,
+        "test_waveforms_present": false,
+        "free_gib_after_recovery": 21
+      },
+      "upgrade_attempt": {
+        "requested_type": "g6e.xlarge",
+        "hourly_compute_usd": 1.861,
+        "outcome": "StartInstances rejected InsufficientInstanceCapacity twice; no g6e running time",
+        "stopped_utc": "2026-10-09T18:49:59Z",
+        "recovered_type": "g5.xlarge",
+        "recovery_verified_utc": "2026-10-09T19:10:26Z",
+        "data_mount_restored": true,
+        "automatic_stop_rearmed": true
+      }
     }
   ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
@@ -69,23 +89,88 @@
       "source_volume": "vol-01642a78ffb59234f",
       "created_utc": "2026-10-09T18:18:59Z",
       "purpose": "Verified Chile TRAIN/DEV cache worker clone",
-      "cleanup": "Delete only after worker clone is verified and snapshot no longer needed"
+      "cleanup": "Delete only after worker clone is verified and snapshot no longer needed",
+      "status": "deleted",
+      "deletion_confirmed": "EC2 InvalidSnapshot.NotFound after delete",
+      "clone_volume_created": false
     }
   ],
   "queues": {
     "resolution_replication": {
       "maximum_seconds": 22000,
-      "per_run_seconds": 2400
+      "per_run_seconds": 2400,
+      "status": "complete"
     },
     "instrument_factors": {
       "maximum_seconds": 26400,
       "per_window_seconds": 3600,
-      "serial_after_resolution": true
+      "serial_after_resolution": true,
+      "status": "complete"
     },
     "future_growth_export": {
       "maximum_seconds": 7200,
       "cpu_only": true,
-      "training_only": true
+      "training_only": true,
+      "records": 979487,
+      "reason": "AllTRAIN coverage for numeric and string event-sampling identities",
+      "restart_reason": "128MiB metadata-cache optimization;64record arrays/digests exact;14tests and cleanreview",
+      "status": "complete",
+      "valid_records": 979485
+    },
+    "instrument_full": {
+      "maximum_seconds": 25000,
+      "per_window_seconds": 3600,
+      "serial_after_instrument_factors": true,
+      "records": 979487,
+      "seeds": [
+        20261009,
+        20261010
+      ],
+      "epochs": 15,
+      "status": "complete"
+    },
+    "chile_hardware_pilots": {
+      "worker": "i-08b9781ed60d8497f",
+      "train_only": true,
+      "skip_dev": true,
+      "maximum_seconds_per_pilot": 900,
+      "kill_grace_seconds": 30,
+      "cases": [
+        "event16",
+        "event32",
+        "event64",
+        "station64"
+      ],
+      "serial": true,
+      "completed": [
+        "event16",
+        "event32"
+      ],
+      "active": "event64_two_epochs",
+      "next": "station64_two_pretrain_epochs"
+    },
+    "instrument_growth": {
+      "status": "running",
+      "max_outer_seconds": 31000,
+      "per_window_seconds": 3600,
+      "seconds": [
+        1,
+        3,
+        5
+      ],
+      "seeds": [
+        20261009,
+        20261010
+      ],
+      "records": 197676,
+      "epochs": 15,
+      "started_utc": "2026-10-09T19:06:32Z"
+    },
+    "resolution_gpu_probe": {
+      "status": "queued_after_instrument_growth",
+      "max_outer_seconds": 15600,
+      "seconds_per_probe": 180,
+      "synthetic_only": true
     }
   }
 }

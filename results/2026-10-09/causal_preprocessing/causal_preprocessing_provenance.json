@@ -1,0 +1,18 @@
+{
+  "scope": "Research-only; no GPU and no real waveform values read or changed. HDF attributes/shapes and static metadata only.",
+  "files": {
+    "check_causal_preprocessing.py": "c1da1faa69d752b63831b6e83cb3dbb61dec11aa1c1db5bdee5654719e8ff9f9",
+    "audit_instance_inventory_rates.py": "6b2f63d56348db595a9851cd18e579104c526d025ca8eea6d8fd9e7761fb2eda",
+    "causal_preprocessing_rehabilitation.md": "6d2c169571727c3ff5ad9984971a4d611ecd5908b9be063855ad0e0f02365dc9",
+    "causal_preprocessing_checks.json": "021ea7d26f4895ef1849bcb3c3ca587b1f858189f5f7d3547fd080056472348a",
+    "instance_inventory_rate_audit.json": "cda25c8add9322d26ea4d831560e674c597afb6343bfcbc264a63c298984d1aa",
+    "instance_hdf5_processing_attributes.json": "d5dacb98c76019d8272ad5938ba520a8664cee0eba24a1215c1d1fc9105903a2",
+    "chile_hdf5_processing_attributes.json": "24f49ab2df9750c62b7b2e00d05fae5d74183fbb7e521038f7cb2c7710202b73",
+    "preprocessing_sources/source_manifest.json": "3d977b6a85dd169ada18dd5a85d44b0cabfee9b4941b3363809228d9ffa748bb"
+  },
+  "synthetic_command": "MPLCONFIGDIR=work/benchmark_research/matplotlib_cache work/benchmark_research/.causal-venv/bin/python -B work/benchmark_research/check_causal_preprocessing.py",
+  "inventory_command": "work/benchmark_research/.venv/bin/python -B work/benchmark_research/audit_instance_inventory_rates.py",
+  "checks": "All synthetic assertions passed, including integer-rounding residual/bounds; exact inventory-input hashes and split row totals passed.",
+  "review": "Final Codex autoreview clean; no actionable findings. Two research scripts match reviewed snapshot.",
+  "review_sha256": "9b460b5d5d1dabe69cbab4a6d4206d53e4088978be7744a0b2472788294a483b"
+}

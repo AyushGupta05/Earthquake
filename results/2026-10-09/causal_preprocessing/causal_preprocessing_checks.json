@@ -1,0 +1,77 @@
+{
+  "scope": "Synthetic arrays only; conditions do not establish either dataset construction pipeline",
+  "versions": {
+    "python": "3.10.20",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "obspy": "1.4.2"
+  },
+  "source_sha256": {
+    "check_causal_preprocessing.py": "c1da1faa69d752b63831b6e83cb3dbb61dec11aa1c1db5bdee5654719e8ff9f9",
+    "obspy122__obspy__core__trace.py": "6261e7e00d10a245fac696aa5bfbe6c207b395ef245bab634a35868b23ffea58",
+    "team_util.py": "1a8529a29a257440667fe5c278828de7e522333cb803b437dfde5b10b70e9ccd"
+  },
+  "installed_trace_source_sha256": "51863410075d0b67a52cd5834fcfbcf4f81864dfe71caea339eac70b9b7dccbe",
+  "checks": {
+    "projection_1s": {
+      "linear_identity_max_abs": 1.0547118733938987e-14,
+      "changed_suffix_max_abs": 2.6012525466967418e-12,
+      "constant_identity_max_abs": 3.552713678800501e-15,
+      "demeaning_does_not_remove_linear_max_abs": 0.24760488374016365,
+      "float32_quantization_max_abs": 8.936182682717231e-08,
+      "nearest_int32_rounding_rms_counts": 0.30399008049493287,
+      "nearest_int32_future_suffix_rms_counts": 0.40598603727991983
+    },
+    "projection_3s": {
+      "linear_identity_max_abs": 7.105427357601002e-15,
+      "changed_suffix_max_abs": 2.00825467366883e-12,
+      "constant_identity_max_abs": 5.329070518200751e-15,
+      "demeaning_does_not_remove_linear_max_abs": 0.7478167700839263,
+      "float32_quantization_max_abs": 1.1456921322761104e-07,
+      "nearest_int32_rounding_rms_counts": 0.2969284452037851,
+      "nearest_int32_future_suffix_rms_counts": 0.40263291834813225
+    },
+    "projection_5s": {
+      "linear_identity_max_abs": 4.440892098500626e-15,
+      "changed_suffix_max_abs": 2.043698543729988e-12,
+      "constant_identity_max_abs": 1.7763568394002505e-15,
+      "demeaning_does_not_remove_linear_max_abs": 1.2480286564276901,
+      "float32_quantization_max_abs": 1.1623522677695064e-07,
+      "nearest_int32_rounding_rms_counts": 0.29480013392790855,
+      "nearest_int32_future_suffix_rms_counts": 0.4130281879789041
+    },
+    "even_same_rate": {
+      "current_three_tap_max_abs": 1.1102230246251565e-15,
+      "historical_three_tap_max_abs": 1.1102230246251565e-15,
+      "window_none_identity_max_abs": 2.220446049250313e-15,
+      "default_nonidentity_max_abs": 2.561375853690854
+    },
+    "same_rate_future_impulse": {
+      "last_available_sample": 0.24999999999999994,
+      "after_prefix_projection": 0.24668327796234768,
+      "after_one_sample_guard_and_projection": 4.450789209536006e-17
+    },
+    "linear_then_even_hann_guard": {
+      "suffix_max_abs": 7.117084699359566e-13,
+      "affine_removal_max_abs": 8.132383655379272e-15
+    },
+    "odd_same_rate": {
+      "guarded_projected_future_max_abs": 1.2533842429935808e-06
+    },
+    "fourier_200_to_100": {
+      "guarded_projected_future_max_abs": 0.03157982880322695
+    },
+    "team_helper": {
+      "same_rate_bitwise_unchanged": true,
+      "integer_downsample_future_prefix_zero": true
+    },
+    "causal_iir_after_global_detrend": {
+      "plain_linear_projection_suffix_max_abs": 1600.2124741357766,
+      "filtered_nuisance_projection_suffix_max_abs": 2.9841684678899583e-12,
+      "projected_causal_target_max_abs": 4.440892098500626e-16
+    },
+    "zero_phase_lowpass": {
+      "projected_future_max_abs": 0.09494459887205232
+    }
+  }
+}

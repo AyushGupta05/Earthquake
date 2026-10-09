@@ -1,0 +1,59 @@
+{
+  "control": "cdf_resolution",
+  "objective": "weighted",
+  "epochs": 10,
+  "seed": 20261009,
+  "batch_size": 512,
+  "max_per_event": 10000000,
+  "ordinal_weight": 0.2,
+  "distillation_weight": 1.0,
+  "resolution_weight": 1.0,
+  "resolution_envelope": "unit",
+  "detach_aux_encoder": true,
+  "teacher_checkpoints": {
+    "3": {
+      "path": "bayesianprior/data/best_model_huberandcross3sfixed.pth",
+      "sha256": "4499557d002bc5e74a0d7843c1c666ff242ff57340495a93fd7c6d218891aadc"
+    },
+    "5": {
+      "path": "bayesianprior/data/best_model_huberandcross5s075fixed.pth",
+      "sha256": "59591ae7b403acb30d71715bea33856ad9c6d1050ca44af7c1a3f592b7970bd0"
+    }
+  },
+  "train_rows_sha256": "140cc844a19b7619a11580ca25e059a7c9800670768298956bf6cb6a86a5b653",
+  "metadata_sha256": {
+    "train": "168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d",
+    "val": "3e1b2781559fc1da8c1d1de03af3148f4399c556df84741ae1e38b32d476698f"
+  },
+  "sampling_seed": 20261009,
+  "future_horizons": {
+    "1": 3,
+    "3": 5
+  },
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "cosine_eta_min": 3e-05,
+  "bin_width": 0.1,
+  "supervision": "Original beta=5, threshold=3.5 weighted Huber(delta=1) + .075 CE",
+  "selection": "Fixed final epoch, no validation-based hyperparameter or weight selection",
+  "teacher_limit": "Audited teachers used validation in their historical training selection",
+  "auxiliary_head": {
+    "trained": true,
+    "prediction_name": "revision_energy",
+    "interpretation": "Empirical squared CDF revision; imperfect-teacher tower identity not assumed"
+  },
+  "parameters": {
+    "total": 364067,
+    "trainable": 364067,
+    "encoder": 248096,
+    "state_update": 99072,
+    "decoder": 8514,
+    "gate": 0,
+    "resolution_head": 8385
+  },
+  "train_records": 979487,
+  "device": "cuda",
+  "wall_seconds": 574.8841056070523,
+  "data_status": "Reused INSTANCE validation, no test predictions",
+  "head_limitation": "Nonnegative head cannot represent negative expected Brier gain"
+}

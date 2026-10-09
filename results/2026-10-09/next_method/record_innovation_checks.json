@@ -1,0 +1,51 @@
+{
+  "scope": "Oracle synthetic equation check only; no training, no earthquake data, no empirical novelty claim.",
+  "design": {
+    "seed": 20261009,
+    "n": 100000,
+    "tail_prevalence": 0.05,
+    "class_growth_normal_means": [
+      -0.7,
+      0.8
+    ],
+    "scale": 0.6
+  },
+  "observed_zero_fraction": 0.83836,
+  "zero_growth_posterior": {
+    "correct": 0.005435893828233982,
+    "incorrect_density_at_zero": 0.04098218023542108
+  },
+  "same_observation_reused": {
+    "prior": 0.05,
+    "first_posterior": 0.2,
+    "correct_unchanged": 0.2,
+    "wrong_reused_likelihood": 0.5428571428571429
+  },
+  "shared_nuisance_posterior_variance": {
+    "exact": 0.8085106382978723,
+    "wrong_independent_marginals": 0.31901840490797545
+  },
+  "arms": {
+    "prior_only": {
+      "mean_decision_mae": 0.28413599999999994,
+      "tail_mean_decision_mae": 2.85,
+      "median_absolute_error_of_mean_decision": 0.1499999999999999,
+      "brier": 0.047212,
+      "nll": 0.19757302287253933
+    },
+    "correct_censoring": {
+      "mean_decision_mae": 0.14246622231682587,
+      "tail_mean_decision_mae": 1.418769064273264,
+      "median_absolute_error_of_mean_decision": 0.016307681484701853,
+      "brier": 0.023515312111765982,
+      "nll": 0.08961910026469119
+    },
+    "density_at_zero_wrong": {
+      "mean_decision_mae": 0.23091462493237322,
+      "tail_mean_decision_mae": 1.409174142761179,
+      "median_absolute_error_of_mean_decision": 0.1229465407062631,
+      "brier": 0.024580814057746137,
+      "nll": 0.1109385371227335
+    }
+  }
+}
