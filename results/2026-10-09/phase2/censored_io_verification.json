@@ -1,0 +1,22 @@
+{
+  "base_commit": "d655c3adf466beef61ab963fc5752b24c3048d34",
+  "files_sha256": {
+    "research/2026-10-09/phase2/train_censored_innovation.py": "a943c37fd8552dd1fe5d9bf2a5e1858b700570db4c27c6e76d5e7190a544c2e8",
+    "tests/test_train_censored_innovation.py": "34a46ab74ff7888ce712ef4009f0732b26695a0ae2c9e254f03f8f5638094c67"
+  },
+  "patch_sha256": "7c4ff85dda8efb691fa2491122b79dc68b5bceeda7f9d21ff7f2aa3bd13bc1b6",
+  "scope": "Raw HDF metadata cache only: max/initial128MiB,min32MiB and provenance; no array/model logic changes",
+  "tests": {
+    "device": "cpu",
+    "count": 24,
+    "seconds": 2.11,
+    "result": "OK"
+  },
+  "autoreview": {
+    "engine": "codex",
+    "exit_code": 0,
+    "result": "no accepted/actionable findings",
+    "artifact": "censored_io_review_result.json"
+  },
+  "runtime": "No GPU use or training for this patch; raw metadata caching is process-local"
+}

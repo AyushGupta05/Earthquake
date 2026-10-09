@@ -114,6 +114,18 @@ def extract_observations(args, data, identities, names):
         stat = path.stat()
         provenance['files'][str(path)] = {'bytes': stat.st_size, 'mtime_ns': stat.st_mtime_ns}
     with h5py.File(paths[0], 'r') as one, h5py.File(paths[1], 'r') as five, h5py.File(paths[2], 'r') as raw:
+        # The released counts file has a roughly 46 MiB group lookup heap.
+        # Its default 32 MiB metadata cache rereads that heap for each lookup.
+        # This changes I/O caching only; source arrays and target math are identical.
+        metadata_cache = raw.id.get_mdc_config()
+        metadata_cache.max_size = 128 * 1024**2
+        metadata_cache.min_size = 32 * 1024**2
+        metadata_cache.initial_size = 128 * 1024**2
+        metadata_cache.set_initial_size = 1
+        raw.id.set_mdc_config(metadata_cache)
+        provenance['raw_metadata_cache_bytes'] = {'maximum': metadata_cache.max_size,
+                                                   'minimum': metadata_cache.min_size,
+                                                   'initial': metadata_cache.initial_size}
         for split, filename in [('train', 'train_full_metadata.csv'), ('val', 'val_metadata.csv')]:
             path = Path(args.root) / filename
             if source.sha256(path) != identities['metadata_sha256'][split]:

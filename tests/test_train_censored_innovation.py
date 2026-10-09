@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -94,6 +95,44 @@ class RunnerTests(unittest.TestCase):
             np.save(root / 'train_std_full.npy', np.ones(3))
             with patch.object(runner.source.Inventory, 'from_archive', return_value=inventory), self.assertRaisesRegex(ValueError, 'Normalization changed'):
                 runner.extract_observations(args, data, identity, names)
+
+    def test_raw_metadata_cache_configured_before_lookup_and_recorded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args, data, identity, names, inventory = self.fixture(root)
+            original_file = h5py.File
+            configured = []
+            config = SimpleNamespace(max_size=1, min_size=1, initial_size=1, set_initial_size=0)
+
+            class RawWithFakeConfiguration:
+                def __init__(self, path, mode):
+                    self.handle = original_file(path, mode)
+                    self.id = SimpleNamespace(get_mdc_config=lambda: config,
+                                              set_mdc_config=lambda value: configured.append(vars(value).copy()))
+
+                def __enter__(self):
+                    return self
+
+                def __exit__(self, *exc):
+                    self.handle.close()
+
+                def __getitem__(self, key):
+                    if not configured:
+                        raise AssertionError('Raw data accessed before metadata cache configuration')
+                    return self.handle[key]
+
+            def open_file(path, mode):
+                if Path(path).name == 'Instance_events_counts.hdf5':
+                    return RawWithFakeConfiguration(path, mode)
+                return original_file(path, mode)
+
+            with patch.object(runner.h5py, 'File', side_effect=open_file), \
+                 patch.object(runner.source.Inventory, 'from_archive', return_value=inventory), redirect_stdout(io.StringIO()):
+                _, _, provenance = runner.extract_observations(args, data, identity, names)
+            self.assertEqual(configured, [{'max_size': 128 * 1024**2, 'min_size': 32 * 1024**2,
+                                            'initial_size': 128 * 1024**2, 'set_initial_size': 1}])
+            self.assertEqual(provenance['raw_metadata_cache_bytes'],
+                             {'maximum': 128 * 1024**2, 'minimum': 32 * 1024**2, 'initial': 128 * 1024**2})
 
     def test_reason_codes_account_for_each_skipped_observation(self):
         x = torch.ones(4, 500).double()
