@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T21:06:00Z",
+  "updated_utc": "2026-10-09T21:29:00Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4293.82,
@@ -69,7 +69,7 @@
         "precondition": "Verified unique instance-storage serial, no filesystem signature, no child partitions or mounts; task-owned worker",
         "purpose": "Rebuildable station cache; preserve durable checkpoints on root EBS",
         "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
-        "status": "mounted; reviewed TRAIN-only export running since2026-10-09T20:16:43Z"
+        "status": "TRAIN cache complete; immutable manifest and event metadata preserved onEBS; resume uses flat station backend"
       }
     }
   ],
@@ -203,10 +203,10 @@
       "maximum_seconds": 1200
     },
     "chile_full_baseline": {
-      "status": "running",
+      "status": "resuming from complete epoch2; startup verification inprogress",
       "worker": "i-08b9781ed60d8497f",
       "started_utc": "2026-10-09T19:30:04Z",
-      "run": "/home/ec2-user/eew-work/full-runs/team_transformer_06742dc492a1_7ec986ada2e7",
+      "run": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z",
       "pretrain_epochs": 25,
       "event_epochs": 100,
       "seed": 20261009,
@@ -231,7 +231,14 @@
         "remaining_station_only_projection_hours": 16.41990649492,
         "projection_excludes_event_training": true
       },
-      "completed_pretrain_epochs": 2
+      "completed_pretrain_epochs": 2,
+      "original_run": "/home/ec2-user/eew-work/full-runs/team_transformer_06742dc492a1_7ec986ada2e7",
+      "resume_started_utc": "2026-10-09T21:28:57Z",
+      "resume_timeout_seconds": 118867,
+      "resume_log": "/home/ec2-user/eew-work/full-logs/team_flat_resume_epoch02_20261009T212857Z.log",
+      "resume_launcher_pid": 12905,
+      "original_process_deadline_utc": "2026-10-11T06:30:04Z",
+      "partial_work": "Original unpublished epoch3 discarded; resumed training recomputes epoch3 fromvalidatedepoch2"
     },
     "censored_then_affine": {
       "status": "complete",
@@ -294,7 +301,7 @@
       "log_directory": "results/2026-10-09/phase2/job_logs/proper_scores_20261009T204124Z"
     },
     "chile_flat_cache_export": {
-      "status": "running",
+      "status": "complete; everyTRAIN waveform bit verified",
       "started_utc": "2026-10-09T20:16:43Z",
       "unit": "eew-flat-cache-export-v1",
       "worker": "i-08b9781ed60d8497f",
@@ -313,16 +320,26 @@
       "memory_max_bytes": 3221225472,
       "log": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.log",
       "durable_manifest_on_success": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.manifest.json",
-      "active_training_backend_changed": false
+      "active_training_backend_changed": true,
+      "finished_utc": "2026-10-09T21:06:55Z",
+      "manifest_sha256": "d7db84d664f9b8d0e26f9f3623609d2e486744c77cede78ffcb4ba392e1e054e",
+      "events": 57679,
+      "stations": 863095,
+      "durable_events": "/home/ec2-user/eew-work/full-logs/flat_station_export_v1.events.json"
     },
     "chile_flat_runtime": {
-      "status": "reviewed_cpu_only_cuda_proof_pending",
+      "status": "CUDA bounded proof passed; migration prepared; resume launched and startup checks in progress",
       "reviewed_commit": "98c9d13",
       "cpu_tests": 10,
       "original_process_deadline_utc": "2026-10-11T06:30:04Z",
       "absolute_deadline_preserved_on_migration": true,
       "deployed_new_sources": true,
-      "live_trainer_changed": false
+      "live_trainer_changed": true,
+      "proof_sha256": "0b78936752a1d2422e0be11fc348786592e5bced12ffa0aba7fabb1a6a9b9b9a",
+      "proof_seconds": 7.274960355000076,
+      "migration_manifest_sha256": "a09b072124cb44b93c56fa65f18164d37c286f88a3f87ba36902d727a6dd9da7",
+      "origin_checkpoint_sha256": "afaeed68a43d4c26199514e70b2d202e22d749f33be4ca562cbe2e6440c892db",
+      "origin_completed_pretrain_epoch": 2
     },
     "proper_score_gpu_replay": {
       "status": "complete",
@@ -341,7 +358,7 @@
       "source_sha256": "902c220d696736d5e687d8919389861a7ae95be6eede0c64377635ac1f4e79bf"
     },
     "context_reference": {
-      "status": "running",
+      "status": "complete; 36student models and15teachers; all3horizon independent CPUaudits passed; high-magnitude objective failed inbothseeds",
       "pid": 269078,
       "maximum_seconds": 7800,
       "per_horizon_seconds": 2400,
@@ -371,7 +388,8 @@
       "credits_only": true,
       "new_resources_created": false,
       "started_utc": "2026-10-09T21:05:30Z",
-      "log_directory": "results/2026-10-09/phase2/job_logs/context_reference_20261009T210530Z"
+      "log_directory": "results/2026-10-09/phase2/job_logs/context_reference_20261009T210530Z",
+      "scientific_decision": "Reject current-context mechanism; no full-data or sequential-reference extension earned"
     },
     "shared_cap_preflight": {
       "status": "complete; fixed gate failed",

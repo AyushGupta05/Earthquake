@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P2] [P2] Match raw-prediction validation to the source extraction tolerance
+context_reference_audit/audit.py:343
+The pinned runner computes raw predictions from re-extracted validation logits. Its extraction code accepts differences from the original export with atol=2e-3 and rtol=2e-4. Consequently, a valid completed run with small inference-rounding differences can fail this 2e-12 mean check or the exact median comparison below. Validate against bounds compatible with that source contract; the synthetic fixture hides this mismatch by deriving both artifacts from identical logits.
+
+[P2] [P2] Use elementwise rounding bounds for ensemble probabilities
+context_reference_audit/audit.py:350
+The fixed 1.2e-7 tolerance accepts ensemble probabilities that cannot result from averaging the original seed probabilities. For example, when both archived seeds have zero probability in a bin, their float64 originals are at most half the smallest float32 subnormal, so their archived average must also be zero. This check nevertheless permits roughly 1e-7 in that bin. Redistributing that amount from another bin can also pass the mass, point, and reported CRPS checks, while changing ensemble NLL from infinite to finite. Derive the consistency bound from each seed's and ensemble entry's float32 rounding intervals.
+
+[P2] [P2] Reject median crossings inside zero-probability gaps
+context_reference_audit/audit.py:149
+The separate bounds on the preceding and current CDF do not establish that one underlying float64 distribution can satisfy both crossing conditions. With archived probabilities 0.5 in bins 0 and 65 and zero elsewhere, this check accepts any intervening grid center as the saved median. However, the pinned source's first-CDF-crossing calculation can return only bin 0 or 65: probabilities that round to zero cannot advance a float64 CDF near 0.5. Thus a substantially corrupted median passes validation. Preserve the relationship between adjacent cumulative sums when checking feasibility.
+
+overall: patch is incorrect (0.98)
+The continuous-label CRPS, source pins, fold reconstruction, weight equations, and checkpoint hash logic are consistent with the inspected source. However, raw-prediction validation can reject valid runs, and the ensemble and median checks can accept inconsistent artifacts. Tests were not run, as requested.

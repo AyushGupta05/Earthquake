@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Use asymmetric float32 intervals for median feasibility",
+      "body": "The symmetric `np.spacing(p)/2` bound overstates downward rounding uncertainty at powers of two, so an impossible saved median can still pass the new gap check. For example, a float32 row beginning `[0.25, 0.25, 2e-8, 0.25, float32(0.25-2e-8)]` admits normalized float64 probabilities, but their cumulative mass through index 2 must exceed 0.500000005: each archived 0.25 can decrease by only about 7.45e-9. A corrupted median at index 3 nevertheless passes because this calculation allows each 0.25 to decrease by about 1.49e-8, and index 3 has a positive crossing increment. Compute cumulative lower and upper bounds from `probability_rounding_intervals`, which already handles the unequal predecessor/successor spacing, and add a regression case at a power-of-two boundary.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "context_reference_audit/audit.py",
+        "line": 145
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The continuous-label CRPS, source pins, fold/control equations, checkpoint hashes, and seeded reconstruction match the inspected source schema. The documented raw85 and raw-identity limitations are appropriate. However, median validation still accepts a concretely impossible median because its cumulative rounding bounds are symmetric at float32 power-of-two boundaries. No tests or nested reviewers were run.",
+  "overall_confidence": 0.97
+}

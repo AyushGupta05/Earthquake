@@ -8,7 +8,7 @@ import numpy as np
 from obspy import Stream, Trace, UTCDateTime
 import obspy
 from obspy.io.mseed import InternalMSEEDWarning
-from header_audit import inspect_headers, inspect_member, parse_metadata, select_members, ROOT
+from header_audit import inspect_headers, inspect_member, parse_metadata, select_members, canonical_scnl, normalize_metadata, ROOT
 
 
 class HeaderAuditTests(unittest.TestCase):
@@ -33,11 +33,60 @@ class HeaderAuditTests(unittest.TestCase):
         self.assertEqual(result['matched_channel_units'], {'DU/M/S': 1})
         self.assertFalse(result['missing_metadata'])
 
-    def test_blank_location_and_duplicate_metadata(self):
+    def test_blank_location_and_duplicate_metadata_rejection(self):
         rows = self.metadata()
         rows['AK.TEST..BHZ'] *= 2
-        result = self.inspect([self.segment(0)], rows)
-        self.assertEqual(result['duplicate_metadata_ids'], ['AK.TEST..BHZ'])
+        with self.assertRaisesRegex(ValueError, 'Ambiguous duplicate'):
+            self.inspect([self.segment(0)], rows)
+        with self.assertRaisesRegex(ValueError, 'Ambiguous duplicate'):
+            parse_metadata('AK TEST -- BHZ 60 -150 10 100 1000 DU/M/S\n' * 2)
+
+    def test_literal_dash_header_matches_metadata_with_raw_ids_preserved(self):
+        trace = self.segment(0)
+        trace.stats.location = '--'
+        result = self.inspect([trace])
+        self.assertFalse(result['missing_metadata'])
+        self.assertFalse(result['metadata_without_waveforms'])
+        self.assertEqual(result['segments_by_channel']['AK.TEST..BHZ'][0]['raw_id'], 'AK.TEST.--.BHZ')
+        self.assertEqual(result['metadata_by_channel']['AK.TEST..BHZ'][0]['raw_id'], 'AK.TEST.--.BHZ')
+
+    def test_location_alias_is_symmetric_and_other_locations_stay_distinct(self):
+        literal = self.segment(0); literal.stats.location = '--'
+        rows = self.metadata()
+        rows['AK.TEST..BHZ'][0]['raw_id'] = 'AK.TEST..BHZ'
+        result = self.inspect([literal], rows)
+        self.assertFalse(result['missing_metadata'])
+        self.assertEqual(result['metadata_by_channel']['AK.TEST..BHZ'][0]['raw_id'], 'AK.TEST..BHZ')
+        zero = self.segment(0); zero.stats.location = '00'
+        result = self.inspect([zero])
+        self.assertEqual(result['missing_metadata'], ['AK.TEST.00.BHZ'])
+        self.assertEqual(result['metadata_without_waveforms'], ['AK.TEST..BHZ'])
+        self.assertEqual(canonical_scnl('ak.Test.01.BHZ'), 'ak.Test.01.BHZ')
+
+    def test_distinct_raw_header_aliases_cannot_silently_merge(self):
+        blank, literal = self.segment(0), self.segment(2)
+        literal.stats.location = '--'
+        with self.assertRaisesRegex(ValueError, 'Distinct raw header SCNLs collide'):
+            self.inspect([blank, literal])
+
+    def test_distinct_raw_metadata_aliases_cannot_silently_merge(self):
+        row = {'sampling_rate': 100., 'gain': 1000., 'units': 'DU/M/S'}
+        with self.assertRaisesRegex(ValueError, 'Ambiguous duplicate'):
+            normalize_metadata({'AK.TEST..BHZ': [row], 'AK.TEST.--.BHZ': [row]})
+        with self.assertRaisesRegex(ValueError, 'identities disagree'):
+            normalize_metadata({'AK.TEST..BHZ': [dict(row, raw_id='AK.OTHER..BHZ')]})
+
+    def test_near_nominal_header_rate_is_retained_with_exact_deviation(self):
+        # MiniSEED blockette100 stores a floating-point rate. The precise
+        # decoded value, not a rounded nominal surrogate, drives all timing.
+        result = self.inspect([self.segment(0, n=101, rate=99.9999)])
+        segment = result['segments_by_channel']['AK.TEST..BHZ'][0]
+        mismatch = result['rate_mismatches'][0]
+        self.assertNotEqual(segment['sampling_rate'], 100.)
+        self.assertEqual(segment['rate_deviation_hz'], segment['sampling_rate'] - 100.)
+        self.assertEqual(mismatch['header_rate'], segment['sampling_rate'])
+        self.assertAlmostEqual(segment['rate_deviation_ppm'], 1e6 * (segment['sampling_rate'] - 100.) / 100.)
+        self.assertAlmostEqual(segment['nominal_elapsed_difference_seconds'], 100 * (1 / segment['sampling_rate'] - .01))
 
     def test_gap_uses_exclusive_endpoint(self):
         result = self.inspect([self.segment(0), self.segment(2)])

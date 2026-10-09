@@ -1,0 +1,57 @@
+{
+  "status": "complete",
+  "tests": {
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python -m unittest discover -s tmp/context_reference_audit -p test_audit.py -v",
+    "host": "instancebaseline",
+    "passed": 14,
+    "seconds": 1.449,
+    "gpu_used": false
+  },
+  "source_sha256": {
+    "audit.py": "24c5f1954b9817c809dd0331e5a7528d496405be81519c9be10e9506d016f374",
+    "test_audit.py": "2c458af0ae48ffb8a486b5f730aa04ad1d549ea3929d47bbaf383415be6f9a64",
+    "source_pins.json": "252c031ed1f3601847ac4a244fbc01f229239b1e65bfbe16800241e210e2b0c7"
+  },
+  "accepted_review_fixes": [
+    "Elementwise float32 rounding intervals and identical-cell convexity for ensemble probabilities",
+    "Reject CDF median crossings where a probability increment cannot advance float64 CDF",
+    "Asymmetric float32 predecessor/successor bounds at powers of two for mean and median checks"
+  ],
+  "rejected_review_suggestion": "Do not weaken raw-output identity tolerance to the source loader tolerance. This independent empirical check is intentionally stricter and all three real deadlines pass; failure would be inconclusive, not proof training invalid. Explicit code/docs clarify scope.",
+  "scope": "No GPU, inference, training, dataset changes, job changes, TEST reads, or commits.",
+  "actual_audits": {
+    "1": {
+      "status": "passed",
+      "report_sha256": "fb7465226f3f167cb41ebef43617f117f532e657c14ba4ff8e45f0de5fb1c217",
+      "report": "audit_1s_final/audit.json",
+      "initial_metrics_unchanged": true,
+      "artifacts_verified": 34
+    },
+    "3": {
+      "status": "passed",
+      "report_sha256": "63dfaf26a1246029c58d7cd2e7ccd32cd0dcee88b31ffa879db596f6a60bb1ea",
+      "report": "audit_3s_final/audit.json",
+      "initial_metrics_unchanged": true,
+      "artifacts_verified": 34
+    },
+    "5": {
+      "status": "passed",
+      "report_sha256": "b4297e9dedce7dc51db23cd82428da2bf915757a7edc0cf6a63df1f5c4b9fea1",
+      "report": "audit_5s_final/audit.json",
+      "initial_metrics_unchanged": true,
+      "artifacts_verified": 34
+    }
+  },
+  "autoreview": {
+    "status": "clean",
+    "engine": "codex",
+    "rounds": 3,
+    "confidence": 0.92,
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --prompt-file ../review_prompt.md --dataset ../review_dataset.json --output ../review.md --json-output ../review.json",
+    "cwd": "work/context_reference_audit/review_clone",
+    "final_json_sha256": "e67d3b418905b66e40b0e3762dc8ad71107ae02be1ab917cd444feb553ae6e8b",
+    "final_json": "review.json",
+    "initial_findings": "review_initial_json",
+    "second_findings": "review_second_json"
+  }
+}

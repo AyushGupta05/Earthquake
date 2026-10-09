@@ -1,0 +1,220 @@
+{
+  "availability_limits": {
+    "channel_metadata_units": {
+      "DU/M/S": 206024,
+      "DU/M/S**2": 90966
+    },
+    "channels_span_below_seconds": {
+      "1": 82,
+      "3": 214,
+      "359": 9287,
+      "5": 383
+    },
+    "shortest_examples": [
+      {
+        "end": 1627540047.0,
+        "event": "ak0219nekhhk",
+        "id": "AV.AKMO..BHN",
+        "metadata_rate": 50.0,
+        "nominal_elapsed_difference_seconds": 0.0,
+        "npts": 3,
+        "rate_deviation_hz": 0.0,
+        "rate_deviation_ppm": 0.0,
+        "raw_id": "AV.AKMO.--.BHN",
+        "sampling_rate": 50.0,
+        "span_seconds": 0.04,
+        "start": 1627540046.96
+      },
+      {
+        "end": 1323393822.98,
+        "event": "ak011fra2x6x",
+        "id": "AV.SPBG..BHN",
+        "metadata_rate": 50.0,
+        "nominal_elapsed_difference_seconds": 0.0,
+        "npts": 9,
+        "rate_deviation_hz": 0.0,
+        "rate_deviation_ppm": 0.0,
+        "raw_id": "AV.SPBG.--.BHN",
+        "sampling_rate": 50.0,
+        "span_seconds": 0.16,
+        "start": 1323393822.82
+      },
+      {
+        "end": 1627540047.0,
+        "event": "ak0219nekhhk",
+        "id": "AV.AKMO..BHE",
+        "metadata_rate": 50.0,
+        "nominal_elapsed_difference_seconds": 0.0,
+        "npts": 9,
+        "rate_deviation_hz": 0.0,
+        "rate_deviation_ppm": 0.0,
+        "raw_id": "AV.AKMO.--.BHE",
+        "sampling_rate": 50.0,
+        "span_seconds": 0.16,
+        "start": 1627540046.84
+      }
+    ],
+    "span_definition": "(npts-1)/actual_header_sampling_rate; first-to-last sample timestamp, not post-P coverage",
+    "span_quantiles_seconds": {
+      "max": 599.99,
+      "median": 359.98,
+      "min": 0.04,
+      "p001": 4.219560000000001,
+      "p01": 110.88459999999999,
+      "p05": 359.98,
+      "p95": 360.0
+    }
+  },
+  "created_utc": "2026-10-09T21:24:57.492897+00:00",
+  "full_audit": {
+    "actual_header_rate_segments": {
+      "100.0": 27254,
+      "100.00000762939453": 1,
+      "100.00003051757812": 15,
+      "100.00003814697266": 18,
+      "100.00006866455078": 9,
+      "100.00022888183594": 3,
+      "199.99961853027344": 15,
+      "199.99981689453125": 9,
+      "199.99990844726562": 2,
+      "199.9999237060547": 6,
+      "199.99993896484375": 4,
+      "199.9999542236328": 2,
+      "199.99996948242188": 3,
+      "199.99998474121094": 10,
+      "200.0": 36900,
+      "200.00001525878906": 12,
+      "200.00003051757812": 2,
+      "200.0000457763672": 2,
+      "200.00006103515625": 12,
+      "200.0001983642578": 14,
+      "200.00038146972656": 19,
+      "49.998473282442745": 156,
+      "49.99990463256836": 37,
+      "49.999935150146484": 3,
+      "49.99995422363281": 42,
+      "49.999961853027344": 3,
+      "49.999969482421875": 6,
+      "49.99997329711914": 3,
+      "49.999977111816406": 5,
+      "49.99998474121094": 15,
+      "49.9999885559082": 21,
+      "49.99999237060547": 39,
+      "49.999996185302734": 106,
+      "50.0": 232003,
+      "50.000003814697266": 64,
+      "50.00000762939453": 27,
+      "50.0000114440918": 20,
+      "50.00001525878906": 20,
+      "50.00001907348633": 7,
+      "50.000022888183594": 8,
+      "50.00002670288086": 3,
+      "50.000030517578125": 3,
+      "50.00004959106445": 50,
+      "50.00009536743164": 15,
+      "50.00010681152344": 3,
+      "50.0001106262207": 6,
+      "50.000125885009766": 6,
+      "50.000396728515625": 6,
+      "99.99999237060547": 1
+    },
+    "ambiguous_scnl_merges_rejected": true,
+    "archive_bytes": 8372439484,
+    "archive_md5": "38449cb548b3e5c7119b267f6a12a400",
+    "cohort": "781 release containers; not a reconstruction of the published 530-event cohort",
+    "complete": true,
+    "counts": {
+      "duplicate_metadata_ids": 0,
+      "gaps": 0,
+      "metadata_without_waveforms": 0,
+      "missing_metadata": 0,
+      "overlaps": 0,
+      "rate_mismatches": 833
+    },
+    "created_utc": "2026-10-09T21:22:36.736498+00:00",
+    "elapsed_seconds": 37.128778375001275,
+    "event_containers": 781,
+    "events_json_sha256": "ab2d99734367545773c274241448d9279241486ecc39dd3753e193c58c408367",
+    "header_channels": 296990,
+    "header_segments": 296990,
+    "location_normalization_policy": "Alaska release only: literal '--' and empty location mean blank; all other SCNL fields unchanged",
+    "magnitude_labels_used": false,
+    "numpy_version": "2.2.6",
+    "obspy_version": "1.5.1",
+    "picks_or_predictions_computed": false,
+    "rate_comparison_note": "Exact actual floating-point header rates retained; nonexact metadata comparisons are not automatically physical timing errors or rounded to nominal rates.",
+    "rate_deviation_max_absolute": {
+      "nominal_elapsed_difference_seconds": 0.01099209136156861,
+      "rate_deviation_hz": 0.001526717557254642,
+      "rate_deviation_ppm": 30.53435114509284
+    },
+    "raw_metadata_and_header_ids_retained": true,
+    "sample_arrays_decoded": false,
+    "schema": "alaska-header-availability-v2",
+    "source_sha256": "80d59d3d607ad200b19988b3c81450b73996bf649825b08da9b90377d62cbf4d",
+    "zip_selected_members_fully_decompressed_crc_verified": true
+  },
+  "hashes": {
+    "work/alaska_header_audit/VALIDATION.md": "3cf39bccf4f7330768f77fa1dba57f87945c8baaaff2125522b82affe63820c5",
+    "work/alaska_header_audit/header_audit.py": "80d59d3d607ad200b19988b3c81450b73996bf649825b08da9b90377d62cbf4d",
+    "work/alaska_header_audit/review_v2.json": "dd53d76f35e10ebf0a7a182b1f39e33217744498d2c5a9019ebd283b55480f7a",
+    "work/alaska_header_audit/review_v2.md": "91e60e5f22175fabb390f1dc9bbe90dac80f5939574ae4b8c48b8ac9bd71e808",
+    "work/alaska_header_audit/test_header_audit.py": "ee4cbadaef370cca7abc38178e8cc1a22b29b5c32045f459f46ab3197805f376",
+    "work/benchmark_research/alaska/full_download_provenance.json": "604bfb33a630845b6854fbb7f38f5ff4cb93ac8a61fa76f6dda3dd496bb7791a",
+    "work/benchmark_research/alaska/header_audit_v2.log": "22c621a3469b13ab8e6c293d72a31ea1d0f6d556b95ee4ec61ee64a2beb4e0f1",
+    "work/benchmark_research/alaska/header_audit_v2/COMPLETE.json": "6963cd813fd53d6ff70749f6094c4fff316c7f58b26b723b268e8bc39d74ede7",
+    "work/benchmark_research/alaska/header_audit_v2/events.json": "ab2d99734367545773c274241448d9279241486ecc39dd3753e193c58c408367"
+  },
+  "limits": [
+    "Header-only inventory; cannot certify unobserved sample contents, response corrections, timing accuracy, picks or post-P coverage.",
+    "Zero inter-segment gaps/overlaps does not prove complete six-minute station coverage; each event/channel has exactly one returned segment.",
+    "781 release containers are not the unresolved 530-event published cohort."
+  ],
+  "rate_details": {
+    "affected_events": 130,
+    "all_channels_by_nominal_rate": {
+      "100.0": 27301,
+      "200.0": 37012,
+      "50.0": 232677
+    },
+    "max_abs_ppm_example": {
+      "event": "ak01581sc69w",
+      "header_rate": 49.998473282442745,
+      "header_raw_id": "AK.MLY.--.BNE",
+      "id": "AK.MLY..BNE",
+      "metadata_rate": 50.0,
+      "metadata_rates": [
+        50.0
+      ],
+      "metadata_raw_id": "AK.MLY.--.BNE",
+      "nominal_elapsed_difference_seconds": 0.01099209136156861,
+      "rate_deviation_hz": -0.001526717557254642,
+      "rate_deviation_ppm": -30.53435114509284
+    },
+    "nonexact_by_nominal_rate": {
+      "100.0": 47,
+      "200.0": 112,
+      "50.0": 674
+    }
+  },
+  "review": {
+    "engine": "codex",
+    "json_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/alaska_header_audit/review_v2.json",
+    "json_sha256": "dd53d76f35e10ebf0a7a182b1f39e33217744498d2c5a9019ebd283b55480f7a",
+    "status": "clean"
+  },
+  "status": "PASS",
+  "tests": {
+    "command": "work/alaska_venv/bin/python -m unittest discover -s work/alaska_header_audit -p test_header_audit.py -v",
+    "description": "Synthetic focused suite; no real samples decoded",
+    "elapsed_seconds": 0.018,
+    "passed": 15
+  },
+  "v1_preservation": {
+    "all_raw_header_rate_count_start_end_equal_after_location_join": true,
+    "complete_sha256": "789d8842fb6f4a9a083331334e9db7b78be87d5b9151559e24d08252ff6c887d",
+    "events_sha256": "f85b56a5c4e98afbb109d38865e4849fb62745d44f6a2570534e13bf656bda6e",
+    "segments_checked": 296990,
+    "source_sha256": "b3fd2e1ca90ea34c840c7f57d6e0580272cb5865ed19d62544e122aa40bd37c6"
+  }
+}

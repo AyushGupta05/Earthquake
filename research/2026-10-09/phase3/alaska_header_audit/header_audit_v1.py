@@ -24,7 +24,6 @@ EXPECTED_BYTES = 8372439484
 EXPECTED_MD5 = '38449cb548b3e5c7119b267f6a12a400'
 ROOT = 'testsuite_data_williamson/'
 MAX_MEMBER_BYTES = 50000000
-LOCATION_POLICY = "Alaska release only: literal '--' and empty location mean blank; all other SCNL fields unchanged"
 
 
 def digest(path, algorithm='sha256'):
@@ -33,35 +32,6 @@ def digest(path, algorithm='sha256'):
         for block in iter(lambda: f.read(8 * 1024 * 1024), b''):
             h.update(block)
     return h.hexdigest()
-
-
-def canonical_scnl(raw_id):
-    """Dataset-specific join alias, never a rewrite of the recorded identifier."""
-    parts = raw_id.split('.')
-    if len(parts) != 4:
-        raise ValueError('Expected four SCNL fields')
-    if parts[2] == '--':
-        parts[2] = ''
-    return '.'.join(parts)
-
-
-def normalize_metadata(records):
-    """Normalize both raw-key and already-canonical metadata without merging.
-
-    Duplicate rows and distinct raw IDs that collide after location aliasing
-    are ambiguous, even if their rates/gains happen to agree. Fail explicitly.
-    """
-    normalized = {}
-    for raw_key, rows in records.items():
-        key = canonical_scnl(raw_key)
-        if key in normalized or len(rows) != 1:
-            raise ValueError('Ambiguous duplicate/colliding metadata SCNL: ' + key)
-        row = dict(rows[0])
-        row.setdefault('raw_id', raw_key)
-        if canonical_scnl(row['raw_id']) != key:
-            raise ValueError('Metadata raw and canonical identities disagree')
-        normalized[key] = [row]
-    return normalized
 
 
 def parse_metadata(text):
@@ -73,12 +43,12 @@ def parse_metadata(text):
         if len(parts) != 10:
             raise ValueError('Expected ten station metadata fields')
         net, sta, loc, cha = parts[:4]
-        key = '.'.join((net, sta, loc, cha))
+        key = '.'.join((net, sta, '' if loc == '--' else loc, cha))
         lat, lon, elev, rate, gain = map(float, parts[4:9])
         if not all(math.isfinite(x) for x in (lat, lon, elev, rate, gain)) or rate <= 0 or gain <= 0:
             raise ValueError('Invalid finite metadata/rate/gain')
-        records[key].append({'raw_id': key, 'sampling_rate': rate, 'gain': gain, 'units': parts[9]})
-    return normalize_metadata(records)
+        records[key].append({'sampling_rate': rate, 'gain': gain, 'units': parts[9]})
+    return dict(records)
 
 
 def select_members(names, expected_events=781):
@@ -110,7 +80,6 @@ def select_members(names, expected_events=781):
 
 
 def inspect_headers(payload, metadata):
-    metadata = normalize_metadata(metadata)
     # libmseed can skip corrupt/truncated records and return a partial Stream.
     # Byte-integrity checks alone cannot establish complete header coverage.
     # Conservatively require a warning-free reader; even benign warnings need
@@ -121,7 +90,7 @@ def inspect_headers(payload, metadata):
     if reader_warnings:
         details = '; '.join(f'{w.category.__name__}: {w.message}' for w in reader_warnings)
         raise ValueError('MiniSEED reader warning; header audit incomplete: ' + details)
-    by_id, raw_header_ids = defaultdict(list), {}
+    by_id = defaultdict(list)
     for trace in stream:
         if len(trace.data) != 0:
             raise ValueError('Head-only reader unexpectedly decoded samples')
@@ -129,12 +98,8 @@ def inspect_headers(payload, metadata):
         rate, n = float(s.sampling_rate), int(s.npts)
         if not math.isfinite(rate) or rate <= 0 or n <= 0:
             raise ValueError('Invalid header sample count/rate')
-        key, raw_id = canonical_scnl(trace.id), trace.id
-        if key in raw_header_ids and raw_header_ids[key] != raw_id:
-            raise ValueError('Distinct raw header SCNLs collide after location normalization: ' + key)
-        raw_header_ids[key] = raw_id
-        by_id[key].append({'raw_id': raw_id, 'start': float(s.starttime), 'end': float(s.endtime),
-                          'sampling_rate': rate, 'npts': n})
+        by_id[trace.id].append({'start': float(s.starttime), 'end': float(s.endtime),
+                               'sampling_rate': rate, 'npts': n})
     if not by_id:
         raise ValueError('Empty MiniSEED headers')
     missing_metadata = sorted(set(by_id) - set(metadata))
@@ -144,21 +109,12 @@ def inspect_headers(payload, metadata):
     total_samples = 0
     for key, segments in sorted(by_id.items()):
         segments.sort(key=lambda x: (x['start'], x['end']))
-        expected = metadata[key][0]['sampling_rate'] if key in metadata else None
+        expected = {x['sampling_rate'] for x in metadata.get(key, [])}
         for segment in segments:
             rates[str(segment['sampling_rate'])] += 1
             total_samples += segment['npts']
-            if expected is not None:
-                actual = segment['sampling_rate']
-                deviation = actual - expected
-                comparison = {'metadata_rate': expected, 'rate_deviation_hz': deviation,
-                    'rate_deviation_ppm': 1e6 * deviation / expected,
-                    'nominal_elapsed_difference_seconds': (segment['npts'] - 1) * (1 / actual - 1 / expected)}
-                segment.update(comparison)
-                if deviation != 0:
-                    mismatches.append({'id': key, 'header_raw_id': segment['raw_id'],
-                        'metadata_raw_id': metadata[key][0]['raw_id'], 'header_rate': actual,
-                        'metadata_rates': [expected], **comparison})
+            if expected and segment['sampling_rate'] not in expected:
+                mismatches.append({'id': key, 'header_rate': segment['sampling_rate'], 'metadata_rates': sorted(expected)})
         for unit in {x['units'] for x in metadata.get(key, [])}:
             units[unit] += 1
         # Union coverage endpoint handles nested/duplicate segments. Tolerance
@@ -184,8 +140,7 @@ def inspect_headers(payload, metadata):
             'duplicate_metadata_ids': sorted(k for k,v in metadata.items() if len(v) != 1),
             'first_start_utc': str(obspy.UTCDateTime(min(x['start'] for v in by_id.values() for x in v))),
             'last_end_utc': str(obspy.UTCDateTime(max(x['end'] for v in by_id.values() for x in v))),
-            'segments_by_channel': dict(by_id), 'metadata_by_channel': metadata,
-            'location_normalization_policy': LOCATION_POLICY}
+            'segments_by_channel': dict(by_id)}
 
 
 def inspect_member(archive, seed_member, metadata_member):
@@ -233,13 +188,7 @@ def main():
     atomic_json(args.output/'events.json', results)
     counts = {key: sum(len(r[key]) for r in results.values()) for key in
               ('missing_metadata', 'metadata_without_waveforms', 'rate_mismatches', 'gaps', 'overlaps', 'duplicate_metadata_ids')}
-    rate_segments = Counter()
-    for result in results.values():
-        rate_segments.update(result['header_rate_segments'])
-    nonexact_rates = [item for result in results.values() for item in result['rate_mismatches']]
-    rate_summary = {key: max((abs(item[key]) for item in nonexact_rates), default=0.) for key in
-        ('rate_deviation_hz', 'rate_deviation_ppm', 'nominal_elapsed_difference_seconds')}
-    summary = {'schema': 'alaska-header-availability-v2', 'complete': True,
+    summary = {'schema': 'alaska-header-availability-v1', 'complete': True,
         'created_utc': datetime.now(timezone.utc).isoformat(), 'archive_bytes': EXPECTED_BYTES,
         'archive_md5': EXPECTED_MD5, 'source_sha256': digest(__file__),
         'events_json_sha256': digest(args.output/'events.json'), 'event_containers': len(results),
@@ -249,12 +198,6 @@ def main():
         'cohort': '781 release containers; not a reconstruction of the published 530-event cohort',
         'header_channels': sum(r['channels'] for r in results.values()),
         'header_segments': sum(r['header_segments'] for r in results.values()),
-        'location_normalization_policy': LOCATION_POLICY,
-        'ambiguous_scnl_merges_rejected': True,
-        'raw_metadata_and_header_ids_retained': True,
-        'actual_header_rate_segments': dict(sorted(rate_segments.items())),
-        'rate_deviation_max_absolute': rate_summary,
-        'rate_comparison_note': 'Exact actual floating-point header rates retained; nonexact metadata comparisons are not automatically physical timing errors or rounded to nominal rates.',
         'counts': counts, 'elapsed_seconds': time.monotonic()-started}
     atomic_json(args.output/'COMPLETE.json', summary)
     print(json.dumps(summary, indent=2), flush=True)
