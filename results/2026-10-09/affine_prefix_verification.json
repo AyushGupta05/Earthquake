@@ -1,0 +1,24 @@
+{
+  "files_sha256": {
+    "research/2026-10-09/phase2/affine_prefix_control.py": "59cc87f6a22e12e55bd3b320179917c9e3797ae15e455af5f8651a2ab1d1b092",
+    "research/2026-10-09/phase2/train_affine_prefix.py": "5d231e3217e0220818008240a2cd3727e4630cf8222566acf2e9749f0be63235",
+    "research/2026-10-09/phase2/AFFINE_PREFIX_CONTROL.md": "c3fc452813cafc5969e9faa92710ce0cdf7054c6d8cf59983cdf5a2b796e2251",
+    "tests/test_affine_prefix_control.py": "cadaaffb84d0e04a8aca44b14053a8b585552b3e128ee552d7e825b365b75681"
+  },
+  "remote_sha256_match": true,
+  "tests": {
+    "host": "instancebaseline",
+    "gpu_visibility": "disabled",
+    "command": ".venv/bin/python -m unittest discover -s tests -p test_affine_prefix_control.py -v",
+    "result": "10 passed in 2.115 s",
+    "log": "work/affine_prefix_tests.log"
+  },
+  "review": {
+    "engine": "codex",
+    "status": "clean",
+    "confidence": 0.95,
+    "report": "work/affine_prefix_review.json",
+    "accepted_finding_fixed": "TorchVersion converted to str; safe weights-only checkpoint reload and final-hash assertion added"
+  },
+  "scope": "Only new owned modules/tests/README. No GPU launch, existing module edit, or commit by this subagent."
+}

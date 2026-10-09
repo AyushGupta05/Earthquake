@@ -27,3 +27,16 @@ The full-data run changes both the sampling population and the number of optimiz
 - `instrument_residual_5s_43395c855d8e_fd9e97e5fafa`
 
 Small JSON artifacts and source are preserved in Git; full checkpoints and probabilities remain under `/mnt/eew-research/runs/` on the original AWS worker. No new TEST predictions were made.
+
+
+## Descriptive event-bootstrap uncertainty
+
+The following 95% intervals are candidate minus matched baseline, resampling whole earthquake events together for 2,000 paired draws. All recordings of a sampled event travel together. These intervals use this full-data run's own predictions; they do not adjust for adaptive validation reuse or dependence between earthquake sequences.
+
+| Seconds | ΔMAE | ΔMedAE | ΔM≥4 MAE | ΔCVaR95 |
+|---|---|---|---|---|
+| 1 | [-0.0325, -0.0281] | [-0.0269, -0.0221] | [-0.2557, -0.0785] | [-0.0937, -0.0648] |
+| 3 | [-0.0329, -0.0292] | [-0.0264, -0.0226] | [-0.2401, -0.0953] | [-0.0923, -0.0619] |
+| 5 | [-0.0336, -0.0301] | [-0.0277, -0.0242] | [-0.2189, -0.0725] | [-0.0887, -0.0608] |
+
+At 5 seconds, native-amplitude summaries also improve over the static model: the descriptive M≥4 error-difference interval is [−0.0189, −0.0064], and MAE is [−0.00194, −0.00135]. This does not remove station-reuse or preprocessing limits. Bootstrap identity: `instrument_full_event_bootstrap_78c4fa74a948_b15140a2de10`.

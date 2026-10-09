@@ -4,7 +4,7 @@ Date: 2026-10-09. Scope: read-only original AWS artifacts, local source inspecti
 
 ## Result
 
-**The historical mismatch is real, but its specific cause is not yet established.** Common code, recorded configuration, row selection, teacher targets, optimizer groups, scheduler state, and final CPU/CUDA RNG state agree. The detached mathematical objective should give the same backbone derivative, and this was verified bitwise for the actual model and training functions on CPU, including batch size 512. CUDA numerical nondeterminism remains a plausible explanation requiring a GPU diagnostic; it is not a demonstrated root cause. Do not interpret the detached run's score difference as an auxiliary learning effect, and do not claim an exact negative control from this run.
+**The historical mismatch is real, but its specific cause is not yet established.** Common code, recorded configuration, row selection, teacher targets, optimizer groups, scheduler state, and final CPU/CUDA RNG state agree. The detached mathematical objective should give the same backbone derivative, and this was verified bitwise for the actual model and training functions on CPU, including batch size 512. Parent-scheduled crossed GPU probes now demonstrate present CUDA nonrepeatability under default settings, removed in the tested deterministic configurations (see addendum). This is a concrete plausible mechanism, not forensic proof of the unique historical root cause. Do not interpret the detached run's score difference as an auxiliary learning effect, and do not claim an exact negative control from this run.
 
 Run directories under `/home/ec2-user/Earthquake/results/2026-10-09/phase2`:
 
@@ -104,3 +104,25 @@ The filename describes the already-executed default; `--device cuda` is explicit
 - `work/resolution_cpu_diagnostic.json`, `work/resolution_cpu_batch512.json`: CPU diagnostic results.
 
 No repository changes or commits were made for this audit.
+
+## Parent-scheduled CUDA follow-up (2026-10-09)
+
+After this subagent completed its CPU-only audit, the parent scheduled four bounded GPU executions on the original worker after its active training queue. This subagent did not launch them. All four use the reviewed synthetic diagnostic, not real TRAIN data. The crossed conditions avoid confounding batch size or update count with the deterministic setting.
+
+| CUDA setting | Batch / records / updates | Same-control-repeat final parameter max difference | All five pairs exact at every observed forward/gradient/update? |
+|---|---:|---:|---|
+| Default | 8 / 24 / 8 | 0.0002150386572 | No |
+| Default | 512 / 512 / 2 | 0.0004402734339 | No |
+| Deterministic + cuBLAS config | 8 / 24 / 8 | 0 | Yes |
+| Deterministic + cuBLAS config | 512 / 512 / 2 | 0 | Yes |
+
+The deterministic runs set `torch.use_deterministic_algorithms(True)` and `CUBLAS_WORKSPACE_CONFIG=:4096:8`. Default runs differ even between two identical distillation controls, so detachment/auxiliary-gradient leakage is not needed to produce the present discrepancy. In the deterministic probes the trained detached auxiliary, attached zero-weight branch, and serial-backward controls all match exactly, supporting gradient isolation for those tested computations.
+
+This **demonstrates current numerical nonrepeatability** of the default CUDA path for this implementation, across both tested sizes. It does not identify the specific kernel, uniquely reconstruct the historical environment, or quantify 19,140-step real-data drift. Historical exact negative-control claims remain unsupported; next matched training runs should use deterministic settings and a fresh raw baseline with recorded initial/order hashes. No statistical learning gain can be attributed to a detached head.
+
+Retrieved primary experiment files under `work/repo/results/2026-10-09/resolution_repro_probe/`:
+
+- `cuda_default.json` SHA-256 `e1ee513911f05b5b2a1df7e3c2b93b536376337473080a36a8fc3361f6eb6df4`.
+- `cuda_default_batch512.json` SHA-256 `df8a6ea8da2ed37cfe699386ef37d1b16f568b9fbfc46dd1a49f05a8d6c11dc0`.
+- `cuda_deterministic_batch512.json` SHA-256 `7b7845993e8c1dc122e706f3ccd5bedf099c2d406ede2b1b0a5a6c73c81459cb`.
+- `cuda_deterministic_batch8.json` SHA-256 `f0d06f259b2194fbbdd4dcdeff6415e6ed7e2e6ee01155137607352784a631d5`.

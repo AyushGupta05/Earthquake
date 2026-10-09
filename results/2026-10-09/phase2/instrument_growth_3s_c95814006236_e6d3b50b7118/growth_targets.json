@@ -1,0 +1,93 @@
+{
+  "archive_sha256": "727b05cbe4a5dc397fe02e0a1f1dbad90343c0f68cae49091d99a6943d3a065b",
+  "archive_stat": {
+    "path": "/mnt/eew-research/runs/growth_train_all979487.npz",
+    "bytes": 82041075,
+    "mtime_ns": 1791572786261268316
+  },
+  "manifest": {
+    "aligned_raw_cache_records": 979487,
+    "arrays_sha256": {
+      "baseline": "c092cb20b6bebe77d88bc0d49ad8c671ab20bfcf75893ecebf4ea7ae00dd5998",
+      "event_ids": "40cdb2a44d2a1a8c2594881777ae45723216c2f7f8127e6ed0ad383e7face965",
+      "growth": "90e896dc340b9edf34f830108c32919845c7a9229abf6d05074c113ba545c12a",
+      "magnitudes": "e0d2aad3688c7fe5a6918d4484706a761faa06346aa544269641c296d3bfd4fd",
+      "p_samples": "96517e85662493ced0d21af57afa8e2591984caf1bf7464f77ed2cea4d9a5f63",
+      "peaks": "35ada4e388b13c31b16611a02fa5986102795b45d796a981527ebeb111ae36b1",
+      "reason": "5c92952dbdb172e19c25491122583e8255d7475ca5c51c983e816e0dfb9cb4bd",
+      "rows": "140cc844a19b7619a11580ca25e059a7c9800670768298956bf6cb6a86a5b653",
+      "source_window_sha256": "26ccbe66e1e5bea5231993b3123934fbf12e404df7e26d683b4512513e0db8ea",
+      "trace_names": "1a6eb42fbf6954b67bf58aa1cfca07242fc52962b8a410eb7ddf3cece4326a20",
+      "valid": "87f69c87a63def34704a4506721cd3f4bc57fe7e3042dc512e9669f060a17a4d"
+    },
+    "audit_sha256": "d3a77d0a144d5a25568c1deb76b61558c80c2856908500350b34244277e9c20e",
+    "baseline": "Mean of exactly the preceding 100 samples; same baseline for all peaks",
+    "cache_source": {
+      "bytes": 6960137796,
+      "mtime_ns": 1788461010938629366,
+      "path": "/data/Instance_windows_5s.hdf5"
+    },
+    "component": "Z, index 2 in documented INSTANCE ENZ order",
+    "input_seconds": [
+      1,
+      3,
+      5
+    ],
+    "metadata_sha256": "168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d",
+    "normalization_sha256": {
+      "train_mean_full.npy": "0f1ed444798e604b4644e5990649009dcbf496267563d792d0555e456bbd442c",
+      "train_std_full.npy": "ad39f78d4505d0e8f91dff0d60965458e559af3c0f2174e1d316e49e30becf0a"
+    },
+    "peak_floor_counts": 1e-08,
+    "raw_source": {
+      "bytes": 167443494776,
+      "mtime_ns": 1786807349000000000,
+      "path": "/data/Instance_events_counts.hdf5"
+    },
+    "reasons": {
+      "missing_pre_p": 2,
+      "ok": 979485
+    },
+    "records": 979487,
+    "sample_limit": 0,
+    "sample_rate_hz": 100,
+    "sampling_seed": 20261009,
+    "schema": "instance_future_growth_v1",
+    "selected_max_per_event": 0,
+    "smoke_only": false,
+    "source_code_sha256": {
+      "future_growth.py": "44e24e839ed12a5405086dbbbe18e63db8a29fd45848c2e44755e1882fe182a9",
+      "train_future_growth.py": "3203103cb0fcfd15dabf813a6201566a179be79238a49eec6e3aeb11b071539b"
+    },
+    "source_limit": "Released counts may already include whole-trace detrending/resampling; not instrument-deconvolved.",
+    "split": "train",
+    "target_seconds": 10,
+    "valid_per_time": [
+      979485,
+      979485,
+      979485
+    ],
+    "zero_growth_per_time": [
+      115144,
+      307486,
+      516718
+    ]
+  },
+  "selected_row_sha256": "79a4b4ec80e026792bd176ec4b0e4c73e3ad2d73d175c6f7c374fab87a272869",
+  "selected_growth_sha256": "edead12835eee99cbfaacceeb1496a16275916ef5688eab9d901b622e9244b5f",
+  "selected_mask_sha256": "2400510994d9cb56744e5112848db15cf0d619b54e72f4ced10af3d0a825c359",
+  "selected_records": 197676,
+  "valid_per_time": [
+    197676,
+    197676,
+    197676
+  ],
+  "zero_growth_per_time": [
+    26742,
+    69591,
+    111180
+  ],
+  "seconds": 3,
+  "target_seconds": 10,
+  "coverage_policy": "Every instrument-selected TRAIN row required; no dropping or resampling"
+}

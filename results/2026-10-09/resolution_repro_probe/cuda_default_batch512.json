@@ -1,0 +1,616 @@
+{
+  "settings": {
+    "repo": "/home/ec2-user/Earthquake",
+    "device": "cuda",
+    "steps": 2,
+    "threads": 2,
+    "deterministic": false,
+    "batch_size": 512,
+    "records": 512
+  },
+  "torch": "2.8.0+cu128",
+  "cublas_workspace_config": null,
+  "cuda_build": "12.8",
+  "steps": [
+    {
+      "step": 1,
+      "pairs": {
+        "distill_attached__distill_repeat": {
+          "forward": {
+            "equal": true,
+            "max_abs": 0.0,
+            "different_tensors": 0,
+            "largest": [
+              [
+                "1",
+                0.0
+              ],
+              [
+                "3",
+                0.0
+              ],
+              [
+                "5",
+                0.0
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 1.862645149230957e-09,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.0.weight",
+                1.862645149230957e-09
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                1.862645149230957e-09
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                9.313225746154785e-10
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 4.0978193283081055e-08,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.3.body.0.weight",
+                4.0978193283081055e-08
+              ],
+              [
+                "encoder.features.3.skip.weight",
+                2.2351741790771484e-08
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                7.450580596923828e-09
+              ]
+            ]
+          }
+        },
+        "distill_attached__distill_detached": {
+          "forward": {
+            "equal": true,
+            "max_abs": 0.0,
+            "different_tensors": 0,
+            "largest": [
+              [
+                "1",
+                0.0
+              ],
+              [
+                "3",
+                0.0
+              ],
+              [
+                "5",
+                0.0
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 1.862645149230957e-09,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.0.weight",
+                1.862645149230957e-09
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                1.3969838619232178e-09
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                1.3969838619232178e-09
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 6.332993507385254e-08,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.3.skip.weight",
+                6.332993507385254e-08
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                4.470348358154297e-08
+              ],
+              [
+                "encoder.features.0.weight",
+                1.4901161193847656e-08
+              ]
+            ]
+          }
+        },
+        "distill_attached__resolution_detached": {
+          "forward": {
+            "equal": true,
+            "max_abs": 0.0,
+            "different_tensors": 0,
+            "largest": [
+              [
+                "1",
+                0.0
+              ],
+              [
+                "3",
+                0.0
+              ],
+              [
+                "5",
+                0.0
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 1.862645149230957e-09,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.3.body.0.weight",
+                1.862645149230957e-09
+              ],
+              [
+                "encoder.features.0.weight",
+                1.3969838619232178e-09
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                9.313225746154785e-10
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 1.4901161193847656e-07,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.3.body.0.weight",
+                1.4901161193847656e-07
+              ],
+              [
+                "encoder.features.3.skip.weight",
+                6.51925802230835e-08
+              ],
+              [
+                "encoder.features.0.weight",
+                1.4901161193847656e-08
+              ]
+            ]
+          }
+        },
+        "distill_detached__resolution_detached": {
+          "forward": {
+            "equal": true,
+            "max_abs": 0.0,
+            "different_tensors": 0,
+            "largest": [
+              [
+                "1",
+                0.0
+              ],
+              [
+                "3",
+                0.0
+              ],
+              [
+                "5",
+                0.0
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 2.0954757928848267e-09,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.0.weight",
+                2.0954757928848267e-09
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                1.3969838619232178e-09
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                9.313225746154785e-10
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 1.9371509552001953e-07,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.3.body.0.weight",
+                1.9371509552001953e-07
+              ],
+              [
+                "encoder.features.3.skip.weight",
+                1.4901161193847656e-08
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                7.450580596923828e-09
+              ]
+            ]
+          }
+        },
+        "distill_detached__resolution_serial": {
+          "forward": {
+            "equal": true,
+            "max_abs": 0.0,
+            "different_tensors": 0,
+            "largest": [
+              [
+                "1",
+                0.0
+              ],
+              [
+                "3",
+                0.0
+              ],
+              [
+                "5",
+                0.0
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 1.6298145055770874e-09,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.0.weight",
+                1.6298145055770874e-09
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                1.3969838619232178e-09
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                1.3969838619232178e-09
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 7.450580596923828e-08,
+            "different_tensors": 4,
+            "largest": [
+              [
+                "encoder.features.3.body.0.weight",
+                7.450580596923828e-08
+              ],
+              [
+                "encoder.features.3.skip.weight",
+                3.725290298461914e-08
+              ],
+              [
+                "encoder.features.4.skip.weight",
+                7.450580596923828e-09
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "step": 2,
+      "pairs": {
+        "distill_attached__distill_repeat": {
+          "forward": {
+            "equal": false,
+            "max_abs": 8.942186832427979e-05,
+            "different_tensors": 3,
+            "largest": [
+              [
+                "1",
+                8.942186832427979e-05
+              ],
+              [
+                "3",
+                6.972998380661011e-05
+              ],
+              [
+                "5",
+                6.602704524993896e-05
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 0.00016978150233626366,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.5.body.3.weight",
+                0.00016978150233626366
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                6.712190224789083e-05
+              ],
+              [
+                "encoder.features.5.body.0.weight",
+                5.8533623814582825e-05
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 0.0004402734339237213,
+            "different_tensors": 32,
+            "largest": [
+              [
+                "encoder.features.4.body.3.weight",
+                0.0004402734339237213
+              ],
+              [
+                "encoder.features.3.body.3.weight",
+                0.0004319334402680397
+              ],
+              [
+                "encoder.features.4.body.0.weight",
+                0.00025298912078142166
+              ]
+            ]
+          }
+        },
+        "distill_attached__distill_detached": {
+          "forward": {
+            "equal": false,
+            "max_abs": 7.957033812999725e-05,
+            "different_tensors": 3,
+            "largest": [
+              [
+                "1",
+                7.957033812999725e-05
+              ],
+              [
+                "3",
+                6.565451622009277e-05
+              ],
+              [
+                "5",
+                5.400925874710083e-05
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 4.252023063600063e-05,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.5.body.3.weight",
+                4.252023063600063e-05
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                2.188165672123432e-05
+              ],
+              [
+                "encoder.features.3.body.3.weight",
+                2.1041632862761617e-05
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 0.00011764839291572571,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.5.skip.weight",
+                0.00011764839291572571
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                0.00011239573359489441
+              ],
+              [
+                "encoder.features.4.body.3.weight",
+                9.262561798095703e-05
+              ]
+            ]
+          }
+        },
+        "distill_attached__resolution_detached": {
+          "forward": {
+            "equal": false,
+            "max_abs": 7.957033812999725e-05,
+            "different_tensors": 3,
+            "largest": [
+              [
+                "1",
+                7.957033812999725e-05
+              ],
+              [
+                "3",
+                7.753074169158936e-05
+              ],
+              [
+                "5",
+                5.51566481590271e-05
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 0.00019557029008865356,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.5.body.3.weight",
+                0.00019557029008865356
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                7.110857404768467e-05
+              ],
+              [
+                "encoder.features.3.body.3.weight",
+                6.985245272517204e-05
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 0.000307668000459671,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.3.body.3.weight",
+                0.000307668000459671
+              ],
+              [
+                "encoder.features.4.body.3.weight",
+                0.000303804874420166
+              ],
+              [
+                "encoder.features.4.body.0.weight",
+                0.000279448926448822
+              ]
+            ]
+          }
+        },
+        "distill_detached__resolution_detached": {
+          "forward": {
+            "equal": false,
+            "max_abs": 7.889047265052795e-05,
+            "different_tensors": 3,
+            "largest": [
+              [
+                "1",
+                7.889047265052795e-05
+              ],
+              [
+                "3",
+                6.105005741119385e-05
+              ],
+              [
+                "5",
+                5.120784044265747e-05
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 0.00019541755318641663,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.5.body.3.weight",
+                0.00019541755318641663
+              ],
+              [
+                "encoder.features.3.body.3.weight",
+                7.903669029474258e-05
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                6.780761759728193e-05
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 0.0003517940640449524,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.4.body.3.weight",
+                0.0003517940640449524
+              ],
+              [
+                "encoder.features.4.body.0.weight",
+                0.00029895827174186707
+              ],
+              [
+                "encoder.features.3.body.0.weight",
+                0.00026287510991096497
+              ]
+            ]
+          }
+        },
+        "distill_detached__resolution_serial": {
+          "forward": {
+            "equal": false,
+            "max_abs": 8.367747068405151e-05,
+            "different_tensors": 3,
+            "largest": [
+              [
+                "1",
+                8.367747068405151e-05
+              ],
+              [
+                "3",
+                6.884336471557617e-05
+              ],
+              [
+                "5",
+                5.8203935623168945e-05
+              ]
+            ]
+          },
+          "grad_before_clip": {
+            "equal": false,
+            "max_abs": 0.00022313185036182404,
+            "different_tensors": 33,
+            "largest": [
+              [
+                "encoder.features.5.body.3.weight",
+                0.00022313185036182404
+              ],
+              [
+                "encoder.features.3.body.3.weight",
+                7.882062345743179e-05
+              ],
+              [
+                "encoder.features.4.body.3.weight",
+                6.582727655768394e-05
+              ]
+            ]
+          },
+          "parameters_after_step": {
+            "equal": false,
+            "max_abs": 0.00025197863578796387,
+            "different_tensors": 32,
+            "largest": [
+              [
+                "encoder.features.4.body.3.weight",
+                0.00025197863578796387
+              ],
+              [
+                "encoder.features.3.body.3.weight",
+                0.00023480504751205444
+              ],
+              [
+                "encoder.features.4.body.0.weight",
+                0.00021544098854064941
+              ]
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

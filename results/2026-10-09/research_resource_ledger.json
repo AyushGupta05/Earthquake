@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-09T19:13:16Z",
+  "updated_utc": "2026-10-09T19:18:41Z",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4312.64,
@@ -150,7 +150,7 @@
       "next": "station64_two_pretrain_epochs"
     },
     "instrument_growth": {
-      "status": "running",
+      "status": "complete",
       "max_outer_seconds": 31000,
       "per_window_seconds": 3600,
       "seconds": [
@@ -167,10 +167,24 @@
       "started_utc": "2026-10-09T19:06:32Z"
     },
     "resolution_gpu_probe": {
-      "status": "queued_after_instrument_growth",
+      "status": "complete",
       "max_outer_seconds": 15600,
       "seconds_per_probe": 180,
-      "synthetic_only": true
+      "synthetic_only": true,
+      "additional_crossed_probes": 2
+    },
+    "instrument_full_bootstrap": {
+      "status": "complete",
+      "replicates": 2000,
+      "contrasts": 9,
+      "cpu_only": true,
+      "maximum_seconds": 1200
     }
+  },
+  "continuation": {
+    "kind": "thread heartbeat",
+    "id": "continue-earthquake-research-and-aws-experiments",
+    "interval_minutes": 30,
+    "notifications": "Meaningful change, completion, failure or required input only"
   }
 }
