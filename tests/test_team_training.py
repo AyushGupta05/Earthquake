@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import h5py
 import numpy as np
@@ -17,6 +18,8 @@ from train_team_lm import (
     EventDataset, StationDataset, atomic_save, collate_events, file_sha256,
     gaussian_mixture_crps, id_digest, load_verified_metadata, mixture_quantile,
     point_metrics, resampling_indices, split_original_train, training_cutoffs,
+    author_station_blinding, main, make_plateau_scheduler, smooth_training_magnitudes,
+    step_calibration_scheduler,
 )
 
 
@@ -130,6 +133,98 @@ class TeamTrainingTests(unittest.TestCase):
         counts = np.bincount(resampling_indices(magnitudes, 2), minlength=len(magnitudes))
         np.testing.assert_array_equal(counts, [1, 8, 8, 16, 16, 128])
         np.testing.assert_array_equal(resampling_indices(magnitudes, 1), np.arange(6))
+
+    def test_author_blinding_draws_uniform_retained_count_and_masks_unavailable(self):
+        torch.manual_seed(17)
+        # Four active stations plus one unavailable station; count must be 1..4.
+        x = torch.randn(2000, 5, 1000, 3)
+        coords = torch.ones(2000, 5, 3)
+        mask = torch.ones(2000, 5, dtype=torch.bool)
+        mask[:, -1] = False
+        retained = author_station_blinding(x, coords, mask, 1.)
+        self.assertFalse(retained[:, -1].any())
+        counts = torch.bincount(retained.sum(-1), minlength=5)
+        self.assertEqual(counts[0], 0)
+        self.assertTrue(((counts[1:] - 500).abs() < 100).all())
+        torch.testing.assert_close(author_station_blinding(x, coords, mask, 1., training=False), mask)
+        self.assertFalse(author_station_blinding(x[:2], coords[:2], torch.zeros_like(mask[:2]), 1.).any())
+
+    def test_author_blinding_ignores_future_and_preserves_inputs(self):
+        x = torch.randn(8, 4, 1000, 3)
+        coords, mask = torch.ones(8, 4, 3), torch.ones(8, 4, dtype=torch.bool)
+        altered = x.clone()
+        altered[:, :, 600:] = float("nan")
+        torch.manual_seed(9)
+        first = author_station_blinding(x, coords, mask, 1.)
+        torch.manual_seed(9)
+        second = author_station_blinding(altered, coords, mask, 1.)
+        torch.testing.assert_close(first, second)
+        self.assertTrue(mask.all())
+
+    def test_magnitude_smoothing_has_source_scale_and_never_changes_eval_labels(self):
+        targets = torch.tensor([3., 4., 5., 6.]).repeat(4000)
+        original = targets.clone()
+        torch.manual_seed(3)
+        smoothed = smooth_training_magnitudes(targets, enabled=True)
+        torch.testing.assert_close(targets, original)
+        torch.testing.assert_close(smoothed[targets <= 4], targets[targets <= 4])
+        for magnitude, sigma in ((5, .05), (6, .1)):
+            noise = smoothed[targets == magnitude] - magnitude
+            self.assertAlmostEqual(float(noise.std()), sigma, delta=.004)
+            self.assertAlmostEqual(float(noise.mean()), 0., delta=.004)
+        torch.testing.assert_close(smooth_training_magnitudes(targets, enabled=True, training=False), original)
+        torch.testing.assert_close(smooth_training_magnitudes(targets, enabled=False), original)
+
+    def test_scheduler_uses_only_calibration_and_source_plateau_patience(self):
+        for stage, patience in (("pretrain", 4), ("event", 6)):
+            optimizer = torch.optim.Adam([torch.nn.Parameter(torch.ones(1))], lr=1e-4)
+            scheduler = make_plateau_scheduler(optimizer, "author-plateau", stage)
+            metrics = {str(t): {"proper_nll": 2.} for t in (1, 3, 5)}
+            with self.assertRaises(ValueError):
+                step_calibration_scheduler(scheduler, metrics, split="dev")
+            step_calibration_scheduler(scheduler, metrics, split="calibration")
+            for _ in range(patience - 1):
+                step_calibration_scheduler(scheduler, metrics, split="calibration")
+                self.assertAlmostEqual(optimizer.param_groups[0]["lr"], 1e-4)
+            step_calibration_scheduler(scheduler, metrics, split="calibration")
+            self.assertAlmostEqual(optimizer.param_groups[0]["lr"], 3e-5)
+
+    def test_station_calibration_cannot_read_dev_or_use_fitting_augmentation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path, frame, _ = fixture(directory)
+            calibration = EventDataset(path, frame.iloc[6:8])
+            self.assertGreater(len(StationDataset(calibration, calibration=True)), 0)
+            with self.assertRaises(ValueError):
+                StationDataset(calibration)
+            with self.assertRaises(ValueError):
+                StationDataset(EventDataset(path, frame.iloc[12:]), calibration=True)
+            with self.assertRaises(ValueError):
+                StationDataset(EventDataset(path, frame.iloc[:2], training=True), calibration=True)
+            calibration.close()
+
+    def test_train_only_pilot_never_fetches_dev_and_preserves_scheduler_checkpoint(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path, _, _ = fixture(directory)
+            original_get = EventDataset.__getitem__
+            def guarded_get(dataset, index):
+                if dataset.frame.iloc[index].benchmark_split == "dev":
+                    raise AssertionError("A TRAIN-only pilot fetched DEV waveforms")
+                return original_get(dataset, index)
+            args = ["train_team_lm", "--cache", str(path), "--aggregation", "pool", "--epochs", "1",
+                    "--pretrain-epochs", "1", "--batch-size", "2", "--pretrain-batch-size", "2",
+                    "--limit-fit-events", "2", "--magnitude-resampling", "1", "--skip-dev",
+                    "--station-blinding", "author", "--event-label-smoothing",
+                    "--lr-schedule", "author-plateau", "--selection", "calibration-nll", "--output", directory]
+            with patch.object(sys, "argv", args), patch.object(EventDataset, "__getitem__", guarded_get), patch("torch.cuda.is_available", return_value=False):
+                main()
+            output, = Path(directory).glob("team_pool_*")
+            run = json.loads((output / "run.json").read_text())
+            self.assertFalse(run["dev_evaluated"])
+            self.assertFalse((output / "dev_metrics.json").exists())
+            self.assertFalse((output / "dev_predictions.npz").exists())
+            saved = torch.load(output / "latest.pth", weights_only=True)
+            self.assertIsNotNone(saved["scheduler"])
+            self.assertEqual(saved["completed_epoch"], 1)
 
     def test_gaussian_crps_and_quantiles_match_closed_form_standard_normal(self):
         mixture = {"means": torch.zeros(3, 1, dtype=torch.float64),

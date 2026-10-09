@@ -22,7 +22,7 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader, Dataset, Subset
 
-from team_lm import GaussianMixtureHead, TeamLM, mixture_log_prob, mixture_mean, mixture_nll
+from team_lm import GaussianMixtureHead, TeamLM, mixture_log_prob, mixture_mean, mixture_nll, prepare_prefix
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -201,11 +201,12 @@ class EventDataset(Dataset):
 
 
 class StationDataset(Dataset):
-    """Every station from fitting events, matching the source pretraining unit."""
+    """All stations of fitting events, or explicitly held-out TRAIN calibration."""
 
-    def __init__(self, events):
-        if not events.training:
-            raise ValueError("Pretraining can only use fitting TRAIN events")
+    def __init__(self, events, *, calibration=False):
+        if (not (events.frame.benchmark_split == "train").all()
+                or events.training == calibration):
+            raise ValueError("Station fitting/calibration must use its matching TRAIN-only event partition")
         self.events = events
         with h5py.File(events.cache, "r") as handle:
             counts = [handle["data"][str(event)]["waveforms"].shape[0] for event in events.frame.EVENT]
@@ -334,11 +335,87 @@ def atomic_save(value, destination):
     os.replace(temporary, destination)
 
 
-def checkpoint(model, optimizer, stage, epoch, config, selection):
+def checkpoint(model, optimizer, stage, epoch, config, selection, scheduler=None):
     return {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "stage": stage,
             "completed_epoch": epoch, "config": config, "selection": selection,
+            "scheduler": None if scheduler is None else scheduler.state_dict(),
             "torch_rng": torch.get_rng_state(),
             "cuda_rng": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else []}
+
+
+def smooth_training_magnitudes(targets, *, enabled, training=True):
+    """Source M>4 Gaussian label noise; never mutate targets or evaluation labels."""
+    if not enabled or not training:
+        return targets
+    return targets + torch.randn_like(targets) * (targets - 4).clamp_min(0) * .05
+
+
+def author_station_blinding(waveforms, coordinates, mask, cutoffs, *, training=True):
+    """Hide a uniform number 0..S-1 of currently active stations per event.
+
+    This is the source's count-uniform law, not independent Bernoulli dropout.
+    Activation is determined only from the strictly observed, centered prefix;
+    each repeated training presentation draws fresh randomness. Returning a mask
+    lets the model zero both waveform and coordinate evidence before encoding.
+    """
+    if not training:
+        return mask
+    with torch.no_grad():
+        _, active = prepare_prefix(waveforms, mask, cutoffs)
+        active = active & coordinates.ne(0).any(-1)
+        count = active.sum(-1)
+        hidden_count = (torch.rand(len(mask), device=mask.device) * count).long()
+        scores = torch.rand(mask.shape, device=mask.device).masked_fill(~active, float("inf"))
+        ranks = scores.argsort(-1).argsort(-1)
+        hidden = active & (ranks < hidden_count[:, None])
+        return mask & ~hidden
+
+
+def make_plateau_scheduler(optimizer, schedule, stage):
+    if schedule == "none":
+        return None
+    if schedule != "author-plateau" or stage not in ("pretrain", "event"):
+        raise ValueError("Unknown scheduler/stage")
+    # Keras reduces at wait >= patience; PyTorch uses bad_epochs > patience.
+    # Both therefore decay after 4/6 consecutive non-improving observations.
+    return torch.optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, mode="min", factor=.3, patience=3 if stage == "pretrain" else 5,
+        threshold=1e-4, threshold_mode="abs", eps=0.)
+
+
+def step_calibration_scheduler(scheduler, metrics, *, split):
+    """Explicit boundary: schedules may consume only TRAIN calibration scores."""
+    if split != "calibration":
+        raise ValueError("Learning-rate schedules must not consume DEV or TEST metrics")
+    score = float(np.mean([metrics[str(int(t))]["proper_nll"] for t in TIMES]))
+    if not math.isfinite(score):
+        raise FloatingPointError("Nonfinite calibration score")
+    if scheduler is not None:
+        scheduler.step(score)
+    return score
+
+
+@torch.no_grad()
+def evaluate_pretraining(model, loader, device):
+    """Fixed 1/3/5s station loss on held-out TRAIN; no label noise or blinding."""
+    model.eval()
+    total, count = {str(int(t)): 0. for t in TIMES}, 0
+    for x, targets in loader:
+        x, targets = x.to(device), targets.double().to(device)
+        for seconds in TIMES:
+            mixture = {key: value.double() for key, value in model.forward_single_station(x, seconds).items()}
+            total[str(int(seconds))] += float(-mixture_log_prob(mixture, targets).sum())
+        count += len(targets)
+    if not count:
+        raise ValueError("Pretraining calibration must contain stations")
+    return {key: {"proper_nll": value / count} for key, value in total.items()}
+
+
+def peak_cuda_memory(device):
+    if device.type != "cuda":
+        return {"peak_cuda_allocated_bytes": None, "peak_cuda_reserved_bytes": None}
+    return {"peak_cuda_allocated_bytes": torch.cuda.max_memory_allocated(device),
+            "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(device)}
 
 
 def training_cutoffs(count, device, schedule):
@@ -363,6 +440,9 @@ def main():
     parser.add_argument("--workers", type=int, default=0)
     parser.add_argument("--max-stations", type=int, default=25)
     parser.add_argument("--station-drop", type=float, default=0.)
+    parser.add_argument("--station-blinding", choices=("none", "author"), default="none")
+    parser.add_argument("--event-label-smoothing", action="store_true")
+    parser.add_argument("--lr-schedule", choices=("none", "author-plateau"), default="none")
     parser.add_argument("--magnitude-resampling", type=int, choices=(1, 2), default=2)
     parser.add_argument("--seed", type=int, default=20261009)
     parser.add_argument("--calibration-fraction", type=float, default=.1)
@@ -371,12 +451,15 @@ def main():
     parser.add_argument("--density-epsilon", type=float, default=1e-6)
     parser.add_argument("--limit-fit-events", type=int, default=0, help="Pilot only; zero uses all fitting events")
     parser.add_argument("--limit-dev-events", type=int, default=0, help="Pilot only; zero evaluates all DEV events")
+    parser.add_argument("--skip-dev", action="store_true", help="TRAIN-only development: never load DEV waveforms or evaluate DEV")
     parser.add_argument("--output", type=Path, default=ROOT / "results/2026-10-09/phase3")
     args = parser.parse_args()
     if min(args.epochs, args.batch_size, args.pretrain_batch_size, args.max_stations) < 1 or min(args.pretrain_epochs, args.workers, args.limit_fit_events, args.limit_dev_events) < 0:
         raise ValueError("Invalid epoch/batch/worker/pilot limits")
     if not 0 <= args.station_drop < 1 or args.density_epsilon < 0 or not math.isfinite(args.density_epsilon):
         raise ValueError("Invalid station dropout or density floor")
+    if args.station_blinding == "author" and args.station_drop:
+        raise ValueError("Choose author station blinding or Bernoulli station dropout, not both")
     started = time.monotonic()
     torch.set_num_threads(2)
     torch.backends.cudnn.benchmark = False
@@ -414,7 +497,8 @@ def main():
                                     station_drop=args.station_drop if split == "fit" else 0., seed=args.seed,
                                     stored_samples=manifest["stored_samples"]) for split, ix in rows.items()}
     evaluation_loaders = {split: DataLoader(datasets[split], batch_size=args.batch_size, shuffle=False, num_workers=args.workers,
-                                          collate_fn=collate_events) for split in ("calibration", "dev")}
+                                          collate_fn=collate_events)
+                          for split in (("calibration",) if args.skip_dev else ("calibration", "dev"))}
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.manual_seed(args.seed)
     model = TeamLM(args.aggregation)
@@ -430,16 +514,22 @@ def main():
         station_data = StationDataset(datasets["fit"])
         parameters = list(model.station_encoder.parameters()) + list(model.single_station_head.parameters())
         optimizer = torch.optim.Adam(parameters, lr=1e-4)
+        scheduler = make_plateau_scheduler(optimizer, args.lr_schedule, "pretrain")
+        station_calibration = (DataLoader(StationDataset(datasets["calibration"], calibration=True),
+                                         batch_size=args.pretrain_batch_size, shuffle=False, num_workers=args.workers)
+                               if scheduler is not None else None)
         for epoch in range(args.pretrain_epochs):
             generator = torch.Generator().manual_seed(args.seed + epoch)
             loader = DataLoader(station_data, batch_size=args.pretrain_batch_size, shuffle=True,
                                 generator=generator, num_workers=args.workers)
             model.train()
-            total, count = 0., 0
-            for x, y in loader:
+            total, count, epoch_start = 0., 0, time.monotonic()
+            if device.type == "cuda":
+                torch.cuda.reset_peak_memory_stats(device)
+            for step, (x, y) in enumerate(loader, 1):
                 x, y = x.to(device), y.float().to(device)
                 # Source label perturbation is TRAIN-only and only above M4.
-                y = y + torch.randn_like(y) * (y - 4).clamp_min(0) * .05
+                y = smooth_training_magnitudes(y, enabled=True)
                 mixture = model.forward_single_station(x, training_cutoffs(len(y), device, args.training_cutoff))
                 loss = mixture_nll(mixture, y, args.density_epsilon)
                 if not torch.isfinite(loss):
@@ -448,9 +538,22 @@ def main():
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(parameters, 1.)
                 optimizer.step()
-                total, count = total + float(loss) * len(y), count + len(y)
-            pretrain_history.append({"epoch": epoch + 1, "loss": total / count, "stations": count})
-            atomic_save(checkpoint(model, optimizer, "pretrain", epoch + 1, config, {}), out / "latest.pth")
+                total, count = total + float(loss.detach()) * len(y), count + len(y)
+                if step == 100:
+                    print("TIMING", {"stage": "pretrain", "epoch": epoch + 1,
+                                     "first_100_batches_seconds": time.monotonic() - epoch_start,
+                                     "total_batches": len(loader), **peak_cuda_memory(device)}, flush=True)
+            training_seconds = time.monotonic() - epoch_start
+            calibration = None
+            if station_calibration is not None:
+                calibration = evaluate_pretraining(model, station_calibration, device)
+                step_calibration_scheduler(scheduler, calibration, split="calibration")
+            pretrain_history.append({"epoch": epoch + 1, "loss": total / count, "stations": count,
+                                     "training_seconds": training_seconds,
+                                     "epoch_seconds": time.monotonic() - epoch_start,
+                                     "calibration": calibration, "learning_rate_next": optimizer.param_groups[0]["lr"],
+                                     **peak_cuda_memory(device)})
+            atomic_save(checkpoint(model, optimizer, "pretrain", epoch + 1, config, {}, scheduler), out / "latest.pth")
             (out / "pretrain_history.json").write_text(json.dumps(pretrain_history, indent=2) + "\n")
             print("PRETRAIN", pretrain_history[-1], flush=True)
         atomic_save({"encoder": model.station_encoder.state_dict(), "fit_ids_sha256": config["fit_ids_sha256"], "config": config}, out / "pretrained_encoder.pth")
@@ -458,6 +561,7 @@ def main():
     # its own Adam moments exactly as in the original two-stage procedure.
     parameters = [p for name, p in model.named_parameters() if not name.startswith("single_station_head.")]
     optimizer = torch.optim.Adam(parameters, lr=1e-4)
+    scheduler = make_plateau_scheduler(optimizer, args.lr_schedule, "event")
     torch.manual_seed(args.seed + 4)
     history, best_score, selected_epoch = [], math.inf, None
     train_indices = resampling_indices(datasets["fit"].frame.MA.to_numpy(), args.magnitude_resampling)
@@ -469,9 +573,14 @@ def main():
                             num_workers=args.workers, collate_fn=collate_events)
         model.train()
         total, count, epoch_start = 0., 0, time.monotonic()
+        if device.type == "cuda":
+            torch.cuda.reset_peak_memory_stats(device)
         for step, (x, coords, mask, y, _) in enumerate(loader, 1):
             x, coords, mask, y = x.to(device), coords.to(device), mask.to(device), y.float().to(device)
             cutoff = training_cutoffs(len(y), device, args.training_cutoff)
+            if args.station_blinding == "author":
+                mask = author_station_blinding(x, coords, mask, cutoff)
+            y = smooth_training_magnitudes(y, enabled=args.event_label_smoothing)
             loss = mixture_nll(model(x, coords, mask, cutoff), y, args.density_epsilon)
             if not torch.isfinite(loss):
                 raise FloatingPointError("Nonfinite event-model loss")
@@ -479,12 +588,14 @@ def main():
             loss.backward()
             torch.nn.utils.clip_grad_norm_(parameters, 1.)
             optimizer.step()
-            total, count = total + float(loss) * len(y), count + len(y)
+            total, count = total + float(loss.detach()) * len(y), count + len(y)
             if step == 100:
-                print("TIMING", {"epoch": epoch + 1, "first_100_batches_seconds": time.monotonic() - epoch_start,
-                                 "total_batches": len(loader)}, flush=True)
+                print("TIMING", {"stage": "event", "epoch": epoch + 1,
+                                 "first_100_batches_seconds": time.monotonic() - epoch_start,
+                                 "total_batches": len(loader), **peak_cuda_memory(device)}, flush=True)
+        training_seconds = time.monotonic() - epoch_start
         calibration, _ = evaluate(model, evaluation_loaders["calibration"], device)
-        score = float(np.mean([calibration[str(int(t))]["proper_nll"] for t in TIMES]))
+        score = step_calibration_scheduler(scheduler, calibration, split="calibration")
         if args.selection == "calibration-nll" and score < best_score:
             best_score, selected_epoch = score, epoch + 1
             atomic_save({"model": model.state_dict(), "epoch": selected_epoch, "calibration_score": score}, out / "selected.pth")
@@ -492,9 +603,11 @@ def main():
             selected_epoch = epoch + 1
         selection = {"policy": args.selection, "selected_epoch": selected_epoch,
                      "best_calibration_nll": best_score if math.isfinite(best_score) else None}
-        atomic_save(checkpoint(model, optimizer, "event", epoch + 1, config, selection), out / "latest.pth")
+        atomic_save(checkpoint(model, optimizer, "event", epoch + 1, config, selection, scheduler), out / "latest.pth")
         log = {"epoch": epoch + 1, "train_loss": total / count, "events": count,
-               "epoch_seconds": time.monotonic() - epoch_start, "calibration": calibration}
+               "training_seconds": training_seconds,
+               "epoch_seconds": time.monotonic() - epoch_start, "calibration": calibration,
+               "learning_rate_next": optimizer.param_groups[0]["lr"], **peak_cuda_memory(device)}
         history.append(log)
         (out / "history.json").write_text(json.dumps(history, indent=2, allow_nan=False) + "\n")
         print("EPOCH", epoch + 1, "loss", log["train_loss"], "seconds", log["epoch_seconds"], "calibration_nll", score, flush=True)
@@ -502,14 +615,16 @@ def main():
         chosen = torch.load(out / "selected.pth", map_location=device, weights_only=True)
         model.load_state_dict(chosen["model"])
     # First DEV evaluation happens after the complete fixed budget and selection.
-    dev_metrics, predictions = evaluate(model, evaluation_loaders["dev"], device)
+    dev_metrics = None
+    if not args.skip_dev:
+        dev_metrics, predictions = evaluate(model, evaluation_loaders["dev"], device)
+        (out / "dev_metrics.json").write_text(json.dumps(dev_metrics, indent=2, allow_nan=False) + "\n")
+        np.savez_compressed(out / "dev_predictions.npz", **predictions)
     atomic_save({"model": model.state_dict(), "config": config, "selected_epoch": selected_epoch}, out / "model.pth")
-    (out / "dev_metrics.json").write_text(json.dumps(dev_metrics, indent=2, allow_nan=False) + "\n")
-    np.savez_compressed(out / "dev_predictions.npz", **predictions)
     run = {**config, "selected_epoch": selected_epoch, "parameters": model.parameter_counts(),
            "wall_seconds": time.monotonic() - started, "device": str(device),
            "fit_events": len(datasets["fit"]), "calibration_events": len(datasets["calibration"]), "dev_events": len(datasets["dev"]),
-           "test_reads": 0, "selection_used_dev": False}
+           "dev_evaluated": not args.skip_dev, "test_reads": 0, "selection_used_dev": False}
     (out / "run.json").write_text(json.dumps(run, indent=2, allow_nan=False) + "\n")
     for dataset in datasets.values():
         dataset.close()
