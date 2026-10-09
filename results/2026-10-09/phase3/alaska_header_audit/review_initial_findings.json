@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Treat skipped MiniSEED records as an incomplete audit",
+      "body": "ObsPy can return a nonempty Stream after emitting an InternalMSEEDWarning that records were skipped or the remaining file was not read; the installed dependency includes regression tests for this behavior. This call neither captures nor rejects those warnings, so partial headers can flow into channel, sample, and coverage counts and ultimately COMPLETE.json with complete=true. ZIP CRC and the pinned MD5 establish byte identity, but do not establish that every record in the published payload was parsed. Capture reader warnings and fail on skipped/truncated records, or persist them and mark the affected audit incomplete.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "header_audit.py",
+        "line": 82
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The head-only reader contract, ZIP CRC checks, and interval handling are consistent with the intended scope. However, recoverable reader failures can produce an unqualified completion report from partial headers. Review was read-only; no tests or real archive reads were performed.",
+  "overall_confidence": 0.94
+}

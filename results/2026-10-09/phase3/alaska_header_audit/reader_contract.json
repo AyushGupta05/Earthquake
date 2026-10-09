@@ -1,0 +1,10 @@
+{
+  "obspy_version": "1.5.1",
+  "reader_source": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/alaska_venv/lib/python3.10/site-packages/obspy/io/mseed/core.py",
+  "unpack_data_snippets": [
+    "        mseed_object = str(mseed_object)\n    # Parse the headonly and reclen flags.\n    if headonly is True:\n        unpack_data = 0\n    else:\n        unpack_data = 1\n    if reclen is None:\n        reclen = -1",
+    "    if headonly is True:\n        unpack_data = 0\n    else:\n        unpack_data = 1\n    if reclen is None:\n        reclen = -1\n    elif reclen not in VALID_RECORD_LENGTHS:\n        msg = 'Invalid record length. Autodetection will be used.'",
+    "    try:\n        lil = clibmseed.readMSEEDBuffer(\n            bfr_np[bufptr_low:bufptr_high], bufptr_high - bufptr_low,\n            selections, C.c_int8(unpack_data), reclen, C.c_int8(verbose),\n            C.c_int8(details), header_byteorder, alloc_data)\n    except InternalMSEEDError as e:\n        msg = e.args[0]\n        if offset and offset in str(e):"
+  ],
+  "scope": "Installed library source only; no real waveform payload used"
+}

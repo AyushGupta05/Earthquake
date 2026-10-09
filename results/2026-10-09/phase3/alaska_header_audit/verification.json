@@ -1,0 +1,58 @@
+{
+  "status": "ready_for_parent_launch_only_after_full_archive_verified",
+  "created_utc": "2026-10-09T21:03:59.368066+00:00",
+  "source_sha256": {
+    "header_audit.py": "b3fd2e1ca90ea34c840c7f57d6e0580272cb5865ed19d62544e122aa40bd37c6",
+    "test_header_audit.py": "e9ee82ae8fa198f99197fddc20a343a8bbbdbfde5b1df24160271c4235309173"
+  },
+  "review_clone_matches": true,
+  "tests": {
+    "command": "work/alaska_venv/bin/python -m unittest discover -s work/alaska_header_audit -p test_header_audit.py -v",
+    "count": 10,
+    "seconds": 0.013,
+    "result": "OK",
+    "scope": "Synthetic MiniSEED fixtures only"
+  },
+  "fixes": [
+    "Join bare .dat IDs to _replay.seed IDs",
+    "Correct fixture AttribDict.update mapping API",
+    "Cap nested interval overlap at actual segment duration",
+    "Record metadata member CRC and bytes",
+    "Reject all MiniSEED reader warnings before counting partial headers"
+  ],
+  "accepted_review_findings": [
+    "P2: ObsPy may return partial headers alongside skipped-record warnings; verified against installed library regression source and fixed"
+  ],
+  "rejected_review_findings": [],
+  "autoreview": {
+    "findings": [],
+    "overall_correctness": "patch is correct",
+    "overall_explanation": "No actionable defects found in the final two files. The warning gate addresses the previous partial-header finding. The explicit head-only reader contract, CRC checks, interval calculations, member bounds, and completion output are consistent with the stated scope. Review was read-only; no tests or real archive reads were performed.",
+    "overall_confidence": 0.94
+  },
+  "autoreview_command": "python3 /Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --prompt-file work/alaska_header_audit/review_prompt.txt --dataset work/alaska_header_audit/test_evidence.json --output work/alaska_header_audit/review.md --json-output work/alaska_header_audit/review.json",
+  "scope": {
+    "real_archive_payload_read": false,
+    "real_waveform_container_read": false,
+    "real_sample_decoding": false,
+    "actual_full_archive_audit_run": false,
+    "gpu_launches": false,
+    "commits": false
+  },
+  "index_contract": {
+    "scope": "Existing saved ZIP central-directory JSON only; no archive/container/sample bytes opened",
+    "index_sha256": "2f0f721f67ba883e3cb9221280463fb08d4dfdda6b1360a4d3e982ec818968b6",
+    "entries": 1565,
+    "metadata_members": 781,
+    "seed_members": 781,
+    "normalized_sets_equal": true,
+    "seed_naming": "<event_id>_replay.seed",
+    "metadata_naming": "<event_id>.dat",
+    "max_seed_bytes": 45134848,
+    "max_metadata_bytes": 68726,
+    "member_limit_bytes": 50000000,
+    "oversize_members": [],
+    "seed_uncompressed_bytes": 10126530048
+  },
+  "obspy_reader_contract": "Installed1.5.1 _read_mseed sets unpack_data=0 for headonly=True; snippet provenance in reader_contract.json"
+}
