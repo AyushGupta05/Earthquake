@@ -1,3 +1,14 @@
 RUN_DIRECTORY /home/ec2-user/Earthquake/results/2026-10-09/phase2/independent_weighted_drift0_seed20261010_6299d83fa1e0_9a0f88778a47
 LOADED train (979487, 3, 500)
 LOADED val (96993, 3, 500)
+independent_weighted_drift0_seed20261010 1 loss 0.41057574183218976 seconds 39.328631298965774 {'1': {'mae': 0.4235444931998363, 'm4_mae': 0.9908884752704324, 'cvar95': 1.4302174486127355}, '3': {'mae': 0.38310265964669804, 'm4_mae': 0.8083276905814453, 'cvar95': 1.3097225259248229}, '5': {'mae': 0.36599860859277517, 'm4_mae': 0.7644156838347341, 'cvar95': 1.2817584412594056}}
+independent_weighted_drift0_seed20261010 2 loss 0.3647957577356034 seconds 38.411968639004044 {}
+independent_weighted_drift0_seed20261010 3 loss 0.3537984072128127 seconds 38.25010333600221 {}
+independent_weighted_drift0_seed20261010 4 loss 0.345654332473983 seconds 38.21882588497829 {}
+independent_weighted_drift0_seed20261010 5 loss 0.33867103356449013 seconds 38.2901513199904 {'1': {'mae': 0.39926483814071495, 'm4_mae': 0.8631574960368422, 'cvar95': 1.3861490960676688}, '3': {'mae': 0.3584106984980769, 'm4_mae': 0.6711895729625121, 'cvar95': 1.281951274322473}, '5': {'mae': 0.34202882240120885, 'm4_mae': 0.5997573653522554, 'cvar95': 1.250299970152489}}
+independent_weighted_drift0_seed20261010 6 loss 0.3328592726380373 seconds 38.20849457097938 {}
+independent_weighted_drift0_seed20261010 7 loss 0.3275571763846208 seconds 38.23856624495238 {}
+independent_weighted_drift0_seed20261010 8 loss 0.32286258561471115 seconds 38.24994990602136 {}
+independent_weighted_drift0_seed20261010 9 loss 0.31900700148909983 seconds 38.23488666099729 {}
+independent_weighted_drift0_seed20261010 10 loss 0.31617064138970763 seconds 38.24327734403778 {'1': {'mae': 0.3920027417541562, 'm4_mae': 0.849422063799719, 'cvar95': 1.3916074828503842}, '3': {'mae': 0.33840223548497095, 'm4_mae': 0.6820315196024106, 'cvar95': 1.2505928360167764}, '5': {'mae': 0.3158265724097903, 'm4_mae': 0.6212360486193941, 'cvar95': 1.206903154301382}}
+FINISHED {'mode': 'independent', 'objective': 'weighted', 'martingale_weight': 0.0, 'epochs': 10, 'seed': 20261010, 'batch_size': 512, 'max_per_event': 100000, 'parameters': {'total': 355682, 'trainable': 355682, 'encoder': 248096, 'state_update': 99072, 'decoder': 8514, 'gate': 0}, 'train_records': 979487, 'wall_seconds': 418.71196035895264, 'selection': 'Fixed final epoch; monitoring does not select weights', 'data_status': 'Reused INSTANCE validation, no test predictions'}

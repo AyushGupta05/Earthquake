@@ -1,0 +1,214 @@
+{
+  "1_to_3": {
+    "head": {
+      "trained": true,
+      "prediction_name": "brier_gain",
+      "interpretation": "Realized Brier improvement target with a nonnegative predictor; negative expectations cannot be represented"
+    },
+    "records": 96993,
+    "events": 3711,
+    "predicted_integrated_mean": 0.020158151164650917,
+    "observed_revision_integrated_mean": 0.04689852148294449,
+    "realized_brier_gain_integrated_mean": 0.017075296491384506,
+    "event_macro_predicted_integrated_mean": 0.02107359165785943,
+    "event_macro_revision_integrated_mean": 0.047489751955364756,
+    "event_macro_brier_gain_integrated_mean": 0.023871364568254574,
+    "revision_boundary_mse": 0.0009613463189452887,
+    "gain_boundary_mse": 0.005355213303118944,
+    "negative_gain_boundary_fraction": 0.19922801724787434,
+    "negative_integrated_gain_record_fraction": 0.4378872702153764,
+    "revision_target_exceeds_bernoulli_envelope_fraction": 0.013485826495012725,
+    "predicted_revision_correlation": 0.10057620221051641,
+    "predicted_actual_point_error_gain_correlation": 0.07124474538862292,
+    "teacher_point_mae_improvement_over_current": 0.026178967954509105,
+    "head_limitation": "Nonnegative head cannot express negative expected teacher Brier gain",
+    "calibration_bins": [
+      {
+        "records": 9700,
+        "events": 2814,
+        "predicted": 0.010340610519051552,
+        "revision": 0.04459451884031296,
+        "brier_gain": -0.004652542993426323,
+        "point_error_gain": -0.00703258747400303
+      },
+      {
+        "records": 9700,
+        "events": 2783,
+        "predicted": 0.012782803736627102,
+        "revision": 0.03938646614551544,
+        "brier_gain": 0.006911227945238352,
+        "point_error_gain": 0.012247560956376531
+      },
+      {
+        "records": 9700,
+        "events": 2835,
+        "predicted": 0.014327660202980042,
+        "revision": 0.039055127650499344,
+        "brier_gain": 0.011386234313249588,
+        "point_error_gain": 0.01660925830424907
+      },
+      {
+        "records": 9699,
+        "events": 2955,
+        "predicted": 0.015765348449349403,
+        "revision": 0.04068620875477791,
+        "brier_gain": 0.012395765632390976,
+        "point_error_gain": 0.01928337346429181
+      },
+      {
+        "records": 9699,
+        "events": 3059,
+        "predicted": 0.017285747453570366,
+        "revision": 0.04172578081488609,
+        "brier_gain": 0.013349073007702827,
+        "point_error_gain": 0.021083691448615813
+      },
+      {
+        "records": 9699,
+        "events": 3080,
+        "predicted": 0.019014596939086914,
+        "revision": 0.04407947510480881,
+        "brier_gain": 0.01768244244158268,
+        "point_error_gain": 0.026608949686136266
+      },
+      {
+        "records": 9699,
+        "events": 3149,
+        "predicted": 0.021068377420306206,
+        "revision": 0.04589264467358589,
+        "brier_gain": 0.018831809982657433,
+        "point_error_gain": 0.02938853546722559
+      },
+      {
+        "records": 9699,
+        "events": 3186,
+        "predicted": 0.023749280720949173,
+        "revision": 0.04873580113053322,
+        "brier_gain": 0.02085546962916851,
+        "point_error_gain": 0.03266475655569542
+      },
+      {
+        "records": 9699,
+        "events": 3193,
+        "predicted": 0.027842657640576363,
+        "revision": 0.05438626930117607,
+        "brier_gain": 0.032096222043037415,
+        "point_error_gain": 0.04764837083257663
+      },
+      {
+        "records": 9699,
+        "events": 3078,
+        "predicted": 0.03940680995583534,
+        "revision": 0.07044470310211182,
+        "brier_gain": 0.041901133954524994,
+        "point_error_gain": 0.06329361757396275
+      }
+    ]
+  },
+  "3_to_5": {
+    "head": {
+      "trained": true,
+      "prediction_name": "brier_gain",
+      "interpretation": "Realized Brier improvement target with a nonnegative predictor; negative expectations cannot be represented"
+    },
+    "records": 96993,
+    "events": 3711,
+    "predicted_integrated_mean": 0.01313583180308342,
+    "observed_revision_integrated_mean": 0.03850597143173218,
+    "realized_brier_gain_integrated_mean": 0.0030800688546150923,
+    "event_macro_predicted_integrated_mean": 0.013480071472906616,
+    "event_macro_revision_integrated_mean": 0.0392149869150268,
+    "event_macro_brier_gain_integrated_mean": 0.0042640931090848315,
+    "revision_boundary_mse": 0.0007955427863635123,
+    "gain_boundary_mse": 0.004453687462955713,
+    "negative_gain_boundary_fraction": 0.22564229456685614,
+    "negative_integrated_gain_record_fraction": 0.4679203653871929,
+    "revision_target_exceeds_bernoulli_envelope_fraction": 0.012563793263431381,
+    "predicted_revision_correlation": 0.055602632494571994,
+    "predicted_actual_point_error_gain_correlation": 0.053910344785462715,
+    "teacher_point_mae_improvement_over_current": 0.005914156020779699,
+    "head_limitation": "Nonnegative head cannot express negative expected teacher Brier gain",
+    "calibration_bins": [
+      {
+        "records": 9700,
+        "events": 3008,
+        "predicted": 0.007392562460154295,
+        "revision": 0.0514310821890831,
+        "brier_gain": -0.013806894421577454,
+        "point_error_gain": -0.014011534425482457
+      },
+      {
+        "records": 9700,
+        "events": 2969,
+        "predicted": 0.00919189490377903,
+        "revision": 0.03662079945206642,
+        "brier_gain": -0.0031943724025040865,
+        "point_error_gain": -0.005939156871177955
+      },
+      {
+        "records": 9700,
+        "events": 2876,
+        "predicted": 0.010185666382312775,
+        "revision": 0.03335006907582283,
+        "brier_gain": 0.0004526204720605165,
+        "point_error_gain": -0.0012500342606127938
+      },
+      {
+        "records": 9699,
+        "events": 2902,
+        "predicted": 0.011023981496691704,
+        "revision": 0.032782964408397675,
+        "brier_gain": -4.265890675014816e-05,
+        "point_error_gain": 8.682606079246745e-05
+      },
+      {
+        "records": 9699,
+        "events": 2902,
+        "predicted": 0.011830341070890427,
+        "revision": 0.03206006810069084,
+        "brier_gain": 0.001946733915247023,
+        "point_error_gain": 0.003053278659277771
+      },
+      {
+        "records": 9699,
+        "events": 2893,
+        "predicted": 0.012709115631878376,
+        "revision": 0.03246397152543068,
+        "brier_gain": 0.005339125171303749,
+        "point_error_gain": 0.007901215088614157
+      },
+      {
+        "records": 9699,
+        "events": 3021,
+        "predicted": 0.013759376481175423,
+        "revision": 0.03483171761035919,
+        "brier_gain": 0.004973880015313625,
+        "point_error_gain": 0.007213641885203506
+      },
+      {
+        "records": 9699,
+        "events": 3073,
+        "predicted": 0.015130864456295967,
+        "revision": 0.036672428250312805,
+        "brier_gain": 0.00874802004545927,
+        "point_error_gain": 0.014676908144694903
+      },
+      {
+        "records": 9699,
+        "events": 3148,
+        "predicted": 0.01727110892534256,
+        "revision": 0.04105670750141144,
+        "brier_gain": 0.01137051172554493,
+        "point_error_gain": 0.017640245279716246
+      },
+      {
+        "records": 9699,
+        "events": 3022,
+        "predicted": 0.022864708676934242,
+        "revision": 0.053789302706718445,
+        "brier_gain": 0.015016380697488785,
+        "point_error_gain": 0.029774185822935673
+      }
+    ]
+  }
+}

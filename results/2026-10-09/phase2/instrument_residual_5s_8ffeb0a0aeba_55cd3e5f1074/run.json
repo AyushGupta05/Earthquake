@@ -1,0 +1,36 @@
+{
+  "seconds": 5,
+  "inventory": "/mnt/eew-research/instance/responses.tgz",
+  "inventory_sha256": "71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2",
+  "root": "/home/ec2-user/Earthquake",
+  "data": "/data",
+  "output": "/mnt/eew-research/runs",
+  "seeds": [
+    20261009,
+    20261010
+  ],
+  "epochs": 15,
+  "max_per_event": 4,
+  "batch_size": 2048,
+  "extract_batch_size": 256,
+  "learning_rate": 0.0005,
+  "beta": 5.0,
+  "anchor": 0.0,
+  "device": "cuda",
+  "controls": [
+    "base",
+    "instrument",
+    "instrument_native"
+  ],
+  "sampling_seed": 20261009,
+  "selection": "Fixed final epoch; report every control/seed; no validation selection",
+  "wall_seconds": 115.73268071596976,
+  "torch_version": "2.8.0+cu128",
+  "python_version": "3.9.25",
+  "train_records": 197676,
+  "train_events": 47273,
+  "input_dimension": 291,
+  "validation_status": "Reused exploratory validation",
+  "objective_status": "Inverse-sampling-weighted Huber + CE; optional fixed beta/anchor; no calibration guarantee",
+  "causality_limit": "Input-only prefix operations; original INSTANCE whole-record preprocessing remains"
+}

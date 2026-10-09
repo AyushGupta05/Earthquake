@@ -1,5 +1,8 @@
 # Phase 2: waveform evidence, sequential distributions, and future information
 
+Latest completed follow-ups: four full-data future-CDF controls and the two-seed instrument-feature ablation are now reported separately in `RESOLUTION_RESULTS.md` and `INSTRUMENT_RESULTS.md` (deliverables: earthquake_resolution_results.md and earthquake_instrument_results.md). Instrument/site conditioning gives the largest consistent practical gain so far. Sequential state updates did not outperform the independent-prefix control. These are exploratory validation results; novelty and independently matched published-benchmark superiority remain unestablished.
+
+
 Status on 9 October 2026: exploratory experiments on the existing AWS g5.xlarge
 with one A10G; no new instance or quota increase. Reused INSTANCE validation is
 not an untouched test. No claim of novel or state-of-the-art performance follows
