@@ -1,0 +1,71 @@
+{
+  "schema": "chile-team-prefix-v1",
+  "source_sha256": "f964cba056e1c5fe550d3536cc73028d51a3a669a3e0ef2e725a0224470212da",
+  "created_utc": "2026-10-09T17:09:43.069557+00:00",
+  "doi": "10.5880/GFZ.2.4.2021.002",
+  "license": "CC-BY-4.0",
+  "source_rows": 96133,
+  "cache_rows": 67293,
+  "author_split_boundaries": [
+    57679,
+    67293
+  ],
+  "split_policy": "chronological row positions; original SPLIT is descriptive only",
+  "source_test_ids_sha256": "5031d8fb7bf20df71895d445a492ddcd1211cc66297e7e7ae18da303a008b0e5",
+  "source_test_waveforms_read": false,
+  "waveform_dtype": "float32",
+  "sampling_rate_hz": 100,
+  "stored_samples": 1000,
+  "time_before_first_p_seconds": 5,
+  "time_after_first_p_seconds": 5,
+  "component_order": "ZNE",
+  "waveform_units": "m/s",
+  "coordinate_order": "latitude, longitude, depth",
+  "coordinate_units": "degrees, degrees, km (positive below sea level)",
+  "centering": "none",
+  "normalization": "none",
+  "filtering": "none",
+  "duration_exclusive_cutoffs": {
+    "1": 600,
+    "3": 800,
+    "5": 1000
+  },
+  "station_availability": "all recorded stations; source Chile has no per-station P picks",
+  "compression": "lzf with shuffle; lossless after float32 conversion",
+  "all_event_readback_verified": true,
+  "splits": {
+    "train": {
+      "events": 57679,
+      "ids_sha256": "a643f186f4bafeb1eb60706e5f0920fccf7e67c580b1c60389826a24437594a1",
+      "magnitude_min": 0.7559999999999999,
+      "magnitude_max": 8.054,
+      "threshold_counts": {
+        "4": 385,
+        "5": 61,
+        "5.5": 22,
+        "6": 12,
+        "7": 1,
+        "8": 1
+      }
+    },
+    "dev": {
+      "events": 9614,
+      "ids_sha256": "07cdb2082484c3bfe286b841a75cfadf3fd8f43854d08e337e1bfef408bb8321",
+      "magnitude_min": 0.687,
+      "magnitude_max": 5.715,
+      "threshold_counts": {
+        "4": 48,
+        "5": 6,
+        "5.5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      }
+    }
+  },
+  "records": 1049297,
+  "maximum_float32_absolute_roundoff": 9.312643607650717e-10,
+  "nonzero_values_rounded_to_zero": 0,
+  "bytes": 10083869081,
+  "sha256": "eec94c8ea5faeea023e300fc5603f1342f9da85cb45a70ec4dcd8bbe4d4da37d"
+}

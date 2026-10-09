@@ -1,0 +1,446 @@
+{
+  "dataset_sha256": "f964cba056e1c5fe550d3536cc73028d51a3a669a3e0ef2e725a0224470212da",
+  "rows": 96133,
+  "columns": [
+    "EVENT",
+    "LAT",
+    "LON",
+    "DEPTH",
+    "TIME",
+    "ML",
+    "CLS",
+    "MW_SIPPL",
+    "M_EXT",
+    "SPLIT",
+    "MA",
+    "std_MA"
+  ],
+  "dtypes": {
+    "EVENT": "object",
+    "LAT": "float64",
+    "LON": "float64",
+    "DEPTH": "float64",
+    "TIME": "float64",
+    "ML": "float64",
+    "CLS": "object",
+    "MW_SIPPL": "float64",
+    "M_EXT": "float64",
+    "SPLIT": "object",
+    "MA": "float64",
+    "std_MA": "float64"
+  },
+  "metadata_first_rows": [
+    {
+      "EVENT": "2007_01_01_01_42_45_080000",
+      "LAT": -20.43802,
+      "LON": -69.27681,
+      "DEPTH": 83.18,
+      "TIME": 1167615765.08,
+      "ML": 1.8,
+      "CLS": "ID",
+      "MW_SIPPL": null,
+      "M_EXT": null,
+      "SPLIT": "TRAIN",
+      "MA": 1.3530000000000002,
+      "std_MA": 0.014
+    },
+    {
+      "EVENT": "2007_01_01_02_41_13_750000",
+      "LAT": -21.64059,
+      "LON": -68.41443000000001,
+      "DEPTH": 118.38,
+      "TIME": 1167619273.7500002,
+      "ML": 2.5,
+      "CLS": "ID",
+      "MW_SIPPL": null,
+      "M_EXT": null,
+      "SPLIT": "TRAIN",
+      "MA": 1.981,
+      "std_MA": 0.02
+    },
+    {
+      "EVENT": "2007_01_01_03_50_29_270000",
+      "LAT": -21.84637,
+      "LON": -68.53904,
+      "DEPTH": 111.82,
+      "TIME": 1167623429.2700002,
+      "ML": 3.2,
+      "CLS": "ID",
+      "MW_SIPPL": null,
+      "M_EXT": null,
+      "SPLIT": "TRAIN",
+      "MA": 2.719,
+      "std_MA": 0.024
+    }
+  ],
+  "splits": {
+    "train": {
+      "events": 57679,
+      "first_metadata_row": {
+        "EVENT": "2007_01_01_01_42_45_080000",
+        "LAT": -20.43802,
+        "LON": -69.27681,
+        "DEPTH": 83.18,
+        "TIME": 1167615765.08,
+        "ML": 1.8,
+        "CLS": "ID",
+        "MW_SIPPL": null,
+        "M_EXT": null,
+        "SPLIT": "TRAIN",
+        "MA": 1.3530000000000002,
+        "std_MA": 0.014
+      },
+      "last_metadata_row": {
+        "EVENT": "2011_08_25_11_09_36_770000",
+        "LAT": -20.063270000000006,
+        "LON": -69.15054,
+        "DEPTH": 97.19,
+        "TIME": 1314270576.77,
+        "ML": 4.1,
+        "CLS": "ID",
+        "MW_SIPPL": null,
+        "M_EXT": null,
+        "SPLIT": "TRAIN",
+        "MA": 3.64,
+        "std_MA": 0.023
+      },
+      "mag_min": 0.7559999999999999,
+      "mag_max": 8.054,
+      "threshold_counts": {
+        "4": 385,
+        "5": 61,
+        "5.5": 22,
+        "6": 12,
+        "7": 1,
+        "8": 1
+      },
+      "ids_sha256": "a643f186f4bafeb1eb60706e5f0920fccf7e67c580b1c60389826a24437594a1"
+    },
+    "dev": {
+      "events": 9614,
+      "first_metadata_row": {
+        "EVENT": "2011_08_25_11_40_37_800000",
+        "LAT": -20.90553,
+        "LON": -69.06702,
+        "DEPTH": 105.29,
+        "TIME": 1314272437.8,
+        "ML": 2.0,
+        "CLS": "ID",
+        "MW_SIPPL": null,
+        "M_EXT": null,
+        "SPLIT": "TEST",
+        "MA": 1.503,
+        "std_MA": 0.015
+      },
+      "last_metadata_row": {
+        "EVENT": "2012_08_08_18_25_24_400000",
+        "LAT": -23.11267,
+        "LON": -69.86061,
+        "DEPTH": 11.25,
+        "TIME": 1344450324.4,
+        "ML": 2.2,
+        "CLS": "UP",
+        "MW_SIPPL": null,
+        "M_EXT": null,
+        "SPLIT": "TRAIN",
+        "MA": 1.56,
+        "std_MA": 0.022
+      },
+      "mag_min": 0.687,
+      "mag_max": 5.715,
+      "threshold_counts": {
+        "4": 48,
+        "5": 6,
+        "5.5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "ids_sha256": "07cdb2082484c3bfe286b841a75cfadf3fd8f43854d08e337e1bfef408bb8321"
+    },
+    "test": {
+      "events": 28840,
+      "first_metadata_row": {
+        "EVENT": "2012_08_08_20_27_59_280000",
+        "LAT": -20.25172,
+        "LON": -69.14944,
+        "DEPTH": 98.48,
+        "TIME": 1344457679.28,
+        "ML": 2.8,
+        "CLS": "ID",
+        "MW_SIPPL": null,
+        "M_EXT": null,
+        "SPLIT": "TRAIN",
+        "MA": 2.264,
+        "std_MA": 0.021
+      },
+      "last_metadata_row": {
+        "EVENT": "2014_12_31_03_49_15_330000",
+        "LAT": -21.28282,
+        "LON": -68.62435,
+        "DEPTH": 124.8,
+        "TIME": 1419997755.33,
+        "ML": 2.2,
+        "CLS": "ID",
+        "MW_SIPPL": null,
+        "M_EXT": null,
+        "SPLIT": "TEST",
+        "MA": 1.64,
+        "std_MA": 0.011
+      },
+      "mag_min": 0.775,
+      "mag_max": 8.274248114154725,
+      "threshold_counts": {
+        "4": 325,
+        "5": 62,
+        "5.5": 30,
+        "6": 12,
+        "7": 3,
+        "8": 2
+      },
+      "ids_sha256": "5031d8fb7bf20df71895d445a492ddcd1211cc66297e7e7ae18da303a008b0e5"
+    }
+  },
+  "audit_time_utc": "2026-10-09T17:15:20.960154+00:00",
+  "mag_key": "MA",
+  "id_key": "EVENT",
+  "split_policy": "Author loader chronological row positions; native SPLIT column is not used",
+  "source_index_unique": false,
+  "native_split_column_counts": {
+    "TRAIN": 57675,
+    "TEST": 28843,
+    "DEV": 9614,
+    "NULL": 1
+  },
+  "duplicate_ids": 0,
+  "hdf5_root_keys": [
+    "data",
+    "metadata"
+  ],
+  "metadata_dataset_keys": [
+    "event_metadata",
+    "sampling_rate",
+    "time_after",
+    "time_before"
+  ],
+  "metadata_parameters": {
+    "sampling_rate": "100",
+    "time_after": "25",
+    "time_before": "5"
+  },
+  "hdf5_events": 96133,
+  "metadata_ids_missing_from_hdf5": [],
+  "waveform_inventory": {
+    "records": 1605983,
+    "shape_counts": {
+      "(9, 3000, 3)": 885,
+      "(8, 3000, 3)": 56,
+      "(10, 3000, 3)": 50,
+      "(11, 3000, 3)": 311,
+      "(12, 3000, 3)": 11545,
+      "(13, 3000, 3)": 2579,
+      "(14, 3000, 3)": 12429,
+      "(15, 3000, 3)": 9339,
+      "(16, 3000, 3)": 3784,
+      "(18, 3000, 3)": 11522,
+      "(17, 3000, 3)": 5601,
+      "(19, 3000, 3)": 17613,
+      "(20, 3000, 3)": 19112,
+      "(21, 3000, 3)": 1307
+    },
+    "dtype_counts": {
+      "float64": 96133
+    },
+    "dataset_key_counts": {
+      "coords": 96133,
+      "stations": 96133,
+      "waveforms": 96133
+    },
+    "p_pick_min_counts": {}
+  },
+  "samples": [
+    {
+      "event_id": "2007_01_01_01_42_45_080000",
+      "magnitude": 1.3530000000000002,
+      "datasets": {
+        "coords": {
+          "shape": [
+            9,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "stations": {
+          "shape": [
+            9
+          ],
+          "dtype": "|S10"
+        },
+        "waveforms": {
+          "shape": [
+            9,
+            3000,
+            3
+          ],
+          "dtype": "float64"
+        }
+      },
+      "first_1000_samples_finite": true,
+      "first_1000_samples_max_abs": 0.010501261850419878,
+      "stations": [
+        "b'HMBCX'",
+        "b'MNMCX'",
+        "b'PATCX'",
+        "b'PB01'",
+        "b'PB02'",
+        "b'PB03'",
+        "b'PB04'",
+        "b'PB05'",
+        "b'PSGCX'"
+      ]
+    },
+    {
+      "event_id": "2011_08_25_11_40_37_800000",
+      "magnitude": 1.503,
+      "datasets": {
+        "coords": {
+          "shape": [
+            19,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "stations": {
+          "shape": [
+            19
+          ],
+          "dtype": "|S10"
+        },
+        "waveforms": {
+          "shape": [
+            19,
+            3000,
+            3
+          ],
+          "dtype": "float64"
+        }
+      },
+      "first_1000_samples_finite": true,
+      "first_1000_samples_max_abs": 1.5421690616211696e-05,
+      "stations": [
+        "b'HMBCX'",
+        "b'MNMCX'",
+        "b'PATCX'",
+        "b'PB01'",
+        "b'PB02'",
+        "b'PB03'",
+        "b'PB04'",
+        "b'PB05'",
+        "b'PB06'",
+        "b'PB07'",
+        "b'PB08'",
+        "b'PB09'",
+        "b'PB10'",
+        "b'PB11'",
+        "b'PB12'",
+        "b'PB13'",
+        "b'PB14'",
+        "b'PINT'",
+        "b'PSGCX'"
+      ]
+    },
+    {
+      "event_id": "2012_08_08_18_25_24_400000",
+      "magnitude": 1.56,
+      "datasets": {
+        "coords": {
+          "shape": [
+            20,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "stations": {
+          "shape": [
+            20
+          ],
+          "dtype": "|S10"
+        },
+        "waveforms": {
+          "shape": [
+            20,
+            3000,
+            3
+          ],
+          "dtype": "float64"
+        }
+      },
+      "first_1000_samples_finite": true,
+      "first_1000_samples_max_abs": 1.4687680361102836e-05,
+      "stations": [
+        "b'MNMCX'",
+        "b'PATCX'",
+        "b'PB01'",
+        "b'PB02'",
+        "b'PB03'",
+        "b'PB04'",
+        "b'PB05'",
+        "b'PB06'",
+        "b'PB07'",
+        "b'PB08'",
+        "b'PB09'",
+        "b'PB10'",
+        "b'PB11'",
+        "b'PB12'",
+        "b'PB14'",
+        "b'PB15'",
+        "b'PB16'",
+        "b'PINT'",
+        "b'PSGCX'",
+        "b'S110'"
+      ]
+    },
+    {
+      "event_id": "2007_11_14_15_40_50_400000",
+      "magnitude": 8.054,
+      "datasets": {
+        "coords": {
+          "shape": [
+            11,
+            3
+          ],
+          "dtype": "float64"
+        },
+        "stations": {
+          "shape": [
+            11
+          ],
+          "dtype": "|S10"
+        },
+        "waveforms": {
+          "shape": [
+            11,
+            3000,
+            3
+          ],
+          "dtype": "float64"
+        }
+      },
+      "first_1000_samples_finite": true,
+      "first_1000_samples_max_abs": 0.017076549439608082,
+      "stations": [
+        "b'HMBCX'",
+        "b'MNMCX'",
+        "b'PATCX'",
+        "b'PB01'",
+        "b'PB02'",
+        "b'PB04'",
+        "b'PB05'",
+        "b'PB06'",
+        "b'PB07'",
+        "b'PB08'",
+        "b'PSGCX'"
+      ]
+    }
+  ]
+}

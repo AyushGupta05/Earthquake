@@ -1,0 +1,31 @@
+{
+  "updated_utc": "2026-10-09T17:16:00Z",
+  "authorized_ceiling_usd": 2000,
+  "credits_only": true,
+  "estimated_total_credit_remaining_usd": 4312.64,
+  "main_credit_remaining_usd": 4137.32,
+  "main_credit_expires": "2026-10-31",
+  "billing_status": "Delayed console estimates; shared balance, not a reserved allocation",
+  "new_instances": [],
+  "existing_training_instance": "i-0911a2d093e1e2a30",
+  "new_volumes": [
+    {
+      "id": "vol-01642a78ffb59234f",
+      "name": "EEW-Chile-research-20261009",
+      "created_utc": "2026-10-09T17:11:56Z",
+      "type": "gp3",
+      "size_gib": 100,
+      "iops": 3000,
+      "throughput_mib_s": 125,
+      "encrypted": true,
+      "availability_zone": "us-east-1d",
+      "mount": "/mnt/eew-research",
+      "estimated_monthly_capacity_usd": 8,
+      "price_source": "https://aws.amazon.com/ebs/volume-types/",
+      "cleanup": "Preserve results, remove only task-created scratch volume when finished; reconcile by 2026-10-30"
+    }
+  ],
+  "actual_incremental_settled_spend_usd": null,
+  "current_queue_max_seconds": 10800,
+  "quota": "User described 16 units; no increase requested; existing g5.xlarge only"
+}

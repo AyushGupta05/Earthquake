@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "No actionable defects found in either sample mode. The exporter preserves the required chronological splits and station metadata, restricts waveform reads to TRAIN+DEV, and publishes without overwriting existing outputs. The focused tests cover both modes and publication failures; tests were inspected but not run.",
+  "overall_confidence": 0.94
+}
