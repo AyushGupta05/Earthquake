@@ -1,0 +1,49 @@
+{
+  "scope": "first2048VAL rows, source backbone batch256 and residual batch2048, inference only",
+  "torch": "2.8.0+cu128",
+  "cuda_device": "NVIDIA A10G",
+  "cublas_workspace_config": ":4096:8",
+  "cuda_matmul_allow_tf32": false,
+  "cudnn_allow_tf32": true,
+  "modes": {
+    "original": {
+      "backbone_max_abs_logit_difference": 0.0,
+      "seeds": {
+        "20261009": {
+          "max_abs_probability_difference": 1.4521869762251782e-08,
+          "mean_abs_difference": 3.286133237311965e-10,
+          "within_adapter_probability_tolerance": true,
+          "mae_difference_same2048": -3.4453273567436327e-10,
+          "checkpoint_sha256": "d53f7ecfdf24cefb02382d29cac4c9d79a6ba17c683933d14757a8df66249c70"
+        },
+        "20261010": {
+          "max_abs_probability_difference": 1.4577708040697246e-08,
+          "mean_abs_difference": 3.3017798947234085e-10,
+          "within_adapter_probability_tolerance": true,
+          "mae_difference_same2048": 1.4454992758317076e-10,
+          "checkpoint_sha256": "78b6b6f86344dc7acb1383e77fe234f8994dfb46230fcd1c7f2727c995db1d8e"
+        }
+      }
+    },
+    "deterministic": {
+      "backbone_max_abs_logit_difference": 0.0,
+      "seeds": {
+        "20261009": {
+          "max_abs_probability_difference": 1.4521869762251782e-08,
+          "mean_abs_difference": 3.286133237311965e-10,
+          "within_adapter_probability_tolerance": true,
+          "mae_difference_same2048": -3.4453273567436327e-10,
+          "checkpoint_sha256": "d53f7ecfdf24cefb02382d29cac4c9d79a6ba17c683933d14757a8df66249c70"
+        },
+        "20261010": {
+          "max_abs_probability_difference": 1.4577708040697246e-08,
+          "mean_abs_difference": 3.3017798947234085e-10,
+          "within_adapter_probability_tolerance": true,
+          "mae_difference_same2048": 1.4454992758317076e-10,
+          "checkpoint_sha256": "78b6b6f86344dc7acb1383e77fe234f8994dfb46230fcd1c7f2727c995db1d8e"
+        }
+      }
+    }
+  },
+  "wall_seconds": 9.931074275984429
+}

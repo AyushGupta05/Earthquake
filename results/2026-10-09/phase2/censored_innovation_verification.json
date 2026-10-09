@@ -1,0 +1,91 @@
+{
+  "status": "ready;23CPUtests_passed;originalGPUinference_probe_passed;final_autoreview_clean",
+  "files_sha256": {
+    "research/2026-10-09/phase2/censored_innovation.py": "8800598b6e7b70af9aad6efd1a61e6ea9909d4f5b0af126d60009cdc324b47cb",
+    "research/2026-10-09/phase2/train_censored_innovation.py": "d5b47d0907745af9127a8c3c41ac37b99bdd1291f6f125af938ee09e423814b3",
+    "research/2026-10-09/phase2/CENSORED_INNOVATION_METHOD.md": "a49f767c6c8f31b291e867bc94ce385dab43c5e4f30d5a811cdc35dcddefd2e9",
+    "tests/test_censored_innovation.py": "db6ffc78db33db5488695b19edf40d186d3c5c7809aa6519133976829869cbf3",
+    "tests/test_train_censored_innovation.py": "4370c20037de08ea8efbb201cf1cc94f248b4888f28e7efe9def7c3dd348053c"
+  },
+  "local_aws_review_bytes_identical": true,
+  "tests": {
+    "count": 23,
+    "seconds": 1.661,
+    "result": "OK",
+    "device": "cpu",
+    "torch": "2.8.0+cu128",
+    "command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -B -m unittest discover -s tests -p \"test*censored_innovation.py\" -v"
+  },
+  "gpu_probe": {
+    "scope": "first2048VAL rows, source backbone batch256 and residual batch2048, inference only",
+    "torch": "2.8.0+cu128",
+    "cuda_device": "NVIDIA A10G",
+    "cublas_workspace_config": ":4096:8",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "modes": {
+      "original": {
+        "backbone_max_abs_logit_difference": 0.0,
+        "seeds": {
+          "20261009": {
+            "max_abs_probability_difference": 1.4521869762251782e-08,
+            "mean_abs_difference": 3.286133237311965e-10,
+            "within_adapter_probability_tolerance": true,
+            "mae_difference_same2048": -3.4453273567436327e-10,
+            "checkpoint_sha256": "d53f7ecfdf24cefb02382d29cac4c9d79a6ba17c683933d14757a8df66249c70"
+          },
+          "20261010": {
+            "max_abs_probability_difference": 1.4577708040697246e-08,
+            "mean_abs_difference": 3.3017798947234085e-10,
+            "within_adapter_probability_tolerance": true,
+            "mae_difference_same2048": 1.4454992758317076e-10,
+            "checkpoint_sha256": "78b6b6f86344dc7acb1383e77fe234f8994dfb46230fcd1c7f2727c995db1d8e"
+          }
+        }
+      },
+      "deterministic": {
+        "backbone_max_abs_logit_difference": 0.0,
+        "seeds": {
+          "20261009": {
+            "max_abs_probability_difference": 1.4521869762251782e-08,
+            "mean_abs_difference": 3.286133237311965e-10,
+            "within_adapter_probability_tolerance": true,
+            "mae_difference_same2048": -3.4453273567436327e-10,
+            "checkpoint_sha256": "d53f7ecfdf24cefb02382d29cac4c9d79a6ba17c683933d14757a8df66249c70"
+          },
+          "20261010": {
+            "max_abs_probability_difference": 1.4577708040697246e-08,
+            "mean_abs_difference": 3.3017798947234085e-10,
+            "within_adapter_probability_tolerance": true,
+            "mae_difference_same2048": 1.4454992758317076e-10,
+            "checkpoint_sha256": "78b6b6f86344dc7acb1383e77fe234f8994dfb46230fcd1c7f2727c995db1d8e"
+          }
+        }
+      }
+    },
+    "wall_seconds": 9.931074275984429
+  },
+  "cpu_probe_status": "16namedrawprefixchecks passed; CPU-vs-savedGPU probability replay failed tolerance; originalGPU probe resolved this without relaxing tolerance",
+  "fit_status": "No training launched; full197676TRAIN/allVAL adapter checks remain runtimegate beforefit",
+  "controls": [
+    "frozen",
+    "censored",
+    "hurdle",
+    "hurdle_truncated",
+    "uncensored",
+    "discriminative"
+  ],
+  "review_json": "censored_innovation_full_review_result.json",
+  "runtime_cap": "3h suggested conservative timeout; fullrun duration not yet measured",
+  "review": {
+    "engine": "codex",
+    "exit_code": 0,
+    "result": "no accepted/actionable findings",
+    "artifact_sha256": "3fb7e411e9747cd8e06d068fe0752bccb2fbcede906398c065efe4a61f0873cd",
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex --no-web-search --prompt-file ../censored_innovation_full_review_context.txt --dataset ../censored_innovation_cuda_probe.json --output ../censored_innovation_full_review_result.txt --json-output ../censored_innovation_full_review_result.json"
+  },
+  "probe_source_sha256": {
+    "censored_innovation_integration_probe.py": "ff28a8d13707d1fbc1ab2cacd671f3ffd4b636b09c1918bc49ccee76c1f8e745",
+    "censored_innovation_cuda_probe.py": "d15c77c3c494af7674600ce7f861d41594b25f7a7547291bd7b9e52f2d4b9002"
+  }
+}
