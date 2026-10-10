@@ -1,0 +1,111 @@
+{
+  "created_utc": "2026-10-10T15:36:19.510512+00:00",
+  "evidence_sha256": {
+    "SECONDARY_RESPONSE.md": "560add1e258f02deb442ef3d556b0c6aa3bc5fc4bd363b0c4fc9ec5c8dc9e2bb",
+    "autoreview_secondary_v1.json": "5c2243bb2161b89fb21a899641ac7f7137b663e7b77fe61be6ee700d8a65310a",
+    "autoreview_secondary_v1.log": "f0005b799ad308b01022e14f1c59b73b5b486ce80cdd93611339ae8496452698",
+    "autoreview_secondary_v1.txt": "c7d7c917c0ef8afa95900ddfe51d1ae8fed5c03417886e3600e0ae7d85118670",
+    "extract_secondary.py": "8068765a8605e7db31a0af7aaaeddcaf939cdef04319662641de3a95d936ee82",
+    "response_secondary_effects_v1.json": "d0ffb14d22c88876f7db141bc609e1df0f10503174062904f5f4c8aed0f124bb",
+    "response_secondary_service_v1.log": "f4949ff63206709cef6e8b8e1df1ea79974637f007372a574aa690afe0cc5100",
+    "response_secondary_v1.log": "b5c537a505d31621fdc86b27833b9f6757cbdf4aef2cd7ea429aacf1ff62e729",
+    "secondary_review_inputs.json": "3cf729098912f9f8d1cec0018270d974738b77da699941f117275e4ab58707e3",
+    "secondary_review_prompt.txt": "d6d23d1253a8cc2fa74cb654fd69d25cd7440f629fb0553c73ed8f449f13b199",
+    "secondary_tests.log": "fc802f361e7db8328a5a45fbb213afcfb7043db8ce3ed52bb97eab2dc17f02e5",
+    "test_extract_secondary.py": "f2362f83f419cd2fbd59c47bad97d44b1454b4d772128fc6356694d372fa9b8d"
+  },
+  "execution": {
+    "ActiveState": "inactive",
+    "CPUQuota": "200%",
+    "CUDA_VISIBLE_DEVICES": "",
+    "ControlGroup": "",
+    "ExecMainStatus": 0,
+    "MainPID": 0,
+    "MemoryMax": "12G",
+    "Result": "success",
+    "RuntimeMaxSec": 780,
+    "SubState": "dead",
+    "cpu_seconds": 17.114,
+    "external_timeout_seconds": 600,
+    "kill_grace_seconds": 30,
+    "maximum_rss_kib": 5933348,
+    "service_seconds": 17.127,
+    "unit": "eew-response-secondary-extract-v1",
+    "worker": "instancebaseline"
+  },
+  "grid_manifest_sha256": "db1e52814650f60e269c434f9fd9506fd38df33282c77af1e5da20562b2f121e",
+  "limitations": [
+    "Exploratory existing point-metric differences only, no new uncertainty intervals",
+    "Primary C-B failed unchanged",
+    "No new prediction replay or inference beyond original independent artifact/metric audit",
+    "No source waveform, original DEV or TEST reads"
+  ],
+  "main_dossier_files_verified_unchanged": 34,
+  "main_dossier_manifest_sha256": "07e8f3c590deab3f47b4a42ee4a439a16e04c272af139e91fa6da3afab2d05f3",
+  "primary_gate_unchanged": {
+    "checks": [
+      {
+        "both_seed_effects": false,
+        "ensemble_uncertainty": false,
+        "seconds": 1,
+        "subset": "eval_seen",
+        "support": true
+      },
+      {
+        "both_seed_effects": false,
+        "ensemble_uncertainty": false,
+        "seconds": 1,
+        "subset": "eval_held",
+        "support": true
+      },
+      {
+        "both_seed_effects": false,
+        "ensemble_uncertainty": false,
+        "seconds": 3,
+        "subset": "eval_seen",
+        "support": true
+      },
+      {
+        "both_seed_effects": false,
+        "ensemble_uncertainty": false,
+        "seconds": 3,
+        "subset": "eval_held",
+        "support": true
+      },
+      {
+        "both_seed_effects": false,
+        "ensemble_uncertainty": false,
+        "seconds": 5,
+        "subset": "eval_seen",
+        "support": true
+      },
+      {
+        "both_seed_effects": true,
+        "ensemble_uncertainty": false,
+        "seconds": 5,
+        "subset": "eval_held",
+        "support": true
+      }
+    ],
+    "pass": false,
+    "scope": "Exploratory all-panel C-minus-B gate, not familywise confirmation",
+    "status": "failed"
+  },
+  "receipt_sha256": "6e8cc224b666b5718dfad57a100547fa798c8891374a4c711a312bc8e4d674b7",
+  "remaining": "No running task process; parent owns commit and interpretation.",
+  "review": {
+    "command": "autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file ../secondary_review_prompt.txt --output ../autoreview_secondary_v1.txt --json-output ../autoreview_secondary_v1.json",
+    "engine": "codex",
+    "findings": [],
+    "status": "clean"
+  },
+  "schema": "independent-response-secondary-handoff-v1",
+  "scope": "Exact specified exploratory B-A and D-A; 72 cases, no score recomputation or scientific gate",
+  "source_report_sha256": "0f95382b0bc202429fb76833f30def63334c75e2e7bca37b0900246bb5416389",
+  "status": "complete",
+  "tests": {
+    "command": "/Users/ayush/.venvs/ml/bin/python3 -W error -m unittest discover -s work/independent_distribution_result_audit -p test_extract*.py -v",
+    "count": 6,
+    "warnings_as_errors": true
+  }
+}

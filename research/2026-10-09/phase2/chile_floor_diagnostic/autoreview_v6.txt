@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.96)
+The focused change propagates cancellation recorded during successful child cleanup as a nonzero exit after the finally block completes. The regression test covers this case and ordinary successful completion. The updated run_diagnostic.py SHA-256 matches the manifest. Review was read-only; tests were not executed.

@@ -1,0 +1,209 @@
+{
+  "all_task_processes_exited": true,
+  "created_utc": "2026-10-10T15:28:52.681554+00:00",
+  "evidence_sha256": {
+    "README.md": "84dc3dcb8a1a4999f4947b9259d07e593a4646169e1c81457ab208c7335a91a8",
+    "REAL_AUDIT_EXECUTION.json": "289b1828e10677674ef813348afbd4077630ad81ba4839cb0e6c8ae01ff927c1",
+    "RESULTS.md": "e3d250d810602696eaec1dba87ad735a74b20499d23248488c8491e7a2e87974",
+    "artifact_audit.py": "ef8a5555bd0494d5913d7f17298c2ac8229a471732230ae8f715999cc58d66e5",
+    "autoreview_extract_v1.json": "f947cf2b9deed4ece8b466c8d03df5e883d2def5de3228be521ae2351aa6bf22",
+    "autoreview_extract_v2.json": "3f03453bf8a7d0f84e8337ade4ff687dc15f84fdb9215664bef9806fb848596d",
+    "autoreview_extract_v3.json": "0193559c18b557199b11e62b64174ea582aec5024526608888609b57c4054fdf",
+    "autoreview_extract_v3.log": "88c8ab6875fc7c8ddad566dc4986b76fdd228b0a8adfb195f218fdb1b9879343",
+    "autoreview_extract_v3.txt": "f638a239c5ee8556e58f5d0ab7b76f4be441363207de789d38b0e9efc15fa9d8",
+    "autoreview_v2.json": "13112ce68743b2b00bf465beb5a4c0b823f41e51188001d16b037e1b31e6ef90",
+    "autoreview_v2.txt": "149a3857e75d879a4685a8117a5ae373503230639e01769872edad711f7a0060",
+    "exposure_audit_v1.log": "ddc3e5477c8aec7e28ec69fc609b9c57918a4242eaabf33cffc8a1c320430e46",
+    "exposure_effects_service_v1.log": "8739eebab410d62d99fa74278b9e3d27fde3bfe9c977f7032fe3600107021360",
+    "exposure_effects_v1.json": "33a57bc22e92af7efb2fdb6c58832ef598fb563b858a9fd6644085d86d9e4d74",
+    "exposure_effects_v1.log": "7aae5b533088d78340268179412bac99295c7765ed3b8be1333ab1c960b125fb",
+    "exposure_receipt_v1.json": "02bf5ae748c3f6dad256f91d06eaa77a2c65d06dfb5dc76a2b21ee3a0f302d5f",
+    "exposure_service_v1.log": "9c614d84393cb37fec163aa29a0c01b7435e830d896b77c6e68ea11c6f8e43bf",
+    "extract_effects.py": "f0958c2db64545e1f91fe25c6370581c8b1fe480d94d986fb7fad7cee99ba323",
+    "extract_review_v3_inputs.json": "b5e49fc8c7232dd8ea91685b792db2b1ee39b3dabd474e6a96b6f132889e5d92",
+    "extract_review_v3_prompt.txt": "8cfa42114e60a40e37b48b3305769fba86fe8f2642df110965fdac35cffc66c2",
+    "extraction_tests.log": "22808df0f8761118063027a6f7e671ef8f1a1dcd54e35616b311fffc2957224a",
+    "metric_audit.py": "e5ce22d8558b82355c379317438899f77d40378ae6c6b04e6c016d4908028404",
+    "response_audit_v1.log": "459942227cd0bc751f8c241c6567a5ceb195ba9f059f13f8c8815a91307f3eb3",
+    "response_effects_service_v1.log": "896f058dda2306696654e300f341738d2e1499aedeec49724b41cdc8681da3f0",
+    "response_effects_v1.json": "a2c3f4698f5231bf15ef7c73097f7b3d4999cd919d6a48c9ed5b44f5c0df1206",
+    "response_effects_v1.log": "8a8365703ce3d260265a76f445539b040e98639fd98ffc8ada513063f858674e",
+    "response_receipt_v1.json": "6e8cc224b666b5718dfad57a100547fa798c8891374a4c711a312bc8e4d674b7",
+    "response_service_v1.log": "d04e20b34f53f66addbc0bd9c38e332aee9c7d490b507fff1fdecaef92a36f63",
+    "review_v2_input_sha256.json": "d2db77574c50f6e9f85b53ccd7597548145192cc7f9e35a36541aac8190a550b",
+    "source_contract.json": "4567987e852e7495d8bafa7945bc2ac4b252dc1646f531219bc740bdb1189c58",
+    "test_distribution_audit.py": "abb7545bdfc53091dfb92a942c050b10a0e6dc7325e837c2c7cd66b5930fb6ad",
+    "test_extract_effects.py": "ac78cc332564498106308759c80e0c3642de27a0d08aafbd0e4fe2b1d8329c5c",
+    "tests.log": "5c173128db6bce15218ebb510b1bc15b63d3a786c51249641c2be4d9725c2ef3"
+  },
+  "gates": {
+    "exposure": {
+      "checks": [
+        {
+          "pass": false,
+          "reference_control": "huber_ce",
+          "seconds": 1,
+          "subset": "eval_held"
+        },
+        {
+          "pass": false,
+          "reference_control": "natural_ce",
+          "seconds": 1,
+          "subset": "eval_held"
+        },
+        {
+          "pass": false,
+          "reference_control": "huber_ce",
+          "seconds": 1,
+          "subset": "eval_seen"
+        },
+        {
+          "pass": false,
+          "reference_control": "natural_ce",
+          "seconds": 1,
+          "subset": "eval_seen"
+        },
+        {
+          "pass": false,
+          "reference_control": "huber_ce",
+          "seconds": 3,
+          "subset": "eval_held"
+        },
+        {
+          "pass": false,
+          "reference_control": "natural_ce",
+          "seconds": 3,
+          "subset": "eval_held"
+        },
+        {
+          "pass": false,
+          "reference_control": "huber_ce",
+          "seconds": 3,
+          "subset": "eval_seen"
+        },
+        {
+          "pass": false,
+          "reference_control": "natural_ce",
+          "seconds": 3,
+          "subset": "eval_seen"
+        },
+        {
+          "pass": false,
+          "reference_control": "huber_ce",
+          "seconds": 5,
+          "subset": "eval_held"
+        },
+        {
+          "pass": false,
+          "reference_control": "natural_ce",
+          "seconds": 5,
+          "subset": "eval_held"
+        },
+        {
+          "pass": false,
+          "reference_control": "huber_ce",
+          "seconds": 5,
+          "subset": "eval_seen"
+        },
+        {
+          "pass": false,
+          "reference_control": "natural_ce",
+          "seconds": 5,
+          "subset": "eval_seen"
+        }
+      ],
+      "pass": false,
+      "scope": "Exploratory investment gate; no novelty or published superiority claim",
+      "status": "failed"
+    },
+    "response": {
+      "checks": [
+        {
+          "both_seed_effects": false,
+          "ensemble_uncertainty": false,
+          "seconds": 1,
+          "subset": "eval_seen",
+          "support": true
+        },
+        {
+          "both_seed_effects": false,
+          "ensemble_uncertainty": false,
+          "seconds": 1,
+          "subset": "eval_held",
+          "support": true
+        },
+        {
+          "both_seed_effects": false,
+          "ensemble_uncertainty": false,
+          "seconds": 3,
+          "subset": "eval_seen",
+          "support": true
+        },
+        {
+          "both_seed_effects": false,
+          "ensemble_uncertainty": false,
+          "seconds": 3,
+          "subset": "eval_held",
+          "support": true
+        },
+        {
+          "both_seed_effects": false,
+          "ensemble_uncertainty": false,
+          "seconds": 5,
+          "subset": "eval_seen",
+          "support": true
+        },
+        {
+          "both_seed_effects": true,
+          "ensemble_uncertainty": false,
+          "seconds": 5,
+          "subset": "eval_held",
+          "support": true
+        }
+      ],
+      "pass": false,
+      "scope": "Exploratory all-panel C-minus-B gate, not familywise confirmation",
+      "status": "failed"
+    }
+  },
+  "human_report": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/independent_distribution_result_audit/RESULTS.md",
+  "limitations": [
+    "Checkpoint bytes verified, contents not deserialized and forward predictions not replayed",
+    "Normalizer provenance/arrays verified; statistics not refitted from waveforms",
+    "Unit/family/station stratum scores and matched-event subpanels not replayed in this audit",
+    "No cross-grid pooling; no original DEV/TEST reads; P95/worst are supplementary"
+  ],
+  "remaining": "Parent commits dossier and continues research; no live job owned by this subtask",
+  "resources": "SerialCPU2/12GiB/600swithCUDAhidden, both audits and both extractors exited0/MainPID0/emptycgroup",
+  "reviews": {
+    "compactor": {
+      "accepted_fixed": [
+        "Authenticate and parse identical in-memory bytes for report/manifest/receipt"
+      ],
+      "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file ../extract_review_v3_prompt.txt --output ../autoreview_extract_v3.txt --json-output ../autoreview_extract_v3.json",
+      "cwd": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/independent_distribution_result_audit/extract_review_v3",
+      "exit_code": 0,
+      "file": "autoreview_extract_v3.json",
+      "rejected": [
+        "Separate COMPLETE byte digest: producer/auditor contract authenticates its final-manifest pointer, not irrelevant marker formatting; ownership comment documents this."
+      ],
+      "status": "clean"
+    },
+    "main_auditor": {
+      "exit_code": 0,
+      "file": "autoreview_v2.json",
+      "status": "clean"
+    }
+  },
+  "schema": "independent-distribution-real-results-handoff-v1",
+  "scope": "All14completed fits checked,126 seed/ensemble score rows (mean+median),18primary comparisons and108worst-error contrasts; no refit/inference/retuning",
+  "source_and_protocol_separation": "Response0.0..6.5 vs exposure0.05..6.55; never pooled",
+  "status": "complete; both independent audits pass, both scientific gates fail",
+  "tests": {
+    "command": "/Users/ayush/.venvs/ml/bin/python3 -W error -m unittest -v test_extract_effects",
+    "compactor": 3,
+    "main_auditor": 17,
+    "warnings_as_errors": true
+  },
+  "unchanged_main_auditor": true
+}

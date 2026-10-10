@@ -1,0 +1,2115 @@
+{
+  "comparisons_checked": 12,
+  "export_manifest_sha256": "55ba19f81f59c106964ae92302258aba7780d5bc1a48cd3ec20617c8f2ba2a46",
+  "gate": {
+    "checks": [
+      {
+        "pass": false,
+        "reference_control": "huber_ce",
+        "seconds": 1,
+        "subset": "eval_held"
+      },
+      {
+        "pass": false,
+        "reference_control": "natural_ce",
+        "seconds": 1,
+        "subset": "eval_held"
+      },
+      {
+        "pass": false,
+        "reference_control": "huber_ce",
+        "seconds": 1,
+        "subset": "eval_seen"
+      },
+      {
+        "pass": false,
+        "reference_control": "natural_ce",
+        "seconds": 1,
+        "subset": "eval_seen"
+      },
+      {
+        "pass": false,
+        "reference_control": "huber_ce",
+        "seconds": 3,
+        "subset": "eval_held"
+      },
+      {
+        "pass": false,
+        "reference_control": "natural_ce",
+        "seconds": 3,
+        "subset": "eval_held"
+      },
+      {
+        "pass": false,
+        "reference_control": "huber_ce",
+        "seconds": 3,
+        "subset": "eval_seen"
+      },
+      {
+        "pass": false,
+        "reference_control": "natural_ce",
+        "seconds": 3,
+        "subset": "eval_seen"
+      },
+      {
+        "pass": false,
+        "reference_control": "huber_ce",
+        "seconds": 5,
+        "subset": "eval_held"
+      },
+      {
+        "pass": false,
+        "reference_control": "natural_ce",
+        "seconds": 5,
+        "subset": "eval_held"
+      },
+      {
+        "pass": false,
+        "reference_control": "huber_ce",
+        "seconds": 5,
+        "subset": "eval_seen"
+      },
+      {
+        "pass": false,
+        "reference_control": "natural_ce",
+        "seconds": 5,
+        "subset": "eval_seen"
+      }
+    ],
+    "pass": false,
+    "scope": "Exploratory investment gate; no novelty or published superiority claim",
+    "status": "failed"
+  },
+  "grid_manifest_sha256": "8b38a3fd63c4b5050a2baf38b539a6ba5ec5081922cbf5fc9e452531161168a4",
+  "kind": "exposure",
+  "limitations": [
+    "Checkpoint bytes verified, contents not deserialized and forward predictions not replayed",
+    "Normalizer provenance/arrays verified; statistics not refitted from waveforms",
+    "Unit/family/station stratum scores and matched-event subpanels not replayed in this audit",
+    "No cross-grid pooling; no original DEV/TEST reads; P95/worst are supplementary"
+  ],
+  "maximum_weighted_mae_replay_difference": 0.0,
+  "point_support": [
+    0.05,
+    0.15000000000000002,
+    0.25,
+    0.35000000000000003,
+    0.45,
+    0.55,
+    0.65,
+    0.75,
+    0.8500000000000001,
+    0.9500000000000001,
+    1.05,
+    1.1500000000000001,
+    1.25,
+    1.35,
+    1.4500000000000002,
+    1.55,
+    1.6500000000000001,
+    1.75,
+    1.85,
+    1.9500000000000002,
+    2.0500000000000003,
+    2.15,
+    2.25,
+    2.35,
+    2.45,
+    2.5500000000000003,
+    2.6500000000000004,
+    2.75,
+    2.85,
+    2.95,
+    3.0500000000000003,
+    3.1500000000000004,
+    3.25,
+    3.35,
+    3.45,
+    3.5500000000000003,
+    3.6500000000000004,
+    3.75,
+    3.85,
+    3.95,
+    4.05,
+    4.15,
+    4.25,
+    4.3500000000000005,
+    4.45,
+    4.55,
+    4.65,
+    4.75,
+    4.8500000000000005,
+    4.95,
+    5.050000000000001,
+    5.15,
+    5.25,
+    5.3500000000000005,
+    5.45,
+    5.550000000000001,
+    5.65,
+    5.75,
+    5.8500000000000005,
+    5.95,
+    6.050000000000001,
+    6.15,
+    6.25,
+    6.3500000000000005,
+    6.45,
+    6.550000000000001
+  ],
+  "runs_verified": 6,
+  "scope": "Saved TRAIN-derived held-panel PMF and metadata audit; no waveform/model inference",
+  "score_rows_checked": 54,
+  "seconds": 28.906290849030484,
+  "source_contract_sha256": "4567987e852e7495d8bafa7945bc2ac4b252dc1646f531219bc740bdb1189c58",
+  "status": "pass",
+  "supplementary": [
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.4419407401439694,
+        "maximum_abs_error": 3.280397242405737,
+        "weighted_p95_abs_error": 1.1210469619922518
+      },
+      "median": {
+        "cvar95": 1.447769437923481,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.4460333243515124,
+        "maximum_abs_error": 3.270676918445653,
+        "weighted_p95_abs_error": 1.1218061933368315
+      },
+      "median": {
+        "cvar95": 1.458148892570289,
+        "maximum_abs_error": 4.15,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.4160368100655054,
+        "maximum_abs_error": 3.006516252939594,
+        "weighted_p95_abs_error": 1.1193084613790127
+      },
+      "median": {
+        "cvar95": 1.4349717744784756,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.410221413028831,
+        "maximum_abs_error": 3.002308979426556,
+        "weighted_p95_abs_error": 1.1178069989247486
+      },
+      "median": {
+        "cvar95": 1.429758493173271,
+        "maximum_abs_error": 2.9499999999999993,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.4646004832350468,
+        "maximum_abs_error": 2.7936784548690925,
+        "weighted_p95_abs_error": 1.1461662654291533
+      },
+      "median": {
+        "cvar95": 1.4890203113836395,
+        "maximum_abs_error": 2.8500000000000005,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.4533368419166988,
+        "maximum_abs_error": 3.173448891071449,
+        "weighted_p95_abs_error": 1.1416465607597568
+      },
+      "median": {
+        "cvar95": 1.474668085139793,
+        "maximum_abs_error": 3.1499999999999995,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.3847951459250947,
+        "maximum_abs_error": 3.2301630595728614,
+        "weighted_p95_abs_error": 1.0711832178472096
+      },
+      "median": {
+        "cvar95": 1.4089940879505678,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.3486292810348552,
+        "maximum_abs_error": 2.81511420836069,
+        "weighted_p95_abs_error": 1.065566865776926
+      },
+      "median": {
+        "cvar95": 1.3698630728524657,
+        "maximum_abs_error": 2.8499999999999996,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.38434768164556,
+        "maximum_abs_error": 2.8890259275694814,
+        "weighted_p95_abs_error": 1.0826703563381228
+      },
+      "median": {
+        "cvar95": 1.4054295853714072,
+        "maximum_abs_error": 2.9499999999999993,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.3871539475528625,
+        "maximum_abs_error": 3.661575192441609,
+        "weighted_p95_abs_error": 1.0691062383552818
+      },
+      "median": {
+        "cvar95": 1.392149960556506,
+        "maximum_abs_error": 4.550000000000001,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.3947535889355491,
+        "maximum_abs_error": 4.016396439019666,
+        "weighted_p95_abs_error": 1.0743351413002133
+      },
+      "median": {
+        "cvar95": 1.397347405433635,
+        "maximum_abs_error": 4.050000000000001,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.3732420492690272,
+        "maximum_abs_error": 3.163264197773317,
+        "weighted_p95_abs_error": 1.0547937074970208
+      },
+      "median": {
+        "cvar95": 1.3889725244306568,
+        "maximum_abs_error": 3.15,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.3734434519534204,
+        "maximum_abs_error": 3.2549598872322836,
+        "weighted_p95_abs_error": 1.0710120630551767
+      },
+      "median": {
+        "cvar95": 1.3935614573547608,
+        "maximum_abs_error": 3.05,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.382466532963003,
+        "maximum_abs_error": 3.7481355738693187,
+        "weighted_p95_abs_error": 1.0854733010008895
+      },
+      "median": {
+        "cvar95": 1.4089718657321513,
+        "maximum_abs_error": 3.8500000000000005,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.4232988065904677,
+        "maximum_abs_error": 3.7912734205603025,
+        "weighted_p95_abs_error": 1.0919174465980936
+      },
+      "median": {
+        "cvar95": 1.447832097750858,
+        "maximum_abs_error": 3.8500000000000005,
+        "weighted_p95_abs_error": 1.15
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.3269198471804322,
+        "maximum_abs_error": 3.7980970911880245,
+        "weighted_p95_abs_error": 1.0199705580684206
+      },
+      "median": {
+        "cvar95": 1.3383687958834478,
+        "maximum_abs_error": 4.050000000000001,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.3032496446355313,
+        "maximum_abs_error": 3.153832801055964,
+        "weighted_p95_abs_error": 1.012707756221168
+      },
+      "median": {
+        "cvar95": 1.3237205957771152,
+        "maximum_abs_error": 3.05,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.3320832638110787,
+        "maximum_abs_error": 3.7697044972148106,
+        "weighted_p95_abs_error": 1.030032396912592
+      },
+      "median": {
+        "cvar95": 1.3494600240581789,
+        "maximum_abs_error": 3.8500000000000005,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.3156844800462337,
+        "maximum_abs_error": 3.275132756764302,
+        "weighted_p95_abs_error": 1.0208324153441277
+      },
+      "median": {
+        "cvar95": 1.3263824224485148,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.3167443091727502,
+        "maximum_abs_error": 3.1816995449049896,
+        "weighted_p95_abs_error": 1.0244306052981096
+      },
+      "median": {
+        "cvar95": 1.330308086081952,
+        "maximum_abs_error": 4.15,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.32528203156371,
+        "maximum_abs_error": 2.651469781422329,
+        "weighted_p95_abs_error": 1.0391305825640584
+      },
+      "median": {
+        "cvar95": 1.3385362770576366,
+        "maximum_abs_error": 2.6499999999999995,
+        "weighted_p95_abs_error": 1.05
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.3353474977821882,
+        "maximum_abs_error": 2.750180173009559,
+        "weighted_p95_abs_error": 1.042631009376926
+      },
+      "median": {
+        "cvar95": 1.3441892326897864,
+        "maximum_abs_error": 2.65,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.3481174194114236,
+        "maximum_abs_error": 2.904032053515254,
+        "weighted_p95_abs_error": 1.0563749568600636
+      },
+      "median": {
+        "cvar95": 1.367648998563207,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.3447032516753736,
+        "maximum_abs_error": 2.9302035322837163,
+        "weighted_p95_abs_error": 1.0540574298514922
+      },
+      "median": {
+        "cvar95": 1.3633935791845613,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 1.0500000000000003
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2577363713516534,
+        "maximum_abs_error": 3.1451491785390457,
+        "weighted_p95_abs_error": 0.9714948455529416
+      },
+      "median": {
+        "cvar95": 1.2870888848759883,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.2623167793181196,
+        "maximum_abs_error": 2.596319199900228,
+        "weighted_p95_abs_error": 0.9828922009696073
+      },
+      "median": {
+        "cvar95": 1.284786090588614,
+        "maximum_abs_error": 2.6499999999999995,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2750877427683318,
+        "maximum_abs_error": 2.8784007036850454,
+        "weighted_p95_abs_error": 1.007678245474596
+      },
+      "median": {
+        "cvar95": 1.2868588409870687,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.262887637552394,
+        "maximum_abs_error": 4.084053198907318,
+        "weighted_p95_abs_error": 0.9830547671848331
+      },
+      "median": {
+        "cvar95": 1.2788746696777937,
+        "maximum_abs_error": 4.85,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2794728398033763,
+        "maximum_abs_error": 4.065875902574332,
+        "weighted_p95_abs_error": 0.97886900802995
+      },
+      "median": {
+        "cvar95": 1.291593544896375,
+        "maximum_abs_error": 4.550000000000001,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.257655974105996,
+        "maximum_abs_error": 3.3490073260037487,
+        "weighted_p95_abs_error": 0.9720315242350939
+      },
+      "median": {
+        "cvar95": 1.2681883052216394,
+        "maximum_abs_error": 3.25,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.2575928715712195,
+        "maximum_abs_error": 3.227626855416667,
+        "weighted_p95_abs_error": 0.9794454783778042
+      },
+      "median": {
+        "cvar95": 1.2701110353101694,
+        "maximum_abs_error": 3.05,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2810727140936686,
+        "maximum_abs_error": 3.7281950901350274,
+        "weighted_p95_abs_error": 0.9980558608722894
+      },
+      "median": {
+        "cvar95": 1.2982078304986393,
+        "maximum_abs_error": 3.8500000000000005,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2843453391920325,
+        "maximum_abs_error": 3.7068590213852763,
+        "weighted_p95_abs_error": 1.0079130167978287
+      },
+      "median": {
+        "cvar95": 1.3017114022912795,
+        "maximum_abs_error": 3.6500000000000004,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.210917950338032,
+        "maximum_abs_error": 4.074964550740825,
+        "weighted_p95_abs_error": 0.9368088633255512
+      },
+      "median": {
+        "cvar95": 1.2286641260282136,
+        "maximum_abs_error": 4.85,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.1923353126935115,
+        "maximum_abs_error": 3.2883170907102084,
+        "weighted_p95_abs_error": 0.9283430752225592
+      },
+      "median": {
+        "cvar95": 1.2022258031632518,
+        "maximum_abs_error": 3.1500000000000004,
+        "weighted_p95_abs_error": 0.95
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.210825161419949,
+        "maximum_abs_error": 3.7174743920326456,
+        "weighted_p95_abs_error": 0.9467909637053791
+      },
+      "median": {
+        "cvar95": 1.2190222462694174,
+        "maximum_abs_error": 3.75,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2860362119531152,
+        "maximum_abs_error": 3.292740616261815,
+        "weighted_p95_abs_error": 0.9924521256553209
+      },
+      "median": {
+        "cvar95": 1.3041945715923278,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2714007877415767,
+        "maximum_abs_error": 3.301892025129918,
+        "weighted_p95_abs_error": 0.9851186175668918
+      },
+      "median": {
+        "cvar95": 1.2930456868733657,
+        "maximum_abs_error": 4.15,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.27511807756282,
+        "maximum_abs_error": 2.6636623508452137,
+        "weighted_p95_abs_error": 1.0090126842184886
+      },
+      "median": {
+        "cvar95": 1.2897638320758122,
+        "maximum_abs_error": 2.6499999999999995,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.2715237215053548,
+        "maximum_abs_error": 2.605867319296084,
+        "weighted_p95_abs_error": 0.998780612530827
+      },
+      "median": {
+        "cvar95": 1.2857596551697064,
+        "maximum_abs_error": 2.6499999999999995,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.301571974943157,
+        "maximum_abs_error": 2.92347259170044,
+        "weighted_p95_abs_error": 1.019602171744428
+      },
+      "median": {
+        "cvar95": 1.3147938634026084,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2964057571622012,
+        "maximum_abs_error": 2.937213210975293,
+        "weighted_p95_abs_error": 1.0126381367014083
+      },
+      "median": {
+        "cvar95": 1.3083871803528382,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 1.0499999999999998
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2227095975554136,
+        "maximum_abs_error": 3.19024798898326,
+        "weighted_p95_abs_error": 0.9396547226255434
+      },
+      "median": {
+        "cvar95": 1.2483347334866959,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.2128825535278311,
+        "maximum_abs_error": 2.580652783838596,
+        "weighted_p95_abs_error": 0.9480951851860997
+      },
+      "median": {
+        "cvar95": 1.2292874135372585,
+        "maximum_abs_error": 2.6499999999999995,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2397923505640613,
+        "maximum_abs_error": 2.930342901337866,
+        "weighted_p95_abs_error": 0.9632931675299345
+      },
+      "median": {
+        "cvar95": 1.2573637598436014,
+        "maximum_abs_error": 2.95,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2238672979696443,
+        "maximum_abs_error": 4.021316167770539,
+        "weighted_p95_abs_error": 0.9499907026792036
+      },
+      "median": {
+        "cvar95": 1.2486128427705505,
+        "maximum_abs_error": 4.85,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.2245090403452914,
+        "maximum_abs_error": 4.1484474712898205,
+        "weighted_p95_abs_error": 0.943687771814429
+      },
+      "median": {
+        "cvar95": 1.2392626659452506,
+        "maximum_abs_error": 4.65,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.2134738198271162,
+        "maximum_abs_error": 3.0710965963189563,
+        "weighted_p95_abs_error": 0.9451026296322225
+      },
+      "median": {
+        "cvar95": 1.2244391383785396,
+        "maximum_abs_error": 3.0500000000000003,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.215862964321302,
+        "maximum_abs_error": 3.1659408627797934,
+        "weighted_p95_abs_error": 0.9373518754861787
+      },
+      "median": {
+        "cvar95": 1.22155033835972,
+        "maximum_abs_error": 3.1500000000000004,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2233522521454219,
+        "maximum_abs_error": 3.88455309111656,
+        "weighted_p95_abs_error": 0.9510665472983977
+      },
+      "median": {
+        "cvar95": 1.2367596665804104,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.2391314931149617,
+        "maximum_abs_error": 3.818458846108247,
+        "weighted_p95_abs_error": 0.9641786716457932
+      },
+      "median": {
+        "cvar95": 1.2514828232452735,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 0.9500000000000002
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "huber_ce",
+      "mean": {
+        "cvar95": 1.1632048249673683,
+        "maximum_abs_error": 3.8815720191839485,
+        "weighted_p95_abs_error": 0.9010760248507723
+      },
+      "median": {
+        "cvar95": 1.190146792443953,
+        "maximum_abs_error": 4.25,
+        "weighted_p95_abs_error": 0.9499999999999997
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "natural_ce",
+      "mean": {
+        "cvar95": 1.1451621100095326,
+        "maximum_abs_error": 3.116158993604504,
+        "weighted_p95_abs_error": 0.8839364210691607
+      },
+      "median": {
+        "cvar95": 1.1642832498216062,
+        "maximum_abs_error": 3.0500000000000003,
+        "weighted_p95_abs_error": 0.8500000000000005
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "control": "band_exposure_ce",
+      "mean": {
+        "cvar95": 1.164299321680407,
+        "maximum_abs_error": 3.851505968612404,
+        "weighted_p95_abs_error": 0.9031068297223293
+      },
+      "median": {
+        "cvar95": 1.175097430348083,
+        "maximum_abs_error": 3.95,
+        "weighted_p95_abs_error": 0.9499999999999997
+      },
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    }
+  ],
+  "task_success_caution": "A primary gate pass does not establish the broader objective if worst-error performance regresses",
+  "worst_error_contrasts": [
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.022659743091077322,
+        "maximum_abs_error": -0.48671878753664455,
+        "weighted_p95_abs_error": 0.025119303436901497
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.041250873460158655,
+        "maximum_abs_error": -1.0999999999999996,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.007303517565186324,
+        "maximum_abs_error": -0.09722802737420366,
+        "weighted_p95_abs_error": 0.019840367422925276
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.01651919256950407,
+        "maximum_abs_error": -1.0000000000000009,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.0004474642795346817,
+        "maximum_abs_error": -0.34113713200338003,
+        "weighted_p95_abs_error": 0.011487138490913207
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": false,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.0035645025791606333,
+        "maximum_abs_error": -1.0000000000000009,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.048563673169541355,
+        "maximum_abs_error": -0.21283779807050163,
+        "weighted_p95_abs_error": 0.0268578040501406
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.05404853690516398,
+        "maximum_abs_error": -0.09999999999999964,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.04311542888786768,
+        "maximum_abs_error": 0.17113991164489306,
+        "weighted_p95_abs_error": 0.02383956183500824
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.04490959196652211,
+        "maximum_abs_error": 0.20000000000000018,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.03571840061070475,
+        "maximum_abs_error": 0.07391171920879147,
+        "weighted_p95_abs_error": 0.017103490561196866
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.035566512518941495,
+        "maximum_abs_error": 0.09999999999999964,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.00468741458985944,
+        "maximum_abs_error": 0.08656038142770983,
+        "weighted_p95_abs_error": 0.01636706264560761
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.016821905175645302,
+        "maximum_abs_error": -0.7000000000000002,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.028545217654918575,
+        "maximum_abs_error": -0.22512301845936378,
+        "weighted_p95_abs_error": 0.017582305297880296
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.05048469231722308,
+        "maximum_abs_error": -0.20000000000000018,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.005163416630646456,
+        "maximum_abs_error": -0.02839259397321392,
+        "weighted_p95_abs_error": 0.010061838844171334
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.011091228174731071,
+        "maximum_abs_error": -0.20000000000000018,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.009224483693975882,
+        "maximum_abs_error": 0.5848713760960016,
+        "weighted_p95_abs_error": 0.03067959350386862
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0199993413014945,
+        "maximum_abs_error": 0.7000000000000006,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.04985535463704727,
+        "maximum_abs_error": 0.5363135333280189,
+        "weighted_p95_abs_error": 0.020905383542916933
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0542706403960973,
+        "maximum_abs_error": 0.8000000000000007,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.028833619175547387,
+        "maximum_abs_error": 0.6158716961588464,
+        "weighted_p95_abs_error": 0.01732464069142403
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.02573942828106368,
+        "maximum_abs_error": 0.8000000000000007,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 1,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.03243293936518987,
+        "maximum_abs_error": -0.3711007032490481,
+        "weighted_p95_abs_error": 0.03554254151593583
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0412665761146922,
+        "maximum_abs_error": -1.0,
+        "weighted_p95_abs_error": 4.440892098500626e-16
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.02795894250262343,
+        "maximum_abs_error": -0.2514960126212733,
+        "weighted_p95_abs_error": 0.029626824553382614
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.03308549310260922,
+        "maximum_abs_error": -1.2000000000000002,
+        "weighted_p95_abs_error": 4.440892098500626e-16
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.01735137141667842,
+        "maximum_abs_error": -0.26674847485400033,
+        "weighted_p95_abs_error": 0.036183399921654424
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.00023004388891956218,
+        "maximum_abs_error": -1.0,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.022835387847713662,
+        "maximum_abs_error": 0.2525622720929248,
+        "weighted_p95_abs_error": 0.017244374296005116
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.029112721505570427,
+        "maximum_abs_error": 0.3000000000000007,
+        "weighted_p95_abs_error": 2.220446049250313e-16
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.009355753893185437,
+        "maximum_abs_error": 0.18002335927415736,
+        "weighted_p95_abs_error": 0.011426420474566212
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.01920434649477487,
+        "maximum_abs_error": 0.30000000000000027,
+        "weighted_p95_abs_error": 4.440892098500626e-16
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.012770963450212225,
+        "maximum_abs_error": 0.2820815037848172,
+        "weighted_p95_abs_error": 0.02478604450498878
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0020727503984547813,
+        "maximum_abs_error": 0.3000000000000007,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.018185076541274547,
+        "maximum_abs_error": -0.35585810877229074,
+        "weighted_p95_abs_error": 0.01500109368745628
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.019333160820845574,
+        "maximum_abs_error": -0.9999999999999991,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.004872499388656193,
+        "maximum_abs_error": -0.3590168811890555,
+        "weighted_p95_abs_error": 0.029044008767878715
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.010117857394904561,
+        "maximum_abs_error": -0.9000000000000004,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -9.278891808306433e-05,
+        "maximum_abs_error": -0.35749015870817935,
+        "weighted_p95_abs_error": 0.00998210037982783
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": false,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.009641879758796268,
+        "maximum_abs_error": -1.0999999999999996,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.023416739987672575,
+        "maximum_abs_error": 0.37918776413127864,
+        "weighted_p95_abs_error": 0.0260243366371955
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.030019525276999914,
+        "maximum_abs_error": 0.6000000000000005,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.02675246762081307,
+        "maximum_abs_error": 0.4792321659686092,
+        "weighted_p95_abs_error": 0.028467538420024585
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.03160036698111002,
+        "maximum_abs_error": 0.6000000000000005,
+        "weighted_p95_abs_error": 0.09999999999999964
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.018489848726437552,
+        "maximum_abs_error": 0.42915730132243723,
+        "weighted_p95_abs_error": 0.018447888482819863
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.01679644310616557,
+        "maximum_abs_error": 0.5999999999999996,
+        "weighted_p95_abs_error": 2.220446049250313e-16
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 3,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.015535762990041668,
+        "maximum_abs_error": -0.3692680245613751,
+        "weighted_p95_abs_error": 0.027150046089106983
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.010599291810280631,
+        "maximum_abs_error": -1.0,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.025004969420624468,
+        "maximum_abs_error": -0.3646788141546251,
+        "weighted_p95_abs_error": 0.027519519134516557
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.015341493479472446,
+        "maximum_abs_error": -1.2000000000000002,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0170827530086477,
+        "maximum_abs_error": -0.2599050876453939,
+        "weighted_p95_abs_error": 0.023638444904391154
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0090290263569055,
+        "maximum_abs_error": -1.0,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.026453897380336988,
+        "maximum_abs_error": 0.2598102408552263,
+        "weighted_p95_abs_error": 0.010589487525939356
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.025030031326796154,
+        "maximum_abs_error": 0.3000000000000007,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.024882035656846435,
+        "maximum_abs_error": 0.3313458916792089,
+        "weighted_p95_abs_error": 0.013857524170581392
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.022627525183131825,
+        "maximum_abs_error": 0.3000000000000007,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0269097970362302,
+        "maximum_abs_error": 0.34969011749927015,
+        "weighted_p95_abs_error": 0.015197982343834848
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.028076346306342925,
+        "maximum_abs_error": 0.3000000000000007,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_held"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.0005150458242224598,
+        "maximum_abs_error": -0.13676307665397935,
+        "weighted_p95_abs_error": 0.0010758446191940774
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": false,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.011853176190140147,
+        "maximum_abs_error": -0.8999999999999995,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.014622452769670335,
+        "maximum_abs_error": -0.32998862518157335,
+        "weighted_p95_abs_error": 0.020490899831364207
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.012220157300022905,
+        "maximum_abs_error": -0.7000000000000002,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.0010944967130386285,
+        "maximum_abs_error": -0.030066050571544434,
+        "weighted_p95_abs_error": 0.002030804871556935
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": false,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": -0.015049362095870045,
+        "maximum_abs_error": -0.2999999999999998,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "huber_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.009878432318305652,
+        "maximum_abs_error": 0.8134564947976037,
+        "weighted_p95_abs_error": 0.005963917666175211
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.012320528201870795,
+        "maximum_abs_error": 0.8999999999999999,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261009",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.023268528793659815,
+        "maximum_abs_error": 0.6525179833284538,
+        "weighted_p95_abs_error": 0.026826796159614474
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.029932484885553556,
+        "maximum_abs_error": 0.7999999999999998,
+        "weighted_p95_abs_error": 0.0
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "20261010",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "mean",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.019137211670874343,
+        "maximum_abs_error": 0.7353469750079,
+        "weighted_p95_abs_error": 0.019170408653168547
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    },
+    {
+      "action": "median",
+      "any_observed_regression": true,
+      "candidate": "band_exposure_ce",
+      "candidate_minus_reference": {
+        "cvar95": 0.010814180526476758,
+        "maximum_abs_error": 0.8999999999999999,
+        "weighted_p95_abs_error": 0.0999999999999992
+      },
+      "interpretation": "Descriptive observed errors, no added gate or uncertainty guarantee",
+      "reference": "natural_ce",
+      "seconds": 5,
+      "seed_or_ensemble": "ensemble",
+      "subset": "eval_seen"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Block cancellation signals while killing and reaping the worker
+run_diagnostic.py:300
+SIGTERM/SIGINT remain unblocked during this cleanup, and their handler still raises SystemExit. A second cancellation arriving during poll(), kill(), or wait() interrupts the exception handler and jumps directly to finally, potentially skipping child termination/reaping and COMPLETE.json removal. This violates the cancellation contract and can leave a failed launch's completion marker intact. Block both signals throughout child cleanup and completion invalidation, then restore the previous handlers and mask.
+
+overall: patch is incorrect (0.93)
+The source/protocol hashes match, and the numerical normalization fixes and spawn-time cancellation fix are present. One cancellation cleanup issue remains: repeated signals can interrupt worker reaping and completion invalidation. Review was read-only; no tests or nested reviewers were run.

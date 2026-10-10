@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Propagate cancellations received during successful cleanup
+run_diagnostic.py:302
+If the child exits successfully and SIGTERM or SIGINT arrives during the final `process.poll()` or `process.wait()`, the handler records cancellation and cleanup deletes `COMPLETE.json`, but the pending `return code` still returns 0. Consequently, the CLI reports success for an invalidated diagnostic. The repeated-cancellation test starts with cancellation already recorded, so it does not cover this path. Defer returning until cleanup finishes and propagate any cancellation recorded during cleanup as a nonzero exit.
+
+overall: patch is incorrect (0.96)
+Source and protocol hashes match, and the numerical and source-evaluation paths appear consistent with the stated contract. However, cancellation during successful supervisor cleanup can remove the completion marker while leaving a zero exit status. Review used read-only inspection; no tests were run.

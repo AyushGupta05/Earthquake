@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Parse the same bytes that passed hash verification",
+      "body": "The report is hashed and then reopened for parsing. If the supplied file is replaced or rewritten between these operations, the extractor can emit unaudited metrics while retaining the accepted report SHA and `extracted_from_independently_verified_report` status. The receipt and manifest have the same hash/read race, so the authentication chain does not necessarily cover the bytes actually consumed. Read each document once into bytes, verify those bytes against the expected digest, and parse that same buffer.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "security",
+      "code_location": {
+        "file_path": "extract_effects.py",
+        "line": 88
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The completion-pointer contract is consistent with the stated scope, but separate reads for hashing and parsing allow concurrent file replacement to bypass the promised authentication of extracted inputs. No other actionable defects were identified in the two provided files.",
+  "overall_confidence": 0.94
+}

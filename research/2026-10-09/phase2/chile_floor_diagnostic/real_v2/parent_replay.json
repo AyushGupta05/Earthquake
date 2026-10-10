@@ -1,0 +1,111 @@
+{
+  "schema": "chile_floor_parent_replay_v1",
+  "created_utc": "2026-10-10T15:35:33.920534+00:00",
+  "complete_sha256": "cea808da6d430263dd1aca8d3b48fc9d59cddda1d9b3b127e57922083d086223",
+  "plan_sha256": "8bb46ac1ae4296a5aa20ab4724491052ec729c96dba04cf2dd7d3656afe5323d",
+  "selected_epoch": 97,
+  "events": 1371,
+  "distinct_tail_events": 20,
+  "gate_pass": false,
+  "qualifying_count": 0,
+  "per_horizon": {
+    "1": {
+      "tail_events": 20,
+      "tail_attenuation_min_median_max": [
+        0.9630999792236409,
+        0.9999977172382546,
+        0.9999994660130908
+      ],
+      "tail_mean_underestimation_min_median_max": [
+        -0.45083303405991604,
+        0.4269745815982646,
+        3.980140283358465
+      ],
+      "tail_joint_events": 0,
+      "all_sample_joint_events": 1,
+      "max_abs_replay_errors": {
+        "log_density": 7.105427357601002e-15,
+        "attenuation": 8.326672684688674e-16,
+        "source_mean": 1.7763568394002505e-15,
+        "proper_grad_logits": 2.1094237467877974e-15,
+        "floor_grad_logits": 1.1102230246251565e-15,
+        "proper_grad_means": 4.973799150320701e-14,
+        "floor_grad_means": 7.105427357601002e-15,
+        "proper_grad_logscales": 1.3500311979441904e-13,
+        "floor_grad_logscales": 1.4210854715202004e-14,
+        "proper_grad_scales": 3.979039320256561e-13,
+        "floor_grad_scales": 3.552713678800501e-14
+      }
+    },
+    "3": {
+      "tail_events": 20,
+      "tail_attenuation_min_median_max": [
+        0.999596704607349,
+        0.9999995535528394,
+        0.9999997136184579
+      ],
+      "tail_mean_underestimation_min_median_max": [
+        -0.2707869141245993,
+        -0.025122874092483816,
+        1.3181334229968966
+      ],
+      "tail_joint_events": 0,
+      "all_sample_joint_events": 1,
+      "max_abs_replay_errors": {
+        "log_density": 1.1102230246251565e-15,
+        "attenuation": 1.1102230246251565e-16,
+        "source_mean": 1.7763568394002505e-15,
+        "proper_grad_logits": 9.992007221626409e-16,
+        "floor_grad_logits": 9.992007221626409e-16,
+        "proper_grad_means": 7.105427357601002e-15,
+        "floor_grad_means": 7.105427357601002e-15,
+        "proper_grad_logscales": 5.329070518200751e-15,
+        "floor_grad_logscales": 5.329070518200751e-15,
+        "proper_grad_scales": 1.4210854715202004e-14,
+        "floor_grad_scales": 1.4210854715202004e-14
+      }
+    },
+    "5": {
+      "tail_events": 20,
+      "tail_attenuation_min_median_max": [
+        0.9999994422603806,
+        0.9999996333558929,
+        0.9999997644511069
+      ],
+      "tail_mean_underestimation_min_median_max": [
+        -0.10955500183007416,
+        -0.011144224561518978,
+        0.09572815835472781
+      ],
+      "tail_joint_events": 0,
+      "all_sample_joint_events": 1,
+      "max_abs_replay_errors": {
+        "log_density": 8.881784197001252e-16,
+        "attenuation": 1.1102230246251565e-16,
+        "source_mean": 1.7763568394002505e-15,
+        "proper_grad_logits": 9.992007221626409e-16,
+        "floor_grad_logits": 9.992007221626409e-16,
+        "proper_grad_means": 6.821210263296962e-13,
+        "floor_grad_means": 6.821210263296962e-13,
+        "proper_grad_logscales": 2.6645352591003757e-15,
+        "floor_grad_logscales": 2.6645352591003757e-15,
+        "proper_grad_scales": 2.7284841053187847e-12,
+        "floor_grad_scales": 2.7284841053187847e-12
+      }
+    }
+  },
+  "all_four_output_hashes_verified": true,
+  "producer_runtime": {
+    "cudnn": 91002,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "float32_matmul_precision": "highest",
+    "gpu": "NVIDIA A10G",
+    "threads": 2,
+    "torch_cuda": "12.9",
+    "visible_cuda_devices": 1
+  },
+  "scope": "Independent Gaussian log-density, attenuation, native mean, proper/floored analytic output gradients and frozen event gate from saved diagnostic outputs; no independent model forward, full Huber replay or re-extraction."
+}

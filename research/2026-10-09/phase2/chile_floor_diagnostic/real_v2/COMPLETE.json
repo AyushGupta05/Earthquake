@@ -1,0 +1,68 @@
+{
+  "artifacts": {
+    "STARTED.json": "47997cd0745900d75d8e657cb4d7149461d7ad5861ea7f3f435fea5077e7a589",
+    "diagnostics.npz": "d48cb0696e4dfdc2f4164c0b8570b602382cc415292f342834a2233243309439",
+    "selection.json": "ed702ec5f45ed39fe34e6171dfdb9a397551ad863426262e9629154e2ee976d5",
+    "summary.json": "e7324e7f0f2544ff65a1a1be0bb2f428aae7f5a86d4bdb4868acb3c4a60e6ad0"
+  },
+  "inputs": {
+    "artifacts": {
+      "cache": {
+        "path": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5",
+        "sha256": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb"
+      },
+      "checkpoint": {
+        "path": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z/model.pth",
+        "sha256": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0"
+      },
+      "dataset_manifest": {
+        "path": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5.manifest.json",
+        "sha256": "4916f30c90a4b3bc6351edadb0c1a720284a1550d95635564d3cbd51d09a892c"
+      },
+      "history": {
+        "path": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z/history.json",
+        "sha256": "efc390ed56a930fa128eab110ddb636f5ff26b70439d03ec2fb82f79f83007b9"
+      },
+      "metadata": {
+        "path": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5.metadata.csv",
+        "sha256": "8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1"
+      },
+      "metadata_manifest": {
+        "path": "/mnt/eew-data/chile/chile_train_dev_full3000.hdf5.metadata.csv.manifest.json",
+        "sha256": "ac7c0b691b5ad7f15013befcedbe38c36e2631db20c906aa95149010d8806ea7"
+      },
+      "pretrain_history": {
+        "path": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z/pretrain_history.json",
+        "sha256": "457afa2b45caf69bde92fff7082c2330355864fd92137d570fc639d17633f1a1"
+      },
+      "run": {
+        "path": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z/run.json",
+        "sha256": "4915819dfed00dab2ea4b1fa5ae1e8bdeb63f2f1f2d3b43edbadd0ea8b6981fe"
+      },
+      "split_manifest": {
+        "path": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z/split_manifest.json",
+        "sha256": "86090ec6692b052f32059f15dfd467afcead7063761c605ad9047013e64f9276"
+      }
+    },
+    "schema": "chile_floor_artifact_plan_v1"
+  },
+  "plan_sha256": "8bb46ac1ae4296a5aa20ab4724491052ec729c96dba04cf2dd7d3656afe5323d",
+  "protocol_sha256": "f36836e562b07baa740b8d8219d2063f369f92fb27be3f4d95efab1ac5757b48",
+  "schema": "chile_floor_diagnostic_complete_v1",
+  "source_manifest_sha256": "4549fe4a36706eb53f64899e21283fad2375c1626c1e4ebcbedf6148fa90cb50",
+  "sources": {
+    "dependencies": {
+      "team_lm.py": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+      "train_team_lm.py": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+      "training_artifacts.py": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754"
+    },
+    "own": {
+      "floor_math.py": "be3dfeda6a2737ac9b4dd998db0d2dc7d26b56c750079e369bc0fbdec4a3d5e9",
+      "guards.py": "eeb2fd3882fdf1ebe19f37e7f50c7f54d2bff7f1af792fa1d1c74bc3804f5d3e",
+      "protocol_amendment.json": "8f84e2e68ce465cd1c1dcdb83ab8076aaa12758ad8266f0552b45f122903eed6",
+      "run_diagnostic.py": "acea207dfa1ab0aba07a9f2dea86b0b3e0b1e07ec6bb8d4b6dde2f6f5cb992fb"
+    },
+    "protocol_sha256": "f36836e562b07baa740b8d8219d2063f369f92fb27be3f4d95efab1ac5757b48",
+    "schema": "chile_floor_sources_v1"
+  }
+}

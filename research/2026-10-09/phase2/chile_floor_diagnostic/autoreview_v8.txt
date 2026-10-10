@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.97)
+The narrow change enables deterministic algorithms and cuDNN determinism before checkpoint loading, model construction, and forward execution while preserving TF32 and matmul precision settings. Manifest hashes match the updated files, and synthetic assertions cover the runtime flags and saved metadata. No actionable defects were found. Tests were not run, as instructed.

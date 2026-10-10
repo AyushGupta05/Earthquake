@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Remove the common logit offset before computing log-softmax
+floor_math.py:40
+Subtracting logsumexp from the original logits loses the normalization correction when the common offset is large. For accepted finite logits [1e20, 1e20, 1e20, 1e20, 1e20], logsumexp rounds to 1e20, so all normalized_weights become 1 instead of 0.2. With identical components, the reported density is five times too large and grad_logits sums to 4 instead of zero. These logits are representable as native float32 outputs. Subtract the row maximum first, then compute log-softmax entirely from the shifted logits.
+
+[P2] [P2] Protect worker creation from cancellation
+run_diagnostic.py:281
+The child is spawned before cancellation handlers are installed and before the cleanup try block begins. A SIGTERM or SIGINT directed at the supervisor during Popen or immediately afterward can therefore terminate the supervisor without killing or reaping the worker. The worker can continue artifact reads and GPU computation until the outer process-group timeout. Protect the spawn/handler-installation interval so cancellation cannot escape cleanup after a child exists; the current cancellation test only signals after startup has completed.
+
+overall: patch is incorrect (0.97)
+The source hashes match their pins, and the reviewed population, evaluation path, point predictions, and ordinary Gaussian/Huber derivatives are consistent with the stated contract. However, finite large-offset logits break density normalization, and worker startup retains a cancellation window that bypasses cleanup. Verification was limited to read-only source inspection; no tests were run.

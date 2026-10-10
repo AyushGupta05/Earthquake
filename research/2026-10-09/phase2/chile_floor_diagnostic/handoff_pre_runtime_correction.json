@@ -1,0 +1,97 @@
+{
+  "created_utc": "2026-10-10T15:08:23.171111+00:00",
+  "status": "ready_for_parent_pinned_completed_baseline_launch; actual_data_execution_not_performed",
+  "scope": "TRAIN-fit-only fixed diagnostic; no training head, no optimizer, no heldout scores, no GPU launch",
+  "entrypoint": "run_diagnostic.py; default dry run, requires --execute for parent-authorized data access",
+  "source_manifest_sha256": "cd971f57787db09cc7362ee5164c6e83d3f4c4968e2e34b1e443809f638ee0af",
+  "source_manifest": {
+    "schema": "chile_floor_sources_v1",
+    "own": {
+      "run_diagnostic.py": "e922c4bf16bd1c9f281830eacab16ab4a39dffb134e916444ae1c0e92ed59988",
+      "guards.py": "eeb2fd3882fdf1ebe19f37e7f50c7f54d2bff7f1af792fa1d1c74bc3804f5d3e",
+      "floor_math.py": "be3dfeda6a2737ac9b4dd998db0d2dc7d26b56c750079e369bc0fbdec4a3d5e9",
+      "protocol_amendment.json": "918ef780807c4fe7b382224a8710dd3270860f2b4152866d599042f5a48eeff8"
+    },
+    "dependencies": {
+      "team_lm.py": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+      "train_team_lm.py": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+      "training_artifacts.py": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754"
+    },
+    "protocol_sha256": "f36836e562b07baa740b8d8219d2063f369f92fb27be3f4d95efab1ac5757b48"
+  },
+  "deploy_files": [
+    "run_diagnostic.py",
+    "guards.py",
+    "floor_math.py",
+    "protocol_amendment.json",
+    "source_manifest.json"
+  ],
+  "support_files": {
+    "test_diagnostic.py": "9a6516285d5a2630c06096cffe65fba82e6d0398f0498de864fd11b6299afd6f",
+    "README.md": "49726562a42a1370e5aa52046d9853116e6ad82659b766a8cf21faf59d51d857",
+    "synthetic_bundle_v9.tar.gz": "179ad83b30f60bd7559ea9e79342279d7b25cc7a862b7d58d26f8a736c828d95",
+    "synthetic_bundle_v9_receipt.json": "dda02c665fb8545a96ff06fee5f9658f915f08b8201f2b8375a31936c47865f6",
+    "synthetic_tests_v9.log": "8bafcc5d1a28ee20894661dd974b5ae6b569565ca29aaa6d695524ea6694cc47",
+    "review_v7_allowlist.json": "e762037eca5d1de4120d76251414a0a4138659c8aab123fae25ab989593c8129",
+    "autoreview_v7.json": "cfba0f18dd83e1efceb0450f3ff5d3f4407f8bface7aa986fc5a6794ce512c78",
+    "autoreview_v7.txt": "ab379f7e202f713332e921582a16fc3bc934684f9c7534fa7c9be63eb691626b",
+    "protocol_amendment_pre_dev_flag_correction.json": "35e9db6ba5cca5165235187e7b0a5b556fb38a385f7bdc0a24477c73900357f6",
+    "source_manifest_pre_dev_flag_correction.json": "4ecb3c8e7eff3a7765450dde5e7370e9ff9fcd1c92e34627e39e637eab87ca4b",
+    "handoff_pre_dev_flag_correction.json": "44d9129ef7007153c5508052e21c381f143f076549f07cead0ac9dc564261761"
+  },
+  "test_command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 CHILE_SOURCE_DIR=<isolated>/phase3 CHILE_PROTOCOL_PATH=<isolated>/diagnostic_protocol_v1.json timeout 180 /home/ec2-user/Earthquake/.venv/bin/python -W error -m unittest discover -s diagnostic -p 'test_*.py' -v",
+  "tests": {
+    "passed": 23,
+    "seconds": 1.586,
+    "scope": "invented arrays/histories/HDF/checkpoint only",
+    "remote_scratch": "/home/ec2-user/eew-synthetic/chile-floor-v9",
+    "threads": 2,
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "review": {
+    "engine": "codex",
+    "final": "autoreview_v7.json",
+    "helper_exit": 0,
+    "findings": [],
+    "mode": "local focused diff against exact prior fully reviewed code-only snapshot",
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/chile_floor_diagnostic/review_context_v7.md --output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/chile_floor_diagnostic/autoreview_v7.txt --json-output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/chile_floor_diagnostic/autoreview_v7.json"
+  },
+  "launch_requirements": {
+    "maximum_seconds": 600,
+    "parent_containment": "task-specific systemd cgroup plus outer timeout and cleanup margin",
+    "baseline": "actual calibration-nll-selected model.pth after all25 pretraining and100 event epochs; selected_epoch1..100 agrees with run.json",
+    "artifact_plan_keys": [
+      "cache",
+      "dataset_manifest",
+      "metadata",
+      "metadata_manifest",
+      "checkpoint",
+      "run",
+      "split_manifest",
+      "history",
+      "pretrain_history"
+    ],
+    "new_output_required": true,
+    "COMPLETE_and_all_result_hashes_required": true,
+    "baseline_completion_flags": {
+      "skip_dev": false,
+      "dev_evaluated": true,
+      "selection_used_dev": false,
+      "test_reads": 0
+    }
+  },
+  "accepted_findings_fixed": [
+    "Stable log-softmax and centered log-density responsibility calculation",
+    "Supervisor child ownership and timeout/cancellation cleanup",
+    "Repeated cancellation uses synchronous recorded requests, no thread-local masking assumption",
+    "Cancellation during successful cleanup propagates nonzero exit",
+    "Pre-execution parent config audit: baseline DEV reporting occurs after TRAIN-calibration selection; require skip_dev=False/dev_evaluated=True without admitting DEV-based selection or diagnostic DEV use."
+  ],
+  "review_caveat": "Final v7 reviews the focused completion-flag correction against previously clean v6 source. Both flags reflect parent-verified launch configuration before any actual diagnostic read/execution. The previous v8 bundle, amendment, source pins, tests and review remain preserved.",
+  "pre_data_correction": {
+    "superseded_source_manifest_sha256": "4ecb3c8e7eff3a7765450dde5e7370e9ff9fcd1c92e34627e39e637eab87ca4b",
+    "superseded_amendment_sha256": "35e9db6ba5cca5165235187e7b0a5b556fb38a385f7bdc0a24477c73900357f6",
+    "new_amendment_sha256": "918ef780807c4fe7b382224a8710dd3270860f2b4152866d599042f5a48eeff8",
+    "scope": "Only two completion expectations plus synthetic tests/docs/pins; model, population, gates, calculations and forward paths unchanged. No production data read."
+  }
+}

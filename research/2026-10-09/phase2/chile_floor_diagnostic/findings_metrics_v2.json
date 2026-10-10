@@ -1,0 +1,1232 @@
+{
+  "formulae": {
+    "gradient_attenuation": "p(target)/(p(target)+1e-6)",
+    "mean_MAE": "mean(abs(source_mean-target))",
+    "mean_underestimation": "target minus native-source posterior mean",
+    "median_action_MAE": "mean(abs(source_median-target))",
+    "responsibility": "normalized posterior component mass at observed target"
+  },
+  "frozen_gate": {
+    "passed": false,
+    "qualifying_count": 0,
+    "thresholds": "at least4 distinctMA>=5.5 fit events jointly attenuation<.1 and underestimation>.5 at>=2deadlines"
+  },
+  "heldout_forwards": 0,
+  "heldout_metrics_consulted": 0,
+  "input_sha256": {
+    "COMPLETE.json": "cea808da6d430263dd1aca8d3b48fc9d59cddda1d9b3b127e57922083d086223",
+    "diagnostics.npz": "d48cb0696e4dfdc2f4164c0b8570b602382cc415292f342834a2233243309439",
+    "parent_replay.json": "d7b19d5efc44acaac243b64b35d781d14ac1c18baf7648f3f3188e670667dbf7",
+    "selection.json": "ed702ec5f45ed39fe34e6171dfdb9a397551ad863426262e9629154e2ee976d5",
+    "summary.json": "e7324e7f0f2544ff65a1a1be0bb2f428aae7f5a86d4bdb4868acb3c4a60e6ad0"
+  },
+  "optimizer_steps": 0,
+  "other_strong_suppression_events": [
+    {
+      "MA": 4.399,
+      "attenuation": [
+        3.4578788378963245e-09,
+        1.5379487125349267e-26,
+        6.843760738651175e-51
+      ],
+      "available_stations": [
+        16,
+        16,
+        16
+      ],
+      "event_id": "2010_03_25_18_39_13_520000",
+      "source_row": 39545,
+      "stratum": "MA_4_to_5p5",
+      "underestimation": [
+        2.7378418845759764,
+        2.6763744728189316,
+        2.608930904467817
+      ]
+    }
+  ],
+  "per_horizon": {
+    "1": {
+      "all_sample_attenuation_lt_01": 1,
+      "all_sample_joint_count": 1,
+      "attenuation_quantiles": [
+        0.9630999792236409,
+        0.9999925913325087,
+        0.9999977172382546,
+        0.9999990012436225,
+        0.9999994660130908
+      ],
+      "available_stations_quantiles": [
+        11.0,
+        12.0,
+        14.0,
+        15.25,
+        21.0
+      ],
+      "density_over_epsilon_min": 26.100255744047455,
+      "dominant_responsibility_component_counts": [
+        0,
+        0,
+        0,
+        1,
+        19
+      ],
+      "effective_components_quantiles": [
+        1.0000001443839324,
+        1.0000499545527668,
+        1.0001795490155612,
+        1.0013893814311616,
+        1.979923121928862
+      ],
+      "events_entropy_lt_01": 17,
+      "events_max_responsibility_ge_099": 17,
+      "max_responsibility_quantiles": [
+        0.5709055272397002,
+        0.9998685726187494,
+        0.9999856716461749,
+        0.9999964499818377,
+        0.9999999928047021
+      ],
+      "maximum_gradient_reduction_percent": 3.690002077635912,
+      "mean_MAE": 0.9890440844469814,
+      "mean_MedAE": 0.45701512599231764,
+      "mean_RMSE": 1.5927448597485505,
+      "mean_signed_underestimation": 0.8780666121292189,
+      "median_action_MAE": 1.022209327238928,
+      "median_action_MedAE": 0.45691458034919696,
+      "mixture_weight_entropy_quantiles": [
+        6.1002635005935106e-05,
+        0.0012501119004503245,
+        0.0031529495490558307,
+        0.00974835075830719,
+        0.5583845021134255
+      ],
+      "prior_max_weight_quantiles": [
+        0.7956652491992686,
+        0.9988392385995544,
+        0.9996649014356522,
+        0.9998786630753319,
+        0.9999954496746691
+      ],
+      "responsibility_entropy_quantiles": [
+        1.4438392194321535e-07,
+        4.995315550961215e-05,
+        0.0001795325995737862,
+        0.001388410853638248,
+        0.6830580166439888
+      ],
+      "underestimated_over_half": 8,
+      "underestimation_quantiles": [
+        -0.45083303405991604,
+        -0.019825999728453114,
+        0.4269745815982646,
+        0.9046877246970852,
+        3.980140283358465
+      ]
+    },
+    "3": {
+      "all_sample_attenuation_lt_01": 1,
+      "all_sample_joint_count": 1,
+      "attenuation_quantiles": [
+        0.999596704607349,
+        0.9999994764579987,
+        0.9999995535528394,
+        0.9999996253988657,
+        0.9999997136184579
+      ],
+      "available_stations_quantiles": [
+        11.0,
+        12.0,
+        14.0,
+        15.25,
+        21.0
+      ],
+      "density_over_epsilon_min": 2478.5720908825265,
+      "dominant_responsibility_component_counts": [
+        0,
+        0,
+        0,
+        0,
+        20
+      ],
+      "effective_components_quantiles": [
+        1.0000001236862157,
+        1.0000063419302863,
+        1.0000133923228094,
+        1.0000717192323774,
+        1.37996515277166
+      ],
+      "events_entropy_lt_01": 19,
+      "events_max_responsibility_ge_099": 19,
+      "max_responsibility_quantiles": [
+        0.9035705585328465,
+        0.9999945535255066,
+        0.9999991133802657,
+        0.9999996014796373,
+        0.9999999938720248
+      ],
+      "maximum_gradient_reduction_percent": 0.04032953926510485,
+      "mean_MAE": 0.13444908994363897,
+      "mean_MedAE": 0.04799805911898902,
+      "mean_RMSE": 0.30975621943245485,
+      "mean_signed_underestimation": 0.02155402624742848,
+      "median_action_MAE": 0.13430001388016227,
+      "median_action_MedAE": 0.04731823462346263,
+      "mixture_weight_entropy_quantiles": [
+        6.354841701953037e-05,
+        0.0011389705618018984,
+        0.001579969956292822,
+        0.0050840030187053065,
+        0.04959821184870261
+      ],
+      "prior_max_weight_quantiles": [
+        0.9919550029710017,
+        0.9994135334519633,
+        0.9998410545445551,
+        0.9998944337270752,
+        0.9999952417573366
+      ],
+      "responsibility_entropy_quantiles": [
+        1.236862079980962e-07,
+        6.341909249809158e-06,
+        1.339223206567524e-05,
+        7.171666015640924e-05,
+        0.3220582472355468
+      ],
+      "underestimated_over_half": 1,
+      "underestimation_quantiles": [
+        -0.2707869141245993,
+        -0.08508358216783307,
+        -0.025122874092483816,
+        0.031437144527998395,
+        1.3181334229968966
+      ]
+    },
+    "5": {
+      "all_sample_attenuation_lt_01": 1,
+      "all_sample_joint_count": 1,
+      "attenuation_quantiles": [
+        0.9999994422603806,
+        0.9999995811789786,
+        0.9999996333558929,
+        0.9999996694882483,
+        0.9999997644511069
+      ],
+      "available_stations_quantiles": [
+        11.0,
+        12.0,
+        14.0,
+        15.25,
+        21.0
+      ],
+      "density_over_epsilon_min": 1792950.3436352808,
+      "dominant_responsibility_component_counts": [
+        0,
+        0,
+        0,
+        0,
+        20
+      ],
+      "effective_components_quantiles": [
+        1.000000122521664,
+        1.000004602740034,
+        1.000011474892181,
+        1.0000568098004279,
+        1.0000701950362625
+      ],
+      "events_entropy_lt_01": 20,
+      "events_max_responsibility_ge_099": 20,
+      "max_responsibility_quantiles": [
+        0.9999946690037957,
+        0.9999957644343607,
+        0.9999992488855143,
+        0.9999997165902577,
+        0.9999999939293935
+      ],
+      "maximum_gradient_reduction_percent": 5.5773961937788386e-05,
+      "mean_MAE": 0.04228141100734648,
+      "mean_MedAE": 0.03684587077432999,
+      "mean_RMSE": 0.051961499748104024,
+      "mean_signed_underestimation": -0.005898291089325447,
+      "median_action_MAE": 0.042068497365934474,
+      "median_action_MedAE": 0.03656234737983688,
+      "mixture_weight_entropy_quantiles": [
+        6.591868265418081e-05,
+        0.0012194624649163347,
+        0.0018834140742910517,
+        0.005383915806696013,
+        0.009124669684414742
+      ],
+      "prior_max_weight_quantiles": [
+        0.9988611260019342,
+        0.9993741753270711,
+        0.9998067224636698,
+        0.9998805910723136,
+        0.9999950492255824
+      ],
+      "responsibility_entropy_quantiles": [
+        1.225216565277612e-07,
+        4.6027293873437454e-06,
+        1.1474826341584005e-05,
+        5.68081868041977e-05,
+        7.019257270630065e-05
+      ],
+      "underestimated_over_half": 0,
+      "underestimation_quantiles": [
+        -0.10955500183007238,
+        -0.03929312179332922,
+        -0.011144224561518978,
+        0.027027156414734632,
+        0.09572815835472692
+      ]
+    }
+  },
+  "posthoc_descriptive_thresholds": "Responsibility max>=.99 and entropy<.1 are descriptive summaries only; not replacement gates or training criteria",
+  "quantile_order": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+  ],
+  "schema": "chile-floor-findings-descriptive-v1",
+  "scope": "Selected TRAIN-fit checkpoint outputs only; all20MA>=5.5 events, stratified hashed bulk, no generalization estimates",
+  "selected_epoch": 97,
+  "selected_negative_magnitude_count": 0,
+  "selected_zero_magnitude_count": 0,
+  "source_manifest_sha256": "4549fe4a36706eb53f64899e21283fad2375c1626c1e4ebcbedf6148fa90cb50",
+  "status": "negative_gate_closeout_no_head_pilot",
+  "strata_counts": {
+    "MA_4_to_5p5": 327,
+    "MA_ge_5p5": 20,
+    "MA_lt_4": 1024
+  },
+  "tail_events": [
+    {
+      "MA": 5.6629999999999985,
+      "event_id": "2007_03_24_19_13_50_600000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999963066611773,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.274450302124023,
+          "dominant_component_scale": 0.19270053505897522,
+          "dominant_component_weight": 0.9984373417597044,
+          "max_responsibility": 0.9998376366736228,
+          "mean": 5.2722480547281885,
+          "median": 5.274093738007156,
+          "responsibility_entropy": 0.001582523496641785,
+          "underestimation": 0.39075194527181
+        },
+        "3": {
+          "attenuation": 0.9999995887531046,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.738472938537598,
+          "dominant_component_scale": 0.1425171196460724,
+          "dominant_component_weight": 0.9994240109294883,
+          "max_responsibility": 0.9999946051101916,
+          "mean": 5.737280357812999,
+          "median": 5.738371153249921,
+          "responsibility_entropy": 7.112799590448087e-05,
+          "underestimation": -0.07428035781300046
+        },
+        "5": {
+          "attenuation": 0.9999996651424471,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.698372840881348,
+          "dominant_component_scale": 0.1285426914691925,
+          "dominant_component_weight": 0.9993528843081767,
+          "max_responsibility": 0.9999956169601658,
+          "mean": 5.697072158884618,
+          "median": 5.698269641929308,
+          "responsibility_entropy": 5.8628636372010455e-05,
+          "underestimation": -0.03407215888461934
+        }
+      },
+      "source_row": 1727
+    },
+    {
+      "MA": 5.666,
+      "event_id": "2007_08_29_16_18_08_520000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999511659608499,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 3.6732001304626465,
+          "dominant_component_scale": 1.3598933219909668,
+          "dominant_component_weight": 0.20278939202316856,
+          "max_responsibility": 0.9928582249611517,
+          "mean": 2.178961898327735,
+          "median": 1.896795525778476,
+          "responsibility_entropy": 0.04240939217477351,
+          "underestimation": 3.4870381016722654
+        },
+        "3": {
+          "attenuation": 0.9999978722857265,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.937186241149902,
+          "dominant_component_scale": 0.801542341709137,
+          "dominant_component_weight": 0.9998939393971504,
+          "max_responsibility": 0.999989529084538,
+          "mean": 5.9367869141246,
+          "median": 5.9370929230678104,
+          "responsibility_entropy": 0.00013974100365352115,
+          "underestimation": -0.2707869141245993
+        },
+        "5": {
+          "attenuation": 0.9999996693218007,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.657068252563477,
+          "dominant_component_scale": 0.13152483105659485,
+          "dominant_component_weight": 0.9992900256441323,
+          "max_responsibility": 0.9999957717958085,
+          "mean": 5.65565994089595,
+          "median": 5.656952439708901,
+          "responsibility_entropy": 5.673527792220008e-05,
+          "underestimation": 0.01034005910405078
+        }
+      },
+      "source_row": 6226
+    },
+    {
+      "MA": 5.87,
+      "event_id": "2007_10_25_08_35_16_680000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9996814862990163,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 2.948390483856201,
+          "dominant_component_scale": 1.086020827293396,
+          "dominant_component_weight": 0.1818673259065017,
+          "max_responsibility": 0.5709055272397002,
+          "mean": 1.889859716641535,
+          "median": 1.6999212011759206,
+          "responsibility_entropy": 0.6830580166439888,
+          "underestimation": 3.980140283358465
+        },
+        "3": {
+          "attenuation": 0.9999992632153635,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.02793025970459,
+          "dominant_component_scale": 0.23401442170143127,
+          "dominant_component_weight": 0.9997485679392457,
+          "max_responsibility": 0.9999961390822176,
+          "mean": 6.027274310329488,
+          "median": 6.02785730609391,
+          "responsibility_entropy": 5.3176294186374074e-05,
+          "underestimation": -0.15727431032948758
+        },
+        "5": {
+          "attenuation": 0.9999996296539739,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.903372764587402,
+          "dominant_component_scale": 0.1437622606754303,
+          "dominant_component_weight": 0.9996034116665475,
+          "max_responsibility": 0.9999978207041376,
+          "mean": 5.90246901694249,
+          "median": 5.903301905298827,
+          "responsibility_entropy": 3.0765025720214425e-05,
+          "underestimation": -0.03246901694248994
+        }
+      },
+      "source_row": 7776
+    },
+    {
+      "MA": 8.054,
+      "event_id": "2007_11_14_15_40_50_400000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999994337187663,
+          "available_stations": 11,
+          "dominant_component": 4,
+          "dominant_component_mean": 8.061624526977539,
+          "dominant_component_scale": 0.22578385472297668,
+          "dominant_component_weight": 0.9999954496746691,
+          "max_responsibility": 0.9999999928047021,
+          "mean": 8.0616027564791,
+          "median": 8.061623271808383,
+          "responsibility_entropy": 1.4438392194321535e-07,
+          "underestimation": -0.007602756479100137
+        },
+        "3": {
+          "attenuation": 0.9999995042075175,
+          "available_stations": 11,
+          "dominant_component": 4,
+          "dominant_component_mean": 8.075735092163086,
+          "dominant_component_scale": 0.1965865194797516,
+          "dominant_component_weight": 0.9999952417573366,
+          "max_responsibility": 0.9999999938720248,
+          "mean": 8.07571337804584,
+          "median": 8.075733925769324,
+          "responsibility_entropy": 1.236862079980962e-07,
+          "underestimation": -0.02171337804584006
+        },
+        "5": {
+          "attenuation": 0.9999995185394664,
+          "available_stations": 11,
+          "dominant_component": 4,
+          "dominant_component_mean": 8.06734848022461,
+          "dominant_component_scale": 0.19160857796669006,
+          "dominant_component_weight": 0.9999950492255824,
+          "max_responsibility": 0.9999999939293935,
+          "mean": 8.067325671854912,
+          "median": 8.067347308206529,
+          "responsibility_entropy": 1.225216565277612e-07,
+          "underestimation": -0.013325671854911292
+        }
+      },
+      "source_row": 8476
+    },
+    {
+      "MA": 6.3210000000000015,
+      "event_id": "2007_11_15_15_03_08_410000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999980586944349,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.858463287353516,
+          "dominant_component_scale": 0.41083696484565735,
+          "dominant_component_weight": 0.999770698226239,
+          "max_responsibility": 0.9999957018966416,
+          "mean": 5.857802782075282,
+          "median": 5.858348516007879,
+          "responsibility_entropy": 5.993884373076889e-05,
+          "underestimation": 0.46319721792471924
+        },
+        "3": {
+          "attenuation": 0.9999994899590131,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.314160346984863,
+          "dominant_component_scale": 0.203331857919693,
+          "dominant_component_weight": 0.9998513291576858,
+          "max_responsibility": 0.999999218064121,
+          "mean": 6.31374484331144,
+          "median": 6.314122771025552,
+          "responsibility_entropy": 1.1931268231675046e-05,
+          "underestimation": 0.0072551566885614704
+        },
+        "5": {
+          "attenuation": 0.9999994422603806,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.430908203125,
+          "dominant_component_scale": 0.1872866451740265,
+          "dominant_component_weight": 0.9998787616099183,
+          "max_responsibility": 0.9999992564853492,
+          "mean": 6.430555001830074,
+          "median": 6.4308799337662625,
+          "responsibility_entropy": 1.139647963255135e-05,
+          "underestimation": -0.10955500183007238
+        }
+      },
+      "source_row": 8613
+    },
+    {
+      "MA": 6.962999999999999,
+      "event_id": "2007_12_16_08_09_12_840000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999825845811444,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.315581321716309,
+          "dominant_component_scale": 0.25126388669013977,
+          "dominant_component_weight": 0.9998668443434131,
+          "max_responsibility": 0.9999948716609369,
+          "mean": 6.3151921916152025,
+          "median": 6.31553984951417,
+          "responsibility_entropy": 6.956719953314369e-05,
+          "underestimation": 0.6478078083847967
+        },
+        "3": {
+          "attenuation": 0.9999994618703247,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.926151275634766,
+          "dominant_component_scale": 0.21143832802772522,
+          "dominant_component_weight": 0.9999578376301395,
+          "max_responsibility": 0.999999899098815,
+          "mean": 6.92600084252444,
+          "median": 6.926140168784936,
+          "responsibility_entropy": 1.7647938994465797e-06,
+          "underestimation": 0.036999157475559485
+        },
+        "5": {
+          "attenuation": 0.9999994786742181,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.98746395111084,
+          "dominant_component_scale": 0.20651701092720032,
+          "dominant_component_weight": 0.999961909812164,
+          "max_responsibility": 0.9999999034351252,
+          "mean": 6.987327068187847,
+          "median": 6.987454123026096,
+          "responsibility_entropy": 1.6912157710167797e-06,
+          "underestimation": -0.0243270681878478
+        }
+      },
+      "source_row": 10571
+    },
+    {
+      "MA": 5.974,
+      "event_id": "2007_12_25_16_20_51_750000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999987197870011,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.6706695556640625,
+          "dominant_component_scale": 0.35268524289131165,
+          "dominant_component_weight": 0.999574893591442,
+          "max_responsibility": 0.9999917635862452,
+          "mean": 5.669621587908954,
+          "median": 5.670486809697646,
+          "responsibility_entropy": 0.00010778385096301481,
+          "underestimation": 0.30437841209104644
+        },
+        "3": {
+          "attenuation": 0.9999995580768432,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.054426193237305,
+          "dominant_component_scale": 0.15370216965675354,
+          "dominant_component_weight": 0.999717583978115,
+          "max_responsibility": 0.9999981999964894,
+          "mean": 6.053732178933793,
+          "median": 6.054372220114418,
+          "responsibility_entropy": 2.5817933161132656e-05,
+          "underestimation": -0.07973217893379303
+        },
+        "5": {
+          "attenuation": 0.9999996443051649,
+          "available_stations": 12,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.034070014953613,
+          "dominant_component_scale": 0.12679997086524963,
+          "dominant_component_weight": 0.9996885201242143,
+          "max_responsibility": 0.9999986060401134,
+          "mean": 6.033322863026179,
+          "median": 6.034020847936072,
+          "responsibility_entropy": 2.0290924953650565e-05,
+          "underestimation": -0.059322863026178396
+        }
+      },
+      "source_row": 11044
+    },
+    {
+      "MA": 6.371,
+      "event_id": "2008_02_04_17_01_29_880000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999990228705227,
+          "available_stations": 13,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.552554130554199,
+          "dominant_component_scale": 0.33719781041145325,
+          "dominant_component_weight": 0.9999355669446977,
+          "max_responsibility": 0.9999992601524976,
+          "mean": 6.552323116317096,
+          "median": 6.552527199729532,
+          "responsibility_entropy": 1.1629794952570766e-05,
+          "underestimation": -0.1813231163170954
+        },
+        "3": {
+          "attenuation": 0.999999514665389,
+          "available_stations": 13,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.472485542297363,
+          "dominant_component_scale": 0.1571667492389679,
+          "dominant_component_weight": 0.9998828095282755,
+          "max_responsibility": 0.999999531954557,
+          "mean": 6.472137791869954,
+          "median": 6.472462594299838,
+          "responsibility_entropy": 7.393895467490565e-06,
+          "underestimation": -0.1011377918699532
+        },
+        "5": {
+          "attenuation": 0.9999995713795382,
+          "available_stations": 13,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.287869453430176,
+          "dominant_component_scale": 0.145082026720047,
+          "dominant_component_weight": 0.9998238893487087,
+          "max_responsibility": 0.9999995535839289,
+          "mean": 6.287388728262594,
+          "median": 6.287837608711876,
+          "responsibility_entropy": 7.042694435294602e-06,
+          "underestimation": 0.08361127173740623
+        }
+      },
+      "source_row": 12769
+    },
+    {
+      "MA": 6.283,
+      "event_id": "2008_02_16_14_45_08_190000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9630999792236409,
+          "available_stations": 14,
+          "dominant_component": 3,
+          "dominant_component_mean": 4.000064849853516,
+          "dominant_component_scale": 0.639258861541748,
+          "dominant_component_weight": 0.021322919282287134,
+          "max_responsibility": 0.8670033474961578,
+          "mean": 4.1101322290520095,
+          "median": 4.112351590783284,
+          "responsibility_entropy": 0.39204410596156775,
+          "underestimation": 2.172867770947991
+        },
+        "3": {
+          "attenuation": 0.9999996320502917,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.3019609451293945,
+          "dominant_component_scale": 0.1455254852771759,
+          "dominant_component_weight": 0.9998307799314243,
+          "max_responsibility": 0.9999995123677106,
+          "mean": 6.301495040037889,
+          "median": 6.301930258916384,
+          "responsibility_entropy": 7.651877278408267e-06,
+          "underestimation": -0.018495040037888266
+        },
+        "5": {
+          "attenuation": 0.9999996326305678,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.339197158813477,
+          "dominant_component_scale": 0.13424256443977356,
+          "dominant_component_weight": 0.9998411143942989,
+          "max_responsibility": 0.9999995340425072,
+          "mean": 6.338755857141721,
+          "median": 6.339170562467876,
+          "responsibility_entropy": 7.325719631002544e-06,
+          "underestimation": -0.05575585714172071
+        }
+      },
+      "source_row": 13282
+    },
+    {
+      "MA": 5.776,
+      "event_id": "2008_03_01_19_51_58_940000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.999997931305369,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.227229118347168,
+          "dominant_component_scale": 0.3373700678348541,
+          "dominant_component_weight": 0.9998766032649954,
+          "max_responsibility": 0.9999928990833479,
+          "mean": 6.226833034059916,
+          "median": 6.227177676706272,
+          "responsibility_entropy": 9.480824615722507e-05,
+          "underestimation": -0.45083303405991604
+        },
+        "3": {
+          "attenuation": 0.999999685254775,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.733915328979492,
+          "dominant_component_scale": 0.11771979928016663,
+          "dominant_component_weight": 0.9993821010193883,
+          "max_responsibility": 0.9999973275346066,
+          "mean": 5.732655010695676,
+          "median": 5.733824972138585,
+          "responsibility_entropy": 3.7079657626620926e-05,
+          "underestimation": 0.043344989304324066
+        },
+        "5": {
+          "attenuation": 0.9999996909253259,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.7338666915893555,
+          "dominant_component_scale": 0.11526325345039368,
+          "dominant_component_weight": 0.9993812723333693,
+          "max_responsibility": 0.999997416726047,
+          "mean": 5.732605456166743,
+          "median": 5.733778068635084,
+          "responsibility_entropy": 3.5929069328198036e-05,
+          "underestimation": 0.043394543833256805
+        }
+      },
+      "source_row": 13896
+    },
+    {
+      "MA": 6.501,
+      "event_id": "2008_03_24_20_39_05_920000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999985660465665,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.1638288497924805,
+          "dominant_component_scale": 0.4032802879810333,
+          "dominant_component_weight": 0.9998848425063415,
+          "max_responsibility": 0.999998694237426,
+          "mean": 6.163442902243155,
+          "median": 6.163771910434013,
+          "responsibility_entropy": 1.999609084614196e-05,
+          "underestimation": 0.3375570977568456
+        },
+        "3": {
+          "attenuation": 0.9999996231817236,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.52984619140625,
+          "dominant_component_scale": 0.14746466279029846,
+          "dominant_component_weight": 0.9998959167168497,
+          "max_responsibility": 0.9999997574863053,
+          "mean": 6.529532370139128,
+          "median": 6.529827040788454,
+          "responsibility_entropy": 3.9841680846859075e-06,
+          "underestimation": -0.028532370139127572
+        },
+        "5": {
+          "attenuation": 0.9999996343544875,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.495963096618652,
+          "dominant_component_scale": 0.14576831459999084,
+          "dominant_component_weight": 0.9998890788431224,
+          "max_responsibility": 0.9999997539028158,
+          "mean": 6.495634047637279,
+          "median": 6.495942941817464,
+          "responsibility_entropy": 4.032291022070305e-06,
+          "underestimation": 0.005365952362721416
+        }
+      },
+      "source_row": 14800
+    },
+    {
+      "MA": 5.551,
+      "event_id": "2008_12_04_16_47_08_300000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999975031711401,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.068938255310059,
+          "dominant_component_scale": 0.8460898995399475,
+          "dominant_component_weight": 0.9989732042128376,
+          "max_responsibility": 0.9998788846004583,
+          "mean": 5.0660365458060745,
+          "median": 5.06803293315815,
+          "responsibility_entropy": 0.0013237066393037358,
+          "underestimation": 0.4849634541939256
+        },
+        "3": {
+          "attenuation": 0.9999994813205566,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.676146507263184,
+          "dominant_component_scale": 0.13123586773872375,
+          "dominant_component_weight": 0.9993155057377382,
+          "max_responsibility": 0.9999907230718516,
+          "mean": 5.6747740141038205,
+          "median": 5.676035036829766,
+          "responsibility_entropy": 0.00011734133248911685,
+          "underestimation": -0.12377401410382038
+        },
+        "5": {
+          "attenuation": 0.9999997461225285,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.513271331787109,
+          "dominant_component_scale": 0.09321561455726624,
+          "dominant_component_weight": 0.9989067910513532,
+          "max_responsibility": 0.9999946690037957,
+          "mean": 5.5113804173359595,
+          "median": 5.513144947169636,
+          "responsibility_entropy": 7.019257270630065e-05,
+          "underestimation": 0.03961958266404064
+        }
+      },
+      "source_row": 23386
+    },
+    {
+      "MA": 5.574,
+      "event_id": "2009_01_31_16_29_36_080000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999990517566201,
+          "available_stations": 15,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.578879356384277,
+          "dominant_component_scale": 0.37807801365852356,
+          "dominant_component_weight": 0.9994938995680864,
+          "max_responsibility": 0.9999835478159722,
+          "mean": 5.577654318815623,
+          "median": 5.578647610731126,
+          "responsibility_entropy": 0.00020398630869912442,
+          "underestimation": -0.0036543188156228368
+        },
+        "3": {
+          "attenuation": 0.9999997136184579,
+          "available_stations": 15,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.5235161781311035,
+          "dominant_component_scale": 0.10063675045967102,
+          "dominant_component_weight": 0.9989490675095086,
+          "max_responsibility": 0.9999943987714516,
+          "mean": 5.521674535166049,
+          "median": 5.523385066172868,
+          "responsibility_entropy": 7.348265291219432e-05,
+          "underestimation": 0.05232546483395062
+        },
+        "5": {
+          "attenuation": 0.9999997374142086,
+          "available_stations": 15,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.513001918792725,
+          "dominant_component_scale": 0.07550075650215149,
+          "dominant_component_weight": 0.9988611260019342,
+          "max_responsibility": 0.9999952637477824,
+          "mean": 5.511058049874292,
+          "median": 5.512895097467332,
+          "responsibility_entropy": 6.2932073769965e-05,
+          "underestimation": 0.06294195012570825
+        }
+      },
+      "source_row": 25740
+    },
+    {
+      "MA": 6.3610000000000015,
+      "event_id": "2009_04_17_02_08_07_840000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999964197370202,
+          "available_stations": 15,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.5410637855529785,
+          "dominant_component_scale": 0.6599608659744263,
+          "dominant_component_weight": 0.9996842182062048,
+          "max_responsibility": 0.9999797599585697,
+          "mean": 5.54014192733516,
+          "median": 5.540826085100008,
+          "responsibility_entropy": 0.00025417804808471376,
+          "underestimation": 0.8208580726648416
+        },
+        "3": {
+          "attenuation": 0.9999995711556317,
+          "available_stations": 15,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.405048370361328,
+          "dominant_component_scale": 0.16507938504219055,
+          "dominant_component_weight": 0.9998695759507636,
+          "max_responsibility": 0.9999995494774145,
+          "mean": 6.404670653404029,
+          "median": 6.405021535419795,
+          "responsibility_entropy": 7.127822971516908e-06,
+          "underestimation": -0.043670653404027426
+        },
+        "5": {
+          "attenuation": 0.9999995844454588,
+          "available_stations": 15,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.370361328125,
+          "dominant_component_scale": 0.16549435257911682,
+          "dominant_component_weight": 0.9998607276751432,
+          "max_responsibility": 0.9999995543049082,
+          "mean": 6.369962777268128,
+          "median": 6.370332626206763,
+          "responsibility_entropy": 7.051454646994447e-06,
+          "underestimation": -0.008962777268126665
+        }
+      },
+      "source_row": 28796
+    },
+    {
+      "MA": 5.567,
+      "event_id": "2009_07_15_15_21_26_110000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999989940346558,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.796343803405762,
+          "dominant_component_scale": 0.29885998368263245,
+          "dominant_component_weight": 0.9996455846650997,
+          "max_responsibility": 0.9999877954763776,
+          "mean": 5.795444672289183,
+          "median": 5.7962134069236555,
+          "responsibility_entropy": 0.00015507889044844798,
+          "underestimation": -0.22844467228918308
+        },
+        "3": {
+          "attenuation": 0.9999996515742117,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.498722076416016,
+          "dominant_component_scale": 0.11717155575752258,
+          "dominant_component_weight": 0.9989247523855879,
+          "max_responsibility": 0.9999922216304945,
+          "mean": 5.496855669614341,
+          "median": 5.498566300309166,
+          "responsibility_entropy": 9.948500203632776e-05,
+          "underestimation": 0.07014433038565926
+        },
+        "5": {
+          "attenuation": 0.9999997644511069,
+          "available_stations": 14,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.545970916748047,
+          "dominant_component_scale": 0.09142521023750305,
+          "dominant_component_weight": 0.9989905404141726,
+          "max_responsibility": 0.9999957423500171,
+          "mean": 5.544170319001701,
+          "median": 5.545856297914696,
+          "responsibility_entropy": 5.7026913450190554e-05,
+          "underestimation": 0.022829680998299295
+        }
+      },
+      "source_row": 32596
+    },
+    {
+      "MA": 6.497999999999998,
+      "event_id": "2010_03_04_22_39_24_420000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999992336424316,
+          "available_stations": 16,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.67963981628418,
+          "dominant_component_scale": 0.21120694279670715,
+          "dominant_component_weight": 0.9999343990253531,
+          "max_responsibility": 0.9999995513664467,
+          "mean": 6.679421095740192,
+          "median": 6.679622540084219,
+          "responsibility_entropy": 7.171679843144157e-06,
+          "underestimation": -0.18142109574019383
+        },
+        "3": {
+          "attenuation": 0.9999996581014732,
+          "available_stations": 16,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.496096611022949,
+          "dominant_component_scale": 0.1363687813282013,
+          "dominant_component_weight": 0.9998842415105214,
+          "max_responsibility": 0.999999779610172,
+          "mean": 6.49575449998642,
+          "median": 6.496076911312984,
+          "responsibility_entropy": 3.637574933694212e-06,
+          "underestimation": 0.002245500013578372
+        },
+        "5": {
+          "attenuation": 0.9999996699875906,
+          "available_stations": 16,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.503653526306152,
+          "dominant_component_scale": 0.13151922821998596,
+          "dominant_component_weight": 0.9998847171085085,
+          "max_responsibility": 0.9999997908740534,
+          "mean": 6.503311807974885,
+          "median": 6.503634621540954,
+          "responsibility_entropy": 3.461531508378455e-06,
+          "underestimation": -0.00531180797488684
+        }
+      },
+      "source_row": 38781
+    },
+    {
+      "MA": 6.178,
+      "event_id": "2010_04_05_22_36_57_540000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999959269162969,
+          "available_stations": 18,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.254063606262207,
+          "dominant_component_scale": 0.7315989136695862,
+          "dominant_component_weight": 0.9994100535918392,
+          "max_responsibility": 0.9999402257827799,
+          "mean": 5.252538664849905,
+          "median": 5.253593427699695,
+          "responsibility_entropy": 0.0006816826220067114,
+          "underestimation": 0.9254613351500947
+        },
+        "3": {
+          "attenuation": 0.9999995490288358,
+          "available_stations": 18,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.148984909057617,
+          "dominant_component_scale": 0.1774848997592926,
+          "dominant_component_weight": 0.999781974061996,
+          "max_responsibility": 0.9999990086964105,
+          "mean": 6.148416859787855,
+          "median": 6.148936785136533,
+          "responsibility_entropy": 1.4853195899675435e-05,
+          "underestimation": 0.0295831402121447
+        },
+        "5": {
+          "attenuation": 0.9999996190814147,
+          "available_stations": 18,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.192814826965332,
+          "dominant_component_scale": 0.15120521187782288,
+          "dominant_component_weight": 0.9997895555786308,
+          "max_responsibility": 0.9999992412856794,
+          "mean": 6.192262459552974,
+          "median": 6.192775205630577,
+          "responsibility_entropy": 1.155317305061666e-05,
+          "underestimation": -0.014262459552973894
+        }
+      },
+      "source_row": 40009
+    },
+    {
+      "MA": 6.42,
+      "event_id": "2010_07_12_00_11_18_410000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.999996153765867,
+          "available_stations": 17,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.523133277893066,
+          "dominant_component_scale": 0.7489913105964661,
+          "dominant_component_weight": 0.9997117174369028,
+          "max_responsibility": 0.999976817256311,
+          "mean": 5.5222368121205845,
+          "median": 5.522894252594384,
+          "responsibility_entropy": 0.0002898885332912947,
+          "underestimation": 0.8977631878794154
+        },
+        "3": {
+          "attenuation": 0.9999992805927608,
+          "available_stations": 17,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.590968132019043,
+          "dominant_component_scale": 0.15040305256843567,
+          "dominant_component_weight": 0.9999094898038622,
+          "max_responsibility": 0.9999994590955333,
+          "mean": 6.590687002740347,
+          "median": 6.590951162328828,
+          "responsibility_entropy": 8.47135998965938e-06,
+          "underestimation": -0.17068700274034665
+        },
+        "5": {
+          "attenuation": 0.999999634081218,
+          "available_stations": 17,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.475309371948242,
+          "dominant_component_scale": 0.13405314087867737,
+          "dominant_component_weight": 0.9998792157269154,
+          "max_responsibility": 0.9999997041527382,
+          "mean": 6.474956010519459,
+          "median": 6.475289163733334,
+          "responsibility_entropy": 4.792875509101559e-06,
+          "underestimation": -0.054956010519458864
+        }
+      },
+      "source_row": 43713
+    },
+    {
+      "MA": 5.792000000000002,
+      "event_id": "2010_10_22_19_31_34_960000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9998004271455762,
+          "available_stations": 18,
+          "dominant_component": 4,
+          "dominant_component_mean": 3.224801778793335,
+          "dominant_component_scale": 1.1047474145889282,
+          "dominant_component_weight": 0.17933742466390304,
+          "max_responsibility": 0.8687875565041592,
+          "mean": 2.033677721534216,
+          "median": 1.8346368490902307,
+          "responsibility_entropy": 0.388685029718548,
+          "underestimation": 3.7583222784657857
+        },
+        "3": {
+          "attenuation": 0.999596704607349,
+          "available_stations": 18,
+          "dominant_component": 4,
+          "dominant_component_mean": 4.4789228439331055,
+          "dominant_component_scale": 0.37417373061180115,
+          "dominant_component_weight": 0.9919550029710017,
+          "max_responsibility": 0.9035705585328465,
+          "mean": 4.473866577003105,
+          "median": 4.476662606587734,
+          "responsibility_entropy": 0.3220582472355468,
+          "underestimation": 1.3181334229968966
+        },
+        "5": {
+          "attenuation": 0.9999994687506182,
+          "available_stations": 18,
+          "dominant_component": 4,
+          "dominant_component_mean": 5.6974992752075195,
+          "dominant_component_scale": 0.18622568249702454,
+          "dominant_component_weight": 0.999414832763892,
+          "max_responsibility": 0.9999948113910937,
+          "mean": 5.696271841645275,
+          "median": 5.69736464108828,
+          "responsibility_entropy": 6.883024201013271e-05,
+          "underestimation": 0.09572815835472692
+        }
+      },
+      "source_row": 47553
+    },
+    {
+      "MA": 6.742000000000001,
+      "event_id": "2011_06_20_16_35_58_200000",
+      "per_horizon": {
+        "1": {
+          "attenuation": 0.9999994660130908,
+          "available_stations": 21,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.798681259155273,
+          "dominant_component_scale": 0.20503225922584534,
+          "dominant_component_weight": 0.9999462595503957,
+          "max_responsibility": 0.9999998300632151,
+          "mean": 6.798495729476513,
+          "median": 6.798667527836386,
+          "responsibility_entropy": 2.880740556829225e-06,
+          "underestimation": -0.05649572947651205
+        },
+        "3": {
+          "attenuation": 0.999999601114732,
+          "available_stations": 21,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.781072616577148,
+          "dominant_component_scale": 0.15408805012702942,
+          "dominant_component_weight": 0.9999380967579846,
+          "max_responsibility": 0.9999998831632396,
+          "mean": 6.780866625420222,
+          "median": 6.781060702193157,
+          "responsibility_entropy": 2.0141773133649906e-06,
+          "underestimation": -0.03886662542022101
+        },
+        "5": {
+          "attenuation": 0.999999589048583,
+          "available_stations": 21,
+          "dominant_component": 4,
+          "dominant_component_mean": 6.811676979064941,
+          "dominant_component_scale": 0.14637675881385803,
+          "dominant_component_weight": 0.9999401823956253,
+          "max_responsibility": 0.9999998822684265,
+          "mean": 6.811476327783434,
+          "median": 6.81166605008936,
+          "responsibility_entropy": 2.027915498653877e-06,
+          "underestimation": -0.06947632778343316
+        }
+      },
+      "source_row": 55531
+    }
+  ],
+  "tail_magnitude_quantiles": [
+    5.551,
+    5.7485,
+    6.2305,
+    6.4395,
+    8.054
+  ]
+}

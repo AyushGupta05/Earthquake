@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Verify COMPLETE.json against its audited hash",
+      "body": "The completion check only compares the manifest hash stored inside COMPLETE.json; it never verifies the completion file itself against an audited digest. Replacing or modifying COMPLETE.json after the audit still passes whenever that one field is preserved, so the extractor does not establish the promised unchanged COMPLETE provenance. Verify the completion marker against a digest pinned by the audit before accepting it.",
+      "priority": "P2",
+      "confidence": 0.94,
+      "category": "bug",
+      "code_location": {
+        "file_path": "extract_effects.py",
+        "line": 81
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Score selection preserves the fixed candidate/reference identities, both seeds, ensemble, and both actions without recomputing the gate. However, the provenance checks bind the receipt, manifest, and report while leaving COMPLETE.json itself unverified against its audited contents.",
+  "overall_confidence": 0.9
+}

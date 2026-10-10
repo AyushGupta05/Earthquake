@@ -1,0 +1,56 @@
+{
+  "created_utc": "2026-10-10T15:08:00.497288+00:00",
+  "deploy_files": {
+    "README.md": "90623bce7e230af49a76e275208cf40d57f7e469a4cfef06ac9d3fdffa67ea2e",
+    "recover_report.py": "1bf2bdf51b5c9975282f0bad6e36953ea5dc2e1bb62508629d8388d7798a9758"
+  },
+  "entrypoint": "recover_report.py",
+  "frozen_pins": {
+    "deployment_manifest": "7204ab1d6502599565478a641a824cd92a1028bf81b6410360845d79c682362f",
+    "export_manifest": "55ba19f81f59c106964ae92302258aba7780d5bc1a48cd3ec20617c8f2ba2a46",
+    "protocol": "403fe4bafabc11dad71b8a02d16e98a6b8d8c3a5c95ca89a812a5193a284f1b8",
+    "training_source_manifest": "f745a18b194490b2f018845ddeeb5a3282aa9a0307a4795cfebe465382b669d3"
+  },
+  "limitation": "json.dump avoids whole-string allocation only. Unchanged report object can still exceed memory; stage/RSS-only logging determines whether construction or writing fails. No scientific result changes.",
+  "parent_launch": {
+    "cgroup_memory": "12GiB",
+    "cpu_threads": 2,
+    "execute_flag_required": true,
+    "existing_report_partial_or_complete": "reject; inspect manually",
+    "new_receipt_directory_required": true,
+    "no_new_cloud_resources": true,
+    "outer_hard_timeout_seconds": 1800
+  },
+  "required_parent_pins": [
+    "current root grid_manifest SHA256, status training_complete",
+    "exact wrapper SHA256"
+  ],
+  "review": {
+    "command": "autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file review_context.md --output autoreview.txt --json-output autoreview.json",
+    "engine": "codex",
+    "exit_code": 0,
+    "findings": [],
+    "mode": "local isolated code-only allowlist"
+  },
+  "schema": "response-reporting-recovery-handoff-v1",
+  "status": "ready_for_parent_bounded_CPU_launch; no_production_execution_performed",
+  "support_sha256": {
+    "autoreview.json": "52c97a64edfd76f4446e5c4aaa74b76a07a65312f7dc560779cd13a8c9f257ad",
+    "autoreview.txt": "fe12802e05b2dff2c9035fd4159c66ac9beddf2b720f8aa901276f75b554638b",
+    "review_allowlist_manifest.json": "d22217099d2e34ec1dddbac3dfc92c0ad9c7ae0eb70d08ddeb175effd9e33211",
+    "synthetic_bundle.tar.gz": "9528d2ea32feea2fa94d8b72e5fd1369192f735309584e7bbc044c4e4366cffd",
+    "synthetic_tests_aws.log": "8ba0cb5c6f7356fdc05954501404b7a61d104557890d60c8036ee9906ab4e202",
+    "test_original_report_integration.py": "dc77ec9b6827f1d8a92eb4e28084a1d28b9d0370b2724160a9dbdad3fecbfc3b",
+    "test_recover_report.py": "036cb68912efc8fabcc086d68ada97ab1d4d5715d4dc2f467f478b980ec306f3"
+  },
+  "test_result": {
+    "cuda_visible_devices": "",
+    "passed": 16,
+    "remote_scratch": "/home/ec2-user/eew-synthetic/response-recovery-v1",
+    "scope": "invented completed export and predictions; no model load/forward/train; full unchanged original reporter byte equivalence",
+    "seconds": 2.42,
+    "threads": 2,
+    "timeout_seconds": 180
+  },
+  "wrapper_sha256": "1bf2bdf51b5c9975282f0bad6e36953ea5dc2e1bb62508629d8388d7798a9758"
+}

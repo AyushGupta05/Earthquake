@@ -1,0 +1,142 @@
+{
+  "created_utc": "2026-10-10T15:25:50.639163+00:00",
+  "status": "ready_after_runtime_correction; immutable_deployed_on_Chile; production_diagnostic_not_executed_by_this_agent",
+  "scope": "TRAIN-fit-only fixed diagnostic; no training head, no optimizer, no heldout scores, no GPU launch",
+  "entrypoint": "run_diagnostic.py; default dry run, requires --execute for parent-authorized data access",
+  "source_manifest_sha256": "4549fe4a36706eb53f64899e21283fad2375c1626c1e4ebcbedf6148fa90cb50",
+  "source_manifest": {
+    "schema": "chile_floor_sources_v1",
+    "own": {
+      "run_diagnostic.py": "acea207dfa1ab0aba07a9f2dea86b0b3e0b1e07ec6bb8d4b6dde2f6f5cb992fb",
+      "guards.py": "eeb2fd3882fdf1ebe19f37e7f50c7f54d2bff7f1af792fa1d1c74bc3804f5d3e",
+      "floor_math.py": "be3dfeda6a2737ac9b4dd998db0d2dc7d26b56c750079e369bc0fbdec4a3d5e9",
+      "protocol_amendment.json": "8f84e2e68ce465cd1c1dcdb83ab8076aaa12758ad8266f0552b45f122903eed6"
+    },
+    "dependencies": {
+      "team_lm.py": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+      "train_team_lm.py": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+      "training_artifacts.py": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754"
+    },
+    "protocol_sha256": "f36836e562b07baa740b8d8219d2063f369f92fb27be3f4d95efab1ac5757b48"
+  },
+  "deploy_files": [
+    "run_diagnostic.py",
+    "guards.py",
+    "floor_math.py",
+    "protocol_amendment.json",
+    "source_manifest.json"
+  ],
+  "support_files": {
+    "test_diagnostic.py": "3abca065ba57e3d9a25857cf698381a2de489f7cbf62b5c76ca8d4b36a2b4141",
+    "README.md": "16c0695630dd97bc5aaf8675cbdcd7923e3dafa2427f9727687a5000744bd306",
+    "synthetic_bundle_v10.tar.gz": "5ae9d779b8ba34e69a2fdc928a2f3c3f63037f0d3987898e2587c986a26608c6",
+    "synthetic_bundle_v10_receipt.json": "cfed1aa65ea98a974d03395b9dfcd95affb7d454ac845df2772f7f53518cfe61",
+    "synthetic_tests_v10.log": "c2b76e88e570afa0b26a2d0e5de7ea7b261b638776223372210401a24ad5fca6",
+    "review_v8_allowlist.json": "c2c74ad7f644809424c55030aedfaf7d6b2f9aa0c0d6e884dff4c3e389d6db97",
+    "autoreview_v8.json": "ac32db068179cc2773362c0828b1b6f1119efd811e811af42032cdc7c51d8e7c",
+    "autoreview_v8.txt": "a182626d13e02209420c0046d71ad24d9e3a3ed2cc61519b1c2f1bc4ff726066",
+    "protocol_amendment_pre_runtime_correction.json": "918ef780807c4fe7b382224a8710dd3270860f2b4152866d599042f5a48eeff8",
+    "source_manifest_pre_runtime_correction.json": "cd971f57787db09cc7362ee5164c6e83d3f4c4968e2e34b1e443809f638ee0af",
+    "handoff_pre_runtime_correction.json": "833d41dde097f0f43efefbe06c83c896d12cd32777253caf46d6e1293548f67a",
+    "run_diagnostic_pre_runtime_correction.py": "e922c4bf16bd1c9f281830eacab16ab4a39dffb134e916444ae1c0e92ed59988",
+    "chile_deployment_v10_files.json": "203e9210d0f7b58b8090afcd0c588f40a248dab01cff2ac0b348647deb7a0872",
+    "chile_deployment_v10_verification_before.json": "d64438aa2d8ea1a1396680a0f6134b4cad20d8e5f4ea22ea3a6a48b5cfcc7155",
+    "chile_deployment_v10_verification_after.json": "ea6d30d7df54e0ea961f067e4e9769ee44d1ed6a9f100f87eed185a28cb9b3b0",
+    "chile_runtime_tests_v10.log": "92224fbaf202e17587e615792426afb1cbc3cafea3acaf9259a0cf0c5e62de20"
+  },
+  "test_command": "CUDA_VISIBLE_DEVICES=\"\" PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 CUBLAS_WORKSPACE_CONFIG=:4096:8 CHILE_SOURCE_DIR=<isolated>/phase3 CHILE_PROTOCOL_PATH=<isolated>/diagnostic_protocol_v1.json timeout 180 /opt/pytorch/bin/python -W error -W \"ignore:The pynvml package is deprecated.:FutureWarning:torch.cuda\" -m unittest discover -s diagnostic -p \"test_*.py\" -v",
+  "tests": {
+    "passed": 24,
+    "seconds": 2.545,
+    "scope": "invented arrays/histories/HDF/checkpoint only",
+    "remote_scratch": "/home/ec2-user/eew-work/chile-floor-synthetic_v10",
+    "threads": 2,
+    "CUDA_VISIBLE_DEVICES": "",
+    "python": "3.12.10 (main, Aug  8 2026, 00:25:50) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]"
+  },
+  "review": {
+    "engine": "codex",
+    "final": "autoreview_v8.json",
+    "helper_exit": 0,
+    "findings": [],
+    "mode": "local focused diff against exact prior fully reviewed code-only snapshot",
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/chile_floor_diagnostic/review_context_v8.md --output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/chile_floor_diagnostic/autoreview_v8.txt --json-output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/chile_floor_diagnostic/autoreview_v8.json"
+  },
+  "launch_requirements": {
+    "maximum_seconds": 600,
+    "parent_containment": "task-specific systemd cgroup plus outer timeout and cleanup margin",
+    "baseline": "actual calibration-nll-selected model.pth after all25 pretraining and100 event epochs; selected_epoch1..100 agrees with run.json",
+    "artifact_plan_keys": [
+      "cache",
+      "dataset_manifest",
+      "metadata",
+      "metadata_manifest",
+      "checkpoint",
+      "run",
+      "split_manifest",
+      "history",
+      "pretrain_history"
+    ],
+    "new_output_required": true,
+    "COMPLETE_and_all_result_hashes_required": true,
+    "baseline_completion_flags": {
+      "skip_dev": false,
+      "dev_evaluated": true,
+      "selection_used_dev": false,
+      "test_reads": 0
+    },
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8 before process/CUDA initialization"
+  },
+  "accepted_findings_fixed": [
+    "Stable log-softmax and centered log-density responsibility calculation",
+    "Supervisor child ownership and timeout/cancellation cleanup",
+    "Repeated cancellation uses synchronous recorded requests, no thread-local masking assumption",
+    "Cancellation during successful cleanup propagates nonzero exit",
+    "Pre-execution parent config audit: baseline DEV reporting occurs after TRAIN-calibration selection; require skip_dev=False/dev_evaluated=True without admitting DEV-based selection or diagnostic DEV use.",
+    "Parent pre-forward runtime audit: match baseline deterministic_algorithms/cudnn.deterministic/benchmark settings, preserve existing TF32/matmul precision."
+  ],
+  "review_caveat": "Focused runtime-only correction reviewed against clean v9 source; no outcomes consulted. No bitwise equivalence claim across batch shape/hardware/library changes.",
+  "pre_data_correction": {
+    "superseded_source_manifest_sha256": "4ecb3c8e7eff3a7765450dde5e7370e9ff9fcd1c92e34627e39e637eab87ca4b",
+    "superseded_amendment_sha256": "35e9db6ba5cca5165235187e7b0a5b556fb38a385f7bdc0a24477c73900357f6",
+    "new_amendment_sha256": "918ef780807c4fe7b382224a8710dd3270860f2b4152866d599042f5a48eeff8",
+    "scope": "Only two completion expectations plus synthetic tests/docs/pins; model, population, gates, calculations and forward paths unchanged. No production data read."
+  },
+  "promoted_tests": {
+    "passed": 24,
+    "seconds": 1.627,
+    "root": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a",
+    "all11_file_hashes_before_after_equal": true,
+    "runtime_flags": {
+      "cuda_initialized": false,
+      "cuda_matmul_allow_tf32": false,
+      "cudnn_allow_tf32": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "deterministic_algorithms": true,
+      "deterministic_warn_only": false,
+      "float32_matmul_precision": "highest",
+      "threads": 2
+    },
+    "precision_matches_parent_baseline_audit": true,
+    "CUDA_VISIBLE_DEVICES": "",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "threads": 2,
+    "warning_filter": "error except exact ignore:The pynvml package is deprecated.:FutureWarning:torch.cuda"
+  },
+  "runtime_correction": {
+    "superseded_source_manifest_sha256": "cd971f57787db09cc7362ee5164c6e83d3f4c4968e2e34b1e443809f638ee0af",
+    "superseded_amendment_sha256": "918ef780807c4fe7b382224a8710dd3270860f2b4152866d599042f5a48eeff8",
+    "new_amendment_sha256": "8f84e2e68ce465cd1c1dcdb83ab8076aaa12758ad8266f0552b45f122903eed6",
+    "scope": "Runtime flags only; no model, population, gate, checkpoint policy or score change",
+    "previous_attempt": "Parent reports STOP completed exit143/MainPID0, onlySTARTED.json, no completion/results; preserved, no outcome consulted"
+  },
+  "deployment_paths": {
+    "root": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a",
+    "entrypoint": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/diagnostic/run_diagnostic.py",
+    "source_dir": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/phase3",
+    "source_manifest": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/diagnostic/source_manifest.json",
+    "protocol": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/diagnostic_protocol_v1.json",
+    "python": "/opt/pytorch/bin/python"
+  }
+}

@@ -1,0 +1,30 @@
+test_epoch_history_only_reads_epochs (test_diagnostic.GuardTests.test_epoch_history_only_reads_epochs) ... ok
+test_nonfit_labels_not_parsed (test_diagnostic.GuardTests.test_nonfit_labels_not_parsed) ... ok
+test_selected_checkpoint_not_forced_final (test_diagnostic.GuardTests.test_selected_checkpoint_not_forced_final) ... ok
+test_selection_fixed_hash_and_all_tail (test_diagnostic.GuardTests.test_selection_fixed_hash_and_all_tail) ... ok
+test_sha_and_schema_guards (test_diagnostic.GuardTests.test_sha_and_schema_guards) ... ok
+test_split_guards (test_diagnostic.GuardTests.test_split_guards) ... ok
+test_analytic_derivatives_all_three_scores (test_diagnostic.MathTests.test_analytic_derivatives_all_three_scores) ... ok
+test_extreme_logits_narrow_scales_and_floor_suppression (test_diagnostic.MathTests.test_extreme_logits_narrow_scales_and_floor_suppression) ... ok
+test_floor_identity (test_diagnostic.MathTests.test_floor_identity) ... ok
+test_gate_distinct_events_and_strict_thresholds (test_diagnostic.MathTests.test_gate_distinct_events_and_strict_thresholds) ... ok
+test_huber_normalization_and_moments (test_diagnostic.MathTests.test_huber_normalization_and_moments) ... ok
+test_huge_common_offsets_preserve_normalization (test_diagnostic.MathTests.test_huge_common_offsets_preserve_normalization) ... ok
+test_invalid_outputs_fail (test_diagnostic.MathTests.test_invalid_outputs_fail) ... ok
+test_responsibility_collapse_is_not_floor_suppression (test_diagnostic.MathTests.test_responsibility_collapse_is_not_floor_suppression) ... ok
+test_baseline_runtime_flags_preserve_precision (test_diagnostic.SourceIntegrationTests.test_baseline_runtime_flags_preserve_precision) ... ok
+test_complete_worker_only_on_synthetic_fixture (test_diagnostic.SourceIntegrationTests.test_complete_worker_only_on_synthetic_fixture) ... {"output": "/tmp/tmp6n93f02t/out", "gate": {"passed": false, "qualifying_count": 1, "qualifying_event_ids": ["f2"], "joint_deadline_count": [0, 3], "interpretation": "Current TRAIN suppression only; no historical causal or held-out benefit claim", "next_action": "Stop proposed floor mechanism pilot"}}
+ok
+test_prefix_exact_clock_and_future_boundary (test_diagnostic.SourceIntegrationTests.test_prefix_exact_clock_and_future_boundary) ... ok
+test_source_forward_matches_evaluate_on_invented_arrays (test_diagnostic.SourceIntegrationTests.test_source_forward_matches_evaluate_on_invented_arrays) ... ok
+test_cancellation_during_spawn_reaps_child (test_diagnostic.SupervisorTests.test_cancellation_during_spawn_reaps_child) ... ok
+test_cancellation_during_successful_cleanup_is_nonzero (test_diagnostic.SupervisorTests.test_cancellation_during_successful_cleanup_is_nonzero) ... ok
+test_cancellation_reaps_child (test_diagnostic.SupervisorTests.test_cancellation_reaps_child) ... ok
+test_failed_worker_invalidates_completion (test_diagnostic.SupervisorTests.test_failed_worker_invalidates_completion) ... ok
+test_repeated_cancellation_does_not_skip_cleanup (test_diagnostic.SupervisorTests.test_repeated_cancellation_does_not_skip_cleanup) ... ok
+test_timeout_removes_completion (test_diagnostic.SupervisorTests.test_timeout_removes_completion) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 2.545s
+
+OK

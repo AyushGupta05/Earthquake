@@ -1,0 +1,53 @@
+{
+  "bundle_sha256": "5ae9d779b8ba34e69a2fdc928a2f3c3f63037f0d3987898e2587c986a26608c6",
+  "handoff_sha256": "5bf9acf9156ee35515b0be4fb0d04a498aea8fed643009e2b50bddf0ad3f42cc",
+  "old_sources_and_outputs_preserved": true,
+  "paths": {
+    "entrypoint": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/diagnostic/run_diagnostic.py",
+    "protocol": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/diagnostic_protocol_v1.json",
+    "python": "/opt/pytorch/bin/python",
+    "root": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a",
+    "source_dir": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/phase3",
+    "source_manifest": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a/diagnostic/source_manifest.json"
+  },
+  "production_diagnostic_executed": false,
+  "real_checkpoint_results_data_read": false,
+  "schema": "chile-floor-runtime-correction-deployment-v10",
+  "source_files_sha256": {
+    "diagnostic/README.md": "16c0695630dd97bc5aaf8675cbdcd7923e3dafa2427f9727687a5000744bd306",
+    "diagnostic/floor_math.py": "be3dfeda6a2737ac9b4dd998db0d2dc7d26b56c750079e369bc0fbdec4a3d5e9",
+    "diagnostic/guards.py": "eeb2fd3882fdf1ebe19f37e7f50c7f54d2bff7f1af792fa1d1c74bc3804f5d3e",
+    "diagnostic/protocol_amendment.json": "8f84e2e68ce465cd1c1dcdb83ab8076aaa12758ad8266f0552b45f122903eed6",
+    "diagnostic/run_diagnostic.py": "acea207dfa1ab0aba07a9f2dea86b0b3e0b1e07ec6bb8d4b6dde2f6f5cb992fb",
+    "diagnostic/source_manifest.json": "4549fe4a36706eb53f64899e21283fad2375c1626c1e4ebcbedf6148fa90cb50",
+    "diagnostic/test_diagnostic.py": "3abca065ba57e3d9a25857cf698381a2de489f7cbf62b5c76ca8d4b36a2b4141",
+    "diagnostic_protocol_v1.json": "f36836e562b07baa740b8d8219d2063f369f92fb27be3f4d95efab1ac5757b48",
+    "phase3/team_lm.py": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+    "phase3/train_team_lm.py": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+    "phase3/training_artifacts.py": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754"
+  },
+  "source_manifest_sha256": "4549fe4a36706eb53f64899e21283fad2375c1626c1e4ebcbedf6148fa90cb50",
+  "status": "clean_reviewed_tested_deployed_ready_for_parent_launch",
+  "tests": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "CUDA_VISIBLE_DEVICES": "",
+    "all11_file_hashes_before_after_equal": true,
+    "passed": 24,
+    "precision_matches_parent_baseline_audit": true,
+    "root": "/home/ec2-user/eew-work/chile-floor-diagnostic_4549fe4a",
+    "runtime_flags": {
+      "cuda_initialized": false,
+      "cuda_matmul_allow_tf32": false,
+      "cudnn_allow_tf32": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "deterministic_algorithms": true,
+      "deterministic_warn_only": false,
+      "float32_matmul_precision": "highest",
+      "threads": 2
+    },
+    "seconds": 1.627,
+    "threads": 2,
+    "warning_filter": "error except exact ignore:The pynvml package is deprecated.:FutureWarning:torch.cuda"
+  }
+}

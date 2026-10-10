@@ -1,0 +1,21 @@
+{
+  "schema": "chile_floor_execution_amendment_v2",
+  "parent_protocol_sha256": "f36836e562b07baa740b8d8219d2063f369f92fb27be3f4d95efab1ac5757b48",
+  "stage": "before_any_diagnostic_data_or_checkpoint_read",
+  "checkpoint": "model.pth selected by the existing TRAIN-internal calibration-nll policy after completion of all 100 event epochs and required 25 pretraining epochs; selected_epoch must agree in checkpoint and run.json and lie in 1..100; no forced final-epoch substitution",
+  "completion": "Pinned run.json plus pinned history epoch sequence 1..100; inspect no calibration metric values; no DEV metrics",
+  "maximum_runtime_seconds": 600,
+  "scope": "Only original TRAIN fit waveforms and magnitude labels are used; full-file hashes and identity-only split/sidecar checks include bytes or identities of other partitions without decoding their waveforms or consulting their labels/metrics",
+  "selection_and_gate": "All original protocol population rules and strict event-level gate thresholds remain unchanged",
+  "point_prediction": "Reuse source evaluation float64 casts of native float32 mixture weights for mean/median; density and output derivatives use normalized log-softmax logits in float64; report both weights and their rounding discrepancy",
+  "not_authorized": "No execution on real data until parent supplies completed pinned artifacts and authorizes launch; no training head or follow-up training is implemented",
+  "supersedes_amendment_sha256": "35e9db6ba5cca5165235187e7b0a5b556fb38a385f7bdc0a24477c73900357f6",
+  "baseline_dev_configuration": {
+    "skip_dev": false,
+    "dev_evaluated": true,
+    "selection_used_dev": false,
+    "test_reads": 0,
+    "evidence": "Parent verified immutable launch identity.json before any diagnostic execution; reviewed train_team_lm.py lines720-730 evaluate DEV after selected TRAIN-calibration checkpoint is fixed. This diagnostic projects only configuration/completion fields; it does not consult DEV results or perform DEV forwards."
+  },
+  "clarification": "The baseline evaluates DEV after training; TRAIN-only describes diagnostic data and checkpoint selection, not absence of baseline DEV reporting. This amendment changes no population, gate, model, scoring, or selected checkpoint."
+}
