@@ -1,0 +1,1 @@
+Only our audit, arithmetic and provenance hashes are published. Downloaded author source remains local. PUBLIC_AUDIT.md changes four source-file hyperlinks to pinned public URLs; the original AUDIT.md SHA recorded in audit_manifest.json refers to the preserved local original. No scientific text or source hash changed.

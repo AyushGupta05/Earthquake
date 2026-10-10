@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Reject duplicate intermediate singleton XML elements
+census.py:111
+For nested fields, text_at counts only matching leaf elements. A pick containing `<time/><time><value>2020-01-01T00:00:00Z</value></time>` therefore passes and contributes station coverage, despite having duplicate BED time elements. The documented contract requires repeated singleton fields to fail rather than enter coverage. Check cardinality at each path segment, including time, before reading value; the existing duplicate-value test does not cover this case.
+
+overall: patch is incorrect (0.95)
+The nested XML lookup can accept repeated singleton containers as valid pick evidence, contrary to the explicit schema-conflict policy. Inspection was limited to the supplied code and invented fixtures; no tests or network requests were run.

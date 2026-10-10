@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-10T22:45:21.808953+00:00",
+  "updated_utc": "2026-10-10T23:03:32.074453+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4212.56,
@@ -21,7 +21,7 @@
       "image_name": "Deep Learning OSS Nvidia Driver AMI GPU PyTorch2.8 (Amazon Linux2023)20260808",
       "security_group": "sg-090fe8835f553328b",
       "access": "Existing researcher public key; private SSH jump through existing earthquake instance; no IAM role",
-      "automatic_stop_utc": "2026-10-11T07:28:52.690056Z",
+      "automatic_stop_utc": "2026-10-11T10:50:21.004959Z",
       "automatic_stop_verified": true,
       "shutdown_behavior": "stop",
       "first_24h_compute_estimate_usd": 24.144,
@@ -40,7 +40,9 @@
         "transfer": "private-network SSH, transient EC2InstanceConnect public key; transfer private key removed after completion",
         "free_gib_after_copy": 22,
         "test_waveforms_present": false,
-        "free_gib_after_recovery": 21
+        "free_gib_after_recovery": 21,
+        "persistent_source": "/home/ec2-user/eew-work/data",
+        "mount_after_restart": "Explicit source bind restored ro,nosuid,nodev; empty mistaken self-bind removed before any real forward; fstab unchanged"
       },
       "upgrade_attempt": {
         "requested_type": "g6e.xlarge",
@@ -71,13 +73,13 @@
         "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
         "status": "TRAIN cache complete; immutable manifest and event metadata preserved onEBS; resume uses flat station backend"
       },
-      "conservative_compute_upper_bound_to_observation_usd": 19.227,
-      "conservative_compute_upper_bound_to_automatic_stop_usd": 37.613,
+      "conservative_compute_upper_bound_to_observation_usd": 29.14,
+      "conservative_compute_upper_bound_to_automatic_stop_usd": 40.991,
       "cost_upper_bound_note": "Includes all time since launch, even stopped intervals; EBS/public IP separate; allowance60USD unchanged. Account-wide credit movement is not attributed to this task.",
-      "automatic_stop_last_verified_utc": "2026-10-10T15:32:25.530389+00:00",
-      "read_only_data_mount_last_verified_utc": "2026-10-10T15:32:25.530389+00:00",
+      "automatic_stop_last_verified_utc": "2026-10-10T22:57:49Z",
+      "read_only_data_mount_last_verified_utc": "2026-10-10T22:57:49Z",
       "shutdown_behavior_last_verified_utc": "2026-10-10T13:12:18.685979+00:00",
-      "state": "stopped",
+      "state": "running",
       "stop_requested_utc": "2026-10-10T15:39:57.190352+00:00",
       "stop_reason": "Completed100+25baseline and negativeTRAINfloor gate; alluniquecheckpoint/diagnosticresults preserved; no earnednextpaidfit",
       "stop_request_authorized": true,
@@ -86,7 +88,9 @@
       "stop_verified_utc": "2026-10-10T15:49:20.971133+00:00",
       "stop_receipt": "chile_worker_stopped_20261010.json",
       "stop_receipt_sha256": "5bba2bf6f2e412df9707872f92169440e6c5622f4eba5bdf963c26ec4d53271c",
-      "restart_requirements": "Fresh credits/budget check, automatic-stop rearm, read-only mount validation, job deadlines and rebuild disposable station cache if absent"
+      "restart_requirements": "Fresh credits/budget check, automatic-stop rearm, read-only mount validation, job deadlines and rebuild disposable station cache if absent",
+      "restart_receipt": "chile_clock_restart_20261010.json",
+      "current_restart_purpose": "Frozen matched clock-control four-fit grid"
     }
   ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
@@ -701,7 +705,7 @@
       "new_fits": false
     },
     "chile_clock_control": {
-      "status": "source_review_restarted_after_interruption_not_launched",
+      "status": "launched_after_all_correctness_prerequisites; no scientific result yet",
       "rationale": "Sourceuniform cutoff distribution places68.93percent beyond5seconds; missingmatchedexistingdiscrete1/3/5control",
       "known_method_not_novelty": true,
       "arms": [
@@ -737,17 +741,49 @@
         "dev_ma_ge6": 0,
         "test_waveforms_sealed": true
       },
-      "cost_reservation_note": "Notlaunched; bounded12.072USDcomputeplusmargin withinexisting60USDChileresourceallowance; absolute2000USDeligiblecreditceilingunchanged"
+      "cost_reservation_note": "Bounded12.072USD compute plus margin within existing60USDChile allowance; conservative all-resource envelope244USD; eligible-credit ceiling2000USD unchanged",
+      "prefit_git_commit": "408cbd2dd651ee148735af4798e6df13b6b0550a",
+      "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f",
+      "protocol_sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+      "aws_synthetic_tests": 28,
+      "aws_test_skips": 0,
+      "synthetic_cuda_complete_sha256": "572aedb37ce6dabc1b511da0911830044d33360fe1e4b7dfde9e467f8b898ac1",
+      "automatic_stop_utc": "2026-10-11T10:50:21.004959Z",
+      "unit": "eew-clock-grid-af88e126",
+      "output": "/home/ec2-user/eew-work/full-runs/chile_clock_grid_v1_af88e126",
+      "started_utc": "2026-10-10T23:00:57Z",
+      "main_pid_at_launch": 4966,
+      "outer_timeout_seconds": 39600,
+      "cgroup_runtime_max_seconds": 39840,
+      "stop_grace_seconds": 120,
+      "memory_max_bytes": 12884901888,
+      "cpu_quota": "200%",
+      "kill_mode": "control-group",
+      "maximum_cgroup_deadline_utc": "2026-10-11T10:04:57Z",
+      "automatic_worker_stop_utc": "2026-10-11T10:50:21.004959Z",
+      "remaining_worker_stop_seconds_at_launch": 42563,
+      "launch_receipt_sha256": "2a9e6d6c99ff819efc722e41e0792d1fb2ff35e636dad69161ffab97ee087ea7",
+      "initial_replay_complete_sha256": "5a57faf612f4dcc136fc4d58f03c64bada1ba7cd56bf013d52236bca4db299fd",
+      "initial_replay_max_parameter_error": 0.0
     },
     "geonet_tail_census": {
-      "status": "source_only_header_failure_retained; amended_review_before_new_bounded_metadata_recovery",
+      "status": "complete; independentartifact_and_aggregate_replay_pass; waveform_audit_pending_freeze",
       "worker": "localCPUonly",
       "maximum_minutes": 30,
       "maximum_bytes": 104857600,
       "maximum_requests": 500,
       "waveform_reads": 0,
       "gpu_jobs": 0,
-      "scientific_scope": "MwlabelandobservedPpickmetadatafeasibility; notrawprefixavailabilityorpredictorvalidation"
+      "scientific_scope": "MwlabelandobservedPpickmetadatafeasibility; notrawprefixavailabilityorpredictorvalidation",
+      "requests": 152,
+      "body_bytes": 37598159,
+      "unique_mw_ge5p5": 149,
+      "unique_mw_ge6": 60,
+      "unique_mw_ge7": 15,
+      "independent_files_verified": 158,
+      "independent_event_outcomes": 149,
+      "unknown_coverage_events": 0,
+      "source_refetches": 0
     }
   },
   "continuation": {

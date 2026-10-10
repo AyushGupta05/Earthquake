@@ -1,0 +1,77 @@
+{
+  "ast_check": {
+    "author_code_executed": false,
+    "for_trace_line": 126,
+    "post_loop_if_lines": [
+      140,
+      144,
+      148
+    ]
+  },
+  "checked_utc": "2026-10-10T22:54:09.643256+00:00",
+  "commit": "7106f9b52d15a7b911489c893af719627b55d2d3",
+  "files": {
+    "01_Load_BSM_Waveforms.py": {
+      "bytes": 6769,
+      "sha256": "7a2f297cc17f75c27d660a350115b19619a78ae5e71a2f2d61fa89592134eb84"
+    },
+    "02_PickP_STALTA.py": {
+      "bytes": 9884,
+      "sha256": "26481b94e6283e354671d42e16121f04d0c3dbb9e17429a3487735344432bffb"
+    },
+    "03_ExtractFeatures.py": {
+      "bytes": 16398,
+      "sha256": "36c0070bb7670d750f12b38dd3040c50c5a131f85b6e02b1c5d24c23ffc6bcb0"
+    },
+    "AUDIT.md": {
+      "bytes": 7941,
+      "sha256": "a72e8246a3fa92e55d87b468dbf5fdd3e01abe16587698faf5cfe7fdb27e8924"
+    },
+    "finite_counterexample.json": {
+      "bytes": 2490,
+      "sha256": "383d9a0f09bec0509fe8c31bff68cdd2da0d4591835396ce176a374fb88711ed"
+    },
+    "functions.py": {
+      "bytes": 13751,
+      "sha256": "9706c3343404c4d08d0cc948089f0c2c31e43bcf11524d690b23ead30746671a"
+    },
+    "lineage_source_manifest.json": {
+      "bytes": 434,
+      "sha256": "8db9ade09018ec1887a5a1ab30e52a585e7f421422781de16d05ba7f1351dcff"
+    },
+    "source_manifest.json": {
+      "bytes": 1250,
+      "sha256": "a751de7ef0dbde16b07bed902ac75f8a8ac98a45359ed55144bd5f55ab3b25ed"
+    },
+    "src_tree.json": {
+      "bytes": 1780,
+      "sha256": "f10b4749c3159ff51285e25826e13801489edfd4227bfd2ad73738ab76c2cd07"
+    }
+  },
+  "repository": "https://gitlab.com/tsawi1/rapideqmag",
+  "result": {
+    "actual_paper_execution_lineage": "unverified; source-only audit",
+    "feature_filter_supplied_critical_frequency_hz": 0.001,
+    "global_mean_leak_in_documented_finite_source_lineage": "not demonstrated; prefilter baseline cancels a single complete finite trace constant; fragmented merges remain unverified",
+    "missing_gap_prefix_causality": "conditional concern; occurrence/effect unverified",
+    "new_training_earned": false,
+    "shortcut_transient_counterexample": "supported by own exact finite arithmetic",
+    "single_complete_trace_condition": "The exact cancellation proof does not establish invariance for separately demeaned fragments merged into one channel"
+  },
+  "schema": "rapid-strain-source-causality-audit-v1",
+  "scope": {
+    "additional_public_source_file_bytes": 9884,
+    "author_modules_imported": 0,
+    "autoreview_required": false,
+    "aws_operations": 0,
+    "fits": 0,
+    "model_or_checkpoint_loads": 0,
+    "production_code_created": false,
+    "real_catalogue_rows": 0,
+    "real_picks": 0,
+    "real_waveforms": 0,
+    "reason": "Source reading, derivation and one-off invented arithmetic only; no reusable software change",
+    "request_limit_bytes": 500000
+  },
+  "source_derived_prose_limits": "Each code-file summary remains below200 words; no paper text summarized or quoted here"
+}

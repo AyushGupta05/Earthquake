@@ -1,0 +1,24 @@
+{
+  "additional_02_source_sha256": "26481b94e6283e354671d42e16121f04d0c3dbb9e17429a3487735344432bffb",
+  "audit_sha256": "a72e8246a3fa92e55d87b468dbf5fdd3e01abe16587698faf5cfe7fdb27e8924",
+  "core_finding": "Missing 02 prefilter baseline subtraction defeats the whole-record constant leak hypothesis for complete finite traces. No actual paper execution chain was inspected. Fragmented merges and interpolation remain conditional, unverified concerns.",
+  "counterexample_sha256": "383d9a0f09bec0509fe8c31bff68cdd2da0d4591835396ce176a374fb88711ed",
+  "critical_frequency_hz": 0.001,
+  "files": [
+    "AUDIT.md",
+    "audit_manifest.json",
+    "finite_counterexample.json",
+    "lineage_source_manifest.json",
+    "src_tree.json"
+  ],
+  "manifest_sha256": "480e888b6682b2fbc97c88086dff51000c0635ca36c73da3d6db42229e4e9627",
+  "no_experiment_earned": true,
+  "preserved_originals": [
+    "01_Load_BSM_Waveforms.py",
+    "03_ExtractFeatures.py",
+    "functions.py",
+    "source_manifest.json"
+  ],
+  "schema": "rapid-strain-source-audit-handoff-v1",
+  "scope": "Source reading/AST/own one-off finite arithmetic; no production code, author code execution, data, models, fits or AWS"
+}

@@ -1,0 +1,147 @@
+{
+  "created_at_utc": "2026-10-10T23:05:13.409380+00:00",
+  "task": "Source-only rupture-survival primary-literature audit",
+  "decision": "zero additional fits",
+  "scope_directory": "work/rupture_survival_source_audit",
+  "out_of_scope_actions": {
+    "models_read": 0,
+    "real_rows_read": 0,
+    "fits": 0,
+    "aws_actions": 0,
+    "data_files_downloaded": 0,
+    "implementation_edits": 0,
+    "other_agent_files_edited": 0
+  },
+  "paper_capsule_word_counts": {
+    "P1": 162,
+    "P2": 145,
+    "P3": 140,
+    "P4": 61
+  },
+  "inputs": [
+    {
+      "path": "outputs/earthquake_amplitude_distribution_research.md",
+      "bytes": 43358,
+      "sha256": "3e3ea37310780ec9266f8b0c24995d7de87aef6d9816a558814fddfc56f10eee",
+      "use": "read-only prior-art/negative-result constraint; no row/model access or independent recomputation"
+    },
+    {
+      "path": "outputs/earthquake_censored_results.md",
+      "bytes": 13908,
+      "sha256": "4a817ba81449a3d144f21221ef9df5be1518e2149420759745d72ae945bf70f5",
+      "use": "read-only prior-art/negative-result constraint; no row/model access or independent recomputation"
+    },
+    {
+      "path": "outputs/earthquake_growth_results.md",
+      "bytes": 4129,
+      "sha256": "96ee0461024069b6beea5640b8bb40fe209be8a0a520c6fcc94d529c9dbd43dc",
+      "use": "read-only prior-art/negative-result constraint; no row/model access or independent recomputation"
+    },
+    {
+      "path": "outputs/earthquake_resolution_results.md",
+      "bytes": 9204,
+      "sha256": "041671ee12fd13a608480a14da9925b1b1c4a0613c432d656ea1423b6738244a",
+      "use": "read-only prior-art/negative-result constraint; no row/model access or independent recomputation"
+    },
+    {
+      "path": "outputs/earthquake_sequential_probability_claim_audit.md",
+      "bytes": 3433,
+      "sha256": "e49e6d30da4d9e54ec3708068bfef6fd44e6d98aa76bfc9d1ad756bd5ed7b338",
+      "use": "read-only prior-art/negative-result constraint; no row/model access or independent recomputation"
+    }
+  ],
+  "files": [
+    {
+      "path": "AUDIT.md",
+      "bytes": 14384,
+      "sha256": "c62f174bd8e05faca4d21c7a8ee76829b6c1beacfe9aed0018e300e1b5490662",
+      "promotion": "documentation/hash evidence"
+    },
+    {
+      "path": "additional_downloads.json",
+      "bytes": 1363,
+      "sha256": "e43e1acc340a27549d1748f17faba23fffb51cd1082be1a698445652549240cd",
+      "promotion": "documentation/hash evidence"
+    },
+    {
+      "path": "metadata_access.json",
+      "bytes": 2068,
+      "sha256": "7d791516ab7ede458ff912621af73bfb70209413c0864d850bd9341a602eed28",
+      "promotion": "documentation/hash evidence"
+    },
+    {
+      "path": "primary_downloads.json",
+      "bytes": 785,
+      "sha256": "cd32b398accbe61d2e1d8a86fee7b8420efd52b3ca0ba5f12c5bcb6d1798d16d",
+      "promotion": "documentation/hash evidence"
+    },
+    {
+      "path": "primary_sources/figure1-02.png",
+      "bytes": 447902,
+      "sha256": "a3e4b789200c3ae343fd9b4d796abb777fdaacc398dc368fecac7b38d3651deb",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "primary_sources/muenchmeyer_2022_preprint.html",
+      "bytes": 193902,
+      "sha256": "b049afb4f8b66f7fe6f8083c870f682b87d4b959776420a5d74e24ddfa679cd7",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "primary_sources/muenchmeyer_2022_preprint.pdf",
+      "bytes": 4819836,
+      "sha256": "c22623f60d19fc343236c0427e62f56092a0bd2b878a8d05a2ab4b0f9872411e",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "primary_sources/muenchmeyer_2022_preprint.txt",
+      "bytes": 58603,
+      "sha256": "4f339d5dcf4f9e29950b060e3fcabb7852f1d7d1a8c82263e30561aac995354c",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "primary_sources/muenchmeyer_2022_published_fu.pdf",
+      "bytes": 2211140,
+      "sha256": "f504d6cf0408c37424c67ab1ef94edaff00fbf0b0468d081a7c77799fe75aec9",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "primary_sources/published_figure1-02.png",
+      "bytes": 555827,
+      "sha256": "1676e746d81b6c55cd373595b512d7a988616f4e365caf6dd4f50dbc3567e9fc",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "primary_sources/published_figure1-03.png",
+      "bytes": 486739,
+      "sha256": "193f0423ee96f2431282432a231a9640d2f3cdcff8ebccc76af50e7b6cf8ea1d",
+      "promotion": "local primary-source cache; not intended for repository promotion"
+    },
+    {
+      "path": "published_supplement_access.json",
+      "bytes": 231,
+      "sha256": "76d378da0235f9d697809b7dd88e48c28c0256065892969e04b660543eaf4da3",
+      "promotion": "documentation/hash evidence"
+    },
+    {
+      "path": "source_access.json",
+      "bytes": 4146,
+      "sha256": "c56584d55500280dab8ec20f3eccd65f2acff91515cebb4d86bcc33c5274aa43",
+      "promotion": "documentation/hash evidence"
+    },
+    {
+      "path": "synthetic_arithmetic.json",
+      "bytes": 3985,
+      "sha256": "f204ddb2e859f367bf8ad3ca3d661a7aca078318a83e423b52013d2323bbab85",
+      "promotion": "documentation/hash evidence"
+    }
+  ],
+  "verification": [
+    "primary text sections checked",
+    "preprint Figure 1 and published pages 2-3 rendered and visually inspected",
+    "exact invented rational arithmetic assertions passed",
+    "all JSON artifacts parse",
+    "documentation provenance/version/access limits self-reviewed"
+  ],
+  "review_note": "Documentation and arithmetic receipt only; no nontrivial implementation changed and no external code-review service invoked."
+}

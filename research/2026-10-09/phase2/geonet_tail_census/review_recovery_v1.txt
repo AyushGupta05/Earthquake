@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Preserve XML namespaces when resolving pick evidence
+census.py:135
+Stripping every element's namespace allows unrelated extension fields to satisfy the required QuakeML BED fields. For example, an event without a BED preferredOriginID can acquire known coverage from a foreign-namespace preferredOriginID and origin; similarly, a foreign-namespace time/value can supply an otherwise missing observed pick time. This can count stations without the required evidence instead of retaining unknown or excluded coverage. Select event, origin, arrival, pick and their evidence fields using the expected QuakeML/BED namespaces, and reject conflicting schema content.
+
+overall: patch is incorrect (0.91)
+The magnitude bounds, deduplication and scope-specific pick clocks follow the documented rules, but namespace removal can turn unrelated XML content into accepted coverage evidence. Review was limited to static inspection of the snapshot; no tests, network access or real-data inspection were performed.

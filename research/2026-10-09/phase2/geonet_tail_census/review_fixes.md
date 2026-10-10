@@ -1,0 +1,13 @@
+Review v1: five findings accepted. Enforced whole-request SIGALRM deadline; recorded interrupted event before stopping; duplicate singleton XML fields fail closed; require documented zero seconds in Date; resolve and enforce task-owned local_runs containment. Added focused regressions, 23 invented-fixture tests pass. No real metadata read before fixes. Frozen scientific population/selection policy unchanged. Initial sandbox launch failure was not a review finding; same review command retried with authorized permissions.
+
+Review v3: two further findings accepted. Duplicate pick time extraction now occurs outside timestamp parse handling so schema conflicts fail the event; SIGALRM is disabled while persisting received bytes and the request ledger, and finalization independently rewrites the full ledger. Two regression tests added; 25 invented-fixture tests pass. No real metadata retrieved.
+
+Review v4: accepted encoded-DTD bypass finding. Decode strictly as UTF-8, reject embedded NUL, then reject declaration text before parsing Unicode; UTF-16/32 DTD regression fixtures added. Unsupported encoding is explicit failure, never a fallback count. Scientific selection remains unchanged; no real metadata yet.
+
+Review v5: accepted pre-request rate-wait deadline accounting finding. An incomplete event outcome is now recorded only if the request-attempt ledger actually grew; otherwise it remains unqueried. Added regression for this complement to the attempted-limit fixture. No real metadata retrieved.
+
+Recovery implementation: accept exactly one EVENT_ID/PublicID identity alias and bind the current processing files plus original source-only manifest in a frozen recovery plan. The original expired window remains an incomplete schema failure. An explicit parent-authorized replacement window starts once, before bootstrap, retaining all original request attempts and bytes. Added invented fixtures for alias conflicts, source/ledger/manifest tampering, combined accounting, fixed processing hashes, and preservation of the new monotonic deadline. 33 tests passed before recovery review; no real data rows or event queries read.
+
+Recovery review v1: accepted foreign-namespace evidence finding. Resolve only QuakeML 1.2/BED 1.2 elements without stripping namespaces. Foreign preferred-origin, origin, time, arrival and waveform fields cannot supply evidence; incompatible root/BED namespaces fail. 35 tests passed; real row/pick analysis still unstarted.
+
+Recovery review v2: accepted duplicate nested-container finding. Check cardinality at every singleton path segment, including time containers before values. Added empty/full duplicate-time fixtures. 36 tests passed; real row/pick analysis still unstarted.

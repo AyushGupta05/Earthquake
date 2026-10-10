@@ -1,0 +1,63 @@
+{
+  "schema": "chile-clock-parent-prefit-runtime-v1",
+  "checked_utc": "2026-10-10T23:00:12.991637+00:00",
+  "prefit_git_commit": "408cbd2dd651ee148735af4798e6df13b6b0550a",
+  "worker": "i-08b9781ed60d8497f",
+  "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f",
+  "protocol_sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+  "tests": {
+    "cases": 28,
+    "passed": 28,
+    "skips": 0,
+    "seconds": 3.368,
+    "warning_policy": "-W error with narrow preexisting torch.cuda pynvml FutureWarning filter"
+  },
+  "synthetic_cuda": {
+    "pass": true,
+    "invented_events": 3,
+    "repeated_loss_model_optimizer_trace_equal": true,
+    "non_clock_streams_paired": true,
+    "production_artifact_reads": 0,
+    "complete_sha256": "572aedb37ce6dabc1b511da0911830044d33360fe1e4b7dfde9e467f8b898ac1",
+    "runtime": {
+      "cublas_workspace_config": ":4096:8",
+      "cuda": "12.9",
+      "cuda_matmul_allow_tf32": false,
+      "cudnn": 91002,
+      "cudnn_allow_tf32": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "deterministic_algorithms": true,
+      "float32_matmul_precision": "highest",
+      "threads": 2,
+      "torch": "2.8.0+cu129"
+    }
+  },
+  "read_only_mount": "/mnt/eew-data -> /home/ec2-user/eew-work/data",
+  "automatic_stop_utc": "2026-10-11T10:50:21.004959Z",
+  "shutdown_behavior": "stop",
+  "initial_replay_status": "complete; independently verified identities, hashes, runtime and all9 native-parameter max errors0",
+  "scope": "Runtime correctness prerequisites, not model quality or TF parity",
+  "files_sha256": {
+    "aws_tests.log": "2d6288fe929c9951d27f71cd43ac64231debfa1f8a103ee34db84077031c6405",
+    "prefit_worker_state.txt": "899a46b88dd6ffd89270038715a20c2bebe71dadb38eab06de1fce877d8c7330"
+  },
+  "initial_replay_complete_sha256": "5a57faf612f4dcc136fc4d58f03c64bada1ba7cd56bf013d52236bca4db299fd",
+  "grid": {
+    "status": "running; input guards completed and first source_uniform seed20261011 fit initialized",
+    "unit": "eew-clock-grid-af88e126",
+    "output": "/home/ec2-user/eew-work/full-runs/chile_clock_grid_v1_af88e126",
+    "started_utc": "2026-10-10T23:00:57Z",
+    "main_pid_at_launch": 4966,
+    "outer_timeout_seconds": 39600,
+    "cgroup_runtime_max_seconds": 39840,
+    "stop_grace_seconds": 120,
+    "memory_max_bytes": 12884901888,
+    "cpu_quota": "200%",
+    "kill_mode": "control-group",
+    "maximum_cgroup_deadline_utc": "2026-10-11T10:04:57Z",
+    "automatic_worker_stop_utc": "2026-10-11T10:50:21.004959Z",
+    "remaining_worker_stop_seconds_at_launch": 42563,
+    "launch_receipt_sha256": "2a9e6d6c99ff819efc722e41e0792d1fb2ff35e636dad69161ffab97ee087ea7"
+  }
+}

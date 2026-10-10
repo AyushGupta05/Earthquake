@@ -50,6 +50,8 @@ Our inference: a foundation encoder may improve representation quality, but per-
 
 **Remaining source gaps.** Wang et al. 2022, *Weak Predictability of Rupture Growth Evidenced by P Waves*, DOI10.1785/0120210316, was discovered, but its primary publisher full text was inaccessible during this pass; no numerical result from it is used. The 2025 laboratory study *Under what circumstances is the final size of a laboratory earthquake predictable at the onset of the P-wave?* also needs full primary-text verification before detailed transfer claims. Laboratory acoustic ruptures do not establish field 1-second predictability. [Publisher landing page](https://www.sciencedirect.com/science/article/pii/S0012821X25002353)
 
+**10 October addendum:** the later [rupture-source audit](earthquake_rupture_survival_audit.md) resolves both articles' full text through identified author manuscripts and separates their causal/selection limits from our deadline. Publisher/downloadable PDF and supplement gaps remain. The original access record above is preserved; no model result is newly reproduced.
+
 No newly verified 2022–2026 paper in this pass supplies a released, cleanly matched Chile/INSTANCE 1/3/5 distribution benchmark that removes the need to reproduce TEAM-LM. This is a scoped search result, not proof that no such paper exists. Existing amplitude-shift density methods and the 2026 INSTANCE density paper remain important close prior art from the earlier review.
 
 ## Implement these two comparisons next

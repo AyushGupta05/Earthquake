@@ -1,0 +1,95 @@
+{
+  "checked_at_utc": "2026-10-10T23:05:13.409380+00:00",
+  "scope": "primary papers and public metadata only",
+  "sources": [
+    {
+      "id": "P1",
+      "doi": "10.1029/2022GL098344",
+      "arxiv": "2203.08622v1",
+      "full_text_status": "arXiv main text and appendices, publisher HTML and published institutional PDF verified",
+      "verified_sections": [
+        "published Section 2/Figure 1; rendered PDF pages 2-3",
+        "published Sections 5-6 and Data Availability",
+        "preprint Appendices B-C"
+      ],
+      "version_limit": "No blanket equivalence between v1 appendices and inaccessible published supplement.",
+      "failed_routes": [
+        "GFZ institutional PDF: HTTP 403",
+        "publisher supplement web fetch: cache miss",
+        "publisher supplement direct fetch: HTTP 403"
+      ],
+      "code_status": "No exact paper-specific modified code resolved. Bounded public author repository metadata: 11 repositories on page; name/description match only TEAM. No global absence claim.",
+      "base_code_url": "https://github.com/yetinam/TEAM"
+    },
+    {
+      "id": "P2",
+      "doi": "10.1785/0120210316",
+      "primary_author_upload_url": "https://www.researchgate.net/publication/362810247_Weak_Predictability_of_Rupture_Growth_Evidenced_by_P_Waves_Implications_for_Earthquake_Early_Warning",
+      "full_text_status": "Author-uploaded article body read using web text; title, DOI/journal footer and sections matched.",
+      "author_uploader": "Quancai Xie",
+      "upload_date": "2023-03-31",
+      "verified_sections": [
+        "data selection",
+        "velocity-envelope processing",
+        "characteristic-period processing",
+        "conclusions",
+        "Data and Resources"
+      ],
+      "limits": [
+        "HTML equation extraction may be imperfect",
+        "publisher PDF inaccessible in web fetch",
+        "downloadable author PDF HTTP 403",
+        "code and supplement not resolved"
+      ],
+      "original_pdf_url": "https://pubs.geoscienceworld.org/ssa/bssa/article-pdf/112/5/2653/5711562/bssa-2021316.1.pdf"
+    },
+    {
+      "id": "P3",
+      "doi": "10.1016/j.epsl.2025.119436",
+      "publisher_url": "https://www.sciencedirect.com/science/article/pii/S0012821X25002353",
+      "primary_author_upload_url": "https://www.researchgate.net/publication/395141134_Under_what_circumstances_is_the_final_size_of_a_laboratory_earthquake_predictable_at_the_onset_of_the_P-wave",
+      "full_text_status": "Author-uploaded article body read using web text; title, DOI/journal header and sections matched. Publisher indexed abstract/metadata available, full direct page not retrieved.",
+      "author_uploader": "Doron Morad",
+      "upload_date": "2026-05-03",
+      "verified_sections": [
+        "experimental apparatus/acoustic clock",
+        "results on prestressed full rupture exceptions",
+        "Discussion 4.3",
+        "bibliography dataset DOI"
+      ],
+      "limits": [
+        "HTML equation extraction may be imperfect",
+        "downloadable author PDF HTTP 403",
+        "supplement and exact analysis code not resolved",
+        "Zenodo metadata only: no data files opened"
+      ],
+      "dataset_concept_doi": "10.5281/zenodo.14219442",
+      "verified_dataset_version_doi": "10.5281/zenodo.15499523",
+      "verified_dataset_url": "https://zenodo.org/records/15499523"
+    },
+    {
+      "id": "P4",
+      "doi": "10.1111/j.1365-246X.2010.04774.x",
+      "full_text_url": "https://academic.oup.com/gji/article/183/2/1014/650713",
+      "full_text_status": "Primary publisher text verified",
+      "verified_sections": [
+        "Data / 1-D stochastic slip models",
+        "remaining rupture extent conditioned on ongoing slip"
+      ],
+      "limits": [
+        "No code or waveform-transfer replication attempted"
+      ]
+    }
+  ],
+  "research_access_rules": {
+    "no_secondary_citation_as_substitute": true,
+    "no_challenge_or_paywall_bypass": true,
+    "no_author_contact": true,
+    "no_dataset_file_download": true,
+    "source_downloads_only": [
+      "arXiv paper PDF",
+      "arXiv paper HTML",
+      "published institutional paper PDF"
+    ]
+  }
+}

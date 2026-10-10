@@ -1,4 +1,4 @@
-# Earthquake research — live checkpoint, 10 October 2026
+# Earthquake research — live checkpoint, 11 October 2026 (London)
 
 **Research and AWS experiments remain active. No novel method or superiority to a published benchmark has yet been established.** The strongest completed practical result is adding instrument/site information to a matched residual-distribution model: both training seeds improve bulk, high-magnitude and worst-error measures at 1, 3 and 5 seconds. The reused validation set contains only 13 M≥4 earthquakes and one M≥5 earthquake. Sensor-family and station effects require further controls.
 
@@ -29,7 +29,11 @@ Current reports:
 - [Current competitors](earthquake_current_competitors.md): recent primary papers, source-code checks and incompatible evaluation protocols.
 - [Revision prior art](earthquake_revision_prior_art.md): why forecast-revision prediction and distillation alone are not new.
 - [Amplitude-distribution analysis](earthquake_amplitude_distribution_research.md): conditional growth models, derivations and negative synthetic results.
-- [Matched early-clock control](earthquake_chile_clock_control.md): reviewed prospective comparison; worker tests and replay still required before fitting.
+- [Matched early-clock control](earthquake_chile_clock_control.md): four-fit grid running after28 AWS tests, exact CUDA replay and exact first16 TRAIN predictions.
+- [GeoNet tail census](earthquake_geonet_tail_census.md): completed independent metadata audit,149 Mw≥5.5/60 Mw≥6/15 Mw≥7; waveform/response audit in preparation.
+- [Continuous prior audit](earthquake_continuous_prior_audit.md): exact noisy-label/repeat-law constraints; no new correction fit.
+- [Rupture survival audit](earthquake_rupture_survival_audit.md): primary full texts and stop/grow identifiability controls; no additional fit.
+- [Rapid strain source audit](earthquake_strain_source_audit.md): missing middle source stage cancels the suspected mean leak for complete traces; negative hypothesis retained.
 - [Completed Chile baseline](earthquake_chile_baseline_results.md): preserved selected checkpoint and DEV metrics; large-event validation remains insufficient.
 - [Sequential distribution claim audit](earthquake_sequential_probability_claim_audit.md): incremental evidence, entropy and June-2026 forecast-calibration prior art.
 - [Completed Chile floor diagnostic](earthquake_chile_floor_diagnostic.md): verified negative mechanism result; baseline complete and preserved, dedicated worker verified stopped.
@@ -54,8 +58,8 @@ Historical reports remain available for transparency:
 
 Comparisons with published papers require matched data, time origin, event split, available stations and magnitude definition. Smaller error on INSTANCE cannot be directly compared with TEAM's multi-station Chile error.
 
-Credits were refreshed again on the evening of 10 October: main eligible-credit estimated remainder $4,037.24, expiration 31 October. The balance is shared and delayed, not a task allocation; the conservative task-owned worker resource allowance remains $60. The Chile stop and read-only mount were reverified.
+Credits were refreshed again on the evening of 10 October: main eligible-credit estimated remainder $4,037.24, expiration 31 October. The balance is shared and delayed, not a task allocation; the conservative task-owned worker resource allowance remains $60. The owned Chile worker was restarted after this check. Its correct persistent data source is bound read-only, and its new automatic STOP was verified for 11 October 10:50:21 UTC (11:50 London). The conservative $244 task-resource envelope remains below the $2,000 eligible-credit ceiling.
 
 A thread continuation check runs every 30 minutes, staying quiet unless there is a meaningful change. Paid work remains subject to verified credit coverage, the $2,000 ceiling and resource stop timers.
 
-Current next work: a source-pinned matched Chile clock control compares the existing uniform training cutoffs with discrete 1/3/5-second training. Both arms will start from the same selected checkpoint with paired data/augmentation streams and fixed final evaluation; no new fit has started. The initial GeoNet metadata census stopped on a catalogue header mismatch before any event-row analysis. A source-reviewed compatibility recovery is being prepared under a new explicit 30-minute window with combined request and byte caps. These are known-method/data-feasibility controls, not claimed novel results.
+Current work: the source-pinned matched Chile clock grid launched at 23:00:57 UTC on 10 October, after all 28 worker tests, invented CUDA update/RNG equality and exact first16 TRAIN parameter replay. The prefit source/protocol milestone is pushed as 408cbd2. Four fixed fits must complete before calibration/DEV evaluation; TEST remains sealed. The GeoNet recovery completed and independent replay verified158 artifact hashes and149 event outcomes. Its metadata gate passes; a separately frozen small waveform/response audit is being prepared before any waveform request. These are known-method/data-feasibility controls, not claimed novel results. Preserve the earlier source-header failure and all negative experiment results.

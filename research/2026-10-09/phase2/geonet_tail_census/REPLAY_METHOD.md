@@ -1,0 +1,9 @@
+# Independent aggregate verification
+
+Verification runs locally after the processing protocol and recovery plan were frozen. It does not import `census.py`, fit models or query any additional endpoint. Raw rows, IDs, picks and QuakeML remain in ignored `local_runs/`; only counts, comparisons and hashes are published.
+
+The CMT replay uses Python csv, datetime, finite floating-point checks and an independently written ID-grouping calculation. It separately reconstructs each group's eligibility, min/max Mw, dates and literal methods, then compares all group projections and the deterministic SHA256 query order with the helper. The result is `cmt_independent_replay.json`.
+
+The pick replay independently traverses the stored QuakeML 1.2/BED 1.2 event, preferred-origin, arrival and referenced-pick fields. It checks the same frozen phase, status, timeWeight, observed UTC time and station-identity evidence; collapses accepted picks by network.station; and calculates earliest-pick offsets and strict 1/3/5-second station counts separately for all networks and NZ. Every successfully parsed event's coverage is compared against its preserved helper outcome. Unknown, failed, incomplete and unqueried cases retain their denominators.
+
+The artifact replay verifies every file size and SHA256 in the real local manifest, including response bytes and derived ledgers. It independently sums request-attempt body bytes, checks combined ceilings and confirms the only source requests are the original three carried attempts, with exactly one event request per frozen candidate. The original three source bytes must match their old hashes. These checks establish aggregate and artifact consistency; they do not establish waveform availability, causal picks, geographic independence or prediction accuracy.

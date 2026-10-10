@@ -1,0 +1,152 @@
+{
+  "provenance": "Invented finite arithmetic only. No earthquake records, parameters, model forecasts, calibration or fits were read. This is a falsification control, not empirical evidence.",
+  "latent_identifiability": {
+    "observed_label": "binary high-magnitude indicator",
+    "factorization_A": {
+      "grow_probability": 0.2,
+      "tail_given_stop": 0,
+      "tail_given_grow": 1,
+      "marginal_tail_probability": 0.2
+    },
+    "factorization_B": {
+      "grow_probability": 0.5,
+      "tail_given_stop": 0.1,
+      "tail_given_grow": 0.3,
+      "marginal_tail_probability": 0.2
+    },
+    "same_marginal_label_log_likelihood": true,
+    "interpretation": "Marginal magnitude supervision cannot alone assign a physical meaning to an arbitrary stop/grow factorization."
+  },
+  "network_clock": [
+    {
+      "first_network_P_deadline_seconds": 1,
+      "station_P_delays_seconds": [
+        0.0,
+        0.8,
+        2.2
+      ],
+      "available_post_P_ages_seconds": [
+        1.0,
+        0.2,
+        0.0
+      ],
+      "extra_wall_time_if_every_station_receives_full_deadline_age": [
+        0.0,
+        0.8,
+        2.2
+      ],
+      "station_has_P_arrived": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "first_network_P_deadline_seconds": 3,
+      "station_P_delays_seconds": [
+        0.0,
+        0.8,
+        2.2
+      ],
+      "available_post_P_ages_seconds": [
+        3.0,
+        2.2,
+        0.8
+      ],
+      "extra_wall_time_if_every_station_receives_full_deadline_age": [
+        0.0,
+        0.8,
+        2.2
+      ],
+      "station_has_P_arrived": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "first_network_P_deadline_seconds": 5,
+      "station_P_delays_seconds": [
+        0.0,
+        0.8,
+        2.2
+      ],
+      "available_post_P_ages_seconds": [
+        5.0,
+        4.2,
+        2.8
+      ],
+      "extra_wall_time_if_every_station_receives_full_deadline_age": [
+        0.0,
+        0.8,
+        2.2
+      ],
+      "station_has_P_arrived": [
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "no_information_risk_tradeoff": {
+    "prefix": "identical for all invented events",
+    "distribution": [
+      {
+        "magnitude": 5,
+        "probability": 0.9
+      },
+      {
+        "magnitude": 8,
+        "probability": 0.1
+      }
+    ],
+    "median": 5,
+    "mean": 5.3,
+    "risk_by_point_estimate": [
+      {
+        "estimate": 5.0,
+        "bulk_abs_error": 0.0,
+        "rare_M8_abs_error": 3.0,
+        "expected_MAE": 0.3,
+        "expected_MSE": 0.9,
+        "worst_abs_error": 3.0
+      },
+      {
+        "estimate": 5.3,
+        "bulk_abs_error": 0.3,
+        "rare_M8_abs_error": 2.7,
+        "expected_MAE": 0.54,
+        "expected_MSE": 0.81,
+        "worst_abs_error": 2.7
+      },
+      {
+        "estimate": 5.6,
+        "bulk_abs_error": 0.6,
+        "rare_M8_abs_error": 2.4,
+        "expected_MAE": 0.78,
+        "expected_MSE": 0.9,
+        "worst_abs_error": 2.4
+      },
+      {
+        "estimate": 6.5,
+        "bulk_abs_error": 1.5,
+        "rare_M8_abs_error": 1.5,
+        "expected_MAE": 1.5,
+        "expected_MSE": 2.25,
+        "worst_abs_error": 1.5
+      }
+    ],
+    "interpretation": "Upward action helps the rare event but raises aggregate MAE; a distribution/head change needs new discriminating information or demonstrated estimation improvement to avoid this tradeoff."
+  },
+  "plateau_control": {
+    "observed_running_peak_at_1_3_5_seconds": [
+      1,
+      1,
+      1
+    ],
+    "latent_history_A": "source has stopped; no further moment",
+    "latent_history_B": "source grows again; additional signal arrives after the last deadline because the source-to-station delay is longer",
+    "same_prefix_under_invented_delayed_channel": true,
+    "interpretation": "A local observed-peak plateau does not uniquely identify rupture completion. This logical delayed-channel example supplies no natural-earthquake prevalence."
+  }
+}

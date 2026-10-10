@@ -1,0 +1,43 @@
+test_exact_known_length_deadline (test_census.FetchTests.test_exact_known_length_deadline) ... ok
+test_header_limit (test_census.FetchTests.test_header_limit) ... ok
+test_http_status_consumes_attempt (test_census.FetchTests.test_http_status_consumes_attempt) ... ok
+test_redirect_disabled (test_census.FetchTests.test_redirect_disabled) ... ok
+test_success_hash_rate_attempt_cap (test_census.FetchTests.test_success_hash_rate_attempt_cap) ... ok
+test_unknown_length_cap_partial (test_census.FetchTests.test_unknown_length_cap_partial) ... ok
+test_ambiguous_pick_reference (test_census.ParseTests.test_ambiguous_pick_reference) ... ok
+test_bad_and_mixed_rows_not_selected (test_census.ParseTests.test_bad_and_mixed_rows_not_selected) ... ok
+test_cmt_dedup_bounds_and_provenance (test_census.ParseTests.test_cmt_dedup_bounds_and_provenance) ... ok
+test_date_boundary_and_unknown_ids_not_merged (test_census.ParseTests.test_date_boundary_and_unknown_ids_not_merged) ... ok
+test_duplicate_channels_arrivals_not_stations (test_census.ParseTests.test_duplicate_channels_arrivals_not_stations) ... ok
+test_foreign_fields_cannot_supply_bed_pick_evidence (test_census.ParseTests.test_foreign_fields_cannot_supply_bed_pick_evidence) ... ok
+test_identity_dtd_fail (test_census.ParseTests.test_identity_dtd_fail) ... ok
+test_missing_origin_unknown (test_census.ParseTests.test_missing_origin_unknown) ... ok
+test_no_origin_clock_geometry_use (test_census.ParseTests.test_no_origin_clock_geometry_use) ... ok
+test_order_stable (test_census.ParseTests.test_order_stable) ... ok
+test_publicid_alias_preserves_original_and_rejects_ambiguity (test_census.ParseTests.test_publicid_alias_preserves_original_and_rejects_ambiguity) ... ok
+test_rejections_no_phase_hint_fallback (test_census.ParseTests.test_rejections_no_phase_hint_fallback) ... ok
+test_schema_fail_closed (test_census.ParseTests.test_schema_fail_closed) ... ok
+test_utc_strict_boundary_scopes (test_census.ParseTests.test_utc_strict_boundary_scopes) ... ok
+test_wrong_root_and_bed_namespaces_rejected (test_census.ParseTests.test_wrong_root_and_bed_namespaces_rejected) ... ok
+test_bootstrap_never_resets_expired_new_window (test_census.RecoveryTests.test_bootstrap_never_resets_expired_new_window) ... ok
+test_bootstrap_tamper_rejected (test_census.RecoveryTests.test_bootstrap_tamper_rejected) ... ok
+test_expired_original_window_keeps_new_clock_and_combined_counts (test_census.RecoveryTests.test_expired_original_window_keeps_new_clock_and_combined_counts) ... ok
+test_recovery_manifest_requires_current_processing_hashes_and_fixed_caps (test_census.RecoveryTests.test_recovery_manifest_requires_current_processing_hashes_and_fixed_caps) ... ok
+test_unpaired_recovery_arguments_rejected_before_output (test_census.RecoveryTests.test_unpaired_recovery_arguments_rejected_before_output) ... ok
+test_conflicting_singleton_fields_fail_closed (test_census.ReviewRegressionTests.test_conflicting_singleton_fields_fail_closed) ... ok
+test_duplicate_empty_time_container_is_schema_failure (test_census.ReviewRegressionTests.test_duplicate_empty_time_container_is_schema_failure) ... ok
+test_duplicate_pick_time_is_schema_failure (test_census.ReviewRegressionTests.test_duplicate_pick_time_is_schema_failure) ... ok
+test_encoded_dtd_entity_rejected (test_census.ReviewRegressionTests.test_encoded_dtd_entity_rejected) ... ok
+test_limit_attempt_recorded_not_unqueried (test_census.ReviewRegressionTests.test_limit_attempt_recorded_not_unqueried) ... ok
+test_limit_before_attempt_remains_unqueried (test_census.ReviewRegressionTests.test_limit_before_attempt_remains_unqueried) ... ok
+test_nonzero_date_seconds_excluded (test_census.ReviewRegressionTests.test_nonzero_date_seconds_excluded) ... ok
+test_output_traversal_rejected (test_census.ReviewRegressionTests.test_output_traversal_rejected) ... ok
+test_response_persistence_alarm_disabled (test_census.ReviewRegressionTests.test_response_persistence_alarm_disabled) ... ok
+test_whole_request_clock_limit (test_census.ReviewRegressionTests.test_whole_request_clock_limit) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.032s
+
+OK
+{"completed": false, "request_attempts": 4, "response_body_bytes": 0, "elapsed_seconds": 1}
+{"completed": false, "request_attempts": 3, "response_body_bytes": 0, "elapsed_seconds": 1}

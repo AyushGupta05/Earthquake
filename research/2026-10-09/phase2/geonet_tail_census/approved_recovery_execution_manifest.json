@@ -1,0 +1,33 @@
+{
+  "authorization": "Parent explicitly authorized one separately frozen recovery window after interruption; no automatic extension.",
+  "carried_request_attempts": 3,
+  "carried_response_body_bytes": 665685,
+  "code_only_review": {
+    "findings": 0,
+    "json_sha256": "e7b699c53030a3237df11ebaaf3ae08c92e946aac47ada291ba69f618f37badf",
+    "result": "clean",
+    "text_sha256": "dff50ef82e74c4d0e4675d175e2ab07d54510b73905c62ed18f8fe97bca00005"
+  },
+  "combined_body_byte_limit": 104857600,
+  "combined_request_limit": 500,
+  "execution_command": "python3 census.py --output local_runs/recovery_20261010 --bootstrap local_runs/census_20261010 --recovery-plan approved_recovery_execution_manifest.json",
+  "frozen_utc": "2026-10-10T22:51:02.808412+00:00",
+  "invented_tests": {
+    "count": 36,
+    "log_sha256": "e5d317834dcaedff8bab36013804468b31835cc11cad8442e8624199c2f2023b",
+    "passed": 36
+  },
+  "old_window_result": "Incomplete required-column alias failure; all-zero summary is not absence evidence.",
+  "output": "local_runs/recovery_20261010",
+  "pinned_source_commit": "13573971f8cfbefbb329adeba46da6f31b614f25",
+  "prior_manifest_sha256": "0dda4217e007f1a8c2987cf0afebbf6823a1d23956ad2b2a2ce15e428ef895f4",
+  "processing_files": {
+    "AMENDMENT_20261010_PUBLICID.md": "72873fc63d5090e3a06f84928af1c7888c8bcba756e2fc05c300c0d5860de7f2",
+    "PROTOCOL_v1.md": "66ff3626ed7b4227c363a18e41261158e142bb92a1ca0bf68bf46136000dc14c",
+    "RECOVERY_WINDOW_v1.md": "6fa15021998b9229ed328352a1fd4ec4ec8fb810efe5e6eaa7c9434faa3c68c1",
+    "census.py": "076c9fcb419b801c91fa95a01cec21f708284887f6dfae8e7878b513ba1780b8",
+    "test_census.py": "1ee9da07815e126d7424c9f2b1580034f938a6e3be671a66c1b87067993acc87"
+  },
+  "version": "geonet-source-header-recovery-v1",
+  "window_seconds": 1800
+}

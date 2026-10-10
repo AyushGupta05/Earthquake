@@ -1,0 +1,86 @@
+{
+  "conclusion": "Global-offset concern survives the incomplete shortcut but is canceled algebraically by prefilter baseline subtraction for a single complete finite trace in the documented source lineage. This is not proof of causality for fragmented merges, missing gaps, manual picks or actual paper artifacts.",
+  "exact_rational": {
+    "baseline_samples": 2,
+    "highpass": "y[0]=x[0]; y[n]=x[n]-x[n-1]+y[n-1]/2",
+    "prebaseline_before_filter": {
+      "a": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "b": [
+        "0",
+        "0",
+        "0",
+        "8"
+      ],
+      "shared_prefix_exactly_equal": true
+    },
+    "raw_a": [
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "raw_b": [
+      "0",
+      "0",
+      "0",
+      "8"
+    ],
+    "shared_prefix_samples": 3,
+    "shortcut_global_center_then_filter_then_baseline": {
+      "a": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "b": [
+        "-1/2",
+        "1/2",
+        "1",
+        "37/4"
+      ],
+      "deadline_sample_difference": "1"
+    }
+  },
+  "scipy_finite_illustration": {
+    "Wn_argument_Hz": 0.001,
+    "a": [
+      1.0,
+      -3.9991790622792562,
+      5.997537523790359,
+      -3.99753786066194,
+      0.9991793991508467
+    ],
+    "b": [
+      0.9995896153676505,
+      -3.998358461470602,
+      5.997537692205903,
+      -3.998358461470602,
+      0.9995896153676505
+    ],
+    "baseline_samples": 200,
+    "checks": "raw prefix exact; shortcut differs; full-source prefix residual <1e-14; exact-rational cancellation exact",
+    "deadline_exclusive_sample": 880,
+    "declared_hp_filt_Hz": 0.01,
+    "filter_order": 4,
+    "fs": 20,
+    "global_mean_b_minus_a": 0.45,
+    "invented_P_sample": 800,
+    "numpy": "2.2.6",
+    "raw_equal_before_deadline": true,
+    "record_samples": 1600,
+    "retained_negative_check": "An initial demand for bitwise floating equality failed; 5.78e-17 residual comes from baseline mean/subtraction rounding. Claim exact cancellation only in exact arithmetic.",
+    "scipy": "1.15.3",
+    "shortcut_deadline_last_sample_difference": 0.23434017233120305,
+    "shortcut_prefix_max_absolute_difference": 0.23434017233120305,
+    "source_lineage_prefix_bitwise_equal": false,
+    "source_lineage_prefix_max_absolute_difference": 5.781560221407152e-17,
+    "suffix_amplitude": 1.0
+  },
+  "scope": "One-off own finite-array arithmetic; no author source imported/executed, no actual data, no production software created"
+}

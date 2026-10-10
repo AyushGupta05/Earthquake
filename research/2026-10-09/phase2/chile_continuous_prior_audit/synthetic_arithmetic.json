@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "scope": "invented_scalar_arithmetic_only_no_dataset_model_or_forecast_reads",
+  "implementation_status": "one_off_standard_library_arithmetic_not_a_model_or_training_test_suite",
+  "repeat_law": {
+    "bounds": [
+      "-inf",
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      "inf"
+    ],
+    "right_closed_interval_factors": [
+      1,
+      8,
+      16,
+      32,
+      64,
+      128,
+      1
+    ]
+  },
+  "gaussian_mixture_example": {
+    "weights": [
+      0.3,
+      0.7
+    ],
+    "means": [
+      3.8,
+      5.1
+    ],
+    "scales": [
+      0.2,
+      0.35
+    ],
+    "native_mean": 4.709999999999999,
+    "exposure_weighted_mean": 5.109405880529888,
+    "inverse_exposure_mean": 3.9882751610759843,
+    "checks": {
+      "forward_normalizer": {
+        "analytic": 9.71552289171983,
+        "quadrature": 9.715522891719882,
+        "absolute_difference": 5.1514348342607263e-14
+      },
+      "forward_first_moment": {
+        "analytic": 49.64054979537604,
+        "quadrature": 49.64054979537637,
+        "absolute_difference": 3.339550858072471e-13
+      },
+      "inverse_normalizer": {
+        "analytic": 0.3194598457988936,
+        "quadrature": 0.3194598457989606,
+        "absolute_difference": 6.70019595361282e-14
+      },
+      "inverse_first_moment": {
+        "analytic": 1.2740937679608915,
+        "quadrature": 1.2740937679611604,
+        "absolute_difference": 2.688960165642129e-13
+      }
+    },
+    "quadrature": "piecewise composite Simpson, 20000 panels per interval, finite integration -8..16; omitted Gaussian mass negligible for invented mixture"
+  },
+  "noise_boundary_example": {
+    "true_magnitude": 5.0,
+    "noise_sigma": 0.05,
+    "before_division_mean": 5.0,
+    "inverse_exposure_mean_ignoring_beyond_20_sigma": 4.986701923986619,
+    "inverse_exposure_median_ignoring_beyond_20_sigma": 4.984068031801781,
+    "lower_half_probability_ignoring_beyond_20_sigma": 0.6666666666666666,
+    "upper_half_probability_ignoring_beyond_20_sigma": 0.3333333333333333,
+    "note": "Other source intervals carry less than approximately 6e-89 probability before weighting; this is a synthetic counterexample, not observed earthquake evidence."
+  },
+  "floor_score_witness": {
+    "domain": "four unit-width bins",
+    "target_density": [
+      0.4999995,
+      0.4999995,
+      5e-07,
+      5e-07
+    ],
+    "epsilon": 1e-06,
+    "optimal_density": [
+      0.5,
+      0.5,
+      0.0,
+      0.0
+    ],
+    "lambda": 0.9999970000059999,
+    "score_at_target": 0.6931588974597147,
+    "score_at_witness": 0.6931583029273227,
+    "score_improvement": 5.945323919842593e-07
+  }
+}

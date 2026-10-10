@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-10T22:48:48.611041+00:00",
+  "scope": "source and mathematical audit with invented scalar arithmetic",
+  "decision": "no additional prior-correction fit justified",
+  "author_commit": "8df20877f3a6ef47d3af4d1484ecdb0cdf37e903",
+  "no_checkpoint_waveform_real_metadata_prediction_calibration_reads": true,
+  "no_model_forwards_or_fits": true,
+  "no_cloud_resource_changes": true,
+  "clock_control_unchanged": true,
+  "source_input_hash_verifications_passed": 5,
+  "arithmetic_assertions_passed": true,
+  "review_requirement": "No nontrivial code implementation was edited; one-off standard-library arithmetic and prose only. Downloaded primary author source is preserved as provenance, not a new implementation.",
+  "inputs": {
+    "work/chile_training_clock_audit/primary_sources/util.py": {
+      "sha256": "1a8529a29a257440667fe5c278828de7e522333cb803b437dfde5b10b70e9ccd",
+      "bytes": 31351,
+      "purpose": "source only"
+    },
+    "work/chile_training_clock_audit/primary_sources/train.py": {
+      "sha256": "a214a2d1894e95104e3069010a4edcd01354db5e7b239837a29f92ba2b449548",
+      "bytes": 19267,
+      "purpose": "source only"
+    },
+    "work/chile_training_clock_audit/primary_sources/chile_mag_noloc.json": {
+      "sha256": "f484ab54539ca96be04cabc3440c842fc470d618c0db970fa28fce5eb670652c",
+      "bytes": 1829,
+      "purpose": "source only"
+    },
+    "work/chile_training_clock_audit/port_sources/train_team_lm.py": {
+      "sha256": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+      "bytes": 43841,
+      "purpose": "source only"
+    },
+    "work/chile_training_clock_audit/port_sources/team_lm.py": {
+      "sha256": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+      "bytes": 18406,
+      "purpose": "source only"
+    },
+    "work/independent_distribution_result_audit/RESULTS.md": {
+      "sha256": "e3d250d810602696eaec1dba87ad735a74b20499d23248488c8491e7a2e87974",
+      "bytes": 16298,
+      "purpose": "existing aggregate conclusion only; no raw metrics arrays or replay"
+    },
+    "primary_sources/models.py": {
+      "sha256": "a3e67ca2c3e963cf7f19c454bf5f4b67150fc3a8788caf03db323f89893ea3a8",
+      "bytes": 33591,
+      "purpose": "public author loss source only",
+      "url": "https://raw.githubusercontent.com/yetinam/TEAM/8df20877f3a6ef47d3af4d1484ecdb0cdf37e903/models.py",
+      "retrieved_utc": "2026-10-10T22:48:48.610927+00:00"
+    }
+  },
+  "files": {
+    "AUDIT.md": {
+      "sha256": "0a1e522ea3eb5bfca5f1d2b08dc49ab264fc60621370cd5fd84710487eec24e8",
+      "bytes": 16963
+    },
+    "synthetic_arithmetic.json": {
+      "sha256": "9e5197a27603a271b87a6c78f5e312bab99741062a254857a946cfe5325e496a",
+      "bytes": 2642
+    }
+  },
+  "primary_papers": [
+    {
+      "title": "Balanced MSE for Imbalanced Visual Regression",
+      "venue": "CVPR 2022",
+      "url": "https://openaccess.thecvf.com/content/CVPR2022/html/Ren_Balanced_MSE_for_Imbalanced_Visual_Regression_CVPR_2022_paper.html",
+      "full_text_verified": "https://arxiv.org/pdf/2203.16427",
+      "relevant_items": [
+        "Theorem 1",
+        "Eq 3.4",
+        "Eq 3.6",
+        "GMM analytic integration"
+      ]
+    },
+    {
+      "title": "Delving into Deep Imbalanced Regression",
+      "venue": "ICML 2021",
+      "url": "https://proceedings.mlr.press/v139/yang21m.html",
+      "full_text_verified": "https://proceedings.mlr.press/v139/yang21m/yang21m.pdf",
+      "relevant_items": [
+        "Section 3.1 LDS",
+        "Section 3.2 FDS"
+      ]
+    },
+    {
+      "title": "Variational Imbalanced Regression: Fair Uncertainty Quantification via Probabilistic Smoothing",
+      "venue": "NeurIPS 2023",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/612a56f193d031687683445cd0001083-Abstract-Conference.html",
+      "full_text_verified": "https://proceedings.neurips.cc/paper_files/paper/2023/file/612a56f193d031687683445cd0001083-Paper-Conference.pdf",
+      "relevant_items": [
+        "smoothed-density importance weights",
+        "NIG uncertainty model"
+      ]
+    },
+    {
+      "title": "Bayesian Imbalanced Regression Debiasing",
+      "status": "indexed primary anonymous draft; publication status not established; full fetch browser verification; supplementary only",
+      "url": "https://openreview.net/pdf/8d45045dbd66e3added7030750fce10e665d8780.pdf",
+      "relevant_items": [
+        "indexed Eq 1.1 bidirectional normalization"
+      ]
+    }
+  ],
+  "claim_limits": [
+    "No novelty or benchmark-superiority claim",
+    "No new earthquake empirical result",
+    "INSTANCE categorical negative evidence not pooled with Chile continuous density or response grid",
+    "Inverse-exposure downward ordering only where a is nondecreasing; source reset above 9 must be explicit"
+  ]
+}
