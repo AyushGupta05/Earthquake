@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-10T12:47:42.643755+00:00",
+  "updated_utc": "2026-10-10T14:36:02.544317+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4250.85,
@@ -71,11 +71,12 @@
         "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
         "status": "TRAIN cache complete; immutable manifest and event metadata preserved onEBS; resume uses flat station backend"
       },
-      "conservative_compute_upper_bound_to_observation_usd": 18.643,
+      "conservative_compute_upper_bound_to_observation_usd": 19.227,
       "conservative_compute_upper_bound_to_automatic_stop_usd": 37.613,
       "cost_upper_bound_note": "Includes all time since launch, even stopped intervals; EBS/public IP separate; allowance60USD unchanged. Account-wide credit movement is not attributed to this task.",
-      "automatic_stop_last_verified_utc": "2026-10-10T12:37:27.261436+00:00",
-      "read_only_data_mount_last_verified_utc": "2026-10-10T12:37:27.261436+00:00"
+      "automatic_stop_last_verified_utc": "2026-10-10T14:26:37.733559+00:00",
+      "read_only_data_mount_last_verified_utc": "2026-10-10T14:26:37.733559+00:00",
+      "shutdown_behavior_last_verified_utc": "2026-10-10T13:12:18.685979+00:00"
     }
   ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
@@ -208,7 +209,7 @@
       "maximum_seconds": 1200
     },
     "chile_full_baseline": {
-      "status": "running eventepoch77; all25pretraining and76event epochs completed",
+      "status": "At verified log: all25 pretraining and94 event epochs complete; epoch95 active",
       "worker": "i-08b9781ed60d8497f",
       "started_utc": "2026-10-09T19:30:04Z",
       "run": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z",
@@ -265,9 +266,10 @@
         "peak_cuda_allocated_bytes": 5612597760,
         "peak_cuda_reserved_bytes": 5876219904
       },
-      "completed_event_epochs": 76,
-      "last_verified_utc": "2026-10-10T12:37:27.261436+00:00",
-      "automatic_stop_verified": true
+      "completed_event_epochs": 94,
+      "last_verified_utc": "2026-10-10T14:36:02.544317+00:00",
+      "automatic_stop_verified": true,
+      "last_history_preserved_utc": "2026-10-10T13:23:29.377993+00:00"
     },
     "censored_then_affine": {
       "status": "complete",
@@ -481,6 +483,62 @@
       "wall_seconds": 32.62288104696199,
       "scientific_gate_pass": false,
       "scientific_decision": "Retain negative result; no geometry/distribution expansion earned"
+    },
+    "response_prefix_export": {
+      "status": "complete; exit0; completion/output hashes independently checked before fitting",
+      "worker": "i-0911a2d093e1e2a30",
+      "run": "/mnt/eew-research/runs/response_prefix_export_v1",
+      "maximum_seconds": 1800,
+      "kill_grace_seconds": 60,
+      "threads": 2,
+      "cuda_visible": false,
+      "source_bundle_sha256": "a338babbf27bdbeceed2235bf6f99698589e5a8750b8854fcb109c0430ec30e6",
+      "corrected_response_join_sha256": "d65966518a3ec62e022351c6fc6be91e5003c20a916cf5640b8aaba8f59d8ab2",
+      "deployed_synthetic_tests": 33,
+      "source_review": "clean core v3",
+      "new_resources": false,
+      "started_utc": "2026-10-10T13:12:18Z",
+      "finished_utc": "2026-10-10T13:17:33Z",
+      "seconds": 302.3505687279976,
+      "rows": 112660,
+      "export_manifest_sha256": "55ba19f81f59c106964ae92302258aba7780d5bc1a48cd3ec20617c8f2ba2a46",
+      "independent_metadata_audit": {
+        "status": "pass",
+        "rows": 112660,
+        "join_rows_scanned": 979487,
+        "seconds": 17.73735210398445,
+        "waveform_arrays_opened": false,
+        "receipt_sha256": "230c0ac0fd3ea55e92ab61014f594c7e9326764bff91f90e9ec320a324e74063"
+      }
+    },
+    "response_architecture_grid": {
+      "status": "reviewed/frozen; independent export audit passed; pending commit/launch",
+      "runs": 8,
+      "epochs": 10,
+      "device": "original A10G",
+      "per_run_maximum_seconds": 600,
+      "training_stage_maximum_seconds": 4800,
+      "report_maximum_seconds": 1800,
+      "outer_maximum_seconds": 6800,
+      "task_cgroup_runtime_maximum_seconds": 6980,
+      "source_manifest_sha256": "f745a18b194490b2f018845ddeeb5a3282aa9a0307a4795cfebe465382b669d3",
+      "deployment_manifest_sha256": "7204ab1d6502599565478a641a824cd92a1028bf81b6410360845d79c682362f",
+      "promoted_synthetic_tests": 11,
+      "new_resources": false
+    },
+    "exposure_grid": {
+      "status": "reviewed/frozen; not launched; serial after response grid",
+      "runs": 6,
+      "epochs": 10,
+      "device": "original A10G",
+      "maximum_seconds": 14400,
+      "outer_maximum_seconds": 14460,
+      "task_cgroup_runtime_maximum_seconds": 14640,
+      "protocol_sha256": "51af1b54c4e0fdc0320e0d9d3d7a26fe9bdeaa77aa387ba4764f9770c88c69c6",
+      "source_manifest_sha256": "7204ab1d6502599565478a641a824cd92a1028bf81b6410360845d79c682362f",
+      "promoted_synthetic_tests": 39,
+      "new_resources": false,
+      "cross_grid_support": "Separate .05..6.55 decision support, different sampler; no pooled response baseline"
     }
   },
   "continuation": {
@@ -505,5 +563,39 @@
     "financial_or_account_settings_changed": false,
     "settled_total_remaining_usd": 4601.39,
     "settled_main_remaining_usd": 4426.07
+  },
+  "existing_worker_verified": {
+    "checked_utc": "2026-10-10T13:12:18.685979+00:00",
+    "id": "i-0911a2d093e1e2a30",
+    "state": "running",
+    "type": "g5.xlarge",
+    "linux_hourly_compute_usd": 1.006,
+    "management": "Existing user worker; manage only task jobs, not instance lifecycle",
+    "raw_data_mount": "/data read-only; verified 2026-10-10",
+    "original_launch_utc": "2026-10-04T18:04:17Z",
+    "conservative_entire_uptime_compute_usd": 141.372,
+    "limitation": "Entire existing-worker uptime deliberately overcounts task exposure; not actual task-attributed spend"
+  },
+  "aws_cli_refresh": {
+    "utc": "2026-10-10T13:12:18.685979+00:00",
+    "result": "Existing default session refreshed; fresh describe reads verified both workers and Chile shutdown behavior stop",
+    "permissions_changed": false,
+    "credentials_committed": false
+  },
+  "price_refresh": {
+    "utc": "2026-10-10T14:26:37.733559+00:00",
+    "source": "Official AWS Pricing GetProducts API, AmazonEC2 us-east-1 Linux/shared/NA/Used g5.xlarge",
+    "effective_date": "2026-10-01T00:00:00Z",
+    "usd_per_instance_hour": 1.006,
+    "raw_receipt": "aws_g5_price_20261010.json"
+  },
+  "prelaunch_budget_envelope": {
+    "checked_utc": "2026-10-10T14:36:02.544317+00:00",
+    "original_worker_entire_uptime_plus_both_grid_caps_usd": 147.414,
+    "chile_worker_resource_allowance_usd": 60,
+    "research_volume_full_month_allowance_usd": 8,
+    "misc_task_margin_usd": 20,
+    "conservative_total_usd": 235.414,
+    "limitation": "Deliberately charges all existing-worker uptime since4Oct, including unrelated work. Includes fixed grid caps, Chile resource allowance, full month scratch volume, and margin. Not settled task attribution. Eligible credits were verified10Oct and expire31Oct."
   }
 }

@@ -1,0 +1,115 @@
+{
+  "counts_blob": {
+    "declared_sha256_matches_parent": "6732ecbec94ee5bfe40788a84a13d4de1b11b6bc64bfd9aef887c0946c9e3b0c",
+    "opened_by_this_audit": false
+  },
+  "decoded_polarization_members": [
+    "source_row_index",
+    "trace_name",
+    "source_id",
+    "station_id",
+    "station_group",
+    "subset",
+    "sampling_weight",
+    "valid",
+    "invalid_codes",
+    "deadlines",
+    "event_bucket",
+    "station_bucket",
+    "n_metadata_eligible",
+    "n_sampled",
+    "targets",
+    "sensitivities",
+    "native_units",
+    "station_channels",
+    "target_names"
+  ],
+  "export_manifest_sha256": "55ba19f81f59c106964ae92302258aba7780d5bc1a48cd3ec20617c8f2ba2a46",
+  "features_matrix_decoded": false,
+  "identity_arrays_exact": [
+    "source_row_index",
+    "trace_name",
+    "source_id",
+    "station_id",
+    "station_group",
+    "subset",
+    "sampling_weight",
+    "valid",
+    "invalid_codes",
+    "deadlines",
+    "event_bucket",
+    "station_bucket",
+    "n_metadata_eligible",
+    "n_sampled"
+  ],
+  "join": {
+    "existing_v3_join_rows_scanned": 979487,
+    "selected_rows_matched": 112660
+  },
+  "limitations": [
+    "No waveform contents or causal preprocessing re-audit",
+    "No response evalresp recomputation; checked saved corrected evaluations and masks",
+    "No fits, models, GPU, DEV or TEST",
+    "Source raw HDF remains stat-identified as declared by export"
+  ],
+  "numpy": "2.0.2",
+  "panels": [
+    {
+      "sampled_events": 15000,
+      "sampled_records": 55967,
+      "subset": "fit",
+      "valid_records_1_3_5": [
+        55936,
+        55937,
+        55937
+      ]
+    },
+    {
+      "sampled_events": 9358,
+      "sampled_records": 34841,
+      "subset": "eval_seen",
+      "valid_records_1_3_5": [
+        34826,
+        34827,
+        34827
+      ]
+    },
+    {
+      "sampled_events": 7757,
+      "sampled_records": 21852,
+      "subset": "eval_held",
+      "valid_records_1_3_5": [
+        21851,
+        21851,
+        21851
+      ]
+    }
+  ],
+  "polarization_manifest_sha256": "0993d321e4e21a0e612c05b01189d54b2577f5ebb238ee52ebd50300109250bb",
+  "python": "3.9.25",
+  "response": {
+    "all18_valid_records": 102465,
+    "audited_epochs_reconstructed": 8164,
+    "masked_component_frequencies": 183450,
+    "no_valid_frequency_records": 10190,
+    "phase_norm_max_abs_error": 2.220446049250313e-16,
+    "selected_unique_epochs": 2666,
+    "valid_component_frequencies": 1844430
+  },
+  "response_columns_exact": 72,
+  "response_join_audit_sha256": "d65966518a3ec62e022351c6fc6be91e5003c20a916cf5640b8aaba8f59d8ab2",
+  "rows": 112660,
+  "scope": "TRAIN metadata only",
+  "seconds": 17.73735210398445,
+  "static_columns_exact": 34,
+  "status": "pass",
+  "targets_gains_units_exact": true,
+  "verified_artifact_sha256": {
+    "/home/ec2-user/response_export_a338babb/work/response_conditioned_encoder/full_response_audit_v3/channel_epochs.json": "a1a0014697ca60c60395df599d0ea592df928bb9626329e828dc075126ecf619",
+    "/home/ec2-user/response_export_a338babb/work/response_conditioned_encoder/full_response_audit_v3/response_evaluations.json": "de7e3fb4e58997c486999f0d62aa2028ea65aebc50ff832d178ea7f596f5c798",
+    "/home/ec2-user/response_export_audit_inputs_v3/train_response_join.csv.gz": "bafcad75a8db3c56015e835316f86f2b9a11199f7b2e8757cb91ceca0c533843",
+    "/mnt/eew-research/runs/polarization_preflight_v2/features.npz": "367b5acaa7947cba5d655fe96fa455db0c95c6a2399e4a9ebfee8f73a85f41ce",
+    "/mnt/eew-research/runs/polarization_preflight_v2/selected_metadata.csv": "996e2ded2b6fa0f1208f33bf338b859462e8eec896ae91cb9d5c3bcf6b60d144",
+    "/mnt/eew-research/runs/response_prefix_export_v1/metadata.npz": "ff2b58263066f3cd47020960db008297346945a70e39999cd508add90967faaf"
+  }
+}

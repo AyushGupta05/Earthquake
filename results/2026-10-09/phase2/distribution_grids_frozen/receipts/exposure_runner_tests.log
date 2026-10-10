@@ -1,0 +1,44 @@
+test_actual_training_remainder_and_encoder_updates (test_exposure.CompletedGridTest) ... ok
+test_completed_predictions_are_natural_normalized_all_panels (test_exposure.CompletedGridTest) ... ok
+test_completion_initialization_must_match_verified_configuration (test_exposure.CompletedGridTest) ... ok
+test_evaluation_rejects_different_binding_before_any_callback (test_exposure.CompletedGridTest) ... ok
+test_grid_provenance_fixed_epochs_and_full_checkpoint (test_exposure.CompletedGridTest) ... ok
+test_held_normalizer_binding_and_failed_fit_do_not_publish (test_exposure.CompletedGridTest) ... ok
+test_held_validator_runs_before_any_inference_callback (test_exposure.CompletedGridTest) ... ok
+test_partial_grid_and_tampered_history_rejected (test_exposure.CompletedGridTest) ... ok
+test_same_runtime_repeatability (test_exposure.CompletedGridTest) ... ok
+test_analytic_conditional_optimum_and_empty_bin_recovery (test_exposure.ExposureMathTest) ... ok
+test_empirical_sampler_law (test_exposure.ExposureMathTest) ... ok
+test_exact_label_and_band_boundaries (test_exposure.ExposureMathTest) ... ok
+test_forward_input_whitelist_alignment_and_future_cutoff (test_exposure.ExposureMathTest) ... ok
+test_missing_band_fails_without_regrouping (test_exposure.ExposureMathTest) ... ok
+test_paired_orders_schedule_and_actual_remainder (test_exposure.ExposureMathTest) ... ok
+test_plan_rejects_cross_deadline_identity_change (test_exposure.ExposureMathTest) ... ok
+test_population_checks_fresh_splits_and_unique_ids (test_exposure.ExposureMathTest) ... ok
+test_six_band_weighted_sampler_and_empty_fine_bins (test_exposure.ExposureMathTest) ... ok
+test_weighted_huber_exact_existing_equation (test_exposure.ExposureMathTest) ... ok
+test_bootstrap_identity_and_shared_rng_parity (test_exposure.MetricsTest) ... ok
+test_comparison_has_both_seeds_ensemble_and_no_optional_action_gate (test_exposure.MetricsTest) ... ok
+test_continuous_crps_matches_pairwise_definition (test_exposure.MetricsTest) ... ok
+test_continuous_crps_quantization_and_zero_likelihood (test_exposure.MetricsTest) ... ok
+test_full_fixed_report_and_empty_tail_are_json_safe (test_exposure.MetricsTest) ... ok
+test_support_failure_keeps_continuous_errors_and_invalid_pmf_rejected (test_exposure.MetricsTest) ... ok
+test_weighted_cvar_and_event_macro_match_shared_probe (test_exposure.MetricsTest) ... ok
+test_bound_held_panels_reject_fit_ids_targets_weights_and_subselection (test_shared_response.SharedResponseTest) ... ok
+test_normalizer_provenance_and_arrays_must_match (test_shared_response.SharedResponseTest) ... ok
+test_shared_B_exact_interface_capacity_and_gradient (test_shared_response.SharedResponseTest) ... ok
+test_shared_normalizers_ignore_all_held_values (test_shared_response.SharedResponseTest) ... ok
+test_source_row_lookup_and_deadline_masks (test_shared_response.SharedResponseTest) ... ok
+test_atomic_artifacts_reject_object_arrays (test_exposure_runner.RunnerTest) ... ok
+test_default_dry_run_does_not_open_sources_or_launch (test_exposure_runner.RunnerTest) ... ok
+test_fit_empty_bins_and_unsupported_held_targets_are_reported (test_exposure_runner.RunnerTest) ... ok
+test_guard_finishes_or_terminates_the_worker (test_exposure_runner.RunnerTest) ... ok
+test_panel_masks_fractions_units_and_family (test_exposure_runner.RunnerTest) ... ok
+test_source_pins_precede_import_and_reject_changes (test_exposure_runner.RunnerTest) ... ok
+test_supervisor_SIGTERM_reaps_training_child (test_exposure_runner.RunnerTest) ... ok
+test_complete_synthetic_grid_with_actual_B_and_archived_predictions (test_exposure_runner.SharedProductionRunnerTest) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 14.089s
+
+OK

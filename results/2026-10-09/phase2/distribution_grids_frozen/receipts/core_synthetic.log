@@ -1,0 +1,38 @@
+test_analytic_chain_no_sensitivity_double_multiplication (test_audit_response.ResponseTests) ... ok
+test_channel_rate_mismatch_fails_closed (test_audit_response.ResponseTests) ... ok
+test_gain_reexpression_shape_descriptor_invariant (test_audit_response.ResponseTests) ... ok
+test_inconsistent_sensitivity_fails_closed (test_audit_response.ResponseTests) ... ok
+test_missing_response_archive_json_and_join_key_roundtrip (test_audit_response.ResponseTests) ... ok
+test_missing_scalar_sensitivity_fields_fail_closed (test_audit_response.ResponseTests) ... ok
+test_rate_mask_and_zero_fallback (test_audit_response.ResponseTests) ... ok
+test_stage_units_and_numbers_rejected (test_audit_response.ResponseTests) ... ok
+test_unknown_unit_and_missing_stages (test_audit_response.ResponseTests) ... ok
+test_unresolved_digital_clock_rejected_but_analog_allowed (test_audit_response.ResponseTests) ... ok
+test_whole_interval_and_touch_ambiguity (test_audit_response.ResponseTests) ... ok
+test_clock_and_window_checks (test_join_train_metadata.JoinTests) ... ok
+test_no_future_quality_in_metadata_gate (test_join_train_metadata.JoinTests) ... ok
+test_units_orientation_and_epoch_crossing (test_join_train_metadata.JoinTests) ... ok
+test_valid_boundary_and_strict_identity (test_join_train_metadata.JoinTests) ... ok
+test_authoritative_invalid_is_not_reclassified_or_replaced (test_response_data.ExportDataTests) ... ok
+test_basic_validity_does_not_inspect_future (test_response_data.ExportDataTests) ... ok
+test_coherent_gain_reexpression_invariance_and_rng_isolation (test_response_data.ExportDataTests) ... ok
+test_fit_only_normalization_and_prefix_isolation (test_response_data.ExportDataTests) ... ok
+test_incomplete_and_tampered_exports_rejected (test_response_data.ExportDataTests) ... ok
+test_late_nonfinite_keeps_earlier_validity (test_response_data.ExportDataTests) ... ok
+test_mismatched_raw_prefix_aborts (test_response_data.ExportDataTests) ... ok
+test_production_cli_default_is_no_read_dry_run (test_response_data.ExportDataTests) ... ok
+test_provider_response_fallback_guard (test_response_data.ExportDataTests) ... ok
+test_roundtrip_exact_counts_identity_masks_and_forward_fields (test_response_data.ExportDataTests) ... ok
+test_shared_identity_target_gain_and_partition_guards (test_response_data.ExportDataTests) ... ok
+test_checkpoint_roundtrip_and_finite_one_step (test_response_model.ModelTests) ... ok
+test_conditioning_placement_has_nonredundant_effect_after_modulation (test_response_model.ModelTests) ... ok
+test_equal_capacity_and_state_initialization (test_response_model.ModelTests) ... ok
+test_exact_native_early_late_neutral_forward_and_backbone_gradient (test_response_model.ModelTests) ... ok
+test_masks_gain_and_shape_fail_closed (test_response_model.ModelTests) ... ok
+test_native_amplitudes_do_not_mean_whole_model_gain_invariance (test_response_model.ModelTests) ... ok
+test_prefix_only_and_unread_labels (test_response_model.ModelTests) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 2.432s
+
+OK

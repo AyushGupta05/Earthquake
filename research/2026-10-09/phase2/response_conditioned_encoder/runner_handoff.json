@@ -1,0 +1,85 @@
+{
+  "status": "ready for parent-controlled export-completion verification and fixed GPU grid launch",
+  "scope": "No real waveform re-export or GPU training launched by this agent",
+  "training_source_manifest": "training_source_manifest.json",
+  "training_source_manifest_sha256": "f745a18b194490b2f018845ddeeb5a3282aa9a0307a4795cfebe465382b669d3",
+  "source_files": {
+    "train_response_grid.py": "a47c7a6ac57063ab1a4aa50b1a86dc48540743e58a4ee07e364654ae470daeaa",
+    "response_metrics.py": "ec54b7bf270b349b03a09e8c59afd78f41cfe42db27778b7a23a66a23bec0d10",
+    "response_model.py": "a899485c3980ca7ffa8d111410b49d086edd0b7541fb955aee6b67e72df16356",
+    "response_data.py": "218fa5df2e1db6309101977be00251138649897e18969e7c23c8781ce258d4f7",
+    "frozen_protocol_v1.md": "403fe4bafabc11dad71b8a02d16e98a6b8d8c3a5c95ca89a812a5193a284f1b8"
+  },
+  "new_runner_files": [
+    "train_response_grid.py",
+    "response_metrics.py",
+    "test_response_training.py",
+    "RUNNER.md",
+    "training_source_manifest.json"
+  ],
+  "core_review": {
+    "file": "autoreview_shared_v3.json",
+    "sha256": "ce04f75dadf591121a0ca82d8326112dfb6c7338cc62fb85812240727d60c1d9",
+    "exit_code": 0,
+    "accepted_actionable_findings": 0,
+    "verified_fixes": 3
+  },
+  "runner_review": {
+    "file": "autoreview_runner_v3.json",
+    "sha256": "3ef69c269e12fcd72f2ef92d8828a9eb74e0cf4c1986cb04e38dd721aa9d925b",
+    "exit_code": 0,
+    "accepted_actionable_findings": 0,
+    "verified_fixes": [
+      "Insufficient bootstrap precision is inconclusive rather than failed",
+      "All8runs share one verified prepared normalizer identity across both seeds"
+    ]
+  },
+  "runner_tests": {
+    "command": "timeout180s CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 python -W error -m unittest test_response_training -v",
+    "log": "runner_tests_aws_v4.log",
+    "log_sha256": "7bf8fb89ac0b9789433a2f5ee040989b7b96c3de1f8e1921c59fadf593bddda2",
+    "tests": 11,
+    "seconds": 3.443,
+    "runtime": "ExistingAWS CPU scratch only; no real arrays",
+    "scratch_manifest": "runner_synthetic_cpu_manifest_v4.json",
+    "scratch_manifest_sha256": "39e05e706ef4f63fa6d40d9cfec25d972e905255d453b923a58dbd21e70d2c55"
+  },
+  "core_test_count": 33,
+  "exposure_agent_integration_tests": 27,
+  "corrected_audit_directory": "full_response_audit_v3",
+  "corrected_join_sha256": "d65966518a3ec62e022351c6fc6be91e5003c20a916cf5640b8aaba8f59d8ab2",
+  "core_unchanged_since_parent_handoff": true,
+  "cli_template": [
+    "python",
+    "train_response_grid.py",
+    "--export",
+    "<completed-reviewed-waveform-export>",
+    "--bundle",
+    "training_source_manifest.json",
+    "--bundle-sha256",
+    "f745a18b194490b2f018845ddeeb5a3282aa9a0307a4795cfebe465382b669d3",
+    "--output",
+    "<new-grid-directory>",
+    "--execute"
+  ],
+  "budget": {
+    "epochs": 10,
+    "batch": 512,
+    "seeds": [
+      20261009,
+      20261010
+    ],
+    "arms": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "per_run_timeout_seconds": 600,
+    "total_training_timeout_seconds": 4800,
+    "cpu_report_timeout_seconds": 1800,
+    "CUDA_workers": 1
+  },
+  "launch_boundary": "Parent alone schedules existingA10G after reviewed exportCOMPLETE/hash checks. Source pins/determinism/identity failures stop; no automatic retuning, changed population, incomplete-grid gate or early stopping. The user has authorized training; no additional confirmation is requested here.",
+  "scientific_limit": "KnownFiLM/native-unit/augmentation/categorical constructions; fixed controlled empirical hypothesis, not proven novelty or improved error yet. Independent external validation and scalar-versus-full-response conditioning follow only if justified by results."
+}

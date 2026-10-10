@@ -1,0 +1,110 @@
+{
+  "scope": "Explicitly authorized source, synthetic tests and frozen protocol only. No waveform samples, metadata rows, response inventories, credentials, fitted arrays, real results, or links for the reviewer to read them. All review reads restricted to this snapshot.",
+  "authorization": "Parent relayed explicit user answer Authorize code-only Codex review on 2026-10-10. Extends to source-only exporter/data/backbone.",
+  "files": [
+    {
+      "relative_path": "work/repo/research/2026-10-09/phase2/instrument_inventory.py",
+      "bytes": 15661,
+      "sha256": "9a942c4773e5c18264aa2db432ba4669f965004aeb9a1f67f25a67d6c812c227",
+      "role": "unchanged dependency"
+    },
+    {
+      "relative_path": "work/polarization_preflight/features.py",
+      "bytes": 8000,
+      "sha256": "417316ea2ff5c55384cefae4edecf4b98a5a1341c41558ea0ebf459afb9a5fec",
+      "role": "unchanged dependency"
+    },
+    {
+      "relative_path": "work/polarization_preflight/population.py",
+      "bytes": 5470,
+      "sha256": "7a36778e9d433181a2bb82adc195de7b5c1a8d3579b3e04de8bf6415eb11610f",
+      "role": "unchanged dependency"
+    },
+    {
+      "relative_path": "work/polarization_preflight/extract_features.py",
+      "bytes": 15398,
+      "sha256": "dce679f91046401d9c5d16f8e382be07fde17b5fae7d6608e949d6d79f22b5fe",
+      "role": "unchanged dependency"
+    },
+    {
+      "relative_path": "work/polarization_preflight/audit_metadata.py",
+      "bytes": 7972,
+      "sha256": "6a8f47c8fa6966c533765118e7b397c293fcf87409d2d4cd42a7ac63a198720f",
+      "role": "unchanged dependency"
+    },
+    {
+      "relative_path": "work/polarization_preflight/protocol.md",
+      "bytes": 13656,
+      "sha256": "a9b12a88be3a46e96d0f3f208f64b7728d1a17bb132e146887694e40288a448b",
+      "role": "unchanged dependency"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/audit_response.py",
+      "bytes": 16844,
+      "sha256": "10a6d048aea97825b4abcc059ff3509dea01facc5697dd71bae6d276cd9f2719",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/join_train_metadata.py",
+      "bytes": 12067,
+      "sha256": "beb9e295467b80755b14472c70139ae7bf77de8b40a11c509f5324d1b513de9a",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/test_audit_response.py",
+      "bytes": 7624,
+      "sha256": "de6bb336d53de0e2a4e575cbec0e3298e28fa3cc46445856bcb79412ea95e497",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/test_join_train_metadata.py",
+      "bytes": 2642,
+      "sha256": "72569979f577980e4b10f7ebda5ca030e56a8f49a85ab17a29d798fb6063bb9d",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/frozen_protocol_v1.md",
+      "bytes": 14333,
+      "sha256": "403fe4bafabc11dad71b8a02d16e98a6b8d8c3a5c95ca89a812a5193a284f1b8",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/export_waveforms.py",
+      "bytes": 15605,
+      "sha256": "d7fa5eda1b507d306688a4907c449ac7f19d7756756317ac15f7d4b4953788ab",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/response_data.py",
+      "bytes": 10446,
+      "sha256": "218fa5df2e1db6309101977be00251138649897e18969e7c23c8781ce258d4f7",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/response_model.py",
+      "bytes": 6900,
+      "sha256": "a899485c3980ca7ffa8d111410b49d086edd0b7541fb955aee6b67e72df16356",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/synthetic_shared_fixture.py",
+      "bytes": 2309,
+      "sha256": "50ec5dd5c5d4fb4dad156e4dcb509a3c6d8bb6b5f278a3361802f4545aa640c1",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/test_response_data.py",
+      "bytes": 7840,
+      "sha256": "72f8bdc038fe2b6da592fd04548cb45a264a32448f55b1a9b39eec4b244c041d",
+      "role": "review target"
+    },
+    {
+      "relative_path": "work/response_conditioned_encoder/test_response_model.py",
+      "bytes": 4170,
+      "sha256": "c2a6dd7ec66afd78066d8fcc1268b515271af613c7f06f69b2eee1a363448a8c",
+      "role": "review target"
+    }
+  ],
+  "review_status": "v3 pending",
+  "accepted_fix": "All3 findings fixed: absent response stable key; missing sensitivity fields; unresolved digital input clocks"
+}

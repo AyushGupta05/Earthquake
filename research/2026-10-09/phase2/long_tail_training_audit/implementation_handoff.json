@@ -1,0 +1,62 @@
+{
+  "claims": "Known exposure/prior correction baseline, not a novelty or real-data accuracy result. No resume API or CUDA equivalence claim.",
+  "entrypoint": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/long_tail_training_audit/run_exposure_grid.py",
+  "guard": {
+    "backstop": "Parent-owned instance stop deadline; SIGKILL cannot run supervisor cleanup",
+    "default": "dry-run",
+    "successful_run_requires": [
+      "job_status.json status complete",
+      "COMPLETE.json matching final manifest"
+    ],
+    "termination_grace_seconds": 30,
+    "whole_job_budget_seconds": "required integer 1..43200"
+  },
+  "instructions": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/long_tail_training_audit/RUNNER.md",
+  "protocol_sha256": "51af1b54c4e0fdc0320e0d9d3d7a26fe9bdeaa77aa387ba4764f9770c88c69c6",
+  "remaining": [
+    "Parent verifies shared component clean review and exact final source hashes",
+    "Parent copies reviewed files and runs focused tests on selected AWS runtime",
+    "Parent supplies completed export manifest SHA and launches under existing logging/instance-stop budget"
+  ],
+  "review": {
+    "accepted_findings_fixed": [
+      "Bind evaluation identity to completed training provenance",
+      "Validate complete held panel metadata against bound export before inference",
+      "Cross-check completion initialization hashes against verified configs",
+      "Handle supervisor SIGTERM and reap its detached child"
+    ],
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file ../review_v5_prompt.txt --output ../autoreview_v5.txt --json-output ../autoreview_v5.json",
+    "cwd": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/long_tail_training_audit/code_review_v5",
+    "engine": "codex",
+    "exitcode": 0,
+    "limitation": "Review static; excluded dependencies covered separately by local synthetic integration tests.",
+    "rejected_findings": [],
+    "result_file": "autoreview_v5.json",
+    "result_sha256": "ea02dc4d253b40c690827064c155c560725a6d0f0418b8ac8e7eb2cbcefdc943",
+    "scope": "Nine isolated implementation/document/test files; no shared response sources or research audit documents",
+    "status": "clean"
+  },
+  "reviewed_files_sha256": {
+    "IMPLEMENTATION.md": "987ef4469d47e143d9ccfa1a76d044f60449aa43ed3073a732a0048a239e78ee",
+    "RUNNER.md": "5ffbccb89be0997a9ded128da88fc9923d0346d50dd04e8dcf18d37ccc63c2c1",
+    "exposure_metrics.py": "04bb69f8504eb088b5d4a9086ffa632c438dc509c0a2f3923ab00ff6080b7f45",
+    "exposure_training.py": "b3f6556bf907b301d0172b464e72977cf25a59e1364b7d2baaf7a5c8e5528dfe",
+    "run_exposure_grid.py": "1100caf8046dc3f3639fc787e8898d20d18b2edfd43a26ecdde3714bf2130d4b",
+    "shared_response_adapter.py": "b3ffb98d9f7b4b4c085d4e95a689a6edd9af6cddb9b80e1a24778e5c4c676bf1",
+    "test_exposure.py": "f1601db79ff22b1d5f8aa763df15b50c050dba706cc9a81c64ccde5e004792af",
+    "test_exposure_runner.py": "75bcc1808c7fc03cb9adb24a08120fd5e82d0c87ec0160551db4d6716e728e0d",
+    "test_shared_response.py": "c8e107e8ff9e219450c9231fc4ba4f0727ac266b9f1730411a3e224be01370f7"
+  },
+  "schema": "exposure-implementation-handoff-v1",
+  "scope": "Own code and synthetic CPU tests only. No real dataset arrays, real fits, AWS operations or project commits.",
+  "shared_dependency_sha256": {
+    "response_data.py": "218fa5df2e1db6309101977be00251138649897e18969e7c23c8781ce258d4f7",
+    "response_model.py": "a899485c3980ca7ffa8d111410b49d086edd0b7541fb955aee6b67e72df16356"
+  },
+  "status": "ready_for_parent_deployment_after_shared_component_clearance",
+  "test_command": "/Users/ayush/.venvs/ml/bin/python3 -W error -m unittest -v test_exposure test_shared_response test_exposure_runner",
+  "test_log_sha256": "c49341d2ce8175458daeb6aba77dc3eb215aa27d7bcc892b3240f1c2d3d75ad0",
+  "test_seconds": 5.848,
+  "tests": 39,
+  "verification_sha256": "a268e0849c0962f983945a2846aba5e8f58dbe466345e60740df756929b2b668"
+}

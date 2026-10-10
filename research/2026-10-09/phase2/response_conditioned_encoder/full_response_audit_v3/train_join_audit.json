@@ -1,0 +1,132 @@
+{
+  "alias_counts": {
+    "groups": 549,
+    "merged_groups": 12,
+    "stations": 561,
+    "stations_missing_coordinates": 0
+  },
+  "archive_sha256": "71eccc6304afad15e9c45534ca374b4b4f974c9f93ccfc0f2683616ee6421ef2",
+  "artifacts": {
+    "canonical_join_rows_sha256": "60812daf99d801b8bbc6fc828ab21e4f4468746a098043285a5b5e6b9a0cc7c5",
+    "join_sha256": "bafcad75a8db3c56015e835316f86f2b9a11199f7b2e8757cb91ceca0c533843",
+    "selected_metadata_population_sha256": "bda1a584ccc8727097988742c0b85a4a30d87262dec4fa99a3de7c9147e6e053"
+  },
+  "audited_epochs_sha256": "a1a0014697ca60c60395df599d0ea592df928bb9626329e828dc075126ecf619",
+  "channel_status": {
+    "invalid_window": 9,
+    "matched": 2928252,
+    "outside_epoch": 10200
+  },
+  "counts": {
+    "all_components_all6_response_frequencies": 857918,
+    "all_scalar_responses": 974384,
+    "at_least_one_component_frequency": 857936,
+    "canonical_orientation": 963631,
+    "clock_valid": 979484,
+    "eligible_all_components_all6_response_frequencies": 847165,
+    "eligible_some_response_frequencies": 847183,
+    "location_repaired": 355,
+    "metadata_eligible": 963631,
+    "rows": 979487,
+    "same_known_unit": 974384
+  },
+  "evaluated_responses_sha256": "de7e3fb4e58997c486999f0d62aa2028ea65aebc50ff832d178ea7f596f5c798",
+  "family": {
+    "EH": {
+      "eligible": 195659,
+      "eligible_complete_response": 130263,
+      "rows": 195665
+    },
+    "EN": {
+      "eligible": 3,
+      "eligible_complete_response": 0,
+      "rows": 3
+    },
+    "HH": {
+      "eligible": 492682,
+      "eligible_complete_response": 491695,
+      "rows": 507366
+    },
+    "HL": {
+      "eligible": 6569,
+      "eligible_complete_response": 6569,
+      "rows": 6569
+    },
+    "HN": {
+      "eligible": 268718,
+      "eligible_complete_response": 218638,
+      "rows": 269884
+    }
+  },
+  "matched_channel_response_failure_reasons_nonexclusive": {
+    "digital_sampling_clock_unresolved": 1674,
+    "evalresp_error": 1674,
+    "native_rate_mismatch": 34995,
+    "reported_fullstage_sensitivity_mismatch_gt5pct": 13620,
+    "stage_sampling_inconsistent": 299073
+  },
+  "metadata_eligibility": "Same seven-second clock/scalar/unit/orientation gate as polarization v2; no additional response-quality exclusion",
+  "metadata_export_provenance_sha256": "563d12e1d43842b04e160983e72563ecd105fefda72ce24384b94d71241e61e7",
+  "metadata_export_sha256": "dafca0cccfd2a642c70415390a11648af0ce1cfeeb234f34440967793a709f30",
+  "original_train_metadata_sha256": "168b5d861804e9707f68125dc8bc9453c8e0a47a48ef4055a7920c6526f1535d",
+  "partition": {
+    "eval_held": {
+      "eligible": 31844,
+      "eligible_complete_response": 28581,
+      "rows": 33329
+    },
+    "eval_seen": {
+      "eligible": 159434,
+      "eligible_complete_response": 139524,
+      "rows": 161080
+    },
+    "excluded_fit_event_held_station": {
+      "eligible": 128119,
+      "eligible_complete_response": 115070,
+      "rows": 134286
+    },
+    "fit": {
+      "eligible": 644234,
+      "eligible_complete_response": 563990,
+      "rows": 650792
+    }
+  },
+  "population_boundary": "No magnitude/geometry validity audit yet; selected rows are metadata population before target and per-deadline waveform checks",
+  "population_module_sha256": "7a36778e9d433181a2bb82adc195de7b5c1a8d3579b3e04de8bf6415eb11610f",
+  "response_auditor_sha256": "10a6d048aea97825b4abcc059ff3509dea01facc5697dd71bae6d276cd9f2719",
+  "sampling": {
+    "fitting_events_at_held_stations_excluded": 128119,
+    "subsets": {
+      "eval_held": {
+        "dropped_events": 0,
+        "metadata_events": 7757,
+        "metadata_records": 31844,
+        "sampled_records": 21852,
+        "selected_events": 7757
+      },
+      "eval_seen": {
+        "dropped_events": 0,
+        "metadata_events": 9358,
+        "metadata_records": 159434,
+        "sampled_records": 34841,
+        "selected_events": 9358
+      },
+      "fit": {
+        "dropped_events": 22610,
+        "metadata_events": 37610,
+        "metadata_records": 644234,
+        "sampled_records": 55967,
+        "selected_events": 15000
+      }
+    }
+  },
+  "scope": "TRAIN identities/clocks and response metadata only; no labels or waveform reads",
+  "seconds": 35.183113874998526,
+  "source_sha256": "beb9e295467b80755b14472c70139ae7bf77de8b40a11c509f5324d1b513de9a",
+  "unit_patterns": {
+    "m/s/m/s/m/s": 697929,
+    "m/s^2/m/s^2/m/s^2": 276455,
+    "unknown/unknown/m/s": 5100,
+    "unknown/unknown/unknown": 3
+  }
+}

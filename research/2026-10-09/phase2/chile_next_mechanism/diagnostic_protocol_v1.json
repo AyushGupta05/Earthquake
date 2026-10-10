@@ -1,0 +1,82 @@
+{
+  "schema": "chile_density_floor_diagnostic_v1",
+  "created_utc": "2026-10-10T13:21:29.991490+00:00",
+  "status": "preregistered_proposal_not_implemented_or_executed",
+  "checkpoint": "completed_source_faithful_100_event_epoch_checkpoint_SHA256_must_be_pinned_before_execution",
+  "data_scope": "pinned_original_TRAIN_fit_events_only_no_calibration_DEV_TEST",
+  "large_magnitude_threshold": 5.5,
+  "horizons_seconds": [
+    1,
+    3,
+    5
+  ],
+  "population": {
+    "tail": "all_fit_events_with_MA>=5.5",
+    "bulk_strata": [
+      "MA<4",
+      "4<=MA<5.5"
+    ],
+    "maximum_events_per_bulk_stratum": 1024,
+    "selection": "ascending SHA256 of UTF8(salt + EVENT), no replacement; include all if stratum smaller",
+    "salt": "chile_floor_audit_v1|"
+  },
+  "input_policy": "evaluation mode; all available stations in source order; strict-prefix source preprocessing; no station blinding; no label smoothing; distinct event once per horizon",
+  "density_epsilon": 1e-06,
+  "attenuation_threshold_strict": 0.1,
+  "underestimation_mean_threshold_strict": 0.5,
+  "gate_min_distinct_tail_events": 4,
+  "gate_min_deadlines_per_event": 2,
+  "gate_rule": "at least four distinct tail events each jointly satisfy attenuation<0.1 and MA-mixture_mean>0.5 at at least two of three horizons",
+  "stop_on_gate_failure": true,
+  "maximum_runtime_seconds": 1800,
+  "optimizer_steps": 0,
+  "required_diagnostics": [
+    "proper_log_density",
+    "attenuation",
+    "component_responsibilities",
+    "responsibility_entropy",
+    "mixture_mean",
+    "mixture_median",
+    "mixture_standard_deviation",
+    "mean_and_median_errors",
+    "analytic_output_gradients_all_three_arms",
+    "per_event_identity_and_source_row",
+    "inclusion_fraction_by_stratum"
+  ],
+  "candidate": {
+    "family": "five normalized Huber components, moment matched to Gaussian component standard deviations",
+    "delta": 2.0,
+    "same_parameter_count": true,
+    "density_floor": 0.0
+  },
+  "interpretation": "current TRAIN suppression only; no historical causal inference or held-out benefit claim",
+  "future_pilot_not_authorized": {
+    "arms": [
+      "floored_Gaussian",
+      "proper_Gaussian",
+      "proper_normalized_Huber"
+    ],
+    "continuation_seeds": [
+      20261011,
+      20261012
+    ],
+    "fixed_event_epochs": 6,
+    "optimizer": "fresh Adam",
+    "learning_rate": 1e-05,
+    "scheduler": "none",
+    "selection": "final_epoch",
+    "total_gpu_hour_cap": 6,
+    "bulk_calibration_point_gate_max_MAE_and_MedAE_increase": 0.005,
+    "gate_comparators": [
+      "A",
+      "B"
+    ],
+    "gate_decisions": [
+      "posterior_mean",
+      "posterior_median"
+    ],
+    "CRPS_increase_allowed": 0,
+    "tail_calibration_for_selection": false,
+    "test_access_authorized": false
+  }
+}

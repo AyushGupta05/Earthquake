@@ -1,0 +1,70 @@
+{
+  "scope": "Pinned completed extraction identity/weight/mask arrays only; no targets or waveform-derived feature matrix loaded, no fit/export/training",
+  "manifest_sha256": "0993d321e4e21a0e612c05b01189d54b2577f5ebb238ee52ebd50300109250bb",
+  "features_sha256": "367b5acaa7947cba5d655fe96fa455db0c95c6a2399e4a9ebfee8f73a85f41ce",
+  "rows": 112660,
+  "identity_fields": [
+    "source_row_index",
+    "source_id",
+    "trace_name",
+    "station_id",
+    "station_group",
+    "subset",
+    "event_bucket",
+    "station_bucket",
+    "n_metadata_eligible",
+    "n_sampled",
+    "sampling_weight"
+  ],
+  "ordered_all_identity_weight_sha256": "b7904a309af858df2c5dac65d72ac0374f9c7747599a364c17a5feb873b99eb4",
+  "valid_bytes_sha256": "e7ede9939aaf1c8e23ca944c82959c8ad5f86c0aba7e6a354f5ddec6074909b3",
+  "invalid_codes_le_uint16_sha256": "963774a45178e27842d048a24bbcca42caf22e940a659c06a44ec274315a9bc7",
+  "partitions": {
+    "fit": {
+      "1": {
+        "valid_rows": 55936,
+        "ordered_valid_identity_weight_sha256": "c44f88d539635d25cc78af3bb69878b7c4a3c5348adfca86126fef537491b3c1"
+      },
+      "3": {
+        "valid_rows": 55937,
+        "ordered_valid_identity_weight_sha256": "f9ad8008030ac908b1dd276b6e39a8649f7ecc7adbd89b53a8bdc166f78024e7"
+      },
+      "5": {
+        "valid_rows": 55937,
+        "ordered_valid_identity_weight_sha256": "f9ad8008030ac908b1dd276b6e39a8649f7ecc7adbd89b53a8bdc166f78024e7"
+      }
+    },
+    "eval_seen": {
+      "1": {
+        "valid_rows": 34826,
+        "ordered_valid_identity_weight_sha256": "03b86fafa355f53a2761f8fc32fd1e64f5c906ac7f665ac757a3bef63318a294"
+      },
+      "3": {
+        "valid_rows": 34827,
+        "ordered_valid_identity_weight_sha256": "bab7cf99b444f207510b12812622052d92918dfa49c771a879dd1b56b746870b"
+      },
+      "5": {
+        "valid_rows": 34827,
+        "ordered_valid_identity_weight_sha256": "bab7cf99b444f207510b12812622052d92918dfa49c771a879dd1b56b746870b"
+      }
+    },
+    "eval_held": {
+      "1": {
+        "valid_rows": 21851,
+        "ordered_valid_identity_weight_sha256": "d84f6f4f14e04e5270492dbac8d610ef713a553d70df85548aeb653f65cf21e9"
+      },
+      "3": {
+        "valid_rows": 21851,
+        "ordered_valid_identity_weight_sha256": "d84f6f4f14e04e5270492dbac8d610ef713a553d70df85548aeb653f65cf21e9"
+      },
+      "5": {
+        "valid_rows": 21851,
+        "ordered_valid_identity_weight_sha256": "d84f6f4f14e04e5270492dbac8d610ef713a553d70df85548aeb653f65cf21e9"
+      }
+    }
+  },
+  "local_provisional_exact_ordered_identity_weight_match": true,
+  "local_provisional_rows": 112660,
+  "local_provisional_file_sha256": "d622f9707ec4e87956025284d84b09a25aaa3ae30db0f552906eb0447aeed5c3",
+  "mask_boundary": "Masks are authoritative pinned source masks; actual waveform re-export has not run. Synthetic tests verify byte-preserving mask carrythrough and different deadline support."
+}

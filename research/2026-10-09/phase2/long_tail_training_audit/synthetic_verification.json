@@ -1,0 +1,30 @@
+{
+  "command": "/Users/ayush/.venvs/ml/bin/python3 -W error -m unittest -v test_exposure test_shared_response test_exposure_runner",
+  "files_sha256": {
+    "AUDIT_AND_FIXED_PROTOCOL.md": "51af1b54c4e0fdc0320e0d9d3d7a26fe9bdeaa77aa387ba4764f9770c88c69c6",
+    "IMPLEMENTATION.md": "987ef4469d47e143d9ccfa1a76d044f60449aa43ed3073a732a0048a239e78ee",
+    "RUNNER.md": "5ffbccb89be0997a9ded128da88fc9923d0346d50dd04e8dcf18d37ccc63c2c1",
+    "exposure_metrics.py": "04bb69f8504eb088b5d4a9086ffa632c438dc509c0a2f3923ab00ff6080b7f45",
+    "exposure_training.py": "b3f6556bf907b301d0172b464e72977cf25a59e1364b7d2baaf7a5c8e5528dfe",
+    "run_exposure_grid.py": "1100caf8046dc3f3639fc787e8898d20d18b2edfd43a26ecdde3714bf2130d4b",
+    "shared_response_adapter.py": "b3ffb98d9f7b4b4c085d4e95a689a6edd9af6cddb9b80e1a24778e5c4c676bf1",
+    "synthetic_tests.log": "c49341d2ce8175458daeb6aba77dc3eb215aa27d7bcc892b3240f1c2d3d75ad0",
+    "test_exposure.py": "f1601db79ff22b1d5f8aa763df15b50c050dba706cc9a81c64ccde5e004792af",
+    "test_exposure_runner.py": "75bcc1808c7fc03cb9adb24a08120fd5e82d0c87ec0160551db4d6716e728e0d",
+    "test_shared_response.py": "c8e107e8ff9e219450c9231fc4ba4f0727ac266b9f1730411a3e224be01370f7"
+  },
+  "optional_shared_dependency_sha256": {
+    "response_data.py": "218fa5df2e1db6309101977be00251138649897e18969e7c23c8781ce258d4f7",
+    "response_model.py": "a899485c3980ca7ffa8d111410b49d086edd0b7541fb955aee6b67e72df16356"
+  },
+  "result": "passed",
+  "scope": "synthetic CPU tests only; complete actual-B grid uses newly generated arrays; no real data or fits",
+  "seconds": 5.848,
+  "tests": 39,
+  "versions": {
+    "numpy": "2.2.6",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "python": "3.10.20",
+    "torch": "2.14.0"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "status": "shared_core_clean_reviewed; grid_runner_review_in_progress",
+  "scope": "No real waveform re-export or model training launched by this agent",
+  "core_files": {
+    "audit_response.py": "10a6d048aea97825b4abcc059ff3509dea01facc5697dd71bae6d276cd9f2719",
+    "join_train_metadata.py": "beb9e295467b80755b14472c70139ae7bf77de8b40a11c509f5324d1b513de9a",
+    "export_waveforms.py": "d7fa5eda1b507d306688a4907c449ac7f19d7756756317ac15f7d4b4953788ab",
+    "response_data.py": "218fa5df2e1db6309101977be00251138649897e18969e7c23c8781ce258d4f7",
+    "response_model.py": "a899485c3980ca7ffa8d111410b49d086edd0b7541fb955aee6b67e72df16356",
+    "frozen_protocol_v1.md": "403fe4bafabc11dad71b8a02d16e98a6b8d8c3a5c95ca89a812a5193a284f1b8"
+  },
+  "core_review": {
+    "result": "work/response_conditioned_encoder/autoreview_shared_v3.json",
+    "sha256": "ce04f75dadf591121a0ca82d8326112dfb6c7338cc62fb85812240727d60c1d9",
+    "exit_code": 0,
+    "accepted_actionable_findings": 0,
+    "prior_findings_fixed": 3
+  },
+  "response_audit_directory": "work/response_conditioned_encoder/full_response_audit_v3",
+  "response_audit_artifacts": {
+    "archive_audit.json": "ad060bf940e516750dc98f48644369b7e2473db115910be6ccedc2f037241250",
+    "channel_epochs.json": "a1a0014697ca60c60395df599d0ea592df928bb9626329e828dc075126ecf619",
+    "response_evaluations.json": "de7e3fb4e58997c486999f0d62aa2028ea65aebc50ff832d178ea7f596f5c798",
+    "train_join_audit.json": "d65966518a3ec62e022351c6fc6be91e5003c20a916cf5640b8aaba8f59d8ab2"
+  },
+  "polarization_manifest_sha256": "0993d321e4e21a0e612c05b01189d54b2577f5ebb238ee52ebd50300109250bb",
+  "shared_identity_comparison": {
+    "path": "work/response_conditioned_encoder/identity_compatibility.json",
+    "sha256": "3e3daf0affcf704986cc93ce7993ed2164a23e7258c283b8f471dc61f662b6d4",
+    "rows": 112660,
+    "exact_ordered_identity_weights_equal": true
+  },
+  "corrected_audit_population_comparison": {
+    "path": "work/response_conditioned_encoder/join_v3_comparison.json",
+    "sha256": "5f335a5199aa5481f3e93231a7ed859201d574cc1d607939f87b797a5c697e4c",
+    "old_new_decompressed_sample_csv_exactly_equal": true,
+    "station_groups_byte_equal": true
+  },
+  "tests": {
+    "response": 11,
+    "join": 4,
+    "data_export": 11,
+    "model_cpu": 7,
+    "exposure_integration_reported_by_agent": 27,
+    "runner_cpu": 11
+  },
+  "export_command_template": [
+    "python",
+    "export_waveforms.py",
+    "--polarization-source",
+    "/home/ec2-user/polarization_extraction_b0ef777",
+    "--polarization-output",
+    "/mnt/eew-research/runs/polarization_preflight_v2",
+    "--response-audit",
+    "<promoted-full_response_audit_v3>",
+    "--polarization-manifest-sha256",
+    "0993d321e4e21a0e612c05b01189d54b2577f5ebb238ee52ebd50300109250bb",
+    "--response-join-sha256",
+    "d65966518a3ec62e022351c6fc6be91e5003c20a916cf5640b8aaba8f59d8ab2",
+    "--output",
+    "<new-immutable-export-directory>",
+    "--execute"
+  ],
+  "export_budget": {
+    "timeout_seconds": 1800,
+    "threads": 2,
+    "CUDA_VISIBLE_DEVICES": "",
+    "counts_bytes": 1351920000
+  },
+  "runner_budget": {
+    "runs": 8,
+    "run_seconds": 600,
+    "training_grid_seconds": 4800,
+    "cpu_report_seconds": 1800
+  },
+  "ownership": "Parent authorizes source promotion, export and paid GPU launch; runner separate review must finish first for training"
+}
