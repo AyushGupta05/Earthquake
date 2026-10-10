@@ -1,6 +1,6 @@
 # Method status and decisions
 
-9 October 2026, 21:55 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
+10 October 2026, 12:50 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
@@ -20,7 +20,8 @@
 | Causal physical prefix / correlated noise | Fixed protocol, two seeds, 48 synthetic conditions, exact marginalization and causal nulls | 14 tests and clean review; full covariance improves NLL in 11/12 comparisons but worsens all four one-second tail comparisons. No covariance-only GPU extension. [Preflight](earthquake_physical_prefix_preflight.md). |
 | Shared-cap contrast likelihood | 24 TRAIN-only CPU fits; independently refitted matched Gaussian control | Fixed follow-up gate fails; no GPU expansion. [Preflight](earthquake_shared_cap_preflight.md). |
 | Contextual reference score | Five event-excluded teachers; context/shuffle/global/CRPS/ranked-log/properized-AD controls, two student seeds | Completed 36-student/15-teacher pilot. Context worsens M≥4 MAE in both seeds at every horizon versus fixed-average weights. Independent artifact/metric audit passes. [Results](earthquake_context_reference_results.md). |
-| Chile TEAM-style external baseline | Published architecture adaptation, full 25+100 epoch budget; TRAIN-only selection | Running on dedicated AWS A10G via verified flat station cache; completed epoch3 in16.3minutes, epoch4 active. CUDA loader proof passes on recorded subsets. DEV scoring follows completed training; TEST remains sealed. |
+| Noise/polarization information | Fixed18fits, two seeds, TRAIN-event/station holdouts at1/3/5seconds | Complete; allsixgatepanels fail. Independent73artifact hashes and paired point-error checks pass. No geometry or distribution expansion earned. [Results](earthquake_polarization_results.md). |
+| Chile TEAM-style external baseline | Published architecture adaptation, full 25+100 epoch budget; TRAIN-only selection | Running on dedicated AWS A10G via verified flat station cache; all 25 station-pretraining and 76 event-training epochs complete in the saved observation. Epoch77 active. CUDA loader proof passes on recorded subsets. DEV scoring follows completed training; TEST remains sealed. |
 
 The all-static model's completed exploratory scores are:
 
@@ -32,6 +33,6 @@ The all-static model's completed exploratory scores are:
 
 These are means of two seed probability distributions with the distribution mean as the decision. The same validation contains 3,711 earthquakes, only 13 M≥4 and one M≥5; it has been used repeatedly during this research. Record-level sample size does not turn those 13 earthquakes into many independent large events. [Full results and event-bootstrap intervals](earthquake_instrument_full_results.md).
 
-The censored pilot does not earn a finer sub-second extension. Both the full-data proper-score grid and contextual-reference pilot completed without meeting the tail objective. The next information diagnostic separates pre-P marginal noise from cross-component covariance/polarization under new event and station holdouts. Its protocol is fixed before new target fitting; the reviewed extractor is running on112,660 metadata-sampled records. A separate architecture audit examines early response conditioning against the already-tested late metadata features. [Missing-evidence hypotheses](earthquake_missing_evidence_hypotheses.md). Geometry and response conditioning have close prior art and are not accepted novel contributions.
+The censored pilot does not earn a finer sub-second extension. Both the full-data proper-score grid and contextual-reference pilot completed without meeting the tail objective. The fixed noise/polarization diagnostic completed all 18 fits on 112,660 metadata-sampled TRAIN records and failed its acceptance criteria at every horizon/station panel. The independent saved-prediction and hash checks pass; the scientific failure remains retained. Separate fixed controls now test early response conditioning against late metadata, and prior-corrected rare-magnitude exposure against natural-distribution training. Their synthetic implementations are being reviewed before real export/training. [Missing-evidence hypotheses](earthquake_missing_evidence_hypotheses.md). Geometry and response conditioning have close prior art and are not accepted novel contributions.
 
 [Live checkpoint](START_HERE.md) · [Current literature](earthquake_current_competitors.md) · [External data audit](earthquake_external_validation_expansion.md) · [AWS resource controls](aws_execution_note.md)

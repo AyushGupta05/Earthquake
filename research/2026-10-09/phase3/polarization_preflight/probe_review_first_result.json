@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Invalidate the persisted gate when execution provenance fails",
+      "body": "If a tracked source file changes during execution, this check raises after the worker has already persisted `status: \"complete\"` and potentially `gate.pass: true`. The command fails, but the result artifact still advertises a successful run with invalid provenance. Before raising, persist a failed/incomplete status and a nonpassing gate so consumers of `results.json` cannot accept the rejected run.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "run_probe.py",
+        "line": 232
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The fixed ridge objective, shared design, target isolation, metrics, bootstrap, and gate match the frozen contract on inspection. However, a detected execution-provenance failure leaves a potentially passing persisted result. No tests or real-data fitting were run.",
+  "overall_confidence": 0.91
+}

@@ -1,0 +1,225 @@
+{
+  "created_date": "2026-10-10",
+  "kind": "read_only_selected_metrics",
+  "source_path": "work/polarization_preflight/aws_extraction/results.json",
+  "source_sha256": "dbe25b90c6e72cf21c6f883de404002d5df594e3857c7a467b562279f4b2c745",
+  "protocol_sha256": "a9b12a88be3a46e96d0f3f208f64b7728d1a17bb132e146887694e40288a448b",
+  "gate": {
+    "pass": false,
+    "status": "failed",
+    "geometry_all_six": {
+      "distance_km": false,
+      "depth_km": false
+    },
+    "checks": [
+      {
+        "seconds": 1,
+        "subset": "eval_seen",
+        "non_geometry_pass": false
+      },
+      {
+        "seconds": 1,
+        "subset": "eval_held",
+        "non_geometry_pass": false
+      },
+      {
+        "seconds": 3,
+        "subset": "eval_seen",
+        "non_geometry_pass": false
+      },
+      {
+        "seconds": 3,
+        "subset": "eval_held",
+        "non_geometry_pass": false
+      },
+      {
+        "seconds": 5,
+        "subset": "eval_seen",
+        "non_geometry_pass": false
+      },
+      {
+        "seconds": 5,
+        "subset": "eval_held",
+        "non_geometry_pass": false
+      }
+    ],
+    "scope": "Exploratory information gate only; no distribution, novelty or EEW superiority claim"
+  },
+  "completed_fits": 18,
+  "panels": [
+    {
+      "seconds": 1,
+      "subset": "eval_seen",
+      "events": 9357,
+      "tail_events": 66,
+      "tail5_events": 2,
+      "bootstrap": {
+        "events": 9357,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": -0.00019723576741113643,
+        "weighted_magnitude_mae_ci95": [
+          -0.0011739087415352496,
+          0.0007505364081464267
+        ],
+        "tail_events": 66,
+        "m4_event_macro_mae_delta": 0.012811105597113709,
+        "m4_event_macro_mae_ci95": [
+          0.000545674101792822,
+          0.02622797634036915
+        ]
+      },
+      "seed_m4_event_macro_deltas": [
+        0.01846176005276301,
+        0.004496088125853337
+      ],
+      "distance_relative_improvement": -8.99632939879158e-05,
+      "depth_relative_improvement": -0.00026014897068527
+    },
+    {
+      "seconds": 1,
+      "subset": "eval_held",
+      "events": 7757,
+      "tail_events": 66,
+      "tail5_events": 2,
+      "bootstrap": {
+        "events": 7757,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": 0.0009206673089383612,
+        "weighted_magnitude_mae_ci95": [
+          -0.00011707742018265259,
+          0.0019782365144952302
+        ],
+        "tail_events": 66,
+        "m4_event_macro_mae_delta": 0.009676937502308062,
+        "m4_event_macro_mae_ci95": [
+          -0.0013603760101701542,
+          0.020625959002354255
+        ]
+      },
+      "seed_m4_event_macro_deltas": [
+        0.009499274989030138,
+        0.00948076557836175
+      ],
+      "distance_relative_improvement": -0.006428816277302296,
+      "depth_relative_improvement": 0.0005994321067255282
+    },
+    {
+      "seconds": 3,
+      "subset": "eval_seen",
+      "events": 9357,
+      "tail_events": 66,
+      "tail5_events": 2,
+      "bootstrap": {
+        "events": 9357,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": 0.001021737022981092,
+        "weighted_magnitude_mae_ci95": [
+          -0.00046805818181709007,
+          0.0025030611264479324
+        ],
+        "tail_events": 66,
+        "m4_event_macro_mae_delta": 0.014213586995544342,
+        "m4_event_macro_mae_ci95": [
+          0.0001685349408943517,
+          0.029266715390811233
+        ]
+      },
+      "seed_m4_event_macro_deltas": [
+        0.00744794756803846,
+        0.016704687287612097
+      ],
+      "distance_relative_improvement": 0.0003913094557189689,
+      "depth_relative_improvement": -0.0017405038543241158
+    },
+    {
+      "seconds": 3,
+      "subset": "eval_held",
+      "events": 7757,
+      "tail_events": 66,
+      "tail5_events": 2,
+      "bootstrap": {
+        "events": 7757,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": 0.0010209158913505297,
+        "weighted_magnitude_mae_ci95": [
+          -0.00037368883592801057,
+          0.002349001234173543
+        ],
+        "tail_events": 66,
+        "m4_event_macro_mae_delta": 6.540920535714234e-05,
+        "m4_event_macro_mae_ci95": [
+          -0.013073483830016495,
+          0.013543405095504368
+        ]
+      },
+      "seed_m4_event_macro_deltas": [
+        -0.008361874473620134,
+        0.007937136912966936
+      ],
+      "distance_relative_improvement": -0.005184331607062109,
+      "depth_relative_improvement": 0.0005256631320683658
+    },
+    {
+      "seconds": 5,
+      "subset": "eval_seen",
+      "events": 9357,
+      "tail_events": 66,
+      "tail5_events": 2,
+      "bootstrap": {
+        "events": 9357,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": 0.0002284486487126091,
+        "weighted_magnitude_mae_ci95": [
+          -0.0012913936632968828,
+          0.0016796594370183872
+        ],
+        "tail_events": 66,
+        "m4_event_macro_mae_delta": -0.006591077378204815,
+        "m4_event_macro_mae_ci95": [
+          -0.021764573487928252,
+          0.00928134231169732
+        ]
+      },
+      "seed_m4_event_macro_deltas": [
+        -0.011782554342296359,
+        -0.0024610653951764316
+      ],
+      "distance_relative_improvement": 0.0009113587532330047,
+      "depth_relative_improvement": -0.0013368916954445975
+    },
+    {
+      "seconds": 5,
+      "subset": "eval_held",
+      "events": 7757,
+      "tail_events": 66,
+      "tail5_events": 2,
+      "bootstrap": {
+        "events": 7757,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": -0.003510761797837089,
+        "weighted_magnitude_mae_ci95": [
+          -0.0050491024904554755,
+          -0.0019482415480337669
+        ],
+        "tail_events": 66,
+        "m4_event_macro_mae_delta": -0.0011661425683213004,
+        "m4_event_macro_mae_ci95": [
+          -0.01625732155194929,
+          0.013421970006416348
+        ]
+      },
+      "seed_m4_event_macro_deltas": [
+        -0.0070326813135235255,
+        0.004528366472142498
+      ],
+      "distance_relative_improvement": -0.003473198142603051,
+      "depth_relative_improvement": 0.0004678481091804354
+    }
+  ]
+}

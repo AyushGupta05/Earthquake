@@ -1,0 +1,325 @@
+{
+  "scope": "Constructed diagnostic controls; not EEW improvement or a false-positive-rate estimate",
+  "cases": {
+    "null_constant_target": {
+      "B": {
+        "records": 192,
+        "events": 192,
+        "targets": {
+          "magnitude": {
+            "weighted_mae": 4.440892098500626e-15,
+            "weighted_rmse": 4.440892098500626e-15,
+            "event_macro_mae": 4.440892098500626e-15,
+            "event_macro_rmse": 4.440892098500626e-15
+          },
+          "distance_km": {
+            "weighted_mae": 3.197442310920451e-14,
+            "weighted_rmse": 3.197442310920451e-14,
+            "event_macro_mae": 3.197442310920451e-14,
+            "event_macro_rmse": 3.197442310920451e-14
+          },
+          "depth_km": {
+            "weighted_mae": 4.440892098500626e-15,
+            "weighted_rmse": 4.440892098500626e-15,
+            "event_macro_mae": 4.440892098500626e-15,
+            "event_macro_rmse": 4.440892098500626e-15
+          }
+        },
+        "tail": {
+          "4": {
+            "records": 192,
+            "events": 192,
+            "weighted_mae": 4.440892098500626e-15,
+            "weighted_bias": 4.440892098500626e-15,
+            "event_macro_mae": 4.440892098500626e-15,
+            "event_macro_bias": 4.440892098500626e-15
+          },
+          "5": {
+            "records": 0,
+            "events": 0
+          }
+        },
+        "physical_invalid_predictions": {
+          "negative_depth": 0,
+          "nonpositive_distance": 0,
+          "hypocentral_distance_below_depth": 0
+        },
+        "magnitude_medae": 4.440892098500626e-15,
+        "magnitude_cvar95": 4.440892098500626e-15
+      },
+      "D": {
+        "records": 192,
+        "events": 192,
+        "targets": {
+          "magnitude": {
+            "weighted_mae": 4.440892098500626e-15,
+            "weighted_rmse": 4.440892098500626e-15,
+            "event_macro_mae": 4.440892098500626e-15,
+            "event_macro_rmse": 4.440892098500626e-15
+          },
+          "distance_km": {
+            "weighted_mae": 3.197442310920451e-14,
+            "weighted_rmse": 3.197442310920451e-14,
+            "event_macro_mae": 3.197442310920451e-14,
+            "event_macro_rmse": 3.197442310920451e-14
+          },
+          "depth_km": {
+            "weighted_mae": 4.440892098500626e-15,
+            "weighted_rmse": 4.440892098500626e-15,
+            "event_macro_mae": 4.440892098500626e-15,
+            "event_macro_rmse": 4.440892098500626e-15
+          }
+        },
+        "tail": {
+          "4": {
+            "records": 192,
+            "events": 192,
+            "weighted_mae": 4.440892098500626e-15,
+            "weighted_bias": 4.440892098500626e-15,
+            "event_macro_mae": 4.440892098500626e-15,
+            "event_macro_bias": 4.440892098500626e-15
+          },
+          "5": {
+            "records": 0,
+            "events": 0
+          }
+        },
+        "physical_invalid_predictions": {
+          "negative_depth": 0,
+          "nonpositive_distance": 0,
+          "hypocentral_distance_below_depth": 0
+        },
+        "magnitude_medae": 4.440892098500626e-15,
+        "magnitude_cvar95": 4.440892098500626e-15
+      },
+      "F": {
+        "records": 192,
+        "events": 192,
+        "targets": {
+          "magnitude": {
+            "weighted_mae": 5.329070518200751e-15,
+            "weighted_rmse": 5.329070518200751e-15,
+            "event_macro_mae": 5.329070518200751e-15,
+            "event_macro_rmse": 5.329070518200751e-15
+          },
+          "distance_km": {
+            "weighted_mae": 3.197442310920451e-14,
+            "weighted_rmse": 3.197442310920451e-14,
+            "event_macro_mae": 3.197442310920451e-14,
+            "event_macro_rmse": 3.197442310920451e-14
+          },
+          "depth_km": {
+            "weighted_mae": 5.329070518200751e-15,
+            "weighted_rmse": 5.329070518200751e-15,
+            "event_macro_mae": 5.329070518200751e-15,
+            "event_macro_rmse": 5.329070518200751e-15
+          }
+        },
+        "tail": {
+          "4": {
+            "records": 192,
+            "events": 192,
+            "weighted_mae": 5.329070518200751e-15,
+            "weighted_bias": 5.329070518200751e-15,
+            "event_macro_mae": 5.329070518200751e-15,
+            "event_macro_bias": 5.329070518200751e-15
+          },
+          "5": {
+            "records": 0,
+            "events": 0
+          }
+        },
+        "physical_invalid_predictions": {
+          "negative_depth": 0,
+          "nonpositive_distance": 0,
+          "hypocentral_distance_below_depth": 0
+        },
+        "magnitude_medae": 5.329070518200751e-15,
+        "magnitude_cvar95": 5.329070518200751e-15
+      },
+      "F_minus_D_bootstrap": {
+        "events": 192,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": 8.881784197001252e-16,
+        "weighted_magnitude_mae_ci95": [
+          8.881784197001252e-16,
+          8.881784197001252e-16
+        ],
+        "tail_events": 192,
+        "m4_event_macro_mae_delta": 8.881784197001252e-16,
+        "m4_event_macro_mae_ci95": [
+          8.881784197001252e-16,
+          8.881784197001252e-16
+        ]
+      },
+      "null_false_positive_on_tail_margin_and_ci": false
+    },
+    "informative_cross_component": {
+      "B": {
+        "records": 192,
+        "events": 192,
+        "targets": {
+          "magnitude": {
+            "weighted_mae": 0.5003255208333323,
+            "weighted_rmse": 0.5003351741166436,
+            "event_macro_mae": 0.5003255208333323,
+            "event_macro_rmse": 0.5003255208333323
+          },
+          "distance_km": {
+            "weighted_mae": 4.055497617294583,
+            "weighted_rmse": 4.089967286467622,
+            "event_macro_mae": 4.055497617294583,
+            "event_macro_rmse": 4.055497617294583
+          },
+          "depth_km": {
+            "weighted_mae": 1.0138744043236394,
+            "weighted_rmse": 1.022491821616891,
+            "event_macro_mae": 1.0138744043236394,
+            "event_macro_rmse": 1.0138744043236394
+          }
+        },
+        "tail": {
+          "4": {
+            "records": 192,
+            "events": 192,
+            "weighted_mae": 0.5003255208333323,
+            "weighted_bias": -0.0552083333333225,
+            "event_macro_mae": 0.5003255208333323,
+            "event_macro_bias": -0.0552083333333225
+          },
+          "5": {
+            "records": 106,
+            "events": 106,
+            "weighted_mae": 0.5031249999999892,
+            "weighted_bias": -0.5031249999999892,
+            "event_macro_mae": 0.5031249999999892,
+            "event_macro_bias": -0.5031249999999892
+          }
+        },
+        "physical_invalid_predictions": {
+          "negative_depth": 0,
+          "nonpositive_distance": 0,
+          "hypocentral_distance_below_depth": 0
+        },
+        "magnitude_medae": 0.5031249999999892,
+        "magnitude_cvar95": 0.5031249999999892
+      },
+      "D": {
+        "records": 192,
+        "events": 192,
+        "targets": {
+          "magnitude": {
+            "weighted_mae": 0.5003255208333323,
+            "weighted_rmse": 0.5003351741166436,
+            "event_macro_mae": 0.5003255208333323,
+            "event_macro_rmse": 0.5003255208333323
+          },
+          "distance_km": {
+            "weighted_mae": 4.055497617294583,
+            "weighted_rmse": 4.089967286467622,
+            "event_macro_mae": 4.055497617294583,
+            "event_macro_rmse": 4.055497617294583
+          },
+          "depth_km": {
+            "weighted_mae": 1.0138744043236394,
+            "weighted_rmse": 1.022491821616891,
+            "event_macro_mae": 1.0138744043236394,
+            "event_macro_rmse": 1.0138744043236394
+          }
+        },
+        "tail": {
+          "4": {
+            "records": 192,
+            "events": 192,
+            "weighted_mae": 0.5003255208333323,
+            "weighted_bias": -0.0552083333333225,
+            "event_macro_mae": 0.5003255208333323,
+            "event_macro_bias": -0.0552083333333225
+          },
+          "5": {
+            "records": 106,
+            "events": 106,
+            "weighted_mae": 0.5031249999999892,
+            "weighted_bias": -0.5031249999999892,
+            "event_macro_mae": 0.5031249999999892,
+            "event_macro_bias": -0.5031249999999892
+          }
+        },
+        "physical_invalid_predictions": {
+          "negative_depth": 0,
+          "nonpositive_distance": 0,
+          "hypocentral_distance_below_depth": 0
+        },
+        "magnitude_medae": 0.5031249999999892,
+        "magnitude_cvar95": 0.5031249999999892
+      },
+      "F": {
+        "records": 192,
+        "events": 192,
+        "targets": {
+          "magnitude": {
+            "weighted_mae": 7.890127316721267e-05,
+            "weighted_rmse": 7.89027954887798e-05,
+            "event_macro_mae": 7.890127316721267e-05,
+            "event_macro_rmse": 7.890127316721267e-05
+          },
+          "distance_km": {
+            "weighted_mae": 0.000662661604189374,
+            "weighted_rmse": 0.0006827094158706438,
+            "event_macro_mae": 0.000662661604189374,
+            "event_macro_rmse": 0.000662661604189374
+          },
+          "depth_km": {
+            "weighted_mae": 0.00016566540102110525,
+            "weighted_rmse": 0.0001706773539247685,
+            "event_macro_mae": 0.00016566540102110525,
+            "event_macro_rmse": 0.00016566540102110525
+          }
+        },
+        "tail": {
+          "4": {
+            "records": 192,
+            "events": 192,
+            "weighted_mae": 7.890127316721267e-05,
+            "weighted_bias": -8.706347379946097e-06,
+            "event_macro_mae": 7.890127316721267e-05,
+            "event_macro_bias": -8.706347379946097e-06
+          },
+          "5": {
+            "records": 106,
+            "events": 106,
+            "weighted_mae": 7.934275068421925e-05,
+            "weighted_bias": -7.934275068421925e-05,
+            "event_macro_mae": 7.934275068421925e-05,
+            "event_macro_bias": -7.934275068421925e-05
+          }
+        },
+        "physical_invalid_predictions": {
+          "negative_depth": 0,
+          "nonpositive_distance": 0,
+          "hypocentral_distance_below_depth": 0
+        },
+        "magnitude_medae": 7.934275068421925e-05,
+        "magnitude_cvar95": 7.934275068421925e-05
+      },
+      "F_minus_D_bootstrap": {
+        "events": 192,
+        "replicates": 1000,
+        "seed": 20261011,
+        "weighted_magnitude_mae_delta": -0.500246619560165,
+        "weighted_magnitude_mae_ci95": [
+          -0.5006697299085233,
+          -0.4998235092118066
+        ],
+        "tail_events": 192,
+        "m4_event_macro_mae_delta": -0.500246619560165,
+        "m4_event_macro_mae_ci95": [
+          -0.5006697299085233,
+          -0.4998226955380598
+        ]
+      },
+      "null_false_positive_on_tail_margin_and_ci": true
+    }
+  }
+}

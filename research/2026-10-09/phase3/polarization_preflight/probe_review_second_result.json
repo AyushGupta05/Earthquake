@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Preserve finite invalid depths during ensemble reporting",
+      "body": "A finite log-depth prediction such as -40 makes float64 expm1 round to exactly -1 km. Both seed predictions remain finite and correctly count as negative depths, but this ensemble round-trip computes log1p(-1), producing -inf. Score serialization then fails because atomic_json forbids nonfinite values, aborting the run solely because of supplementary transformed-space reporting. The addendum requires finite physically invalid predictions to be retained and counted. Compute the ensemble transform stably from retained seed log predictions, or handle an unavailable transformed metric without rejecting finite original-unit predictions.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "run_probe.py",
+        "line": 165
+      }
+    },
+    {
+      "title": "[P2] Invalidate the gate when final artifact processing fails",
+      "body": "The worker assigns result['gate'] before hashing artifacts and writing the final result. If artifact hashing raises an error, this exception handler changes the status to failed but preserves a potentially passing gate. The parent also leaves that gate unchanged for a nonzero worker exit unless a timeout or code change occurred. Consequently, results.json can advertise gate.pass=true despite failed provenance finalization. Explicitly set a failing gate in the exception path and invalidate it on abnormal worker exit.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "run_probe.py",
+        "line": 195
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The core ridge objective, normalization, masks, seed pairing, bootstrap, and gate thresholds match the frozen contract. Two failure-path defects remain: finite negative depths can abort ensemble reporting, and failed artifact finalization can retain a passing gate. Review used read-only inspection; no tests or real-data fitting were run.",
+  "overall_confidence": 0.96
+}

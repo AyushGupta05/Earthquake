@@ -1,9 +1,9 @@
 {
-  "updated_utc": "2026-10-09T21:55:00Z",
+  "updated_utc": "2026-10-10T12:47:42.643755+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
-  "estimated_total_credit_remaining_usd": 4293.82,
-  "main_credit_remaining_usd": 4118.5,
+  "estimated_total_credit_remaining_usd": 4250.85,
+  "main_credit_remaining_usd": 4075.53,
   "main_credit_expires": "2026-10-31",
   "billing_status": "Delayed console estimates; shared balance, not a reserved allocation",
   "new_instances": [
@@ -70,7 +70,12 @@
         "purpose": "Rebuildable station cache; preserve durable checkpoints on root EBS",
         "data_loss_on_stop": "Instance store is disposable and can be lost on stop/termination; no unique research artifacts to be stored only here",
         "status": "TRAIN cache complete; immutable manifest and event metadata preserved onEBS; resume uses flat station backend"
-      }
+      },
+      "conservative_compute_upper_bound_to_observation_usd": 18.643,
+      "conservative_compute_upper_bound_to_automatic_stop_usd": 37.613,
+      "cost_upper_bound_note": "Includes all time since launch, even stopped intervals; EBS/public IP separate; allowance60USD unchanged. Account-wide credit movement is not attributed to this task.",
+      "automatic_stop_last_verified_utc": "2026-10-10T12:37:27.261436+00:00",
+      "read_only_data_mount_last_verified_utc": "2026-10-10T12:37:27.261436+00:00"
     }
   ],
   "existing_training_instance": "i-0911a2d093e1e2a30",
@@ -203,7 +208,7 @@
       "maximum_seconds": 1200
     },
     "chile_full_baseline": {
-      "status": "running epoch4; completed epoch3 on reviewed flat cache",
+      "status": "running eventepoch77; all25pretraining and76event epochs completed",
       "worker": "i-08b9781ed60d8497f",
       "started_utc": "2026-10-09T19:30:04Z",
       "run": "/home/ec2-user/eew-work/full-runs/team_flat_epoch02_20261009T212200Z",
@@ -231,7 +236,7 @@
         "remaining_station_only_projection_hours": 16.41990649492,
         "projection_excludes_event_training": true
       },
-      "completed_pretrain_epochs": 3,
+      "completed_pretrain_epochs": 25,
       "original_run": "/home/ec2-user/eew-work/full-runs/team_transformer_06742dc492a1_7ec986ada2e7",
       "resume_started_utc": "2026-10-09T21:28:57Z",
       "resume_timeout_seconds": 118867,
@@ -259,7 +264,10 @@
         "learning_rate_next": 0.0001,
         "peak_cuda_allocated_bytes": 5612597760,
         "peak_cuda_reserved_bytes": 5876219904
-      }
+      },
+      "completed_event_epochs": 76,
+      "last_verified_utc": "2026-10-10T12:37:27.261436+00:00",
+      "automatic_stop_verified": true
     },
     "censored_then_affine": {
       "status": "complete",
@@ -422,7 +430,7 @@
       "commit": "e27b860"
     },
     "polarization_extraction": {
-      "status": "running",
+      "status": "complete; exit0; pinned descriptor output and quality manifest verified",
       "started_utc": "2026-10-09T21:50:19Z",
       "maximum_seconds": 1800,
       "kill_grace_seconds": 60,
@@ -433,7 +441,46 @@
       "tests_aws": 31,
       "rows_sampled": 112660,
       "run": "/mnt/eew-research/runs/polarization_preflight_v2",
-      "new_resources": false
+      "new_resources": false,
+      "elapsed_seconds": 716.651036477997,
+      "finished_utc": "2026-10-09T22:02:18Z",
+      "valid_fraction_minimum": 0.9994461021673486,
+      "cache_features_sha256": "367b5acaa7947cba5d655fe96fa455db0c95c6a2399e4a9ebfee8f73a85f41ce"
+    },
+    "polarization_fits": {
+      "status": "complete; exit0; all73artifact and independent point-error checks pass; frozen scientific gate failed in all6panels",
+      "cpu_only": true,
+      "cpu_threads": 2,
+      "fits": 18,
+      "horizons": [
+        1,
+        3,
+        5
+      ],
+      "arms": [
+        "B",
+        "D",
+        "F"
+      ],
+      "seeds": [
+        20261009,
+        20261010
+      ],
+      "maximum_seconds": 1800,
+      "outer_maximum_seconds": 1860,
+      "outer_kill_grace_seconds": 60,
+      "fit_manifest_sha256": "6b38d0968c6f29906b4828b1eb94564e18157f8881157edb4988107612a6b4c5",
+      "autoreview_exit_code": 0,
+      "local_synthetic_tests": 48,
+      "aws_focused_synthetic_tests": 17,
+      "new_resources": false,
+      "run": "/mnt/eew-research/runs/polarization_probe_v2",
+      "started_utc": "2026-10-10T12:39:03Z",
+      "deployed_tests": 17,
+      "finished_utc": "2026-10-10T12:39:35Z",
+      "wall_seconds": 32.62288104696199,
+      "scientific_gate_pass": false,
+      "scientific_decision": "Retain negative result; no geometry/distribution expansion earned"
     }
   },
   "continuation": {
@@ -443,17 +490,20 @@
     "notifications": "Meaningful change, completion, failure or required input only"
   },
   "latest_credit_check": {
-    "checked_utc": "2026-10-09T20:19:43.747904+00:00",
+    "checked_utc": "2026-10-10T12:04:00Z",
     "source": "Authenticated AWS Billing Credits UI, active-credit summary and main-credit service modal",
-    "estimated_total_remaining_usd": 4293.82,
-    "estimated_main_remaining_usd": 4118.5,
+    "estimated_total_remaining_usd": 4250.85,
+    "estimated_main_remaining_usd": 4075.53,
     "main_expiration": "2026-10-31",
     "confirmed_eligible_services": [
       "Amazon Elastic Compute Cloud",
-      "AWS Data Transfer"
+      "AWS Data Transfer",
+      "Amazon Virtual Private Cloud"
     ],
     "cadence_notice": "Estimated amounts update approximately every24hours; totals finalize with monthly invoice",
-    "limitation": "Shared account balance; not task-attributed spend or reservation",
-    "financial_or_account_settings_changed": false
+    "limitation": "Shared balance and delayed estimates; neither task-attributed spend nor reserved allocation. Latest console read completed at about12:04UTC.",
+    "financial_or_account_settings_changed": false,
+    "settled_total_remaining_usd": 4601.39,
+    "settled_main_remaining_usd": 4426.07
   }
 }

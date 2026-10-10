@@ -1,0 +1,24 @@
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:51: RuntimeWarning: divide by zero encountered in matmul
+  return np.concatenate((normalized,np.maximum(normalized@state['random_weight']+state['random_bias'],0)),axis=1)
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:51: RuntimeWarning: overflow encountered in matmul
+  return np.concatenate((normalized,np.maximum(normalized@state['random_weight']+state['random_bias'],0)),axis=1)
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:51: RuntimeWarning: invalid value encountered in matmul
+  return np.concatenate((normalized,np.maximum(normalized@state['random_weight']+state['random_bias'],0)),axis=1)
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:73: RuntimeWarning: divide by zero encountered in matmul
+  gram = z.T@(w[:,None]*z)
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:73: RuntimeWarning: overflow encountered in matmul
+  gram = z.T@(w[:,None]*z)
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:73: RuntimeWarning: invalid value encountered in matmul
+  gram = z.T@(w[:,None]*z)
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:75: RuntimeWarning: divide by zero encountered in matmul
+  state['coefficients'] = np.linalg.solve(gram,z.T@(w[:,None]*y))
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:75: RuntimeWarning: overflow encountered in matmul
+  state['coefficients'] = np.linalg.solve(gram,z.T@(w[:,None]*y))
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:75: RuntimeWarning: invalid value encountered in matmul
+  state['coefficients'] = np.linalg.solve(gram,z.T@(w[:,None]*y))
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:87: RuntimeWarning: divide by zero encountered in matmul
+  transformed = (z@state['coefficients']+state['intercept_standardized'])*state['target_scale']+state['target_mean']
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:87: RuntimeWarning: overflow encountered in matmul
+  transformed = (z@state['coefficients']+state['intercept_standardized'])*state['target_scale']+state['target_mean']
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/polarization_preflight/ridge_probe.py:87: RuntimeWarning: invalid value encountered in matmul
+  transformed = (z@state['coefficients']+state['intercept_standardized'])*state['target_scale']+state['target_mean']
