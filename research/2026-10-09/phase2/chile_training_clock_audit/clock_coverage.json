@@ -1,0 +1,92 @@
+{
+  "kind": "exact_theoretical_enumeration_not_observed_training_draws",
+  "population": "integer crop counts n=100..2999 inclusive",
+  "sample_rate_hz": 100,
+  "first_P_sample_index": 500,
+  "nominal_seconds": "n/100 - 5",
+  "port_cutoff_argument_seconds": "(n + 0.5)/100 - 5; floor recovers n",
+  "retained_sample_indices": "0 <= j < n",
+  "number_of_crop_counts": 2900,
+  "nominal_median_seconds": 10.495,
+  "source_scalar_draw_scope": "one common n per minibatch",
+  "port_draw_scope": "independent n per event in minibatch",
+  "statistics": {
+    "strict_nominal_pre_P": {
+      "definition": "100 <= n <= 499; nominal t < 0",
+      "count": 400,
+      "denominator": 2900,
+      "exact_fraction": "4/29",
+      "percentage": 13.793103448275861
+    },
+    "through_P_boundary_no_post_P_sample_in_port": {
+      "definition": "100 <= n <= 500; retained sample indices < n, first P index 500",
+      "count": 401,
+      "denominator": 2900,
+      "exact_fraction": "401/2900",
+      "percentage": 13.827586206896552
+    },
+    "nominal_0_through_5_inclusive": {
+      "definition": "500 <= n <= 1000",
+      "count": 501,
+      "denominator": 2900,
+      "exact_fraction": "501/2900",
+      "percentage": 17.275862068965516
+    },
+    "positive_through_1": {
+      "definition": "501 <= n <= 600",
+      "count": 100,
+      "denominator": 2900,
+      "exact_fraction": "1/29",
+      "percentage": 3.4482758620689653
+    },
+    "after_1_through_3": {
+      "definition": "601 <= n <= 800",
+      "count": 200,
+      "denominator": 2900,
+      "exact_fraction": "2/29",
+      "percentage": 6.896551724137931
+    },
+    "after_3_through_5": {
+      "definition": "801 <= n <= 1000",
+      "count": 200,
+      "denominator": 2900,
+      "exact_fraction": "2/29",
+      "percentage": 6.896551724137931
+    },
+    "after_5": {
+      "definition": "1001 <= n <= 2999",
+      "count": 1999,
+      "denominator": 2900,
+      "exact_fraction": "1999/2900",
+      "percentage": 68.93103448275862
+    },
+    "at_or_before_5": {
+      "definition": "100 <= n <= 1000",
+      "count": 901,
+      "denominator": 2900,
+      "exact_fraction": "901/2900",
+      "percentage": 31.06896551724138
+    },
+    "exact_target_deadlines_combined": {
+      "definition": "n in {600,800,1000}",
+      "count": 3,
+      "denominator": 2900,
+      "exact_fraction": "3/2900",
+      "percentage": 0.10344827586206896
+    },
+    "within_half_second_target_neighborhoods": {
+      "definition": "union [t - 0.5,t + 0.5), t in {1,3,5}",
+      "count": 300,
+      "denominator": 2900,
+      "exact_fraction": "3/29",
+      "percentage": 10.344827586206897
+    },
+    "within_tenth_second_target_neighborhoods": {
+      "definition": "union [t - 0.1,t + 0.1), t in {1,3,5}",
+      "count": 60,
+      "denominator": 2900,
+      "exact_fraction": "3/145",
+      "percentage": 2.0689655172413794
+    }
+  }
+}

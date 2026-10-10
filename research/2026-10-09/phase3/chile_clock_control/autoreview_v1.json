@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P1] Match the runtime guard to the pinned trainer's recorded schema",
+      "body": "`require_runtime()` unconditionally reads `run['runtime']['station_backend']['strict_runtime']`, but the included pinned trainer's `runtime_identity()` emits flat runtime fields, and its checkpoint/run serialization never adds `station_backend`. A baseline produced by that source therefore raises `KeyError` before either initial replay or continuation can run. Use the recorded runtime schema and frozen precision requirements, or explicitly bind and validate a supplemental runtime receipt that supplies this extension; retain the precision checks.",
+      "priority": "P1",
+      "confidence": 0.87,
+      "category": "bug",
+      "code_location": {
+        "file_path": "clock_training.py",
+        "line": 40
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The runtime guard assumes fields absent from the included trainer's output contract, blocking source-compatible replay and fitting. The clock pairing, remainder handling, completion barrier, and metric calculations otherwise appear consistent on static inspection. No tests or production artifacts were accessed.",
+  "overall_confidence": 0.86
+}

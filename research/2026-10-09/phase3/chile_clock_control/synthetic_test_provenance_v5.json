@@ -1,0 +1,21 @@
+{
+  "cases": 28,
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 /Users/ayush/.venvs/ml/bin/python3 -W error -m unittest discover -s work/chile_clock_control/review_v2 -p test_clock_control.py -v",
+  "exit_code": 0,
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "passed": 27,
+  "platform": "macOS-26.5-arm64-arm-64bit",
+  "python": "3.10.20 (main, May 10 2026, 19:20:50) [Clang 22.1.3 ]",
+  "python_executable": "/Users/ayush/.venvs/ml/bin/python3",
+  "scope": "Invented source-only CPU fixtures; no production arrays, metadata or model checkpoints",
+  "seconds": 1.84,
+  "skip_reason": "h5py absent locally; parent AWS proof must run all28 without skips",
+  "skipped": 1,
+  "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f",
+  "source_snapshot_allowlist_sha256": "446395e51e64d32f3b6962c7038bb3b5b408e3431d172eb27cd1205ff2c74915",
+  "test_log_sha256": "1fecb856610f1c99d294abf080bddf770ef4272f7e962fc2e316a631f617e5cf",
+  "test_source_sha256": "08fe3b049b34a30494025b9fca215f6e3dfa2642cb194b076868a0df8a18d8fa",
+  "torch": "2.14.0",
+  "warnings": "-W error; no filters or observed warning lines"
+}

@@ -1,0 +1,157 @@
+{
+  "acceptance": {
+    "bulk_noninferiority": "each deadline and each seed DEV MAE and MedAE difference discrete-minus-source <=0.002",
+    "negative_limit": "failure rejects this6-epoch9e-6 adaptation, not full deadline retraining",
+    "primary": "equal-weight average across1/3/5 of event-level mean-prediction DEV MAE: discrete lower than source in BOTH seeds",
+    "probability_guardrail": "report all proper NLL deltas; worse NLL means a probability-quality tradeoff",
+    "supporting": "same results on TRAIN-calibration; no tuning",
+    "tail": "Secondary descriptive per-event/deadline only:2 calibration and1 DEV tail event. A bulk gate pass never earns the user high-tail or novelty claim.",
+    "uncertainty": "paired event bootstrap2000 draws fixedseed20261013, event resampling shared across clocks, separate training seeds; report uncertainty, not only signs"
+  },
+  "arms": [
+    "source_uniform",
+    "discrete_1_3_5"
+  ],
+  "artifact_sha256": {
+    "cache": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb",
+    "checkpoint": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+    "dataset_manifest": "4916f30c90a4b3bc6351edadb0c1a720284a1550d95635564d3cbd51d09a892c",
+    "history": "efc390ed56a930fa128eab110ddb636f5ff26b70439d03ec2fb82f79f83007b9",
+    "metadata": "8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1",
+    "metadata_manifest": "ac7c0b691b5ad7f15013befcedbe38c36e2631db20c906aa95149010d8806ea7",
+    "pretrain_history": "457afa2b45caf69bde92fff7082c2330355864fd92137d570fc639d17633f1a1",
+    "run": "4915819dfed00dab2ea4b1fa5ae1e8bdeb63f2f1f2d3b43edbadd0ea8b6981fe",
+    "split_manifest": "86090ec6692b052f32059f15dfd467afcead7063761c605ad9047013e64f9276"
+  },
+  "batch_size": 64,
+  "bootstrap": {
+    "draws": 2000,
+    "seed": 20261013,
+    "statistics": "equal-deadline mean MAE; per-deadline mean/median MAE/MedAE/CVaR95/P95/max and tailMAE; proper NLL/CRPS",
+    "unit": "event, paired across arms and deadlines; separate continuation seeds",
+    "zero_tail_resample": "omit undefined tail statistic only, retain its valid-draw count; explicitly descriptive"
+  },
+  "causal_availability": "same active-mask function and base station draws; different clock may change final active/blinding mask",
+  "checkpoint_policy": "last_completed_epoch6_only",
+  "clock_laws": {
+    "discrete_1_3_5": {
+      "draw_scope": "one independent deadline per event; balanced in expectation",
+      "probabilities": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "seconds": [
+        1,
+        3,
+        5
+      ]
+    },
+    "source_uniform": {
+      "draw_scope": "one independent crop per event; existing port marginal law",
+      "retained_samples_uniform_inclusive": [
+        100,
+        2999
+      ]
+    }
+  },
+  "density_epsilon": 1e-06,
+  "epochs": 6,
+  "evaluation": {
+    "clock": "network-first P",
+    "metrics": [
+      "mean/median MAE",
+      "mean/median MedAE",
+      "bias",
+      "MA>=5.5 mean/median MAE and every tail event",
+      "CVaR95 (ceil(0.05N) largest errors)",
+      "P95 (numpy linear quantile)",
+      "maximum error",
+      "proper Gaussian-mixture NLL",
+      "Gaussian-mixture CRPS"
+    ],
+    "pre_P_seconds": 5,
+    "retained_samples": [
+      600,
+      800,
+      1000
+    ],
+    "seconds": [
+      1,
+      3,
+      5
+    ],
+    "splits": [
+      "calibration",
+      "dev"
+    ],
+    "tail_warning": "Parent reports only2 TRAIN-calibration and1 DEV MA>=5.5 event; tail comparisons and intervals are descriptive only and cannot establish large-event generalization.",
+    "test_reads": 0
+  },
+  "event_label_smoothing": true,
+  "gradient_clip_norm": 1.0,
+  "initial_replay": {
+    "arrays_sha256": "d48cb0696e4dfdc2f4164c0b8570b602382cc415292f342834a2233243309439",
+    "atol": 1e-06,
+    "batch_size": 16,
+    "checkpoint_sha256": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+    "complete_sha256": "cea808da6d430263dd1aca8d3b48fc9d59cddda1d9b3b127e57922083d086223",
+    "events": 16,
+    "rtol": 1e-06,
+    "scope": "Parent-only prefit first16 original TRAIN-fit diagnostic selection; no optimizer, calibration, DEV or TEST; a behavior check, not TF equivalence.",
+    "seconds": [
+      1,
+      3,
+      5
+    ]
+  },
+  "interpretation": "Known-method deployment-clock allocation control, not novelty, a high-magnitude guarantee, full convergence or matched paper superiority.",
+  "magnitude_resampling": 2,
+  "max_stations": 25,
+  "no_scheduler": true,
+  "optimizer": {
+    "amsgrad": false,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "gradient_clip_global_norm": 1,
+    "learning_rate": 9e-06,
+    "name": "torch.optim.Adam",
+    "schedule": "none",
+    "source_relation": "1e-4 * 0.3**2; not inferred actual epoch97 LR",
+    "weight_decay": 0
+  },
+  "prior_clock_audit_sha256": "4f71142230e5cf973a4cc5a7aa78d864cb62daeb6e89571e567799c8046692d8",
+  "prior_recommendation_sha256": "fca182e4b8902be253d2eb8c071fd24ce3c94ee44bcb04ff4a06a2f97e5420e1",
+  "recovery": "Atomic completed-epoch snapshots retain model/optimizer/RNG/history. This version rejects existing outputs and does not silently resume or reset stages; future resume needs separate verified contract.",
+  "rng_policy": "separate device generators for clock, station count uniforms, station rank uniforms, label normals; separate loader order and global model streams; paired seeds across arms",
+  "runtime": {
+    "TF32": "preserve baseline defaults and require cuda_matmul=False/cudnn=True; float32_matmul_precision=highest",
+    "automatic_extension": false,
+    "cublas_workspace_config": ":4096:8",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "fit_seconds_total": 36000,
+    "grid_seconds": 39600,
+    "per_fit_seconds": 9000,
+    "threads": 2,
+    "timeout_interpretation": "incomplete, never a scientific failure",
+    "worker_stop_seconds": 43200
+  },
+  "runtime_amendment": "Parent authorizes10h total fitting cap plus12h worker stop. Prior source-only recommendation proposed6h; budgets are changed before real forwards, fixed epochs/objectives/gates unchanged. No station pretraining or flat-cache rebuild is needed because original event loader uses HDF.",
+  "schema": "chile-matched-clock-control-v1",
+  "seeds": [
+    20261011,
+    20261012
+  ],
+  "start_selected_epoch": 97,
+  "station_blinding": "author",
+  "station_drop": 0.0,
+  "status": "frozen_before_any_new_real_forward",
+  "training_population": "original saved TRAIN fit split; never split again using continuation seeds",
+  "training_stages": "four fits finish and final checkpoint hashes verified before any calibration/DEV forwards; baseline context evaluated last under same path",
+  "workers": 0
+}

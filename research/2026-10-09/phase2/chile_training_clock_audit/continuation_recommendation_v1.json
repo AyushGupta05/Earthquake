@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "status": "recommendation_only_no_implementation_or_execution",
+  "scope": "targeted_known_method_clock_sampling_baseline_control",
+  "start": {
+    "artifact": "same parent-verified model.pth selected by TRAIN-calibration NLL",
+    "selected_epoch": 97,
+    "completed_source_budget": {
+      "station_pretrain_epochs": 25,
+      "event_epochs": 100
+    },
+    "checkpoint_sha256": "MUST_BE_PINNED_FROM_PARENT_VERIFIED_ARTIFACT_BEFORE_IMPLEMENTATION_LAUNCH",
+    "no_other_checkpoint_selection": true,
+    "fresh_identical_optimizer_required": true,
+    "reason": "selected model.pth has no selected-epoch optimizer state"
+  },
+  "arms": {
+    "source_uniform": {
+      "retained_samples_uniform_inclusive": [
+        100,
+        2999
+      ],
+      "draw_scope": "one independent crop per event; existing port marginal law"
+    },
+    "discrete_1_3_5": {
+      "seconds": [
+        1,
+        3,
+        5
+      ],
+      "probabilities": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "draw_scope": "one independent deadline per event; balanced in expectation"
+    }
+  },
+  "seeds": [
+    20261011,
+    20261012
+  ],
+  "optimizer": {
+    "name": "torch.optim.Adam",
+    "learning_rate": 9e-06,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "amsgrad": false,
+    "schedule": "none",
+    "source_relation": "1e-4 * 0.3**2; not inferred actual epoch97 LR",
+    "gradient_clip_global_norm": 1
+  },
+  "training": {
+    "epochs": 6,
+    "additional_pretraining_epochs": 0,
+    "selection": "final_epoch_6_only",
+    "batch_size": "identical to pinned baseline config; no new guessed value",
+    "event_population": "original TRAIN fit only",
+    "resampling": "unchanged source magnitude-resampling policy",
+    "loss": "unchanged source mixture NLL with density epsilon1e-6",
+    "label_smoothing": "unchanged MA>4 Gaussian sd0.05*(MA-4)",
+    "all_event_model_parameters": "same source parameter list; exclude unused single_station_head",
+    "model_capacity": "unchanged",
+    "station_availability": "unchanged strictly observed prefix",
+    "data_order_and_station_selection": "paired exact identities/order/hash across arms",
+    "clock_rng": "separate dedicated stream",
+    "augmentation_rng": "paired independent streams for station blinding and label noise",
+    "dropout_rng": "paired model stream; original configuration dropout0",
+    "station_blinding": "identical base uniforms and ranking scores; same causal active-mask function may yield different final mask"
+  },
+  "evaluation": {
+    "when": "after six completed epochs and final checkpoint hash only",
+    "splits": [
+      "TRAIN-calibration",
+      "DEV"
+    ],
+    "test_reads": 0,
+    "seconds": [
+      1,
+      3,
+      5
+    ],
+    "labels": "original unsmoothed MA",
+    "station_rules": "existing fixed evaluation path",
+    "selection_used_dev": false,
+    "optimizer_used_calibration_or_dev": false,
+    "save_all_predictions": true,
+    "metrics": [
+      "mean_prediction_MAE",
+      "mean_prediction_MedAE",
+      "mean_prediction_bias",
+      "proper_mixture_NLL",
+      "individual_MA_ge5p5_event_errors"
+    ],
+    "support_warning": "parent reports only2 TRAIN-calibration tail events; no generalization claim from these"
+  },
+  "acceptance": {
+    "primary": "equal-weight average across1/3/5 of event-level mean-prediction DEV MAE: discrete lower than source in BOTH seeds",
+    "bulk_noninferiority": "each deadline and each seed DEV MAE and MedAE difference discrete-minus-source <=0.002",
+    "supporting": "same results on TRAIN-calibration; no tuning",
+    "probability_guardrail": "report all proper NLL deltas; worse NLL means a probability-quality tradeoff",
+    "tail": "secondary descriptive per-event/per-deadline comparisons; any tail improvement claim requires matched improvement, not bulk pass; two calibration tail events cannot validate it",
+    "uncertainty": "paired event bootstrap2000 draws fixedseed20261013, event resampling shared across clocks, separate training seeds; report uncertainty, not only signs",
+    "negative_limit": "failure rejects this6-epoch9e-6 adaptation, not full deadline retraining"
+  },
+  "runtime": {
+    "hard_seconds_per_run": 5400,
+    "planned_runs": 4,
+    "maximum_planned_gpu_hours": 6,
+    "automatic_extension": false,
+    "timeout_means": "incomplete experiment, not negative outcome",
+    "launch_prerequisites": [
+      "reviewed exact paired RNG implementation and tests",
+      "parent source/checkpoint/data/split pins",
+      "parent credit/runtime check"
+    ]
+  },
+  "no_real_arrays_or_fits_read_or_run_by_audit": true
+}

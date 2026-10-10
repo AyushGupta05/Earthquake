@@ -1,9 +1,9 @@
 {
-  "updated_utc": "2026-10-10T15:49:20.971133+00:00",
+  "updated_utc": "2026-10-10T22:45:21.808953+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
-  "estimated_total_credit_remaining_usd": 4250.85,
-  "main_credit_remaining_usd": 4075.53,
+  "estimated_total_credit_remaining_usd": 4212.56,
+  "main_credit_remaining_usd": 4037.24,
   "main_credit_expires": "2026-10-31",
   "billing_status": "Delayed console estimates; shared balance, not a reserved allocation",
   "new_instances": [
@@ -699,6 +699,55 @@
       "comparisons": 72,
       "primary_gate_unchanged": true,
       "new_fits": false
+    },
+    "chile_clock_control": {
+      "status": "source_review_restarted_after_interruption_not_launched",
+      "rationale": "Sourceuniform cutoff distribution places68.93percent beyond5seconds; missingmatchedexistingdiscrete1/3/5control",
+      "known_method_not_novelty": true,
+      "arms": [
+        "source_uniform",
+        "discrete_1_3_5"
+      ],
+      "seeds": [
+        20261011,
+        20261012
+      ],
+      "epochs_per_fit": 6,
+      "fits": 4,
+      "learning_rate": 9e-06,
+      "checkpoint_policy": "Same baseline selected97; freshpairedAdam; finalepoch6only",
+      "checkpoint_sha256": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+      "split_policy": "OriginalfixedTRAINfit/calibrationmanifest; no newseed-derivedsplit",
+      "data_path": "existingHDFEventDataset; noflatstationpretraining/rebuildneeded",
+      "maximum_fit_grid_hours": 10,
+      "planned_worker_stop_hours": 12,
+      "credits_rechecked_utc": "2026-10-10T22:45:21.808953+00:00",
+      "launch_prerequisites": [
+        "Focusedsynthetictests",
+        "Cleanisolatedcode-onlyCodexreview",
+        "Pinnedexactartifacts/sources",
+        "PrefitGitcommit",
+        "Automaticworkerstoprearmedandverified",
+        "Read-onlymountverified",
+        "AWSruntimefixtureparityandpairedRNGchecks"
+      ],
+      "tail_support_limits": {
+        "calibration_ma_ge5p5": 2,
+        "dev_ma_ge5p5": 1,
+        "dev_ma_ge6": 0,
+        "test_waveforms_sealed": true
+      },
+      "cost_reservation_note": "Notlaunched; bounded12.072USDcomputeplusmargin withinexisting60USDChileresourceallowance; absolute2000USDeligiblecreditceilingunchanged"
+    },
+    "geonet_tail_census": {
+      "status": "source_only_header_failure_retained; amended_review_before_new_bounded_metadata_recovery",
+      "worker": "localCPUonly",
+      "maximum_minutes": 30,
+      "maximum_bytes": 104857600,
+      "maximum_requests": 500,
+      "waveform_reads": 0,
+      "gpu_jobs": 0,
+      "scientific_scope": "MwlabelandobservedPpickmetadatafeasibility; notrawprefixavailabilityorpredictorvalidation"
     }
   },
   "continuation": {
@@ -708,21 +757,23 @@
     "notifications": "Meaningful change, completion, failure or required input only"
   },
   "latest_credit_check": {
-    "checked_utc": "2026-10-10T12:04:00Z",
-    "source": "Authenticated AWS Billing Credits UI, active-credit summary and main-credit service modal",
-    "estimated_total_remaining_usd": 4250.85,
-    "estimated_main_remaining_usd": 4075.53,
-    "main_expiration": "2026-10-31",
-    "confirmed_eligible_services": [
+    "schema": "aws-credit-coverage-recheck-v1",
+    "checked_utc": "2026-10-10T22:45:21.808953+00:00",
+    "source": "Authenticated AWS Billing Credits UI, main active-credit service modal",
+    "estimated_total_remaining_usd": 4212.56,
+    "estimated_main_remaining_usd": 4037.24,
+    "settled_total_remaining_usd": 4601.39,
+    "settled_main_remaining_usd": 4426.07,
+    "main_expiry": "2026-10-31",
+    "verified_main_eligible_products": [
       "Amazon Elastic Compute Cloud",
       "AWS Data Transfer",
       "Amazon Virtual Private Cloud"
     ],
-    "cadence_notice": "Estimated amounts update approximately every24hours; totals finalize with monthly invoice",
-    "limitation": "Shared balance and delayed estimates; neither task-attributed spend nor reserved allocation. Latest console read completed at about12:04UTC.",
-    "financial_or_account_settings_changed": false,
-    "settled_total_remaining_usd": 4601.39,
-    "settled_main_remaining_usd": 4426.07
+    "ceiling_usd": 2000,
+    "limit_note": "Shared delayed account balance; not a reserved task allocation or task-attributed spend. No redemption/payment/settings change.",
+    "last_receipt_sha256": "abf98330e5dfbce99aa0d2b9d5f1543f6bfafb905206a971452ba4ea3e7bd58a",
+    "receipt": "aws_credit_recheck_20261010T2247.json"
   },
   "existing_worker_verified": {
     "checked_utc": "2026-10-10T13:12:18.685979+00:00",
@@ -750,12 +801,12 @@
     "raw_receipt": "aws_g5_price_20261010.json"
   },
   "prelaunch_budget_envelope": {
-    "checked_utc": "2026-10-10T14:36:02.544317+00:00",
-    "original_worker_entire_uptime_plus_both_grid_caps_usd": 147.414,
+    "checked_utc": "2026-10-10T22:45:42.431807+00:00",
+    "original_worker_entire_uptime_plus_both_grid_caps_usd": 156,
     "chile_worker_resource_allowance_usd": 60,
     "research_volume_full_month_allowance_usd": 8,
     "misc_task_margin_usd": 20,
-    "conservative_total_usd": 235.414,
-    "limitation": "Deliberately charges all existing-worker uptime since4Oct, including unrelated work. Includes fixed grid caps, Chile resource allowance, full month scratch volume, and margin. Not settled task attribution. Eligible credits were verified10Oct and expire31Oct."
+    "conservative_total_usd": 244,
+    "limitation": "Deliberately charges entire original-worker uptime since4Oct (149.583USD), adding6.042USD fixed grid caps and rounding upward; Chile60USD, scratch volume full month8USD, margin20USD. Not settled task attribution. Eligible credits verified10Octexpire31Oct."
   }
 }

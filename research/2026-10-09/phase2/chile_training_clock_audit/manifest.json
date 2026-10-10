@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-10T15:53:31.117601+00:00",
+  "scope": "source_only_training_clock_audit",
+  "no_real_data_or_checkpoint_or_metrics_reads": true,
+  "no_training_launch": true,
+  "author_commit": "8df20877f3a6ef47d3af4d1484ecdb0cdf37e903",
+  "paper_doi": "10.1093/gji/ggab139",
+  "software_doi": "10.5880/GFZ.2.4.2021.003",
+  "port_sources": {
+    "train_team_lm.py": {
+      "original_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/repo/research/2026-10-09/phase3/train_team_lm.py",
+      "snapshot_path": "port_sources/train_team_lm.py",
+      "sha256": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+      "bytes": 43841
+    },
+    "team_lm.py": {
+      "original_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/repo/research/2026-10-09/phase3/team_lm.py",
+      "snapshot_path": "port_sources/team_lm.py",
+      "sha256": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+      "bytes": 18406
+    },
+    "training_artifacts.py": {
+      "original_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/repo/research/2026-10-09/phase3/training_artifacts.py",
+      "snapshot_path": "port_sources/training_artifacts.py",
+      "sha256": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754",
+      "bytes": 11592
+    },
+    "run_team_deterministic.py": {
+      "original_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/repo/research/2026-10-09/phase3/run_team_deterministic.py",
+      "snapshot_path": "port_sources/run_team_deterministic.py",
+      "sha256": "d864fa298fccff2b3c1a19804a4815c8eab23c63353173b4db6fd59246fda586",
+      "bytes": 3724
+    }
+  },
+  "verification": [
+    "6 downloaded primary file hashes reverified",
+    "4 local port source hashes matched expected immutable identities",
+    "integer crop enumeration partition sums to2900",
+    "exact target crop set has3 values",
+    "half-second neighborhood union has300 values",
+    "tenth-second neighborhood union has60 values"
+  ],
+  "files": {
+    "AUDIT.md": {
+      "sha256": "4f71142230e5cf973a4cc5a7aa78d864cb62daeb6e89571e567799c8046692d8",
+      "bytes": 15730
+    },
+    "clock_coverage.json": {
+      "sha256": "c8a2135eaa4a25f19538b27eacd52fffe9b5d40baf87b29965f7309e37b7171a",
+      "bytes": 2873
+    },
+    "continuation_recommendation_v1.json": {
+      "sha256": "fca182e4b8902be253d2eb8c071fd24ce3c94ee44bcb04ff4a06a2f97e5420e1",
+      "bytes": 4700
+    },
+    "port_sources/run_team_deterministic.py": {
+      "sha256": "d864fa298fccff2b3c1a19804a4815c8eab23c63353173b4db6fd59246fda586",
+      "bytes": 3724
+    },
+    "port_sources/team_lm.py": {
+      "sha256": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+      "bytes": 18406
+    },
+    "port_sources/train_team_lm.py": {
+      "sha256": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+      "bytes": 43841
+    },
+    "port_sources/training_artifacts.py": {
+      "sha256": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754",
+      "bytes": 11592
+    },
+    "primary_sources/README.md": {
+      "sha256": "f0eece0eb592c01b38366260ec0cdb219c393a26b9a5a7b8f02b97f32c579ff3",
+      "bytes": 13466
+    },
+    "primary_sources/chile_mag_noloc.json": {
+      "sha256": "f484ab54539ca96be04cabc3440c842fc470d618c0db970fa28fce5eb670652c",
+      "bytes": 1829
+    },
+    "primary_sources/download_manifest.json": {
+      "sha256": "ce8c51410d320f8a82c7788b3a1dfcc46642b3c666b1bf3a51abf76b699e49fb",
+      "bytes": 1569
+    },
+    "primary_sources/loader.py": {
+      "sha256": "7d7ca4c328ddc5568beb2e156febeb25fe5d08996c7ef34085849ce4f281926d",
+      "bytes": 5169
+    },
+    "primary_sources/team_lm.pdf": {
+      "sha256": "76063fcf4d77b7629507fb2d0b678ddfefbe95db6f063cb5ba8619bf6d091b79",
+      "bytes": 4482132
+    },
+    "primary_sources/train.py": {
+      "sha256": "a214a2d1894e95104e3069010a4edcd01354db5e7b239837a29f92ba2b449548",
+      "bytes": 19267
+    },
+    "primary_sources/util.py": {
+      "sha256": "1a8529a29a257440667fe5c278828de7e522333cb803b437dfde5b10b70e9ccd",
+      "bytes": 31351
+    }
+  }
+}

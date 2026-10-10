@@ -1,6 +1,6 @@
 # Claim audit: Chile likelihood floor and robust-density continuation
 
-Checked 10 October 2026. Read-only research; no real-data arrays, checkpoints, Chile held-out outcomes, AWS jobs or production code were accessed. Existing completed INSTANCE report conclusions were read to avoid repeating rejected pilots. The frozen TRAIN diagnostic and running Chile baseline are unchanged.
+Checked 10 October 2026. Read-only research; no real-data arrays, checkpoints, Chile held-out outcomes, AWS jobs or production code were accessed. Existing completed INSTANCE report conclusions were read to avoid repeating rejected pilots. This paragraph records the pre-result research scope. The baseline has since completed; its diagnostic failed the fixed gate with zero qualifying tail events, and no Huber continuation was launched. [Completed diagnosis](earthquake_chile_floor_diagnostic.md).
 
 **Assessment:** the diagnostic is scientifically useful, but a positive result alone supports a training-objective diagnosis. Removing the floor restores standard Gaussian-mixture maximum likelihood. The proposed moment-matched Huber head is an established density construction. A carefully controlled, transferable improvement could support an **EEW-specific empirical method**, but neither its statistics nor the currently proposed combination establishes priority. No clearly stronger mechanism is justified by the inspected source or literature; preserve the cheap diagnostic gate rather than add another architecture.
 
