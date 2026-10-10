@@ -1,11 +1,17 @@
-# GeoNet small waveform audit: frozen preparation
+# GeoNet small waveform audit: independently verified result
 
-The six-event audit has passed 38 invented fixtures and a clean final code-only Codex review. Independent replay reproduced all five census inputs, six event selections, 18 station targets and 36 planned archive requests. No real waveform or StationXML response has yet been requested.
+The six-event audit confirms strict, aligned three-component prefixes and matching transfer-response metadata for 15 of 18 frozen station targets at each requested deadline. All six targets from the two Mw>=7 events pass coverage and the clipping screen. This is data feasibility, not a magnitude-prediction result.
 
-The fixed sample spans Mw bands [5.5,6), [6,7) and >=7, with one event from the earliest and latest eligible years in each band. It retains the first three NZ stations per event at their observed location and channel prefix, with no replacement after an acquisition failure.
+| Time after earliest annotated NZ P | Frozen targets | Usable three-component prefix and screen | Also annotated P before deadline |
+|---|---:|---:|---:|
+| 1 second | 18 | 15 | 9 |
+| 3 seconds | 18 | 15 | 11 |
+| 5 seconds | 18 | 15 | 13 |
 
-The source is ready for a pre-acquisition Git freeze. Only after that freeze will the parent create the hash-bound receipt and execute one local CPU audit, capped at 30 minutes, 100 attempts and 128 MiB of response bodies. No additional AWS resource or model training is involved.
+Two metadata requests returned HTTP204; their paired waveforms were unattempted. One other target lacked the required prebuffer/left-edge coverage. All failures remain in the denominator, with no replacement or filling.
 
-At 1, 3 and 5 seconds, the audit checks strict absolute prefixes, coherent response epochs, three-component coverage, sample-grid alignment and clipping candidates. A finite transfer response establishes metadata consistency; it does not prove physical calibration, absence of clipping or operational warning latency. Raw rows, station identities, response inventories and waveforms remain local and excluded from Git and review.
+The run completed using 34 requests, 1,167,804 body bytes and 67.85 seconds of reported worker elapsed. Independent replay verified 36 artifact hashes, all 54 denominator slots, 144 component and 144 response checks, and 48 actual future-suffix mutations. The source/protocol freeze was committed and pushed as 0c377649b06feb81824169d98b4b51291d6db72e before requests. It passed 38 invented tests and clean code-only Codex review; earlier review findings and the zero-request startup path failure remain retained.
 
-[Protocol](phase2/geonet_waveform_feasibility/PROTOCOL_v1.md) · [Review and tests](phase2/geonet_waveform_feasibility/REVIEW_CLOSEOUT.md) · [Independent frozen selection](phase2/geonet_waveform_feasibility/independent_plan_replay.json)
+This deterministic oldest/latest-year sample cannot estimate availability for all 149 larger events. Finite response metadata does not establish independent physical calibration; a clean screen does not verify absence of clipping. P picks and the clock are retrospective, with no operational picker or telemetry replay. No model training or new AWS resource followed from this audit.
+
+[Full results](phase2/geonet_waveform_feasibility/RESULTS.md) · [Independent replay](phase2/geonet_waveform_feasibility/independent_replay.json) · [Frozen protocol](phase2/geonet_waveform_feasibility/PROTOCOL_v1.md)

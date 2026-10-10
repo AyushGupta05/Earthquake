@@ -1,6 +1,6 @@
 # Method status and decisions
 
-10 October 2026, 23:00 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
+11 October2026 (London); last worker observation10October23:40UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record.
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
@@ -26,7 +26,9 @@
 | Chile TEAM-style external baseline | Published architecture adaptation, full 25+100 epoch budget; TRAIN-only selection | Complete with exit 0. TRAIN-calibration NLL selects epoch 97; DEV was reported afterward. Checkpoint and histories preserved locally with verified hashes. TEST remains sealed. |
 | Chile likelihood-floor mechanism | Frozen TRAIN-fit-only incidence/analytic-gradient diagnostic before any loss change | Complete, with 24 tests and clean review. Zero of 20 fitting tail events meets the fixed gate; independent Gaussian/gradient/gate replay passes. Huber continuation rejected. [Diagnostic](earthquake_chile_floor_diagnostic.md). |
 | Chile matched early training clocks | Same selected checkpoint, two seeds, four fixed six-epoch continuations; uniform vs discrete 1/3/5 | Grid launched after28 AWS tests, exact invented CUDA replay and exact first16 TRAIN replay. Results pending; known-method baseline control. [Protocol and runtime proof](earthquake_chile_clock_control.md). |
-| GeoNet independent tail feasibility | Pinned CMT labels and preferred-origin-associated NZ P-family picks | Complete and independently replayed:149 Mw≥5.5/60 Mw≥6/15 Mw≥7; small waveform/response audit being prepared. No waveform or model result. [Census](earthquake_geonet_tail_census.md). |
+| GeoNet independent tail feasibility | Pinned CMT labels and preferred-origin-associated NZ P-family picks | Census complete:149 Mw≥5.5/60 Mw≥6/15 Mw≥7. Frozen six-event raw audit independently confirms15/18 strict3C prefixes at1/3/5; no model result. [Census](earthquake_geonet_tail_census.md). |
+| Full-response posterior consistency | Exact causal transformations, independent noisy views and joint-teacher KL arithmetic | Unconditional sensor-posterior equality invalid; SymVAE/distillation prior art strong. Zero learned fits. [Audit](earthquake_response_posterior_consistency_audit.md). |
+| Verified physical hardware clipping | Source audit plus25 exact invented observation-law checks | Distinct from growth censoring, with established magnitude-likelihood and sensor-switching prior art; deployed rails/health unverified. No new fit. [Audit](earthquake_physical_clipping_audit.md). |
 | Continuous resampling/prior correction | Exact source repeat law, noisy-label likelihood and Gaussian integration arithmetic | Source noise does not commute with inverse exposure; no new fit justified. [Audit](earthquake_continuous_prior_audit.md). |
 
 The all-static model's completed exploratory scores are:

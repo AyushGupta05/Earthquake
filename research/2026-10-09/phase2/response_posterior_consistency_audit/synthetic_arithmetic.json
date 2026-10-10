@@ -1,0 +1,367 @@
+{
+  "status": "invented_exact_no_fit_arithmetic",
+  "scope": "All source amplitudes, observations, responses and uncertainty laws are invented; U is not earthquake magnitude. One sample per second is only a label convenience, not realistic sampling or real-time proof. No real data, model, response inventory or prediction arrays were read. No learned fit or implementation file was created.",
+  "arithmetic": "Python standard-library Fraction for matrix/posterior identities; floating-point erf only for coverage/tail diagnostics; deterministic with no random draws.",
+  "causal_response_definition": "Noise-free response state r_k=(4/5)r_(k-1)+U; observed A_k=r_k+e_k. Initial S0|b~N(3/10,1/2), with independent external output noise variance 1/4. H_A is the lower-triangular impulse response. B=T A with T=I+(1/2)L, a known zero-initialized causal extra FIR channel; B state contribution and all noise transform exactly. This defines a coupled counterfactual representation, not an independently noisy second instrument.",
+  "boundary_control": "Additional-boundary-information control replaces Var(S0|b)=1/2 by 1/100 at identical mean; this adds context information and cannot be attributed to representation regularization.",
+  "response_prefix_controls": [
+    {
+      "illustrative_prefix_label_seconds": 1,
+      "samples": 1,
+      "source_design_A": [
+        1.0
+      ],
+      "source_design_B": [
+        1.0
+      ],
+      "observed_A_invented": [
+        0.7
+      ],
+      "observed_B_invented": [
+        0.7
+      ],
+      "raw_full_state_noise": {
+        "mean": 0.2929936305732484,
+        "variance": 0.3630573248407643,
+        "exact_mean": "46/157",
+        "exact_variance": "57/157"
+      },
+      "causal_invertible_mapping_full_transformed_state_noise": {
+        "mean": 0.2929936305732484,
+        "variance": 0.3630573248407643,
+        "exact_mean": "46/157",
+        "exact_variance": "57/157"
+      },
+      "unchanged_white_output_noise_invalid_for_this_mapping": {
+        "mean": 0.2929936305732484,
+        "variance": 0.3630573248407643,
+        "exact_mean": "46/157",
+        "exact_variance": "57/157"
+      },
+      "additional_boundary_information": {
+        "mean": 0.36612543775867556,
+        "variance": 0.20407513530722698,
+        "exact_mean": "1150/3141",
+        "exact_variance": "641/3141"
+      },
+      "posterior_tie_exact_rational": true
+    },
+    {
+      "illustrative_prefix_label_seconds": 3,
+      "samples": 3,
+      "source_design_A": [
+        1.0,
+        1.8,
+        2.44
+      ],
+      "source_design_B": [
+        1.0,
+        2.3,
+        3.34
+      ],
+      "observed_A_invented": [
+        0.7,
+        1.3,
+        1.1
+      ],
+      "observed_B_invented": [
+        0.7,
+        1.65,
+        1.75
+      ],
+      "raw_full_state_noise": {
+        "mean": 0.41866883371444225,
+        "variance": 0.052224068066454084,
+        "exact_mean": "453886/1084117",
+        "exact_variance": "56617/1084117"
+      },
+      "causal_invertible_mapping_full_transformed_state_noise": {
+        "mean": 0.41866883371444225,
+        "variance": 0.052224068066454084,
+        "exact_mean": "453886/1084117",
+        "exact_variance": "56617/1084117"
+      },
+      "unchanged_white_output_noise_invalid_for_this_mapping": {
+        "mean": 0.43681865560609956,
+        "variance": 0.04578473426531584,
+        "exact_mean": "868748/1988807",
+        "exact_variance": "91057/1988807"
+      },
+      "additional_boundary_information": {
+        "mean": 0.4548996871322122,
+        "variance": 0.02486545608543845,
+        "exact_mean": "7521230/16533821",
+        "exact_variance": "411121/16533821"
+      },
+      "posterior_tie_exact_rational": true
+    },
+    {
+      "illustrative_prefix_label_seconds": 5,
+      "samples": 5,
+      "source_design_A": [
+        1.0,
+        1.8,
+        2.44,
+        2.952,
+        3.3616
+      ],
+      "source_design_B": [
+        1.0,
+        2.3,
+        3.34,
+        4.172,
+        4.8376
+      ],
+      "observed_A_invented": [
+        0.7,
+        1.3,
+        1.1,
+        0.9,
+        1.2
+      ],
+      "observed_B_invented": [
+        0.7,
+        1.65,
+        1.75,
+        1.45,
+        1.65
+      ],
+      "raw_full_state_noise": {
+        "mean": 0.3045402853272049,
+        "variance": 0.015723310594205786,
+        "exact_mean": "789460536/2592302477",
+        "exact_variance": "40759577/2592302477"
+      },
+      "causal_invertible_mapping_full_transformed_state_noise": {
+        "mean": 0.3045402853272049,
+        "variance": 0.015723310594205786,
+        "exact_mean": "789460536/2592302477",
+        "exact_variance": "40759577/2592302477"
+      },
+      "unchanged_white_output_noise_invalid_for_this_mapping": {
+        "mean": 0.28183304135162535,
+        "variance": 0.010738667330545997,
+        "exact_mean": "1866029705/6621046617",
+        "exact_variance": "71101217/6621046617"
+      },
+      "additional_boundary_information": {
+        "mean": 0.3512314881319366,
+        "variance": 0.008527902855091073,
+        "exact_mean": "3564491080/10148552167",
+        "exact_variance": "86545867/10148552167"
+      },
+      "posterior_tie_exact_rational": true
+    }
+  ],
+  "independent_sensor_pointwise_equality_counterexample": {
+    "prior_variance": 1,
+    "A_observation": 1,
+    "B_observation": -1,
+    "noise_variance_each": 1,
+    "posterior_A": {
+      "mean": 0.5,
+      "variance": 0.5,
+      "exact_mean": "1/2",
+      "exact_variance": "1/2"
+    },
+    "posterior_B": {
+      "mean": -0.5,
+      "variance": 0.5,
+      "exact_mean": "-1/2",
+      "exact_variance": "1/2"
+    },
+    "joint_posterior": {
+      "mean": 0.0,
+      "variance": 0.3333333333333333,
+      "exact_mean": "0",
+      "exact_variance": "1/3"
+    },
+    "KL_A_to_B": 1,
+    "KL_B_to_A": 1,
+    "pointwise_posterior_equality_false": true
+  },
+  "known_garbling_projection": {
+    "B_observation": 1,
+    "noise_variance_A": 0.25,
+    "additional_noise_variance": 1,
+    "posterior_A_at_A_equal_1": {
+      "mean": 0.8,
+      "variance": 0.2,
+      "exact_mean": "4/5",
+      "exact_variance": "1/5"
+    },
+    "A_given_B": {
+      "mean": 0.5555555555555556,
+      "variance": 0.5555555555555556,
+      "exact_mean": "5/9",
+      "exact_variance": "5/9"
+    },
+    "projected_teacher_mixture": {
+      "mean": 0.4444444444444444,
+      "variance": 0.5555555555555556,
+      "exact_mean": "4/9",
+      "exact_variance": "5/9"
+    },
+    "direct_B_posterior": {
+      "mean": 0.4444444444444444,
+      "variance": 0.5555555555555556,
+      "exact_mean": "4/9",
+      "exact_variance": "5/9"
+    },
+    "plug_in_mean_teacher_wrong_variance": 0.2,
+    "mixture_equals_direct_exact_rational": true
+  },
+  "joint_teacher_projection_and_KL_direction": [
+    {
+      "illustrative_prefix_label_seconds": 1,
+      "B_each_invented_observation": 1,
+      "single_view_posterior": {
+        "mean": 0.5,
+        "variance": 0.5,
+        "exact_mean": "1/2",
+        "exact_variance": "1/2"
+      },
+      "joint_teacher_conditional_expected_mean": 0.5,
+      "joint_teacher_variance": 0.3333333333333333,
+      "conditional_variance_of_teacher_mean": 0.16666666666666666,
+      "teacher_to_student_KL_population_optimum": {
+        "mean": 0.5,
+        "variance": 0.5,
+        "exact_mean": "1/2",
+        "exact_variance": "1/2"
+      },
+      "student_to_teacher_KL_population_optimum": {
+        "mean": 0.5,
+        "variance": 0.3333333333333333,
+        "exact_mean": "1/2",
+        "exact_variance": "1/3"
+      },
+      "reverse_KL_nominal_95_percent_interval_actual_coverage": 0.8904688161476249,
+      "true_single_view_probability_U_above_2": 0.016947426762344637,
+      "reverse_KL_probability_U_above_2": 0.004687384229717441,
+      "projection_identity_exact_rational": true
+    },
+    {
+      "illustrative_prefix_label_seconds": 3,
+      "B_each_invented_observation": 1,
+      "single_view_posterior": {
+        "mean": 0.75,
+        "variance": 0.25,
+        "exact_mean": "3/4",
+        "exact_variance": "1/4"
+      },
+      "joint_teacher_conditional_expected_mean": 0.75,
+      "joint_teacher_variance": 0.14285714285714285,
+      "conditional_variance_of_teacher_mean": 0.10714285714285714,
+      "teacher_to_student_KL_population_optimum": {
+        "mean": 0.75,
+        "variance": 0.25,
+        "exact_mean": "3/4",
+        "exact_variance": "1/4"
+      },
+      "student_to_teacher_KL_population_optimum": {
+        "mean": 0.75,
+        "variance": 0.14285714285714285,
+        "exact_mean": "3/4",
+        "exact_variance": "1/7"
+      },
+      "reverse_KL_nominal_95_percent_interval_actual_coverage": 0.8615515128151464,
+      "true_single_view_probability_U_above_2": 0.0062096653257761375,
+      "reverse_KL_probability_U_above_2": 0.0004711862025758094,
+      "projection_identity_exact_rational": true
+    },
+    {
+      "illustrative_prefix_label_seconds": 5,
+      "B_each_invented_observation": 1,
+      "single_view_posterior": {
+        "mean": 0.8333333333333334,
+        "variance": 0.16666666666666666,
+        "exact_mean": "5/6",
+        "exact_variance": "1/6"
+      },
+      "joint_teacher_conditional_expected_mean": 0.8333333333333334,
+      "joint_teacher_variance": 0.09090909090909091,
+      "conditional_variance_of_teacher_mean": 0.07575757575757576,
+      "teacher_to_student_KL_population_optimum": {
+        "mean": 0.8333333333333334,
+        "variance": 0.16666666666666666,
+        "exact_mean": "5/6",
+        "exact_variance": "1/6"
+      },
+      "student_to_teacher_KL_population_optimum": {
+        "mean": 0.8333333333333334,
+        "variance": 0.09090909090909091,
+        "exact_mean": "5/6",
+        "exact_variance": "1/11"
+      },
+      "reverse_KL_nominal_95_percent_interval_actual_coverage": 0.8522512733844125,
+      "true_single_view_probability_U_above_2": 0.0021333624110880683,
+      "reverse_KL_probability_U_above_2": 5.455274638154008e-05,
+      "projection_identity_exact_rational": true
+    }
+  ],
+  "noninvertible_delay_replacement_counterexample": {
+    "response_A_one_sample_delay": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "physical_history_1": [
+      1,
+      2
+    ],
+    "physical_history_2": [
+      1,
+      9
+    ],
+    "same_A_available_prefix": [
+      0,
+      1
+    ],
+    "response_B_identity_prefix_1": [
+      1,
+      2
+    ],
+    "response_B_identity_prefix_2": [
+      1,
+      9
+    ],
+    "deterministic_A_to_B_replacement_impossible_on_this_support": true
+  },
+  "checks": {
+    "three_exact_response_posterior_ties": true,
+    "wrong_transformed_noise_differs_at_3_and_5": true,
+    "more_boundary_information_reduces_variance_at_all_three": true,
+    "independent_sensor_posteriors_differ": true,
+    "known_garbling_projection_exact": true,
+    "three_joint_teacher_projection_identities_exact": true,
+    "three_reverse_KL_undercoverage_cases": true,
+    "delayed_prefix_does_not_identify_identity_response": true,
+    "three_joint_state_precision_vs_marginal_covariance_ties": true
+  },
+  "independent_two_latent_precision_check": [
+    {
+      "samples": 1,
+      "mean_exact": "46/157",
+      "variance_exact": "57/157",
+      "matches_marginal_count_covariance": true
+    },
+    {
+      "samples": 3,
+      "mean_exact": "453886/1084117",
+      "variance_exact": "56617/1084117",
+      "matches_marginal_count_covariance": true
+    },
+    {
+      "samples": 5,
+      "mean_exact": "789460536/2592302477",
+      "variance_exact": "40759577/2592302477",
+      "matches_marginal_count_covariance": true
+    }
+  ]
+}

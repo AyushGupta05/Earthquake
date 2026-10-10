@@ -1,0 +1,223 @@
+{
+  "scope": "Invented discrete scalar censoring and state-uncertainty counterexample; no seismological calibration or empirical performance claim.",
+  "observation": "Y=min(U,c); upper observation represents U>=c. A real clip flag requires its actual threshold semantics and quantization/operator.",
+  "source_prior": {
+    "small": {
+      "fraction": "1/2",
+      "decimal": 0.5
+    },
+    "large": {
+      "fraction": "1/2",
+      "decimal": 0.5
+    }
+  },
+  "latent_probabilities": [
+    {
+      "U": 0,
+      "small": {
+        "fraction": "1/10",
+        "decimal": 0.1
+      },
+      "large": {
+        "fraction": "1/20",
+        "decimal": 0.05
+      }
+    },
+    {
+      "U": 1,
+      "small": {
+        "fraction": "3/10",
+        "decimal": 0.3
+      },
+      "large": {
+        "fraction": "1/20",
+        "decimal": 0.05
+      }
+    },
+    {
+      "U": 2,
+      "small": {
+        "fraction": "1/2",
+        "decimal": 0.5
+      },
+      "large": {
+        "fraction": "1/20",
+        "decimal": 0.05
+      }
+    },
+    {
+      "U": 4,
+      "small": {
+        "fraction": "1/10",
+        "decimal": 0.1
+      },
+      "large": {
+        "fraction": "17/20",
+        "decimal": 0.85
+      }
+    }
+  ],
+  "verified_rail_c2_Y2": {
+    "small_likelihood": {
+      "fraction": "3/5",
+      "decimal": 0.6
+    },
+    "large_likelihood": {
+      "fraction": "9/10",
+      "decimal": 0.9
+    },
+    "posterior_large": {
+      "fraction": "3/5",
+      "decimal": 0.6
+    }
+  },
+  "incorrect_literal_U2": {
+    "small_likelihood": {
+      "fraction": "1/2",
+      "decimal": 0.5
+    },
+    "large_likelihood": {
+      "fraction": "1/20",
+      "decimal": 0.05
+    },
+    "posterior_large": {
+      "fraction": "1/11",
+      "decimal": 0.09090909090909091
+    }
+  },
+  "known_on_scale_c8_Y2": {
+    "posterior_large": {
+      "fraction": "1/11",
+      "decimal": 0.09090909090909091
+    }
+  },
+  "unknown_rail_Y2": {
+    "settings": {
+      "2": {
+        "fraction": "1/2",
+        "decimal": 0.5
+      },
+      "8": {
+        "fraction": "1/2",
+        "decimal": 0.5
+      }
+    },
+    "assumption": "Range independent of source; likelihood marginalized over range",
+    "small_likelihood": {
+      "fraction": "11/20",
+      "decimal": 0.55
+    },
+    "large_likelihood": {
+      "fraction": "19/40",
+      "decimal": 0.475
+    },
+    "posterior_large": {
+      "fraction": "19/41",
+      "decimal": 0.4634146341463415
+    }
+  },
+  "unknown_health_Y2": {
+    "healthy_c2_probability": {
+      "fraction": "1/10",
+      "decimal": 0.1
+    },
+    "stuck_at_2_probability": {
+      "fraction": "9/10",
+      "decimal": 0.9
+    },
+    "assumption": "Health independent of source; stuck output fixed at2 regardless of U",
+    "small_likelihood": {
+      "fraction": "24/25",
+      "decimal": 0.96
+    },
+    "large_likelihood": {
+      "fraction": "99/100",
+      "decimal": 0.99
+    },
+    "posterior_large": {
+      "fraction": "33/65",
+      "decimal": 0.5076923076923077
+    }
+  },
+  "identical_candidate_prefixes": {
+    "samples": 8,
+    "recorded_prefix": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "clipped_U": 4,
+    "clipped_c": 2,
+    "on_scale_U": 2,
+    "on_scale_c": 8,
+    "fault": "Stuck-at2 source-independent output; identical candidate screen"
+  },
+  "gain_correction": {
+    "true_physical": {
+      "fraction": "4",
+      "decimal": 4.0
+    },
+    "gain": {
+      "fraction": "1",
+      "decimal": 1.0
+    },
+    "rail": {
+      "fraction": "2",
+      "decimal": 2.0
+    },
+    "recorded": {
+      "fraction": "2",
+      "decimal": 2.0
+    },
+    "corrected": {
+      "fraction": "2",
+      "decimal": 2.0
+    },
+    "coherent_rescale_factor": {
+      "fraction": "3",
+      "decimal": 3.0
+    },
+    "coherently_rescaled_corrected": {
+      "fraction": "2",
+      "decimal": 2.0
+    }
+  },
+  "verification": {
+    "interpreter": "3.10.20 (main, May 10 2026, 19:20:50) [Clang 22.1.3 ]",
+    "arithmetic": "Python stdlib Fraction; exact probability sums and comparisons",
+    "assertions_passed": 25,
+    "assertion_names": [
+      "small_latent_normalized",
+      "small_latent_nonnegative",
+      "large_latent_normalized",
+      "large_latent_nonnegative",
+      "small_c2_observation_normalized",
+      "large_c2_observation_normalized",
+      "small_c8_observation_normalized",
+      "large_c8_observation_normalized",
+      "known_rail_small_mass",
+      "known_rail_large_mass",
+      "known_rail_posterior",
+      "incorrect_literal_posterior",
+      "on_scale_c8_posterior",
+      "unknown_rail_small_likelihood",
+      "unknown_rail_large_likelihood",
+      "unknown_rail_posterior",
+      "state_changes_inference",
+      "unknown_health_small_likelihood",
+      "unknown_health_large_likelihood",
+      "unknown_health_posterior",
+      "candidate_prefix_identical_clipped_and_on_scale",
+      "candidate_prefix_identical_fault",
+      "hard_clip_noninjective",
+      "gain_correction_does_not_restore",
+      "coherent_rescaling_preserves_same_loss"
+    ]
+  },
+  "limits": "No reusable software; one-off arithmetic only. Neither candidate plateau nor hypothetical range/gain proves a real channel clipped within1/3/5 seconds."
+}

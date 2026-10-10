@@ -1,0 +1,55 @@
+{
+  "scope": "Docs-only physical clipping source audit; only four required research/protocol documents read locally",
+  "inputs": [
+    {
+      "path": "outputs/earthquake_censored_results.md",
+      "bytes": 13908,
+      "sha256": "4a817ba81449a3d144f21221ef9df5be1518e2149420759745d72ae945bf70f5"
+    },
+    {
+      "path": "outputs/earthquake_physical_prefix_preflight.md",
+      "bytes": 12465,
+      "sha256": "8dc2b6021d1f703dda4762f1d9b237bcf060457a52d6d3740eefd00480fd1677"
+    },
+    {
+      "path": "outputs/earthquake_instrument_scientific_audit.md",
+      "bytes": 18701,
+      "sha256": "0df6e5c8ad8a67107d2158ccc177e2b6cbddfbfafee3c980451e3ab23460cb19"
+    },
+    {
+      "path": "work/geonet_waveform_feasibility/PROTOCOL_v1.md",
+      "bytes": 8382,
+      "sha256": "e420780bc21e228a78013f7106655beb07d646d047553fcd17ba0066da1173b6"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "work/physical_clipping_source_audit/AUDIT.md",
+      "bytes": 18171,
+      "sha256": "599e53ea9a9cde27518b170dd1abc1bca6a804b865de4155e67843951fb602ef"
+    },
+    {
+      "path": "work/physical_clipping_source_audit/counterexample.json",
+      "bytes": 5207,
+      "sha256": "d354fc2ab1c28beb858df6918a51993cac28bef386a7e6302071f5f70dc39b88"
+    },
+    {
+      "path": "work/physical_clipping_source_audit/primary_sources.json",
+      "bytes": 6083,
+      "sha256": "6cc4df4c3bddd0ca8d941610ff0f27c83deae943584df6062426d79d293124cc"
+    }
+  ],
+  "verification": {
+    "exact_fraction_assertions_passed": 25,
+    "raw_data_read": false,
+    "new_data_acquisitions": 0,
+    "implementation_files": 0,
+    "fits": 0,
+    "aws_actions": 0,
+    "reviewer_submissions": 0,
+    "git_actions": 0
+  },
+  "decision": "No new clipping diagnostic or fit earned; frozen existing candidate screen unaffected.",
+  "gate": "Epoch-specific hardware operator/range and independent timely health/clipping provenance unverified in inspected documents.",
+  "autoreview": "Not applicable and no submission requested: prose/JSON artifacts plus one-off invented arithmetic only."
+}

@@ -1,0 +1,116 @@
+{
+  "scope": "Primary papers and official instrument/seismology docs; no provider waveform/inventory acquisition or author code execution",
+  "access_date_london": "2026-10-11",
+  "sources": [
+    {
+      "id": "ElarmS2007",
+      "title": "Toward earthquake early warning in northern California",
+      "doi": "10.1029/2006JB004830",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2006JB004830",
+      "scope": "Full primary publisher text, section 2.3.5, paragraphs 22-23",
+      "alternate_author_source": "https://seismo.berkeley.edu/Docs/WurmanPhDThesis2010.pdf"
+    },
+    {
+      "id": "VS_implementation",
+      "title": "Virtual Seismologist, ETHZ-SED SeisComP EEW system documentation",
+      "url": "https://docs.gempa.de/sed-eew/current/base/intro-vs.html",
+      "scope": "Full official implementation documentation"
+    },
+    {
+      "id": "McLaughlin1988",
+      "title": "Determination of Event Magnitudes with Correlated Data and Censoring: A Maximum Likelihood Approach",
+      "doi": "10.1111/j.1365-246X.1988.tb00448.x",
+      "url": "https://academic.oup.com/gji/article/95/1/31/601798",
+      "scope": "Primary publisher indexed summary; direct full text returned 500. Upper clipping and correlation mechanism verified; exact implementation/EEW deadline result not asserted."
+    },
+    {
+      "id": "Kleckner2022",
+      "title": "Automated detection of clipping in broadband earthquake records",
+      "doi": "10.1785/0220210028",
+      "url": "https://www.usgs.gov/publications/automated-detection-clipping-broadband-earthquake-records",
+      "scope": "Official author/institution publication abstract; primary holdout record-classification evidence only"
+    },
+    {
+      "id": "Zhang2016",
+      "title": "Restoration of clipped seismic waveforms using projection onto convex sets method",
+      "doi": "10.1038/srep39056",
+      "url": "https://www.nature.com/articles/srep39056",
+      "scope": "Full primary publisher article; restoration methodology and co-located different-gain reference"
+    },
+    {
+      "id": "Edwards_CWR",
+      "title": "Reconstruction of Clipped Time-History Records, with Application to Ground Motions from the 1992 ML 5.8 Roermond, Netherlands, Earthquake",
+      "doi": "10.1785/0220250139",
+      "url": "https://doi.org/10.1785/0220250139",
+      "institutional_url": "https://publi2-as.oma.be/record/7886/",
+      "scope": "Primary publisher indexed excerpts and author institutional metadata; direct DOI full text failed. No detailed causal-prefix algorithm/result claim."
+    },
+    {
+      "id": "Trugman2019",
+      "title": "Peak ground displacement saturates exactly when expected: Implications for earthquake early warning",
+      "doi": "10.1029/2018JB017093",
+      "url": "https://pubs.usgs.gov/publication/70203402",
+      "author_paper_url": "https://www.its.caltech.edu/~pagem/EEW_PGD_Saturation.pdf",
+      "scope": "Official author/institution abstract and author-hosted indexed first page; time-window/source scaling, distinct from hardware clipping"
+    },
+    {
+      "id": "Peacock2017",
+      "title": "Joint maximum-likelihood magnitudes of presumed underground nuclear test explosions",
+      "doi": "10.1093/gji/ggx130",
+      "url": "https://academic.oup.com/gji/article/210/2/621/3805463",
+      "scope": "Full primary publisher text; used to bound claim because implemented analysis emphasizes lower-noise censoring"
+    },
+    {
+      "id": "Centaur_CTR4",
+      "title": "Nanometrics Centaur CTR4 technical specification 1001.01.27",
+      "url": "https://nanometrics.ca/hubfs/Downloads/Data%20Sheets/Centaur%20DigitalRecorder%20Data%20Sheet_1001.01.27.pdf?hsLang=en-ca",
+      "scope": "Full manufacturer 2-page specification; example configuration possibilities, no deployed-channel identity inferred"
+    },
+    {
+      "id": "DM24_gain",
+      "title": "Guralp DM24 MkIII operator guide, section6.7",
+      "url": "https://www.guralp.com/documents/html/MAN-D24-0004/s6.html",
+      "scope": "Manufacturer indexed section 6.7; deployed gain/status options only; no commands executed"
+    },
+    {
+      "id": "Guralp3T_range",
+      "title": "Guralp 3T operator guide MAN-030-0001, specifications",
+      "url": "https://www.guralp.com/documents/MAN-030-0001.pdf",
+      "scope": "Manufacturer indexed specifications; example physical sensor range distinct from ADC"
+    },
+    {
+      "id": "Guralp_MIN",
+      "title": "Guralp Minimus/integrated-instrument technical manual MAN-DIG-0001",
+      "url": "https://london.guralp.com/documents/MAN-DIG-0001.pdf",
+      "scope": "Manufacturer indexed page 88 describing frequency/corner dependence; no real instrument assignment"
+    },
+    {
+      "id": "StationXML",
+      "title": "FDSN StationXML reference",
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+      "scope": "Official equipment, response, sensitivity and stage-gain definitions"
+    },
+    {
+      "id": "miniSEED",
+      "title": "FDSN miniSEED 3 appendix",
+      "url": "https://docs.fdsn.org/projects/miniseed3/en/latest/appendix.html",
+      "scope": "Official data-quality flag mapping; causal sample timing interpretation is our inference, not a claimed producer guarantee"
+    },
+    {
+      "id": "libmseed",
+      "title": "EarthScope libmseed porting guide",
+      "url": "https://earthscope.github.io/libmseed/porting-guide.html",
+      "scope": "Official amplifier-saturation/digitizer-clipping mapping"
+    },
+    {
+      "id": "GeoNet_channels",
+      "title": "GeoNet stream naming conventions",
+      "url": "https://www.geonet.org.nz/data/supplementary/channels",
+      "scope": "Official general channel/location and SOH conventions only; no station inventory query/read"
+    }
+  ],
+  "unused_limits": [
+    "Guralp Certis public manual/datasheet search results showed different revision/specification descriptions; no generic Certis threshold used or assigned to our channels.",
+    "Third-party ResearchGate/manual mirrors and incidental station-inventory search hits were not relied on."
+  ]
+}

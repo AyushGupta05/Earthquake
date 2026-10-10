@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-10T23:32:25.536196+00:00",
+  "updated_utc": "2026-10-10T23:41:25.042477+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4212.56,
@@ -766,17 +766,16 @@
       "initial_replay_complete_sha256": "5a57faf612f4dcc136fc4d58f03c64bada1ba7cd56bf013d52236bca4db299fd",
       "initial_replay_max_parameter_error": 0.0,
       "latest_observation": {
-        "utc": "2026-10-10T23:16:08Z",
+        "utc": "2026-10-10T23:40:15Z",
         "unit_active": true,
         "main_pid": 4966,
-        "first_completed_epoch": 1,
-        "first_epoch_seconds": 390.990754519,
-        "latest_checkpoint_bytes": 159833621,
-        "held_out_evaluation_status": "Four-fit completion barrier has not passed; no new held-out metrics."
+        "completed_epochs_first_fit": 5,
+        "sixth_epoch_first100_complete": true,
+        "held_out_evaluation_status": "Four-fit completion barrier not passed; no new held-out metrics."
       }
     },
     "geonet_tail_census": {
-      "status": "complete; independentartifact_and_aggregate_replay_pass; waveform_audit_pending_freeze",
+      "status": "complete; independent census replay and separately frozen small waveform audit passed",
       "worker": "localCPUonly",
       "maximum_minutes": 30,
       "maximum_bytes": 104857600,
@@ -795,7 +794,7 @@
       "source_refetches": 0
     },
     "geonet_waveform_feasibility": {
-      "status": "reviewed; independent sample replay passed; pre-acquisition Git freeze pending; acquisition disabled",
+      "status": "complete; independent raw-prefix/artifact replay passed; no training or enlargement",
       "worker": "localCPUonly",
       "maximum_seconds": 1800,
       "maximum_requests": 100,
@@ -804,7 +803,7 @@
       "maximum_stations": 18,
       "new_aws_resources": false,
       "new_paid_fits": false,
-      "actual_data_requests": 0,
+      "actual_data_requests": 34,
       "dependency_transfer_bytes": 72883732,
       "dependency_download_and_disk_ceiling_bytes": 536870912,
       "focused_tests": 38,
@@ -812,7 +811,23 @@
       "plan_sha256": "1adcce537f0b9bcff0fc69d74aab530c541c594252e620c020ce33dedff6c205",
       "review_sha256": "aa4c49451de9f3f90e4eec6f447f84cca3ebc2a862c0296ebd5dec02c0a30305",
       "dependency_receipt_sha256": "14bfc6bc8088e578d0fdf2d76dad3e6fbec2a5e63e24ee4e91beac62e4f6ba21",
-      "conservative_dependency_transfer_bytes": 139992596
+      "conservative_dependency_transfer_bytes": 139992596,
+      "actual_response_body_bytes": 1167804,
+      "reported_worker_elapsed_seconds": 67.85069112500014,
+      "pre_acquisition_git_commit": "0c377649b06feb81824169d98b4b51291d6db72e",
+      "station_deadline_denominator": 54,
+      "usable_three_component_prefixes": {
+        "1": 15,
+        "3": 15,
+        "5": 15
+      },
+      "usable_and_annotated_P_before_deadline": {
+        "1": 9,
+        "3": 11,
+        "5": 13
+      },
+      "independent_replay_sha256": "a264a3f5e3d811a33dceacce228c76b9f27e6a7ddfa91d5e0d455a73fdc006a1",
+      "larger_acquisition_started": false
     }
   },
   "continuation": {
@@ -882,6 +897,14 @@
     },
     "active_station_silence": {
       "decision": "No fit: prior art, continuous-noise baseline and unverified operational state",
+      "raw_data_reads": 0
+    },
+    "response_posterior_consistency": {
+      "decision": "Unconditional noisy-view equality rejected; narrow causal forward-KL adaptation overlaps existing SymVAE/distillation; zero fits",
+      "raw_data_reads": 0
+    },
+    "physical_clipping": {
+      "decision": "Verified hardware censoring distinct, with strong likelihood/switching prior art; rails/health unknown; zero new fits",
       "raw_data_reads": 0
     }
   }
