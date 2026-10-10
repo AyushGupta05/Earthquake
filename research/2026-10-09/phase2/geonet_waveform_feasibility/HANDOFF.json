@@ -1,0 +1,57 @@
+{
+  "acquisition_enabled": false,
+  "acquisition_requests_attempted": 0,
+  "analysis_rule": "Require completed manifest and independent artifact/aggregate replay before a feasibility rate. Out-of-window samples may not affect strict prefixes. All station/deadline denominators remain.",
+  "claim_limit": "Retrospective small availability/response-metadata audit only. Calibration, absence of physical clipping, operational triggering, trainability, novelty and benchmark improvement unverified.",
+  "code_only_review_clean": true,
+  "command_after_parent_receipt": ".venv/bin/python -B audit.py collect --plan local_runs/planned_inputs_v1.json --receipt local_runs/parent_acquisition_receipt.json --output local_runs/audit_v1",
+  "dependency_receipt_sha256": "14bfc6bc8088e578d0fdf2d76dad3e6fbec2a5e63e24ee4e91beac62e4f6ba21",
+  "final_review": "review_v3.json",
+  "frozen_sample": {
+    "band_years": {
+      "5.5": [
+        "2003",
+        "2024"
+      ],
+      "6": [
+        "2003",
+        "2023"
+      ],
+      "7": [
+        "2003",
+        "2023"
+      ]
+    },
+    "events": 6,
+    "plan_sha256": "1adcce537f0b9bcff0fc69d74aab530c541c594252e620c020ce33dedff6c205",
+    "planned_queries": 36,
+    "stations": 18
+  },
+  "independent_replay": "independent_plan_replay.json",
+  "next_required_action": "Parent promote only allowlisted files, commit/push the reviewed source/protocol/runtime proofs, verify that exact commit, then create acquisition receipt. No user permission question is pending.",
+  "plan_sha256": "1adcce537f0b9bcff0fc69d74aab530c541c594252e620c020ce33dedff6c205",
+  "private_plan": "local_runs/planned_inputs_v1.json",
+  "raw_data_rule": "Keep local plan/receipt/rows/queries/StationXML/miniSEED/native worker log under ignored local_runs. No raw data to Git or reviewers. No replacement/resume/cap extension.",
+  "required_parent_receipt_fields": {
+    "acquisition_authorized": true,
+    "code_only_review_clean": true,
+    "dependency_receipt_sha256": "14bfc6bc8088e578d0fdf2d76dad3e6fbec2a5e63e24ee4e91beac62e4f6ba21",
+    "parent_pre_acquisition_commit": "PARENT_VERIFIED_40_HEX_GIT_COMMIT",
+    "plan_sha256": "1adcce537f0b9bcff0fc69d74aab530c541c594252e620c020ce33dedff6c205",
+    "source_files": {
+      "PROTOCOL_v1.md": "e420780bc21e228a78013f7106655beb07d646d047553fcd17ba0066da1173b6",
+      "audit.py": "8e30e415c9bed709c0f7e478bda221eaa4a75cf221a8388fcf900bf2e94a5543",
+      "census_input_pins.json": "397c7acd04f4fa9e8a85ce13597a34f703d52c73d8850c7e182ebcc086de01fb",
+      "core.py": "70c2a53c7beef5f1ddfae7d46e52bcdae97ee711cd10636da6250bd20ab9144e"
+    }
+  },
+  "source_files": {
+    "PROTOCOL_v1.md": "e420780bc21e228a78013f7106655beb07d646d047553fcd17ba0066da1173b6",
+    "audit.py": "8e30e415c9bed709c0f7e478bda221eaa4a75cf221a8388fcf900bf2e94a5543",
+    "census_input_pins.json": "397c7acd04f4fa9e8a85ce13597a34f703d52c73d8850c7e182ebcc086de01fb",
+    "core.py": "70c2a53c7beef5f1ddfae7d46e52bcdae97ee711cd10636da6250bd20ab9144e"
+  },
+  "status": "ready_for_parent_pre_acquisition_freeze_only",
+  "tests": "38 invented fixtures, tests_full_v6.txt",
+  "working_directory": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_waveform_feasibility"
+}

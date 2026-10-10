@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P2] [P2] Reject a whole missing sample at the left boundary
+core.py:106
+At 10 Hz, a piece containing samples at 0.1 through 0.9 seconds passes coverage for [0,1), because 0.1 < period+tolerance. The sample at time zero is missing, yet `available` is true. If another component starts at zero, the modulo-period alignment check also accepts this mismatch, producing a false three-component availability result. Enforce strict rational edge coverage without allowing the rounding tolerance to admit an entire missing boundary sample.
+
+[P2] [P2] Preserve parent epoch bounds when channel start is missing
+audit.py:173
+When `channel.start_date` is absent, this expression discards known network/station start dates. A future network or station beginning at T0+6 with a same-identity channel lacking its own start date therefore becomes `start_ns=None`. `triplet()` includes it in all earlier prefixes and can report an ambiguous epoch against an otherwise valid channel. Preserve the effective parent start for overlap filtering, while separately retaining the missing channel-start validation for relevant epochs.
+
+[P2] [P2] Retain captured response warnings on failure
+audit.py:190
+`catch_warnings(record=True)` suppresses Python warnings, but they are persisted only if response evaluation and the subsequent validation succeed. If evalresp warns and then raises, or returns a rejected transfer, `analyze()` retains only the exception text and the warnings disappear from both the result and worker log. Warnings from earlier successful components are also discarded when a later component fails. Preserve per-component warnings alongside failed response evidence so unsuccessful prefixes retain the diagnostics required by the frozen protocol.
+
+overall: patch is incorrect (0.98)
+The bundle has a concrete boundary-coverage false positive, allows certain entirely future metadata to invalidate earlier prefixes, and discards response warnings on failure. Review was limited to read-only inspection of the supplied snapshot; no tests or acquisition commands were run.

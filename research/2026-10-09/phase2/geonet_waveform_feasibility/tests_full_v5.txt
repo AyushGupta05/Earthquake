@@ -1,0 +1,40 @@
+test_bounded_local_validation_read (test_audit.GateTests.test_bounded_local_validation_read) ... ok
+test_census_hash_mismatch_fails_before_selection (test_audit.GateTests.test_census_hash_mismatch_fails_before_selection) ... ok
+test_child_failure_retains_station_denominator (test_audit.GateTests.test_child_failure_retains_station_denominator) ... ok
+test_no_parent_receipt_means_no_acquisition (test_audit.GateTests.test_no_parent_receipt_means_no_acquisition) ... ok
+test_outer_deadline_includes_validation_and_preserves_missingness (test_audit.GateTests.test_outer_deadline_includes_validation_and_preserves_missingness) ... ok
+test_outer_timeout_after_plan_retains_station_denominator (test_audit.GateTests.test_outer_timeout_after_plan_retains_station_denominator) ... ok
+test_real_output_containment (test_audit.GateTests.test_real_output_containment) ... ok
+test_timezone_and_request_precision (test_audit.GateTests.test_timezone_and_request_precision) ... ok
+test_epoch_boundaries_ambiguity_and_future_metadata (test_audit.PrefixTests.test_epoch_boundaries_ambiguity_and_future_metadata) ... ok
+test_equal_rates_shifted_component_lattices_fail (test_audit.PrefixTests.test_equal_rates_shifted_component_lattices_fail) ... ok
+test_extreme_run_invariant_to_contiguous_fragment_split (test_audit.PrefixTests.test_extreme_run_invariant_to_contiguous_fragment_split) ... ok
+test_flatline_and_extreme_run_are_screens_only (test_audit.PrefixTests.test_flatline_and_extreme_run_are_screens_only) ... ok
+test_fractional_rate_absolute_index (test_audit.PrefixTests.test_fractional_rate_absolute_index) ... ok
+test_gap_and_overlap_fail_without_fill (test_audit.PrefixTests.test_gap_and_overlap_fail_without_fill) ... ok
+test_left_inclusion_and_prebuffer (test_audit.PrefixTests.test_left_inclusion_and_prebuffer) ... ok
+test_missing_epoch_start_orientation_rate_or_axis_fail (test_audit.PrefixTests.test_missing_epoch_start_orientation_rate_or_axis_fail) ... ok
+test_nan_inside_prefix_and_missing_edges_fail (test_audit.PrefixTests.test_nan_inside_prefix_and_missing_edges_fail) ... ok
+test_no_samples_and_future_invalid_rate_ignored (test_audit.PrefixTests.test_no_samples_and_future_invalid_rate_ignored) ... ok
+test_rounding_tolerance_and_wrong_rate (test_audit.PrefixTests.test_rounding_tolerance_and_wrong_rate) ... ok
+test_strict_deadline_and_future_poison_invariance (test_audit.PrefixTests.test_strict_deadline_and_future_poison_invariance) ... ok
+test_ambiguous_band_and_failed_event_excluded_without_replacement (test_audit.SelectionTests.test_ambiguous_band_and_failed_event_excluded_without_replacement) ... ok
+test_invalid_station_is_retained_unqueryable (test_audit.SelectionTests.test_invalid_station_is_retained_unqueryable) ... ok
+test_query_list_bounds_and_archive_only (test_audit.SelectionTests.test_query_list_bounds_and_archive_only) ... ok
+test_same_year_two_distinct_ids (test_audit.SelectionTests.test_same_year_two_distinct_ids) ... ok
+test_three_bands_historical_years_and_order_invariance (test_audit.SelectionTests.test_three_bands_historical_years_and_order_invariance) ... ok
+test_all_horizons_future_suffix_poison_changes_no_prefix_results (test_obspy_adapter.ObsPyAdapterTests.test_all_horizons_future_suffix_poison_changes_no_prefix_results) ... ok
+test_budget_exception_never_becomes_negative_horizon_result (test_obspy_adapter.ObsPyAdapterTests.test_budget_exception_never_becomes_negative_horizon_result) ... ok
+test_event_epoch_boundaries_and_future_epoch_do_not_change_earlier_prefix (test_obspy_adapter.ObsPyAdapterTests.test_event_epoch_boundaries_and_future_epoch_do_not_change_earlier_prefix) ... ok
+test_full_parent_gate_validates_frozen_query_and_dependency_bindings (test_obspy_adapter.ObsPyAdapterTests.test_full_parent_gate_validates_frozen_query_and_dependency_bindings) ... ok
+test_future_missing_orientation_ignored_until_its_epoch (test_obspy_adapter.ObsPyAdapterTests.test_future_missing_orientation_ignored_until_its_epoch) ... ok
+test_network_epoch_narrows_effective_channel_epoch (test_obspy_adapter.ObsPyAdapterTests.test_network_epoch_narrows_effective_channel_epoch) ... ok
+test_physical_units_and_missing_response_fail (test_obspy_adapter.ObsPyAdapterTests.test_physical_units_and_missing_response_fail) ... ok
+test_public_miniseed_and_stationxml_roundtrip (test_obspy_adapter.ObsPyAdapterTests.test_public_miniseed_and_stationxml_roundtrip) ... ok
+test_same_rate_half_sample_shift_fails_three_component_alignment (test_obspy_adapter.ObsPyAdapterTests.test_same_rate_half_sample_shift_fails_three_component_alignment) ... ok
+test_worker_partial_transfer_cap_retains_all_frozen_targets (test_obspy_adapter.ObsPyAdapterTests.test_worker_partial_transfer_cap_retains_all_frozen_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 1.530s
+
+OK
