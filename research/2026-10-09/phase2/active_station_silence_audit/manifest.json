@@ -1,0 +1,126 @@
+{
+  "scope": "Source/document-only audit; no real data files or saved predictions inspected.",
+  "status_snapshot_not_live_job_status": "outputs/earthquake_method_status.md dated 2026-10-10 23:00 UTC",
+  "inputs": [
+    {
+      "path": "outputs/earthquake_method_status.md",
+      "bytes": 9320,
+      "sha256": "94f1bcc0007dce7c95e5ffa39c11fe79dc4022df159b418061d73fb29c281574"
+    },
+    {
+      "path": "outputs/earthquake_censored_results.md",
+      "bytes": 13908,
+      "sha256": "4a817ba81449a3d144f21221ef9df5be1518e2149420759745d72ae945bf70f5"
+    },
+    {
+      "path": "outputs/earthquake_missing_evidence_hypotheses.md",
+      "bytes": 13320,
+      "sha256": "ee6869452b0808f4e1f43ac51b0997bf6835f1a78d59efc7b917f0f5e36ba5fd"
+    },
+    {
+      "path": "outputs/earthquake_geonet_tail_census.md",
+      "bytes": 1692,
+      "sha256": "ab29b7f4e562f4dd8cf0ee0519eb8d61405b2682c4f26794240da6d7216f9123"
+    },
+    {
+      "path": "outputs/earthquake_alaska_header_audit.md",
+      "bytes": 3648,
+      "sha256": "a35b9b0ee3a1a75c8cfbad261447f8536b024e46474667c901bba56eeff371e2"
+    },
+    {
+      "path": "outputs/earthquake_alaska_cohort_audit.md",
+      "bytes": 6320,
+      "sha256": "76eb117204592eaedf88dd20bf7b3090df91752a477557cc466a515ced55d48e"
+    },
+    {
+      "path": "outputs/earthquake_external_validation_expansion.md",
+      "bytes": 4820,
+      "sha256": "b50d71d734e8554203344f4718eaea07ad6b58d29230c9bb0124355103f3e6da"
+    },
+    {
+      "path": "work/independent_tail_feasibility/assessment.md",
+      "bytes": 15947,
+      "sha256": "3f1f034cf531885446348b1e7aeb3686e68575422dbb2d3d9bba031f306b75cd"
+    },
+    {
+      "path": "work/chile_training_clock_audit/AUDIT.md",
+      "bytes": 15730,
+      "sha256": "4f71142230e5cf973a4cc5a7aa78d864cb62daeb6e89571e567799c8046692d8"
+    },
+    {
+      "path": "work/chile_clock_control/protocol.json",
+      "bytes": 6823,
+      "sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b"
+    },
+    {
+      "path": "work/chile_training_clock_audit/primary_sources/README.md",
+      "bytes": 13466,
+      "sha256": "f0eece0eb592c01b38366260ec0cdb219c393a26b9a5a7b8f02b97f32c579ff3"
+    },
+    {
+      "path": "work/chile_training_clock_audit/primary_sources/util.py",
+      "bytes": 31351,
+      "sha256": "1a8529a29a257440667fe5c278828de7e522333cb803b437dfde5b10b70e9ccd"
+    },
+    {
+      "path": "work/chile_training_clock_audit/primary_sources/chile_mag_noloc.json",
+      "bytes": 1829,
+      "sha256": "f484ab54539ca96be04cabc3440c842fc470d618c0db970fa28fce5eb670652c"
+    },
+    {
+      "path": "work/chile_training_clock_audit/primary_sources/train.py",
+      "bytes": 19267,
+      "sha256": "a214a2d1894e95104e3069010a4edcd01354db5e7b239837a29f92ba2b449548"
+    },
+    {
+      "path": "work/repo/research/2026-10-09/phase2/sequential_prior_research.md",
+      "bytes": 37987,
+      "sha256": "627d40adda142f46f0e6fbb1d57fb83c4d4e3171d45a84aa821b1eb1e446e782"
+    },
+    {
+      "path": "work/repo/research/2026-10-09/phase2/train_censored_innovation.py",
+      "bytes": 26032,
+      "sha256": "a943c37fd8552dd1fe5d9bf2a5e1858b700570db4c27c6e76d5e7190a544c2e8"
+    },
+    {
+      "path": "work/repo/research/2026-10-09/phase3/team_lm.py",
+      "bytes": 18406,
+      "sha256": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca"
+    }
+  ],
+  "exact_evidence_pointers": {
+    "author_optional_trigger_gate": "work/chile_training_clock_audit/primary_sources/util.py:263-266",
+    "author_default_flag": "work/chile_training_clock_audit/primary_sources/README.md:154",
+    "author_chile_config": "work/chile_training_clock_audit/primary_sources/chile_mag_noloc.json (flag absent)",
+    "port_prefix_availability": "work/repo/research/2026-10-09/phase3/team_lm.py:54-91",
+    "geonet_census_retrospective_limit": "outputs/earthquake_geonet_tail_census.md:5",
+    "alaska_window_limit": "outputs/earthquake_alaska_header_audit.md:21-23"
+  },
+  "artifacts": [
+    {
+      "path": "work/active_station_silence_audit/AUDIT.md",
+      "bytes": 15861,
+      "sha256": "e37ea3d0fce5e6b6a341800f7352716817a0e54ceb50979485a9446fe57c0099"
+    },
+    {
+      "path": "work/active_station_silence_audit/counterexample.json",
+      "bytes": 4181,
+      "sha256": "7ad8f4352e98387c9f3222e859bef8962dd90ea44346776c650700289c4fd923"
+    },
+    {
+      "path": "work/active_station_silence_audit/primary_sources.json",
+      "bytes": 3725,
+      "sha256": "b59a37981a34d24ad8c75f7291ed7f572551d59d5ff25986d72b59cf0194c09d"
+    }
+  ],
+  "verification": {
+    "exact_fraction_assertions_passed": 22,
+    "author_code_executed": false,
+    "real_data_read": false,
+    "fits": 0,
+    "aws_actions": 0,
+    "git_changes": false,
+    "autoreview": "Not applicable: prose/JSON artifacts and one-off exact arithmetic only; no reusable/production software edited."
+  },
+  "availability_conclusion": "Operational health/picker/receipt histories not established by inspected provenance; no exhaustive provider-log absence claim."
+}

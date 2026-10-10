@@ -1,0 +1,239 @@
+{
+  "scope": "Invented arithmetic, not seismic benchmark, learned model, source simulator or fitted experiment. No real rows, waves, response inventories or predictions read.",
+  "toy_response": "y_k=0.9 y_(k-1)+2 u_k; recorded d_k=y_k+independent Gaussian count noise; uncertain y_0 conditioned from an invented pre-P prior.",
+  "boundary_prior_example": {
+    "prior_variance": 0.16,
+    "pre_P_observation_variance": 0.04,
+    "conditional_variance": 0.032,
+    "prior_and_pre_observation_mean": 1.5
+  },
+  "physical_amplitude_prior": [
+    0.6,
+    0.3,
+    0.1
+  ],
+  "receipts": [
+    {
+      "toy_deadline_seconds": 1,
+      "samples_at_toy_1Hz": 1,
+      "counts": [
+        3.45
+      ],
+      "state_mean": 1.5,
+      "state_variance": 0.032,
+      "counts_noise_variance": 0.01,
+      "physical_amplitude_hypotheses": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "marginal_raw_count_pmf": [
+        1.1134424568335183e-07,
+        0.9999998886557544,
+        5.751646514924549e-23
+      ],
+      "same_input_canonicalized_pmf": [
+        1.1134424568335183e-07,
+        0.9999998886557544,
+        5.751646514924427e-23
+      ],
+      "canonicalization_max_difference": 1.222514124855179e-36,
+      "zero_state_wrong_model_pmf": [
+        1.0097733578417789e-123,
+        2.458203787197044e-39,
+        1.0
+      ],
+      "gain_interventions": [
+        {
+          "count_scale": 0.1,
+          "posterior_max_difference": 1.1779051922755114e-21,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        },
+        {
+          "count_scale": 10.0,
+          "posterior_max_difference": 3.970466940254533e-22,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        },
+        {
+          "count_scale": 100.0,
+          "posterior_max_difference": 7.940933880509066e-22,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        }
+      ],
+      "logpdf_including_determinant": [
+        -16.098692425230166,
+        0.6050937663065901,
+        -49.50626480830364
+      ]
+    },
+    {
+      "toy_deadline_seconds": 3,
+      "samples_at_toy_1Hz": 3,
+      "counts": [
+        3.45,
+        4.965,
+        6.533499999999999
+      ],
+      "state_mean": 1.5,
+      "state_variance": 0.032,
+      "counts_noise_variance": 0.01,
+      "physical_amplitude_hypotheses": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "marginal_raw_count_pmf": [
+        4.614489847885258e-74,
+        1.0,
+        3.099205920265e-312
+      ],
+      "same_input_canonicalized_pmf": [
+        4.614489847884865e-74,
+        1.0,
+        3.099205920265e-312
+      ],
+      "canonicalization_max_difference": 3.9272747722381812e-87,
+      "zero_state_wrong_model_pmf": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "gain_interventions": [
+        {
+          "count_scale": 0.1,
+          "posterior_max_difference": 1.3038552243830762e-87,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        },
+        {
+          "count_scale": 10.0,
+          "posterior_max_difference": 0.0,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        },
+        {
+          "count_scale": 100.0,
+          "posterior_max_difference": 0.0,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        }
+      ],
+      "logpdf_including_determinant": [
+        -166.9606328899108,
+        2.5946098525339774,
+        -713.582180949015
+      ]
+    },
+    {
+      "toy_deadline_seconds": 5,
+      "samples_at_toy_1Hz": 5,
+      "counts": [
+        3.45,
+        4.965,
+        6.533499999999999,
+        7.89215,
+        9.065935000000001
+      ],
+      "state_mean": 1.5,
+      "state_variance": 0.032,
+      "counts_noise_variance": 0.01,
+      "physical_amplitude_hypotheses": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "marginal_raw_count_pmf": [
+        1.323126318368256e-295,
+        1.0,
+        0.0
+      ],
+      "same_input_canonicalized_pmf": [
+        1.3231263183687071e-295,
+        1.0,
+        0.0
+      ],
+      "canonicalization_max_difference": 4.510989580332959e-308,
+      "zero_state_wrong_model_pmf": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "gain_interventions": [
+        {
+          "count_scale": 0.1,
+          "posterior_max_difference": 9.024152084355867e-308,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        },
+        {
+          "count_scale": 10.0,
+          "posterior_max_difference": 4.510989580332959e-308,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        },
+        {
+          "count_scale": 100.0,
+          "posterior_max_difference": 0.0,
+          "all_means_covariances_and_boundary_state_output_contribution_scaled": true
+        }
+      ],
+      "logpdf_including_determinant": [
+        -674.499934219259,
+        5.175818035233012,
+        -2778.1206836140523
+      ]
+    }
+  ],
+  "boundary_ambiguity": {
+    "gain": 1,
+    "alpha": 0.9,
+    "same_first_count": 2.8,
+    "history_A": {
+      "pre_state": 2,
+      "new_ground_amplitude": 1.0
+    },
+    "history_B": {
+      "pre_state": 0,
+      "new_ground_amplitude": 2.8
+    },
+    "meaning": "Without pre-state evidence, one early count cannot identify ground amplitude."
+  },
+  "circular_end_effect": {
+    "input": [
+      0,
+      0,
+      10
+    ],
+    "kernel": [
+      1,
+      1,
+      0
+    ],
+    "unpadded_circular_output": [
+      10,
+      0,
+      10
+    ],
+    "causal_linear_prefix_output": [
+      0,
+      0,
+      10
+    ],
+    "meaning": "Wrong periodic boundary assumptions may revise the early signal; not a claim of a bug in a named library."
+  },
+  "dc_null": {
+    "ground_histories": [
+      [
+        3,
+        3,
+        3
+      ],
+      [
+        8,
+        8,
+        8
+      ]
+    ],
+    "same_difference_outputs": [
+      0,
+      0
+    ],
+    "meaning": "Known response shape cannot recover information in its null space without added data or prior assumptions."
+  },
+  "decision": "No learned/paid fit earned. A bounded synthetic uncertain-boundary-state falsification is distinct from the known-state covariance fixture, but the exact same-input canonical likelihood must tie."
+}

@@ -29,10 +29,12 @@ Current reports:
 - [Current competitors](earthquake_current_competitors.md): recent primary papers, source-code checks and incompatible evaluation protocols.
 - [Revision prior art](earthquake_revision_prior_art.md): why forecast-revision prediction and distillation alone are not new.
 - [Amplitude-distribution analysis](earthquake_amplitude_distribution_research.md): conditional growth models, derivations and negative synthetic results.
-- [Matched early-clock control](earthquake_chile_clock_control.md): four-fit grid running after28 AWS tests, exact CUDA replay and exact first16 TRAIN predictions.
-- [GeoNet tail census](earthquake_geonet_tail_census.md): completed independent metadata audit,149 Mw≥5.5/60 Mw≥6/15 Mw≥7; waveform/response audit in preparation.
+- [Matched early-clock control](earthquake_chile_clock_control.md): four-fit grid running after 28 AWS tests, exact CUDA replay and exact first 16 TRAIN predictions.
+- [GeoNet tail census](earthquake_geonet_tail_census.md): completed independent metadata audit, 149 Mw≥5.5/60 Mw≥6/15 Mw≥7; waveform/response audit in preparation.
 - [Continuous prior audit](earthquake_continuous_prior_audit.md): exact noisy-label/repeat-law constraints; no new correction fit.
 - [Rupture survival audit](earthquake_rupture_survival_audit.md): primary full texts and stop/grow identifiability controls; no additional fit.
+- [Causal response-state audit](earthquake_causal_response_state_audit.md): same-input likelihood identities and uncertain pre-P state; no learned fit earned.
+- [Active-station silence audit](earthquake_active_station_silence_audit.md): strong prior art and unverified operational state; no new fit.
 - [Rapid strain source audit](earthquake_strain_source_audit.md): missing middle source stage cancels the suspected mean leak for complete traces; negative hypothesis retained.
 - [Completed Chile baseline](earthquake_chile_baseline_results.md): preserved selected checkpoint and DEV metrics; large-event validation remains insufficient.
 - [Sequential distribution claim audit](earthquake_sequential_probability_claim_audit.md): incremental evidence, entropy and June-2026 forecast-calibration prior art.
@@ -62,4 +64,4 @@ Credits were refreshed again on the evening of 10 October: main eligible-credit 
 
 A thread continuation check runs every 30 minutes, staying quiet unless there is a meaningful change. Paid work remains subject to verified credit coverage, the $2,000 ceiling and resource stop timers.
 
-Current work: the source-pinned matched Chile clock grid launched at 23:00:57 UTC on 10 October, after all 28 worker tests, invented CUDA update/RNG equality and exact first16 TRAIN parameter replay. The prefit source/protocol milestone is pushed as 408cbd2. Four fixed fits must complete before calibration/DEV evaluation; TEST remains sealed. The GeoNet recovery completed and independent replay verified158 artifact hashes and149 event outcomes. Its metadata gate passes; a separately frozen small waveform/response audit is being prepared before any waveform request. These are known-method/data-feasibility controls, not claimed novel results. Preserve the earlier source-header failure and all negative experiment results.
+Current work: the source-pinned matched Chile clock grid launched at 23:00:57 UTC on 10 October, after all 28 worker tests, invented CUDA update/RNG equality and exact first16 TRAIN parameter replay. The prefit source/protocol milestone is pushed as 408cbd2; runtime proofs and the completed census are pushed as cf0641f. Four fixed fits must complete before calibration/DEV evaluation; TEST remains sealed. The GeoNet recovery completed and independent replay verified 158 artifact hashes and 149 event outcomes. Its metadata gate passes; a separately frozen small waveform/response audit is being prepared before any waveform request. These are known-method/data-feasibility controls, not claimed novel results. Preserve the earlier source-header failure and all negative experiment results.

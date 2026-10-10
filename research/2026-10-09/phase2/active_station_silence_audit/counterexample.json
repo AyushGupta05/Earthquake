@@ -1,0 +1,164 @@
+{
+  "scope": "Invented exact finite probability arithmetic; no real data or author code; not a fitted or validated detection model.",
+  "clock": "One common deadline relative to first received causal network trigger; hypothetical station times share this clock.",
+  "prior_large": {
+    "fraction": "1/2",
+    "decimal": 0.5
+  },
+  "known_healthy_silence": [
+    {
+      "deadline_seconds": 1,
+      "survival_large": {
+        "fraction": "4/5",
+        "decimal": 0.8
+      },
+      "survival_small": {
+        "fraction": "19/20",
+        "decimal": 0.95
+      },
+      "posterior_large": {
+        "fraction": "16/35",
+        "decimal": 0.45714285714285713
+      }
+    },
+    {
+      "deadline_seconds": 3,
+      "survival_large": {
+        "fraction": "1/10",
+        "decimal": 0.1
+      },
+      "survival_small": {
+        "fraction": "4/5",
+        "decimal": 0.8
+      },
+      "posterior_large": {
+        "fraction": "1/9",
+        "decimal": 0.1111111111111111
+      }
+    },
+    {
+      "deadline_seconds": 5,
+      "survival_large": {
+        "fraction": "1/20",
+        "decimal": 0.05
+      },
+      "survival_small": {
+        "fraction": "7/10",
+        "decimal": 0.7
+      },
+      "posterior_large": {
+        "fraction": "1/15",
+        "decimal": 0.06666666666666667
+      }
+    }
+  ],
+  "unknown_availability_at_3": {
+    "availability_independent_probability": {
+      "fraction": "1/10",
+      "decimal": 0.1
+    },
+    "no_receipt_likelihood_large": {
+      "fraction": "91/100",
+      "decimal": 0.91
+    },
+    "no_receipt_likelihood_small": {
+      "fraction": "49/50",
+      "decimal": 0.98
+    },
+    "posterior_large": {
+      "fraction": "13/27",
+      "decimal": 0.48148148148148145
+    }
+  },
+  "known_outage_at_3": {
+    "no_receipt_likelihood_large": {
+      "fraction": "1",
+      "decimal": 1.0
+    },
+    "no_receipt_likelihood_small": {
+      "fraction": "1",
+      "decimal": 1.0
+    },
+    "posterior_large": {
+      "fraction": "1/2",
+      "decimal": 0.5
+    }
+  },
+  "incremental_updates": {
+    "posterior_large_at_3": {
+      "fraction": "1/9",
+      "decimal": 0.1111111111111111
+    },
+    "posterior_large_at_5": {
+      "fraction": "1/15",
+      "decimal": 0.06666666666666667
+    }
+  },
+  "incorrect_cumulative_reuse": {
+    "posterior_large_at_3": {
+      "fraction": "2/21",
+      "decimal": 0.09523809523809523
+    },
+    "posterior_large_at_5": {
+      "fraction": "1/134",
+      "decimal": 0.007462686567164179
+    }
+  },
+  "delayed_trigger_message": {
+    "local_arrival_seconds": {
+      "fraction": "1",
+      "decimal": 1.0
+    },
+    "detection_delay_seconds": {
+      "fraction": "1/10",
+      "decimal": 0.1
+    },
+    "transport_delay_seconds": {
+      "fraction": "3",
+      "decimal": 3.0
+    },
+    "local_trigger_seconds": {
+      "fraction": "11/10",
+      "decimal": 1.1
+    },
+    "center_receipt_seconds": {
+      "fraction": "41/10",
+      "decimal": 4.1
+    },
+    "received_by_deadline": {
+      "1": false,
+      "3": false,
+      "5": true
+    },
+    "limit": "Message-delay example only; waveform delivery may differ and needs its own watermark."
+  },
+  "verification": {
+    "interpreter": "3.10.20 (main, May 10 2026, 19:20:50) [Clang 22.1.3 ]",
+    "arithmetic": "Python stdlib Fraction; all comparisons exact",
+    "assertions_passed": 22,
+    "assertion_names": [
+      "large_survival_bounded",
+      "large_survival_nonincreasing",
+      "small_survival_bounded",
+      "small_survival_nonincreasing",
+      "known_healthy_posterior_at_1",
+      "known_healthy_posterior_at_3",
+      "known_healthy_posterior_at_5",
+      "incremental_3_equals_direct",
+      "incremental_5_equals_direct",
+      "double_counted_3",
+      "double_counted_5",
+      "double_counting_overrejects_large",
+      "availability_mixture_large",
+      "availability_mixture_small",
+      "unknown_availability_posterior",
+      "known_outage_uninformative",
+      "unknown_less_informative_than_healthy",
+      "local_trigger_time",
+      "center_receipt_time",
+      "healthy_has_arrived_but_unreceived_at_3",
+      "receipt_available_at_5",
+      "both_hypotheses_future_arrival_silence_uninformative"
+    ]
+  }
+}

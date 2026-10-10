@@ -1,0 +1,69 @@
+{
+  "created_at_utc": "2026-10-10T23:16:31.303980+00:00",
+  "task": "Bounded causal response and uncertain pre-P state mechanism audit",
+  "decision": "zero learned/paid fits; a differentiated no-fit uncertain-state falsification is defensible, not implemented",
+  "scope_directory": "work/causal_response_mechanism_audit",
+  "inputs": [
+    {
+      "path": "outputs/earthquake_method_status.md",
+      "bytes": 9320,
+      "sha256": "94f1bcc0007dce7c95e5ffa39c11fe79dc4022df159b418061d73fb29c281574",
+      "access": "read-only documentary evidence; underlying arrays/inventories not opened"
+    },
+    {
+      "path": "outputs/earthquake_instrument_scientific_audit.md",
+      "bytes": 18701,
+      "sha256": "0df6e5c8ad8a67107d2158ccc177e2b6cbddfbfafee3c980451e3ab23460cb19",
+      "access": "read-only documentary evidence; underlying arrays/inventories not opened"
+    },
+    {
+      "path": "outputs/earthquake_distribution_pilots.md",
+      "bytes": 7088,
+      "sha256": "8f8246b36c7ab0c5b13a629b6d916b6e409111025a6518f94e19aaf246550e52",
+      "access": "read-only documentary evidence; underlying arrays/inventories not opened"
+    },
+    {
+      "path": "outputs/earthquake_physical_prefix_preflight.md",
+      "bytes": 12465,
+      "sha256": "8dc2b6021d1f703dda4762f1d9b237bcf060457a52d6d3740eefd00480fd1677",
+      "access": "read-only documentary evidence; underlying arrays/inventories not opened"
+    }
+  ],
+  "files": [
+    {
+      "path": "AUDIT.md",
+      "bytes": 13144,
+      "sha256": "278c8d36e2e4f348416e52e16c82c55b2f48f1c660385a345d962975c8c43085"
+    },
+    {
+      "path": "source_access.json",
+      "bytes": 3663,
+      "sha256": "1aa8b127d0d7332da5b60c13e4e8c175befa819aa0583a8eaabc6d864599cce3"
+    },
+    {
+      "path": "synthetic_arithmetic.json",
+      "bytes": 6352,
+      "sha256": "01e9bcc4b1a6361e236730ccdb9ba935559cb96f3d710b0e9331f8f4a7da3c0e"
+    }
+  ],
+  "activity_counts": {
+    "real_rows_read": 0,
+    "waveforms_read": 0,
+    "response_inventories_read": 0,
+    "prediction_arrays_read": 0,
+    "fits": 0,
+    "author_code_executions": 0,
+    "aws_actions": 0,
+    "implementation_edits": 0,
+    "broad_downloads": 0
+  },
+  "verification": [
+    "exact boundary/DC-null/circular-boundary arithmetic",
+    "finite normalized toy posteriors at 1/3/5 samples",
+    "Gaussian canonicalization Jacobian and posterior equality to <1e-12",
+    "coherent digital rescaling posterior equality to <1e-12 at factors 0.1,10,100",
+    "all JSON documents parse",
+    "documentation-only self review: scope, causal clocks, equal information, gaps and prior-art limits"
+  ],
+  "review_note": "No nontrivial source edit was made, so no external autoreview helper was invoked. The numeric calculations are one-off invented arithmetic receipts, not training code."
+}

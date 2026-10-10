@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-10T23:03:32.074453+00:00",
+  "updated_utc": "2026-10-10T23:23:19.957365+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4212.56,
@@ -112,7 +112,7 @@
     }
   ],
   "actual_incremental_settled_spend_usd": null,
-  "current_queue_max_seconds": 37600,
+  "current_queue_max_seconds": 39600,
   "quota": {
     "region": "us-east-1",
     "type": "Running On-Demand G and VT vCPUs",
@@ -764,7 +764,16 @@
       "remaining_worker_stop_seconds_at_launch": 42563,
       "launch_receipt_sha256": "2a9e6d6c99ff819efc722e41e0792d1fb2ff35e636dad69161ffab97ee087ea7",
       "initial_replay_complete_sha256": "5a57faf612f4dcc136fc4d58f03c64bada1ba7cd56bf013d52236bca4db299fd",
-      "initial_replay_max_parameter_error": 0.0
+      "initial_replay_max_parameter_error": 0.0,
+      "latest_observation": {
+        "utc": "2026-10-10T23:16:08Z",
+        "unit_active": true,
+        "main_pid": 4966,
+        "first_completed_epoch": 1,
+        "first_epoch_seconds": 390.990754519,
+        "latest_checkpoint_bytes": 159833621,
+        "held_out_evaluation_status": "Four-fit completion barrier has not passed; no new held-out metrics."
+      }
     },
     "geonet_tail_census": {
       "status": "complete; independentartifact_and_aggregate_replay_pass; waveform_audit_pending_freeze",
@@ -784,6 +793,20 @@
       "independent_event_outcomes": 149,
       "unknown_coverage_events": 0,
       "source_refetches": 0
+    },
+    "geonet_waveform_feasibility": {
+      "status": "preparation; final code-only review pending; acquisition disabled",
+      "worker": "localCPUonly",
+      "maximum_seconds": 1800,
+      "maximum_requests": 100,
+      "maximum_body_bytes": 134217728,
+      "maximum_events": 6,
+      "maximum_stations": 18,
+      "new_aws_resources": false,
+      "new_paid_fits": false,
+      "actual_data_requests": 0,
+      "dependency_transfer_bytes": 72883732,
+      "dependency_download_and_disk_ceiling_bytes": 536870912
     }
   },
   "continuation": {
@@ -844,5 +867,16 @@
     "misc_task_margin_usd": 20,
     "conservative_total_usd": 244,
     "limitation": "Deliberately charges entire original-worker uptime since4Oct (149.583USD), adding6.042USD fixed grid caps and rounding upward; Chile60USD, scratch volume full month8USD, margin20USD. Not settled task attribution. Eligible credits verified10Octexpire31Oct."
+  },
+  "current_queue_max_seconds_scope": "Clock grid application timeout; cgroup39840seconds plus120second stop grace, all before verified workerSTOP10:50:21UTC11Oct.",
+  "source_audit_followups": {
+    "causal_response_state": {
+      "decision": "No learned/paid fit earned; uncertain inherited-state no-fit falsification may be justified",
+      "raw_data_reads": 0
+    },
+    "active_station_silence": {
+      "decision": "No fit: prior art, continuous-noise baseline and unverified operational state",
+      "raw_data_reads": 0
+    }
   }
 }

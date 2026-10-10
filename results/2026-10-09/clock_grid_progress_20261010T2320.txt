@@ -1,0 +1,14 @@
+Sat Oct 10 23:16:08 UTC 2026
+MainPID=4966
+ExecMainStatus=0
+ActiveState=active
+SubState=running
+/opt/pytorch/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{"stage": "fit_first100", "arm": "source_uniform", "seed": 20261011, "epoch": 1, "seconds": 45.55604469299999}
+{"stage": "fit_epoch", "key": "source_uniform_20261011", "epoch": 1, "seconds": 390.990754519, "loss": -0.6748400724562343}
+{"stage": "fit_first100", "arm": "source_uniform", "seed": 20261011, "epoch": 2, "seconds": 39.89824382400002}
+total 156140
+-rw-r--r--. 1 ec2-user ec2-user      2378 Oct 10 23:05 INIT.json
+-rw-r--r--. 1 ec2-user ec2-user     47264 Oct 10 23:11 history.json
+-rw-r--r--. 1 ec2-user ec2-user 159833621 Oct 10 23:11 latest.pth

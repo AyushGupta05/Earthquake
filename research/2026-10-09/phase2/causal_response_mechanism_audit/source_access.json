@@ -1,0 +1,80 @@
+{
+  "checked_at_utc": "2026-10-10T23:16:31.303980+00:00",
+  "primary_only": true,
+  "bounded_scope": "papers/official docs; no code execution or broad downloads",
+  "sources": [
+    {
+      "id": "Haney2012",
+      "doi": "10.1785/0220120031",
+      "url": "https://scholarworks.boisestate.edu/cgiss_facpubs/173/",
+      "access": "primary institutional abstract verified",
+      "supplement_landing_url": "https://www.seismosoc.org/Publications/SRL/SRL_83/srl_83-5_es_I/",
+      "gap": "main full text and supplement content not resolved; linked code not fetched or executed"
+    },
+    {
+      "id": "AndersonLees2014",
+      "doi": "10.1785/0220130062",
+      "url": "https://www.researchgate.net/publication/274245062_Instrument_Corrections_by_Time-Domain_Deconvolution",
+      "access": "author-uploaded full article text, DOI/journal and methods/application sections verified",
+      "uploader": "Jonathan M Lees",
+      "upload_date": "2016-10-12",
+      "gap": "no downloaded publisher PDF or package execution"
+    },
+    {
+      "id": "Burky2021",
+      "doi": "10.1785/0220210118",
+      "url": "https://alexburky.github.io/papers/Burky%2B2021b.pdf",
+      "access": "author-hosted 8-page PDF text accessible via web; linear-response model/abstract verified",
+      "gap": "NSF mirror timed out; no code/data opened"
+    },
+    {
+      "id": "DAlessandro2026",
+      "doi": "10.5194/egusphere-2026-2672",
+      "url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-2672/egusphere-2026-2672.pdf",
+      "access": "primary preprint PDF text; abstract and theoretical equations checked",
+      "publication_status": "preprint discussion started 2026-06-23",
+      "gap": "no implementation/empirical replication; do not equate detectability with EEW magnitude estimation"
+    },
+    {
+      "id": "Bock2011",
+      "doi": "10.1785/0120110007",
+      "url": "https://www.researchgate.net/publication/258488939_Real-Time_Strong-Motion_Broadband_Displacements_from_Collocated_GPS_and_Accelerometers",
+      "access": "author-uploaded abstract and figure captions verified",
+      "uploader": "Brendan W Crowell",
+      "upload_date": "2014-02-26",
+      "gap": "main full methods not resolved; no smoothing-to-filtering timing parity inferred"
+    },
+    {
+      "id": "Saoulis2025",
+      "doi": "10.1093/gji/ggaf112",
+      "url": "https://arxiv.org/abs/2410.23238",
+      "access": "primary abstract and v2 publication metadata verified",
+      "gap": "full methods not audited; not an EEW-prefix comparator"
+    },
+    {
+      "id": "VirtualSeismologist",
+      "url": "https://www.seismo.ethz.ch/en/knowledge/earthquake-data-and-analysis-tools/EEW/Virtual-Seismologist/",
+      "access": "institutional algorithm description verified",
+      "gap": "original foundational full paper not audited here"
+    },
+    {
+      "id": "ObsPyResponse",
+      "url": "https://docs.obspy.org/packages/autogen/obspy.core.trace.Trace.remove_response.html",
+      "access": "official API documentation checked"
+    },
+    {
+      "id": "SciPyInitialState",
+      "urls": [
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter_zi.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.filtfilt.html"
+      ],
+      "access": "official API documentation checked"
+    },
+    {
+      "id": "StationXML",
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+      "access": "official schema documentation, delay/correction semantics checked; no inventory files read"
+    }
+  ]
+}
