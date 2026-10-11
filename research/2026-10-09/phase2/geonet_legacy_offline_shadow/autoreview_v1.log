@@ -1,0 +1,74 @@
+2026-10-11T03:08:11.382062Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:08:11.382077Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:08:11.388002Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 143349 chars
+codex thread: 01a128ee-a6f0-7e50-9662-291581e53eda
+codex turn started
+2026-10-11T03:08:11.896278Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:08:11.896289Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the source against the frozen protocol and curated contracts, using read-only commands.
+codex activity: 10 hidden tool/status events
+I found a possible identity-guard gap: the native event check compares translated IDs, so distinct raw IDs may be accepted as the same event. I’m checking recovery accounting for similar gaps.
+codex activity: 4 hidden tool/status events
+{
+  "findings": [
+    {
+      "title": "Require exact raw native event identity before ID conversion",
+      "body": "The native event check compares mapped IDs, although that mapping is not injective. For example, supplied event_id \"a:b\" accepts a native event with publicID \"a b\" because both become \"smi:nz.org.geonet/a_b\". Neither collision registry includes the supplied raw event_id, so the substituted event returns status \"ok\" and can establish the QML profile binding. Compare native publicID against the supplied raw identity before conversion, as required by the protocol's substituted-ID policy.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "projection.py",
+        "line": 400
+      }
+    },
+    {
+      "title": "Resolve raw arrival references before stripping candidate IDs",
+      "body": "Stripping the mapped arrival ID can turn a dangling raw reference into an accepted pick. Consider an arrival referencing \"smi:invented/p \" with no exact target, while an amplitude selects the existing pick \"smi:invented/p\". Selection and collision checks preserve these as distinct IDs, but this strip makes the arrival resolve to the amplitude-selected pick. analyse() then accepts it and includes it in clocks, contrary to the rule that dangling targets never establish correspondence. Require a unique exact raw pick target before using its candidate ID for acceptance.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "projection.py",
+        "line": 467
+      }
+    },
+    {
+      "title": "Calculate newly accepted NZ references against left-side NZ acceptance",
+      "body": "The NZ recovery counter intersects with newly_resolved, which has already removed every left-side accepted pick regardless of network. If the same left-qualified pick is accepted with network \"XX\" on the left and repaired to \"NZ\" on the right, newly accepted across networks correctly remains zero, but newly_accepted_NZ_reference_count incorrectly remains zero too. The protocol declares these as separate recovery counts. Compute the NZ gain from right-side NZ acceptance minus left-side NZ acceptance, restricted to left-qualified IDs.",
+      "priority": "P2",
+      "confidence": 0.94,
+      "category": "bug",
+      "code_location": {
+        "file_path": "comparison.py",
+        "line": 87
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Native identity and reference guards can accept substituted events or dangling references, and NZ recovery accounting misses network repairs. These violate the frozen diagnostic contracts. Review used read-only source inspection; tests were not run.",
+  "overall_confidence": 0.98
+}
+codex usage: input_tokens=275657 cached_input_tokens=196224 output_tokens=4442 reasoning_output_tokens=3436
+2026-10-11T03:10:00.350008Z  WARN codex_core::shell_snapshot: Failed to delete shell snapshot at AbsolutePathBuf("/Users/ayush/.codex/shell_snapshots/01a128ee-a6f0-7e50-9662-291581e53eda.1791688091383783000.sh"): Os { code: 2, kind: NotFound, message: "No such file or directory" }
+autoreview findings: 3
+[P2] Require exact raw native event identity before ID conversion
+projection.py:400
+The native event check compares mapped IDs, although that mapping is not injective. For example, supplied event_id "a:b" accepts a native event with publicID "a b" because both become "smi:nz.org.geonet/a_b". Neither collision registry includes the supplied raw event_id, so the substituted event returns status "ok" and can establish the QML profile binding. Compare native publicID against the supplied raw identity before conversion, as required by the protocol's substituted-ID policy.
+
+[P2] Resolve raw arrival references before stripping candidate IDs
+projection.py:467
+Stripping the mapped arrival ID can turn a dangling raw reference into an accepted pick. Consider an arrival referencing "smi:invented/p " with no exact target, while an amplitude selects the existing pick "smi:invented/p". Selection and collision checks preserve these as distinct IDs, but this strip makes the arrival resolve to the amplitude-selected pick. analyse() then accepts it and includes it in clocks, contrary to the rule that dangling targets never establish correspondence. Require a unique exact raw pick target before using its candidate ID for acceptance.
+
+[P2] Calculate newly accepted NZ references against left-side NZ acceptance
+comparison.py:87
+The NZ recovery counter intersects with newly_resolved, which has already removed every left-side accepted pick regardless of network. If the same left-qualified pick is accepted with network "XX" on the left and repaired to "NZ" on the right, newly accepted across networks correctly remains zero, but newly_accepted_NZ_reference_count incorrectly remains zero too. The protocol declares these as separate recovery counts. Compute the NZ gain from right-side NZ acceptance minus left-side NZ acceptance, restricted to left-qualified IDs.
+
+overall: patch is incorrect (0.98)
+Native identity and reference guards can accept substituted events or dangling references, and NZ recovery accounting misses network repairs. These violate the frozen diagnostic contracts. Review used read-only source inspection; tests were not run.

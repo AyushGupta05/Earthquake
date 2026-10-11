@@ -1,0 +1,25 @@
+# Proposed archive transport preflight v0 — no acquisition authority
+
+This is a new prospective engineering proposal. It cannot resume the failed 96-event run, modify its receipt or qualify its retained slots. No actual roster, request or processing code is included.
+
+Before any waveform request, the parent must adopt a distinct study ID/output directory and produce/freeze an exact four-slot object roster from a separately authorized future cohort. Actual cohort planning reads need their own authorization after source/protocol review and freeze. Select by a declared deterministic rule independent of response/waveform outcomes. Include an ordinary-rate slot, a higher-rate slot, a required midnight-adjacent-day slot and a final fixed slot; all are nominal daily objects. If a category cannot be mapped, keep that slot unavailable rather than selecting a substitute. Deduplicate exact keys before collection while retaining slot-to-key mapping. No replacement after mapping or transport outcomes, no growth to meet a success quota. The exact private roster is unavailable in this source-only packet.
+
+The nominal key layout is documented, while exact selected-key validity is not. Freeze canonical network/station/location/channel, documented year/day interpretation, literal object key, anonymous endpoint/region, order and source provenance. Unknown blank-location/day-boundary mappings must be resolved from approved primary documentation before the relevant request; unresolved slots remain unattempted. No listing, wildcard, recursive sync, exploratory neighboring-key search, FDSN fallback, range repair, retry, redirect or resume. Requests must be anonymous; any requirement for credentials/payment ends that slot without escalation to paid access. [GeoNet tutorial](https://github.com/GeoNet/data-tutorials/blob/main/AWS_Open_Data/README.md), [registry](https://registry.opendata.aws/geonet/).
+
+Proposed fixed caps, to be accepted and enforced in the new freeze:
+
+| Measure | Cap / definition |
+|---|---|
+| Object requests | At most four GET attempts, one per distinct frozen key; one connection at a time; at least one second between starts. No preliminary object HEAD/listing. |
+| Connection deadline | 10 seconds from start for resolution/connection/TLS; included in later deadlines. |
+| First-body deadline | First delivered response-body byte within 20 seconds from request start. HTTP200/headers alone do not pass. |
+| Complete-request deadline | 120 seconds from start through body completion; hard wall-clock deadline, including headers and all body reads. This is a new cap, not an extension of the failed run. |
+| Per-body ceiling | 64 MiB = 67,108,864 delivered bytes. Declared larger Content-Length rejects before body; absent/smaller headers never waive the streaming cap. No range workaround. |
+| Total body ceiling | 256 MiB = 268,435,456 bytes, including error/partial bodies. Stop before any next read can cross the remaining allowance; cap exhaustion retains all later slots unattempted. |
+| Whole-run deadline | 900 seconds from parent launch, including preparation, starts, transfers and finalization. New requests stop at 660 seconds; all transfers stop at 780 seconds, reserving 120 seconds for receipts/finalization. |
+
+These are proposed resource limits, not documented service limits or predictions of daily-file size/speed. A 64-MiB ceiling may reject legitimate daily objects; record that outcome and do not expand it after seeing sizes. The future bounded reader needs invented tests proving caps through missing/false Content-Length, blocked reads, partial bodies, errors and interruption, including library-level automatic retries disabled.
+
+Retain each slot and attempted key with status, timestamps (start/headers/first body/end), monotonic elapsed time, declared length, delivered byte count, whole-body/partial-body SHA-256 and final reason. Retain partial/error bodies under the future private-input policy; never publish waveform bodies or identities in the authored review packet. Check transport completion independently against exact bytes and receipt pins; success needs complete HTTP200 within all limits and an independently matching reader receipt, not merely a status code. Report four fixed slot outcomes, complete-body fraction, first-byte/complete latency and bytes. Any unavailable, error, timeout, size rejection, unknown mapping or unattempted slot is not a transport pass; no such result proves waveform absence.
+
+No miniSEED scientific decoding is part of this minimal transport proposal. Subsequent qualification would require a separately reviewed protocol with bounded decoded samples, overlap/gap handling and unchanged strict 1/3/5 absolute cutoffs; downloaded extra days/samples remain hidden from early views. Even four complete bodies only earn further offline qualification planning. They do not earn bulk acquisition, a support claim or a fit. Source/protocol clean review, pushed freeze and separate actual-read/acquisition handoff are prerequisites, not fulfilled by this document.

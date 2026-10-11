@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Restrict the duplicate-pick exemption to actually scoped picks",
+      "body": "The global check treats every publicID-bearing descendant of the event or selected origins as selected, although pick resolution only uses direct children of the designated container. For example, a QML event containing one direct pick and another same-ID pick nested under its origin passes the global duplicate-pick exemption, and the direct pick is accepted as unique. The nested object is outside the documented pick scope, so its shared identity should make the representation unknown. Native selected-origin descendants have the same problem. Apply the duplicate-pick exemption only when every colliding node belongs to the actual scoped `picks` collection.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "semantic_audit.py",
+        "line": 155
+      }
+    },
+    {
+      "title": "[P2] Check publicID collisions across the document root",
+      "body": "The global identity index traverses only EventParameters, leaving root-level siblings unchecked. A native document with selected pick `pick:A` inside EventParameters and an outside sibling `<pick publicID=\"pick_A\"/>` passes validation and retains an accepted pick, despite the two IDs mapping to the same candidate. QML root-level identity collisions are likewise ignored. The documented contract explicitly requires whole-document publicID ambiguity checking against selected objects, independently of full schema validation. Traverse the root for collision detection while preserving the existing selection scope.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "semantic_audit.py",
+        "line": 142
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Read-only source inspection found two gaps in global identity ambiguity checking that allow conflicting outside-scope objects to coexist with accepted unique picks. Both violate the documented conservative identity contract.",
+  "overall_confidence": 0.96
+}

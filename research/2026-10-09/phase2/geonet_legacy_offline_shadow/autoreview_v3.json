@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Include QML arrivals in the cross-type publicID guard",
+      "body": "The QML registry omits publicID-bearing arrivals. If the preferred origin's arrival has publicID=\"smi:nz.org.geonet/p\" and its referenced pick has that same publicID, projection still returns status=\"ok\" and accepts the pick. This violates the protocol's requirement that cross-type publicID collisions make the representation unknown, allowing an ambiguous representation to contribute clocks and recovery counts. Include publicID-bearing arrivals in collision checking, or apply an outside-object collision pass equivalent to the native reader.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "projection.py",
+        "line": 373
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Read-only inspection found a concrete gap in QML cross-type identity validation. A colliding arrival publicID bypasses the fail-closed guard and leaves the representation eligible for diagnostic counts. No tests or transforms were executed.",
+  "overall_confidence": 0.96
+}

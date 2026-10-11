@@ -1,0 +1,13 @@
+{
+  "accepted": [
+    "P2 native event raw identity collision",
+    "P2 dangling native arrival trimming alias"
+  ],
+  "rejected": [
+    {
+      "finding": "P2 calculate NZ against left-side NZ acceptance",
+      "reason": "Conflicts with parent-confirmed frozen subset definition. XX\u2192NZ is an existing accepted reference membership repair and deliberately zero newly resolved recovery. Explicit inline comment and regression added."
+    }
+  ],
+  "actual_inputs_read": false
+}

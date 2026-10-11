@@ -1,0 +1,40 @@
+{
+  "findings": [
+    {
+      "title": "Reject mixed native and QML arrival weight fields",
+      "body": "The documented contract requires mixed legacy fields to remain unknown, but arrival parsing silently ignores the other representation's weight vocabulary. A profileless QML arrival containing BED `<weight>0</weight><timeUsed>true</timeUsed>` without timeWeight returns `ok` and accepts the pick. Conversely, a native arrival containing `<timeWeight>0</timeWeight>` without weight also accepts it. Reject these mixed arrival fields instead of interpreting the ignored weight as absent; otherwise unsupported content produces numeric accepted-pick evidence.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "semantic_audit.py",
+        "line": 292
+      }
+    },
+    {
+      "title": "Handle Decimal exponent overflow during exact depth scaling",
+      "body": "A native depth value of `1e999999999999999999` parses as a finite Decimal, but adding three to its exponent makes this tuple construction raise `decimal.InvalidOperation`. The exception escapes project(), which does not catch it. This small, bounded XML input therefore aborts projection instead of retaining an unknown geometry field. Handle unrepresentable scaled exponents conservatively without rounding them or discarding otherwise available pick denominators.",
+      "priority": "P2",
+      "confidence": 1,
+      "category": "bug",
+      "code_location": {
+        "file_path": "semantic_audit.py",
+        "line": 173
+      }
+    },
+    {
+      "title": "Apply timestamp eligibility before station eligibility",
+      "body": "The v2 README specifies rejected-status, valid aware time, then nonempty station/network checks. This branch reverses the latter two. A uniquely resolved, positively weighted pick with both an invalid timestamp and an empty station is consequently recorded as `missing_station_identity` instead of `invalid_or_naive_pick_time`. Although acceptance remains false, the public rejection counters and qualifying-reference decisions violate the documented eligibility precedence. Move the timestamp check before station identity.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "semantic_audit.py",
+        "line": 530
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Snapshot-only inspection and invented in-memory diagnostics confirmed three contract defects: mixed arrival fields are silently accepted, extreme finite native depth values can escape projection as exceptions, and eligibility rejection precedence differs from the v2 documentation.",
+  "overall_confidence": 0.98
+}

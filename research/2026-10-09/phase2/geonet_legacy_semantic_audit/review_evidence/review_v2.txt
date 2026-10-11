@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] P2: Detect reference-mapping disagreement independently of uniqueness
+semantic_audit.py:533
+The ambiguity flag remains false whenever neither target list has exactly one object, even when trimming changes the referenced identity. For example, two native picks with publicID `smi:invented/P ` and an arrival referencing that literal ID produce two raw targets and zero projected targets. Comparing this projection with QML containing one pick named `smi:invented/P` and the same stripped arrival can return `reference_mapping_consistency=true`, `same_record_content=true`, and one content-matched recovery candidate. This promotes an identity substitution that the documented guard must block. Detect raw/projected identity disagreement independently of target multiplicity, while retaining ordinary duplicate picks as unresolved lower bounds.
+
+[P2] P2: Validate arrivals in secondary QML origins
+semantic_audit.py:517
+Only the preferred QML origin's arrivals reach `_arrival()`. A secondary event-scoped origin containing native `<weight>` or `<timeUsed>` fields therefore returns `status=ok`, although the documented contract requires mixed arrival vocabularies to remain unknown. Duplicate or non-scalar arrival singleton fields in those origins are similarly ignored. Native secondary origins already receive this validation. Validate arrivals in every event-scoped QML origin, while continuing to derive eligibility denominators and comparison signatures exclusively from the preferred origin.
+
+overall: patch is incorrect (0.98)
+Static inspection identified a reference-mapping guard bypass involving duplicate picks and a validation gap for secondary QML arrivals. Both violate the documented narrow contract. No files were modified, tests executed, or excluded sources accessed.

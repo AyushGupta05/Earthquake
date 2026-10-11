@@ -1,0 +1,13 @@
+# GeoNet archive route — documentation result, no download yet
+
+The official GeoNet documentation and AWS Open Data registry describe free, anonymous access to the GeoNet archive. A direct daily miniSEED object could provide a separate route around FDSN query assembly. This is a transport lead, not proof that it avoids the timeout in our failed fixed-96 collection. Selected-object existence, size, completeness, location-code exceptions and archive/FDSN equivalence remain unverified. [GeoNet AWS access](https://www.geonet.org.nz/data/access/aws), [official tutorial](https://github.com/GeoNet/data-tutorials/blob/main/AWS_Open_Data/README.md), [registry](https://registry.opendata.aws/geonet/).
+
+The frozen documentation packet proposes a new four-slot transport preflight: one attempt per distinct fixed object; no listing, HEAD, replacement, redirect, retry, resume or paid fallback. Proposed bounds are 64 MiB per body, 256 MiB total including partial/error bodies, 120 seconds per complete request and 900 seconds for the whole invocation. Unknown mappings and unsuccessful transfers remain explicit outcomes. These are our proposed bounds, not measured object sizes or service guarantees.
+
+A separately versioned collector is being prepared with invented fixtures and code-only review. No actual object roster, request or scientific decoding has occurred in this study. Acquisition needs a frozen, reviewed and pushed collector plus an exact deterministic private roster and bounded parent invocation. Subsequent offline waveform qualification must preserve strict absolute 1/3/5-second cutoffs and independently check gaps, overlaps, units and response metadata. Four successful transfers alone would not justify a training run.
+
+The original fixed-96 acquisition remains incomplete after its first waveform body timed out. Its retained files, attempted denominator, clocks and failure are unchanged. This proposal neither retries nor repairs that run, and a failed transfer never establishes waveform absence.
+
+The authored five-member documentation packet is preserved in `work/geonet_archive_transport_source_audit/`; its hash-list SHA-256 is `1ddcc81118ee919af0d56e4e47a32e90f54bf01b341ef0ab2fc801e510b4b8a4`. Documentation was inspected as rendered public text; these hashes pin our report, not an immutable upstream documentation snapshot.
+
+Paid AWS experiments remain paused until fresh eligible-credit coverage and resource controls can be verified. Anonymous local archive access would require neither an AWS account nor paid compute, according to the cited documentation; no live object access has been tested here.

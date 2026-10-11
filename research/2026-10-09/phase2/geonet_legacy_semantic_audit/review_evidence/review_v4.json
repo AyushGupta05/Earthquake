@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Preserve text-node boundaries for native whitespace semantics",
+      "body": "Default ElementTree parsing discards comments and coalesces surrounding text before the native literal rules run. For an otherwise eligible native arrival containing `<weight>0</weight><timeUsed> <!--invented-->true</timeUsed>`, the documented XSLT whitespace removal discards the whitespace-only text node before the comment, leaving literal `true` and projecting zero timeWeight. This parser instead produces `\" true\"`, so the auditor omits timeWeight and incorrectly accepts the pick. References separated from whitespace by comments can likewise acquire incorrect scope. Preserve text-node boundaries when applying the source whitespace policy, or return unknown for scalar content whose interpretation cannot be preserved.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "semantic_audit.py",
+        "line": 382
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The parser loses information required by the documented native whitespace and literal-flag semantics, which can change accepted-P eligibility and reference scope. The remaining reviewed guards appear consistent with the narrow contract. Assessment used read-only source inspection; no tests or excluded sources were accessed.",
+  "overall_confidence": 0.94
+}

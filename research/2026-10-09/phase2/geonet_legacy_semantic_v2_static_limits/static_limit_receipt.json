@@ -1,0 +1,261 @@
+{
+  "stage": "post_clean_invented_static_limit_check_not_a_new_review",
+  "source_only": true,
+  "actual_input_reads": 0,
+  "new_network_requests": 0,
+  "XSLT_execution": false,
+  "producer_implementation_reads": false,
+  "frozen_source_or_reviews_modified": false,
+  "additional_autoreview_runs": 0,
+  "case_count": 20,
+  "assertions_passed": true,
+  "frozen_allowlist_file_count": 59,
+  "all_frozen_allowlist_pins_match_manifest": true,
+  "all_frozen_allowlist_bytes_unchanged_before_after": true,
+  "frozen_source": {
+    "bytes": 38232,
+    "sha256": "4a3e1ea9815c3389a2ba35a65ed53905ca8ac43a9c73ea86d1a9434000bd18a3"
+  },
+  "frozen_tests": {
+    "bytes": 53596,
+    "sha256": "6919894f0d441fbb36aab261796fdc04e14beb0ab7b7dfe0ef40f4067e584cf2"
+  },
+  "frozen_manifest": {
+    "bytes": 20513,
+    "sha256": "dc1a208c6f7caa5fbd0ef56efd021319ba2cc7bd524b276ffcacf1270ce8960e"
+  },
+  "runtime": {
+    "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "executable": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "bytes": 52448,
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  "public_producer_docs_read_only": {
+    "work/geonet_legacy_offline_shadow_v2/PROTOCOL_v2.md": {
+      "bytes": 10000,
+      "sha256": "08e9792f828686a2541e6c170ba4ad1a7aca2aaf40666f948bf341adb8b4a5a4"
+    },
+    "work/geonet_legacy_offline_shadow_v2/specification.json": {
+      "bytes": 5436,
+      "sha256": "371fef5c58000496b4bb1a9217ecf0a3089449f6414f013488a627384e2cf6e4"
+    }
+  },
+  "cases": [
+    {
+      "case": "native_0.10_all_seven_blank_creation_fields",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "ok",
+        "candidate": {
+          "agencyID": "",
+          "agencyURI": "smi:nz.org.geonet/NA",
+          "author": "",
+          "authorURI": "smi:nz.org.geonet/NA",
+          "creationTime": "",
+          "modificationTime": "",
+          "version": ""
+        },
+        "raw_xml_text_retained_event_and_origin": true,
+        "empty_URI_after_optional_ID_mapping": "smi:nz.org.geonet/NA"
+      }
+    },
+    {
+      "case": "native_0.10_non_XML_whitespace_and_nonblank_padding_retained",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "ok",
+        "author": " \u00a0 ",
+        "version": " padded "
+      }
+    },
+    {
+      "case": "native_0.10_foreign_namespace_publicID_collision_pick:A",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "foreign_evidence_namespace:other",
+        "accepted_picks": null
+      }
+    },
+    {
+      "case": "native_0.10_foreign_namespace_publicID_collision_pick_A",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "foreign_evidence_namespace:other",
+        "accepted_picks": null
+      }
+    },
+    {
+      "case": "native_0.10_outside_scope_root_ID_mapping_collision",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "outside_scope_native_identity_ambiguity"
+      }
+    },
+    {
+      "case": "native_0.10_negative_zero_QML_positive_zero_geometry",
+      "classification": "requested_check_passes",
+      "observed": {
+        "latitude": "0",
+        "longitude": "0",
+        "depth_m": "0",
+        "same_record_content": true
+      }
+    },
+    {
+      "case": "native_0.10_xml_space_preserve_on_root",
+      "classification": "reproduced_static_contract_gap",
+      "observed": {
+        "status": "ok",
+        "raw_author": " \t\n ",
+        "candidate_author": "",
+        "same_record_content": true,
+        "revision_evidence": "matching_recorded_revision",
+        "paired_recorded_revision_resolution_count": 1,
+        "new_public_producer_policy_expected_status": "unknown_representation"
+      }
+    },
+    {
+      "case": "native_0.10_xml_space_preserve_on_creationInfo",
+      "classification": "reproduced_static_contract_gap",
+      "observed": {
+        "status": "ok",
+        "raw_author": " \t\n ",
+        "candidate_author": "",
+        "same_record_content": true,
+        "revision_evidence": "matching_recorded_revision",
+        "paired_recorded_revision_resolution_count": 1,
+        "new_public_producer_policy_expected_status": "unknown_representation"
+      }
+    },
+    {
+      "case": "native_0.11_all_seven_blank_creation_fields",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "ok",
+        "candidate": {
+          "agencyID": "",
+          "agencyURI": "smi:nz.org.geonet/NA",
+          "author": "",
+          "authorURI": "smi:nz.org.geonet/NA",
+          "creationTime": "",
+          "modificationTime": "",
+          "version": ""
+        },
+        "raw_xml_text_retained_event_and_origin": true,
+        "empty_URI_after_optional_ID_mapping": "smi:nz.org.geonet/NA"
+      }
+    },
+    {
+      "case": "native_0.11_non_XML_whitespace_and_nonblank_padding_retained",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "ok",
+        "author": " \u00a0 ",
+        "version": " padded "
+      }
+    },
+    {
+      "case": "native_0.11_foreign_namespace_publicID_collision_pick:A",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "foreign_evidence_namespace:other",
+        "accepted_picks": null
+      }
+    },
+    {
+      "case": "native_0.11_foreign_namespace_publicID_collision_pick_A",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "foreign_evidence_namespace:other",
+        "accepted_picks": null
+      }
+    },
+    {
+      "case": "native_0.11_outside_scope_root_ID_mapping_collision",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "outside_scope_native_identity_ambiguity"
+      }
+    },
+    {
+      "case": "native_0.11_negative_zero_QML_positive_zero_geometry",
+      "classification": "requested_check_passes",
+      "observed": {
+        "latitude": "0",
+        "longitude": "0",
+        "depth_m": "0",
+        "same_record_content": true
+      }
+    },
+    {
+      "case": "native_0.11_xml_space_preserve_on_root",
+      "classification": "reproduced_static_contract_gap",
+      "observed": {
+        "status": "ok",
+        "raw_author": " \t\n ",
+        "candidate_author": "",
+        "same_record_content": true,
+        "revision_evidence": "matching_recorded_revision",
+        "paired_recorded_revision_resolution_count": 1,
+        "new_public_producer_policy_expected_status": "unknown_representation"
+      }
+    },
+    {
+      "case": "native_0.11_xml_space_preserve_on_creationInfo",
+      "classification": "reproduced_static_contract_gap",
+      "observed": {
+        "status": "ok",
+        "raw_author": " \t\n ",
+        "candidate_author": "",
+        "same_record_content": true,
+        "revision_evidence": "matching_recorded_revision",
+        "paired_recorded_revision_resolution_count": 1,
+        "new_public_producer_policy_expected_status": "unknown_representation"
+      }
+    },
+    {
+      "case": "QML_xml_space_on_root",
+      "classification": "reproduced_static_contract_gap",
+      "observed": {
+        "status": "ok",
+        "new_public_producer_policy_expected_status": "unknown_representation"
+      }
+    },
+    {
+      "case": "QML_xml_space_on_event",
+      "classification": "reproduced_static_contract_gap",
+      "observed": {
+        "status": "ok",
+        "new_public_producer_policy_expected_status": "unknown_representation"
+      }
+    },
+    {
+      "case": "QML_foreign_namespace_publicID_collision",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "foreign_evidence_namespace:other"
+      }
+    },
+    {
+      "case": "QML_supported_extension_publicID_collision",
+      "classification": "requested_check_passes",
+      "observed": {
+        "status": "unknown_representation",
+        "reason": "cross_type_scoped_identity"
+      }
+    }
+  ],
+  "requested_three_checks": "pass: blank candidate/raw retention; conservative root-wide/foreign ID ambiguity; signed zero canonicalization",
+  "static_limit": "Frozen auditor accepts xml:space anywhere in root; newer public producer policy requires unknown. Native preserve case can promote content/revision guarded invented recovery.",
+  "planned_unguarded_actual_use_barred": true,
+  "narrow_joint_invocation_possible": "Only with a separately reviewed/pinned bounded preflight guard excluding any XML-namespace space attribute anywhere inside root before either projector; guard excluded inputs stay unknown/null. Root owns actual gate and proves guard/source/runtime/input pins. No universal equality claim.",
+  "separately_versioned_correction_recommended": "If projection-level compatibility is needed, create a new directory/version rejecting xml:space anywhere in root, with invented cases and first-clean review; preserve this frozen v2 unchanged.",
+  "full_schema_validation_deployed_converter_physical_atomic_DB_model_or_original_result_claims": false
+}

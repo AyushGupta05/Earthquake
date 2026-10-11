@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Reject nonfinite results from the final Decimal constructor
+semantic_audit.py:197
+When the caller disables the Decimal InvalidOperation trap, an out-of-range tuple constructor returns NaN instead of raising. Consequently, canonical_decimal('1e999999999999999999', True) returns the string 'NaN' rather than None. Using the supplied invented fixtures, two native projections with this depth then produce origin_fields_complete=true, origin_content_match=true and a positive content_matched_resolution_candidate_count. This violates the documented context-independent, conservative geometry guard. Check the constructed Decimal for finiteness before returning its string, or explicitly control the constructor's trap context.
+
+overall: patch is incorrect (0.97)
+A confirmed Decimal-context edge case turns unrepresentable geometry into a non-null 'NaN' string, allowing comparison guards to promote resolution candidates that should remain unguarded diagnostics. No other actionable defects were identified within the documented source-only scope.
