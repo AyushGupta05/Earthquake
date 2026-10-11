@@ -1,0 +1,25 @@
+{
+  "review_attempt": 1,
+  "engine": "codex",
+  "helper_exit_code": 1,
+  "structured_result_invalid": "Reviewer emitted absolute snapshot code_location paths; helper rejected the first path and did not write final JSON/Markdown. Raw log is retained, no clean review claim.",
+  "accepted_findings": [
+    {
+      "issue": "UTF16 ASCII/NUL bytes bypass UTF8 decode and Expat recognizes root",
+      "verification": "Invented UTF16-LE declaration/root returned 0.11 before fix; forced XMLParser encoding alone still failed both UTF16-LE/BE fixtures",
+      "fix": "Reject XML-forbidden NUL bytes after UTF8 decoding and retain narrow declaration policy; UTF16/32 regression fixtures"
+    },
+    {
+      "issue": "Final receipt I/O excluded from elapsed check",
+      "verification": "Real path checked elapsed before exclusive receipt write/close",
+      "fix": "Check elapsed after close and finalize only own inode-verified receipt as incomplete on overrun; invented slow-close regression"
+    }
+  ],
+  "additional_parent_verified_required_integration_fixes": [
+    "Allow parent native_profile null; independently recognize enum only after authorized reads and retain explicit absent-profile provenance",
+    "Support canonical nested public source members without flattening immutable auditor bundle; source-only exact 86/34 full pinned bundle integration check"
+  ],
+  "actual_inputs_read": false,
+  "old_review_inputs_retained": "review_inputs_v1/",
+  "next_review_requires_repository_relative_code_locations": true
+}

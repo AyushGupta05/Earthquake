@@ -1,0 +1,16 @@
+{
+  "review_attempt": 4,
+  "engine": "codex",
+  "helper_exit_code": 1,
+  "structured_result_valid": true,
+  "accepted_findings": [
+    {
+      "issue": "KeyboardInterrupt bypassed Exception handler and left independent child session alive",
+      "verification": "Invented interrupted selector reproduced missing group termination confirmation before fix; test fixture explicitly cleaned up the live child",
+      "fix": "Catch BaseException for group termination and private incomplete receipt, then re-raise non-Exception interruption after cleanup",
+      "regression": "test_keyboard_interrupt_terminates_group_before_reraise"
+    }
+  ],
+  "actual_inputs_read": false,
+  "old_review_inputs_retained": "review_inputs_v4/"
+}

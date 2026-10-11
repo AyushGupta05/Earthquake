@@ -1,0 +1,16 @@
+{
+  "review_attempt": 5,
+  "engine": "codex",
+  "helper_exit_code": 1,
+  "structured_result_valid": true,
+  "accepted_findings": [
+    {
+      "issue": "Interrupt during finally receipt close could leave complete receipt",
+      "verification": "Invented receipt-close KeyboardInterrupt retained complete:true before fix",
+      "fix": "First persisted receipt always incomplete; protect inode-verified finalization, invalidate on interruption or deadline and propagate failure. Explicit parent publication gate requires normal supervisor completion AND complete receipt",
+      "regression": "test_interrupt_on_initial_receipt_close_cannot_leave_complete"
+    }
+  ],
+  "actual_inputs_read": false,
+  "old_review_inputs_retained": "review_inputs_v5/"
+}

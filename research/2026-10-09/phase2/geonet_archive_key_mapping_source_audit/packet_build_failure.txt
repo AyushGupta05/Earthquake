@@ -1,0 +1,3 @@
+First metadata-packet build failed before source_pins/manifest generation, exit1.
+ValueError: a relative inert-source path was passed to Path.relative_to with an absolute workspace base.
+Corrected only the documentation metadata assembly by resolving the already-downloaded source path before computing its relative locator. No network retry, code execution, processing-source/test/review edit, or actual input occurred as a result of this bookkeeping failure.

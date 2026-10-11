@@ -1,0 +1,50 @@
+2026-10-11T04:15:27.842134Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:15:27.842150Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:15:27.847980Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 89104 chars
+codex thread: 01a1292c-3e5c-7aa2-8851-744d1de2e3a6
+codex turn started
+2026-10-11T04:15:28.307622Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:15:28.307631Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the snapshot’s source and contracts for concrete integration and resource-control defects.
+2026-10-11T04:15:36.665275Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 190ms)... turn_id=01a1292c-3ead-7f73-b1e9-3077e4d0adf4 retries=1 max_retries=5 sampling_error=stream disconnected before completion: websocket closed by server before response.completed
+codex activity: 5 hidden tool/status events
+codex activity: 3 hidden tool/status events
+The gate and pinned-input checks are consistent with the stated authority model. I’m checking two edge cases: XML encoding recognition and whether receipt writing is included in the deadline result.
+codex activity: 6 hidden tool/status events
+{
+  "findings": [
+    {
+      "title": "[P2] Force UTF-8 interpretation in the native root probe",
+      "body": "An ASCII-only XML document encoded as UTF-16LE without a BOM passes body.decode(\"utf-8\") because its bytes contain only ASCII characters and NULs. Its UTF-16 declaration does not match the byte regex, and parser.feed(body) lets Expat autodetect UTF-16 and recognize the SC3ML root. Consequently, native-profile preflight accepts an encoding explicitly forbidden by PROTOCOL.md. Parse the validated UTF-8 interpretation, or explicitly force UTF-8 parsing, so encoding autodetection cannot bypass this gate.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_joint_invocation_v1/review_snapshot/child_harness.py",
+        "line": 241
+      }
+    },
+    {
+      "title": "[P2] Include final receipt writing in deadline accounting",
+      "body": "The final elapsed-time check occurs before receipt.json is opened, written and closed. If that filesystem operation stalls past max_seconds, supervise still returns complete=true, the CLI exits successfully, and the persisted receipt reports the earlier elapsed time. This contradicts the protocol's requirement that output handling count toward the whole invocation and that late cases remain incomplete. Recheck after final receipt I/O and ensure an overrun cannot leave a receipt eligible for publication.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_joint_invocation_v1/review_snapshot/supervisor.py",
+        "line": 193
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Static inspection found an encoding bypass in native-profile validation and incomplete deadline accounting around final receipt I/O. Both violate explicit protocol requirements. No tests, actual invocations, external sources or network access were used.",
+  "overall_confidence": 0.98
+}
+codex usage: input_tokens=212968 cached_input_tokens=168960 output_tokens=2588 reasoning_output_tokens=1746
+finding 0 uses invalid file path: /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_joint_invocation_v1/review_snapshot/child_harness.py

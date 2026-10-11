@@ -1,0 +1,43 @@
+2026-10-11T04:27:10.844155Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:27:10.844168Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:27:10.850201Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 123823 chars
+codex thread: 01a12936-f876-7791-bb56-4cc9d55ba0a7
+codex turn started
+2026-10-11T04:27:11.153722Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:27:11.153732Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the snapshot’s gate, watchdog, output handling and clock reconstruction against the supplied contracts using read-only commands.
+codex activity: 5 hidden tool/status events
+codex activity: 5 hidden tool/status events
+The clock reconstruction and normal timeout paths match the supplied contracts. I found a possible cleanup gap on interruption and am checking whether the finalizer still kills the child group.
+{
+  "findings": [
+    {
+      "title": "[P2] Terminate the child group when supervision is interrupted",
+      "body": "A SIGINT during supervision raises KeyboardInterrupt, which bypasses this Exception handler. The finally block only closes pipes and writes the receipt; it never terminates or waits for the child group. Because Popen uses start_new_session=True, the child does not receive the supervisor's terminal interrupt and can continue projecting after the watchdog exits, potentially beyond the invocation limit. Move group cleanup into an unconditional finalizer, or handle BaseException and re-raise after terminating and reaping the group.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "supervisor.py",
+        "line": 187
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The normal gate, timeout, bounds and clock reconstruction paths align with the supplied contracts, but interruption can leave the child running without supervision. Review used read-only source inspection; no tests or actual invocation were run.",
+  "overall_confidence": 0.96
+}
+codex usage: input_tokens=186100 cached_input_tokens=134400 output_tokens=3391 reasoning_output_tokens=2841
+autoreview findings: 1
+[P2] [P2] Terminate the child group when supervision is interrupted
+supervisor.py:187
+A SIGINT during supervision raises KeyboardInterrupt, which bypasses this Exception handler. The finally block only closes pipes and writes the receipt; it never terminates or waits for the child group. Because Popen uses start_new_session=True, the child does not receive the supervisor's terminal interrupt and can continue projecting after the watchdog exits, potentially beyond the invocation limit. Move group cleanup into an unconditional finalizer, or handle BaseException and re-raise after terminating and reaping the group.
+
+overall: patch is incorrect (0.96)
+The normal gate, timeout, bounds and clock reconstruction paths align with the supplied contracts, but interruption can leave the child running without supervision. Review used read-only source inspection; no tests or actual invocation were run.

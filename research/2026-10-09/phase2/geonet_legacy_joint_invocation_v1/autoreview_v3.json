@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Recheck the processing deadline before accepting child completion",
+      "body": "If handling the final pipe EOF events crosses `processing_deadline`, the selector loop exits because no streams remain registered, bypassing its deadline check. The subsequent `proc.wait()` still receives at least 1 ms and a successful exit becomes `candidate_complete` without another processing-deadline check. Promotion then checks only the later whole-invocation deadline, so a late child completion can receive a complete receipt using the reserved cleanup interval. Recheck `processing_deadline` before accepting the successful exit and retain an incomplete deadline receipt when it has elapsed.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "supervisor.py",
+        "line": 148
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The watchdog has a completion path that bypasses the documented processing deadline. The remaining reviewed source/input bindings, profile handling, and clock reconstruction appear consistent with the supplied contracts. Review used source inspection only; no tests, frozen modules, or actual invocation were executed.",
+  "overall_confidence": 0.91
+}

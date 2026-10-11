@@ -1,0 +1,48 @@
+{
+  "protocol_id": "geonet_legacy_joint_invocation_v1",
+  "private_plan_exact_fields": {
+    "protocol_id": "literal protocol_id",
+    "original_plan_sha256": "hex64 from preserved fixed paired plan",
+    "original_manifest_sha256": "hex64 from preserved fixed paired manifest",
+    "original_census_clock_source_sha256": "hex64; parent independently verified all six original clock bindings",
+    "processing_source_mapping_sha256": "hex64 producer V2 processing mapping, parent independently bound",
+    "producer": "source_bundle",
+    "auditor": "source_bundle",
+    "events": "exact six event_input dictionaries in original fixed order"
+  },
+  "source_bundle_exact_fields": {
+    "directory": "canonical absolute exact frozen directory",
+    "members": "flat relative public filename -> {bytes: nonnegative int, sha256: hex64}; full parent-verified allowlist of 86 producer or 34 auditor members"
+  },
+  "event_input_exact_fields": {
+    "event_id": "unique nonempty raw private string <=1024 characters",
+    "original_t0_us": "valid UTC calendar integer microseconds or null; no automatic inference",
+    "native_profile": "0.10 or 0.11 independently recognized by parent and child root probe",
+    "bodies": "exact original_qml/fresh_qml/native_scml mappings each {path: canonical absolute distinct file, bytes: int, sha256: hex64}"
+  },
+  "private_authorization_exact_fields": {
+    "protocol_id": "literal protocol_id",
+    "authorization": "one_fixed_offline_invocation",
+    "plan_sha256": "hex64 of exact plan bytes; plan contains no authorization hash",
+    "adapter_sha256": "hex64 of child_harness.py",
+    "supervisor_sha256": "hex64 of supervisor.py",
+    "runtime": "exact {path: resolved absolute executable, sha256: hex64}",
+    "pushed_freeze": "hex40 parent verified published adapter freeze commit",
+    "original_census_clock_source_sha256": "hex64 matching plan",
+    "original_census_clocks_independently_verified": true,
+    "source_freeze_tests_review_verified": true,
+    "git_pushed_freeze_independently_verified": true,
+    "network_requests_authorized": 0,
+    "producer_bundle_sha256": "hex64 of canonical JSON source_bundle",
+    "auditor_bundle_sha256": "hex64 of canonical JSON source_bundle",
+    "adapter_review_receipt_sha256": "hex64 parent verified actual clean review receipt",
+    "adapter_test_receipt_sha256": "hex64 parent verified synthetic test receipt"
+  },
+  "canonical_mapping_encoding": "UTF-8 json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False), no newline",
+  "output_envelope_exact_fields": ["protocol_id", "private", "public_aggregate"],
+  "private_output_fields": ["producer", "independent", "policy_differences", "invocation_provenance"],
+  "independent_event_fields": ["event_id", "native_root_profile", "primary_qml_profile", "representations", "shadow_clocks", "catalogue_drift", "representation_difference", "producer_clock_comparison", "signed_clock_diagnostics"],
+  "public_aggregate_fields": ["events", "representation_slots", "independent_status_counts", "known_projection_clock_mismatch_slots", "independent_own_clock_earlier_than_preserved_slots", "shared_known_subset_clock_mismatch_detected", "shared_clock_claim_permitted", "universal_semantic_equality_claim_permitted", "network_requests", "automatic_reclock_applied", "model_improvement_claim", "operational_availability_claim"],
+  "actual_inputs_read_or_execution_authorized_here": false,
+  "hard_RSS_memory_ceiling_claim": false
+}

@@ -1,0 +1,16 @@
+{
+  "review_attempt": 2,
+  "engine": "codex",
+  "helper_exit_code": 1,
+  "structured_result_valid": true,
+  "accepted_findings": [
+    {
+      "issue": "Path aliases normalize before canonical check but raw strings drive uniqueness",
+      "verification": "Path removes redundant slash/dot components; two raw strings could designate one file",
+      "fix": "Require exact canonical string spelling before opening; track canonical body paths. Apply same invariant to source roots, runtime/child paths and exclusive output directory",
+      "regressions": "Invented duplicate body aliases, literal path aliases and aliased source roots"
+    }
+  ],
+  "actual_inputs_read": false,
+  "old_review_inputs_retained": "review_inputs_v2/"
+}

@@ -1,0 +1,28 @@
+# Anonymous archive transport preflight v1
+
+**Source and invented-fixture implementation only. No actual roster has been read/mapped and no archive request is authorized or performed.** This is separate from every failed 96-event outcome and earlier clock. It implements the four-slot [frozen proposal](/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_transport_source_audit/PROSPECTIVE_PREFLIGHT.md), SHA-256 `ae85f4f2a1431cc4b30c91fcc5caab8cc040d36c51ce744f93ef62ae34290a1a`.
+
+The input is an immutable, byte-pinned JSON roster, at most 16 KiB, with exactly the ordered ordinary/higher/boundary/final slots. A slot contains one literal nominal daily-object key or an unavailable reason. No event/station lookup or key mapping occurs in the collector. Unknown location/day-basis mapping must stay unavailable. Validation requires an independently established UTC day basis and mapping-provenance assertion; those assertions have not been established for actual inputs by this packet. Exact repeated keys share one request while retaining all four slots.
+
+Production uses the single prospective regional REST endpoint `https://geonet-open-data.s3.ap-southeast-2.amazonaws.com` with GET and literal validated keys. The official documentation establishes the bucket/region and unsigned access; this chosen HTTP endpoint and selected keys still need independent parent mapping verification before actual use. It sends no credentials, signing, requester-payment flag or cookies. It ignores proxy/AWS/Python-user configuration. No redirect, retry, HEAD, listing, recursive sync, range repair, adjacent-key search or paid/FDSN fallback exists.
+
+| Limit | Fixed production value |
+|---|---|
+| Requests | ≤4 distinct GET attempts, sequential; ≥1 second between starts |
+| Connection including DNS/TLS | 10 seconds from request start |
+| First response-body byte | 20 seconds from request start; headers alone do not pass |
+| Complete request | 120 seconds from request start, including body write/flush |
+| Per response body | ≤67,108,864 bytes (64 MiB), including partial/error bodies |
+| All response bodies | ≤268,435,456 bytes (256 MiB) |
+| Whole run | 900 seconds from collection launch, including preparation/finalization |
+| Stop new requests / stop transfers | 660 / 780 seconds from launch; 120-second finalization reserve |
+
+A controller runs in its own process group under the callable parent's outer watchdog. Every request has a separate worker; the controller monitors nonblocking event pipes and kills that worker at the relevant deadline. DNS and reads never run in the supervising process. The outer parent kills the complete owned group if collection/finalization exceeds its deadline or its callable is interrupted. Existing directories/symlink leaves fail before network activity; new output files are exclusively created with private permissions. No overwrite/resume interface exists.
+
+Two execution clarifications are needed for a truthful v1 contract; the earlier proposal is unchanged. Body limits count bytes returned by the bounded HTTP body reader, not headers, TCP/kernel buffering or wire traffic. The reader never probes one byte beyond the remaining cap. An unknown-length/chunked body ending exactly at the cap is conservatively incomplete unless framing already establishes completion. A misleading shorter Content-Length can establish completion of that HTTP-framed body only; a transport pass cannot establish server truth or miniSEED completeness.
+
+If a worker is killed before its final count, its observed partial file is retained and its entire assigned body allowance is charged as the unknown consumption upper bound. No favorable precise consumption count is invented. The controller must confirm the writer has exited before hashing any complete/partial body. Termination confirmation may use the remaining whole-run finalization budget; it never turns a deadline failure into a pass. Unconfirmed termination leaves the run incomplete, preserving the roster, initial accounting and extant journals/partial files without a favorable final hash. Complete worker count/hash is independently compared with the saved body. Immutable initial/journal receipts retain unavailable/unattempted slots. A final manifest pins roster, journals, bodies and final receipt; the returned SHA-256 pins that manifest. `complete` means collection accounting finalized without unattempted requestable slots, not that data are usable. `all_slots_pass` requires each fixed slot to refer to a nonempty, complete HTTP200 body within deadlines and matching independent hashes.
+
+OS scheduling or an uninterruptible filesystem/process-creation stall cannot provide a mathematical wall-clock return/final-receipt guarantee. The watchdog issues termination at its deadline; an absent final receipt/manifest is an incomplete run, with the immutable input and extant journals preserved. No incomplete state permits retry/replacement or a support/absence claim. Asynchronous child reaping never extends the callable deadline.
+
+Only fake/local HTTP fixtures may run under this source-only task. `collect_fixture` requires an invented study ID and numeric loopback endpoint, with explicit shorter fixture caps; it cannot contact the archive. Production `collect` has no actual-run CLI and requires the separately pinned parent gate in [ACTUAL_INVOCATION_GATE.md](/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_transport_preflight_v1/ACTUAL_INVOCATION_GATE.md). Private subprocess modes are internal implementation details, not authorized entry points. No miniSEED decoding, 1/3/5 prefix qualification, response correction, scientific support or model fit is performed.

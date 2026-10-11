@@ -1,0 +1,34 @@
+# Literal-key anonymous archive transport hypothesis v2
+
+**Source and invented-fixture implementation only. No actual inputs, keys, bodies or receipts were read; no public data/account request or acquisition occurred.** V1 and its clean packet remain unchanged. V2 changes the interpretation gate: an explicitly preregistered literal-key transport hypothesis may be tested while semantic mapping remains unverified. The parent owns actual planning, authorization, pushed freeze and invocation.
+
+The original four-slot numerical proposal remains pinned at SHA-256 `ae85f4f2a1431cc4b30c91fcc5caab8cc040d36c51ce744f93ef62ae34290a1a`. V2 does not rewrite that proposal or any failed 96-event result, clock or selection. Its own protocol ID is `geonet-anonymous-archive-transport-v2`.
+
+The immutable, byte-pinned JSON plan is at most 16 KiB and has exactly four ordered ordinary/higher/boundary/final slots. Each has one literal nominal key or an unavailable reason; no replacement, actual metadata reader or mapper exists. Syntax checks only the documented nonblank two-character LC subset, consistent repeated fields and Gregorian year/DOY shape. It does not assert UTC filename partitioning, location encoding, content identity or endpoint mapping. No case normalization, stripping, padding, blank alias or alternate key is admitted. Exact repeated requestable keys share one attempt while all four slots remain in the denominator.
+
+Every plan must carry `mapping_status:"unverified_hypothesis"`, hypothesis `anonymous_nominal_literal_key_gets`, the pinned primary template SHA, the pinned uncertainty audit SHA and a parent preregistration-document SHA. Each slot retains explicit UTC filename, channel identity, location encoding and endpoint/key uncertainty labels. Channel shape is validated without requiring inventory certification or assuming a selected channel exists. UTC/day-basis or `mapping_verified` fields are rejected. The [primary evidence](/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_transport_preflight_v2/PRIMARY_EVIDENCE.md) supports only the nominal template and the stated uncertainties. A positive HTTP result cannot upgrade any mapping claim. A failed candidate cannot establish absence under other keys or diagnose day/location/coverage uncertainty.
+
+The sole prospective endpoint remains `https://geonet-open-data.s3.ap-southeast-2.amazonaws.com`; its selected endpoint/key correspondence is a hypothesis, not deployed-service proof. Native stdlib HTTP sends a literal GET with identity encoding and connection close. No credentials/signing, cookie, proxy/AWS configuration, payer flag, redirect, retry, HEAD, listing, range repair or paid/FDSN fallback is available.
+
+| Production limit | Fixed value |
+|---|---|
+| Distinct GET attempts | At most 4, sequential; at least 1 second between recorded starts |
+| DNS/connect/TLS | 10 seconds from request start |
+| First body byte | 20 seconds from request start; headers alone do not pass |
+| Complete request | 120 seconds from request start, including body write/flush |
+| Per response body | 67,108,864 bytes including partial/error bodies |
+| All response bodies | 268,435,456 bytes |
+| Whole supervised collection | 900 seconds including preparation/finalization |
+| Stop new requests / stop transfers | 660 / 780 seconds from collection begin |
+
+A controller process group runs under an outer parent watchdog; each request has a worker. Parent deadlines encompass worker launch, DNS, connect, first-body and complete-body operations. A launch-time guard prevents preparation delay from moving a recorded start beyond the no-new-request cutoff. Deadline termination is issued at the applicable cap. Before hashing any body/partial file, the controller confirms the writer has exited, using only the remaining whole-run budget. Unconfirmed exit leaves the run incomplete and preserves extant roster/initial/journal/partial files. No complete final accounting is invented.
+
+Body limits count bytes returned by the bounded HTTP body reader, excluding headers, kernel buffering and wire traffic. No extra byte is probed at the cap; an unknown/chunked exact-cap ending stays conservatively incomplete unless framing proves completion. A shorter misleading Content-Length establishes only completion of that HTTP-framed body. Killed workers without a verified final count are charged their full assigned allowance as a conservative consumption upper bound. Complete-worker count/hash is independently matched to the retained file. Existing output directories and symlink leaves fail before requests; files are exclusive/private, with no resume or overwrite interface.
+
+`complete` means finalized accounting without unattempted requestable slots; it does not mean data usability. `all_slots_transport_pass` means every fixed slot refers to a nonempty HTTP200 body with complete framing, verified hashes and deadlines. The receipt and returned summary retain false mapping/day/location/endpoint/coverage/failed96-repair claims. The returned execution summary includes the outer monotonic begin/return/elapsed values and manifest hash; a parent must separately pin it for independent whole-run finalization audit. The final saved receipt's earlier elapsed field cannot prove finalization. Exact field shapes and relationships are in [SCHEMA.md](/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_transport_preflight_v2/SCHEMA.md).
+
+OS scheduling or uninterruptible filesystem/process creation cannot guarantee a mathematical wall-clock function return or final receipt. The watchdog issues termination at the deadline; a missing final manifest/receipt or over-budget returned execution summary is incomplete. Asynchronous outer reaping does not intentionally extend the callable budget. All failures remain; none permit retry or replacement.
+
+Private controller/worker argument envelopes allow at most 65,536 bytes, reserving the worst-case JSON escaping of a valid 16 KiB plan plus the bounded gate, fixed options and output path. The absolute output path must encode as UTF-8 and use at most 4,096 bytes. Fixture endpoints use canonical numeric-loopback HTTP with a one-to-five-digit port. These implementation bounds do not change any public plan/body/deadline cap.
+
+Only invented numeric-loopback fixtures may run in this task. Actual collection requires the separate [parent gate](/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_transport_preflight_v2/ACTUAL_INVOCATION_GATE.md) after the reviewed V2 source/protocol/test/receipt pins and pushed freeze are independently verified. Generic input validation and a clean review do not grant acquisition authority. No miniSEED decoding, coverage qualification, physical-motion inference, causal EEW prefix test or model fit is performed.

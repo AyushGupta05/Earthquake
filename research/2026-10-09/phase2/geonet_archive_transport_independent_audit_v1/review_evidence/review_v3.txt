@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Validate journal types before comparing with final rows
+auditor.py:386
+Python dictionary equality treats `true` as equal to `1` and `false` as equal to `0`. Changing only a journal's `transport_pass` from `true` to `1`, then updating its manifest pin and summary linkage, therefore passes this comparison. Subsequent type checks validate only the final row, so the audit can still report `valid:true` and qualify all four slots despite a journal violating the public contract. Validate each journal against the same typed row schema, or use a comparison that distinguishes booleans from numbers, before accepting journal/final agreement.
+
+overall: patch is incorrect (0.96)
+The bounded reads and qualification logic largely follow the public contract, but journal comparison can accept invalid typed evidence and incorrectly promote the replay as valid. Review used read-only source inspection; no tests were run.

@@ -1,0 +1,16 @@
+{
+  "review_attempt": 3,
+  "engine": "codex",
+  "helper_exit_code": 1,
+  "structured_result_valid": true,
+  "accepted_findings": [
+    {
+      "issue": "Final pipe EOF/wait success could consume reserved cleanup interval and still promote",
+      "verification": "Invented delayed successful wait ran in0.345seconds with0.4whole/0.3processing limits and incorrectly reported complete before fix",
+      "fix": "Check remaining processing time before wait and recheck after successful wait before candidate_complete",
+      "regression": "test_successful_wait_crosses_processing_deadline"
+    }
+  ],
+  "actual_inputs_read": false,
+  "old_review_inputs_retained": "review_inputs_v3/"
+}

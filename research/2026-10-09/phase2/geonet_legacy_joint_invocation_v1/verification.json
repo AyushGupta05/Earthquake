@@ -1,0 +1,34 @@
+{
+  "actual_authority": false,
+  "actual_event_input_reads": 0,
+  "algorithm_modules_imported": false,
+  "exact_reviewed_source_members": 19,
+  "limitations": [
+    "logical buffers/input caps only; no OS RSS ceiling",
+    "OS scheduling/process creation/file I/O cannot be hard-real-time; late or unconfirmed cases incomplete",
+    "publication requires normal supervisor return or CLI exit0 plus complete receipt/hash verification",
+    "policy differences retained; no universal equality or operational/model claim"
+  ],
+  "original_frozen_producer_auditor_bytes_unchanged": true,
+  "public_dependency_members": {
+    "auditor": {
+      "members": 34,
+      "mismatches": 0
+    },
+    "producer": {
+      "members": 86,
+      "mismatches": 0
+    }
+  },
+  "review_snapshot_matches_current_bytes": true,
+  "source_sha256": {
+    "PROTOCOL.md": "b5388bb449d2a4117cd4392c7ef51305ddc3ee421b3934c668e5c0c49847fd4b",
+    "SCHEMAS.json": "77801d9e2e55a6b3946d8fd9cf56a88893a73be199427d77825d1ac0407b7328",
+    "child_harness.py": "6fa13af6a8e18f20f3a878b6703e6be578d76afaa2572f18b14580096818f826",
+    "supervisor.py": "e5b860a6dd04a6fa1a5058c3cac47b319e24fadedea5c29ce08bce0cdb966e41",
+    "test_adapter.py": "5b3934eea61d40201e6369d7c555312db48017c76a3ad46207212f0362e917a9"
+  },
+  "test_receipt_sha256": "26f86b9739598f9ee44236e093556a49581d78187016bea8ae0faa2c651a9b93",
+  "tests_exit_code": 0,
+  "tests_passed": 40
+}
