@@ -1,0 +1,52 @@
+import numpy as np,json,warnings,math,hashlib
+from scipy.special import logsumexp
+from pathlib import Path
+root=Path('work/geonet_location_mechanism_preflight')
+p=json.loads((root/'CALCULATIONS.json').read_text())
+def walk(x):
+ if isinstance(x,float):assert math.isfinite(x)
+ elif isinstance(x,dict):
+  for v in x.values():walk(v)
+ elif isinstance(x,list):
+  for v in x:walk(v)
+walk(p)
+for r in p['results']:
+ for a in r['metrics'].values():
+  assert a['CRPS']>=0
+  for d in ('mean_decision','median_decision'):
+   assert a[d]['MAE']>=0 and a[d]['CVaR95']>=a[d]['MAE']
+G=np.array([[10.,0.],[100.,0.]])
+S=np.array([[0.,0.],[0.,6.],[0.,12.]])
+LR=np.log10(np.linalg.norm(G[:,None,:]-S[None,:,:],axis=2))
+DT=(10**LR[:,1:]-10**LR[:,:1])/6
+checks=[]
+for seed in (20261011,20261012):
+ rng=np.random.default_rng(seed);n_events=4096
+ c=(rng.random(n_events)>=.95).astype(int)
+ truth=np.array([3.7,6.8])[c]+np.array([.4,.5])[c]*rng.standard_normal(n_events)
+ state=(rng.random(n_events)>=.5).astype(int)
+ noise=.12*rng.standard_normal((n_events,3))
+ obs=DT[state]+noise[:,1:]-noise[:,:1]
+ for regime in ('base','locator_stress'):
+  o=obs.copy()
+  if regime=='locator_stress':
+   affected=(state==1)&(truth>=5.5);o[affected]=DT[0]+noise[affected,1:]-noise[affected,:1]
+  for n in (1,2,3):
+   prior=np.array([.5,.5]) if regime=='base' else np.array([.98,.02])
+   if n==1:tg=np.broadcast_to(np.log(prior),(n_events,2))
+   else:
+    cov=(.12 if regime=='base' else .04)**2*(np.eye(n-1)+np.ones((n-1,n-1)))
+    delta=o[:,None,:n-1]-DT[None,:,:n-1]
+    ll=-.5*(np.einsum('ngi,ij,ngj->ng',delta,np.linalg.inv(cov),delta)+np.linalg.slogdet(cov)[1]+(n-1)*np.log(2*np.pi))
+    tg=ll+np.log(prior);tg=tg-logsumexp(tg,axis=1,keepdims=True)
+   tp=np.exp(tg)
+   with warnings.catch_warnings(record=True) as caught:
+    warnings.simplefilter('always'); matrix=tp@G
+   scalar=tp[:,0,None]*G[0]+tp[:,1,None]*G[1]
+   assert np.isfinite(matrix).all() and np.isfinite(scalar).all()
+   error=float(np.max(np.abs(matrix-scalar)))
+   assert error<3e-14,error
+   checks.append({'seed':seed,'regime':regime,'reported_stations':n,'matrix_vs_broadcast_max_abs_difference':error,'warnings':[str(w.message) for w in caught]})
+q={'checked_calculations_sha256':hashlib.sha256((root/'CALCULATIONS.json').read_bytes()).hexdigest(),'all_aggregate_numeric_values_finite':True,'all_CRPS_nonnegative':True,'all_CVaR95_ge_MAE':True,'original_warning':'Oneoff emitted divide-by-zero/overflow/invalid warnings at mean-location matrix multiply; preserved in tool output. No aggregate was nonfinite.','independent_location_mean_checks':checks,'max_difference':max(x['matrix_vs_broadcast_max_abs_difference'] for x in checks),'interpretation':'Matrix and explicit weighted broadcast are equal within 3e-14 and finite in all fixed panels. No result was changed or fitted. Warning cause in accelerated numeric stack is not diagnosed; do not claim a warning-free original run.'}
+(root/'WARNING_CHECK.json').write_text(json.dumps(q,indent=2)+'\n')
+print(json.dumps(q,indent=2))

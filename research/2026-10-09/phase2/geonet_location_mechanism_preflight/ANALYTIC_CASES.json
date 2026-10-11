@@ -1,0 +1,365 @@
+{
+  "kind": "Invented explicit analytic cases for independent recomputation, not sampled empirical examples",
+  "cases": [
+    {
+      "name": "one_station_ambiguous_far_tail",
+      "a": [
+        2.8
+      ],
+      "qtiming": [
+        0.5,
+        0.5
+      ],
+      "sigma_independent": 0.35,
+      "true_M_for_error": 6.8,
+      "station_coordinates_km": [
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "source_coordinates_km": [
+        [
+          10.0,
+          0.0
+        ],
+        [
+          100.0,
+          0.0
+        ]
+      ],
+      "log10_distances": [
+        [
+          1.0
+        ],
+        [
+          2.0
+        ]
+      ],
+      "amplitude_covariance": [
+        [
+          0.145
+        ]
+      ],
+      "M_prior": {
+        "weights": [
+          0.95,
+          0.05
+        ],
+        "means": [
+          3.7,
+          6.8
+        ],
+        "variances": [
+          0.16,
+          0.25
+        ]
+      },
+      "posterior_component_means_by_g_then_M_component": [
+        [
+          4.277049180327868,
+          5.534177215189873
+        ],
+        [
+          5.32622950819672,
+          6.8
+        ]
+      ],
+      "posterior_component_variances": [
+        0.07606557377049179,
+        0.09177215189873417
+      ],
+      "arrival_weights": [
+        [
+          0.4989391467017447,
+          0.0010608532982553584
+        ],
+        [
+          1.5557968816707885e-06,
+          0.49999844420311823
+        ]
+      ],
+      "joint_weights": [
+        [
+          0.7472146023261808,
+          0.0015887409930096042
+        ],
+        [
+          7.816219503002632e-07,
+          0.25119587505885915
+        ]
+      ],
+      "arrival_mean": 5.539855925698511,
+      "joint_mean": 4.912802090110695,
+      "ElogR_mean": 6.09519477963841,
+      "ElogR_conditional_component_means": [
+        4.801639344262295,
+        6.167088607594936
+      ],
+      "ElogR_conditional_component_weights": [
+        0.05265214159701325,
+        0.9473478584029871
+      ],
+      "quadrature_joint_mean": 4.912802090110699,
+      "quadrature_joint_mean_abs_difference": 3.552713678800501e-15,
+      "mean_error": {
+        "arrival": 1.260144074301489,
+        "joint": 1.8871979098893048,
+        "ElogR": 0.7048052203615898
+      }
+    },
+    {
+      "name": "two_station_ambiguous_far_tail",
+      "a": [
+        2.8,
+        2.7984393473574265
+      ],
+      "qtiming": [
+        0.5,
+        0.5
+      ],
+      "sigma_independent": 0.25,
+      "true_M_for_error": 6.8,
+      "station_coordinates_km": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          6.0
+        ]
+      ],
+      "source_coordinates_km": [
+        [
+          10.0,
+          0.0
+        ],
+        [
+          100.0,
+          0.0
+        ]
+      ],
+      "log10_distances": [
+        [
+          1.0,
+          1.0667694541851087
+        ],
+        [
+          2.0,
+          2.0007803263212867
+        ]
+      ],
+      "amplitude_covariance": [
+        [
+          0.08499999999999999,
+          0.0225
+        ],
+        [
+          0.0225,
+          0.08499999999999999
+        ]
+      ],
+      "M_prior": {
+        "weights": [
+          0.95,
+          0.05
+        ],
+        "means": [
+          3.7,
+          6.8
+        ],
+        "variances": [
+          0.16,
+          0.25
+        ]
+      },
+      "posterior_component_means_by_g_then_M_component": [
+        [
+          4.572787183430229,
+          5.208221504414669
+        ],
+        [
+          6.020467836257309,
+          6.799999999999999
+        ]
+      ],
+      "posterior_component_variances": [
+        0.04023391812865497,
+        0.044238683127572016
+      ],
+      "arrival_weights": [
+        [
+          0.49887770255844455,
+          0.001122297441555438
+        ],
+        [
+          1.9556535051569064e-09,
+          0.4999999980443466
+        ]
+      ],
+      "joint_weights": [
+        [
+          0.46712306367995027,
+          0.0010508607952830465
+        ],
+        [
+          2.0801350574677066e-09,
+          0.5318260734446318
+        ]
+      ],
+      "arrival_mean": 5.6871067365033365,
+      "joint_mean": 5.757944786419361,
+      "ElogR_mean": 6.0023316668870255,
+      "ElogR_conditional_component_means": [
+        5.296627509843769,
+        6.004110752207334
+      ],
+      "ElogR_conditional_component_weights": [
+        0.002514667788266303,
+        0.997485332211734
+      ],
+      "quadrature_joint_mean": 5.75794478641936,
+      "quadrature_joint_mean_abs_difference": 8.881784197001252e-16,
+      "mean_error": {
+        "arrival": 1.1128932634966633,
+        "joint": 1.042055213580639,
+        "ElogR": 0.7976683331129744
+      }
+    },
+    {
+      "name": "wrong_confident_one_station",
+      "a": [
+        3.0
+      ],
+      "qtiming": [
+        0.99,
+        0.01
+      ],
+      "sigma_independent": 0.35,
+      "true_M_for_error": 7.0,
+      "station_coordinates_km": [
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "source_coordinates_km": [
+        [
+          10.0,
+          0.0
+        ],
+        [
+          100.0,
+          0.0
+        ]
+      ],
+      "log10_distances": [
+        [
+          1.0
+        ],
+        [
+          2.0
+        ]
+      ],
+      "amplitude_covariance": [
+        [
+          0.145
+        ]
+      ],
+      "M_prior": {
+        "weights": [
+          0.95,
+          0.05
+        ],
+        "means": [
+          3.7,
+          6.8
+        ],
+        "variances": [
+          0.16,
+          0.25
+        ]
+      },
+      "posterior_component_means_by_g_then_M_component": [
+        [
+          4.381967213114753,
+          5.660759493670885
+        ],
+        [
+          5.431147540983606,
+          6.926582278481012
+        ]
+      ],
+      "posterior_component_variances": [
+        0.07606557377049179,
+        0.09177215189873417
+      ],
+      "arrival_weights": [
+        [
+          0.9780461091151776,
+          0.011953890884822594
+        ],
+        [
+          4.014830451690733e-09,
+          0.009999995985169548
+        ]
+      ],
+      "joint_weights": [
+        [
+          0.9810531101626273,
+          0.011990643101386587
+        ],
+        [
+          2.7928151225110644e-09,
+          0.0069562439431708235
+        ]
+      ],
+      "arrival_mean": 4.422699901150621,
+      "joint_mean": 4.415001721018031,
+      "ElogR_mean": 4.41086952994093,
+      "ElogR_conditional_component_means": [
+        4.392459016393442,
+        5.6734177215189865
+      ],
+      "ElogR_conditional_component_weights": [
+        0.9856275510882412,
+        0.014372448911758585
+      ],
+      "quadrature_joint_mean": 4.415001721018033,
+      "quadrature_joint_mean_abs_difference": 1.7763568394002505e-15,
+      "mean_error": {
+        "arrival": 2.5773000988493786,
+        "joint": 2.5849982789819688,
+        "ElogR": 2.58913047005907
+      }
+    }
+  ],
+  "flat_prior_observational_alias": {
+    "amplitude": 3,
+    "logR_near": 1,
+    "logR_far": 2,
+    "M_near": 5,
+    "M_far": 7,
+    "q_near": 0.99,
+    "q_far": 0.01,
+    "mixture_mean": 5.02,
+    "far_absolute_error": 1.98,
+    "one_of_two_absolute_errors_at_any_shared_point_decision_at_least": 1.0
+  },
+  "nonlinear_conditional_mean_example": {
+    "function": "f(l)=4+l^2",
+    "l_states": [
+      1,
+      2
+    ],
+    "weights": [
+      0.5,
+      0.5
+    ],
+    "integrated_mean": 6.5,
+    "f_at_mean_l": 6.25,
+    "difference": 0.25,
+    "identity": "E[f(l)]-f(E[l])=Var(l)=0.25; correctly conditioning is required for a risk interpretation"
+  }
+}

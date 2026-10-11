@@ -1,0 +1,39 @@
+import numpy as np,json
+from pathlib import Path
+from scipy.stats import multivariate_normal
+from scipy.special import logsumexp
+from scipy.integrate import quad
+root=Path('work/geonet_location_mechanism_preflight')
+source=np.array([[10.,0.],[100.,0.]])
+stations=np.array([[0.,0.],[0.,6.],[0.,12.]])
+lr=np.log10(np.linalg.norm(source[:,None,:]-stations[None,:,:],axis=2))
+means=np.array([3.7,6.8]);vv=np.array([.16,.25]);pw=np.array([.95,.05])
+cases=[{'name':'one_station_ambiguous_far_tail','a':[2.8],'qtiming':[.5,.5],'sigma_independent':.35,'true_M_for_error':6.8},{'name':'two_station_ambiguous_far_tail','a':(6.8-2*lr[1,:2]).tolist(),'qtiming':[.5,.5],'sigma_independent':.25,'true_M_for_error':6.8},{'name':'wrong_confident_one_station','a':[3.0],'qtiming':[.99,.01],'sigma_independent':.35,'true_M_for_error':7.0}]
+for case in cases:
+ a=np.array(case['a']);n=len(a);q=np.array(case['qtiming']);cov=case['sigma_independent']**2*np.eye(n)+.15**2*np.ones((n,n));iv=np.linalg.inv(cov);one=np.ones(n);s=one@iv@one
+ postv=vv/(1+vv*s)
+ postmu=np.empty((2,2));loge=np.empty((2,2))
+ for g in range(2):
+  y=a+2*lr[g,:n]
+  for c in range(2):
+   postmu[g,c]=(means[c]+vv[c]*(one@iv@y))/(1+vv[c]*s)
+   loge[g,c]=np.log(pw[c])+multivariate_normal.logpdf(y,mean=means[c]*one,cov=cov+vv[c]*np.ones((n,n)))
+ arrival_weights=q[:,None]*np.exp(loge-logsumexp(loge,axis=1,keepdims=True))
+ joint_weights=np.exp(loge+np.log(q)[:,None]-logsumexp(loge+np.log(q)[:,None]))
+ elog=q@lr[:,:n]
+ em=[];el=[]
+ for c in range(2):
+  y=a+2*elog;em.append((means[c]+vv[c]*(one@iv@y))/(1+vv[c]*s));el.append(np.log(pw[c])+multivariate_normal.logpdf(y,mean=means[c]*one,cov=cov+vv[c]*np.ones((n,n))))
+ ew=np.exp(np.array(el)-logsumexp(el));epred=float(np.dot(ew,em))
+ def raw(m):
+  prior=sum(pw[c]*np.exp(-.5*(m-means[c])**2/vv[c])/np.sqrt(2*np.pi*vv[c]) for c in range(2))
+  like=sum(q[g]*multivariate_normal.pdf(a,mean=m*one-2*lr[g,:n],cov=cov) for g in range(2))
+  return prior*like
+ z=quad(raw,-10,20,epsabs=1e-12,epsrel=1e-11,points=[3.7,6.8],limit=200)[0]
+ quadmean=quad(lambda m:m*raw(m),-10,20,epsabs=1e-12,epsrel=1e-11,points=[3.7,6.8],limit=200)[0]/z
+ jointmean=float((joint_weights*postmu).sum());arrivalmean=float((arrival_weights*postmu).sum())
+ assert abs(quadmean-jointmean)<1e-9
+ case.update({'station_coordinates_km':stations[:n].tolist(),'source_coordinates_km':source.tolist(),'log10_distances':lr[:,:n].tolist(),'amplitude_covariance':cov.tolist(),'M_prior':{'weights':pw.tolist(),'means':means.tolist(),'variances':vv.tolist()},'posterior_component_means_by_g_then_M_component':postmu.tolist(),'posterior_component_variances':postv.tolist(),'arrival_weights':arrival_weights.tolist(),'joint_weights':joint_weights.tolist(),'arrival_mean':arrivalmean,'joint_mean':jointmean,'ElogR_mean':epred,'ElogR_conditional_component_means':em,'ElogR_conditional_component_weights':ew.tolist(),'quadrature_joint_mean':quadmean,'quadrature_joint_mean_abs_difference':abs(quadmean-jointmean),'mean_error':{'arrival':abs(arrivalmean-case['true_M_for_error']),'joint':abs(jointmean-case['true_M_for_error']),'ElogR':abs(epred-case['true_M_for_error'])}})
+output={'kind':'Invented explicit analytic cases for independent recomputation, not sampled empirical examples','cases':cases,'flat_prior_observational_alias':{'amplitude':3,'logR_near':1,'logR_far':2,'M_near':5,'M_far':7,'q_near':.99,'q_far':.01,'mixture_mean':5.02,'far_absolute_error':1.98,'one_of_two_absolute_errors_at_any_shared_point_decision_at_least':1.0},'nonlinear_conditional_mean_example':{'function':'f(l)=4+l^2','l_states':[1,2],'weights':[.5,.5],'integrated_mean':6.5,'f_at_mean_l':6.25,'difference':.25,'identity':'E[f(l)]-f(E[l])=Var(l)=0.25; correctly conditioning is required for a risk interpretation'}}
+(root/'ANALYTIC_CASES.json').write_text(json.dumps(output,indent=2)+'\n')
+for c in cases:print(c['name'],'arrival/joint/ElogR',c['arrival_mean'],c['joint_mean'],c['ElogR_mean'],'quadrature error',c['quadrature_joint_mean_abs_difference'])

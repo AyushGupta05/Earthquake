@@ -1,0 +1,80 @@
+{
+  "AWS_actions": 0,
+  "Git_actions": 0,
+  "all495_reason_counts": {
+    "accepted_missing_time_weight": 14040,
+    "missing_or_ambiguous_pick_reference": 1917,
+    "nonpositive_or_invalid_time_weight": 16373,
+    "other_phase:S": 4036,
+    "other_phase:Sb": 325,
+    "other_phase:Sg": 349,
+    "other_phase:Sn": 346,
+    "other_phase:T": 4
+  },
+  "check_assertions": 1490,
+  "checks_by_category": {
+    "all495_positive_origin_geometry": 495,
+    "integer_microsecond_strict_horizon_exact": 495,
+    "integer_station_total_exact": 495,
+    "invented_deliberate_weight_rejection_known_zero": 1,
+    "invented_exact_weight_interval": 1,
+    "invented_invalid_time_zero_unknown": 1,
+    "invented_known_zero_unknown_positive": 1,
+    "invented_partial_positive_and_zero": 1
+  },
+  "clock_anomaly_overlap_counts": {
+    "abs300_and_incomplete_P": 0,
+    "any_two_clock_flags_unique_events": 2,
+    "both_abs300_and_preorigin": 0,
+    "preorigin_and_incomplete_P": 0
+  },
+  "events_with_an_accepted_station_exactly_at_horizon_boundary": {
+    "1": 5,
+    "3": 3,
+    "5": 1
+  },
+  "integer_microsecond_clock_events": 495,
+  "invented_only_semantics_checks": 5,
+  "model_loads_or_fits": 0,
+  "network_requests": 0,
+  "no_imported_producer_or_census_modules": true,
+  "source_calendar_incomplete_and_anomaly_panels": {
+    "new_lower_M|dev2015_2017": {
+      "abs_origin_CMT_ge300": 0,
+      "earliest_P_preorigin": 0,
+      "events": 106,
+      "incomplete_P": 0
+    },
+    "new_lower_M|test2018_2024": {
+      "abs_origin_CMT_ge300": 0,
+      "earliest_P_preorigin": 0,
+      "events": 120,
+      "incomplete_P": 54
+    },
+    "new_lower_M|train2003_2014": {
+      "abs_origin_CMT_ge300": 1,
+      "earliest_P_preorigin": 1,
+      "events": 120,
+      "incomplete_P": 0
+    },
+    "reused_tail|dev2015_2017": {
+      "abs_origin_CMT_ge300": 0,
+      "earliest_P_preorigin": 0,
+      "events": 31,
+      "incomplete_P": 0
+    },
+    "reused_tail|test2018_2024": {
+      "abs_origin_CMT_ge300": 0,
+      "earliest_P_preorigin": 0,
+      "events": 49,
+      "incomplete_P": 22
+    },
+    "reused_tail|train2003_2014": {
+      "abs_origin_CMT_ge300": 0,
+      "earliest_P_preorigin": 0,
+      "events": 69,
+      "incomplete_P": 0
+    }
+  },
+  "version": "geonet-completed495-additional-independent-verification-v1"
+}

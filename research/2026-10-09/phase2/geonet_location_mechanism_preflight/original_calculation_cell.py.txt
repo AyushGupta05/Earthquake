@@ -1,0 +1,150 @@
+import numpy as np,scipy,json,hashlib,platform
+from pathlib import Path
+from scipy.special import logsumexp,ndtr
+from scipy.integrate import quad
+from scipy.stats import multivariate_normal
+ROOT=Path('work/geonet_location_mechanism_preflight')
+SEEDS=[20261011,20261012]; N=4096
+G=np.array([[10.,0.],[100.,0.]])
+S=np.array([[0.,0.],[0.,6.],[0.,12.]])
+LR=np.log10(np.linalg.norm(G[:,None,:]-S[None,:,:],axis=2))
+DT=(10**LR[:,1:]-10**LR[:,:1])/6
+MU=np.array([3.7,6.8]); V=np.array([.4**2,.5**2]); PW=np.array([.95,.05])
+SIG=[.35,.25,.20]; H=[1,3,5]
+
+def normlogweights(lw):return lw-logsumexp(lw,axis=-1,keepdims=True)
+
+def timing_logweights(obs,n,prior_far,pick_sd):
+    lp=np.log(np.array([1-prior_far,prior_far]))
+    if n==1:return np.tile(lp,(len(obs),1))
+    k=n-1;cov=pick_sd**2*(np.eye(k)+np.ones((k,k)))
+    inv=np.linalg.inv(cov); ld=np.linalg.slogdet(cov)[1]
+    d=obs[:,None,:k]-DT[None,:,:k]
+    ll=-.5*(np.einsum('ngi,ij,ngj->ng',d,inv,d)+ld+k*np.log(2*np.pi))
+    return normlogweights(ll+lp)
+
+def conditional(a,lrs,cov,geom_lw,arrival_only=False,mu=MU,v=V,pw=PW):
+    # a:Nxn, lrs:NxKxn, geom_lw:NxK. Same conditional head for all arms.
+    inv=np.linalg.inv(cov);one=np.ones(a.shape[1]);precision=one@inv@one
+    y=a[:,None,:]+2*lrs
+    pv=1/(1/v+precision)
+    pm=pv[None,None,:]*(mu[None,None,:]/v[None,None,:]+np.einsum('i,nki->nk',one@inv,y)[:,:,None])
+    evidence=[]
+    for c in range(len(mu)):
+        cc=cov+v[c]*np.outer(one,one)
+        ci=np.linalg.inv(cc); ld=np.linalg.slogdet(cc)[1]
+        delta=y-mu[c]
+        evidence.append(-.5*(np.einsum('nki,ij,nkj->nk',delta,ci,delta)+ld+a.shape[1]*np.log(2*np.pi)))
+    le=np.stack(evidence,axis=-1)+np.log(pw)[None,None,:]
+    if arrival_only: lw=geom_lw[:,:,None]+normlogweights(le)
+    else: lw=normlogweights((geom_lw[:,:,None]+le).reshape(len(a),-1)).reshape(le.shape)
+    means=pm.reshape(len(a),-1);vars=np.tile(pv,lrs.shape[1])[None,:]*np.ones((len(a),1))
+    lw=lw.reshape(len(a),-1)
+    weights=np.exp(lw)
+    assert np.max(np.abs(weights.sum(axis=1)-1))<2e-12
+    return means,vars,weights,lw
+
+def B(d,s):
+    z=d/s
+    return d*(2*ndtr(z)-1)+2*s*np.exp(-.5*z*z)/np.sqrt(2*np.pi)
+
+def summarize(dist,truth):
+    mu,v,w,lw=dist
+    pred=(mu*w).sum(axis=1)
+    sd=np.sqrt(v)
+    logdens=logsumexp(lw-.5*((truth[:,None]-mu)**2/v+np.log(2*np.pi*v)),axis=1)
+    crps=(w*B(truth[:,None]-mu,sd)).sum(axis=1)
+    for j in range(mu.shape[1]):
+        for k in range(mu.shape[1]):
+            crps-=.5*w[:,j]*w[:,k]*B(mu[:,j]-mu[:,k],np.sqrt(v[:,j]+v[:,k]))
+    lo=mu.min(axis=1)-12*sd.max(axis=1);hi=mu.max(axis=1)+12*sd.max(axis=1)
+    for _ in range(52):
+        mid=(lo+hi)/2;c=(w*ndtr((mid[:,None]-mu)/sd)).sum(axis=1)
+        lo=np.where(c<.5,mid,lo);hi=np.where(c>=.5,mid,hi)
+    median=(lo+hi)/2
+    def met(p):
+        e=np.abs(p-truth);tail=e[truth>=5.5];tail6=e[truth>=6]
+        k=int(np.ceil(.05*len(e)))
+        return {'MAE':float(e.mean()),'MedAE':float(np.median(e)),'tail_5_5_MAE':float(tail.mean()),'tail_6_MAE':float(tail6.mean()),'tail_5_5_signed_bias':float((p-truth)[truth>=5.5].mean()),'P95':float(np.quantile(e,.95)),'CVaR95':float(np.sort(e)[-k:].mean()),'maximum':float(e.max())}
+    return {'mean_decision':met(pred),'median_decision':met(median),'NLL':float(-logdens.mean()),'CRPS':float(crps.mean())},pred
+
+results=[]; validation={'max_arrival_moment_mean_difference':0.,'max_linear_ElogR_mean_difference':0.,'quadrature':[]}
+for seed in SEEDS:
+    rng=np.random.default_rng(seed)
+    component=(rng.random(N)>=.95).astype(int)
+    truth=MU[component]+np.sqrt(V[component])*rng.standard_normal(N)
+    state=(rng.random(N)>=.5).astype(int)
+    pick_noise=.12*rng.standard_normal((N,3))
+    obs=DT[state]+pick_noise[:,1:]-pick_noise[:,:1]
+    common=.15*rng.standard_normal(N)
+    amplitude_noise=rng.standard_normal((N,3))
+    for regime in ('base','locator_stress'):
+        stressobs=obs.copy()
+        if regime=='locator_stress':
+            mask=(state==1)&(truth>=5.5)
+            stressobs[mask]=DT[0]+pick_noise[mask,1:]-pick_noise[mask,:1]
+        for hi,n in enumerate((1,2,3)):
+            a=truth[:,None]-2*LR[state,:n]+common[:,None]+SIG[hi]*amplitude_noise[:,:n]
+            cov=SIG[hi]**2*np.eye(n)+.15**2*np.ones((n,n))
+            tg=timing_logweights(stressobs,n,.5 if regime=='base' else .02,.12 if regime=='base' else .04)
+            tp=np.exp(tg)
+            lrs=np.broadcast_to(LR[None,:,:n],(N,2,n))
+            joint=conditional(a,lrs,cov,tg)
+            arr=conditional(a,lrs,cov,tg,arrival_only=True)
+            elog=(tp[:,:,None]*lrs).sum(axis=1)
+            el=conditional(a,elog[:,None,:],cov,np.zeros((N,1)))
+            gbar=tp@G
+            lbar=np.log10(np.linalg.norm(gbar[:,None,:]-S[None,:n,:],axis=2))
+            point=conditional(a,lbar[:,None,:],cov,np.zeros((N,1)))
+            amean=(arr[0]*arr[2]).sum(axis=1)
+            avar=((arr[1]+arr[0]**2)*arr[2]).sum(axis=1)-amean**2
+            assert np.all(avar>0)
+            mom=(amean[:,None],avar[:,None],np.ones((N,1)),np.zeros((N,1)))
+            geom_post=joint[2].reshape(N,2,2).sum(axis=2)
+            jlog=(geom_post[:,:,None]*lrs).sum(axis=1)
+            jplug=conditional(a,jlog[:,None,:],cov,np.zeros((N,1)))
+            combos=np.array([[int((k>>i)&1) for i in range(n)] for k in range(2**n)])
+            indy=np.stack([LR[c,np.arange(n)] for c in combos])
+            ilw=np.stack([sum(tg[:,c[i]] for i in range(n)) for c in combos],axis=1)
+            independent=conditional(a,np.broadcast_to(indy[None,:,:],(N,2**n,n)),cov,ilw)
+            arms={'exact_joint_direct_oracle' if regime=='base' else 'misspecified_joint':joint,'arrival_only':arr,'mean_location':point,'ElogR':el,'arrival_moment_gaussian':mom,'independent_distance_joint':independent,'joint_ElogR':jplug}
+            metrics={};preds={}
+            for name,dist in arms.items():metrics[name],preds[name]=summarize(dist,truth)
+            md=float(np.max(np.abs(preds['arrival_only']-preds['arrival_moment_gaussian'])))
+            validation['max_arrival_moment_mean_difference']=max(validation['max_arrival_moment_mean_difference'],md)
+            # Single-Gaussian prior establishes the exact linear conditional-mean null.
+            linear=conditional(a,lrs,cov,tg,arrival_only=True,mu=np.array([4.5]),v=np.array([.8**2]),pw=np.array([1.]))
+            linearplug=conditional(a,elog[:,None,:],cov,np.zeros((N,1)),mu=np.array([4.5]),v=np.array([.8**2]),pw=np.array([1.]))
+            delta=np.max(np.abs((linear[0]*linear[2]).sum(axis=1)-linearplug[0][:,0]))
+            validation['max_linear_ElogR_mean_difference']=max(validation['max_linear_ElogR_mean_difference'],float(delta))
+            if seed==SEEDS[0] and regime=='base':
+                for idx in (0,N-1):
+                    # Independent scalar quadrature of p(M)*sum_g q(g|T)p(a|M,g).
+                    aa=a[idx]; qg=tp[idx]; reference=joint
+                    ci=np.linalg.inv(cov);ld=np.linalg.slogdet(cov)[1]
+                    def raw(m):
+                        prior=np.sum(PW*np.exp(-.5*(m-MU)**2/V)/np.sqrt(2*np.pi*V))
+                        d=aa[None,:]-(m-2*LR[:,:n])
+                        like=np.exp(-.5*(np.einsum('gi,ij,gj->g',d,ci,d)+ld+n*np.log(2*np.pi)))
+                        return prior*(qg@like)
+                    z=quad(raw,-10,20,epsabs=1e-11,epsrel=1e-10,points=[3.7,6.8],limit=200)[0]
+                    num=quad(lambda m:m*raw(m),-10,20,epsabs=1e-11,epsrel=1e-10,points=[3.7,6.8],limit=200)[0]
+                    mean_ref=float((reference[0][idx]*reference[2][idx]).sum())
+                    err=abs(num/z-mean_ref)
+                    assert err<1e-8,err
+                    validation['quadrature'].append({'horizon':H[hi],'synthetic_index':idx,'posterior_mean_abs_difference':err})
+            def gate(candidate):
+                c=metrics[candidate]['mean_decision'];b=metrics['ElogR']['mean_decision']
+                return {'tail_5_5_improvement':b['tail_5_5_MAE']-c['tail_5_5_MAE'],'tail_6_improvement':b['tail_6_MAE']-c['tail_6_MAE'],'MAE_increase':c['MAE']-b['MAE'],'MedAE_increase':c['MedAE']-b['MedAE'],'CVaR95_increase':c['CVaR95']-b['CVaR95'],'pass':bool(b['tail_5_5_MAE']-c['tail_5_5_MAE']>=.02 and b['tail_6_MAE']-c['tail_6_MAE']>=.02 and c['MAE']-b['MAE']<=.005 and c['MedAE']-b['MedAE']<=.005 and c['CVaR95']-b['CVaR95']<=.02)}
+            results.append({'seed':seed,'regime':regime,'horizon':H[hi],'events':N,'tail_5_5_events':int(np.sum(truth>=5.5)),'tail_6_events':int(np.sum(truth>=6)),'Mw_ge_8_events':int(np.sum(truth>=8)),'stress_affected_far_tail_events':int(np.sum((state==1)&(truth>=5.5))) if regime=='locator_stress' else 0,'metrics':metrics,'arrival_gate':gate('arrival_only'),'joint_gate':gate('exact_joint_direct_oracle' if regime=='base' else 'misspecified_joint')})
+assert validation['max_arrival_moment_mean_difference']<1e-12
+assert validation['max_linear_ElogR_mean_difference']<1e-12
+cov_l=.25*np.outer(LR[1]-LR[0],LR[1]-LR[0])
+correlation={'log_distance_covariance':cov_l.tolist(),'eigenvalues':np.linalg.eigvalsh(cov_l).tolist(),'variance_mean_log_distance_common_source':float(cov_l.sum()/9),'variance_mean_log_distance_independent':float(np.trace(cov_l)/9),'invalid_independent_source_combinations_at_three_stations':6,'total_independent_combinations':8}
+out={'protocol_sha256':hashlib.sha256((ROOT/'PROTOCOL.md').read_bytes()).hexdigest(),'runtime':{'python':platform.python_version(),'numpy':np.__version__,'scipy':scipy.__version__},'kind':'TRAIN-data-free oneoff exact analytic/synthetic calculation; no learned fit','results':results,'validation':validation,'correlation':correlation,'primary_arrival_base_gate_all_six':all(r['arrival_gate']['pass'] for r in results if r['regime']=='base'),'primary_arrival_stress_gate_all_six':all(r['arrival_gate']['pass'] for r in results if r['regime']=='locator_stress'),'exact_joint_base_gate_all_six':all(r['joint_gate']['pass'] for r in results if r['regime']=='base')}
+(ROOT/'CALCULATIONS.json').write_text(json.dumps(out,indent=2)+'\n')
+for r in results:
+    print(r['seed'],r['regime'],r['horizon'],'tail counts',r['tail_5_5_events'],r['tail_6_events'],'arrival gate',r['arrival_gate']['pass'],'joint gate',r['joint_gate']['pass'])
+    for name in ('ElogR','arrival_only','exact_joint_direct_oracle' if r['regime']=='base' else 'misspecified_joint','independent_distance_joint'):
+        m=r['metrics'][name];e=m['mean_decision'];print(name, 'MAE/MedAE/tail5.5/tail6/CVaR/max/NLL/CRPS',*(round(x,6) for x in [e['MAE'],e['MedAE'],e['tail_5_5_MAE'],e['tail_6_MAE'],e['CVaR95'],e['maximum'],m['NLL'],m['CRPS']]))
+print('validation',json.dumps(validation));print('correlation',json.dumps(correlation));print('all gates',out['primary_arrival_base_gate_all_six'],out['primary_arrival_stress_gate_all_six'],out['exact_joint_base_gate_all_six'])

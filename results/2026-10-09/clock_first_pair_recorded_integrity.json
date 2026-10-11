@@ -1,0 +1,107 @@
+{
+  "INIT_common_fields_equal": [
+    "generator_state_sha256",
+    "model_rng_sha256",
+    "model_state_sha256",
+    "optimizer_state_entries"
+  ],
+  "checkpoint_tensor_reads": 0,
+  "claim_limit": "Matches recorded draw and count provenance only, not resimulation of underlying waveforms/RNG; four-fit evaluation barrier remains unpassed.",
+  "epochs": [
+    {
+      "batches": 861,
+      "common_six_draw_digests_equal": true,
+      "discrete_counts": {
+        "600": 18227,
+        "800": 18280,
+        "1000": 18546
+      },
+      "epoch": 1,
+      "examples": 55053,
+      "same_batch_sizes": true,
+      "uniform_retained_length_gt1000_fraction": 0.6903892612573338
+    },
+    {
+      "batches": 861,
+      "common_six_draw_digests_equal": true,
+      "discrete_counts": {
+        "600": 18518,
+        "800": 18101,
+        "1000": 18434
+      },
+      "epoch": 2,
+      "examples": 55053,
+      "same_batch_sizes": true,
+      "uniform_retained_length_gt1000_fraction": 0.6889179517919096
+    },
+    {
+      "batches": 861,
+      "common_six_draw_digests_equal": true,
+      "discrete_counts": {
+        "600": 18328,
+        "800": 18380,
+        "1000": 18345
+      },
+      "epoch": 3,
+      "examples": 55053,
+      "same_batch_sizes": true,
+      "uniform_retained_length_gt1000_fraction": 0.6869562058380106
+    },
+    {
+      "batches": 861,
+      "common_six_draw_digests_equal": true,
+      "discrete_counts": {
+        "600": 18391,
+        "800": 18121,
+        "1000": 18541
+      },
+      "epoch": 4,
+      "examples": 55053,
+      "same_batch_sizes": true,
+      "uniform_retained_length_gt1000_fraction": 0.6920422138666376
+    },
+    {
+      "batches": 861,
+      "common_six_draw_digests_equal": true,
+      "discrete_counts": {
+        "600": 18424,
+        "800": 18207,
+        "1000": 18422
+      },
+      "epoch": 5,
+      "examples": 55053,
+      "same_batch_sizes": true,
+      "uniform_retained_length_gt1000_fraction": 0.686011661489837
+    },
+    {
+      "batches": 861,
+      "common_six_draw_digests_equal": true,
+      "discrete_counts": {
+        "600": 18286,
+        "800": 18370,
+        "1000": 18397
+      },
+      "epoch": 6,
+      "examples": 55053,
+      "same_batch_sizes": true,
+      "uniform_retained_length_gt1000_fraction": 0.6943127531651317
+    }
+  ],
+  "fits": [
+    "source_uniform_20261011",
+    "discrete_1_3_5_20261011"
+  ],
+  "initial_optimizer_state_entries": 0,
+  "input_sha256": {
+    "discrete_1_3_5_20261011/FIT_COMPLETE.json": "a3fb31e2cb6a45ffb94d22e8537978f8c72d20a12d30e020d91d044d9a878815",
+    "discrete_1_3_5_20261011/INIT.json": "03a6b7b8e67c5fd5e91af7dc7fdb63720e892c2be070146106f6a88c35b9402f",
+    "discrete_1_3_5_20261011/history.json": "48ae72943ca23cfe07a6d668f92bb9c821f39f003550f96f920aedea4efa856e",
+    "source_uniform_20261011/FIT_COMPLETE.json": "fe99f3c6f4a167cb94014972b295e8e0451f29c438eb6da793178904a74b9f1d",
+    "source_uniform_20261011/INIT.json": "69d29dd23b2336d35a8b5a0d955ff8af9495655973fff6bb23d3b6c7888b4f9f",
+    "source_uniform_20261011/history.json": "7bfeea4519a13fa4f046fd0d1fc54ad01ea14532d9ee1367ad267bde2d51d4c9"
+  },
+  "new_eval_reads": 0,
+  "verified_utc": "2026-10-11T00:47:36.044572+00:00",
+  "version": "chile-clock-first-pair-recorded-integrity-v1",
+  "waveform_reads": 0
+}

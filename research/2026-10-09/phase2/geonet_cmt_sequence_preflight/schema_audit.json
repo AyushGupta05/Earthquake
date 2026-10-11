@@ -1,0 +1,42 @@
+{
+  "centroid_depth_used": false,
+  "coordinate_date_group_status_counts": {
+    "valid_unique_CMT_time_epicentre_groups": 3437
+  },
+  "eligible_coordinate_decimal_place_counts": {
+    "Latitude_decimal_places:4": 3437,
+    "Longitude_decimal_places:4": 3437
+  },
+  "eligible_group_row_count_histogram": {
+    "1": 3437
+  },
+  "eligible_unique_groups": 3437,
+  "excluded_groups_preserved": 286,
+  "input_pins": {
+    "groups.json": {
+      "bytes": 1101877,
+      "sha256": "2270bd1969f8565dfd2cc683a17c08c766324ab67425d289956f9b68f19a44a8"
+    },
+    "raw/GeoNet_CMT_solutions.csv": {
+      "bytes": 656552,
+      "sha256": "2ed3a97390a5696bb1625520f1966a762113037f146732f509ce582e217141a6"
+    },
+    "raw/README.md": {
+      "bytes": 3032,
+      "sha256": "86b8d645e766700e9ca46641034a826fc0ed258fe991ad023f54a4c319dde514"
+    },
+    "rows.json": {
+      "bytes": 3469955,
+      "sha256": "86625784c377ba78f3de4801d313794d32a0c03f2a29499f3e4786ef10f5d116"
+    }
+  },
+  "live_collection_reads": 0,
+  "multirow_rule": "Every eligible group needs compatible exact Decimal latitude, canonically wrapped longitude and literal date across allsource rows; anymissing/invalid/incompatible value makes groupunknown, neverchoosefirst",
+  "new_requests": 0,
+  "original_rows": 3727,
+  "original_rows_match_raw_CSV_exactly": true,
+  "preferred_geometry_replacements": 0,
+  "schema_source": "Pinned GeoNet README calls Latitude/Longitude epicentre; CD is centroid depth inkm and is not parsed/used",
+  "source_date_limit": "README specifies minute date format but no explicit timezone; frozen project audit interprets minute anchors asUTC, without claiming exact origin seconds",
+  "version": "geonet-cmt-sequence-schema-audit-v1"
+}

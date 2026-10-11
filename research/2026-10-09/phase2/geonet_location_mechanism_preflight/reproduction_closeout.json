@@ -1,0 +1,137 @@
+{
+  "version": "location-source-recovery-closeout-v1",
+  "original_scientific_artifacts_unchanged": true,
+  "source_recovery": "Verbatim transcription of retained original tool-call source. No original-execution source-byte pin existed; later recovered source and replay are pinned.",
+  "inert_original_cells": [
+    {
+      "path": "work/geonet_location_mechanism_preflight/original_calculation_cell.py.txt",
+      "sha256": "7d1c06000170bbea0aa7fb04fdec85425406456a190aee040fbc08df4dfb0439",
+      "bytes": 10816
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/original_warning_cell.py.txt",
+      "sha256": "e1ae4b2291bc9369abc4f9f82ef78b98995de86cda170501de9f0fe3a47848f9",
+      "bytes": 3021
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/original_analytic_cases_cell.py.txt",
+      "sha256": "fd2af2f917151a242261298d52c55d175974ca74d34daac6c0ff59ce3ecdac6d",
+      "bytes": 3992
+    }
+  ],
+  "safe_reproduction_source": {
+    "path": "work/geonet_location_mechanism_preflight/reproduce.py",
+    "sha256": "d82727584f4b028c129731976025a5f7de593e85a8a79272e0167748b5a55fd1",
+    "bytes": 8002
+  },
+  "focused_tests_source": {
+    "path": "work/geonet_location_mechanism_preflight/test_reproduce.py",
+    "sha256": "f51dcf37eecbaa799b3b738faa04d6e11c7604a7507c3b1c030bc0575472d47e",
+    "bytes": 8879
+  },
+  "pin_file": {
+    "path": "work/geonet_location_mechanism_preflight/reproduction_input_pins.json",
+    "sha256": "53a5d1253d2baa6b7f2126948b3ce103be1bca96f3b1238784b8e6af73ab7261",
+    "bytes": 1338
+  },
+  "tests": {
+    "command": "/Users/ayush/.venvs/ml/bin/python3 -m unittest -v test_reproduce.py",
+    "working_directory": "work/geonet_location_mechanism_preflight",
+    "passed": 12,
+    "failed": 0
+  },
+  "runtime": {
+    "executable": "/Users/ayush/.venvs/ml/bin/python3",
+    "resolved_executable": "/Users/ayush/.local/share/uv/python/cpython-3.10.20-macos-aarch64-none/bin/python3.10",
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "replay": {
+    "command": "/Users/ayush/.venvs/ml/bin/python3 reproduce.py --run-name replay_v2",
+    "receipt": {
+      "path": "work/geonet_location_mechanism_preflight/local_runs/replay_v2/REPLAY_COMPARISON.json",
+      "sha256": "d8a3d0c214a30cdaa936d2286756a87597c144dce31cd3dc0e36571ebf219193",
+      "bytes": 2866
+    },
+    "outputs": [
+      {
+        "path": "work/geonet_location_mechanism_preflight/local_runs/replay_v2/CALCULATIONS.json",
+        "sha256": "b74c29a69fdeec2fbde1411556725c3be08c58801f28738049382c495b324020",
+        "bytes": 88985
+      },
+      {
+        "path": "work/geonet_location_mechanism_preflight/local_runs/replay_v2/WARNING_CHECK.json",
+        "sha256": "1d21b5d53b00f2d9ac24e373880ecd9513908891868b4f2dda4343ef71b5e96e",
+        "bytes": 4630
+      },
+      {
+        "path": "work/geonet_location_mechanism_preflight/local_runs/replay_v2/ANALYTIC_CASES.json",
+        "sha256": "04f70129f4ce7d071863b331a1191e977c1c6555dfdaecb3e88e3370cd0fb789",
+        "bytes": 7536
+      }
+    ],
+    "all_outputs_byte_identical": true,
+    "all_scientific_values_and_warnings_semantically_identical": true,
+    "semantic_exclusions": {
+      "CALCULATIONS.json": [
+        "runtime"
+      ],
+      "WARNING_CHECK.json": [
+        "checked_calculations_sha256 (each own-body link verified)"
+      ],
+      "ANALYTIC_CASES.json": []
+    },
+    "warning_repair_or_retuning": false
+  },
+  "retained_failed_runtime_attempt": {
+    "path": "local_runs/replay_v1",
+    "reason": "Bare directory Python3.14 lacks numpy; failed before any calculation. Originals unchanged."
+  },
+  "code_only_review": {
+    "engine": "codex",
+    "model_override": false,
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file review_context.txt --output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_location_mechanism_preflight/review_v3.txt --json-output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_location_mechanism_preflight/review_v3.json",
+    "working_directory": "/private/tmp/geonet-location-code-review-do7go6a5",
+    "snapshot_manifest": {
+      "path": "work/geonet_location_mechanism_preflight/review_snapshot_manifest_v1.json",
+      "sha256": "8754ff2f9818161b6456a5c9926bd25522a979d048c125fffd08ac2fb2227b12",
+      "bytes": 2159
+    },
+    "context": {
+      "path": "work/geonet_location_mechanism_preflight/review_context.txt",
+      "sha256": "8c9c096680c844b1301669a0b141457df0db687db00eef856832fa826ecd8e26",
+      "bytes": 2508
+    },
+    "review_result": {
+      "path": "work/geonet_location_mechanism_preflight/review_v3.json",
+      "sha256": "e4b4ac3f688f2b23a344b5988ee93a1e172a5361d632d61c540c8f7b99e3939e",
+      "bytes": 559
+    },
+    "review_text": {
+      "path": "work/geonet_location_mechanism_preflight/review_v3.txt",
+      "sha256": "012011553f4db769eb72a8dec4fc87dab517389b87245d8ca7980c21d4b297c1",
+      "bytes": 527
+    },
+    "helper_exit_code": 0,
+    "actionable_findings": 0,
+    "clean": true,
+    "first_clean_stopped": true,
+    "safe_runner_and_inert_provenance_distinguished": true,
+    "setup_failures_retained": {
+      "path": "work/geonet_location_mechanism_preflight/review_setup_failures.json",
+      "sha256": "c1c54900a5a4558ffc5b1c38cd4de86e0489142abc61783a5ddd485786ee08fa",
+      "bytes": 863
+    },
+    "real_data_or_credentials_included": false
+  },
+  "scientific_status": "Arrival-only prespecified synthetic mechanism gate remains failed; no geometry fit earned. Not a universal impossibility for nonlinear timing fusion.",
+  "actions": {
+    "real_data_reads_or_requests": 0,
+    "AWS": 0,
+    "learned_fits": 0,
+    "workspace_Git_operations": 0,
+    "shared_file_edits": 0,
+    "ephemeral_code_only_Git_snapshot_authorized_by_parent": true
+  }
+}

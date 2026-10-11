@@ -1,0 +1,17 @@
+# Cached CMT sequence preflight
+
+This exploratory offline screen preserves all 3,437 eligible groups from the exact pinned original frame, and retains 286 excluded groups in accounting. No bulk collection result, additional query, waveform, model input, forecast or fit is used. It does not alter the frozen 346-event metadata phase or choose a final benchmark split.
+
+The pinned GeoNet README describes Latitude/Longitude as epicentre coordinates, Date as YYYYMMDDHHMM00, and CD as **centroid depth**. CD is not parsed or used. Minute dates follow the project's existing UTC-anchor convention; the README itself does not state timezone or exact origin seconds. This is a CMT epicentre/time graph, not a replacement for preferred-origin geometry or a physical sequence label.
+
+For every eligible group, resolve all original source-row references. Require one compatible literal date and exactly compatible finite Decimal latitude/longitude across its rows. Latitude bounds are [-90,90] and longitude bounds [-180,180]; +180 and -180 canonically coincide. Any absent, invalid, ambiguous or incompatible value makes the entire group unknown rather than choose-first. Preserve unknown groups and their magnitude/calendar denominators. The source audit finds one row per eligible group and no such unknowns in this cached frame.
+
+On every known eligible event pair, use spherical great-circle distance with fixed radius 6,371.0088 km and shortest wrapped longitude difference. The primary graph has an edge iff absolute CMT-minute time difference <=30 days and horizontal distance <=100 km. The sensitivity graph uses <=90 days and <=150 km. Components are transitive; a component can span more than one link's time/distance limits. Report edge/component counts, largest component sizes/spans and calendar/tail membership.
+
+Candidate calendar partitions remain TRAIN 2003–2014, DEV 2015–2017 and TEST 2018–2024. Quarantine **entire** components that cross either 2015-01-01 or 2018-01-01 UTC. Also quarantine every event with absolute CMT-anchor distance <=30 days from either cut, in **both** graph scenarios. Report exact guard-boundary counts so closed versus half-open choices cannot hide a difference. Keep component/guard reasons, overlap and all original counts; do not move cross-boundary events to TRAIN. If unknown vertices existed, surviving known-subgraph counts would be optimistic ceilings, since missing vertices could bridge components.
+
+Report remaining total/Mw>=5.5/6/7 event ceilings per candidate partition, before any response/waveform attrition, and compare TEST ceilings with the previously documented planning floors of 200 total, 30 Mw>=5.5 and 15 Mw>=6. These are planning checks, not final acceptance criteria, power guarantees or available-prefix support. Preserve both scenarios regardless of whether they satisfy a floor.
+
+Optionally compare cached 149 CMT horizontal locations against their independently validated uniquely linked preferred-origin latitude/longitude, using the same distance convention. Publish aggregate distance bins only; no identities, coordinates, pick rows or times. Verify original body hashes, and do not replace any CMT graph vertex or bulk origin field with the other source.
+
+Use bounded one-off standard-library calculations only. Save aggregate JSON/docs and exact provenance; no persistent production code, reviewer, acquisition, AWS or Git action. Bulk raw replay takes priority once the parent supplies the completed acquisition handoff.

@@ -1,0 +1,9 @@
+# GeoNet full-frame sequence planning check
+
+**A full cached CMT epicentre/time graph is possible without more event queries, but the longer sensitivity graph cannot meet the planned200-event TEST floor.** All3,437 eligible groups have one finite compatible epicentre/date row;286 excluded groups remain accounted. This preliminary graph uses CMT epicentres and the project's UTC-minute convention, not catalogue hypocentral depth or a definitive preferred-origin split.
+
+The fixed30-day/100-km connected-component screen plus±30-day cut guards leaves1,720 TRAIN,534 DEV and1,107 TEST events. TEST tail ceilings remain49 Mw≥5.5,19 Mw≥6 and5 Mw≥7 before waveform failures. The90-day/150-km sensitivity connects3,080 events across both calendar cuts and leaves only89 TEST events, with30/15/4 tail ceilings. A connected component spanning many years does not prove one physical aftershock sequence. The sensitivity failure cannot be removed from reporting because the primary counts look better.
+
+Independent chord/BFS and haversine/union-find calculations reproduce edge, component and retained-count tables. Cached CMT and preferred horizontal locations differ by more than100km for2 of149 tail events, preventing their interchangeable use; the differences alone do not prove incorrect event identities. Preferred-origin revisions could change graph connectivity. The CMT source README labels horizontal fields as epicentres and CD as centroid depth; CD was not used. Its date description alone does not establish timezone or exact seconds.
+
+These are optimistic pre-waveform support ceilings, not a finalized split or physical sequence-independence proof. The check needed no extra2,942 event queries, while later P/response/waveform availability still needs separate evidence. [Full aggregate checks and limitations](phase2/geonet_cmt_sequence_preflight/RESULTS.md). No model forecast, training, new acquisition or AWS action was performed.

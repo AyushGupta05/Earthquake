@@ -1,0 +1,604 @@
+{
+  "additional2942_queries_earned_for_horizontal_preflight": false,
+  "centroid_depth_used": false,
+  "claim_limits": {
+    "available_prefix_or_station_support": false,
+    "bulk_phase_modified": false,
+    "definitive_preferred_origin_sequence_split": false,
+    "exploratory_cached_CMT_epicentre_minute_graph": true,
+    "model_inputs_forecasts_or_fits": false,
+    "physical_sequence_labels": false
+  },
+  "distance_model": {
+    "depth": "not used",
+    "longitude": "shortest modulo360 angular separation",
+    "radius_km": 6371.0088
+  },
+  "eligible_full_frame": 3437,
+  "events_exactly_on_guard_boundaries": 0,
+  "excluded_groups_accounted": 286,
+  "fixed30day_guard_counts": {
+    "Mw_ge5.5": 1,
+    "Mw_ge6": 0,
+    "Mw_ge7": 0,
+    "events": 46
+  },
+  "fixed30day_guard_counts_by_calendar": {
+    "dev2015_2017": {
+      "Mw_ge5.5": 1,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 22
+    },
+    "test2018_2024": {
+      "Mw_ge5.5": 0,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 12
+    },
+    "train2003_2014": {
+      "Mw_ge5.5": 0,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 12
+    }
+  },
+  "full_frame_original_calendar_counts": {
+    "dev2015_2017": {
+      "Mw_ge5.5": 31,
+      "Mw_ge6": 12,
+      "Mw_ge7": 2,
+      "events": 566
+    },
+    "test2018_2024": {
+      "Mw_ge5.5": 49,
+      "Mw_ge6": 19,
+      "Mw_ge7": 5,
+      "events": 1139
+    },
+    "train2003_2014": {
+      "Mw_ge5.5": 69,
+      "Mw_ge6": 29,
+      "Mw_ge7": 8,
+      "events": 1732
+    }
+  },
+  "graph_rule": "Both time and horizontal thresholds inclusive; allknownframepairs considered; entire transitivecross-cutcomponents plus fixedclosed\u00b130dayguard quarantined",
+  "known_time_epicentre_vertices": 3437,
+  "near_distance_threshold_pair_counts": {
+    "30d100km_distance_threshold_within0.02km": 8,
+    "90d150km_distance_threshold_within0.02km": 8
+  },
+  "new_metadata_queries": 0,
+  "one_off_elapsed_seconds": 0.212339,
+  "pair_comparison_counts": {
+    "pairs_within30days": 83789,
+    "pairs_within90days": 189882
+  },
+  "primary30day100km": {
+    "TEST_pre_waveform_planning_floor_checks": {
+      "Mw_ge5.5_ge30": true,
+      "Mw_ge6_ge15": true,
+      "all_three": true,
+      "total_ge200": true
+    },
+    "component_count": 1008,
+    "component_size_histogram": {
+      "1": 593,
+      "10": 4,
+      "108": 1,
+      "11": 4,
+      "12": 1,
+      "13": 3,
+      "15": 4,
+      "16": 1,
+      "17": 2,
+      "18": 1,
+      "2": 181,
+      "22": 2,
+      "25": 1,
+      "254": 1,
+      "26": 1,
+      "3": 76,
+      "31": 2,
+      "357": 1,
+      "39": 2,
+      "4": 45,
+      "43": 1,
+      "49": 1,
+      "5": 29,
+      "52": 1,
+      "58": 1,
+      "6": 19,
+      "7": 19,
+      "8": 6,
+      "89": 1,
+      "9": 3,
+      "99": 1
+    },
+    "crossing_component_counts": {
+      "2018_crossing_component_count": 1,
+      "crossing_component_count": 1
+    },
+    "crossing_component_quarantine_by_calendar": {
+      "dev2015_2017": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 15
+      },
+      "test2018_2024": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 28
+      },
+      "train2003_2014": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 0
+      }
+    },
+    "crossing_component_quarantine_by_cut": {
+      "2015": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 0
+      },
+      "2018": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 43
+      }
+    },
+    "edge_count": 42182,
+    "guard_component_quarantine_overlap": {
+      "Mw_ge5.5": 0,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 13
+    },
+    "largest10_components_by_size": [
+      {
+        "Mw_ge5.5": 5,
+        "Mw_ge6": 3,
+        "Mw_ge7": 1,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2011,
+        "events": 357,
+        "span_days_floor": 400,
+        "start_year": 2010
+      },
+      {
+        "Mw_ge5.5": 10,
+        "Mw_ge6": 5,
+        "Mw_ge7": 1,
+        "candidate_partitions": [
+          "dev2015_2017"
+        ],
+        "end_year": 2017,
+        "events": 254,
+        "span_days_floor": 230,
+        "start_year": 2016
+      },
+      {
+        "Mw_ge5.5": 7,
+        "Mw_ge6": 2,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2013,
+        "events": 108,
+        "span_days_floor": 140,
+        "start_year": 2013
+      },
+      {
+        "Mw_ge5.5": 5,
+        "Mw_ge6": 2,
+        "Mw_ge7": 1,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2009,
+        "events": 99,
+        "span_days_floor": 88,
+        "start_year": 2009
+      },
+      {
+        "Mw_ge5.5": 2,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2012,
+        "events": 89,
+        "span_days_floor": 224,
+        "start_year": 2011
+      },
+      {
+        "Mw_ge5.5": 5,
+        "Mw_ge6": 3,
+        "Mw_ge7": 1,
+        "candidate_partitions": [
+          "test2018_2024"
+        ],
+        "end_year": 2021,
+        "events": 58,
+        "span_days_floor": 59,
+        "start_year": 2021
+      },
+      {
+        "Mw_ge5.5": 1,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "test2018_2024"
+        ],
+        "end_year": 2020,
+        "events": 52,
+        "span_days_floor": 230,
+        "start_year": 2020
+      },
+      {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "test2018_2024"
+        ],
+        "end_year": 2019,
+        "events": 49,
+        "span_days_floor": 67,
+        "start_year": 2019
+      },
+      {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "dev2015_2017",
+          "test2018_2024"
+        ],
+        "end_year": 2018,
+        "events": 43,
+        "span_days_floor": 266,
+        "start_year": 2017
+      },
+      {
+        "Mw_ge5.5": 1,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "test2018_2024"
+        ],
+        "end_year": 2023,
+        "events": 39,
+        "span_days_floor": 221,
+        "start_year": 2022
+      }
+    ],
+    "remaining_ceiling_by_calendar": {
+      "dev2015_2017": {
+        "Mw_ge5.5": 30,
+        "Mw_ge6": 12,
+        "Mw_ge7": 2,
+        "events": 534
+      },
+      "test2018_2024": {
+        "Mw_ge5.5": 49,
+        "Mw_ge6": 19,
+        "Mw_ge7": 5,
+        "events": 1107
+      },
+      "train2003_2014": {
+        "Mw_ge5.5": 69,
+        "Mw_ge6": 29,
+        "Mw_ge7": 8,
+        "events": 1720
+      }
+    },
+    "remaining_optimistic_pre_waveform_ceiling": {
+      "Mw_ge5.5": 148,
+      "Mw_ge6": 60,
+      "Mw_ge7": 15,
+      "events": 3361
+    },
+    "singleton_component_count": 593,
+    "union_quarantined": {
+      "Mw_ge5.5": 1,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 76
+    },
+    "union_quarantined_by_calendar": {
+      "dev2015_2017": {
+        "Mw_ge5.5": 1,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 32
+      },
+      "test2018_2024": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 32
+      },
+      "train2003_2014": {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "events": 12
+      }
+    },
+    "unknown_vertex_groups": 0,
+    "whole_crossing_components_quarantined": {
+      "Mw_ge5.5": 0,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 43
+    }
+  },
+  "sensitivity90day150km_fixed30dayguard": {
+    "TEST_pre_waveform_planning_floor_checks": {
+      "Mw_ge5.5_ge30": true,
+      "Mw_ge6_ge15": true,
+      "all_three": false,
+      "total_ge200": false
+    },
+    "component_count": 148,
+    "component_size_histogram": {
+      "1": 97,
+      "17": 1,
+      "18": 1,
+      "2": 24,
+      "22": 1,
+      "3": 6,
+      "3080": 1,
+      "4": 6,
+      "47": 1,
+      "5": 4,
+      "7": 4,
+      "9": 2
+    },
+    "crossing_component_counts": {
+      "2015_crossing_component_count": 1,
+      "2018_crossing_component_count": 1,
+      "crosses_both_cuts_component_count": 1,
+      "crossing_component_count": 1
+    },
+    "crossing_component_quarantine_by_calendar": {
+      "dev2015_2017": {
+        "Mw_ge5.5": 27,
+        "Mw_ge6": 9,
+        "Mw_ge7": 2,
+        "events": 534
+      },
+      "test2018_2024": {
+        "Mw_ge5.5": 19,
+        "Mw_ge6": 4,
+        "Mw_ge7": 1,
+        "events": 1050
+      },
+      "train2003_2014": {
+        "Mw_ge5.5": 42,
+        "Mw_ge6": 16,
+        "Mw_ge7": 2,
+        "events": 1496
+      }
+    },
+    "crossing_component_quarantine_by_cut": {
+      "2015": {
+        "Mw_ge5.5": 88,
+        "Mw_ge6": 29,
+        "Mw_ge7": 5,
+        "events": 3080
+      },
+      "2018": {
+        "Mw_ge5.5": 88,
+        "Mw_ge6": 29,
+        "Mw_ge7": 5,
+        "events": 3080
+      }
+    },
+    "edge_count": 76249,
+    "guard_component_quarantine_overlap": {
+      "Mw_ge5.5": 1,
+      "Mw_ge6": 0,
+      "Mw_ge7": 0,
+      "events": 46
+    },
+    "largest10_components_by_size": [
+      {
+        "Mw_ge5.5": 88,
+        "Mw_ge6": 29,
+        "Mw_ge7": 5,
+        "candidate_partitions": [
+          "dev2015_2017",
+          "test2018_2024",
+          "train2003_2014"
+        ],
+        "end_year": 2024,
+        "events": 3080,
+        "span_days_floor": 7192,
+        "start_year": 2005
+      },
+      {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2005,
+        "events": 47,
+        "span_days_floor": 629,
+        "start_year": 2003
+      },
+      {
+        "Mw_ge5.5": 4,
+        "Mw_ge6": 3,
+        "Mw_ge7": 1,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2004,
+        "events": 22,
+        "span_days_floor": 238,
+        "start_year": 2003
+      },
+      {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2006,
+        "events": 18,
+        "span_days_floor": 483,
+        "start_year": 2004
+      },
+      {
+        "Mw_ge5.5": 3,
+        "Mw_ge6": 2,
+        "Mw_ge7": 1,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2007,
+        "events": 17,
+        "span_days_floor": 76,
+        "start_year": 2007
+      },
+      {
+        "Mw_ge5.5": 1,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2008,
+        "events": 9,
+        "span_days_floor": 176,
+        "start_year": 2007
+      },
+      {
+        "Mw_ge5.5": 1,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2005,
+        "events": 9,
+        "span_days_floor": 105,
+        "start_year": 2005
+      },
+      {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2013,
+        "events": 7,
+        "span_days_floor": 206,
+        "start_year": 2013
+      },
+      {
+        "Mw_ge5.5": 0,
+        "Mw_ge6": 0,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "train2003_2014"
+        ],
+        "end_year": 2004,
+        "events": 7,
+        "span_days_floor": 178,
+        "start_year": 2004
+      },
+      {
+        "Mw_ge5.5": 3,
+        "Mw_ge6": 1,
+        "Mw_ge7": 0,
+        "candidate_partitions": [
+          "test2018_2024"
+        ],
+        "end_year": 2022,
+        "events": 7,
+        "span_days_floor": 151,
+        "start_year": 2022
+      }
+    ],
+    "remaining_ceiling_by_calendar": {
+      "dev2015_2017": {
+        "Mw_ge5.5": 4,
+        "Mw_ge6": 3,
+        "Mw_ge7": 0,
+        "events": 32
+      },
+      "test2018_2024": {
+        "Mw_ge5.5": 30,
+        "Mw_ge6": 15,
+        "Mw_ge7": 4,
+        "events": 89
+      },
+      "train2003_2014": {
+        "Mw_ge5.5": 27,
+        "Mw_ge6": 13,
+        "Mw_ge7": 6,
+        "events": 236
+      }
+    },
+    "remaining_optimistic_pre_waveform_ceiling": {
+      "Mw_ge5.5": 61,
+      "Mw_ge6": 31,
+      "Mw_ge7": 10,
+      "events": 357
+    },
+    "singleton_component_count": 97,
+    "union_quarantined": {
+      "Mw_ge5.5": 88,
+      "Mw_ge6": 29,
+      "Mw_ge7": 5,
+      "events": 3080
+    },
+    "union_quarantined_by_calendar": {
+      "dev2015_2017": {
+        "Mw_ge5.5": 27,
+        "Mw_ge6": 9,
+        "Mw_ge7": 2,
+        "events": 534
+      },
+      "test2018_2024": {
+        "Mw_ge5.5": 19,
+        "Mw_ge6": 4,
+        "Mw_ge7": 1,
+        "events": 1050
+      },
+      "train2003_2014": {
+        "Mw_ge5.5": 42,
+        "Mw_ge6": 16,
+        "Mw_ge7": 2,
+        "events": 1496
+      }
+    },
+    "unknown_vertex_groups": 0,
+    "whole_crossing_components_quarantined": {
+      "Mw_ge5.5": 88,
+      "Mw_ge6": 29,
+      "Mw_ge7": 5,
+      "events": 3080
+    }
+  },
+  "unknown_vertices": 0,
+  "version": "geonet-full-cached-CMT-epicentre-sequence-preflight-v1"
+}

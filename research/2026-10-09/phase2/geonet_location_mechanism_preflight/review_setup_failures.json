@@ -1,0 +1,20 @@
+{
+  "scope": "Review setup failures, neither produced a structured review result or a --output file. Original tool outputs retained in task history.",
+  "attempts": [
+    {
+      "attempt": 1,
+      "tool_output_chunk": "c392fc",
+      "helper_exit_code": 1,
+      "reason": "Default Codex launcher missing vendor executable; ENOENT.",
+      "requested_but_not_written_output": "review_v1.txt"
+    },
+    {
+      "attempt": 2,
+      "tool_output_chunk": "01a10f",
+      "helper_exit_code": 1,
+      "reason": "Desktop Codex CLI sandbox denied local runtime state and in-process app-server initialization.",
+      "requested_but_not_written_output": "review_v2.txt"
+    }
+  ],
+  "resolution": "Same Codex engine, existing user-authorized code-only review, explicit working desktop CLI and sandbox escalation. Third helper invocation exited0 with zero findings."
+}

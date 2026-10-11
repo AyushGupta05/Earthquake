@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-11T00:30:10.567203+00:00",
+  "updated_utc": "2026-10-11T01:04:15.110855+00:00",
   "authorized_ceiling_usd": 2000,
   "credits_only": true,
   "estimated_total_credit_remaining_usd": 4212.56,
@@ -766,18 +766,18 @@
       "initial_replay_complete_sha256": "5a57faf612f4dcc136fc4d58f03c64bada1ba7cd56bf013d52236bca4db299fd",
       "initial_replay_max_parameter_error": 0.0,
       "latest_observation": {
-        "utc": "2026-10-11T00:30:10.567203+00:00",
+        "utc": "2026-10-11T01:02:16.450204+00:00",
         "unit_active": true,
         "main_pid": 4966,
         "completed_epochs_first_fit": 6,
         "held_out_evaluation_status": "Four-fit barrier not passed; no new calibration/DEV metrics; TEST sealed.",
-        "completed_fits": 2,
+        "completed_fits": 3,
         "completed_epochs_second_fit": 6,
-        "progress_receipt": "clock_grid_progress_20261011T0030.txt",
-        "progress_receipt_sha256": "96269242ee14e2a43f57f2ae2c471d7ba0a285e972e3ffaaeb088c926e0c03d0",
+        "progress_receipt": "clock_grid_progress_20261011T0102.txt",
+        "progress_receipt_sha256": "4f3a0a459ceaf4eb7a016ebf7199dbe097eb6f444cd16762da9dbd47989411c3",
         "source_first_fit_completion": "FIT_COMPLETE.json parsed with immutable artifact hashes in the preserved progress receipt",
-        "completed_epochs_third_fit": 1,
-        "second_epoch_third_first100_complete": true
+        "completed_epochs_third_fit": 6,
+        "completed_epochs_fourth_fit": 0
       }
     },
     "geonet_tail_census": {
@@ -836,7 +836,7 @@
       "larger_acquisition_started": false
     },
     "geonet_bulk_metadata": {
-      "status": "prefit_runtime_compatibility_fix_and_final_review; no collection",
+      "status": "complete_parent_integrity_and_independent_raw_replay_pass; frozen_metadata_gate_pass",
       "worker": "localCPUonly",
       "planned_new_lower_M_queries": 346,
       "cached_tail_events": 149,
@@ -874,7 +874,42 @@
         "clock_qualification": "Counts are lower bounds at preserved accepted-subset T0, not at a hypothetical earlier fully resolved T0.",
         "new_metadata_requests": 0,
         "aggregate_checks": 272
-      }
+      },
+      "pre_acquisition_git_commit": "6c11dc558df0cf918bb23a046640810fabd99d7f",
+      "started_utc": "2026-10-11T00:39:13.060825+00:00",
+      "parent_receipt_sha256": "10d21f7f25ddecdf13e2929417c86d9483efc8caddea96fe8521c38ca78c9acf",
+      "final_plan_sha256": "d849d7751c74a3bbb7f104b3385f8f91bbc078c4d3d5e1e229836bad98096a3d",
+      "scientific_results": "346 new positive accepted NZ P, valid in-window unique origin UTC and finite geometry;495 outcomes retained;76 incomplete positive subsets retained; no model fit",
+      "request_attempts": 346,
+      "response_body_bytes": 70172690,
+      "elapsed_seconds": 744.3622120830005,
+      "completed_utc": "2026-10-11T00:51:37.418278+00:00",
+      "parent_verified_manifest_members": 350,
+      "parent_postrun_integrity_sha256": "024db44401c43823310645062578eb3ea9bec183d0a08a0842937b2070fe5ebc",
+      "producer_gate_provisional": false,
+      "independent_gate_pass": true,
+      "independent_replay_manifest_sha256": "b827e1b4d1003f7cbe8ee264a1828cc7266299d6fabac2f521582099633ed267",
+      "independent_final_verification_sha256": "015efef5400f43fcb086f200e956b12d10a6fbad5a67528d9daa48fc032f7503",
+      "new346_ge3_stations_at1_3_5": [
+        86,
+        197,
+        263
+      ],
+      "new_positive_incomplete_P_events": 54,
+      "cached_tail_positive_incomplete_P_events": 22,
+      "summary_values_compared": 3356
+    },
+    "geonet_counts_screen": {
+      "status": "source_and_invented_tests_review_in_progress; no private plan or acquisition",
+      "events": 96,
+      "maximum_seconds": 7200,
+      "maximum_attempts": 800,
+      "maximum_new_body_bytes": 536870912,
+      "maximum_union_station_targets": 768,
+      "new_AWS_resources": false,
+      "new_paid_fits": false,
+      "metadata_prerequisite_independently_passed": true,
+      "source_freeze_and_private_receipt_required": true
     }
   },
   "continuation": {
@@ -956,13 +991,13 @@
     }
   },
   "geonet_bulk_metadata_preparation": {
-    "status": "prepared_reviewed_acquisition_disabled",
+    "status": "prepared_reviewed_source_frozen_then_completed_independently_replayed",
     "preparation_report_sha256": "b715edfcbbe83b3129588076393fe131ea9584bfb5f25a00bf7c042182778c08",
     "review_findings": 0,
     "bulk_synthetic_tests": 43,
     "dependency_synthetic_tests": 21,
     "independent_plan_checks": 14,
-    "new_metadata_requests": 0,
+    "new_metadata_requests": 346,
     "new_AWS_actions": 0,
     "planned_events": 346,
     "reused_events": 149

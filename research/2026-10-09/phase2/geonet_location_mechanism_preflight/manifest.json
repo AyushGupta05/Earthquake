@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-11",
+  "status": "Prespecified arrival-only synthetic mechanism gate failed. Zero geometry fits earned; ordinary arrival-input engineering control remains allowed by independently justified data.",
+  "inputs": [
+    {
+      "path": "work/geonet_method_shortlist/SHORTLIST.md",
+      "sha256": "680da31e6ccb615af182d904dc17cf2ac4acc3f8aff7a2deb799b239a041acf3",
+      "bytes": 16647
+    },
+    {
+      "path": "work/geonet_method_shortlist/source_access.json",
+      "sha256": "e8f4059ac072576cc7bac6e700d5a05cb9ce7c2adb00bc261b35de15973f3769",
+      "bytes": 4543
+    },
+    {
+      "path": "outputs/earthquake_method_status.md",
+      "sha256": "1babaf2b576dd27dbf8dca343f41c85fd91bd7db987c5eb166ba8e329a3fe555",
+      "bytes": 10608
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "work/geonet_location_mechanism_preflight/PROTOCOL.md",
+      "sha256": "43703719987716835a55a26dc60f35a701a4a51f5d4701690e823f664ffd55b1",
+      "bytes": 6462
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/CALCULATIONS.json",
+      "sha256": "b74c29a69fdeec2fbde1411556725c3be08c58801f28738049382c495b324020",
+      "bytes": 88985
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/WARNING_CHECK.json",
+      "sha256": "1d21b5d53b00f2d9ac24e373880ecd9513908891868b4f2dda4343ef71b5e96e",
+      "bytes": 4630
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/ANALYTIC_CASES.json",
+      "sha256": "04f70129f4ce7d071863b331a1191e977c1c6555dfdaecb3e88e3370cd0fb789",
+      "bytes": 7536
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/REPORT.md",
+      "sha256": "6c64c674076090f770e83deebc34b697cf763bf60157fa2cc6c0581645501482",
+      "bytes": 12553
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/HANDOFF.md",
+      "sha256": "018d6d68fc50b5130582a317887a0a91017ec4cf0a7178b43cc9adb1f3875566",
+      "bytes": 2317
+    },
+    {
+      "path": "work/geonet_location_mechanism_preflight/source_access.json",
+      "sha256": "203a9c44935bff67067756eeb69d4bd8b2fa47a0bb2791437c410e2402e27a12",
+      "bytes": 3362
+    }
+  ],
+  "experiment": {
+    "kind": "Exact analytic conditioning and synthetic draws, no learned fit",
+    "seeds": [
+      20261011,
+      20261012
+    ],
+    "invented_events_per_seed": 4096,
+    "snapshots": [
+      1,
+      3,
+      5
+    ],
+    "reported_station_counts": [
+      1,
+      2,
+      3
+    ],
+    "regimes": [
+      "base",
+      "locator_stress"
+    ],
+    "arms_per_panel": 7,
+    "panels": 12,
+    "proper_scores": [
+      "NLL",
+      "CRPS"
+    ],
+    "mean_and_median_decisions_retained": true,
+    "magnitude_density_unbounded": true,
+    "random_draw_order": "component uniforms, magnitude normals, source uniforms, pick normals, shared-amplitude normals, independent-amplitude normals",
+    "implementation_persistent": false,
+    "exact_implementation_replay_limit": "No persistent Python source; reproduce from equations, settings, RNG receipt and aggregates with a separately reviewed implementation."
+  },
+  "fixed_gate": {
+    "comparator": "timing-only ElogR plug-in",
+    "primary_decision": "distribution mean",
+    "tail_5_5_MAE_gain_minimum": 0.02,
+    "tail_6_MAE_gain_minimum": 0.02,
+    "MAE_increase_maximum": 0.005,
+    "MedAE_increase_maximum": 0.005,
+    "CVaR95_increase_maximum": 0.02,
+    "required": "Every snapshot in both seeds; base scientific existence screen and stress separately retained",
+    "source_protocol_written_before_calculation": true,
+    "arrival_base_passed": false,
+    "arrival_stress_passed": false,
+    "joint_base_all_six_passed": false
+  },
+  "numeric_evidence": {
+    "linear_ElogR_max_mean_difference": 7.993605777301127e-15,
+    "moment_gaussian_max_mean_difference": 0.0,
+    "generated_quadrature_checks": 6,
+    "explicit_analytic_quadrature_checks": 3,
+    "max_generated_quadrature_mean_difference": 7.105427357601002e-15,
+    "shared_average_log_distance_variance": 0.20906545762704518,
+    "independent_average_log_distance_variance": 0.07020889953376178,
+    "matrix_vs_broadcast_max_difference": 1.4210854715202004e-14,
+    "all_saved_values_finite": true,
+    "original_matrix_runtime_warnings_preserved": true,
+    "warning_cause_diagnosed": false
+  },
+  "interpretation_limits": [
+    "Chosen synthetic failure is not universal impossibility for learned nonlinear arrival fusion",
+    "Direct flexible model can represent exact posterior with the same information",
+    "Shared-source covariance and linear mean identity are mathematical statements",
+    "A normalized density/proper-score improvement is not a tail point-error guarantee",
+    "Synthetic availability schedule is not a GeoNet operational-clock simulation",
+    "No novelty or published benchmark superiority"
+  ],
+  "actions": {
+    "real_rows_or_model_data_read": 0,
+    "data_requests": 0,
+    "learned_fits": 0,
+    "persistent_Python_implementation": 0,
+    "review_submissions": 0,
+    "AWS_calls": 0,
+    "Git_operations": 0,
+    "shared_file_edits": 0
+  }
+}

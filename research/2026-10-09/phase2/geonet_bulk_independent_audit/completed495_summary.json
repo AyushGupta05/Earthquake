@@ -1,0 +1,3930 @@
+{
+  "claim_limits": {
+    "benchmark_or_method_superiority_verified": false,
+    "independent_sequence_split_verified": false,
+    "operational_picker_replay": false,
+    "origin_diagnostics_are_inference_inputs": false,
+    "retrospective_associated_pick_metadata_only": true,
+    "waveform_response_availability_verified": false
+  },
+  "combined_frozen_denominator": 495,
+  "completed": true,
+  "metadata_missingness_gate_pass": true,
+  "new_lower_M": {
+    "complete_finite_time_geometry_events": 346,
+    "events_with_at_least_one_NZ_P": 346,
+    "frame_weight_sum": 3288.0,
+    "frozen_event_denominator": 346,
+    "incomplete_associated_P_structure_events": 54,
+    "known_NZ_P_coverage_events": 346,
+    "known_zero_NZ_P_events": 0,
+    "origin_CMT_match_counts": {
+      "origin_cmt_candidate_partition_match": {
+        "disagree": 0,
+        "match": 346,
+        "unknown": 0
+      },
+      "origin_cmt_utc_day_match": {
+        "disagree": 0,
+        "match": 346,
+        "unknown": 0
+      },
+      "origin_cmt_utc_year_match": {
+        "disagree": 0,
+        "match": 346,
+        "unknown": 0
+      }
+    },
+    "origin_anomaly_counts": {
+      "abs_origin_cmt_offset_ge_300s": {
+        "flagged": 1,
+        "unknown": 0
+      },
+      "earliest_NZ_P_before_origin": {
+        "flagged": 1,
+        "unknown": 0
+      },
+      "earliest_NZ_P_later_than_600s": {
+        "flagged": 0,
+        "unknown": 0
+      },
+      "earliest_NZ_pick_outside_source_window": {
+        "flagged": 0,
+        "unknown": 0
+      },
+      "negative_depth": {
+        "flagged": 0,
+        "unknown": 0
+      }
+    },
+    "origin_field_reasons": {},
+    "outcome_status": {
+      "parsed": 346
+    },
+    "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 346,
+    "positive_NZ_P_and_complete_finite_time_geometry_events": 346,
+    "positive_NZ_P_and_valid_origin_time_in_window_events": 346,
+    "positive_NZ_P_with_incomplete_structure_events": 54,
+    "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+    "strict_horizon_NZ_station_histograms": {
+      "1": {
+        "1": 168,
+        "10": 2,
+        "11": 1,
+        "12": 2,
+        "13": 2,
+        "14": 2,
+        "15": 1,
+        "16": 1,
+        "2": 92,
+        "21": 1,
+        "22": 2,
+        "3": 26,
+        "4": 22,
+        "5": 6,
+        "6": 7,
+        "7": 8,
+        "8": 2,
+        "9": 1
+      },
+      "3": {
+        "1": 72,
+        "10": 3,
+        "11": 6,
+        "12": 6,
+        "13": 7,
+        "14": 7,
+        "15": 5,
+        "16": 3,
+        "17": 3,
+        "18": 3,
+        "19": 1,
+        "2": 77,
+        "20": 2,
+        "21": 1,
+        "22": 2,
+        "23": 1,
+        "24": 1,
+        "25": 1,
+        "26": 1,
+        "27": 1,
+        "3": 51,
+        "30": 1,
+        "32": 2,
+        "35": 1,
+        "38": 1,
+        "4": 39,
+        "42": 1,
+        "5": 15,
+        "52": 1,
+        "6": 7,
+        "7": 14,
+        "8": 4,
+        "9": 6
+      },
+      "5": {
+        "1": 31,
+        "10": 4,
+        "11": 8,
+        "12": 8,
+        "13": 6,
+        "14": 7,
+        "15": 4,
+        "16": 3,
+        "17": 5,
+        "18": 7,
+        "19": 1,
+        "2": 52,
+        "20": 1,
+        "21": 2,
+        "22": 4,
+        "24": 1,
+        "25": 4,
+        "26": 2,
+        "28": 2,
+        "3": 36,
+        "30": 3,
+        "32": 3,
+        "36": 4,
+        "38": 2,
+        "4": 45,
+        "5": 27,
+        "53": 1,
+        "6": 27,
+        "63": 1,
+        "64": 1,
+        "66": 1,
+        "7": 22,
+        "8": 11,
+        "9": 10
+      }
+    },
+    "unique_preferred_origin_linkage_events": 346,
+    "unknown_NZ_P_coverage_events": 0,
+    "unresolved_P_reason_counts": {
+      "invalid_or_naive_pick_time": 0,
+      "missing_or_ambiguous_pick_reference": 1210,
+      "missing_station_identity": 0
+    },
+    "valid_origin_time_in_window_events": 346,
+    "valid_timezone_aware_origin_time_events": 346,
+    "weighted_positive_NZ_P_total": 3288.0,
+    "weighted_positive_fraction_lower_bound": 1.0,
+    "weighted_positive_fraction_upper_bound": 1.0,
+    "weighted_strict_horizon_NZ_station_histograms": {
+      "1": {
+        "1": 1496.1666666666667,
+        "10": 28.625,
+        "11": 23.708333333333332,
+        "12": 6.708333333333333,
+        "13": 17.125,
+        "14": 21.458333333333332,
+        "15": 12.5,
+        "16": 4.625,
+        "2": 900.75,
+        "21": 13.625,
+        "22": 7.208333333333333,
+        "3": 263.875,
+        "4": 228.04166666666666,
+        "5": 67.58333333333333,
+        "6": 96.20833333333333,
+        "7": 66.41666666666667,
+        "8": 28.458333333333332,
+        "9": 4.916666666666667
+      },
+      "3": {
+        "1": 682.7916666666666,
+        "10": 31.125,
+        "11": 65.29166666666667,
+        "12": 97.625,
+        "13": 87.20833333333333,
+        "14": 92.75,
+        "15": 55.583333333333336,
+        "16": 49.083333333333336,
+        "17": 30.875,
+        "18": 26.875,
+        "19": 2.4166666666666665,
+        "2": 591.8333333333334,
+        "20": 24.458333333333332,
+        "21": 26.666666666666668,
+        "22": 39.166666666666664,
+        "23": 4.916666666666667,
+        "24": 7.625,
+        "25": 4.625,
+        "26": 4.625,
+        "27": 4.916666666666667,
+        "3": 447.25,
+        "30": 12.5,
+        "32": 31.291666666666668,
+        "35": 4.625,
+        "38": 1.6666666666666667,
+        "4": 396.3333333333333,
+        "42": 13.625,
+        "5": 137.16666666666666,
+        "52": 5.541666666666667,
+        "6": 59.25,
+        "7": 156.20833333333334,
+        "8": 51.625,
+        "9": 40.458333333333336
+      },
+      "5": {
+        "1": 316.5,
+        "10": 15.833333333333334,
+        "11": 89.58333333333333,
+        "12": 55.541666666666664,
+        "13": 77.625,
+        "14": 93.58333333333333,
+        "15": 27.25,
+        "16": 53.041666666666664,
+        "17": 33.541666666666664,
+        "18": 111.54166666666667,
+        "19": 12.5,
+        "2": 385.25,
+        "20": 12.5,
+        "21": 7.208333333333333,
+        "22": 54.416666666666664,
+        "24": 16.833333333333332,
+        "25": 41.625,
+        "26": 43.5,
+        "28": 31.291666666666668,
+        "3": 338.0416666666667,
+        "30": 31.041666666666668,
+        "32": 6.5,
+        "36": 19.291666666666668,
+        "38": 31.291666666666668,
+        "4": 390.0,
+        "5": 260.5,
+        "53": 12.5,
+        "6": 220.41666666666666,
+        "63": 13.625,
+        "64": 5.541666666666667,
+        "66": 1.6666666666666667,
+        "7": 227.66666666666666,
+        "8": 119.91666666666667,
+        "9": 130.83333333333334
+      }
+    },
+    "weighted_unknown_NZ_P_total": 0.0,
+    "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+  },
+  "reused_tail": {
+    "complete_finite_time_geometry_events": 149,
+    "events_with_at_least_one_NZ_P": 149,
+    "frame_weight_sum": 149.0,
+    "frozen_event_denominator": 149,
+    "incomplete_associated_P_structure_events": 22,
+    "known_NZ_P_coverage_events": 149,
+    "known_zero_NZ_P_events": 0,
+    "origin_CMT_match_counts": {
+      "origin_cmt_candidate_partition_match": {
+        "disagree": 0,
+        "match": 149,
+        "unknown": 0
+      },
+      "origin_cmt_utc_day_match": {
+        "disagree": 0,
+        "match": 149,
+        "unknown": 0
+      },
+      "origin_cmt_utc_year_match": {
+        "disagree": 0,
+        "match": 149,
+        "unknown": 0
+      }
+    },
+    "origin_anomaly_counts": {
+      "abs_origin_cmt_offset_ge_300s": {
+        "flagged": 0,
+        "unknown": 0
+      },
+      "earliest_NZ_P_before_origin": {
+        "flagged": 0,
+        "unknown": 0
+      },
+      "earliest_NZ_P_later_than_600s": {
+        "flagged": 0,
+        "unknown": 0
+      },
+      "earliest_NZ_pick_outside_source_window": {
+        "flagged": 0,
+        "unknown": 0
+      },
+      "negative_depth": {
+        "flagged": 0,
+        "unknown": 0
+      }
+    },
+    "origin_field_reasons": {},
+    "outcome_status": {
+      "reused_verified": 149
+    },
+    "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 149,
+    "positive_NZ_P_and_complete_finite_time_geometry_events": 149,
+    "positive_NZ_P_and_valid_origin_time_in_window_events": 149,
+    "positive_NZ_P_with_incomplete_structure_events": 22,
+    "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+    "strict_horizon_NZ_station_histograms": {
+      "1": {
+        "1": 87,
+        "10": 2,
+        "11": 2,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "2": 39,
+        "20": 1,
+        "21": 1,
+        "3": 7,
+        "4": 1,
+        "6": 4,
+        "8": 1,
+        "9": 1
+      },
+      "3": {
+        "1": 41,
+        "11": 1,
+        "13": 2,
+        "15": 1,
+        "17": 2,
+        "18": 1,
+        "19": 1,
+        "2": 51,
+        "22": 1,
+        "24": 1,
+        "25": 2,
+        "29": 1,
+        "3": 18,
+        "35": 1,
+        "37": 1,
+        "38": 1,
+        "4": 9,
+        "40": 1,
+        "48": 1,
+        "5": 5,
+        "6": 4,
+        "7": 1,
+        "8": 2
+      },
+      "5": {
+        "1": 16,
+        "10": 3,
+        "12": 1,
+        "13": 1,
+        "16": 3,
+        "18": 1,
+        "19": 1,
+        "2": 51,
+        "20": 1,
+        "21": 2,
+        "23": 2,
+        "26": 1,
+        "28": 1,
+        "29": 1,
+        "3": 22,
+        "31": 1,
+        "39": 1,
+        "4": 15,
+        "47": 1,
+        "5": 4,
+        "51": 1,
+        "53": 1,
+        "55": 2,
+        "6": 7,
+        "61": 1,
+        "7": 5,
+        "8": 2,
+        "9": 1
+      }
+    },
+    "unique_preferred_origin_linkage_events": 149,
+    "unknown_NZ_P_coverage_events": 0,
+    "unresolved_P_reason_counts": {
+      "invalid_or_naive_pick_time": 0,
+      "missing_or_ambiguous_pick_reference": 707,
+      "missing_station_identity": 0
+    },
+    "valid_origin_time_in_window_events": 149,
+    "valid_timezone_aware_origin_time_events": 149,
+    "weighted_positive_NZ_P_total": 149.0,
+    "weighted_positive_fraction_lower_bound": 1.0,
+    "weighted_positive_fraction_upper_bound": 1.0,
+    "weighted_strict_horizon_NZ_station_histograms": {
+      "1": {
+        "1": 87.0,
+        "10": 2.0,
+        "11": 2.0,
+        "12": 1.0,
+        "13": 1.0,
+        "14": 1.0,
+        "2": 39.0,
+        "20": 1.0,
+        "21": 1.0,
+        "3": 7.0,
+        "4": 1.0,
+        "6": 4.0,
+        "8": 1.0,
+        "9": 1.0
+      },
+      "3": {
+        "1": 41.0,
+        "11": 1.0,
+        "13": 2.0,
+        "15": 1.0,
+        "17": 2.0,
+        "18": 1.0,
+        "19": 1.0,
+        "2": 51.0,
+        "22": 1.0,
+        "24": 1.0,
+        "25": 2.0,
+        "29": 1.0,
+        "3": 18.0,
+        "35": 1.0,
+        "37": 1.0,
+        "38": 1.0,
+        "4": 9.0,
+        "40": 1.0,
+        "48": 1.0,
+        "5": 5.0,
+        "6": 4.0,
+        "7": 1.0,
+        "8": 2.0
+      },
+      "5": {
+        "1": 16.0,
+        "10": 3.0,
+        "12": 1.0,
+        "13": 1.0,
+        "16": 3.0,
+        "18": 1.0,
+        "19": 1.0,
+        "2": 51.0,
+        "20": 1.0,
+        "21": 2.0,
+        "23": 2.0,
+        "26": 1.0,
+        "28": 1.0,
+        "29": 1.0,
+        "3": 22.0,
+        "31": 1.0,
+        "39": 1.0,
+        "4": 15.0,
+        "47": 1.0,
+        "5": 4.0,
+        "51": 1.0,
+        "53": 1.0,
+        "55": 2.0,
+        "6": 7.0,
+        "61": 1.0,
+        "7": 5.0,
+        "8": 2.0,
+        "9": 1.0
+      }
+    },
+    "weighted_unknown_NZ_P_total": 0.0,
+    "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+  },
+  "reused_tail_band_calendar_panels": [
+    {
+      "Mw_band": "[5.5,6)",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 40,
+        "events_with_at_least_one_NZ_P": 40,
+        "frame_weight_sum": 40.0,
+        "frozen_event_denominator": 40,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 40,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 40,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 40,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 40,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 40
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 40,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 40,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 40,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 25,
+            "10": 2,
+            "11": 1,
+            "13": 1,
+            "2": 8,
+            "20": 1,
+            "6": 1,
+            "9": 1
+          },
+          "3": {
+            "1": 10,
+            "13": 1,
+            "17": 2,
+            "19": 1,
+            "2": 13,
+            "24": 1,
+            "25": 1,
+            "29": 1,
+            "3": 5,
+            "38": 1,
+            "40": 1,
+            "5": 2,
+            "6": 1
+          },
+          "5": {
+            "1": 6,
+            "18": 1,
+            "2": 11,
+            "21": 2,
+            "23": 1,
+            "28": 1,
+            "29": 1,
+            "3": 6,
+            "4": 4,
+            "5": 1,
+            "51": 1,
+            "53": 1,
+            "55": 1,
+            "6": 1,
+            "7": 1,
+            "9": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 40,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 40,
+        "valid_timezone_aware_origin_time_events": 40,
+        "weighted_positive_NZ_P_total": 40.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 25.0,
+            "10": 2.0,
+            "11": 1.0,
+            "13": 1.0,
+            "2": 8.0,
+            "20": 1.0,
+            "6": 1.0,
+            "9": 1.0
+          },
+          "3": {
+            "1": 10.0,
+            "13": 1.0,
+            "17": 2.0,
+            "19": 1.0,
+            "2": 13.0,
+            "24": 1.0,
+            "25": 1.0,
+            "29": 1.0,
+            "3": 5.0,
+            "38": 1.0,
+            "40": 1.0,
+            "5": 2.0,
+            "6": 1.0
+          },
+          "5": {
+            "1": 6.0,
+            "18": 1.0,
+            "2": 11.0,
+            "21": 2.0,
+            "23": 1.0,
+            "28": 1.0,
+            "29": 1.0,
+            "3": 6.0,
+            "4": 4.0,
+            "5": 1.0,
+            "51": 1.0,
+            "53": 1.0,
+            "55": 1.0,
+            "6": 1.0,
+            "7": 1.0,
+            "9": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": "[6,7)",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 21,
+        "events_with_at_least_one_NZ_P": 21,
+        "frame_weight_sum": 21.0,
+        "frozen_event_denominator": 21,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 21,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 21,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 21,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 21,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 21
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 21,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 21,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 21,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 11,
+            "11": 1,
+            "12": 1,
+            "2": 4,
+            "21": 1,
+            "3": 2,
+            "8": 1
+          },
+          "3": {
+            "1": 8,
+            "13": 1,
+            "18": 1,
+            "2": 4,
+            "22": 1,
+            "3": 1,
+            "37": 1,
+            "4": 1,
+            "5": 1,
+            "6": 2
+          },
+          "5": {
+            "1": 4,
+            "10": 2,
+            "2": 6,
+            "20": 1,
+            "23": 1,
+            "26": 1,
+            "3": 3,
+            "55": 1,
+            "6": 1,
+            "7": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 21,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 21,
+        "valid_timezone_aware_origin_time_events": 21,
+        "weighted_positive_NZ_P_total": 21.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 11.0,
+            "11": 1.0,
+            "12": 1.0,
+            "2": 4.0,
+            "21": 1.0,
+            "3": 2.0,
+            "8": 1.0
+          },
+          "3": {
+            "1": 8.0,
+            "13": 1.0,
+            "18": 1.0,
+            "2": 4.0,
+            "22": 1.0,
+            "3": 1.0,
+            "37": 1.0,
+            "4": 1.0,
+            "5": 1.0,
+            "6": 2.0
+          },
+          "5": {
+            "1": 4.0,
+            "10": 2.0,
+            "2": 6.0,
+            "20": 1.0,
+            "23": 1.0,
+            "26": 1.0,
+            "3": 3.0,
+            "55": 1.0,
+            "6": 1.0,
+            "7": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": ">=7",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 8,
+        "events_with_at_least_one_NZ_P": 8,
+        "frame_weight_sum": 8.0,
+        "frozen_event_denominator": 8,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 8,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 8,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 8,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 8,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 8
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 8,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 8,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 8,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 6,
+            "2": 1,
+            "3": 1
+          },
+          "3": {
+            "1": 4,
+            "2": 1,
+            "3": 2,
+            "8": 1
+          },
+          "5": {
+            "1": 2,
+            "16": 1,
+            "2": 3,
+            "3": 2
+          }
+        },
+        "unique_preferred_origin_linkage_events": 8,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 8,
+        "valid_timezone_aware_origin_time_events": 8,
+        "weighted_positive_NZ_P_total": 8.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 6.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "3": {
+            "1": 4.0,
+            "2": 1.0,
+            "3": 2.0,
+            "8": 1.0
+          },
+          "5": {
+            "1": 2.0,
+            "16": 1.0,
+            "2": 3.0,
+            "3": 2.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": "[5.5,6)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 19,
+        "events_with_at_least_one_NZ_P": 19,
+        "frame_weight_sum": 19.0,
+        "frozen_event_denominator": 19,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 19,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 19,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 19,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 19,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 19
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 19,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 19,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 19,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 12,
+            "2": 7
+          },
+          "3": {
+            "1": 8,
+            "2": 7,
+            "3": 3,
+            "4": 1
+          },
+          "5": {
+            "2": 10,
+            "3": 4,
+            "4": 3,
+            "5": 1,
+            "7": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 19,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 19,
+        "valid_timezone_aware_origin_time_events": 19,
+        "weighted_positive_NZ_P_total": 19.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 12.0,
+            "2": 7.0
+          },
+          "3": {
+            "1": 8.0,
+            "2": 7.0,
+            "3": 3.0,
+            "4": 1.0
+          },
+          "5": {
+            "2": 10.0,
+            "3": 4.0,
+            "4": 3.0,
+            "5": 1.0,
+            "7": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": "[6,7)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 10,
+        "events_with_at_least_one_NZ_P": 10,
+        "frame_weight_sum": 10.0,
+        "frozen_event_denominator": 10,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 10,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 10,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 10,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 10,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 10
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 10,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 10,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 10,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 6,
+            "2": 4
+          },
+          "3": {
+            "1": 1,
+            "2": 5,
+            "3": 2,
+            "4": 2
+          },
+          "5": {
+            "2": 3,
+            "3": 1,
+            "4": 4,
+            "6": 1,
+            "7": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 10,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 10,
+        "valid_timezone_aware_origin_time_events": 10,
+        "weighted_positive_NZ_P_total": 10.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 6.0,
+            "2": 4.0
+          },
+          "3": {
+            "1": 1.0,
+            "2": 5.0,
+            "3": 2.0,
+            "4": 2.0
+          },
+          "5": {
+            "2": 3.0,
+            "3": 1.0,
+            "4": 4.0,
+            "6": 1.0,
+            "7": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": ">=7",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 2,
+        "events_with_at_least_one_NZ_P": 2,
+        "frame_weight_sum": 2.0,
+        "frozen_event_denominator": 2,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 2,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 2,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 2,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 2,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 2
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 2,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 2,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 2,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 2
+          },
+          "3": {
+            "1": 2
+          },
+          "5": {
+            "2": 1,
+            "4": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 2,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 2,
+        "valid_timezone_aware_origin_time_events": 2,
+        "weighted_positive_NZ_P_total": 2.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 2.0
+          },
+          "3": {
+            "1": 2.0
+          },
+          "5": {
+            "2": 1.0,
+            "4": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": "[5.5,6)",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 30,
+        "events_with_at_least_one_NZ_P": 30,
+        "frame_weight_sum": 30.0,
+        "frozen_event_denominator": 30,
+        "incomplete_associated_P_structure_events": 18,
+        "known_NZ_P_coverage_events": 30,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 30,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 30,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 30,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 30
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 30,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 30,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 30,
+        "positive_NZ_P_with_incomplete_structure_events": 18,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 16,
+            "2": 8,
+            "3": 3,
+            "4": 1,
+            "6": 2
+          },
+          "3": {
+            "1": 5,
+            "11": 1,
+            "15": 1,
+            "2": 11,
+            "3": 3,
+            "35": 1,
+            "4": 4,
+            "48": 1,
+            "5": 2,
+            "6": 1
+          },
+          "5": {
+            "1": 2,
+            "10": 1,
+            "13": 1,
+            "16": 2,
+            "2": 8,
+            "3": 3,
+            "31": 1,
+            "4": 2,
+            "47": 1,
+            "5": 2,
+            "6": 3,
+            "61": 1,
+            "7": 1,
+            "8": 2
+          }
+        },
+        "unique_preferred_origin_linkage_events": 30,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 588,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 30,
+        "valid_timezone_aware_origin_time_events": 30,
+        "weighted_positive_NZ_P_total": 30.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 16.0,
+            "2": 8.0,
+            "3": 3.0,
+            "4": 1.0,
+            "6": 2.0
+          },
+          "3": {
+            "1": 5.0,
+            "11": 1.0,
+            "15": 1.0,
+            "2": 11.0,
+            "3": 3.0,
+            "35": 1.0,
+            "4": 4.0,
+            "48": 1.0,
+            "5": 2.0,
+            "6": 1.0
+          },
+          "5": {
+            "1": 2.0,
+            "10": 1.0,
+            "13": 1.0,
+            "16": 2.0,
+            "2": 8.0,
+            "3": 3.0,
+            "31": 1.0,
+            "4": 2.0,
+            "47": 1.0,
+            "5": 2.0,
+            "6": 3.0,
+            "61": 1.0,
+            "7": 1.0,
+            "8": 2.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": "[6,7)",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 14,
+        "events_with_at_least_one_NZ_P": 14,
+        "frame_weight_sum": 14.0,
+        "frozen_event_denominator": 14,
+        "incomplete_associated_P_structure_events": 3,
+        "known_NZ_P_coverage_events": 14,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 14,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 14,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 14,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 14
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 14,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 14,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 14,
+        "positive_NZ_P_with_incomplete_structure_events": 3,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 6,
+            "14": 1,
+            "2": 6,
+            "6": 1
+          },
+          "3": {
+            "1": 2,
+            "2": 9,
+            "25": 1,
+            "3": 1,
+            "8": 1
+          },
+          "5": {
+            "1": 1,
+            "19": 1,
+            "2": 8,
+            "3": 2,
+            "39": 1,
+            "4": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 14,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 98,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 14,
+        "valid_timezone_aware_origin_time_events": 14,
+        "weighted_positive_NZ_P_total": 14.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 6.0,
+            "14": 1.0,
+            "2": 6.0,
+            "6": 1.0
+          },
+          "3": {
+            "1": 2.0,
+            "2": 9.0,
+            "25": 1.0,
+            "3": 1.0,
+            "8": 1.0
+          },
+          "5": {
+            "1": 1.0,
+            "19": 1.0,
+            "2": 8.0,
+            "3": 2.0,
+            "39": 1.0,
+            "4": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    },
+    {
+      "Mw_band": ">=7",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 5,
+        "events_with_at_least_one_NZ_P": 5,
+        "frame_weight_sum": 5.0,
+        "frozen_event_denominator": 5,
+        "incomplete_associated_P_structure_events": 1,
+        "known_NZ_P_coverage_events": 5,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 5,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 5,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 5,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "reused_verified": 5
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 5,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 5,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 5,
+        "positive_NZ_P_with_incomplete_structure_events": 1,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 3,
+            "2": 1,
+            "3": 1
+          },
+          "3": {
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "7": 1
+          },
+          "5": {
+            "1": 1,
+            "12": 1,
+            "2": 1,
+            "3": 1,
+            "6": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 5,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 21,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 5,
+        "valid_timezone_aware_origin_time_events": 5,
+        "weighted_positive_NZ_P_total": 5.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 3.0,
+            "2": 1.0,
+            "3": 1.0
+          },
+          "3": {
+            "1": 1.0,
+            "2": 1.0,
+            "3": 1.0,
+            "4": 1.0,
+            "7": 1.0
+          },
+          "5": {
+            "1": 1.0,
+            "12": 1.0,
+            "2": 1.0,
+            "3": 1.0,
+            "6": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      }
+    }
+  ],
+  "strata": [
+    {
+      "Mw_band": "<3.5",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 43.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 7,
+            "12": 1,
+            "2": 6,
+            "3": 2,
+            "4": 3,
+            "6": 2,
+            "7": 2,
+            "8": 1
+          },
+          "3": {
+            "1": 2,
+            "10": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "17": 1,
+            "2": 3,
+            "3": 5,
+            "4": 1,
+            "5": 2,
+            "6": 1,
+            "7": 2,
+            "8": 1,
+            "9": 1
+          },
+          "5": {
+            "1": 2,
+            "10": 2,
+            "12": 3,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "17": 1,
+            "18": 1,
+            "2": 1,
+            "3": 1,
+            "4": 3,
+            "5": 3,
+            "7": 1,
+            "8": 3
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 43.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 12.541666666666666,
+            "12": 1.7916666666666667,
+            "2": 10.75,
+            "3": 3.5833333333333335,
+            "4": 5.375,
+            "6": 3.5833333333333335,
+            "7": 3.5833333333333335,
+            "8": 1.7916666666666667
+          },
+          "3": {
+            "1": 3.5833333333333335,
+            "10": 1.7916666666666667,
+            "12": 1.7916666666666667,
+            "13": 1.7916666666666667,
+            "14": 1.7916666666666667,
+            "15": 1.7916666666666667,
+            "17": 1.7916666666666667,
+            "2": 5.375,
+            "3": 8.958333333333334,
+            "4": 1.7916666666666667,
+            "5": 3.5833333333333335,
+            "6": 1.7916666666666667,
+            "7": 3.5833333333333335,
+            "8": 1.7916666666666667,
+            "9": 1.7916666666666667
+          },
+          "5": {
+            "1": 3.5833333333333335,
+            "10": 3.5833333333333335,
+            "12": 5.375,
+            "13": 1.7916666666666667,
+            "14": 1.7916666666666667,
+            "15": 1.7916666666666667,
+            "17": 1.7916666666666667,
+            "18": 1.7916666666666667,
+            "2": 1.7916666666666667,
+            "3": 1.7916666666666667,
+            "4": 5.375,
+            "5": 5.375,
+            "7": 1.7916666666666667,
+            "8": 5.375
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 43,
+      "inclusion_probability": 0.5581395348837209,
+      "inverse_probability": 1.7916666666666667,
+      "not_selected_N_minus_n": 19,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[3.5,4)",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 569.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 1,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 1,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 11,
+            "10": 1,
+            "11": 1,
+            "2": 4,
+            "3": 1,
+            "4": 4,
+            "6": 2
+          },
+          "3": {
+            "1": 5,
+            "11": 1,
+            "12": 2,
+            "13": 1,
+            "14": 2,
+            "16": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2,
+            "6": 1,
+            "7": 2,
+            "8": 2
+          },
+          "5": {
+            "1": 5,
+            "11": 1,
+            "13": 2,
+            "14": 1,
+            "16": 1,
+            "17": 1,
+            "18": 3,
+            "2": 1,
+            "4": 1,
+            "5": 3,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 2
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 569.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 260.7916666666667,
+            "10": 23.708333333333332,
+            "11": 23.708333333333332,
+            "2": 94.83333333333333,
+            "3": 23.708333333333332,
+            "4": 94.83333333333333,
+            "6": 47.416666666666664
+          },
+          "3": {
+            "1": 118.54166666666667,
+            "11": 23.708333333333332,
+            "12": 47.416666666666664,
+            "13": 23.708333333333332,
+            "14": 47.416666666666664,
+            "16": 47.416666666666664,
+            "2": 71.125,
+            "3": 23.708333333333332,
+            "4": 47.416666666666664,
+            "6": 23.708333333333332,
+            "7": 47.416666666666664,
+            "8": 47.416666666666664
+          },
+          "5": {
+            "1": 118.54166666666667,
+            "11": 23.708333333333332,
+            "13": 47.416666666666664,
+            "14": 23.708333333333332,
+            "16": 23.708333333333332,
+            "17": 23.708333333333332,
+            "18": 71.125,
+            "2": 23.708333333333332,
+            "4": 23.708333333333332,
+            "5": 71.125,
+            "6": 23.708333333333332,
+            "7": 23.708333333333332,
+            "8": 23.708333333333332,
+            "9": 47.416666666666664
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 569,
+      "inclusion_probability": 0.0421792618629174,
+      "inverse_probability": 23.708333333333332,
+      "not_selected_N_minus_n": 545,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[4,4.5)",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 640.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 9,
+            "2": 8,
+            "3": 3,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "8": 1
+          },
+          "3": {
+            "1": 5,
+            "12": 1,
+            "13": 1,
+            "15": 1,
+            "17": 1,
+            "2": 2,
+            "21": 1,
+            "22": 1,
+            "3": 4,
+            "32": 1,
+            "4": 3,
+            "5": 2,
+            "7": 1
+          },
+          "5": {
+            "1": 2,
+            "11": 1,
+            "14": 2,
+            "2": 1,
+            "22": 1,
+            "25": 1,
+            "26": 1,
+            "28": 1,
+            "3": 4,
+            "38": 1,
+            "4": 3,
+            "5": 1,
+            "6": 1,
+            "7": 2,
+            "8": 2
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 640.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 240.0,
+            "2": 213.33333333333334,
+            "3": 80.0,
+            "4": 26.666666666666668,
+            "5": 26.666666666666668,
+            "6": 26.666666666666668,
+            "8": 26.666666666666668
+          },
+          "3": {
+            "1": 133.33333333333334,
+            "12": 26.666666666666668,
+            "13": 26.666666666666668,
+            "15": 26.666666666666668,
+            "17": 26.666666666666668,
+            "2": 53.333333333333336,
+            "21": 26.666666666666668,
+            "22": 26.666666666666668,
+            "3": 106.66666666666667,
+            "32": 26.666666666666668,
+            "4": 80.0,
+            "5": 53.333333333333336,
+            "7": 26.666666666666668
+          },
+          "5": {
+            "1": 53.333333333333336,
+            "11": 26.666666666666668,
+            "14": 53.333333333333336,
+            "2": 26.666666666666668,
+            "22": 26.666666666666668,
+            "25": 26.666666666666668,
+            "26": 26.666666666666668,
+            "28": 26.666666666666668,
+            "3": 106.66666666666667,
+            "38": 26.666666666666668,
+            "4": 80.0,
+            "5": 26.666666666666668,
+            "6": 26.666666666666668,
+            "7": 53.333333333333336,
+            "8": 53.333333333333336
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 640,
+      "inclusion_probability": 0.0375,
+      "inverse_probability": 26.666666666666668,
+      "not_selected_N_minus_n": 616,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[4.5,5)",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 300.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 11,
+            "13": 1,
+            "15": 1,
+            "2": 3,
+            "3": 3,
+            "4": 1,
+            "5": 3,
+            "7": 1
+          },
+          "3": {
+            "1": 5,
+            "10": 1,
+            "11": 1,
+            "13": 2,
+            "14": 2,
+            "15": 1,
+            "2": 6,
+            "22": 1,
+            "3": 1,
+            "30": 1,
+            "4": 2,
+            "6": 1
+          },
+          "5": {
+            "1": 4,
+            "11": 1,
+            "16": 1,
+            "18": 2,
+            "19": 1,
+            "2": 3,
+            "20": 1,
+            "22": 1,
+            "3": 3,
+            "30": 1,
+            "4": 1,
+            "53": 1,
+            "6": 1,
+            "7": 3
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 300.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 137.5,
+            "13": 12.5,
+            "15": 12.5,
+            "2": 37.5,
+            "3": 37.5,
+            "4": 12.5,
+            "5": 37.5,
+            "7": 12.5
+          },
+          "3": {
+            "1": 62.5,
+            "10": 12.5,
+            "11": 12.5,
+            "13": 25.0,
+            "14": 25.0,
+            "15": 12.5,
+            "2": 75.0,
+            "22": 12.5,
+            "3": 12.5,
+            "30": 12.5,
+            "4": 25.0,
+            "6": 12.5
+          },
+          "5": {
+            "1": 50.0,
+            "11": 12.5,
+            "16": 12.5,
+            "18": 25.0,
+            "19": 12.5,
+            "2": 37.5,
+            "20": 12.5,
+            "22": 12.5,
+            "3": 37.5,
+            "30": 12.5,
+            "4": 12.5,
+            "53": 12.5,
+            "6": 12.5,
+            "7": 37.5
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 300,
+      "inclusion_probability": 0.08,
+      "inverse_probability": 12.5,
+      "not_selected_N_minus_n": 276,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[5,5.5)",
+      "candidate_calendar_partition": "train2003_2014",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 111.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 12,
+            "13": 1,
+            "14": 1,
+            "16": 1,
+            "2": 6,
+            "3": 1,
+            "4": 1,
+            "7": 1
+          },
+          "3": {
+            "1": 6,
+            "2": 7,
+            "25": 1,
+            "26": 1,
+            "3": 3,
+            "32": 1,
+            "35": 1,
+            "4": 2,
+            "5": 1,
+            "7": 1
+          },
+          "5": {
+            "1": 5,
+            "10": 1,
+            "17": 1,
+            "2": 3,
+            "28": 1,
+            "3": 2,
+            "36": 2,
+            "38": 1,
+            "4": 2,
+            "5": 3,
+            "6": 2,
+            "7": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 111.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 55.5,
+            "13": 4.625,
+            "14": 4.625,
+            "16": 4.625,
+            "2": 27.75,
+            "3": 4.625,
+            "4": 4.625,
+            "7": 4.625
+          },
+          "3": {
+            "1": 27.75,
+            "2": 32.375,
+            "25": 4.625,
+            "26": 4.625,
+            "3": 13.875,
+            "32": 4.625,
+            "35": 4.625,
+            "4": 9.25,
+            "5": 4.625,
+            "7": 4.625
+          },
+          "5": {
+            "1": 23.125,
+            "10": 4.625,
+            "17": 4.625,
+            "2": 13.875,
+            "28": 4.625,
+            "3": 9.25,
+            "36": 9.25,
+            "38": 4.625,
+            "4": 9.25,
+            "5": 13.875,
+            "6": 9.25,
+            "7": 4.625
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 111,
+      "inclusion_probability": 0.21621621621621623,
+      "inverse_probability": 4.625,
+      "not_selected_N_minus_n": 87,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "<3.5",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 10,
+        "events_with_at_least_one_NZ_P": 10,
+        "frame_weight_sum": 10.0,
+        "frozen_event_denominator": 10,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 10,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 10,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 10,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 10,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 10
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 10,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 10,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 10,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 8,
+            "2": 1,
+            "5": 1
+          },
+          "3": {
+            "1": 1,
+            "15": 1,
+            "2": 2,
+            "3": 1,
+            "4": 3,
+            "5": 1,
+            "6": 1
+          },
+          "5": {
+            "1": 1,
+            "11": 1,
+            "15": 1,
+            "17": 1,
+            "3": 1,
+            "4": 2,
+            "6": 2,
+            "7": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 10,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 10,
+        "valid_timezone_aware_origin_time_events": 10,
+        "weighted_positive_NZ_P_total": 10.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 8.0,
+            "2": 1.0,
+            "5": 1.0
+          },
+          "3": {
+            "1": 1.0,
+            "15": 1.0,
+            "2": 2.0,
+            "3": 1.0,
+            "4": 3.0,
+            "5": 1.0,
+            "6": 1.0
+          },
+          "5": {
+            "1": 1.0,
+            "11": 1.0,
+            "15": 1.0,
+            "17": 1.0,
+            "3": 1.0,
+            "4": 2.0,
+            "6": 2.0,
+            "7": 1.0
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 10,
+      "inclusion_probability": 1.0,
+      "inverse_probability": 1.0,
+      "not_selected_N_minus_n": 0,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 5,
+      "sample_n": 10
+    },
+    {
+      "Mw_band": "[3.5,4)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 132.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 13,
+            "2": 7,
+            "3": 3,
+            "4": 1
+          },
+          "3": {
+            "1": 5,
+            "2": 8,
+            "3": 7,
+            "4": 2,
+            "5": 1,
+            "7": 1
+          },
+          "5": {
+            "1": 3,
+            "11": 1,
+            "2": 3,
+            "3": 5,
+            "4": 5,
+            "5": 3,
+            "6": 2,
+            "7": 1,
+            "9": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 132.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 71.5,
+            "2": 38.5,
+            "3": 16.5,
+            "4": 5.5
+          },
+          "3": {
+            "1": 27.5,
+            "2": 44.0,
+            "3": 38.5,
+            "4": 11.0,
+            "5": 5.5,
+            "7": 5.5
+          },
+          "5": {
+            "1": 16.5,
+            "11": 5.5,
+            "2": 16.5,
+            "3": 27.5,
+            "4": 27.5,
+            "5": 16.5,
+            "6": 11.0,
+            "7": 5.5,
+            "9": 5.5
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 132,
+      "inclusion_probability": 0.18181818181818182,
+      "inverse_probability": 5.5,
+      "not_selected_N_minus_n": 108,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[4,4.5)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 220.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 14,
+            "2": 7,
+            "3": 3
+          },
+          "3": {
+            "1": 6,
+            "2": 5,
+            "3": 6,
+            "4": 2,
+            "5": 1,
+            "6": 1,
+            "7": 3
+          },
+          "5": {
+            "1": 1,
+            "12": 1,
+            "13": 1,
+            "2": 4,
+            "3": 3,
+            "4": 5,
+            "5": 3,
+            "6": 3,
+            "7": 2,
+            "8": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 220.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 128.33333333333334,
+            "2": 64.16666666666667,
+            "3": 27.5
+          },
+          "3": {
+            "1": 55.0,
+            "2": 45.833333333333336,
+            "3": 55.0,
+            "4": 18.333333333333332,
+            "5": 9.166666666666666,
+            "6": 9.166666666666666,
+            "7": 27.5
+          },
+          "5": {
+            "1": 9.166666666666666,
+            "12": 9.166666666666666,
+            "13": 9.166666666666666,
+            "2": 36.666666666666664,
+            "3": 27.5,
+            "4": 45.833333333333336,
+            "5": 27.5,
+            "6": 27.5,
+            "7": 18.333333333333332,
+            "8": 9.166666666666666
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 220,
+      "inclusion_probability": 0.10909090909090909,
+      "inverse_probability": 9.166666666666666,
+      "not_selected_N_minus_n": 196,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[4.5,5)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 133.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 17,
+            "2": 6,
+            "22": 1
+          },
+          "3": {
+            "1": 11,
+            "2": 5,
+            "3": 3,
+            "4": 1,
+            "52": 1,
+            "6": 2,
+            "7": 1
+          },
+          "5": {
+            "1": 2,
+            "2": 7,
+            "21": 1,
+            "3": 3,
+            "4": 3,
+            "5": 2,
+            "6": 3,
+            "64": 1,
+            "7": 2
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 133.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 94.20833333333333,
+            "2": 33.25,
+            "22": 5.541666666666667
+          },
+          "3": {
+            "1": 60.958333333333336,
+            "2": 27.708333333333332,
+            "3": 16.625,
+            "4": 5.541666666666667,
+            "52": 5.541666666666667,
+            "6": 11.083333333333334,
+            "7": 5.541666666666667
+          },
+          "5": {
+            "1": 11.083333333333334,
+            "2": 38.791666666666664,
+            "21": 5.541666666666667,
+            "3": 16.625,
+            "4": 16.625,
+            "5": 11.083333333333334,
+            "6": 16.625,
+            "64": 5.541666666666667,
+            "7": 11.083333333333334
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 133,
+      "inclusion_probability": 0.18045112781954886,
+      "inverse_probability": 5.541666666666667,
+      "not_selected_N_minus_n": 109,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[5,5.5)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 40.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 0,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 0,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 13,
+            "2": 7,
+            "22": 1,
+            "3": 1,
+            "4": 2
+          },
+          "3": {
+            "1": 3,
+            "16": 1,
+            "2": 11,
+            "3": 3,
+            "38": 1,
+            "4": 2,
+            "5": 2,
+            "9": 1
+          },
+          "5": {
+            "1": 1,
+            "11": 1,
+            "2": 9,
+            "21": 1,
+            "3": 2,
+            "32": 1,
+            "4": 1,
+            "5": 1,
+            "6": 2,
+            "66": 1,
+            "7": 2,
+            "8": 1,
+            "9": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 0,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 40.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 21.666666666666668,
+            "2": 11.666666666666666,
+            "22": 1.6666666666666667,
+            "3": 1.6666666666666667,
+            "4": 3.3333333333333335
+          },
+          "3": {
+            "1": 5.0,
+            "16": 1.6666666666666667,
+            "2": 18.333333333333332,
+            "3": 5.0,
+            "38": 1.6666666666666667,
+            "4": 3.3333333333333335,
+            "5": 3.3333333333333335,
+            "9": 1.6666666666666667
+          },
+          "5": {
+            "1": 1.6666666666666667,
+            "11": 1.6666666666666667,
+            "2": 15.0,
+            "21": 1.6666666666666667,
+            "3": 3.3333333333333335,
+            "32": 1.6666666666666667,
+            "4": 1.6666666666666667,
+            "5": 1.6666666666666667,
+            "6": 3.3333333333333335,
+            "66": 1.6666666666666667,
+            "7": 3.3333333333333335,
+            "8": 1.6666666666666667,
+            "9": 1.6666666666666667
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 40,
+      "inclusion_probability": 0.6,
+      "inverse_probability": 1.6666666666666667,
+      "not_selected_N_minus_n": 16,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "<3.5",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 118.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 14,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 14,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 9,
+            "10": 1,
+            "12": 1,
+            "2": 7,
+            "3": 2,
+            "4": 2,
+            "6": 1,
+            "9": 1
+          },
+          "3": {
+            "1": 3,
+            "11": 2,
+            "12": 1,
+            "14": 1,
+            "2": 6,
+            "23": 1,
+            "27": 1,
+            "3": 2,
+            "4": 4,
+            "5": 1,
+            "7": 1,
+            "9": 1
+          },
+          "5": {
+            "11": 1,
+            "12": 1,
+            "14": 3,
+            "2": 7,
+            "25": 1,
+            "3": 2,
+            "30": 1,
+            "4": 3,
+            "5": 1,
+            "7": 1,
+            "8": 2,
+            "9": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 354,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 118.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 44.25,
+            "10": 4.916666666666667,
+            "12": 4.916666666666667,
+            "2": 34.416666666666664,
+            "3": 9.833333333333334,
+            "4": 9.833333333333334,
+            "6": 4.916666666666667,
+            "9": 4.916666666666667
+          },
+          "3": {
+            "1": 14.75,
+            "11": 9.833333333333334,
+            "12": 4.916666666666667,
+            "14": 4.916666666666667,
+            "2": 29.5,
+            "23": 4.916666666666667,
+            "27": 4.916666666666667,
+            "3": 9.833333333333334,
+            "4": 19.666666666666668,
+            "5": 4.916666666666667,
+            "7": 4.916666666666667,
+            "9": 4.916666666666667
+          },
+          "5": {
+            "11": 4.916666666666667,
+            "12": 4.916666666666667,
+            "14": 14.75,
+            "2": 34.416666666666664,
+            "25": 4.916666666666667,
+            "3": 9.833333333333334,
+            "30": 4.916666666666667,
+            "4": 14.75,
+            "5": 4.916666666666667,
+            "7": 4.916666666666667,
+            "8": 9.833333333333334,
+            "9": 4.916666666666667
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 118,
+      "inclusion_probability": 0.2033898305084746,
+      "inverse_probability": 4.916666666666667,
+      "not_selected_N_minus_n": 94,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[3.5,4)",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 404.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 2,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 2,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 9,
+            "14": 1,
+            "2": 9,
+            "3": 1,
+            "4": 3,
+            "7": 1
+          },
+          "3": {
+            "1": 3,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "18": 1,
+            "2": 4,
+            "20": 1,
+            "3": 3,
+            "4": 6,
+            "5": 1,
+            "7": 1,
+            "9": 1
+          },
+          "5": {
+            "12": 2,
+            "13": 1,
+            "15": 1,
+            "16": 1,
+            "2": 3,
+            "24": 1,
+            "26": 1,
+            "3": 2,
+            "4": 4,
+            "5": 3,
+            "6": 1,
+            "7": 2,
+            "8": 1,
+            "9": 1
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 72,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 404.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 151.5,
+            "14": 16.833333333333332,
+            "2": 151.5,
+            "3": 16.833333333333332,
+            "4": 50.5,
+            "7": 16.833333333333332
+          },
+          "3": {
+            "1": 50.5,
+            "10": 16.833333333333332,
+            "11": 16.833333333333332,
+            "12": 16.833333333333332,
+            "18": 16.833333333333332,
+            "2": 67.33333333333333,
+            "20": 16.833333333333332,
+            "3": 50.5,
+            "4": 101.0,
+            "5": 16.833333333333332,
+            "7": 16.833333333333332,
+            "9": 16.833333333333332
+          },
+          "5": {
+            "12": 33.666666666666664,
+            "13": 16.833333333333332,
+            "15": 16.833333333333332,
+            "16": 16.833333333333332,
+            "2": 50.5,
+            "24": 16.833333333333332,
+            "26": 16.833333333333332,
+            "3": 33.666666666666664,
+            "4": 67.33333333333333,
+            "5": 50.5,
+            "6": 16.833333333333332,
+            "7": 33.666666666666664,
+            "8": 16.833333333333332,
+            "9": 16.833333333333332
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 404,
+      "inclusion_probability": 0.0594059405940594,
+      "inverse_probability": 16.833333333333332,
+      "not_selected_N_minus_n": 380,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[4,4.5)",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 327.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 15,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 15,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 11,
+            "2": 8,
+            "21": 1,
+            "3": 2,
+            "6": 1,
+            "7": 1
+          },
+          "3": {
+            "1": 4,
+            "14": 1,
+            "15": 1,
+            "2": 7,
+            "3": 4,
+            "4": 3,
+            "42": 1,
+            "5": 2,
+            "7": 1
+          },
+          "5": {
+            "1": 1,
+            "11": 1,
+            "18": 1,
+            "2": 4,
+            "3": 3,
+            "30": 1,
+            "4": 3,
+            "5": 1,
+            "6": 3,
+            "63": 1,
+            "7": 1,
+            "9": 4
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 289,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 327.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 149.875,
+            "2": 109.0,
+            "21": 13.625,
+            "3": 27.25,
+            "6": 13.625,
+            "7": 13.625
+          },
+          "3": {
+            "1": 54.5,
+            "14": 13.625,
+            "15": 13.625,
+            "2": 95.375,
+            "3": 54.5,
+            "4": 40.875,
+            "42": 13.625,
+            "5": 27.25,
+            "7": 13.625
+          },
+          "5": {
+            "1": 13.625,
+            "11": 13.625,
+            "18": 13.625,
+            "2": 54.5,
+            "3": 40.875,
+            "30": 13.625,
+            "4": 40.875,
+            "5": 13.625,
+            "6": 40.875,
+            "63": 13.625,
+            "7": 13.625,
+            "9": 54.5
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 327,
+      "inclusion_probability": 0.07339449541284404,
+      "inverse_probability": 13.625,
+      "not_selected_N_minus_n": 303,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[4.5,5)",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 183.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 14,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 14,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 12,
+            "2": 8,
+            "3": 1,
+            "4": 1,
+            "7": 2
+          },
+          "3": {
+            "1": 7,
+            "13": 1,
+            "18": 1,
+            "2": 1,
+            "20": 1,
+            "24": 1,
+            "3": 6,
+            "4": 3,
+            "5": 1,
+            "9": 2
+          },
+          "5": {
+            "1": 1,
+            "10": 1,
+            "15": 1,
+            "2": 4,
+            "22": 2,
+            "25": 1,
+            "3": 2,
+            "36": 1,
+            "4": 4,
+            "5": 2,
+            "6": 3,
+            "7": 2
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 344,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 183.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 91.5,
+            "2": 61.0,
+            "3": 7.625,
+            "4": 7.625,
+            "7": 15.25
+          },
+          "3": {
+            "1": 53.375,
+            "13": 7.625,
+            "18": 7.625,
+            "2": 7.625,
+            "20": 7.625,
+            "24": 7.625,
+            "3": 45.75,
+            "4": 22.875,
+            "5": 7.625,
+            "9": 15.25
+          },
+          "5": {
+            "1": 7.625,
+            "10": 7.625,
+            "15": 7.625,
+            "2": 30.5,
+            "22": 15.25,
+            "25": 7.625,
+            "3": 15.25,
+            "36": 7.625,
+            "4": 30.5,
+            "5": 15.25,
+            "6": 22.875,
+            "7": 15.25
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 183,
+      "inclusion_probability": 0.13114754098360656,
+      "inverse_probability": 7.625,
+      "not_selected_N_minus_n": 159,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    },
+    {
+      "Mw_band": "[5,5.5)",
+      "candidate_calendar_partition": "test2018_2024",
+      "coverage": {
+        "complete_finite_time_geometry_events": 24,
+        "events_with_at_least_one_NZ_P": 24,
+        "frame_weight_sum": 58.0,
+        "frozen_event_denominator": 24,
+        "incomplete_associated_P_structure_events": 9,
+        "known_NZ_P_coverage_events": 24,
+        "known_zero_NZ_P_events": 0,
+        "origin_CMT_match_counts": {
+          "origin_cmt_candidate_partition_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_day_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          },
+          "origin_cmt_utc_year_match": {
+            "disagree": 0,
+            "match": 24,
+            "unknown": 0
+          }
+        },
+        "origin_anomaly_counts": {
+          "abs_origin_cmt_offset_ge_300s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_before_origin": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_P_later_than_600s": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "earliest_NZ_pick_outside_source_window": {
+            "flagged": 0,
+            "unknown": 0
+          },
+          "negative_depth": {
+            "flagged": 0,
+            "unknown": 0
+          }
+        },
+        "origin_field_reasons": {},
+        "outcome_status": {
+          "parsed": 24
+        },
+        "positive_NZ_P_and_CMT_day_year_partition_agreement_events": 24,
+        "positive_NZ_P_and_complete_finite_time_geometry_events": 24,
+        "positive_NZ_P_and_valid_origin_time_in_window_events": 24,
+        "positive_NZ_P_with_incomplete_structure_events": 9,
+        "station_histogram_interpretation": "Counts over accepted valid associated picks and their preserved T0; positive unresolved subsets are lower-bound evidence, not complete underlying P coverage.",
+        "strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 12,
+            "2": 5,
+            "3": 3,
+            "4": 3,
+            "5": 1
+          },
+          "3": {
+            "1": 6,
+            "11": 1,
+            "13": 1,
+            "17": 1,
+            "18": 1,
+            "19": 1,
+            "2": 7,
+            "3": 2,
+            "4": 3,
+            "8": 1
+          },
+          "5": {
+            "1": 3,
+            "12": 1,
+            "13": 1,
+            "17": 1,
+            "2": 2,
+            "25": 1,
+            "3": 3,
+            "32": 2,
+            "36": 1,
+            "4": 5,
+            "5": 1,
+            "6": 3
+          }
+        },
+        "unique_preferred_origin_linkage_events": 24,
+        "unknown_NZ_P_coverage_events": 0,
+        "unresolved_P_reason_counts": {
+          "invalid_or_naive_pick_time": 0,
+          "missing_or_ambiguous_pick_reference": 151,
+          "missing_station_identity": 0
+        },
+        "valid_origin_time_in_window_events": 24,
+        "valid_timezone_aware_origin_time_events": 24,
+        "weighted_positive_NZ_P_total": 58.0,
+        "weighted_positive_fraction_lower_bound": 1.0,
+        "weighted_positive_fraction_upper_bound": 1.0,
+        "weighted_strict_horizon_NZ_station_histograms": {
+          "1": {
+            "1": 29.0,
+            "2": 12.083333333333334,
+            "3": 7.25,
+            "4": 7.25,
+            "5": 2.4166666666666665
+          },
+          "3": {
+            "1": 14.5,
+            "11": 2.4166666666666665,
+            "13": 2.4166666666666665,
+            "17": 2.4166666666666665,
+            "18": 2.4166666666666665,
+            "19": 2.4166666666666665,
+            "2": 16.916666666666668,
+            "3": 4.833333333333333,
+            "4": 7.25,
+            "8": 2.4166666666666665
+          },
+          "5": {
+            "1": 7.25,
+            "12": 2.4166666666666665,
+            "13": 2.4166666666666665,
+            "17": 2.4166666666666665,
+            "2": 4.833333333333333,
+            "25": 2.4166666666666665,
+            "3": 7.25,
+            "32": 4.833333333333333,
+            "36": 2.4166666666666665,
+            "4": 12.083333333333334,
+            "5": 2.4166666666666665,
+            "6": 7.25
+          }
+        },
+        "weighted_unknown_NZ_P_total": 0.0,
+        "zero_accepted_NZ_P_with_incomplete_structure_events": 0
+      },
+      "frame_N": 58,
+      "inclusion_probability": 0.41379310344827586,
+      "inverse_probability": 2.4166666666666665,
+      "not_selected_N_minus_n": 34,
+      "positive_NZ_P_gate_pass": true,
+      "positive_NZ_P_gate_threshold": 12,
+      "sample_n": 24
+    }
+  ],
+  "version": "geonet-bulk-metadata-v1",
+  "weight_limit": "Fixed hash exchangeability design only; N/n does not correct availability-dependent missingness or CMT selection."
+}

@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-11",
+  "scope": "Small primary-source mechanism check, reusing existing shortlist; no broad literature search, author execution or downloads.",
+  "sources": [
+    {
+      "title": "The Virtual Seismologist method: a Bayesian approach to earthquake early warning",
+      "doi": "10.1007/978-3-540-72241-0_7",
+      "url": "https://www.its.caltech.edu/~heatont/papers/VSmethod_cua_heaton%20%282%29.pdf",
+      "access": "Full author-hosted 39-page chapter PDF accessible in web tool; revisited posterior and single-station ambiguity sections",
+      "checked_overlap": "Joint magnitude/location posterior, magnitude-distance ambiguity and prior-dependent rare-event/false-alert tradeoff. Generic marginalization is established prior art.",
+      "limits": "No matched GeoNet magnitude scores or novelty assertion."
+    },
+    {
+      "title": "A Bayesian Method for Real-Time Earthquake Location Using Multiparameter Data",
+      "doi": "10.1029/2020JB020359",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020JB020359",
+      "access": "Full primary publisher HTML accessible; checked observation and Bayesian-update methods",
+      "checked_overlap": "Differential P times, amplitude ratios and backazimuth jointly update location uncertainty. This motivates distinguishing arrival-only from amplitude-conditioned geometry.",
+      "limits": "No magnitude-tail or first-network-P GeoNet benchmark inference."
+    },
+    {
+      "title": "Earthquake magnitude and location estimation from real time seismic waveforms with a transformer network",
+      "doi": "10.1093/gji/ggab139",
+      "url": "https://arxiv.org/pdf/2101.02010",
+      "version": "Existing shortlist identifies v2, 14 April 2021, 44 pages",
+      "access": "Full primary preprint accessible; revisited station features, amplitude preservation, location and multitask discussion",
+      "checked_overlap": "Variable-station direct waveform/coordinate fusion is a strong same-information control. Geometry auxiliary supervision needs matched control access.",
+      "limits": "No new benchmark number or claim that architecture cannot be improved."
+    },
+    {
+      "title": "Toward Trustworthy Earthquake Catalogs in the Era of Automated Detection: A Probabilistic Framework for Robust Earthquake Location",
+      "url": "https://arxiv.org/html/2512.06407v2",
+      "version": "arXiv2512.06407v2, 1 March 2026",
+      "access": "Full primary HTML accessible; checked hierarchical error-model methods",
+      "checked_overlap": "Neural travel-time surrogate with Student-t scale mixtures and phase contamination for robust catalogue locations. Robust locator modifications are not novel ingredients.",
+      "limits": "Catalogue location, not evidence for EEW magnitude-tail improvement; no repair implemented/tested here."
+    }
+  ],
+  "prose_budget": "Paper-derived prose below 200 words per source across report/handoff/ledger; formulas, invented-law choices and calculations are agent derivations.",
+  "pin_limits": "Version/DOI/URL and access scope recorded. Web bodies were not downloaded or byte-hash pinned. Workspace scientific/design inputs and all calculation outputs are byte pinned in manifest.json.",
+  "actions": {
+    "local_literature_downloads": 0,
+    "author_code_execution": 0,
+    "data_requests": 0,
+    "AWS_calls": 0
+  }
+}
