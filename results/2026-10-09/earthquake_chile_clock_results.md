@@ -61,3 +61,7 @@ This fixed six-epoch continuation is not a convergence comparison. Original cali
 [Complete aggregate independent replay](../../research/2026-10-09/phase2/chile_clock_result_independent_audit/independent_replay_20261011.json) · [Frozen clock protocol](../../research/2026-10-09/phase2/chile_clock_control/protocol.json) · [Independent replay protocol](../../research/2026-10-09/phase2/chile_clock_result_independent_audit/source/PROTOCOL.md)
 
 Independent replay SHA256: `917006ccae8645f5c9031fb1b9b983ef6b01d3653133711b8ace5ec86567631b`. COMPLETE SHA256: `9f78f7744ae0431ddcb12beadabddd92a280508bf62301da398f1beb820b30a6`. Checkpoint proof SHA256: `924efebfca8bb518512bd2e08bdda1d95627c1da2f9496b9cb9d3ca553de280f`.
+
+![Aggregate differences and paired event confidence intervals](figures/chile_clock_control_differences.png)
+
+[Printable figure](figures/chile_clock_control_differences.pdf)

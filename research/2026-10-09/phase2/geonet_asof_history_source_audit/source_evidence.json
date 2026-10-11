@@ -1,0 +1,33 @@
+{
+  "schema": "geonet-asof-history-source-audit-v1",
+  "observed_date": "2026-10-11",
+  "scope": "Primary documentation, standards, author papers and repository README only",
+  "raw_catalog_or_event_requests": 0,
+  "implementation_or_author_code_execution": false,
+  "source_pin_level": "URL plus named edition/section; mutable document bytes not downloaded or hash verified",
+  "research_bound": {
+    "web_commands_conservative_count": 34,
+    "count_method": "21 commands carried in prior context, then 13 opens/searches/clicks/finds; no event/data queries",
+    "network_response_bytes": null,
+    "response_bytes_note": "Web tool does not expose wire accounting; do not treat command count as an HTTP transport ledger"
+  },
+  "sources": [
+    {"id":"geonet_catalogue","url":"https://www.geonet.org.nz/data/types/eq_catalogue","pin":"Access; Field Definitions; observed 2026-10-11","class":"official mutable documentation","byte_sha256":null,"conclusion":"Preferred snapshot and last modification are not complete receipt history"},
+    {"id":"geonet_api","url":"https://api.geonet.org.nz/","pin":"Quake History; Quakes; CAP; Versioning; observed 2026-10-11","class":"official mutable documentation","byte_sha256":null,"conclusion":"History interface documented, complete immutable issued/received archive unproven"},
+    {"id":"geonet_aws","url":"https://www.geonet.org.nz/data/access/aws","pin":"Archive Data; observed 2026-10-11","class":"official mutable documentation","byte_sha256":null,"conclusion":"Listed archive is not documentation of a complete catalog revision ledger"},
+    {"id":"usgs_products","url":"https://earthquake.usgs.gov/data/comcat/products.php","pin":"Product Structure/Versions; observed 2026-10-11","class":"official mutable documentation","byte_sha256":null,"conclusion":"Product version creation differs from publication and receiver delivery"},
+    {"id":"usgs_event_v1","url":"https://earthquake.usgs.gov/fdsnws/event/1/","pin":"API v1 includesuperseded and updatedafter; observed 2026-10-11","class":"official mutable documentation","byte_sha256":null,"conclusion":"Specific-ID superseded retrieval and update filtering do not establish whole-population as-of snapshots"},
+    {"id":"scedc_change_history","url":"https://scedc.caltech.edu/eq-catalogs/change-history.html","pin":"2012-08-18 entry; observed 2026-10-11","class":"official mutable documentation","byte_sha256":null,"conclusion":"Daily-version lead; no intra-day or consumer-receipt proof"},
+    {"id":"scedc_readme","url":"https://github.com/SCEDC/SCEDC-catalogs","pin":"README label 2012/08/18; root navigation observed 2026-10-11","class":"official repository README","byte_sha256":null,"catalog_files_opened":false,"historical_commit_pinned":false},
+    {"id":"quakeml_bed12","url":"https://quake.ethz.ch/quakeml/docs/REC?action=AttachFile&do=get&target=QuakeML-BED-20130214b.pdf","pin":"QuakeML BED1.2 recommendation 2013-02-14, section 3.3.18","class":"named standard edition","byte_sha256":null,"conclusion":"CreationInfo is resource metadata, not receiver history"},
+    {"id":"bepic_author_manuscript","url":"https://escholarship.org/content/qt626926bz/qt626926bz_noSplash_b55a5947d29c9eb87844572059dfb5cd.pdf","pin":"eScholarship qt626926bz; accepted manuscript; pp4-11 and Data and Resources","class":"primary author manuscript","byte_sha256":null,"conclusion":"Close EEW seismicity-prior art; occurrence-time replay truncation is not publication replay"},
+    {"id":"yin_2017_primary_abstract","url":"https://www2.jpgu.org/meeting/2017/PDF2017/S-CG72_O.pdf","pin":"JpGU-AGU2017 SCG72-07, PDF page8","class":"primary conference abstract","byte_sha256":null,"conclusion":"ETAS plus waveforms already proposed for Bayesian detection, distinct from magnitude-density and receipt proof"}
+  ],
+  "access_failures": [
+    {"url":"https://ghsc.code-pages.usgs.gov/hazdev/pdl/","status":403,"retry_or_bypass":false},
+    {"url":"https://code.usgs.gov/ghsc/hazdev/comcat-timeline","status":403,"retry_or_bypass":false},
+    {"url":"https://tungsten.gps.caltech.edu/eew-research/caltech/algorithms/prior/","status":502,"retry_or_bypass":false}
+  ],
+  "excluded_actions": ["event-specific queries","catalog payloads","revision payloads","data artifact downloads","waveforms","models","private files","source execution","installations","Git operations","AWS operations"],
+  "cross_references_not_new_reads": ["work/geonet_history_prior_art/","MAGNET DOI10.1038/s41598-026-48563-7","Virtual Seismologist primary paper"]
+}

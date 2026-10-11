@@ -1,0 +1,11 @@
+# Source-only handoff
+
+The audit is complete within its documentation-only scope. The strongest new lead is SCEDC's official daily-version archive statement. GeoNet history and USGS product-version interfaces provide useful metadata semantics, but this audit does not verify complete historical issued or received state for the NZ EEW project. See [EVIDENCE.md](EVIDENCE.md) for primary URLs and access failures and [STUDY_BOUNDARY.md](STUDY_BOUNDARY.md) for clock distinctions, detection-population uncertainty and the global magnitude-history fallback.
+
+The fallback avoids dependence on the target's unknown location but still needs a compatible detected population, magnitude/support, one effective TRAIN-prior correction, and conditional waveform-likelihood stability. It is a proposed controlled retrospective study until its historical publication assumptions are verified. No density, tail-error, superiority or novelty result is claimed.
+
+No specific earthquake records, catalog data or historical payloads were requested; no code was implemented or executed; no dependencies, Git, AWS, training, models or private files were touched. Only documents, source README/navigation, standards and papers were read using the web tool. Raw HTTP request/byte accounting is unavailable through that tool. The bounded documentation command count is recorded separately from actual transport accounting.
+
+Source pins identify URLs, sections and dated editions/manuscripts. They are not primary-document SHA proofs: mutable web documentation bytes were not downloaded and no actual archive commit/snapshot was inspected. The parent should hash this public packet before promotion, and must separately freeze authorized actual artifacts and availability receipts before experiments. No new implementation or acquisition is implied by this handoff. The public safe member allowlist contains only the six files in this folder, including itself.
+
+Close history-assisted EEW prior art includes bEPIC and Yin's primary ETAS/waveform abstract. The separately completed MAGNET/Virtual Seismologist source audit remains unchanged. A defensible future contribution requires more than adding a historical prior to a waveform model.

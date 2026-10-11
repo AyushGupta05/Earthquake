@@ -1,0 +1,26 @@
+{
+  "schema": "aggregate-only-scientific-figure-v1",
+  "created_utc": "2026-10-11T02:06:55.753559+00:00",
+  "source": "chile_clock_result_independent_audit/independent_replay_20261011.json",
+  "source_sha256": "917006ccae8645f5c9031fb1b9b983ef6b01d3653133711b8ace5ec86567631b",
+  "panels": [
+    "dev mean-action mae",
+    "dev mean-action cvar95",
+    "dev proper nll"
+  ],
+  "differences": "discrete minus paired source, both fixed seeds at1/3/5",
+  "intervals": "Saved independent2,000draw paired event95% intervals; no new metric calculation",
+  "visually_inspected": true,
+  "raw_event_or_prediction_reads": 0,
+  "new_data_requests": 0,
+  "files": {
+    "chile_clock_control_differences.png": {
+      "bytes": 140181,
+      "sha256": "6808a0cee418af9a3ea5534a02dac952e9849cef8eab12748aa3ef342ebb9088"
+    },
+    "chile_clock_control_differences.pdf": {
+      "bytes": 24391,
+      "sha256": "2ee2a6de44bbdb7cef6659e97e0e5e2d50415bb1305776450ceccc52bbab2d67"
+    }
+  }
+}
