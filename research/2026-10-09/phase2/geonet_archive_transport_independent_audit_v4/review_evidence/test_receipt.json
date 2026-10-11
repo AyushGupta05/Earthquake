@@ -1,0 +1,34 @@
+{
+  "scope": "invented_source_only",
+  "test_methods": 58,
+  "prior_method_purposes_retained": 53,
+  "new_methods": 5,
+  "exit_code": 0,
+  "elapsed_s": 0.8954997079999885,
+  "command": [
+    "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "-B",
+    "-Werror",
+    "-m",
+    "unittest",
+    "-v",
+    "test_auditor"
+  ],
+  "source_pins": [
+    {
+      "path": "auditor.py",
+      "bytes": 25345,
+      "sha256": "ccc8617197335564e179d3e5c8e3d306bebd71a792ca9bdd932bea4ea93e671b"
+    },
+    {
+      "path": "test_auditor.py",
+      "bytes": 44309,
+      "sha256": "a432adc2a21ef9497fd848cf448df0997b58dc673f7cf3db769b4b31264133f3"
+    }
+  ],
+  "output_pin": {
+    "path": "review_evidence/tests.log",
+    "bytes": 8385,
+    "sha256": "4203ac89bcbe3a4e45d643260f3a4f0cbc4db2e8d6bb61758ff9f97416a06ce3"
+  }
+}

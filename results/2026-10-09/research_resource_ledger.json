@@ -8,6 +8,16 @@
     "private_receipt": "SHA256SUMS.txt",
     "utc": "2026-10-11T05:53:38.414559+00:00"
   },
+  "aws_browser_recheck_20261011T0641": {
+    "AWS_API_or_credit_verification_available": false,
+    "credential_entered_or_transmitted": false,
+    "existing_user_signin_handoff_preserved": true,
+    "new_permission_question_sent": false,
+    "paid_work_paused": true,
+    "root_signin_empty_email_visible": true,
+    "surface": "existing Chrome AWS sign-in tab",
+    "utc": "2026-10-11T06:39:30.863262+00:00"
+  },
   "aws_cli_refresh": {
     "browser_auth_recheck_state": "blank root-user sign-in form; authentication not restored; existing handoff marked",
     "browser_auth_recheck_utc": "2026-10-11T03:48:31.400122+00:00",
@@ -1432,7 +1442,65 @@
         "bytes": 4704,
         "sha256": "9db9d9a06d0ae5c01740b5e5c7befd96a1c34e8b7eef9527639f70b4d4538bb4"
       },
+      "parent_source_completion": [
+        {
+          "V4_original_gate_unchanged_and_failed": true,
+          "actual_requests_or_replay_here": 0,
+          "checksum_pins_verified": 28,
+          "curated_members_verified": 29,
+          "first_clean_default_Codex_review": 1,
+          "manifest_pins_verified": 27,
+          "p3_coverage_prerequisite_parent_owned": true,
+          "parent_invented_tests": 61,
+          "parent_test_exit": 0,
+          "parent_test_log_pin": {
+            "bytes": 8626,
+            "sha256": "1c741b1fe9766da6cc65a600b0d6cfb1cd7f6532e9ed8ad957dab82046403a28"
+          },
+          "review_receipt_pin": {
+            "bytes": 1961,
+            "sha256": "13a6dfda7e45b2cdcfc842396b3ccec5e9dfe94b4322bf00d9aba5cf1874b258"
+          },
+          "reviewed_snapshot_members_verified": 15,
+          "schema": "geonet-precontext3-horizontal-parent-source-completion-v1",
+          "source_manifest_pin": {
+            "bytes": 4656,
+            "sha256": "1760322b32047d022e13d5445c2dd233bc8b4c3f8ba160f9a8b862af546fd075"
+          },
+          "source_packet": "geonet_archive_transport_preflight_v5",
+          "utc": "2026-10-11T06:46:40.195397+00:00"
+        },
+        {
+          "V4_original_gate_unchanged_and_failed": true,
+          "actual_requests_or_replay_here": 0,
+          "checksum_pins_verified": 28,
+          "curated_members_verified": 29,
+          "first_clean_default_Codex_review": 1,
+          "manifest_pins_verified": 27,
+          "p3_coverage_prerequisite_parent_owned": true,
+          "parent_invented_tests": 58,
+          "parent_test_exit": 0,
+          "parent_test_log_pin": {
+            "bytes": 8385,
+            "sha256": "ddd256b7e83dcb4c39d0c7424d8e4c4df87212c38c86a1e536a8bfa365644853"
+          },
+          "review_receipt_pin": {
+            "bytes": 1557,
+            "sha256": "f2f1f964590d15fa795b75bf8bb37473537449c9271e7b82ffe4a067c6668436"
+          },
+          "reviewed_snapshot_members_verified": 20,
+          "schema": "geonet-precontext3-horizontal-parent-source-completion-v1",
+          "source_manifest_pin": {
+            "bytes": 5238,
+            "sha256": "d9f797ba28a6b5e6abd71c1fe13bdcef4d483a469fd9fba8d584a78d55c09a9a"
+          },
+          "source_packet": "geonet_archive_transport_independent_audit_v4",
+          "utc": "2026-10-11T06:46:40.198120+00:00"
+        }
+      ],
       "schema": "geonet-precontext3-design-parent-verification-v1",
+      "status": "V5collector/independentV4 firstclean and parenttests61/58 verified; source publication then new privategate pending; conditionalENZV3 source preparation",
+      "unchanged_inherited_control_definitions_parent_verified": 23,
       "utc": "2026-10-11T06:37:33.033887+00:00"
     },
     "archive_horizontal_v4_conditional_source": [
@@ -1713,6 +1781,36 @@
         "utc": "2026-10-11T06:28:00.127964+00:00"
       },
       "requests": 0,
+      "result_push": {
+        "V1_canonical_parity_slots": 4,
+        "V4_prerequisite_still_failed": true,
+        "V5_horizontal_actual_requests": 0,
+        "actual_private_data_exported": false,
+        "all_published_git_bytes_verified": true,
+        "archive": {
+          "bytes": 66007,
+          "sha256": "9c07bb59057e42c53ae153d3f684106e219e301ba265192bf97e097596902abc"
+        },
+        "complete_context_sensitivity_v2": true,
+        "index_empty_after": true,
+        "new_fits_or_paid_resources": 0,
+        "p3_available_at_all_horizons": 4,
+        "p5_available_at_all_horizons": 3,
+        "parent_geometry_checks": 48,
+        "previous_commit": "2887fb5f9680172e0ce7ecd76506b9f12c02f4ca",
+        "public_mapping": {
+          "bytes": 4509,
+          "sha256": "67f6908df4e63ef92136c2757ebd589e90b7a1d6aa061753b2e152069723d1e4"
+        },
+        "public_members": 24,
+        "public_total_bytes": 206145,
+        "pushed_commit": "0be568fc5110dc28ea72b96d28fc09de64999552",
+        "remote_main_verified": true,
+        "schema": "eew-precontext-v2-result-mlaapde-design-push-v1",
+        "unrelated_content_and_modes_verified": true,
+        "unrelated_dirty_members_preserved": 51,
+        "utc": "2026-10-11T06:38:40.551607+00:00"
+      },
       "source_push": {
         "actual_private_data_exported": false,
         "actual_v2_decodes_at_source_publication": 0,
@@ -2650,5 +2748,5 @@
       "target": "PGV/CWA intensity, not magnitude"
     }
   },
-  "updated_utc": "2026-10-11T06:37:33.035470+00:00"
+  "updated_utc": "2026-10-11T06:46:40.311701+00:00"
 }

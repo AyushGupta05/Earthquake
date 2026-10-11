@@ -1,0 +1,53 @@
+{
+  "schema": "v5-source-only-first-clean-review-receipt-v1",
+  "created_at_utc": "2026-10-11T06:44:20.099182+00:00",
+  "engine": "codex",
+  "attempt": 1,
+  "exit_code": 0,
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "confidence": 0.9,
+  "web_search": false,
+  "tools_enabled": true,
+  "reviewer_executed_tests": false,
+  "reviewer_external_requests": false,
+  "actual_inputs_in_bundle": false,
+  "command": "autoreview --mode branch --base HEAD~1 --engine codex --codex-bin <pinned Codex binary> --no-web-search --prompt-file ../review_prompt.md --output ../autoreview_v1.md --json-output ../autoreview_v1.json",
+  "snapshot_baseline_commit": "b67337bd1143c7abc4103deb0484417eaee9a499",
+  "snapshot_review_commit": "4cd927495e8b1bc047a8bd309d8d02b7837fc466",
+  "isolated_snapshot_members": 15,
+  "evidence_pins": [
+    {
+      "path": "autoreview_v1.json",
+      "bytes": 523,
+      "sha256": "450db1395d929795e0d4432b7c107110018726ddc1cf688ef1b7f1ae86fa88e8"
+    },
+    {
+      "path": "autoreview_v1.md",
+      "bytes": 491,
+      "sha256": "6246c450b31c3cbc12a240f3e9e8cb5b5f390182a9e46817851810bbc218066b"
+    },
+    {
+      "path": "autoreview_v1.log",
+      "bytes": 653,
+      "sha256": "eb5aad5df302a5ade78462647a4737d3bd469fbf59a347144d9aeccd5ab21697"
+    },
+    {
+      "path": "review_prompt.md",
+      "bytes": 2602,
+      "sha256": "67660495ef8f79756702a9c5632ac8fd6cb96897c0f324b6446f5a98cc16d902"
+    },
+    {
+      "path": "source_snapshot_v1.json",
+      "bytes": 2740,
+      "sha256": "14630a51d88dc8cea31a532cd7aeabc5cd3a1335adc46eb0a3df1ff251ec56b5"
+    },
+    {
+      "path": "REVIEW_RUNTIME_PINS.json",
+      "bytes": 1010,
+      "sha256": "a60543668e55143d3000302e9256334d0642a279184bf386ca6c22d0676cb9f1"
+    }
+  ],
+  "first_clean_stop": "Processing, tests and reviewed public contracts/context closed immediately; only post-clean curation/hash/handoff metadata followed.",
+  "actual_execution_authorized": false
+}

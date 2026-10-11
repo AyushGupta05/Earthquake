@@ -1,0 +1,9 @@
+# Independent three-second-precontext transport auditor V4
+
+This source-only pure module starts from frozen independent V3 and implements the public collector V5 contract. It reads no collector implementation or actual/private artifacts. PROTOCOL.md defines the API, custody and unchanged transport limits.
+
+Only protocol/study/proposal identities and an exact tenth plan field `precontext_s: 3` change. The field must decode as an integer; booleans, float 3.0, omission, aliases and old identities fail before member reads. Initial/final receipts, journals, manifest and returned-summary shapes are unchanged because original plan bytes/SHA bind context. All eight literal E/N roles, 64 MiB/body and 512 MiB aggregate, conservative accounting, finalization and false interpretation flags remain.
+
+All 53 prior invented test purposes are retained; five new methods cover exact context type/value, omission/alias rejection, old V4 identities, original-roster context-byte custody and rejection of context fields injected into unchanged receipt/summary shapes. Fixtures are wholly invented in-memory bytes. A first failed adaptation accidentally inserted context into receipt fixtures; schema correctly rejected it. The corrected fixture changes no processing or receipt contract, and failure evidence is preserved.
+
+NEW V5 sample-grid eligibility and fresh actual authority are parent-owned. Old V4 remains barred; p=3 sample coverage does not establish all-four early catalogue picks, operational receipt, physical response or model support. Source review confers no invocation. Default no-web Codex review stops at first clean, then metadata/allowlist closure is frozen without reviewed source edits. Publish only PUBLIC_ALLOWLIST.txt; isolated review/Git internals, full helper outputs, raw external sources, actual artifacts and collector implementation are excluded.

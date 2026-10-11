@@ -1,0 +1,81 @@
+{
+  "schema": "conditional-v5-source-handoff-v1",
+  "source_ready": true,
+  "actual_execution_authorized": false,
+  "protocol": "geonet-anonymous-archive-transport-v5",
+  "study_id": "geonet-configured-eight-horizontal-precontext3-transport-v5",
+  "plan_field_count": 10,
+  "precontext_s": 3,
+  "precontext_type": "exact int; bool/float rejected",
+  "slot_ids": [
+    "ordinary_e",
+    "ordinary_n",
+    "higher_e",
+    "higher_n",
+    "boundary_e",
+    "boundary_n",
+    "final_e",
+    "final_n"
+  ],
+  "proposal_sha256": "9db9d9a06d0ae5c01740b5e5c7befd96a1c34e8b7eef9527639f70b4d4538bb4",
+  "mapping_status": "unverified_hypothesis",
+  "pure_validation_api": "validate_plan(bytes) -> Plan",
+  "guarded_production_api": "collect(Plan, exclusive_output_directory, ActualInvocationGate) -> returned execution summary",
+  "parent_prerequisite": "Completed vertical context diagnostic V2 custody; ALL FOUR p=3 sample grids at original 1/3/5 deadlines; coverage only",
+  "parent_prerequisite_verified_here": false,
+  "v4_gate_or_artifacts_changed": false,
+  "parent_custody_required": [
+    "Full filesystem inventory and member byte/hash custody",
+    "Separate returned-summary receipt/pin",
+    "Prerequisite and private plan/proposal/preregistration/authorization/pushed-source proof",
+    "Independent result auditor first-clean source and pins"
+  ],
+  "first_clean": {
+    "attempt": 1,
+    "engine": "codex",
+    "findings": 0,
+    "exit_code": 0,
+    "confidence": 0.9
+  },
+  "invented_test_methods": 61,
+  "unchanged_inherited_control_definitions": 23,
+  "core_pins": [
+    {
+      "path": "collector.py",
+      "bytes": 34365,
+      "sha256": "d201784ea2cc34f0f34a97d854578409965d251493bcfff328b5463a98ad8e6b"
+    },
+    {
+      "path": "test_collector.py",
+      "bytes": 41153,
+      "sha256": "e39dbb9c2ef37c7b2f7d010ad172c80ec5540958a9931fc1743f7000581f5211"
+    },
+    {
+      "path": "PROTOCOL_v5.md",
+      "bytes": 9338,
+      "sha256": "126cd625d374f563db02c5f8cdbec2faafa9a61cbc02847f368641c372d20110"
+    },
+    {
+      "path": "SCHEMA.md",
+      "bytes": 13395,
+      "sha256": "ea17ddd0a0ff8e7a669c6e751f6da45ed12701aa8ba1cfae30399bf063be6912"
+    },
+    {
+      "path": "ACTUAL_INVOCATION_GATE.md",
+      "bytes": 4007,
+      "sha256": "3ec1c1cc28c10831ece4e8b92f815821f148567d94eb514e1e28cdc5325ee664"
+    },
+    {
+      "path": "REVIEW_RECEIPT.json",
+      "bytes": 1961,
+      "sha256": "13a6dfda7e45b2cdcfc842396b3ccec5e9dfe94b4322bf00d9aba5cf1874b258"
+    },
+    {
+      "path": "TEST_PROOF.json",
+      "bytes": 405,
+      "sha256": "f6576921b4b4f51b595aa05f9dff8ca5c22b2b8add19038822a4db081ec67456"
+    }
+  ],
+  "scientific_qualification": false,
+  "actual_input_or_request_here": false
+}
