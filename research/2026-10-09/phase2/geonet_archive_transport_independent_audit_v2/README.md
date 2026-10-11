@@ -1,0 +1,7 @@
+# Independent configured-key transport replay auditor v2
+
+Source-only development starts from this agent's frozen authored v1 processing source and invented tests. V1 processing/evidence and every prior freeze remain unchanged. No collector implementation, actual inputs/plans/keys/IDs/metadata/receipts/bodies/credentials/accounts, raw external source, acquisition, AWS, fits, installs, shared Git or old review runs are permitted.
+
+This NEW module binds to the stable NEW collector V3 generic contract/proposal/pins copied in public_contract/ and six final curated authored writer documents in public_writer_docs/. The configured filename candidate is year.DOY.STATION.LOCATION-CHANNEL.NETWORK.D under STATION.NETWORK directories. Invented cases distinguish network and location order; the prior tutorial candidate is rejected. All mapping/content/day/coverage claims remain unverified/false. The parent owns full private artifact inventory, the separately pinned returned execution summary, acquisition/replay authority and bounded reads.
+
+The pure API and bounds are documented in PROTOCOL.md. All 45 invented test methods pass: the prior 39 plus configured-order, pin/identity and source-profile distinction regressions. Code-only Codex review uses the final stable generic proposal/contract pins. The same default review engine repeats only until first clean; then processing edits/reviews stop and a separate read-only manifest/allowlist/handoff is frozen. No actual replay is authorized by source review.
