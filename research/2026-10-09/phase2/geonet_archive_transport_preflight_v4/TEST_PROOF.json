@@ -1,0 +1,26 @@
+{
+  "schema": "invented-focused-test-proof-v1",
+  "tests": 54,
+  "result": "passed",
+  "duration_s": 24.898,
+  "command": "Python3.14.5 -I -B -Werror -m unittest discover -s . -p test_collector.py -v",
+  "log": {
+    "path": "tests_v4.txt",
+    "bytes": 7543,
+    "sha256": "497d33ea8fc85c23cc04f8fc2c1c10b368d63be98149e8b5e75c5609e93ac6f8"
+  },
+  "source_sha256": "acb8af3d18eb119c6396de3e4dff2deaf8d96c7df49beb7defaa6d191ae2b0a8",
+  "test_sha256": "84fb8cf81838036fe9b62bc2a72b683a08f25168e7b0aafe7446c6c921f2ab19",
+  "runtime": {
+    "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "resolved_path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "bytes": 52448,
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  "prior_failures_preserved": [
+    "tests_v1.txt (isolated unittest module discovery)",
+    "tests_v2.txt (sandbox loopback bind denied)",
+    "tests_v3.txt (outdated envelope fixture assertion)"
+  ],
+  "actual_data_or_public_network": false
+}

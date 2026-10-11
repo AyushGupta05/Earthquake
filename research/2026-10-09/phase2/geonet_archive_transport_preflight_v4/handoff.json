@@ -1,0 +1,72 @@
+{
+  "schema": "conditional-v4-source-handoff-v1",
+  "source_ready": true,
+  "actual_execution_authorized": false,
+  "parent_prerequisite_report": "unsatisfied; no actual artifacts inspected by this agent",
+  "parent_prerequisite_verified_here": false,
+  "pushed_source_proof_owned_by_parent": true,
+  "protocol": "geonet-anonymous-archive-transport-v4",
+  "study_id": "geonet-configured-eight-horizontal-transport-v4",
+  "slot_ids": [
+    "ordinary_e",
+    "ordinary_n",
+    "higher_e",
+    "higher_n",
+    "boundary_e",
+    "boundary_n",
+    "final_e",
+    "final_n"
+  ],
+  "proposal_sha256": "6283180bd493d2846e08b866ade3910afe2896ceea27ad3b309e21460b7d1a0a",
+  "pure_validation_api": "validate_plan(bytes) -> Plan",
+  "guarded_production_api": "collect(Plan, exclusive_output_directory, ActualInvocationGate) -> returned execution summary",
+  "parent_custody_required": [
+    "Full filesystem inventory and member byte/hash custody",
+    "Separate outer returned-summary receipt/pin",
+    "Prerequisite and private plan/proposal/preregistration/authorization/pushed-source proof"
+  ],
+  "first_clean": {
+    "attempt": 1,
+    "engine": "codex",
+    "findings": 0,
+    "exit_code": 0
+  },
+  "invented_test_methods": 54,
+  "core_pins": [
+    {
+      "path": "collector.py",
+      "bytes": 33973,
+      "sha256": "acb8af3d18eb119c6396de3e4dff2deaf8d96c7df49beb7defaa6d191ae2b0a8"
+    },
+    {
+      "path": "test_collector.py",
+      "bytes": 36072,
+      "sha256": "84fb8cf81838036fe9b62bc2a72b683a08f25168e7b0aafe7446c6c921f2ab19"
+    },
+    {
+      "path": "PROTOCOL_v4.md",
+      "bytes": 8842,
+      "sha256": "fad289af8846060dbf5129173489eecdb84795ac3f7dcb5904be4bdce2462554"
+    },
+    {
+      "path": "SCHEMA.md",
+      "bytes": 12944,
+      "sha256": "6add5af5f8cdff41ef9a5f2250c30c44a79d2a2db12b935b9ac29bf0b867ade6"
+    },
+    {
+      "path": "ACTUAL_INVOCATION_GATE.md",
+      "bytes": 3497,
+      "sha256": "b0058814d3ace286e37b15f7037920861cf79933a418dae2a8f4f237bf6540d8"
+    },
+    {
+      "path": "REVIEW_RECEIPT.json",
+      "bytes": 1391,
+      "sha256": "83d06fc9ebd18d3e2f2522cb3b7cfe3219834c83ec5773738e6a57382fbcf3cd"
+    },
+    {
+      "path": "TEST_PROOF.json",
+      "bytes": 1098,
+      "sha256": "e70a43f1b643f9bb599475d18b9c5c46064e7c1e9957df5f39305fbf206a1c0e"
+    }
+  ]
+}

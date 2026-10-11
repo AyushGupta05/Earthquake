@@ -1,0 +1,16 @@
+test_collector (unittest.loader._FailedTest.test_collector) ... ERROR
+
+======================================================================
+ERROR: test_collector (unittest.loader._FailedTest.test_collector)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_collector
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'test_collector'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

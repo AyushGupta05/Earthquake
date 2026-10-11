@@ -1385,6 +1385,54 @@
       "unrelated_dirty_members_preserved": 51,
       "utc": "2026-10-11T05:24:50.690281+00:00"
     },
+    "archive_horizontal_v4_conditional_source": [
+      {
+        "actual_execution_authorized": false,
+        "all_four_vertical_prerequisite_passed": false,
+        "checksum_members_verified": 31,
+        "curated_members_verified": 32,
+        "first_clean_default_Codex_review": 1,
+        "frozen": true,
+        "manifest_pins_verified": 30,
+        "new_actual_requests_or_model_fits": 0,
+        "parent_invented_tests": 54,
+        "parent_test_exit": 0,
+        "parent_test_log_pin": {
+          "bytes": 7543,
+          "sha256": "9d2c6bf1fd4665789b754a401df59b879ef59f210351c4b055f9f410a2f8ee25"
+        },
+        "schema": "geonet-eight-horizontal-conditional-parent-source-verification-v1",
+        "source_manifest_pin": {
+          "bytes": 5070,
+          "sha256": "499f7beffdd132dde9c5a8ec91b068a367803364ba6b0476e46bb4cc99a79297"
+        },
+        "source_packet": "geonet_archive_transport_preflight_v4",
+        "utc": "2026-10-11T06:10:15.479848+00:00"
+      },
+      {
+        "actual_execution_authorized": false,
+        "all_four_vertical_prerequisite_passed": false,
+        "checksum_members_verified": 28,
+        "curated_members_verified": 29,
+        "first_clean_default_Codex_review": 2,
+        "frozen": true,
+        "manifest_pins_verified": 27,
+        "new_actual_requests_or_model_fits": 0,
+        "parent_invented_tests": 53,
+        "parent_test_exit": 0,
+        "parent_test_log_pin": {
+          "bytes": 7538,
+          "sha256": "6d6b5768414e36c8259a44595b777068fa772efaa4b1cf8a0582d158779777fa"
+        },
+        "schema": "geonet-eight-horizontal-conditional-parent-source-verification-v1",
+        "source_manifest_pin": {
+          "bytes": 5206,
+          "sha256": "18028fce1fe1d092f44af83358b07729d6be5886b6475f26d89c2e773dfbe3f8"
+        },
+        "source_packet": "geonet_archive_transport_independent_audit_v3",
+        "utc": "2026-10-11T06:10:15.486955+00:00"
+      }
+    ],
     "archive_key_mapping_source_audit": {
       "actual_waveform_or_object_reads": 0,
       "audit_sha256": "c4ac22937300dfc9644a0a0b4d5f735b8663234e6839704da3c211d34ce90230",
@@ -1412,6 +1460,14 @@
       "requests": 0,
       "status": "private4slotcandidateprep only;notexecutionauthority;newV2collectorandindependentauditorinsource-onlyreviewpreparation",
       "waveform_reads_or_decodes": 0
+    },
+    "archive_precontext_sensitivity_v2": {
+      "V1_and_V4_gates_unchanged": true,
+      "actual_decodes": 0,
+      "fits": 0,
+      "missing_context_cause_unknown": true,
+      "requests": 0,
+      "status": "NEW source-only implementation; p0/1/3/5 \u00d7 h1/3/5 \u00d74=48cells; actualgatepending"
     },
     "archive_transport": {
       "actual_roster_and_invocation_gate": "not yet frozen",
@@ -1449,8 +1505,63 @@
       "stage": "source_only_parent_completion_no_actual_acquisition",
       "utc": "2026-10-11T04:06:30.496754+00:00"
     },
+    "archive_vertical_qualification_v1_actual": {
+      "CLI_returncode": 0,
+      "adjacent_day_request_justified": false,
+      "all_four_cached_body_pins_unchanged_and_readonly": true,
+      "all_four_original_clocks_and_metadata_picks_preserved": true,
+      "amplitude_finiteness_and_extreme_runs_independently_redecoded": false,
+      "catalogue_timing_does_not_prove_operational_receipt": true,
+      "complete": true,
+      "complete_grid_and_catalogue_pick_before_cutoff_counts": {
+        "1": 2,
+        "3": 2,
+        "5": 3
+      },
+      "earlier_4NoSuchKey_and_failed96_unchanged": true,
+      "elapsed_seconds": 1.0269226669988711,
+      "failed_context_lies_within_hypothesized_filename_day": true,
+      "first_clean_Codex_review": 4,
+      "four_final_private_artifacts_preserved_readonly": true,
+      "group_termination_confirmed": true,
+      "horizontal_V4_actual_requests": 0,
+      "horizontal_V4_all_four_prerequisite_passed": false,
+      "missing_context_cause_known": false,
+      "new_actual_requests_during_offline_decode": 0,
+      "new_paid_resources_or_fits": 0,
+      "novelty_or_published_benchmark_superiority": false,
+      "one_failed_window_first_edge_deficit_milliseconds": 766,
+      "parent_invented_tests": 38,
+      "parent_private_custody_proof_sha256": "623f1e3ae2384f9bba2a95d8b6754942f374fd739b5424ffa267216a3c7b72cc",
+      "parent_rational_window_geometry_checks": 12,
+      "private_result_sha256": "b5dd3d9dfbfd74bb0fbd04bb740d5c24bc1bc5df6b5de845462cde116e5684e7",
+      "public_aggregate": {
+        "complete_decoded_trace_windows": {
+          "1": 3,
+          "3": 3,
+          "5": 3
+        },
+        "consistent_observed_rate_slots": 4,
+        "decoded_slots": 4,
+        "failed_slots": 0,
+        "filename_boundary_crossing_trace_count": 3,
+        "filename_partition_verified": false,
+        "literal_identity_matching_slots": 4,
+        "metadata_rate_verified": false,
+        "model_improvement_verified": false,
+        "operational_availability_verified": false,
+        "physical_clipping_verified": false,
+        "response_calibration_verified": false,
+        "slots": 4,
+        "three_component_available_verified": false
+      },
+      "result_bytes": 812973,
+      "schema": "geonet-vertical-v1-public-outcome-v1",
+      "source_pushed_before_actual": "150e6fc1ac13f96c6a5faa4499482841c41b420c",
+      "utc": "2026-10-11T06:10:15.487495+00:00"
+    },
     "archive_vertical_qualification_v1_preparation": {
-      "actual_object_decodes": 0,
+      "actual_object_decodes": 4,
       "horizons_seconds": [
         1,
         3,
@@ -1503,7 +1614,32 @@
         "three_component_response_operational_and_model_claims": false,
         "utc": "2026-10-11T05:58:52.009632+00:00"
       },
-      "status": "source_frozen_first_clean;38_parent_tests_PASS;publication_and_private_actual_gate_pending"
+      "status": "first_clean_source_pushed150e6fc; actual complete;3of4prefixes each1/3/5;V4gatefailed"
+    },
+    "archive_vertical_source_push": {
+      "actual_private_data_exported": false,
+      "actual_vertical_decodes": 0,
+      "all_published_git_bytes_verified": true,
+      "archive": {
+        "bytes": 1255761,
+        "sha256": "bbfacf22ba86f4c903c590b9500d21c4e3c2a7b7d7c5fedaf3e9482b7fa20019"
+      },
+      "first_clean_vertical_review": 4,
+      "index_empty_after": true,
+      "parent_invented_vertical_tests": 38,
+      "previous_commit": "898aad670128cd673b53be41ae7e7e4d88f8cfab",
+      "public_mapping": {
+        "bytes": 16120,
+        "sha256": "941b071bf5971a14dc96cc8f05d20cfce58182adb2e51720dc042c2df42e29f2"
+      },
+      "public_members": 80,
+      "public_total_bytes": 4070438,
+      "pushed_commit": "150e6fc1ac13f96c6a5faa4499482841c41b420c",
+      "remote_main_verified": true,
+      "schema": "eew-vertical-a2mag-reviewed-source-push-v1",
+      "unrelated_content_and_modes_verified": true,
+      "unrelated_dirty_members_preserved": 51,
+      "utc": "2026-10-11T06:01:09.717304+00:00"
     },
     "asof_catalog_history": {
       "decision": "SCEDC daily-version snapshot is a lead, publication/receipt completeness unverified; global ratio fallback retains selection/likelihood assumptions",
@@ -2190,5 +2326,5 @@
       "target": "PGV/CWA intensity, not magnitude"
     }
   },
-  "updated_utc": "2026-10-11T05:58:52.009632+00:00"
+  "updated_utc": "2026-10-11T06:12:19.422465+00:00"
 }

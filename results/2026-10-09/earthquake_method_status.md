@@ -2,6 +2,8 @@
 
 11 October 2026 (London); completed clock-result replay verified at 01:39 UTC, owned worker poweroff requested for 01:59 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record. Final EC2 state and fresh credit verification await AWS sign-in; further paid runs remain paused until that verification.
 
+The latest archive diagnostic decodes four fixed objects but qualifies only three five-second-pre-P windows at each 1/3/5 deadline. The eight-horizontal gate therefore fails; zero requests. A separately frozen-context sensitivity is being prepared without fitting, clock changes or exclusions. [Data diagnostic](earthquake_archive_transport_source_audit.md).
+
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
 | Original prior-response / distribution readouts | Reweight or correct existing probability responses | Can lower large-event error, often at the expense of bulk error or false alerts. Insufficient by itself. |

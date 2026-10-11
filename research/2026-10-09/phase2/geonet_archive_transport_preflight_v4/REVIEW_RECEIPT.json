@@ -1,0 +1,28 @@
+{
+  "schema": "code-only-first-clean-review-receipt-v1",
+  "attempt": 1,
+  "engine": "codex",
+  "model_override": null,
+  "exit_code": 0,
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "confidence": 0.94,
+  "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --mode branch --base 0ab5b002a651adc763cb2db62a3f527fbb37ae23 --no-web-search --prompt-file ../review_prompt.md --output ../autoreview_v1.md --json-output ../autoreview_v1.json",
+  "review_snapshot_commit": "e9264d46e1ac95ab494d376b5a314a92c25d4e13",
+  "review_base_commit": "0ab5b002a651adc763cb2db62a3f527fbb37ae23",
+  "review_result": {
+    "path": "autoreview_v1.json",
+    "bytes": 446,
+    "sha256": "0e885f7a6690046da45305353cb47ea1ef723063b2dac23f52dba336f15f5002"
+  },
+  "review_log": {
+    "path": "autoreview_v1.log",
+    "bytes": 560,
+    "sha256": "4f3e6b763ffce4a044f1fbafef39ed45be45d67dccce9af0480ce3fc31028ded"
+  },
+  "review_tests": "Inspected, not executed by reviewer; agent separately passed 54 invented fixtures",
+  "source_sha256": "acb8af3d18eb119c6396de3e4dff2deaf8d96c7df49beb7defaa6d191ae2b0a8",
+  "test_sha256": "84fb8cf81838036fe9b62bc2a72b683a08f25168e7b0aafe7446c6c921f2ab19",
+  "actual_input_or_result_included": false,
+  "first_clean_stop": true
+}
