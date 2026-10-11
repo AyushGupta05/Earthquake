@@ -1662,6 +1662,61 @@
           "utc": "2026-10-11T04:59:41.384973+00:00"
         },
         "joint_v2_pushed_source_freeze": "f1e395535777d5d3046fc55f3418e3d33de5d0db",
+        "joint_v3_complete_outcome": {
+          "CLI_exit_code": 0,
+          "actual_inputs_rows_raw_result_exported": false,
+          "aggregate_independently_recomputed": true,
+          "all_old_source_failures_and_clock_results_retained": true,
+          "complete": true,
+          "earlier_reference_events": 3,
+          "earlier_reference_slots_by_representation": {
+            "native_scml": 3
+          },
+          "elapsed_seconds": 0.7611743340021349,
+          "first_clean_review_attempt": 3,
+          "fixed_six_eighteen_cached_body_pins_verified": true,
+          "group_termination_confirmed": true,
+          "independent_comparable_slots": 18,
+          "model_fits_or_accuracy_claim": false,
+          "new_requests": 0,
+          "observed_result_exceeds_prior_8MiB_cap": true,
+          "original_clock_bindings_independently_reverified": 6,
+          "parent_invented_tests": 60,
+          "parent_verification_pin": {
+            "bytes": 1683,
+            "sha256": "759ab54998b6486f2db2423960dbb0980aa42cc69131bed1739bac698cd6c67f"
+          },
+          "private_result_bytes": 9490133,
+          "public_aggregate": {
+            "automatic_reclock_applied": false,
+            "events": 6,
+            "independent_own_clock_earlier_than_preserved_slots": 3,
+            "independent_status_counts": {
+              "ok": 18
+            },
+            "known_projection_clock_mismatch_slots": 0,
+            "model_improvement_claim": false,
+            "network_requests": 0,
+            "operational_availability_claim": false,
+            "representation_slots": 18,
+            "shared_clock_claim_permitted": false,
+            "shared_known_subset_clock_mismatch_detected": false,
+            "universal_semantic_equality_claim_permitted": false
+          },
+          "receipt_pin": {
+            "bytes": 861,
+            "sha256": "9561200c04cd10e9b6bafd9e49bac8635cd0f43426c37831179218ad454e6459"
+          },
+          "result_pin": {
+            "bytes": 9490133,
+            "sha256": "8812c30016150e5080f825bdc9def3a9019e4fc7ae825fd801376bb13d108428"
+          },
+          "schema": "geonet-legacy-joint-v3-complete-public-outcome-v1",
+          "size_bound_explanation_consistent_but_exact_V2_exception_cause_not_directly_proved": true,
+          "source_freeze_commit": "5edbe99cd49743840f1bb2eb34a41d6eec6d966b",
+          "three_native_earlier_clocks_are_diagnostics_only": true,
+          "utc": "2026-10-11T05:33:52.322866+00:00"
+        },
         "joint_v3_parent_completion": {
           "actual_failure_cause_not_inferred": true,
           "actual_inputs_or_invocations_here": 0,
@@ -1700,6 +1755,35 @@
           },
           "test_exit_code": 0,
           "utc": "2026-10-11T05:26:35.624600+00:00"
+        },
+        "joint_v3_source_push": {
+          "actual_joint_v3_invocations_at_source_freeze": 0,
+          "actual_private_data_exported": false,
+          "all_published_git_bytes_verified": true,
+          "archive": {
+            "bytes": 284902,
+            "sha256": "abbb44766530777725898fa50ba727d0b6b923fd5b4262fc202599935cfb135f"
+          },
+          "archive_body_bytes": 28633600,
+          "index_empty_after": true,
+          "joint_first_clean_review": 3,
+          "joint_parent_tests": 60,
+          "new_AWS_resources_or_training_jobs": 0,
+          "previous_commit": "508b82cceb91903fee2afe190abe700013b410de",
+          "public_mapping": {
+            "bytes": 36061,
+            "sha256": "a72591f3058517132d43e438cf145b694fcf494b399e4db7e2044ae14837a5d2"
+          },
+          "public_members": 165,
+          "public_total_bytes": 1316454,
+          "pushed_commit": "5edbe99cd49743840f1bb2eb34a41d6eec6d966b",
+          "qualified_archive_transport_slots": 4,
+          "remote_main_verified": true,
+          "schema": "eew-joint-v3-archive-result-reviewed-source-push-v1",
+          "unrelated_content_and_modes_verified": true,
+          "unrelated_dirty_members_preserved": 51,
+          "utc": "2026-10-11T05:30:06.269773+00:00",
+          "waveform_decodes_and_model_fits": 0
         },
         "new_event_requests": 0,
         "original_source_results_and_clocks_unchanged": true,

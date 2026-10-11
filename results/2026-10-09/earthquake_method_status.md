@@ -57,3 +57,6 @@ JointV2 diagnostic source is pushed in f1e3955 after49parent tests and first-cle
 
 
 11October configured archive V3: four fixed TRAIN/DEV object transfers complete (28,633,600bytes); independent transport replay passes4/4. Sample-grid/NSLC/response/causal availability/model evidence still pending. The prior4NoSuchKey and incomplete96 are unchanged. JointV3 source is first clean with60parent tests; actual gate pending.
+
+
+11October jointV3 diagnostic completes:18/18supported representations,0known-clock disagreements between implementations; native subsets earlier than original in3/6events.9,490,133Bprivate result/CLI0/complete receipt/stopped group verified. No clock shifts, requests or fits; historicalV1/V2failures remain.
