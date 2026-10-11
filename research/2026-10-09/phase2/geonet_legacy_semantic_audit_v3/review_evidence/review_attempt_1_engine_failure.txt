@@ -1,0 +1,10 @@
+Source-only autoreview attempt 1, engine codex, web_search off, commit HEAD.
+Isolated review commit: 7323f909b79f366886cd6da95672a193b586c4ad
+Review bundle: 48217 characters. Helper exit code 1 before review findings.
+
+codex engine failed (1)
+WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)
+codex_state logs maintenance: attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+
+This is a sandbox/runtime initialization failure, not a clean review or source finding. Preserve it and retry the same explicitly authorized code-only Codex review command with the narrowly requested unsandboxed execution needed by the Codex app-server runtime. Review scope remains isolated authored source/invented tests/curated public contract only, no actual records or excluded source paths.

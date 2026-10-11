@@ -1,0 +1,7 @@
+# Invented comment/PI scalar-boundary limitation
+
+This is a source-reasoned counterexample, not a transform execution or an actual-body result. The previously frozen v1 must not process actual inputs. V2 makes every comment or processing instruction inside the root unknown, retaining all input slots. Outside-root nodes do not enter projection.
+
+The exact pinned official GeoNet 0.10 stylesheet declares `xsl:strip-space elements="*"` at line 193 and tests literal arrival `timeUsed` at lines 430–449. The 0.11 stylesheet declares the same stripping at line 199 and literal predicate at lines 439–458. Consider an invented native arrival with weight `0` and scalar `<timeUsed> <!--invented-->true</timeUsed>`. There are two text nodes separated by a comment: whitespace-only ` `, then `true`. Stripping the first whitespace-only text node gives a scalar string value `true`; the source predicate copies zero weight. Default ElementTree discards the comment and merges the scalar as ` true`; an uncorrected reader's literal predicate omits the weight. The preserved associated-P rule rejects nonempty zero weight but accepts missing projected weight. The two branches can therefore differ. A processing instruction can create the same discarded-node boundary.
+
+No claim is made about any archived body, deployed converter or complete XSLT equivalence. V2 does not attempt to reconstruct source text nodes; it fails closed inside the root. Four invented test methods exercise scalar comments/PIs, structural placement, outside-root nodes and null coverage.

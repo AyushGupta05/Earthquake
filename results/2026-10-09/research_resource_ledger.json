@@ -2,6 +2,8 @@
   "actual_incremental_settled_spend_usd": null,
   "authorized_ceiling_usd": 2000,
   "aws_cli_refresh": {
+    "browser_auth_recheck_state": "blank root-user sign-in form; authentication not restored; existing handoff marked",
+    "browser_auth_recheck_utc": "2026-10-11T03:48:31.400122+00:00",
     "credentials_committed": false,
     "current_status": "Expired11Oct; routine same-access sign-in handoff pending; no new paid work",
     "permissions_changed": false,
@@ -1120,6 +1122,21 @@
         "actual_legacy_projection_invocations": 0,
         "actual_reads": 0,
         "actual_xml_bodies_read_in_plan_preparation": 0,
+        "corrected_joint_status": "producer_v2 first clean review6 and129 parent invented tests; independent_v3 first clean attempt2 and274 parent invented tests; corrected public sources awaitpush, actualjointinvocationadapter source-only preparing; no actualprojection/newrequests/clocks changed",
+        "historical_source_publication": {
+          "actual_legacy_projection": false,
+          "all_git_pins_verified": true,
+          "anonymous_archive_object_requests": 0,
+          "archive_sha256": "720915f0da03947cce6c4ded07a6ee777883271ed82e34b2553cb9af048b25f4",
+          "commit": "14a49f7319fe2ef159214aae390ca1d95a301225",
+          "map_sha256": "f2083973c871236b9a895c71555219cf3f16454264253790ac345ab779aa6dec",
+          "members": 149,
+          "previous_head": "d9a1fd01535ce7832e2c6e54b96b75307b540fe5",
+          "public_bytes": 1001291,
+          "raw_data_exported": false,
+          "unrelated_dirty_files_preserved": 51,
+          "utc": "2026-10-11T03:47:15.867134+00:00"
+        },
         "new_event_requests": 0,
         "original_source_results_and_clocks_unchanged": true,
         "post_collection_exploratory": true,
@@ -1127,9 +1144,62 @@
         "private_next_plan_sha256": "66c1111dfc5288e61201ebb84bacacc5b3e9fcd538cfcab352b1abdfe55c18c4",
         "producer_v1_first_clean": 5,
         "producer_v1_parent_tests": 102,
+        "producer_v2_source_parent_completion": {
+          "actual_invocation_requires_pushed_sources_and_new_parent_gate": true,
+          "actual_metadata_read_here": false,
+          "all_manifest_member_pins_verified": true,
+          "first_clean_review_iteration": 6,
+          "manifest_sha256": "da2f3bbdbf63921296ff1fdf949fa02c8ca0a1cd84fcd53b57c33359ba25f6fa",
+          "parent_test_exit_code": 0,
+          "parent_test_log": {
+            "bytes": 16209,
+            "sha256": "60d36ac5ad5ac79032227d063cad1f9862cfc0ec2a0c7e02b965407256d9ec0b"
+          },
+          "parent_tests": 129,
+          "processing_mapping_sha256": "a4a62b0ecea3b7cc92b6092729f4fb49c527198421d59ba988393799c42747cd",
+          "producer": "geonet_legacy_offline_shadow_v2",
+          "public_member_count": 86,
+          "review_exit_code": 0,
+          "source_frozen_read_only": true,
+          "stage": "parent_verified_first_clean_source_only",
+          "test_arguments": [
+            "-I",
+            "-B",
+            "-Werror",
+            "unittest",
+            "discover",
+            "-v"
+          ],
+          "utc": "2026-10-11T04:01:22.030937+00:00"
+        },
         "semantic_v2_first_clean": 6,
         "semantic_v2_parent_tests": 262,
         "semantic_v2_post_clean_invented_checks": 20,
+        "semantic_v3_source_parent_completion": {
+          "actual_reads": 0,
+          "audit_id": "geonet_legacy_semantic_audit_v3",
+          "clean_review_findings": 0,
+          "first_clean_review_attempt": 2,
+          "fits": 0,
+          "new_requests": 0,
+          "original_sources_and_clocks_changed": false,
+          "parent_invented_tests": 274,
+          "parent_test_evidence_sha256": "d011aa776a242dff51c7f962c3f896435a8128c34c2265c5888d198214278f1f",
+          "parent_test_flags": [
+            "-I",
+            "-B",
+            "-Werror"
+          ],
+          "public_allowlist_members_verified": 34,
+          "runtime_sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12",
+          "source_manifest": {
+            "bytes": 14079,
+            "sha256": "1e29c3c9080282bb3ffe63254db8dc34bb529978ba8518edfab0a1d87d21402e"
+          },
+          "source_sha256": "cc93594acb6c120319d6520b17c7f2e2cdaad86ed4ae5d0de6115dfc58921763",
+          "stage": "source-only parent completion; actual use still waits pushed producer and independent source freezes",
+          "utc": "2026-10-11T03:51:17.385805+00:00"
+        },
         "status": "v1 producer and independent semantic v2 first-clean historical sources preserved and barred from unguarded actual use; corrected producer v2 and semantic v3 source-only review ongoing"
       },
       "legacy_schema_membership_addendum": {
@@ -1278,5 +1348,5 @@
       "status": "primary_source_and_exact_invented_arithmetic_audit_complete"
     }
   },
-  "updated_utc": "2026-10-11T03:45:39.285356+00:00"
+  "updated_utc": "2026-10-11T04:01:50.166912+00:00"
 }
