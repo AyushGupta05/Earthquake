@@ -1,0 +1,31 @@
+{
+  "schema": "targeted_prior_art_manifest_v1",
+  "date_utc": "2026-10-11",
+  "status": "source_only_complete_no_new_fit_earned",
+  "files": [
+    {
+      "path": "PRIMARY_AUDIT.md",
+      "sha256": "359b860e314403fe9630fec845f16fb2ad1fef2f6505d35827c97451703a69ea",
+      "bytes": 9339
+    },
+    {
+      "path": "source_access.json",
+      "sha256": "bcf9fc97dbbc4b272b1ac52e28dbd939ace2b5334b6310d8116f33aad63ce7d7",
+      "bytes": 4900
+    }
+  ],
+  "checks": [
+    "source_access_json_parses",
+    "named_input_hashes_match",
+    "two_capsules_each_below160_whitespace_words"
+  ],
+  "capsule_word_counts": {
+    "L": 119,
+    "T": 122
+  },
+  "source_byte_limit": "Public web source bytes were not saved; URL/version/page access pins do not assert immutable PDF byte identity.",
+  "novelty_claim": false,
+  "benchmark_superiority_claim": false,
+  "fits": 0,
+  "data_requests": 0
+}

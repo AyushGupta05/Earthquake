@@ -1,0 +1,77 @@
+{
+  "schema": "targeted_primary_source_access_v1",
+  "audit_date_utc": "2026-10-11",
+  "scope": "Two named works; public primary literature and two named local context reports only.",
+  "status": "docs_only_no_new_fit_earned",
+  "source_derived_content_policy": {
+    "limit_words_per_work_across_versions": 200,
+    "substantive_capsules": "PRIMARY_AUDIT.md sections L and T",
+    "capsule_whitespace_word_counts_including_heading_links": {"L": 119, "T": 122},
+    "ledger_policy": "Locators, dates, access statuses and failed-search records; no repeated technical paraphrase or copied excerpts. Interpretations are original audit reasoning."
+  },
+  "sources": [
+    {
+      "id": "L_journal",
+      "doi": "10.1007/s11600-025-01766-4",
+      "url": "https://link.springer.com/article/10.1007/s11600-025-01766-4",
+      "published": "2026-01-09",
+      "version": "publisher_preview",
+      "access": "public_preview_full_article_paywalled",
+      "reverified": true,
+      "support_locators": {"capsule_L": ["abstract", "Data availability", "References", "About this article"]},
+      "full_author_manuscript": "not_found_in_scoped_search",
+      "public_code": "not_found_in_scoped_search",
+      "pdf_bytes_downloaded": false
+    },
+    {
+      "id": "T_journal",
+      "doi": "10.1007/s10518-026-02403-1",
+      "url": "https://link.springer.com/article/10.1007/s10518-026-02403-1",
+      "published": "2026-02-20",
+      "version": "publisher_preview",
+      "access": "public_preview_full_article_paywalled",
+      "reverified": true,
+      "support_locators": {"capsule_T": ["publication banner", "Data availability"]},
+      "version_difference_audit": "not_performed_full_journal_unavailable",
+      "pdf_bytes_downloaded": false
+    },
+    {
+      "id": "T_author_v1",
+      "doi": "10.21203/rs.3.rs-7479899/v1",
+      "canonical_url": "https://www.researchsquare.com/article/rs-7479899/v1",
+      "public_pdf_url": "https://assets-eu.researchsquare.com/files/rs-7479899/v1_covered_72941a4e-350f-410b-b336-dd982be57e51.pdf?c=1771862527",
+      "posted": "2025-09-15",
+      "version": "v1",
+      "access": "public_author_pdf_full_parsed_text",
+      "canonical_page_access": "tool_internal_error",
+      "cover_linkage": "T_journal",
+      "support_locators": {
+        "capsule_T": ["cover", "printed pages4-10 equations11-15", "printed page11", "printed page19 Table2", "printed page26 Figure11", "printed page27 data statement"],
+        "page_coordinate": "One PDF cover precedes manuscript page1. Web zero-based PDF Pn then corresponds to printed manuscript page n."
+      },
+      "rendered_page_attempts": [
+        {"zero_based_pdf_page": 0, "result": "cache_miss"},
+        {"zero_based_pdf_page": 10, "result": "cache_miss"},
+        {"zero_based_pdf_page": 18, "result": "cache_miss"}
+      ],
+      "evidence_basis": "Explicit parsed text; no plotted-trace interpretation.",
+      "public_code": "not_found_in_scoped_search_or_pdf_lexical_search",
+      "pdf_bytes_downloaded": false,
+      "pdf_sha256": null,
+      "byte_pin_limit": "Versioned public URL and page locators only; content bytes not downloaded or hashed."
+    }
+  ],
+  "search_record": [
+    {"work": "L", "query_scope": "Exact DOI/title and named authors with manuscript/pdf/code; arXiv, Research Square, Zenodo, GitHub and author institution", "result": "no_accessible_full_manuscript_or_code_found", "meaning": "bounded_failed_search_not_proof_of_nonexistence"},
+    {"work": "T", "query_scope": "Exact DOI/title and named authors with manuscript/pdf/code; Research Square identifier; GitHub", "result": "public_author_v1_pdf_resolved_no_code_found", "meaning": "bounded_search"},
+    {"work": "L", "query_scope": "Named2021 predecessor and primary institutional journal", "result": "publisher_reference_verified; indexed author-upload candidate found but not used for methods", "meaning": "no_expansion_into_older_full_method_audit"}
+  ],
+  "unused_discovery_material": ["Search-result aggregators used only to find public primary URLs; no secondary scientific claims used.", "Request-copy pages were not acted on."],
+  "local_context_inputs": [
+    {"path": "outputs/earthquake_instrument_scientific_audit.md", "sha256": "0df6e5c8ad8a67107d2158ccc177e2b6cbddfbfafee3c980451e3ab23460cb19", "read_scope": "first105lines", "role": "completed_control_interpretation"},
+    {"path": "work/causal_response_mechanism_audit/AUDIT.md", "sha256": "278c8d36e2e4f348416e52e16c82c55b2f48f1c660385a345d962975c8c43085", "read_scope": "first155lines", "role": "known_state_noise_and_equal_input_constraints"}
+  ],
+  "exclusions": ["real_rows", "waveforms", "response_inventories", "prediction_arrays", "checkpoints", "private_material", "payments", "outreach", "author_code_execution", "implementation", "fits", "AWS", "reviewer_submissions", "Git", "shared_edits"],
+  "new_fit_count": 0,
+  "new_data_request_count": 0
+}

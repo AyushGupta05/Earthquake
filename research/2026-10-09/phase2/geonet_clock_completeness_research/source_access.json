@@ -1,0 +1,216 @@
+{
+  "access_date_UTC": "2026-10-11",
+  "excluded": "Third-party search hits, env/deploy configuration, actual event XML/IDs/picks, waveforms, private rows, model or AWS outputs.",
+  "failures_and_limits": [
+    {
+      "count": 3,
+      "kind": "default sandbox network failures",
+      "scope": "The three named qsearch metadata URLs before read-only source-access escalation; no successful body retrieval."
+    },
+    {
+      "bytes_read_max": 500001,
+      "kind": "bounded source-metadata rejection",
+      "result": "Local500000-byte cap exceeded; parse abandoned; replaced by small ref/directory metadata queries.",
+      "url": "https://api.github.com/repos/GeoNet/fdsn/commits/main"
+    },
+    {
+      "kind": "web-tool unavailable/cache-miss views",
+      "scope": "Initially guessed master/tree/raw/pkg.go.dev views and named API directory views. Correct main/pinned source later retrieved with bounded urllib. These failures do not prove absent code or service support."
+    },
+    {
+      "kind": "WADL access unavailable",
+      "result": "Web tool unavailable. No WADL contents or deployed optional-flag behavior claimed.",
+      "url": "https://service.geonet.org.nz/fdsnws/event/1/application.wadl"
+    }
+  ],
+  "limits": {
+    "AWS_actions": 0,
+    "Git_actions": 0,
+    "HTTP_timeout_seconds": 20,
+    "SCML_queries": 0,
+    "actual_event_rows_read_for_source_audit": 0,
+    "author_code_or_XSLT_execution": 0,
+    "catalogue_event_queries": 0,
+    "fits": 0,
+    "outreach": 0,
+    "public_source_body_cap_bytes": 500000,
+    "reviewer_actions": 0,
+    "small_FDSN_ref_directory_body_cap_bytes": 100000,
+    "waveform_or_response_reads": 0
+  },
+  "metadata_GETs": [
+    {
+      "bytes_each": 5816,
+      "sha256": "693af97c066ea601af36c089455bc41aa5246ce8edb65cf8dabe99b50b546cd0",
+      "successful_GET_count": 1,
+      "url": "https://api.github.com/repos/GeoNet/qsearch/commits/main"
+    },
+    {
+      "bytes_each": 2364,
+      "sha256": "bfa0701cf5b511334e9a1b2c4080447a491aa1b73f52e55371797b6e33d7c083",
+      "successful_GET_count": 1,
+      "url": "https://api.github.com/repos/GeoNet/qsearch/contents/seiscompml07?ref=main"
+    },
+    {
+      "bytes_each": 2271,
+      "sha256": "5418350464fbf48e0afa7971a26d77ddfb95c3a7f84c26fca53c9e1acbcef306",
+      "successful_GET_count": 1,
+      "url": "https://api.github.com/repos/GeoNet/qsearch/contents/quakeml12?ref=main"
+    },
+    {
+      "bytes_each": 325,
+      "sha256": "4c11e807577c71f070f6148bd5428668d99b0dfc9798345f553e279c5c93c149",
+      "successful_GET_count": 1,
+      "url": "https://api.github.com/repos/GeoNet/fdsn/git/ref/heads/main"
+    },
+    {
+      "bytes_each": 3283,
+      "sha256": "dd1bdb412555b3e89a70161b4a41d47f7bdd63c9e6344a482192784c523987a1",
+      "successful_GET_count": 1,
+      "url": "https://api.github.com/repos/GeoNet/fdsn/contents/cmd?ref=3040322c7bf0818c9b42a6666284b86f674cb706"
+    },
+    {
+      "bytes_each": 9748,
+      "sha256": "890e44da3c7a2d1241865a2ee6f5ed498cf02a20c95efd57f7acbbf31f755840",
+      "successful_GET_count": 2,
+      "url": "https://api.github.com/repos/GeoNet/fdsn/contents/cmd/fdsn-quake-consumer?ref=3040322c7bf0818c9b42a6666284b86f674cb706"
+    },
+    {
+      "bytes_each": 20020,
+      "sha256": "3385f72a0301b7fb794fdd95669c3eb2c1b900dc65ff5edfa6190207171da70e",
+      "successful_GET_count": 1,
+      "url": "https://api.github.com/repos/GeoNet/fdsn/contents/cmd/fdsn-ws?ref=3040322c7bf0818c9b42a6666284b86f674cb706"
+    }
+  ],
+  "repository_pins": {
+    "GeoNet/fdsn": "3040322c7bf0818c9b42a6666284b86f674cb706",
+    "GeoNet/qsearch": "14215d6b999df5e903c073e7ef9df0cdb198f0fe",
+    "GeoNet/qsearch_commit_time_UTC": "2016-11-18T06:51:22Z"
+  },
+  "scope": "Only public primary source/docs and existing aggregate reports for this source audit; completed counts-selection audit is a separate task.",
+  "source_text_GETs": [
+    {
+      "bytes_each": 6353,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "28c56c768dcd19a159d8181b969449afcdc6c8c0c93ad696e6b436fe19e030e5",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/qsearch/14215d6b999df5e903c073e7ef9df0cdb198f0fe/qsearch.go"
+    },
+    {
+      "bytes_each": 9791,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "d5958ffc1cf24c00281073847643d5bbbfe11aeb49f7fd0940f29bf6407779a5",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/qsearch/14215d6b999df5e903c073e7ef9df0cdb198f0fe/seiscompml07/seiscompml07.go"
+    },
+    {
+      "bytes_each": 8999,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "f58e7e05243d10bb99e65f550241c9974b2be52cfbedb3fca3da84d34a435f30",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/qsearch/14215d6b999df5e903c073e7ef9df0cdb198f0fe/quakeml12/quakeml12.go"
+    },
+    {
+      "bytes_each": 18947,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "b821d94722dfef2ac6b37c3706008c52202f17ce0db2d7e05bb3f10af591867a",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-ws/fdsn_event.go"
+    },
+    {
+      "bytes_each": 4425,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "3d607540988ff8c47fde1465f75a2c88fc185772a41f3f014bcea3c8bb2ffb9d",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-ws/routes.go"
+    },
+    {
+      "bytes_each": 629,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "a60ee7172c011002da7dc08723a0765f55f7502f68e2c375bd68a5816c9bed19",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-ws/sc3ml.go"
+    },
+    {
+      "bytes_each": 3081,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "056ae17ca9fcefd787986e6986b65efd4f94a38e2db7a4aaa3125c20b6e9d1b7",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-ws/README.md"
+    },
+    {
+      "bytes_each": 33636,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "d878c4f3507821a85f510679907234039bc328aea3e92a52f1606c2b37434568",
+      "successful_GET_count": 2,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/sc3ml_0.13__quakeml_1.2.xsl"
+    },
+    {
+      "bytes_each": 33834,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "9b79f05ccf1f2cbe3c4e44d44388e01d87b3f12357d64f9409ea529c03f226a0",
+      "successful_GET_count": 3,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/scml_0.14__quakeml_1.2.xsl"
+    },
+    {
+      "bytes_each": 9352,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "7b1ba38254f11aa53f018b9eecc11f9aae2ed21ede233fd6366a5b81687e8a6e",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/sc3ml.go"
+    },
+    {
+      "bytes_each": 4788,
+      "purpose": "Published source text inspection only; never imported/executed.",
+      "sha256": "922d978283e06ec1a5006d38f7895f92ba1b942cbf36eca94d71e174eb42b4c3",
+      "successful_GET_count": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/main.go"
+    }
+  ],
+  "successful_direct_public_repository_GETs": 22,
+  "version": "geonet-clock-completeness-source-access-v1",
+  "web_tool_doc_access": [
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "Event parameter table and eventid-only example; deployed alternative path/inclusion flags not tested.",
+      "url": "https://www.geonet.org.nz/data/access/FDSN"
+    },
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "Basic preferred solutions versus detailed QuakeML.",
+      "url": "https://www.geonet.org.nz/data/types/eq_catalogue"
+    },
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "Optional event parameters and output format definitions; center support not implied.",
+      "url": "https://www.fdsn.org/webservices/fdsnws-event-1.2.pdf"
+    },
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "README and branch context; old source date does not establish endpoint status.",
+      "url": "https://github.com/GeoNet/qsearch"
+    },
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "Version7.4.0 exporter options; no GeoNet exporter invocation or DB permission inferred.",
+      "url": "https://www.seiscomp.de/doc/apps/scxmldump.html"
+    },
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "Repository README conversion pipeline context; current implementation separately pinned.",
+      "url": "https://github.com/GeoNet/fdsn"
+    },
+    {
+      "limitation": "Rendered/extracted web-tool view, not a saved complete HTTP-body receipt.",
+      "raw_body_sha256": null,
+      "scope": "Historical location-system context only; not used to infer the missing-reference cause.",
+      "url": "https://www.geonet.org.nz/data/supplementary/earthquake_location"
+    }
+  ]
+}

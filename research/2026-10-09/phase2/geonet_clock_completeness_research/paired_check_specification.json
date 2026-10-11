@@ -1,0 +1,69 @@
+{
+  "actual_private_roster_created": false,
+  "candidate_host": "service.geonet.org.nz",
+  "candidate_paths": [
+    "/fdsnws/event/1/query",
+    "/sc3ml"
+  ],
+  "caps": {
+    "AWS": 0,
+    "StationXML": 0,
+    "attempts": 12,
+    "each_body_bytes": 4194304,
+    "finalization_reserve_seconds": 10,
+    "fits": 0,
+    "outer_seconds": 360,
+    "redirects": 0,
+    "replacement": 0,
+    "request_seconds": 20,
+    "retries": 0,
+    "start_spacing_seconds": 1,
+    "total_new_body_bytes": 50331648,
+    "waveforms": 0
+  },
+  "complete_controls_per_TEST_band": {
+    ">=7": 1,
+    "[6,7)": 1
+  },
+  "control_rank_salt": "geonet-scml-paired-control-v1",
+  "cross_format_contract": "PROPOSED_PAIRED_CHECK.md cross-format section; mapped exact identities, collision detection, origin revision/arrival linkage and preserved QML acceptance semantics.",
+  "fixed_events": 6,
+  "incomplete_TEST_Mw_ge6": 4,
+  "incomplete_band_counts": {
+    ">=7": 1,
+    "[6,7)": 3
+  },
+  "no_existing_artifact_edits": [
+    "census source/outcomes",
+    "counts96 plan/masks/requests",
+    "accepted-subset clocks",
+    "bulk missingness gate",
+    "benchmark split/gates"
+  ],
+  "ordering": "Per fixed event fresh QML then SCML; old QML remains read-only reference.",
+  "other_versions": "Prior source-only mapping audit or unsupported; no adaptive event/endpoint query.",
+  "permitted_claim": "Diagnostic same-record reference resolution or catalogue/representation drift only; no automatic re-clock/benchmark or performance claim.",
+  "pre_acquisition_requirements": [
+    "Parent review/authorization of concrete proposal",
+    "Private roster/plan and source/runtime/input freeze",
+    "Invented parser/linkage/bounds tests and clean authorized code-only autoreview for nontrivial implementation",
+    "Parent launch receipt and durable bounded transport controls"
+  ],
+  "proposal_only": true,
+  "query_keys": [
+    "eventid"
+  ],
+  "query_rank_salt": "geonet-scml-paired-query-v1",
+  "rank_encoding": "UTF-8 salt|partition|band|ID for controls; salt|ID for query order; lexical ID tie.",
+  "requests_authorized": false,
+  "requests_made": 0,
+  "result_denominators": "Every frozen6 source event x3 representations; missing/partial/ambiguous remains unknown, never zero accepted picks.",
+  "source_fdsn_commit": "3040322c7bf0818c9b42a6666284b86f674cb706",
+  "source_inputs": "Immutable original149+completed495 pins; no new representation or model result conditions roster.",
+  "source_scope": "Published route+handler semantics; live/proxy availability unverified.",
+  "supported_mapping_source_audited_versions": [
+    "0.13",
+    "0.14"
+  ],
+  "version": "geonet-scml-paired-proposal-v1"
+}

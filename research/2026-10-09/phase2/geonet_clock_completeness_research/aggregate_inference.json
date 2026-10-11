@@ -1,0 +1,45 @@
+{
+  "actual_rows_or_IDs_in_artifact": false,
+  "aggregate_diagnostics_pin": {
+    "bytes": 32346,
+    "sha256": "b98c5971c1cad5eb17c3fe065eaa195b10631706b2e9c956f0dc2348c99056b6"
+  },
+  "aggregate_summary_pin": {
+    "bytes": 115572,
+    "sha256": "e3c8bd56dcfe2a316f3e1ec8747d7c40602f35a681b053d2a077eb9053dd59f7"
+  },
+  "candidate_TEST_tail_band_denominators": {
+    ">=7": 5,
+    "[5.5,6)": 30,
+    "[6,7)": 14
+  },
+  "conditional_TEST_Mw_ge5_5_ceiling": 27,
+  "conditional_TEST_Mw_ge6_ceiling": 15,
+  "conditional_TEST_Mw_ge7_ceiling": 4,
+  "conditional_assumption": "Future separate primary policy excludes all flagged incomplete qualifying associations; not an approved current gate.",
+  "conditional_complete_reference_band_ceilings": {
+    ">=7": 4,
+    "[5.5,6)": 12,
+    "[6,7)": 11
+  },
+  "counts96_or_bulk_protocol_changed": false,
+  "flagged_incomplete_counts": {
+    ">=7": 1,
+    "[5.5,6)": 18,
+    "[6,7)": 3
+  },
+  "floor_shortfall_before_waveform_sequence_attrition": 3,
+  "invented_clock_counterexample": {
+    "new_T0": 99.0,
+    "new_recovered_pick_seconds": 99.0,
+    "old_T0": 100.0,
+    "resolved_old_station_times_seconds": [
+      100.0,
+      100.8
+    ],
+    "strict1s_new_clock_count_after_recovery": 1,
+    "strict1s_old_clock_count_before_recovery": 2
+  },
+  "planned_TEST_Mw_ge5_5_floor": 30,
+  "version": "geonet-clock-completeness-conditional-ceilings-v1"
+}

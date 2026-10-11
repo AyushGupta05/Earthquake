@@ -1,0 +1,96 @@
+{
+  "canonical_index_digest": "SHA256 of little-endian int64 C-order matrix bytes, without headers. NumPy version/backend and exact2000 successive calls must be independently recorded; no different backend.",
+  "input_template": {
+    "bootstrap": {
+      "calibration": {
+        "backend": "ACTUAL_VERIFIED_DEFAULT_RNG_PCG64",
+        "calls": "2000 successive integers(0,N,N)",
+        "canonical_sha256_by_seed": {
+          "20261011": "PARENT_CANONICAL_LE_I8_C_ORDER_SHA256",
+          "20261012": "IDENTICAL_RESET_SEED_SHA256"
+        },
+        "draws": 2000,
+        "dtype": "int64",
+        "events": "EXACT_ORIGINAL_COHORT_N",
+        "file": null,
+        "numpy_version": "ACTUAL_COMPLETED_WORKER_NUMPY",
+        "pairing": "same indices across both arms/actions/deadlines; reset per split/seed",
+        "seed": 20261013
+      },
+      "dev": {
+        "backend": "ACTUAL_VERIFIED_DEFAULT_RNG_PCG64",
+        "calls": "2000 successive integers(0,N,N)",
+        "canonical_sha256_by_seed": {
+          "20261011": "PARENT_CANONICAL_LE_I8_C_ORDER_SHA256",
+          "20261012": "IDENTICAL_RESET_SEED_SHA256"
+        },
+        "draws": 2000,
+        "dtype": "int64",
+        "events": "EXACT_ORIGINAL_COHORT_N",
+        "file": null,
+        "numpy_version": "ACTUAL_COMPLETED_WORKER_NUMPY",
+        "pairing": "same indices across both arms/actions/deadlines; reset per split/seed",
+        "seed": 20261013
+      }
+    },
+    "checkpoint_proof": {
+      "path": "ABSOLUTE_PRIVATE_JSON_RESULT",
+      "pin": "VERIFIED_PROOF_BYTES_AND_SHA256",
+      "request_path": "ABSOLUTE_LOCAL_PRESERVED_EXACT_REMOTE_REQUEST_JSON",
+      "request_sha256": "PARENT_EXACT_REQUEST_SHA256"
+    },
+    "complete_pin": "PARENT_VERIFIED_BYTES_AND_SHA256",
+    "completed_grid_handoff": false,
+    "execution": {
+      "preservation_complete": false,
+      "supervisor_exit_code": "PARENT_NORMAL_0",
+      "worker_exit_code": "PARENT_NORMAL_0"
+    },
+    "grid_root": "ABSOLUTE_PRESERVED_PRIVATE_COMPLETED_GRID",
+    "numerical_runtime": {
+      "byteorder": "ACTUAL_WORKER_BYTEORDER",
+      "numpy": "ACTUAL_EXACT_WORKER_NUMPY",
+      "numpy_backend": "ACTUAL_VERIFIED_PCG64",
+      "python": "ACTUAL_EXACT_WORKER_SYS_VERSION",
+      "torch": "ACTUAL_EXACT_WORKER_TORCH"
+    },
+    "original_files": {
+      "dataset_manifest": {
+        "path": "ABSOLUTE_PRIVATE_ORIGINAL_PINNED_FILE",
+        "pin": "PARENT_VERIFIED_BYTES_AND_SHA256"
+      },
+      "metadata": {
+        "path": "ABSOLUTE_PRIVATE_ORIGINAL_PINNED_FILE",
+        "pin": "PARENT_VERIFIED_BYTES_AND_SHA256"
+      },
+      "metadata_manifest": {
+        "path": "ABSOLUTE_PRIVATE_ORIGINAL_PINNED_FILE",
+        "pin": "PARENT_VERIFIED_BYTES_AND_SHA256"
+      },
+      "run": {
+        "path": "ABSOLUTE_PRIVATE_ORIGINAL_PINNED_FILE",
+        "pin": "PARENT_VERIFIED_BYTES_AND_SHA256"
+      },
+      "split_manifest": {
+        "path": "ABSOLUTE_PRIVATE_ORIGINAL_PINNED_FILE",
+        "pin": "PARENT_VERIFIED_BYTES_AND_SHA256"
+      }
+    },
+    "protocol_path": "ABSOLUTE_FROZEN_PUBLIC_PROTOCOL",
+    "schema": "chile-clock-independent-replay-inputs-v1",
+    "source_pins": {
+      "PROTOCOL.md": "951ff646525704af2fb34974e49c27f883d4a3298073b06dda1921eabc895bb9",
+      "audit_saved.py": "b9b5352bbf7015ffee38c9f13cee620c489c6dcfc3c9984a9a3482a408c0634e",
+      "checkpoint_state_body.py": "ea1a08ddf8d49d19992ffb5129f9e5b4420dd6fb32f73b0c1024ec9fb0cfb54e",
+      "independent_artifacts.py": "70bde40d4e835bca91fb96c0f6e70f97793b7d724b7bcac29f9784b39e8e453e",
+      "independent_math.py": "5ae3a250039259bf3ec9a1b1ef6610a651eafef19f2c6f3ece0f039f52d4648f",
+      "test_independent.py": "fdc8bde3abfa527d069bb9329b3f95ca00f65d09183ca054b44027ff5a43fc67"
+    }
+  },
+  "private_index_file_if_required": {
+    "path": "ABSOLUTE_PRIVATE_NPY",
+    "pin": "VERIFIED_BYTES_AND_SHA256"
+  },
+  "schema": "chile-clock-independent-public-input-template-v1",
+  "status": "not_an_actual_input_or_authorization"
+}

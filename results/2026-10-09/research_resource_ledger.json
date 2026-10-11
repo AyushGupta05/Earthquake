@@ -11,13 +11,14 @@
   "chile_clock_latest_progress": {
     "TEST_reads": 0,
     "automatic_stop_utc": "2026-10-11T10:50:21.004959+00:00",
-    "calibration_dev_barrier_passed": false,
-    "clock_fits_completed": 3,
+    "calibration_dev_barrier_passed": true,
+    "clock_fits_completed": 4,
+    "grid_complete": false,
     "instance_id": "i-08b9781ed60d8497f",
-    "latest_progress_observation_utc": "2026-10-11T01:17:24.512262+00:00",
-    "progress_sha256": "3f53d12fd329e1e25f6ef3d3c14bfa5f30e8fd061e8f8d0ca9f729603332d7fa",
+    "latest_progress_observation_utc": "2026-10-11T01:39:19.519808+00:00",
+    "progress_sha256": "24daf24a081cdcd450bd741fd10b805a54f7f0887be23ec7bc25c4e4d51fdff5",
     "read_only_mount_verified": true,
-    "source": "clock_grid_progress_20261011T0120.txt",
+    "source": "clock_grid_progress_20261011T0142.txt",
     "unit": "eew-clock-grid-af88e126"
   },
   "continuation": {
@@ -57,7 +58,7 @@
   },
   "geonet_counts_preparation": {
     "AWS_actions": 0,
-    "acquisition_started": false,
+    "acquisition_started": true,
     "events": 96,
     "exact_waveform_cache_targets": 9,
     "future_pick_withdrawal_comparisons": 288,
@@ -71,7 +72,7 @@
     "reviewed_dependencies": 7,
     "source_member_pins_verified": 44,
     "station_targets": 411,
-    "status": "clean_review_actual_plan_independently_replayed_await_pushed_freeze",
+    "status": "source_frozen578a537_then_single_acquisition_incomplete_timeout_no_retry",
     "synthetic_tests": 52
   },
   "latest_credit_check": {
@@ -675,7 +676,10 @@
       "worker": "localCPUonly"
     },
     "geonet_counts_screen": {
+      "actual_attempts": 412,
+      "actual_body_bytes": 2396887,
       "events": 96,
+      "exit_code": 1,
       "maximum_attempts": 800,
       "maximum_new_body_bytes": 536870912,
       "maximum_seconds": 7200,
@@ -683,8 +687,12 @@
       "metadata_prerequisite_independently_passed": true,
       "new_AWS_resources": false,
       "new_paid_fits": false,
+      "preserved_members": 419,
+      "scientific_interpretation_allowed": false,
+      "source_freeze": "578a537d6a983295c7bcb6e41a57c8f85fdf8f95",
       "source_freeze_and_private_receipt_required": true,
-      "status": "source_and_invented_tests_review_in_progress; no private plan or acquisition"
+      "status": "incomplete_waveform_body_timeout; immutable_no_retry",
+      "worker_exit_code": 2
     },
     "geonet_tail_census": {
       "body_bytes": 37598159,
@@ -1023,6 +1031,14 @@
       "decision": "No learned/paid fit earned; uncertain inherited-state no-fit falsification may be justified",
       "raw_data_reads": 0
     },
+    "native_SCML_clock_check": {
+      "candidate_live_route_verified": false,
+      "data_queries": 0,
+      "existing_clocks_changed": false,
+      "fits": 0,
+      "manifest_sha256": "6a4cae06f67e05f25d020bb4c438187b7c7e8d1321b54a045f194db3ea381070",
+      "status": "official_source_route_and_projection_audited; paired6 source-only preparation"
+    },
     "physical_clipping": {
       "decision": "Verified hardware censoring distinct, with strong likelihood/switching prior art; rails/health unknown; zero new fits",
       "raw_data_reads": 0
@@ -1031,6 +1047,11 @@
       "decision": "Unconditional noisy-view equality rejected; narrow causal forward-KL adaptation overlaps existing SymVAE/distillation; zero fits",
       "raw_data_reads": 0
     },
+    "site_and_probabilistic_2026": {
+      "decision": "Broad site correction/probabilistic novelty overlaps; no matched benchmark or new fit earned",
+      "manifest_sha256": "374a88973182d04bf56d5a88aeab9aa4252814bafccabc6a51e70d06e62785ef",
+      "status": "primary_sources_audited"
+    },
     "spectral_encoder": {
       "decision": "Ordinary matched engineering comparator only; no distinct spectral-tail method earned",
       "manifest_sha256": "5ed4e08f57e080253a1eb0d9fcf5d63726db1eaa0946360e0dd95d6b8990e990",
@@ -1038,5 +1059,5 @@
       "real_data_reads": 0
     }
   },
-  "updated_utc": "2026-10-11T01:22:40.385906+00:00"
+  "updated_utc": "2026-10-11T01:40:47.752274+00:00"
 }
