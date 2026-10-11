@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P1] Stop incomplete when a frozen cache checksum no longer matches
+counts.py:226
+If a cached waveform changes or disappears after validation, the pin check raises an ordinary exception that is caught here and converted into an engineering failure. The worker subsequently sets completed=True, and the summary permits scientific interpretation. Cached response pin failures are similarly swallowed. This violates the requirement that incomplete pins prohibit completion and can turn broken provenance into apparent count unavailability. Propagate pin failures as a run-level incomplete condition while retaining ordinary decode/epoch failures without refetch.
+
+[P2] Bind the cache request ledger to its completed acquisition manifest
+counts.py:106
+The supplied requests file is checked against the new input receipt, but never against the original manifest's requests.json member pin. Its path can also belong to another run. Consequently, a changed or mixed ledger can label an originally failed request as successful while the frozen URL and raw-body pins still match; cached_candidates then accepts it and suppresses the new waveform selection. Verify the request ledger's bytes/hash against the completed acquisition manifest before trusting its status and HTTP fields.
+
+overall: patch is incorrect (0.95)
+Source inspection found two cache-provenance defects: broken frozen cache pins can still produce a completed scientific summary, and cache success claims are not bound to the original acquisition's request-ledger pin. No tests or acquisition commands were executed.

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Invalidate the summary when the worker exits unsuccessfully
+counts.py:320
+If the worker is killed after writing its completed manifest but before exiting successfully, this branch only changes the manifest's `completed` field. The pinned `summary.json` still contains `completed=true` and `scientific_interpretation_allowed=true`, so an interrupted run retains an explicitly interpretable scientific summary. Route nonzero child exits through incomplete finalization, or regenerate the summary with `completed=False` and refresh its artifact pin before returning.
+
+overall: patch is incorrect (0.95)
+The unsuccessful-child-exit path can leave the summary claiming completion and allowing scientific interpretation despite the parent marking the run incomplete. Review was limited to source inspection; no tests or acquisition commands were run.

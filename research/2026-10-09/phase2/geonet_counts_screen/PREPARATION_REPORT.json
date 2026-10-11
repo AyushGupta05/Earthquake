@@ -1,0 +1,90 @@
+{
+  "AWS_resources": 0,
+  "acquisition_enabled_by_this_agent": false,
+  "actual_input_receipt_created": false,
+  "actual_inputs_read": false,
+  "actual_private_plan_created": false,
+  "actual_seismic_requests": 0,
+  "all_code_preparation_checks_pass": true,
+  "claim_limits": {
+    "engineering_source_prepared_only": true,
+    "model_accuracy_or_novelty": false,
+    "physical_calibration_verified": false,
+    "waveform_availability_measured": false
+  },
+  "created_utc": "2026-10-11T01:12:26.608169+00:00",
+  "fits": 0,
+  "installations": 0,
+  "next_prerequisites": [
+    "Parent creates exact hash-bound completed bulk/cache input receipt under local_runs",
+    "Parent prepares real96-event selection/masks/geometry/query/cache snapshot before any channel/sample read",
+    "Independent nonproduction-import replay verifies selection/order/masks/envelopes/cache/request counts/bodies and all input pins",
+    "Parent promotes safe allowlist and pushes exact reviewed source/spec/protocol/tests",
+    "Parent creates private acquisition receipt after Git freeze binding exact plan/source/library/runtime/input hashes",
+    "Parent alone collects once under frozen caps; independent raw replay follows completed exit0 only"
+  ],
+  "parent_reported_completed_bulk_replay": {
+    "relative_path": "geonet_bulk_metadata/completed495_independent_verification.json",
+    "sha256": "015efef5400f43fcb086f200e956b12d10a6fbad5a67528d9daa48fc032f7503",
+    "verification_owner": "parent; no real bulk inputs read by this preparation agent"
+  },
+  "processing_files": {
+    "PROTOCOL_v1.md": "fe01742d90857d7ef785a55724eb1a8fa0587d85e9fe8b9ece764f653bad3f6d",
+    "counts.py": "d5c8d60b430c22f8dffa29444b577ad15c9bbd35e02c4c1dae019ef969b0bde7",
+    "dependencies.py": "245fe9c53dcad74b962eecfbfafc3506bf989bcb80d8aad7bcdfe2027419e49f",
+    "reviewed_dependencies.json": "3c2000f39251ce46467e7deafb2037240867175ffcf1a2ff578bfb7ecba0fe5b",
+    "screen.py": "9ad59d9e15d36a31277efd78e31f431d3e687c2d8841c9d2d4d90f51b7fd0f69",
+    "selection.py": "2aed2822f13d588dca54f91e63f94a69865c7c410429f854ade6ce8ac07613d8",
+    "specification.json": "b76bf6e20fdd46067bc7446f719fa6a4bf795a0d00a106a742ec6d77b639dfe6",
+    "test_counts.py": "6a106ddd61db5e60b431e37037396440be370adfc8546f25606aa0a981773d35",
+    "transport.py": "e690ef17a8f8583fcffd2dd85c84ebc11433e9f02e440cf4632995d38a1ea357"
+  },
+  "review_receipt": {
+    "bytes": 4025,
+    "relative_path": "review_receipt_final.json",
+    "sha256": "32cdbf32068078bc5d11c7535050e1a73a437ac2be977061aba5e22275c1c2f8"
+  },
+  "reviewed_dependencies": {
+    "adapter": {
+      "relative_path": "geonet_waveform_feasibility/audit.py",
+      "sha256": "8e30e415c9bed709c0f7e478bda221eaa4a75cf221a8388fcf900bf2e94a5543"
+    },
+    "core": {
+      "relative_path": "geonet_waveform_feasibility/core.py",
+      "sha256": "70c2a53c7beef5f1ddfae7d46e52bcdae97ee711cd10636da6250bd20ab9144e"
+    },
+    "dependency_lock": {
+      "relative_path": "geonet_waveform_feasibility/requirements.lock",
+      "sha256": "6cef9a3c43895141c72b5f9187d6b7e8491e0fd869ff52662d787ad8b309d56d"
+    },
+    "dependency_receipt": {
+      "relative_path": "geonet_waveform_feasibility/dependency_receipt.json",
+      "sha256": "14bfc6bc8088e578d0fdf2d76dad3e6fbec2a5e63e24ee4e91beac62e4f6ba21"
+    },
+    "downloader": {
+      "relative_path": "geonet_tail_census/census.py",
+      "sha256": "076c9fcb419b801c91fa95a01cec21f708284887f6dfae8e7878b513ba1780b8"
+    },
+    "transport": {
+      "relative_path": "geonet_bulk_metadata/transport.py",
+      "sha256": "0ddca9ccc4453f812342df9ac7dfe02ec06bceafb1818071004e9827e217b135"
+    },
+    "wheel_receipt": {
+      "relative_path": "geonet_waveform_feasibility/dependency_wheels_receipt.json",
+      "sha256": "ce9aaa5a1bb49f099fcdacc2e6f1a02abea65bc78730a22d714e388c14a8f63c"
+    }
+  },
+  "runtime_receipt": {
+    "bytes": 1229,
+    "relative_path": "runtime_receipt.json",
+    "sha256": "0e1fc459a6ed7b47e9788875ff5ed10b5eaa13e20b0635c98b88486ed980e984"
+  },
+  "source_frozen_after_first_clean_review": true,
+  "test_count": 52,
+  "tests_receipt": {
+    "bytes": 1666,
+    "relative_path": "tests_receipt_final.json",
+    "sha256": "52f88d9fdba7f7d4d778011416f815422eba8ad163cfab68af180e05b7347512"
+  },
+  "version": "geonet-counts-screen-preparation-v1"
+}

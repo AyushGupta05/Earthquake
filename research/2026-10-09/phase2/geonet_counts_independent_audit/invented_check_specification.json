@@ -1,0 +1,231 @@
+{
+  "cache_cases": [
+    {
+      "case": "broader_window",
+      "expected_waveform_hit": false
+    },
+    {
+      "case": "different_location",
+      "expected_waveform_hit": false
+    },
+    {
+      "case": "different_family",
+      "expected_waveform_hit": false
+    },
+    {
+      "case": "different_format",
+      "expected_waveform_hit": false
+    },
+    {
+      "case": "different_station",
+      "expected_waveform_hit": false
+    },
+    {
+      "case": "blank_extra_argument_or_duplicate_key",
+      "expected_waveform_hit": false
+    },
+    {
+      "case": "exact_original_GET_miniseed",
+      "expected_frozen_waveform_candidate": true,
+      "new_selection_method": "POST",
+      "original_method": "GET"
+    },
+    {
+      "case": "exact_response_level_XML",
+      "epoch_or_transfer_success_asserted": false,
+      "expected_channel_GET_suppressed": false,
+      "expected_separate_response_candidate": true
+    },
+    {
+      "case": "ordinary_failed_partial_body",
+      "existing_new_selection_retained": true,
+      "expected_cache_hit": false
+    },
+    {
+      "case": "incomplete_cache_run_or_changed_pins",
+      "expected_preparation_error": true,
+      "fallback_acquisition": false
+    },
+    {
+      "case": "duplicate_exact_evidence_kind",
+      "choose_first": false,
+      "expected_ambiguity_error": true
+    },
+    {
+      "case": "chosen_cache_later_decode_or_epoch_failure",
+      "expected_frozen_failure": true,
+      "fallback_acquisition": false
+    }
+  ],
+  "frozen_claim_limits": [
+    "No count-availability result",
+    "No real selection/cache decision",
+    "No response/epoch qualification",
+    "No operational picker or physical calibration evidence",
+    "No trainability floor or fitting authorization"
+  ],
+  "invented_batches": [
+    {
+      "ASCII_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "block": 0,
+      "empty_no_attempt": true,
+      "new_slots": 0,
+      "source_events": 16
+    },
+    {
+      "ASCII_body_sha256": "08caae8ff5ec535c555af69e4b628c322c16277e4da3d5da65e93b8599331bdf",
+      "block": 1,
+      "empty_no_attempt": false,
+      "new_slots": 11,
+      "source_events": 16
+    },
+    {
+      "ASCII_body_sha256": "3b61c550846a3084b6220988d94e69fa76da9058f16aeb2ac5941de76e3960e0",
+      "block": 2,
+      "empty_no_attempt": false,
+      "new_slots": 11,
+      "source_events": 16
+    },
+    {
+      "ASCII_body_sha256": "b4ea438af3ab63a5582229dce25b24fab728bf26a243f91160a1633860fe0f06",
+      "block": 3,
+      "empty_no_attempt": false,
+      "new_slots": 10,
+      "source_events": 16
+    },
+    {
+      "ASCII_body_sha256": "93dd8963cad781b94c96c644ca8f8850959ae33539ce08c17c27c812d3d32f04",
+      "block": 4,
+      "empty_no_attempt": false,
+      "new_slots": 11,
+      "source_events": 16
+    },
+    {
+      "ASCII_body_sha256": "3d413a62755f900cd70107573b47a9051d7b62614f94365e28ca4b33146aa659",
+      "block": 5,
+      "empty_no_attempt": false,
+      "new_slots": 11,
+      "source_events": 16
+    }
+  ],
+  "invented_canonical_envelope": {
+    "channel": "BH?",
+    "endtime": "2020-01-01T00:00:05.123456Z",
+    "location": "--",
+    "network": "NZ",
+    "starttime": "2019-12-31T23:59:55.123456Z",
+    "station": "AAA"
+  },
+  "invented_roster": {
+    "expected_candidate_partition_counts": {
+      "dev2015_2017": 12,
+      "test2018_2024": 12,
+      "train2003_2014": 72
+    },
+    "expected_first3_query_order_invented_ids": [
+      "INVENTED_T_0_04",
+      "INVENTED_H_45",
+      "INVENTED_L_2_2_21"
+    ],
+    "expected_query_order_utf8_final_newline_sha256": "b9ebb657d5433217671cb6b39c4a9dc6c6f627ae70faa64a2ebf6412b6ae27a8",
+    "expected_selected_counts": {
+      "combined": 96,
+      "high": 60,
+      "lower": 30,
+      "midtail": 6
+    },
+    "expected_selected_set_utf8_sorted_final_newline_sha256": "85a8fcb2fcec57cde1d4b3b4d2aae975f5f9dc83c8764a2e53636f4f2c460419",
+    "high_generator": "INVENTED_H_{index:02d}; all60 in invented TRAIN atMw6.25, not real allocation",
+    "input_counts": {
+      "combined": 495,
+      "lower": 346,
+      "tail": 149
+    },
+    "lower_generator": "INVENTED_L_{partition_index}_{band_index}_{index:02d}; 10 DEV<3.5, otherwise24 eachcell",
+    "midtail_generator": "INVENTED_T_{partition_index}_{index:02d};30/30/29 atMw5.75"
+  },
+  "invented_station_clock": {
+    "AAA_exact_time_tie_candidates": [
+      {
+        "channel": "HHZ",
+        "location": "01",
+        "pick_id": "INVENTED_PICK_A0"
+      },
+      {
+        "channel": "BHE",
+        "location": "",
+        "pick_id": "INVENTED_PICK_A2"
+      },
+      {
+        "channel": "BHE",
+        "location": "",
+        "pick_id": "INVENTED_PICK_A1"
+      }
+    ],
+    "T0": "2020-01-01T00:00:00.123456Z",
+    "cap_fixture": "S01..S12 at10,000..120,000microseconds; first8 only; engineering failures never openS09",
+    "empty_pick_fixture": "Selected source denominator retained with all3empty masks and no union",
+    "expected_AAA_tie_pick": "INVENTED_PICK_A1",
+    "expected_masks": {
+      "1": [
+        "AAA",
+        "BBB",
+        "CCC"
+      ],
+      "3": [
+        "AAA",
+        "BBB",
+        "CCC",
+        "DDD",
+        "EEE"
+      ],
+      "5": [
+        "AAA",
+        "BBB",
+        "CCC",
+        "DDD",
+        "EEE",
+        "FFF",
+        "GGG"
+      ]
+    },
+    "expected_union_station_count": 7,
+    "future_addition_earlier_masks_unchanged": [
+      1,
+      3
+    ],
+    "future_arrival_added_microseconds": 3500000,
+    "station_offset_microseconds": {
+      "AAA": 0,
+      "BBB": 0,
+      "CCC": 999999,
+      "DDD": 1000000,
+      "EEE": 2999999,
+      "FFF": 3000000,
+      "GGG": 4999999,
+      "HHH": 5000000
+    },
+    "unqueryable_fixture": "@BAD at5000microseconds consumes a cap slot; leaves7queryable and no replacement"
+  },
+  "production_contract": {
+    "all_high_tail": 60,
+    "arrival_cap": 8,
+    "blocks": 6,
+    "each_lower_cell": 2,
+    "each_midtail_partition": 2,
+    "events": 96,
+    "horizons": [
+      1,
+      3,
+      5
+    ],
+    "no_new_gate": true,
+    "no_replacement": true,
+    "prebuffer": 5,
+    "source_events_per_block": 16,
+    "wave_union_horizon": 5
+  },
+  "scope": "Invented source selection, timestamps, masks, canonical queries, provenance states and batches only; no real roster or requests.",
+  "source_advisory": "Default parse_qs drops blank values; independent exact-key/value comparison preserves them. Parent notified before final freeze.",
+  "version": "geonet-counts-independent-invented-check-specification-v1"
+}

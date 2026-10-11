@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "Stop incomplete when a frozen cache checksum no longer matches",
+      "body": "If a cached waveform changes or disappears after validation, the pin check raises an ordinary exception that is caught here and converted into an engineering failure. The worker subsequently sets completed=True, and the summary permits scientific interpretation. Cached response pin failures are similarly swallowed. This violates the requirement that incomplete pins prohibit completion and can turn broken provenance into apparent count unavailability. Propagate pin failures as a run-level incomplete condition while retaining ordinary decode/epoch failures without refetch.",
+      "priority": "P1",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "counts.py",
+        "line": 226
+      }
+    },
+    {
+      "title": "Bind the cache request ledger to its completed acquisition manifest",
+      "body": "The supplied requests file is checked against the new input receipt, but never against the original manifest's requests.json member pin. Its path can also belong to another run. Consequently, a changed or mixed ledger can label an originally failed request as successful while the frozen URL and raw-body pins still match; cached_candidates then accepts it and suppresses the new waveform selection. Verify the request ledger's bytes/hash against the completed acquisition manifest before trusting its status and HTTP fields.",
+      "priority": "P2",
+      "confidence": 0.94,
+      "category": "bug",
+      "code_location": {
+        "file_path": "counts.py",
+        "line": 106
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Source inspection found two cache-provenance defects: broken frozen cache pins can still produce a completed scientific summary, and cache success claims are not bound to the original acquisition's request-ledger pin. No tests or acquisition commands were executed.",
+  "overall_confidence": 0.95
+}

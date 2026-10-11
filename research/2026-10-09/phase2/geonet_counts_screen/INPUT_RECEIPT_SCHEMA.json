@@ -1,0 +1,44 @@
+{
+  "actual_input_receipt_not_created": true,
+  "cache_rule": "No matching-success decision may depend on sample/channel qualification. Only exact frozen envelopes plus successful body/member/request/source/runtime/receipt pins; failed cached qualification never refetches.",
+  "input_template": {
+    "bulk_files": {
+      "local_runs/collection_final/manifest.json": "PARENT_VERIFIED_SHA256",
+      "local_runs/collection_final/outcomes.json": "PARENT_VERIFIED_SHA256",
+      "local_runs/collection_final/requests.json": "PARENT_VERIFIED_SHA256",
+      "local_runs/collection_final/summary.json": "PARENT_VERIFIED_SHA256",
+      "local_runs/parent_receipt_final.json": "10d21f7f25ddecdf13e2929417c86d9483efc8caddea96fe8521c38ca78c9acf",
+      "local_runs/planned_inputs_final.json": "d849d7751c74a3bbb7f104b3385f8f91bbc078c4d3d5e1e229836bad98096a3d"
+    },
+    "bulk_gate_passed": false,
+    "bulk_independent_replay_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_bulk_metadata/completed495_independent_verification.json",
+    "bulk_independent_replay_sha256": "015efef5400f43fcb086f200e956b12d10a6fbad5a67528d9daa48fc032f7503",
+    "cache": null,
+    "completed_bulk_independently_replayed": false,
+    "version": "geonet-counts-selection-inputs-v1"
+  },
+  "optional_cache_schema": {
+    "files": {
+      "manifest": {
+        "path": "ABSOLUTE_ORIGINAL_LOCAL_RUNS_FILE",
+        "sha256": "PARENT_VERIFIED_SHA256"
+      },
+      "parent_receipt": {
+        "path": "ABSOLUTE_ORIGINAL_LOCAL_RUNS_FILE",
+        "sha256": "PARENT_VERIFIED_SHA256"
+      },
+      "plan": {
+        "path": "ABSOLUTE_ORIGINAL_LOCAL_RUNS_FILE",
+        "sha256": "PARENT_VERIFIED_SHA256"
+      },
+      "requests": {
+        "path": "ABSOLUTE_ORIGINAL_LOCAL_RUNS_FILE",
+        "sha256": "PARENT_VERIFIED_SHA256"
+      }
+    },
+    "root": "ABSOLUTE_COMPLETED_OLD_AUDIT_DIRECTORY_UNDER_geonet_waveform_feasibility/local_runs"
+  },
+  "prerequisite": "Parent verifies exact completed bulk independent replay all_checks_pass and unchanged312/277/per-cell gate before filling hashes/setting booleans true. Keep the final receipt under this folder local_runs.",
+  "reported_parent_gate": "Parent independently verified completed495 metadata gate and copied byte-identical aggregate verification; this template is not an input receipt and no actual input was read here.",
+  "status": "public_template_only_not_a_private_input_or_authorization_receipt"
+}

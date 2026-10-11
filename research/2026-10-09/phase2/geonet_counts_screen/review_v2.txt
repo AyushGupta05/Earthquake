@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Propagate allocation failures as run-level resource interruptions
+counts.py:242
+If ObsPy raises MemoryError during wave_decode(), this catch treats it as an ordinary decoding failure, leaves native unset, and marks the affected targets unresolved_engineering. The worker can then finish with completed=True and scientific_interpretation_allowed=True. The declared sample cap does not guarantee allocation success because decoding and component analysis also allocate temporary objects. Similar catches in header decoding and screen.analyze() swallow MemoryError. Propagate allocation failures through these paths to the run-level incomplete handler so resource exhaustion cannot become completed scientific absence.
+
+overall: patch is incorrect (0.93)
+The frozen selection and cache provenance checks follow the stated rules, but allocation failures can still be converted into completed engineering-unavailability results. This violates the required distinction between resource interruption and scientific absence. Review used source inspection only; no tests or acquisition code were executed.

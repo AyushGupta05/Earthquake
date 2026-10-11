@@ -1,0 +1,18 @@
+{
+  "creation_rule": "Parent alone fills this after exact reviewed source/spec/tests and actual input/plan independent replay, then separate pushed Git freeze. Private receipt remains under this folder local_runs; hash-bound exact plan recomputation is required before any request.",
+  "receipt_template": {
+    "acquisition_authorized": false,
+    "bulk_input_pins": "COPY_EXACT_PLAN_FIELD",
+    "bulk_replay_sha256": "COPY_EXACT_PLAN_FIELD",
+    "code_only_review_clean": false,
+    "git_freeze_commit": "PARENT_PUSHED_40_HEX_COMMIT",
+    "input_receipt_sha256": "COPY_EXACT_PLAN_FIELD",
+    "plan_sha256": "PARENT_FROZEN_PLAN_SHA256",
+    "processing_files": "COPY_EXACT_PLAN_FIELD",
+    "reviewed_dependencies": "COPY_EXACT_PLAN_FIELD",
+    "runtime": "COPY_EXACT_PLAN_FIELD",
+    "version": "geonet-counts-parent-receipt-v1"
+  },
+  "status": "public_schema_only_not_authorization",
+  "version": "geonet-counts-parent-receipt-schema-v1"
+}

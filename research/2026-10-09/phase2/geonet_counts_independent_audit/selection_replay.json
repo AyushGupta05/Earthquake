@@ -1,0 +1,515 @@
+{
+  "AWS_actions": 0,
+  "all_checks_pass": true,
+  "cache_aggregate": {
+    "original_ledger_entries": 34,
+    "response_body_bytes": 426826,
+    "response_hits": 9,
+    "successful_nonselected_nonhits": 14,
+    "unsuccessful_or_empty_retained_nonhits": 2,
+    "waveform_body_bytes": 102912,
+    "waveform_hits": 9
+  },
+  "check_assertions": 3812,
+  "checks_by_category": {
+    "all495_independent_raw_base_exact": 495,
+    "all495_outcome_source_denominator": 1,
+    "all60_tail_allocation": 1,
+    "all96_complete_event_records": 96,
+    "all96_events_exact": 1,
+    "all_channel_queries_exact": 411,
+    "all_six_wave_blocks_exact": 6,
+    "all_six_wave_body_hashes_exact": 6,
+    "bulk_completed_gate_unchanged": 1,
+    "bulk_independent_replay_stays_original": 1,
+    "bulk_plan_pins_binding": 1,
+    "bulk_receipt_manifest_plan_binding": 1,
+    "cache_all_original_member_pins": 36,
+    "cache_body_path_scope": 18,
+    "cache_current_reviewed_dependencies_binding": 1,
+    "cache_manifest_ledger_same_root": 1,
+    "cache_original_ledger_member_binding": 1,
+    "cache_original_parent_freeze": 1,
+    "cache_original_plan_receipt_binding": 1,
+    "cache_provenance_path_scope": 4,
+    "cache_provenance_pin": 4,
+    "cache_root_exact_original_scope": 1,
+    "cache_safe_manifest_path": 36,
+    "clean_v4_review_receipt": 1,
+    "complete_ordered_channel_query_plan": 1,
+    "complete_ordered_wave_request_plan": 1,
+    "completed346_all_member_pins": 350,
+    "completed495_independent_binding": 1,
+    "completed_input_authorization_binding": 1,
+    "completed_original_cache": 1,
+    "counts_plan_input_binding": 1,
+    "current_final_processing_pin": 9,
+    "enough_lower_cell_candidates": 15,
+    "enough_tail_cell_candidates": 3,
+    "event_field_Mw_band": 96,
+    "event_field_P_status": 96,
+    "event_field_candidate_calendar_partition": 96,
+    "event_field_current_station_masks": 96,
+    "event_field_event_id": 96,
+    "event_field_incomplete_associated_P_structure": 96,
+    "event_field_mw": 96,
+    "event_field_t0_ns": 96,
+    "event_field_targets": 96,
+    "event_station_denominators": 1,
+    "exact96_roster_and_query_order": 1,
+    "exact96_unique_selected_roster": 1,
+    "exact_417_new_request_accounting": 1,
+    "exact_44_public_members": 1,
+    "exact_cache_configuration": 1,
+    "exact_cached_body_member_ledger_pins": 18,
+    "exact_dependency_table": 1,
+    "exact_event_order_hash": 1,
+    "exact_four_cache_provenance_members": 1,
+    "exact_parent_input_pin": 1,
+    "exact_parent_plan_pin": 1,
+    "exact_runtime_binary": 1,
+    "exact_runtime_fields": 1,
+    "exact_safe_public_manifest_pin": 1,
+    "exact_semantic_cache_decisions": 1,
+    "exact_specification": 1,
+    "final_runtime_receipt_review_test_binding": 1,
+    "focused_synthetic_test_receipt": 1,
+    "frozen_bulk_sample_spec_pin": 1,
+    "independently_reconstructed_frozen346": 1,
+    "installed_metadata_version_location": 23,
+    "metadata_safe_member_path": 508,
+    "nine_processing_source_files": 1,
+    "no_ambiguous_exact_cache_candidates": 18,
+    "original149_all_member_pins": 158,
+    "original149_full_base_exact": 149,
+    "original_cache_source_bindings": 1,
+    "original_census_completed_compatible_UTC": 1,
+    "original_full_CMT_eligible_frame": 1,
+    "public_member_pin": 44,
+    "review_dependency_binding": 1,
+    "review_evidence_pin": 4,
+    "review_tests_current_source_binding": 1,
+    "runtime_receipt_binding": 1,
+    "safe_public_member_relative": 44,
+    "same_raw_accepted_subset_T0": 96,
+    "seven_original_census_input_pins": 7,
+    "seven_reviewed_dependency_pins": 7,
+    "six_completed_bulk_input_pins": 6,
+    "source495_labels_membership": 1,
+    "strict_mask_1": 96,
+    "strict_mask_3": 96,
+    "strict_mask_5": 96,
+    "successful_cache_original_request_binding": 32,
+    "test_evidence_pin": 1,
+    "unique_original_cache_queries": 1,
+    "wave_selection_body_ascii": 6,
+    "wave_targets_partition_cache_and_new": 1
+  },
+  "claim_limits": [
+    "Selection/request/cache preparation only; no new acquisition was launched by this replay.",
+    "Accepted-subset retrospective clocks remain unchanged; incomplete structure can conceal earlier picks.",
+    "No waveforms or response inventories decoded; cached body hashes do not establish count or physical prefix availability.",
+    "No operational picker/telemetry latency, trainability, method gain, novelty or benchmark superiority established."
+  ],
+  "decoded_sample_arrays": 0,
+  "event_counts_by_P_status": {
+    "ok": 96
+  },
+  "event_denominator": 96,
+  "event_order_sha256": "f9255ff9cd0ade1d4e3d07ea7625df9dc1a5139d95367e6808df64d6a1d7c404",
+  "events_with_incomplete_associated_P_structure": 10,
+  "events_without_targets": 0,
+  "exact_deadline_representative_pick_counts": {
+    "1": 1,
+    "3": 0,
+    "5": 0
+  },
+  "fits": 0,
+  "input_sha256": "23f39fb2f8222ee7b57c82ccdd502af8f8bdbaed6d8cfdbfd28e158b07473800",
+  "mismatch_counts": {},
+  "new_channel_GETs": 411,
+  "new_network_requests": 0,
+  "new_request_count": 417,
+  "nonempty_waveform_POSTs": 6,
+  "plan_bytes": 454239,
+  "plan_sha256": "491fdf5366c94e7dc4f3cc029b3d4493a24c521db79a2662bc0734d26fff6be6",
+  "production_imports": 0,
+  "queryable_station_targets": 411,
+  "raw_metadata_bytes": 107105164,
+  "raw_metadata_reparsed": 495,
+  "source_independent": true,
+  "source_panels": [
+    {
+      "Mw_band": "<3.5",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 6,
+        "3": 10,
+        "5": 10
+      },
+      "station_targets": 10
+    },
+    {
+      "Mw_band": "[3.5,4)",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 10,
+        "3": 16,
+        "5": 16
+      },
+      "station_targets": 16
+    },
+    {
+      "Mw_band": "[4,4.5)",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 4,
+        "3": 8,
+        "5": 14
+      },
+      "station_targets": 14
+    },
+    {
+      "Mw_band": "[4.5,5)",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 6,
+        "3": 16,
+        "5": 16
+      },
+      "station_targets": 16
+    },
+    {
+      "Mw_band": "[5,5.5)",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 6,
+        "3": 8,
+        "5": 11
+      },
+      "station_targets": 11
+    },
+    {
+      "Mw_band": "[5.5,6)",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 2,
+        "3": 3,
+        "5": 4
+      },
+      "station_targets": 4
+    },
+    {
+      "Mw_band": "[6,7)",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 21,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 57,
+        "3": 72,
+        "5": 86
+      },
+      "station_targets": 86
+    },
+    {
+      "Mw_band": ">=7",
+      "candidate_calendar_partition": "train2003_2014",
+      "events": 8,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 11,
+        "3": 20,
+        "5": 22
+      },
+      "station_targets": 22
+    },
+    {
+      "Mw_band": "<3.5",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 2,
+        "3": 9,
+        "5": 14
+      },
+      "station_targets": 14
+    },
+    {
+      "Mw_band": "[3.5,4)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 4,
+        "3": 6,
+        "5": 10
+      },
+      "station_targets": 10
+    },
+    {
+      "Mw_band": "[4,4.5)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 3,
+        "3": 5,
+        "5": 10
+      },
+      "station_targets": 10
+    },
+    {
+      "Mw_band": "[4.5,5)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 2,
+        "3": 2,
+        "5": 4
+      },
+      "station_targets": 4
+    },
+    {
+      "Mw_band": "[5,5.5)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 3,
+        "3": 6,
+        "5": 10
+      },
+      "station_targets": 10
+    },
+    {
+      "Mw_band": "[5.5,6)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 2,
+        "3": 3,
+        "5": 6
+      },
+      "station_targets": 6
+    },
+    {
+      "Mw_band": "[6,7)",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 10,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 14,
+        "3": 25,
+        "5": 38
+      },
+      "station_targets": 38
+    },
+    {
+      "Mw_band": ">=7",
+      "candidate_calendar_partition": "dev2015_2017",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 2,
+        "3": 2,
+        "5": 6
+      },
+      "station_targets": 6
+    },
+    {
+      "Mw_band": "<3.5",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 1,
+      "selected_current_station_totals": {
+        "1": 5,
+        "3": 10,
+        "5": 11
+      },
+      "station_targets": 11
+    },
+    {
+      "Mw_band": "[3.5,4)",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 3,
+        "3": 3,
+        "5": 8
+      },
+      "station_targets": 8
+    },
+    {
+      "Mw_band": "[4,4.5)",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 2,
+      "selected_current_station_totals": {
+        "1": 8,
+        "3": 11,
+        "5": 16
+      },
+      "station_targets": 16
+    },
+    {
+      "Mw_band": "[4.5,5)",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 0,
+      "selected_current_station_totals": {
+        "1": 4,
+        "3": 7,
+        "5": 10
+      },
+      "station_targets": 10
+    },
+    {
+      "Mw_band": "[5,5.5)",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 1,
+      "selected_current_station_totals": {
+        "1": 5,
+        "3": 10,
+        "5": 10
+      },
+      "station_targets": 10
+    },
+    {
+      "Mw_band": "[5.5,6)",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 2,
+      "incomplete_associated_P_structure_events": 2,
+      "selected_current_station_totals": {
+        "1": 3,
+        "3": 9,
+        "5": 16
+      },
+      "station_targets": 16
+    },
+    {
+      "Mw_band": "[6,7)",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 14,
+      "incomplete_associated_P_structure_events": 3,
+      "selected_current_station_totals": {
+        "1": 32,
+        "3": 39,
+        "5": 43
+      },
+      "station_targets": 43
+    },
+    {
+      "Mw_band": ">=7",
+      "candidate_calendar_partition": "test2018_2024",
+      "events": 5,
+      "incomplete_associated_P_structure_events": 1,
+      "selected_current_station_totals": {
+        "1": 8,
+        "3": 17,
+        "5": 20
+      },
+      "station_targets": 20
+    }
+  ],
+  "station_denominator": 411,
+  "stations_with_same_timestamp_representative_ties": 0,
+  "stdlib_only": true,
+  "strict_deadline_cap_histograms": {
+    "1": {
+      "1": 47,
+      "2": 30,
+      "3": 8,
+      "4": 3,
+      "6": 2,
+      "7": 1,
+      "8": 5
+    },
+    "3": {
+      "1": 24,
+      "2": 26,
+      "3": 16,
+      "4": 6,
+      "5": 5,
+      "6": 3,
+      "7": 2,
+      "8": 14
+    },
+    "5": {
+      "1": 8,
+      "2": 31,
+      "3": 12,
+      "4": 9,
+      "6": 8,
+      "7": 3,
+      "8": 25
+    }
+  },
+  "strict_deadline_station_totals": {
+    "1": 202,
+    "3": 317,
+    "5": 411
+  },
+  "unqueryable_station_targets": 0,
+  "version": "geonet-counts-independent-selection-replay-v1",
+  "wave_blocks": [
+    {
+      "index": 0,
+      "post_body_bytes": 3251,
+      "post_body_sha256": "a63ef80edb6573d86111db7a7f38ca07da7c9bb684ee48760489685af86d9fac",
+      "source_events": 16,
+      "uncached_targets": 46
+    },
+    {
+      "index": 1,
+      "post_body_bytes": 5025,
+      "post_body_sha256": "f8e96577658d35ba0b7e52ecefcc944f4233f5cc47a40ee81752501d18dbeea0",
+      "source_events": 16,
+      "uncached_targets": 71
+    },
+    {
+      "index": 2,
+      "post_body_bytes": 3960,
+      "post_body_sha256": "15ba1b0dd67d41ba231033762cc6b4bbc08f33184ad70513eca8ade88f2b1721",
+      "source_events": 16,
+      "uncached_targets": 56
+    },
+    {
+      "index": 3,
+      "post_body_bytes": 5232,
+      "post_body_sha256": "f9b3c69cdf3d2236fdd655c05fc42ae85335029755bcdcf7224fe8223ff19ba9",
+      "source_events": 16,
+      "uncached_targets": 74
+    },
+    {
+      "index": 4,
+      "post_body_bytes": 6305,
+      "post_body_sha256": "7df034bc91a7911965010425547d42c2f7fd973831d10506b0a3ad3be4f620d0",
+      "source_events": 16,
+      "uncached_targets": 89
+    },
+    {
+      "index": 5,
+      "post_body_bytes": 4666,
+      "post_body_sha256": "1da047f46d15698ae617a69ac0265211d7b6ccb0f87ffe9f341f250779845923",
+      "source_events": 16,
+      "uncached_targets": 66
+    }
+  ]
+}

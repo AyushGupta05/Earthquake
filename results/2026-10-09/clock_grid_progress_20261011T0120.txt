@@ -1,0 +1,235 @@
+{
+  "observation_utc": "2026-10-11T01:17:24.512262+00:00",
+  "commands": [
+    {
+      "command": [
+        "systemctl",
+        "show",
+        "eew-clock-grid-af88e126",
+        "--property=ActiveState,SubState,MainPID,RuntimeMaxUSec,TimeoutStopUSec,MemoryMax,KillMode"
+      ],
+      "returncode": 0,
+      "stdout": "TimeoutStopUSec=2min\nRuntimeMaxUSec=11h 4min\nMainPID=4966\nMemoryMax=12884901888\nKillMode=control-group\nActiveState=active\nSubState=running\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "findmnt",
+        "-J",
+        "/mnt/eew-data"
+      ],
+      "returncode": 0,
+      "stdout": "{\n   \"filesystems\": [\n      {\n         \"target\": \"/mnt/eew-data\",\n         \"source\": \"/dev/nvme0n1p1[/home/ec2-user/eew-work/data]\",\n         \"fstype\": \"xfs\",\n         \"options\": \"ro,nosuid,nodev,noatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,sunit=1024,swidth=1024,noquota\"\n      }\n   ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=name,utilization.gpu,memory.used",
+        "--format=csv,noheader"
+      ],
+      "returncode": 0,
+      "stdout": "NVIDIA A10G, 52 %, 21961 MiB\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "df",
+        "-h",
+        "/home/ec2-user/eew-work"
+      ],
+      "returncode": 0,
+      "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/nvme0n1p1   80G   62G   19G  77% /\n",
+      "stderr": ""
+    }
+  ],
+  "shutdown_scheduled": "USEC=1791715821004959\nWARN_WALL=1\nMODE=poweroff\nUID=0\nWALL_MESSAGE=EEW clock-control maximum12h credit-funded window\n",
+  "completion_receipts": {
+    "source_uniform_20261011/FIT_COMPLETE.json": {
+      "completed_epochs": 6,
+      "files_sha256": {
+        "INIT.json": "69d29dd23b2336d35a8b5a0d955ff8af9495655973fff6bb23d3b6c7888b4f9f",
+        "history.json": "7bfeea4519a13fa4f046fd0d1fc54ad01ea14532d9ee1367ad267bde2d51d4c9",
+        "latest.pth": "350f5e1be0dff5bcef2f11cee89831865e1dc0d47307c98449d35eaa4a5005bd",
+        "model.pth": "ef96d20dc560dc19c1b91d647d590a3b6196c794acab0537ed7dfdd5a3af4efe"
+      },
+      "identity": {
+        "arm": "source_uniform",
+        "baseline_artifact_sha256": {
+          "cache": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb",
+          "checkpoint": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+          "dataset_manifest": "4916f30c90a4b3bc6351edadb0c1a720284a1550d95635564d3cbd51d09a892c",
+          "history": "efc390ed56a930fa128eab110ddb636f5ff26b70439d03ec2fb82f79f83007b9",
+          "metadata": "8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1",
+          "metadata_manifest": "ac7c0b691b5ad7f15013befcedbe38c36e2631db20c906aa95149010d8806ea7",
+          "pretrain_history": "457afa2b45caf69bde92fff7082c2330355864fd92137d570fc639d17633f1a1",
+          "run": "4915819dfed00dab2ea4b1fa5ae1e8bdeb63f2f1f2d3b43edbadd0ea8b6981fe",
+          "split_manifest": "86090ec6692b052f32059f15dfd467afcead7063761c605ad9047013e64f9276"
+        },
+        "baseline_initial_state_sha256": "4acb798e74e7263b3a570c01008f66271440e9d951bb012448ddc359f567143e",
+        "batch_size": 64,
+        "epochs": 6,
+        "fit_ids_sha256": "1b9ad34f6e7c976311a8edd07e24cd9ef075f579754306b4092bb6af312d7c14",
+        "optimizer": {
+          "amsgrad": false,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08,
+          "gradient_clip_global_norm": 1,
+          "learning_rate": 9e-06,
+          "name": "torch.optim.Adam",
+          "schedule": "none",
+          "source_relation": "1e-4 * 0.3**2; not inferred actual epoch97 LR",
+          "weight_decay": 0
+        },
+        "protocol_sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+        "runtime": {
+          "cublas_workspace_config": ":4096:8",
+          "cuda": "12.9",
+          "cuda_matmul_allow_tf32": false,
+          "cudnn": 91002,
+          "cudnn_allow_tf32": true,
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "deterministic_algorithms": true,
+          "float32_matmul_precision": "highest",
+          "threads": 2,
+          "torch": "2.8.0+cu129"
+        },
+        "seed": 20261011,
+        "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f"
+      }
+    },
+    "discrete_1_3_5_20261011/FIT_COMPLETE.json": {
+      "completed_epochs": 6,
+      "files_sha256": {
+        "INIT.json": "03a6b7b8e67c5fd5e91af7dc7fdb63720e892c2be070146106f6a88c35b9402f",
+        "history.json": "48ae72943ca23cfe07a6d668f92bb9c821f39f003550f96f920aedea4efa856e",
+        "latest.pth": "80d14ed15545a8934f89f1a605939639461de10ae111bf8b9b2a4f45e38a7418",
+        "model.pth": "e5a687465c82ace4242262f40c3632168d953e996ed5fc9b2b5255ce41866eb7"
+      },
+      "identity": {
+        "arm": "discrete_1_3_5",
+        "baseline_artifact_sha256": {
+          "cache": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb",
+          "checkpoint": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+          "dataset_manifest": "4916f30c90a4b3bc6351edadb0c1a720284a1550d95635564d3cbd51d09a892c",
+          "history": "efc390ed56a930fa128eab110ddb636f5ff26b70439d03ec2fb82f79f83007b9",
+          "metadata": "8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1",
+          "metadata_manifest": "ac7c0b691b5ad7f15013befcedbe38c36e2631db20c906aa95149010d8806ea7",
+          "pretrain_history": "457afa2b45caf69bde92fff7082c2330355864fd92137d570fc639d17633f1a1",
+          "run": "4915819dfed00dab2ea4b1fa5ae1e8bdeb63f2f1f2d3b43edbadd0ea8b6981fe",
+          "split_manifest": "86090ec6692b052f32059f15dfd467afcead7063761c605ad9047013e64f9276"
+        },
+        "baseline_initial_state_sha256": "4acb798e74e7263b3a570c01008f66271440e9d951bb012448ddc359f567143e",
+        "batch_size": 64,
+        "epochs": 6,
+        "fit_ids_sha256": "1b9ad34f6e7c976311a8edd07e24cd9ef075f579754306b4092bb6af312d7c14",
+        "optimizer": {
+          "amsgrad": false,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08,
+          "gradient_clip_global_norm": 1,
+          "learning_rate": 9e-06,
+          "name": "torch.optim.Adam",
+          "schedule": "none",
+          "source_relation": "1e-4 * 0.3**2; not inferred actual epoch97 LR",
+          "weight_decay": 0
+        },
+        "protocol_sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+        "runtime": {
+          "cublas_workspace_config": ":4096:8",
+          "cuda": "12.9",
+          "cuda_matmul_allow_tf32": false,
+          "cudnn": 91002,
+          "cudnn_allow_tf32": true,
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "deterministic_algorithms": true,
+          "float32_matmul_precision": "highest",
+          "threads": 2,
+          "torch": "2.8.0+cu129"
+        },
+        "seed": 20261011,
+        "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f"
+      }
+    },
+    "source_uniform_20261012/FIT_COMPLETE.json": {
+      "completed_epochs": 6,
+      "files_sha256": {
+        "INIT.json": "36a45b125b731ab76f1917c8b21554f80d3dd95e97b834bfd62ee9399fe96132",
+        "history.json": "2ee07c641ebaceecde38bf2268334bfa08045584424a1907ce9bbc456e7d3025",
+        "latest.pth": "5d3f126581f6f9ee6d25db774221a59d69c9d32321b96aefeb8999731db9f952",
+        "model.pth": "c73e27de06171045ff06492495c363938b11be783db0902f7668539c9fcb291e"
+      },
+      "identity": {
+        "arm": "source_uniform",
+        "baseline_artifact_sha256": {
+          "cache": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb",
+          "checkpoint": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+          "dataset_manifest": "4916f30c90a4b3bc6351edadb0c1a720284a1550d95635564d3cbd51d09a892c",
+          "history": "efc390ed56a930fa128eab110ddb636f5ff26b70439d03ec2fb82f79f83007b9",
+          "metadata": "8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1",
+          "metadata_manifest": "ac7c0b691b5ad7f15013befcedbe38c36e2631db20c906aa95149010d8806ea7",
+          "pretrain_history": "457afa2b45caf69bde92fff7082c2330355864fd92137d570fc639d17633f1a1",
+          "run": "4915819dfed00dab2ea4b1fa5ae1e8bdeb63f2f1f2d3b43edbadd0ea8b6981fe",
+          "split_manifest": "86090ec6692b052f32059f15dfd467afcead7063761c605ad9047013e64f9276"
+        },
+        "baseline_initial_state_sha256": "4acb798e74e7263b3a570c01008f66271440e9d951bb012448ddc359f567143e",
+        "batch_size": 64,
+        "epochs": 6,
+        "fit_ids_sha256": "1b9ad34f6e7c976311a8edd07e24cd9ef075f579754306b4092bb6af312d7c14",
+        "optimizer": {
+          "amsgrad": false,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08,
+          "gradient_clip_global_norm": 1,
+          "learning_rate": 9e-06,
+          "name": "torch.optim.Adam",
+          "schedule": "none",
+          "source_relation": "1e-4 * 0.3**2; not inferred actual epoch97 LR",
+          "weight_decay": 0
+        },
+        "protocol_sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+        "runtime": {
+          "cublas_workspace_config": ":4096:8",
+          "cuda": "12.9",
+          "cuda_matmul_allow_tf32": false,
+          "cudnn": 91002,
+          "cudnn_allow_tf32": true,
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "deterministic_algorithms": true,
+          "float32_matmul_precision": "highest",
+          "threads": 2,
+          "torch": "2.8.0+cu129"
+        },
+        "seed": 20261012,
+        "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f"
+      }
+    }
+  },
+  "completed_fit_count": 3,
+  "four_fit_barrier_passed": false,
+  "grid_complete_exists": false,
+  "recent_log_lines": [
+    "{\"stage\": \"fit_first100\", \"arm\": \"source_uniform\", \"seed\": 20261012, \"epoch\": 5, \"seconds\": 42.32383476099949}",
+    "{\"stage\": \"fit_epoch\", \"key\": \"source_uniform_20261012\", \"epoch\": 5, \"seconds\": 376.18194180699993, \"loss\": -0.6686373681369716}",
+    "{\"stage\": \"fit_first100\", \"arm\": \"source_uniform\", \"seed\": 20261012, \"epoch\": 6, \"seconds\": 42.07551728300041}",
+    "{\"stage\": \"fit_epoch\", \"key\": \"source_uniform_20261012\", \"epoch\": 6, \"seconds\": 376.98960016099954, \"loss\": -0.6706985895452631}",
+    "{\"stage\": \"fit_first100\", \"arm\": \"discrete_1_3_5\", \"seed\": 20261012, \"epoch\": 1, \"seconds\": 41.931955284999276}",
+    "{\"stage\": \"fit_epoch\", \"key\": \"discrete_1_3_5_20261012\", \"epoch\": 1, \"seconds\": 375.3045002959998, \"loss\": 0.017423969495199688}",
+    "{\"stage\": \"fit_first100\", \"arm\": \"discrete_1_3_5\", \"seed\": 20261012, \"epoch\": 2, \"seconds\": 41.90231067900004}",
+    "{\"stage\": \"fit_epoch\", \"key\": \"discrete_1_3_5_20261012\", \"epoch\": 2, \"seconds\": 375.6090575970002, \"loss\": 0.0128091618597606}",
+    "{\"stage\": \"fit_first100\", \"arm\": \"discrete_1_3_5\", \"seed\": 20261012, \"epoch\": 3, \"seconds\": 41.64263615700111}",
+    "{\"stage\": \"fit_epoch\", \"key\": \"discrete_1_3_5_20261012\", \"epoch\": 3, \"seconds\": 375.2053142799996, \"loss\": 0.00631644650207017}"
+  ]
+}

@@ -1,0 +1,57 @@
+# Independent counts-screen selection replay
+
+This is a source-only preparation plan. No actual bulk outcome row, private counts input receipt/plan, cached XML/miniSEED, response inventory or new acquisition was read for this preparation. Source hashes captured here are context at read time, **not** the final reviewed production freeze. The parent will supply the final private plan and exact pins after clean review. No real selection, station total or cache-hit result is claimed yet.
+
+The contract is [PROTOCOL_v1.md](../geonet_counts_screen/PROTOCOL_v1.md) and [specification.json](../geonet_counts_screen/specification.json). This audit adds no gate, exclusion, replacement, family search, fit or acquisition. The accompanying invented_check_specification.json freezes invented expected cases before access to the real selected roster. One-off standard-library arithmetic verifies those invented cases; no production module is imported and no reusable executable implementation is added.
+
+## Handoff, pins and input boundary
+
+The parent supplies the final private selection input receipt and counts plan with SHA256/byte sizes, nine processing-file hashes, exact reviewed core/adapter/downloader/transport/dependency pins, clean code-only review and test evidence, existing runtime receipts, and the verified completed bulk independent-replay binding. A later acquisition requires its separate pushed freeze and authorization receipt; selection replay does not authorize it.
+
+After handoff, verify every binding before reading the plan's rows: completed bulk plan/receipt/manifest/outcomes/summary/requests hashes; absent interruption/incomplete markers; unchanged bulk gate; independently replayed bulk record hash; all seven original census pins; compatible Python 3.14.5 build/binary and standard-library UTC behavior. Recheck original and completed bulk raw/member/request pins before reconstructing associated P evidence. Use the final reviewed source bytes only as a contract to inspect; never import or execute counts.py, selection.py, screen.py, transport.py, dependencies.py, the census, prior collector, waveform audit or core module.
+
+Keep actual IDs, station/pick rows, URLs, POST bodies, cached paths containing identities and private receipts/plans out of public artifacts and reviewer payloads. Publish counts, coarse panels, exact non-row provenance hashes and mismatch counts only. Existing cached149 and completed495 reports remain unchanged.
+
+## Reconstruct exactly 96 source-event denominators
+
+From the verified prior bulk source plan, retain all 346 frozen lower-M rows and 149 tail rows, including every failed/unknown/no-P row. Independently reconstruct the earlier CMT frame/strata and prior 346 selection or compare their independently verified immutable identities; metadata success must not condition this source roster.
+
+Select all 60 Mw≥6 tail events. From each of the 15 lower-M candidate-calendar/Mw cells select two by ascending SHA256 of UTF-8 `geonet-counts-screen-v1|PARTITION|BAND|EVENT_ID`, then lexical ID. From each candidate calendar partition select two [5.5,6) events with that same salt and literal band. This gives 60+30+6=96 unique events. Reject duplicate source identity or insufficient fixed allocation as a preparation error; do not search for replacement rows.
+
+Sort the resulting 96 by SHA256 of UTF-8 `geonet-counts-query-v1|EVENT_ID`, then ID, independently of picks, channels, samples and cache. Compare the complete private roster/order and the SHA256 of UTF-8 newline-delimited IDs with one final newline. Report band/calendar allocation counts and mismatch counts, retaining all source labels. CMT magnitude/calendar fields are selection/report labels, not current-view inference inputs. The protocol's maximum 31 candidate TEST events is a planning ceiling, not a newly reconstructed real count or a 200-event benchmark claim.
+
+## Accepted-subset clocks and arriving station cap
+
+Reconstruct each selected event's accepted NZ P/Pg/Pn/Pb picks from the checksum-pinned raw QuakeML using the unchanged association, singleton, rejection and weight rules verified in completed495. Missing weights retain their explicit count. Malformed or unknown base evidence yields zero queryable targets while retaining the source event; positive incomplete subsets keep their original annotations and accepted-subset T0. Do not use origin time, theoretical arrivals, unresolved picks or phaseHint as a clock substitute.
+
+For each NZ station choose the earliest accepted timestamp; ties use literal `(location, channel, pick_id)`. Use timezone-aware native UTC parsed to integer microseconds and then integer nanoseconds, avoiding float epoch conversion. Rank station representatives by `(time_ns, station)`. T0 must equal the previously frozen base NZ T0. At each of 1/3/5 seconds, include representatives with `pick_ns < T0_ns + h*10^9`, then take the first eight. Exact-boundary picks are excluded. Earlier masks must depend only on arrivals strictly before their own deadline.
+
+The +5-second mask alone defines the acquisition union. For every union slot, retain literal NZ network/station/location and the first two channel characters; require station `[A-Z0-9]{1,8}`, location `[A-Z0-9]{0,2}`, channel `[A-Z0-9]{3}` for queryability. Invalid selected identity remains an unqueryable denominator. The cap applies before queryability or engineering outcomes: a failed/unqueryable station among the selected eight never opens station9. No three-station requirement is added. A selected no-P/failed/unknown event remains in all 96×3 event denominators with empty masks/union, rather than disappearing.
+
+Compare masks, representative tie choices, T0, union target ordering, incomplete flags and per-deadline cap counts exactly against the private plan. Counts on positive unresolved subsets remain lower bounds **at the preserved accepted-subset T0**, not guaranteed bounds at a hypothetical fully resolved earlier T0. Query envelopes and later outcome views must not re-clock.
+
+## Frozen envelopes and wave-union batches
+
+For each queryable union target canonicalize only empty location to `--`; preserve other literal location values. Freeze `(NZ, station, location, prefix?, T0-5s, T0+5s)` with UTC `Z` timestamps exactly representable in microseconds. This ten-second absolute envelope is transport scope. Each scientific prefix remains `[T0-5s,T0+h)` with its own strict right deadline; archive boundary over-delivery is not permission to use later samples.
+
+Reconstruct ordered HTTPS archive level=channel/format=xml station GETs for every queryable target in event/target order, irrespective of waveform cache or future channel/response success. A response-level cached XML is not a level=channel GET hit. Channel failure cannot suppress the frozen wave selection.
+
+Partition the 96 frozen event order into exactly six consecutive blocks of 16 source events. Inside each block keep ordered queryable targets without a frozen waveform cache hit, generate ASCII selection lines in network/station/location/channel/start/end order, append exactly one final newline when nonempty, and SHA256 the exact body. Preserve the block entry when empty; it creates no request. Failed/no-target source events still occupy their fixed block position. Compare all six source-event counts, slots, bodies/hashes, filenames and total new requests privately, reporting only mismatch/aggregate counts. Metadata queries precede nonempty waveform POSTs in the frozen attempt order. The +5 union is for request accounting; its future members, counts and masks must not appear in earlier current views.
+
+## Semantic cache decisions before qualification
+
+A null cache configuration means no hits, with every queryable union target retained in its frozen waveform block. Otherwise verify the explicitly supplied original completed cache root, manifest, original plan, parent receipt and request ledger; exact body/member/request hashes and sizes; reviewed original source/dependency bindings; parent original authorization/freeze; and no incomplete markers, escaped/symlink paths, partial or failed bodies. Do not discover extra files or enlarge the cache scope.
+
+Within that permitted cache, independently match the selected event/station pair, exact canonical network/station/location/prefix/window and encoding, HTTPS service/path and the complete parsed query-key/value multiset. Broader, overlapping, different, extra-argument or differently encoded selections are not hits. A successful exact original GET waveform is semantically equivalent to the same frozen POST selection and records that method difference. Cache bytes remain in the original directory and count separately from new response-body bytes. Multiple exact candidates of the same evidence kind are ambiguous preparation errors, not choose-first.
+
+An exact completed original level=response/format=xml body may freeze a **separate stronger response-panel candidate**. It does not suppress the channel GET and does not establish matching concurrent selected epoch/rate/orientation or full-transfer availability before qualification. No new response query or family search follows. Sample values, channel qualification, transfer success or warning text cannot affect roster, arrival cap, query envelope or a cache decision.
+
+Distinguish a candidate failing provenance before plan freeze from a chosen cache failing later decode/epoch qualification. A provenance mismatch invalidates preparation; an initial ordinary nonmatch leaves the already specified new selection. After a cache decision is frozen, failed cache decoding/epoch checks remain failure without fallback acquisition. New channel or batch failure cannot erase an otherwise valid independently qualified cached target. Preserve retrieval, provenance, decode, channel, sample and response evidence separately.
+
+## Comparison and later outcome boundary
+
+Selection replay will report exact roster/rank/order, masks/T0/tie representatives, queryable/unqueryable union totals, per-deadline cap histograms, six block/query hashes, cache candidate/use decisions and unchanged source/input pins. Every mismatch is retained and investigated without acquiring, replacing or silently editing a plan. No fit, trainability threshold, calibrated-prefix claim or method improvement follows from passing these checks.
+
+Only a separate completed-acquisition handoff permits post-run timing/body/decoded-prefix replay. Its frozen limits are 96 events/768 station slots, 768 channel GETs/6 waveform POSTs/800 attempts; 512 MiB new bodies, 4 MiB metadata, 16 MiB wave batch, and 64 MiB declared **and actual** decoded sample bytes per block including caches; starts ≥1s, requests ≤20s, shared 7200s launch with ten-second finalization reserve. Failures/partial/unattempted/incomplete are not observed absence. No acquisition is performed by this preparation or independent replay task.
+
+After a completed run, engineering comparisons require independent bounded header/array/XML reads, concurrent epoch/family and rational strict sample crops, fragment/lattice checks, separate clipping-candidate and optional response panels, and every frozen target×3/event96×3 denominator. Common-event support is the intersection across all three horizons; horizon availability, clean screen and stronger cached response are separate. No filtering, demeaning, response removal, rotation, merging/filling/resampling, weighting by response success or arbitrary new gate is introduced.

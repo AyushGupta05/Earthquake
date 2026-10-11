@@ -1,0 +1,50 @@
+{
+  "actual_input_receipt_or_private_plan_created": false,
+  "actual_seismic_requests": 0,
+  "created_utc": "2026-10-11T00:57:42.219548+00:00",
+  "processing_files": {
+    "PROTOCOL_v1.md": "9267a2c35584c8d94e3f132fac5c79509dc5e7392cba74e62bdc944c533873e8",
+    "counts.py": "efea7804d4346ddd073ff258ffc78849b163989df9e061138650f0209d6b6d36",
+    "dependencies.py": "245fe9c53dcad74b962eecfbfafc3506bf989bcb80d8aad7bcdfe2027419e49f",
+    "reviewed_dependencies.json": "3c2000f39251ce46467e7deafb2037240867175ffcf1a2ff578bfb7ecba0fe5b",
+    "screen.py": "488114200c5943cec8cd8e3a65fe8c30a67421a7d642f9d990829f116074fbfc",
+    "selection.py": "2aed2822f13d588dca54f91e63f94a69865c7c410429f854ade6ce8ac07613d8",
+    "specification.json": "b76bf6e20fdd46067bc7446f719fa6a4bf795a0d00a106a742ec6d77b639dfe6",
+    "test_counts.py": "060cd8f5795c87d9bf872d6505bbfc5e7c44b53e7d12e2914d8ec1dca62081a8",
+    "transport.py": "e690ef17a8f8583fcffd2dd85c84ebc11433e9f02e440cf4632995d38a1ea357"
+  },
+  "raw_rows_or_samples_in_review": false,
+  "reviewed_dependencies": {
+    "adapter": {
+      "relative_path": "geonet_waveform_feasibility/audit.py",
+      "sha256": "8e30e415c9bed709c0f7e478bda221eaa4a75cf221a8388fcf900bf2e94a5543"
+    },
+    "core": {
+      "relative_path": "geonet_waveform_feasibility/core.py",
+      "sha256": "70c2a53c7beef5f1ddfae7d46e52bcdae97ee711cd10636da6250bd20ab9144e"
+    },
+    "dependency_lock": {
+      "relative_path": "geonet_waveform_feasibility/requirements.lock",
+      "sha256": "6cef9a3c43895141c72b5f9187d6b7e8491e0fd869ff52662d787ad8b309d56d"
+    },
+    "dependency_receipt": {
+      "relative_path": "geonet_waveform_feasibility/dependency_receipt.json",
+      "sha256": "14bfc6bc8088e578d0fdf2d76dad3e6fbec2a5e63e24ee4e91beac62e4f6ba21"
+    },
+    "downloader": {
+      "relative_path": "geonet_tail_census/census.py",
+      "sha256": "076c9fcb419b801c91fa95a01cec21f708284887f6dfae8e7878b513ba1780b8"
+    },
+    "transport": {
+      "relative_path": "geonet_bulk_metadata/transport.py",
+      "sha256": "0ddca9ccc4453f812342df9ac7dfe02ec06bceafb1818071004e9827e217b135"
+    },
+    "wheel_receipt": {
+      "relative_path": "geonet_waveform_feasibility/dependency_wheels_receipt.json",
+      "sha256": "ce9aaa5a1bb49f099fcdacc2e6f1a02abea65bc78730a22d714e388c14a8f63c"
+    }
+  },
+  "runtime_receipt_sha256": "0e1fc459a6ed7b47e9788875ff5ed10b5eaa13e20b0635c98b88486ed980e984",
+  "tests_sha256": "eb948e8bbd9dc18f0aa62043056f94c27e245d728b5752ce3a7c1eb546e2ceec",
+  "version": "geonet-counts-code-only-review-v1"
+}
