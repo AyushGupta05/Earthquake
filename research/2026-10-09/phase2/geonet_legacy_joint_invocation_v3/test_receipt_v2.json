@@ -1,0 +1,51 @@
+{
+  "actual_inputs_read": false,
+  "actual_invocations": 0,
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14 -B -m unittest discover -s work/geonet_legacy_joint_invocation_v3 -p 'test_*.py' -v",
+  "elapsed_reported_s": 2.951,
+  "exit_code": 0,
+  "invented_inputs_only": true,
+  "log_pin": {
+    "bytes": 7948,
+    "sha256": "667d97481c9f662b898da897df3e75146405a74c888a39289eb43a96ea8f332f"
+  },
+  "new_test_methods": 11,
+  "prior_test_attempt": {
+    "failures": 1,
+    "log": "tests_v1.txt",
+    "log_pin": {
+      "bytes": 8916,
+      "sha256": "e5fee0ed1dbb168165aff32944808d33a1c46b09c0c79a4c1626be16c1b7da48"
+    },
+    "resolution": "Only the new overflow fixture was kept alive after flush so the group-termination assertion exercises an active writer; supervisor behavior unchanged",
+    "single_invented_replay_confirmed_bounded_overflow": true,
+    "tests": 60
+  },
+  "prior_test_methods_retained": 49,
+  "protocol_id": "geonet_legacy_joint_invocation_v3",
+  "runtime_pin": {
+    "bytes": 52448,
+    "path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12",
+    "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "source_pins": {
+    "child_harness.py": {
+      "bytes": 27495,
+      "sha256": "04ba526f1b1186709cb3b58ace5407682ba48dab3b50edeb3c2526e65538f667"
+    },
+    "supervisor.py": {
+      "bytes": 13206,
+      "sha256": "e0bb79388be6197376b0baede1a4268e022a7d79b233d2accff7863805ccf81e"
+    },
+    "test_adapter.py": {
+      "bytes": 40929,
+      "sha256": "89ccd63ee0862f7d31742222e7bee6e2bd90f817ac0b14d288736496e786985b"
+    },
+    "test_real_integration.py": {
+      "bytes": 12850,
+      "sha256": "46ed28ed1b3b4066be295b2a314a15de996058b32fba9e72bbee93ccbbc5f191"
+    }
+  },
+  "tests_passed": 60
+}

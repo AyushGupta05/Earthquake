@@ -54,3 +54,6 @@ The censored pilot does not earn a finer sub-second extension. Both the full-dat
 11October source/transport continuation: nine full real-module invented legacy cohorts completed without reproducing the actual jointV1 failure; all V1 source and failure artifacts remain preserved. Four fixed TRAIN/DEV archive candidate GETs returned404/NoSuchKey. Independent replay verifies complete accounting and qualifies zero slots; no waveform-absence, failed96repair, novel method or model-improvement conclusion follows. Paid work remains paused pending fresh AWS sign-in/credit/control verification.
 
 JointV2 diagnostic source is pushed in f1e3955 after49parent tests and first-clean review1. Its separately gated actual invocation failed at serialization with ValueError after18file/hash validations. Three private artifacts and confirmed-stopped group remain preserved; zero complete scientific outputs and no exact serialization-cause conclusion.
+
+
+11October configured archive V3: four fixed TRAIN/DEV object transfers complete (28,633,600bytes); independent transport replay passes4/4. Sample-grid/NSLC/response/causal availability/model evidence still pending. The prior4NoSuchKey and incomplete96 are unchanged. JointV3 source is first clean with60parent tests; actual gate pending.

@@ -1,0 +1,74 @@
+{
+  "actual_inputs_excluded": true,
+  "agent_tests_passed": 60,
+  "attempt": 3,
+  "code_only_authorized": true,
+  "codex_cli_pin": {
+    "bytes": 246046384,
+    "path": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+    "sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28"
+  },
+  "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file review_prompt.md --output ../autoreview_v3.md --json-output ../autoreview_v3.json --stream-engine-output",
+  "confidence": 0.96,
+  "default_model_no_override": true,
+  "engine": "codex",
+  "exit_code": 0,
+  "findings": 0,
+  "first_clean": true,
+  "helper_pin": {
+    "bytes": 51075,
+    "path": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview",
+    "sha256": "d29d9bcab7c79505e927e6e6a89d7350ad8cb92ec8acdfcd79d41f4ca8349562"
+  },
+  "log_pin": {
+    "bytes": 2690,
+    "sha256": "712c745d5235044883b9f1a1de9b551eff08d436451ba80e3a8724ccb06a7d3a"
+  },
+  "mode": "local",
+  "network_search": false,
+  "no_processing_code_contract_test_edit_after_first_clean": true,
+  "prompt_pin": {
+    "bytes": 2704,
+    "sha256": "1d90df8154c40ba99c4e1d5f94045b5be5405a0315c1796e0aded3b3bd6068a1"
+  },
+  "protocol_id": "geonet_legacy_joint_invocation_v3",
+  "result_pin": {
+    "bytes": 518,
+    "sha256": "77540f7f34e49e8c1c3be4409fe6daf876275b5c0c1fbec2081ba34532a44448"
+  },
+  "review_attempt_history": [
+    {
+      "attempt": 1,
+      "log_pin": {
+        "bytes": 1860,
+        "sha256": "06246763e7638039cb0ff83198e5c28026415deb32931b40a359d2023a3cfca4"
+      },
+      "status": "sandbox_app_server_initialization_failed"
+    },
+    {
+      "attempt": 2,
+      "resolution_pin": {
+        "bytes": 646,
+        "sha256": "40013cf4a7288f5434a12e484e10373985834fd6757eef2733aa7d3f56dbfb61"
+      },
+      "result_pin": {
+        "bytes": 1342,
+        "sha256": "11209cfe2cc1e7157d2cdc96455d4bae6d1cf99d5dc69bc23760babd7b4ba8f7"
+      },
+      "status": "one_verified_P2_public_curation_omission"
+    },
+    {
+      "attempt": 3,
+      "result_pin": {
+        "bytes": 518,
+        "sha256": "77540f7f34e49e8c1c3be4409fe6daf876275b5c0c1fbec2081ba34532a44448"
+      },
+      "status": "first_clean"
+    }
+  ],
+  "reviewer_tests_executed": false,
+  "source_snapshot_pin": {
+    "bytes": 24804,
+    "sha256": "a73d83288ae90bc0d8f26ae51b615ae3fa706826263930a1a6591cf134321376"
+  }
+}

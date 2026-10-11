@@ -1,0 +1,24 @@
+2026-10-11T05:22:17.411757Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:22:17.411775Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:22:17.418601Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 227511 chars
+codex thread: 01a12969-6cbd-7550-98b2-6917b8a5a9b9
+codex turn started
+2026-10-11T05:22:17.728224Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:22:17.728236Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the serializer, output caps, retained fixtures, and publication closure using read-only commands within the snapshot.
+2026-10-11T05:22:49.617467Z  WARN codex_sandboxing::violation: recorded sandbox violation: resource=filesystem backend=seatbelt reason=operation_not_permitted path=unknown
+codex activity: 9 hidden tool/status events
+codex activity: 3 hidden tool/status events
+The V3 publication artifacts now close correctly: all 120 dependency copies match their bundle and manifest pins and appear in the safe allowlist. The serializer reserves the newline byte, uses exact markers, and keeps buffer failures outside the encoder classification boundary.
+codex activity: 4 hidden tool/status events
+{"findings":[],"overall_correctness":"patch is correct","overall_explanation":"No actionable defects found. The newline-inclusive 32 MiB caps and exact, encoder-only failure classification match the contracts without weakening completion gates. All 120 frozen dependency copies match their pins and appear in both the V3 manifest and safe allowlist. Inspection was read-only; tests were not executed. The recorded 60-test success evidence matches the reviewed source pins.","overall_confidence":0.96}
+codex usage: input_tokens=654117 cached_input_tokens=551168 output_tokens=2845 reasoning_output_tokens=436
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.96)
+No actionable defects found. The newline-inclusive 32 MiB caps and exact, encoder-only failure classification match the contracts without weakening completion gates. All 120 frozen dependency copies match their pins and appear in both the V3 manifest and safe allowlist. Inspection was read-only; tests were not executed. The recorded 60-test success evidence matches the reviewed source pins.

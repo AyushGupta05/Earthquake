@@ -1,0 +1,158 @@
+{
+  "protocol_id": "geonet_legacy_offline_shadow_v2",
+  "source_stage": "source_only_before_actual_read",
+  "representations": [
+    "original_qml",
+    "fresh_qml",
+    "native_scml"
+  ],
+  "event_count": 6,
+  "slot_count": 18,
+  "body_max_bytes": 4194304,
+  "total_input_max_bytes": 100663296,
+  "output_max_bytes": 8388608,
+  "parent_whole_invocation_deadline_seconds": 120,
+  "xml_max_depth": 64,
+  "xml_max_elements": 100000,
+  "native_profiles": {
+    "0.10": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.10",
+    "0.11": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11"
+  },
+  "qml_profile_binding": "explicit paired native profile; no inferred deployed converter",
+  "passedQC_policy": {
+    "0.10": "unsupported unknown regardless conditional fallback",
+    "0.11": "native origin/stationMagnitude or native0.11 extension at BED event/stationMagnitude only; metadata"
+  },
+  "event_input_fields": {
+    "event_id": "string, unique, raw identity supplied privately",
+    "original_t0_us": "required int valid UTC microseconds or null; independently census-bound",
+    "native_profile": "0.10 or 0.11 independently recognized",
+    "body_pins": "exact three members each bytes:int and sha256:hex64",
+    "original_qml": "bytes",
+    "fresh_qml": "bytes",
+    "native_scml": "bytes"
+  },
+  "provenance_fields": {
+    "original_plan_sha256": "hex64",
+    "original_manifest_sha256": "hex64",
+    "original_census_clock_source_sha256": "hex64",
+    "processing_source_mapping_sha256": "hex64",
+    "runtime_sha256": "hex64",
+    "pushed_freeze": "hex40",
+    "parent_authorization_receipt_sha256": "hex64"
+  },
+  "project_ok_fields": [
+    "event_id",
+    "mapped_event_id",
+    "preferred_origin_id",
+    "raw_preferred_origin_id",
+    "origin",
+    "event_creation",
+    "raw_event_creation",
+    "arrivals",
+    "picks",
+    "version",
+    "source_profile",
+    "scope",
+    "magnitude_metadata",
+    "status",
+    "reasons",
+    "accepted_picks",
+    "unresolved_pick_ids",
+    "all_network",
+    "nz",
+    "incomplete_associated_P_structure",
+    "NZ_coverage_known",
+    "denominators"
+  ],
+  "unknown_fields": {
+    "status": "unknown_representation",
+    "reason": "bounded error string",
+    "denominators": null,
+    "nz": null,
+    "all_network": null,
+    "accepted_picks": null
+  },
+  "origin_fields": [
+    "time_us",
+    "latitude",
+    "longitude",
+    "depth_m",
+    "creation",
+    "raw_creation"
+  ],
+  "creation_fields": [
+    "agencyID",
+    "agencyURI",
+    "author",
+    "authorURI",
+    "creationTime",
+    "modificationTime",
+    "version"
+  ],
+  "arrival_fields": [
+    "phase",
+    "pick_id",
+    "raw_pick_id",
+    "time_weight",
+    "native_flags",
+    "native_raw_reference_matches (native only)",
+    "raw_public_id"
+  ],
+  "native_flags_fields": [
+    "weight",
+    "timeUsed",
+    "horizontalSlownessUsed",
+    "backazimuthUsed"
+  ],
+  "pick_fields": [
+    "pick_id",
+    "raw_public_id",
+    "time",
+    "raw_time",
+    "network",
+    "station",
+    "location",
+    "channel",
+    "evaluation_status",
+    "evaluation_mode",
+    "raw_evaluation_status",
+    "raw_evaluation_mode",
+    "reported_suppressed_candidate",
+    "selection_paths (native only)"
+  ],
+  "clock_fields": [
+    "station_count",
+    "t0_us",
+    "anchor_us",
+    "strict_horizon_station_counts"
+  ],
+  "strict_deadlines_seconds": [
+    1,
+    3,
+    5
+  ],
+  "comparison_primary_arrival_guard": "lexical multiset",
+  "comparison_canonical_diagnostic": "finite binary float hex, never promotion",
+  "original_frozen_artifacts_mutation": false,
+  "network_code": false,
+  "actual_body_reads_authorized_here": false,
+  "schema_validation_performed": false,
+  "converter_bug_proved": false,
+  "operational_clock_verified": false,
+  "physical_pick_validated": false,
+  "magnitude_model_improvement": false,
+  "native_raw_identity_guard": "event publicID equals supplied raw event ID; arrival raw pick reference resolves uniquely and retrieved candidate raw publicID equals that reference before acceptance; trimming never substitutes a distinct pick",
+  "NZ_recovery_definition": "newly accepted qualifying reference IDs across all networks intersect right-side accepted NZ; an already accepted XX\u2192NZ membership change is zero",
+  "station_deduplication": "(network, station) tuple",
+  "outside_scope_identity_policy": "both formats scan all publicID-bearing objects throughout the entire document root, including foreign extensions and validate only publicID candidates colliding with scoped identities; QML publicID-bearing arrivals are scoped; never broaden projection",
+  "raw_lexical_policy": "XML-parsed text before candidate trimming; XML parser normalization is not byte-exact retention",
+  "outside_same_type_duplicate_policy": "unknown representation; not projected or counted as unique",
+  "XML_comment_PI_policy": "inside root unknown representation; outside root ignored; no source-equivalence claim across discarded-node text boundaries",
+  "XML_space_policy": "any xml:space attribute inside root unsupported; inherited stylesheet whitespace preservation not implemented",
+  "native_creation_whitespace_policy": "XML-whitespace-only parsed scalar becomes empty candidate before URI mapping; raw lexical retained",
+  "native_arrival_validation_scope": "all event-referenced origins validate use flags and weight singletons; comparison arrivals remain preferred-origin only",
+  "canonical_numeric_geometry_signed_zero": "zero has one canonical representation; lexical arrival guard unchanged",
+  "XML_declaration_policy": "real DOCTYPE rejected by stdlib parser target callback before internal subset; standalone ENTITY markup invalid; literal declaration-like text in outside-root comments/PIs ignored; no custom lexer",
+  "XML_encoding_policy": "bytes validate as UTF-8; absent declaration or UTF-8 case-insensitive only; original bytes parsed by stdlib XML for declaration/BOM consistency; no Unicode-input bypass"
+}

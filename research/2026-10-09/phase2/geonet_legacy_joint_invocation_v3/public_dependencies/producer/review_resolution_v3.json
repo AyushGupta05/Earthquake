@@ -1,0 +1,21 @@
+{
+  "review": "autoreview_v3.json",
+  "finding_accepted_after_reproduction": true,
+  "invented_before_fix": {
+    "tests": 122,
+    "exit_code": 1,
+    "failures": 3,
+    "output": "review_v3_counterexample_before_fix.txt"
+  },
+  "narrow_fix": "replace declaration-like substring scan with stdlib TreeBuilder doctype callback rejecting actual declaration before internal subset; outside-root comment/PI literal text ignored; standalone ENTITY markup remains invalid XML",
+  "custom_XML_lexer_added": false,
+  "affected_full_synthetic_tests": {
+    "run": 122,
+    "passed": 122,
+    "exit_code": 0,
+    "output": "local_tests_v4.txt"
+  },
+  "actual_body_reads": false,
+  "author_transform_execution": false,
+  "v1_processing_modified": false
+}

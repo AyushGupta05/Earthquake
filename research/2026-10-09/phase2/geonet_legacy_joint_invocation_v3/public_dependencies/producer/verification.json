@@ -1,0 +1,33 @@
+{
+  "protocol_id": "geonet_legacy_offline_shadow_v2",
+  "first_clean_source_frozen": true,
+  "processing_mapping_sha256": "a4a62b0ecea3b7cc92b6092729f4fb49c527198421d59ba988393799c42747cd",
+  "processing_members": 17,
+  "all_reviewed_snapshot_members_verified": 26,
+  "processing_matches_exact_reviewed_snapshot": true,
+  "source_runtime_helper_live_hashes_verified": true,
+  "tests": {
+    "command": "work/geonet_waveform_feasibility/.venv/bin/python -B -m unittest discover -s work/geonet_legacy_offline_shadow_v2 -p test_shadow.py -v",
+    "output": "local_tests_v7.txt",
+    "sha256": "33a1cae10dbcbce2209cfe630943cca4ff3bc0ce800351de6f0010a785f53f73",
+    "bytes": 16209,
+    "run": 129,
+    "passed": 129,
+    "exit_code": 0
+  },
+  "review_receipt": {
+    "sha256": "c63958fa7b08690b81c0dc584a19243769a6b45fb576b0cfd55fe3ce33fe02c6",
+    "bytes": 1767
+  },
+  "older_paired_source_unchanged": true,
+  "v1_first_clean_processing_unchanged": true,
+  "v1_frozen_manifest_unchanged": true,
+  "actual_inputs_read": false,
+  "network_event_requests": 0,
+  "AWS_actions": false,
+  "fits": 0,
+  "shared_git_changes": false,
+  "actual_read_authorized_here": false,
+  "independent_semantic_scope_equality_asserted": false,
+  "processing_source_readonly": true
+}

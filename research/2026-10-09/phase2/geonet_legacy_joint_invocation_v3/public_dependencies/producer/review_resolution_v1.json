@@ -1,0 +1,25 @@
+{
+  "review": "autoreview_v1.json",
+  "all_three_findings_accepted": true,
+  "invented_before_fix": {
+    "tests": 114,
+    "exit_code": 1,
+    "failures": 2,
+    "errors": 3,
+    "output": "review_v1_counterexamples_before_fix.txt"
+  },
+  "fixes": [
+    "native creationInfo XML-whitespace-only candidates emptied before URI mapping; raw retained; xml:space attributes fail closed",
+    "outside identity collision scan now covers complete document root without expanding projection",
+    "validate flags/weight singletons on all event-referenced native origin arrivals"
+  ],
+  "affected_full_synthetic_tests": {
+    "run": 114,
+    "passed": 114,
+    "exit_code": 0,
+    "output": "local_tests_v2.txt"
+  },
+  "actual_body_reads": false,
+  "author_transform_execution": false,
+  "v1_processing_modified": false
+}

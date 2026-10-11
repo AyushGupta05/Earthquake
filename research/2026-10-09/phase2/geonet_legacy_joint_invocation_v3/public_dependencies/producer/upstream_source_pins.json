@@ -1,0 +1,141 @@
+{
+  "audit_id": "geonet_legacy_transform_source_audit_3040322",
+  "audit_date": "2026-10-11",
+  "mode": "inert_public_source_text_only",
+  "official_repository": "https://github.com/GeoNet/fdsn",
+  "commit": "3040322c7bf0818c9b42a6666284b86f674cb706",
+  "source_executed_or_imported": false,
+  "producer_read_or_executed": false,
+  "official_datamodel_schema_field_availability_verified": false,
+  "passedQC_in_0_10_schema_validity": "unknown; only generic fallback code handling is established",
+  "actual_event_data_model_private_receipts_read": false,
+  "git_mutations": false,
+  "http_budget": {
+    "maximum_actual_gets": 4,
+    "maximum_response_body_bytes_total": 262144,
+    "maximum_response_body_bytes_per_file": 65536,
+    "maximum_seconds_per_request": 20,
+    "transport_retries": 0,
+    "follow_redirects": false,
+    "actual_gets_used": 3,
+    "response_body_bytes_delivered": 61435,
+    "successful_source_body_bytes_delivered": 61421,
+    "body_accounting_note": "Counts curl size_download response bodies, not HTTP headers or wire traffic. One zero-byte pre-HTTP DNS failure is separately recorded."
+  },
+  "requests": [
+    {
+      "kind": "pre_http_sandbox_failure",
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/quake-consumer/assets/sc3ml_0.10__quakeml_1.2.xsl",
+      "curl_exit": 6,
+      "http_status": "000",
+      "response_body_bytes": 0,
+      "curl_time_total_seconds": 0.000036,
+      "failure": "Could not resolve host: raw.githubusercontent.com",
+      "counted_as_actual_get": false,
+      "note": "Parent authorized the first network-enabled exact-source request after this pre-HTTP failure."
+    },
+    {
+      "actual_get_number": 1,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/quake-consumer/assets/sc3ml_0.11__quakeml_1.2.xsl",
+      "curl_exit": 0,
+      "http_status": 404,
+      "response_body_bytes": 14,
+      "curl_time_total_seconds": 0.184776,
+      "body_sha256": null,
+      "body_hash_unknown_reason": "Provisional output/header paths were overwritten by the later correct-directory 0.11 fetch before hashing; body was not reconstructed.",
+      "note": "Proposed directory did not resolve this source. The request outcome, URL, size and elapsed time are preserved."
+    },
+    {
+      "actual_get_number": 2,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/sc3ml_0.10__quakeml_1.2.xsl",
+      "curl_exit": 0,
+      "http_status": 200,
+      "response_body_bytes": 30475,
+      "curl_time_total_seconds": 0.231522,
+      "body_sha256": "39317a554eab4be43b89db0728b7c7533db8518b17982d844b5289ba43cf708a"
+    },
+    {
+      "actual_get_number": 3,
+      "url": "https://raw.githubusercontent.com/GeoNet/fdsn/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/sc3ml_0.11__quakeml_1.2.xsl",
+      "curl_exit": 0,
+      "http_status": 200,
+      "response_body_bytes": 30946,
+      "curl_time_total_seconds": 0.234601,
+      "body_sha256": "60836a76bd9575f2bd39fb1dcae7eb081b36a6ede52154bd39f023761f4ebee8"
+    }
+  ],
+  "sources": [
+    {
+      "source_version": "0.10",
+      "repository_path": "cmd/fdsn-quake-consumer/assets/sc3ml_0.10__quakeml_1.2.xsl",
+      "official_url": "https://github.com/GeoNet/fdsn/blob/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/sc3ml_0.10__quakeml_1.2.xsl",
+      "local_source_path": "work/geonet_legacy_transform_source_audit/sc3ml_0.10__quakeml_1.2.xsl",
+      "bytes": 30475,
+      "sha256": "39317a554eab4be43b89db0728b7c7533db8518b17982d844b5289ba43cf708a",
+      "namespace_declared": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.10",
+      "default_id_prefix_declared": "smi:nz.org.geonet/",
+      "stylesheet_header_version": "2017.342.01",
+      "license_notice": "Copyright (C) 2017 by gempa GmbH; GNU Lesser General Public License, version 3",
+      "source_byte_status": "downloaded_here_unchanged",
+      "passedQC_code_path": "ordinary default templates under originMagnitude",
+      "modificationTime_code_path": "scs-only extension under creationInfo"
+    },
+    {
+      "source_version": "0.11",
+      "repository_path": "cmd/fdsn-quake-consumer/assets/sc3ml_0.11__quakeml_1.2.xsl",
+      "official_url": "https://github.com/GeoNet/fdsn/blob/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/sc3ml_0.11__quakeml_1.2.xsl",
+      "local_source_path": "work/geonet_legacy_transform_source_audit/sc3ml_0.11__quakeml_1.2.xsl",
+      "bytes": 30946,
+      "sha256": "60836a76bd9575f2bd39fb1dcae7eb081b36a6ede52154bd39f023761f4ebee8",
+      "namespace_declared": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11",
+      "default_id_prefix_declared": "smi:nz.org.geonet/",
+      "stylesheet_header_version": "2017.342.01",
+      "license_notice": "Copyright (C) 2017 by gempa GmbH; GNU Lesser General Public License, version 3",
+      "source_byte_status": "downloaded_here_unchanged",
+      "passedQC_code_path": "scs-only extension after ordinary originMagnitude children",
+      "modificationTime_code_path": "scs-only extension under creationInfo"
+    },
+    {
+      "source_version": "0.13",
+      "repository_path": "cmd/fdsn-quake-consumer/assets/sc3ml_0.13__quakeml_1.2.xsl",
+      "official_url": "https://github.com/GeoNet/fdsn/blob/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/sc3ml_0.13__quakeml_1.2.xsl",
+      "local_source_path": "work/geonet_public_transform_texts_3040322/sc3ml_0.13__quakeml_1.2.xsl",
+      "bytes": 33636,
+      "sha256": "d878c4f3507821a85f510679907234039bc328aea3e92a52f1606c2b37434568",
+      "namespace_declared": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.13",
+      "default_id_prefix_declared": "smi:nz.org.geonet/",
+      "stylesheet_header_version": "2017.342.01",
+      "license_notice": "Copyright (C) 2017 by gempa GmbH; GNU Lesser General Public License, version 3",
+      "source_byte_status": "preexisting_inert_local_text_bytes_and_header_verified_here; prior retrieval receipt not read",
+      "passedQC_code_path": "scs-only extension after ordinary originMagnitude children",
+      "modificationTime_code_path": "scs-only extension under creationInfo"
+    },
+    {
+      "source_version": "0.14",
+      "repository_path": "cmd/fdsn-quake-consumer/assets/scml_0.14__quakeml_1.2.xsl",
+      "official_url": "https://github.com/GeoNet/fdsn/blob/3040322c7bf0818c9b42a6666284b86f674cb706/cmd/fdsn-quake-consumer/assets/scml_0.14__quakeml_1.2.xsl",
+      "local_source_path": "work/geonet_public_transform_texts_3040322/scml_0.14__quakeml_1.2.xsl",
+      "bytes": 33834,
+      "sha256": "9b79f05ccf1f2cbe3c4e44d44388e01d87b3f12357d64f9409ea529c03f226a0",
+      "namespace_declared": "http://geofon.gfz.de/ns/seiscomp-schema/0.14",
+      "default_id_prefix_declared": "smi:nz.org.geonet/",
+      "stylesheet_header_version": "2025.322.01",
+      "license_notice": "Copyright (C) 2017 by gempa GmbH; GNU Lesser General Public License, version 3",
+      "source_byte_status": "preexisting_inert_local_text_bytes_and_header_verified_here; prior retrieval receipt not read",
+      "passedQC_code_path": "scs-only extension after ordinary originMagnitude children",
+      "modificationTime_code_path": "scs-only extension under creationInfo"
+    }
+  ],
+  "license_distribution_materials_assembled_here": false,
+  "curated_content_allowlist": [
+    "PRIMARY_SOURCE_AUDIT.md",
+    "NEW_OFFLINE_PROTOCOL_PROPOSAL.md",
+    "source_pins.json",
+    "CURATED_ALLOWLIST.md"
+  ],
+  "curated_hash_list": "CURATED_PACKET_SHA256.txt",
+  "raw_source_and_http_headers_in_curated_packet": false,
+  "original_diagnostic_artifacts_modified": false,
+  "actual_compatibility_outcomes_produced": false,
+  "unknown_policy": "Retain all original and newly discovered unknowns; no legacy namespace/ID alias assumption."
+}

@@ -1,0 +1,28 @@
+2026-10-11T03:39:57.364151Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:39:57.364170Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:39:57.370035Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 171399 chars
+codex thread: 01a1290b-bc2e-7950-99a7-06c9d43e4099
+codex turn started
+2026-10-11T03:39:57.665490Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:39:57.665500Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the snapshot against the frozen contracts, focusing on parser boundaries, identity guards, recovery counts, and clocks.
+codex activity: 10 hidden tool/status events
+The parser tracks comment and PI placement, and the cohort keeps unknown representations in all eighteen slots. I’m checking the identity and comparison logic for cases where ambiguity could be counted as recovery.
+codex activity: 1 hidden tool/status events
+review still running: codex elapsed=160s pid=28378
+codex activity: 3 hidden tool/status events
+{"findings":[{"title":"[P2] Ignore declaration-like text in outside-root comments and PIs","body":"The whole-body substring check rejects declaration-like text inside otherwise valid outside-root comments or processing instructions. For example, prefixing a clean invented fixture with `<!-- <!DOCTYPE invented> -->` changes its result from `ok` to `unknown_representation` with `unsafe_XML`, although no DOCTYPE is declared. This contradicts the frozen v2 policy that outside-root comments/PIs are ignored; on native input it also unnecessarily withholds the paired QML profile. Detect actual forbidden declarations without treating ignored comment/PI content as markup, and cover this case with an invented fixture.","priority":"P2","confidence":0.97,"category":"bug","code_location":{"file_path":"projection.py","line":172}}],"overall_correctness":"patch is incorrect","overall_explanation":"The inside-root comment/PI handling fails closed, but the preliminary substring scan lets harmless outside-root comment/PI content change projection availability, violating the explicit v2 contract. Review used read-only source inspection; tests were not executed.","overall_confidence":0.94}
+codex usage: input_tokens=313967 cached_input_tokens=219648 output_tokens=7982 reasoning_output_tokens=7376
+autoreview findings: 1
+[P2] [P2] Ignore declaration-like text in outside-root comments and PIs
+projection.py:172
+The whole-body substring check rejects declaration-like text inside otherwise valid outside-root comments or processing instructions. For example, prefixing a clean invented fixture with `<!-- <!DOCTYPE invented> -->` changes its result from `ok` to `unknown_representation` with `unsafe_XML`, although no DOCTYPE is declared. This contradicts the frozen v2 policy that outside-root comments/PIs are ignored; on native input it also unnecessarily withholds the paired QML profile. Detect actual forbidden declarations without treating ignored comment/PI content as markup, and cover this case with an invented fixture.
+
+overall: patch is incorrect (0.94)
+The inside-root comment/PI handling fails closed, but the preliminary substring scan lets harmless outside-root comment/PI content change projection availability, violating the explicit v2 contract. Review used read-only source inspection; tests were not executed.

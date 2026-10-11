@@ -1,0 +1,307 @@
+{
+  "audit_id": "geonet_legacy_semantic_audit_v3",
+  "stage": "first_clean_source_only_freeze_no_actual_read",
+  "first_clean_review_attempt": 2,
+  "first_review_attempt_engine_initialization_failure_preserved": true,
+  "review_engine": "codex",
+  "review_exit_code": 0,
+  "review_findings": 0,
+  "source_edits_and_reviews_stopped": true,
+  "isolated_review_snapshot_commit": "7323f909b79f366886cd6da95672a193b586c4ad",
+  "isolated_frozen_own_v2_base_commit": "3f1358c2e20a275806afcbf84fc714bab733d943",
+  "isolated_review_workdir": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_semantic_audit_v3/.review_snapshot",
+  "shared_git_mutated": false,
+  "review_command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode commit --commit HEAD --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_semantic_audit_v3/review_evidence/review_prompt.txt --output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_semantic_audit_v3/review_evidence/review_v2.txt --json-output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_legacy_semantic_audit_v3/review_evidence/review_v2.json",
+  "review_runtime_escalation": "Explicitly authorized code-only Codex review; sandbox initialization failed before review. Same engine/no-web command retried with narrowly approved runtime execution.",
+  "reviewed_bundle": "review_evidence/bundle_v2.json",
+  "bundle_v1": "superseded pre-review snapshot; no findings claimed",
+  "changes_from_own_frozen_v2": [
+    "Reject any XML-namespace space attribute anywhere inside root, for every value.",
+    "Reject real DOCTYPE using independently validated TreeBuilder.doctype before internal subset parsing, replacing whole-body declaration substring scan. Declaration-like text in ignored outside-root comments/PIs and literal CDATA is permitted.",
+    "Add invented boundary regressions and uniquely rejected raw-target versus valid trimmed amplitude-selected candidate regression; accepted lookup logic already had the correct exact raw identity guard."
+  ],
+  "other_semantic_scope_flag_count_profile_revision_claim_and_clock_policies_changed": false,
+  "v2_unguarded_actual_use_barred": true,
+  "v2_frozen_allowlist_file_count": 59,
+  "v2_frozen_allowlist_all_bytes_unchanged": true,
+  "v2_manifest": {
+    "bytes": 20513,
+    "sha256": "dc1a208c6f7caa5fbd0ef56efd021319ba2cc7bd524b276ffcacf1270ce8960e"
+  },
+  "v2_static_limit_receipt": {
+    "path": "work/geonet_legacy_semantic_v2_static_limits/static_limit_receipt.json",
+    "bytes": 9457,
+    "sha256": "9c8f81bd8191e5986b02b125a60bf113233b9845ac4b94672c97bc36547b0906"
+  },
+  "v2_additional_declaration_boundary_receipt": "review_evidence/declaration_boundary_source_only.json",
+  "v1_source_tests_preserved": [
+    {
+      "path": "work/geonet_paired_semantic_audit/semantic_audit.py",
+      "bytes": 21991,
+      "sha256": "ca6a5517a1cf78b855b78e000e62d201eec78faab513a4e2bc46f42ec8d6e1a1"
+    },
+    {
+      "path": "work/geonet_paired_semantic_audit/test_semantic_audit.py",
+      "bytes": 26348,
+      "sha256": "a34df5acae8f36b3654ef761e3800e34bcba0791568cc345401d900ebffed60e"
+    }
+  ],
+  "interface": {
+    "project": "semantic_audit.project(body: bytes, requested_event_id: str, format: qml|scml, profile: 0.10|0.11|None = None) -> dict",
+    "compare": "semantic_audit.compare(project_left, project_right) -> dict",
+    "field_shapes": "PUBLIC_SCHEMAS.md",
+    "unknown": "unknown_representation with null picks/accepted_picks/denominators/arrivals; compare unavailable with no recovery counters",
+    "file_network_subprocess_write_or_transform_code": false
+  },
+  "bounds": {
+    "body_bytes": 4194304,
+    "nodes": 100000,
+    "depth": 64,
+    "requested_event_id_characters": 4096,
+    "stdlib_only": true,
+    "parent_watchdog_and_output_cap_required": true
+  },
+  "policy_differences_from_public_producer": [
+    "Unrecognized native use-flag strings retained with literal XSLT branches here; producer public protocol rejects invalid schema boolean lexicals. No full agreement claim permitted for those cases.",
+    "Exact finite Decimal geometry here can differ from stricter finite binary-float geometry; null/nonzero remain distinct. Both canonicalize signed zero to one zero.",
+    "Primary arrival guard remains exact lexical; finite binary-float canonical match is a separate diagnostic and never promotes agreement."
+  ],
+  "v3_guards": [
+    "xml:space anywhere inside root unknown",
+    "inside-root comments/PIs unknown",
+    "real DOCTYPE callback before subset unknown",
+    "outside-root comments/PIs ignored",
+    "foreign namespace/colliding foreign publicIDs unknown",
+    "raw event identity and reference target publicID retained distinct from mapped candidates"
+  ],
+  "actual_input_reads": 0,
+  "new_data_network_requests": 0,
+  "raw_XSLT_XSD_headers_or_package_files_in_review": false,
+  "producer_implementation_read_or_imported": false,
+  "actual_read_authorized": false,
+  "parent_pushed_freeze_verified_here": false,
+  "parent_actual_gate": "Root must retest/push the exact permitted source freeze, bind input/profile/source/runtime/authorization pins, preserve policy differences, and explicitly authorize a bounded private actual-read invocation. Source-only review does not authorize actual data access.",
+  "original_frozen_result_clock_selection_request_history_rewritten": false,
+  "physical_operational_atomic_database_converter_bug_full_schema_deployed_model_claims": false,
+  "runtime": {
+    "runtime": {
+      "path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "bytes": 52448,
+      "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+    },
+    "autoreview_helper": {
+      "path": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview",
+      "bytes": 51075,
+      "sha256": "d29d9bcab7c79505e927e6e6a89d7350ad8cb92ec8acdfcd79d41f4ca8349562"
+    },
+    "codex_binary": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "bytes": 246046384,
+      "sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28"
+    },
+    "python_version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "dependencies": "Python3.14.5 stdlib only; no installs"
+  },
+  "tests": {
+    "command": "work/geonet_waveform_feasibility/.venv/bin/python -B -m unittest discover -s work/geonet_legacy_semantic_audit_v3 -v",
+    "count": 274,
+    "exit_code": 0,
+    "duration_seconds": 0.104,
+    "evidence": "review_evidence/tests_v2.txt",
+    "invented_only": true
+  },
+  "files": [
+    {
+      "path": "PUBLIC_SCHEMAS.md",
+      "bytes": 6284,
+      "sha256": "d452db609d0a0f1feac04d0bdee0506482f85d85ec47b1955a2c5adaae5080c3",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "README.md",
+      "bytes": 13797,
+      "sha256": "e44d3c9efcc032b1637d061d6f22598bd48fc0e33506e4bb0963dbba0e95aacb",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/SCHEMA_MEMBERSHIP_ADDENDUM.md",
+      "bytes": 3820,
+      "sha256": "b46df99020a3ead2641a33401ded9b72b0ee1b954afa3a3a8a745dff34621274",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/original_PUBLIC_PROTOCOL_v1.md",
+      "bytes": 12082,
+      "sha256": "6de600fa33e977a1cb075e6a3211f9a5da742c10f80fbd75fa3e93b8b690a283",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/original_PUBLIC_SCHEMAS.md",
+      "bytes": 2360,
+      "sha256": "0043ab4caa9edfe47713652006b0ae39914be480a376bebd58243937e025f15a",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/original_PUBLIC_specification.json",
+      "bytes": 884,
+      "sha256": "0b4d0614d2b0985915b6c6215edb57a0f6ed686ef93e1f3f3d2da77575e3d2fb",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/producer_PUBLIC_PROTOCOL_v1.md",
+      "bytes": 7002,
+      "sha256": "0c7c3f9d791565f4e8e88bff854d15681d9da44a648d3d7151a85bc0338f2d8d",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/producer_PUBLIC_PROTOCOL_v2.md",
+      "bytes": 10283,
+      "sha256": "542ae661b723689dbaaf9d43d7f6971dfb0e4257d65c07042f95376621f12b67",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/producer_PUBLIC_specification.json",
+      "bytes": 3755,
+      "sha256": "22bc13324c19d9d2215505e75fbf0f8ec6f7e1ba676ca1330abcb2f337eb43dd",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/producer_PUBLIC_specification_v2.json",
+      "bytes": 5664,
+      "sha256": "09145ca179b75610703024a40d302ff2241ce2ae84e4ec89f75d7c9ff4adfed0",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/schema_CURATED_ALLOWLIST.md",
+      "bytes": 1001,
+      "sha256": "17f45c2568d4c688d18d8b9ca72f779437b063bf46488f74b13babb388531331",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/schema_CURATED_PACKET_SHA256.txt",
+      "bytes": 266,
+      "sha256": "50399acae5a76c0ad52330b12d4d9f444392519e4a911d3db21a5935c41b5a84",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/schema_pins.json",
+      "bytes": 5573,
+      "sha256": "89e40cc6594bf19e68222134cd2154c29f0c07f6f440dc87f61ab7fa2a813dbd",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/upstream_CURATED_ALLOWLIST.md",
+      "bytes": 1465,
+      "sha256": "7232742ce6a890918f69eafc42ca77dba40c51e258da5df8c39d655979617835",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/upstream_CURATED_PACKET_SHA256.txt",
+      "bytes": 359,
+      "sha256": "69a286b369324f12193ebc7573b6e154f43d4324241884340de664914ca0acdd",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/upstream_NEW_OFFLINE_PROTOCOL_PROPOSAL.md",
+      "bytes": 8009,
+      "sha256": "61d3f84b5e9585d778b23fd910d796c018e7c13a47d4d02382e72093f8d10a9e",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/upstream_PRIMARY_SOURCE_AUDIT.md",
+      "bytes": 11517,
+      "sha256": "f549b80185398ca82f79ad4d588df863736dd453da60bc10cccdb933e4a74209",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_context/upstream_source_pins.json",
+      "bytes": 7945,
+      "sha256": "af237f0381ab7b02f8ba660974e200801a492d3f01ce927543b6896d23ee5249",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "public_contract_pins.json",
+      "bytes": 7408,
+      "sha256": "e971aaf11ecab79553162b485bd75021ec084cb33ef27b554621aee4ff0155ef",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "semantic_audit.py",
+      "bytes": 38535,
+      "sha256": "cc93594acb6c120319d6520b17c7f2e2cdaad86ed4ae5d0de6115dfc58921763",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "test_semantic_audit.py",
+      "bytes": 61992,
+      "sha256": "da8344f321bd0207337568c4f195d320f61b4f57d02bebdad54dbe845849563e",
+      "kind": "reviewed_source_or_curated_contract"
+    },
+    {
+      "path": "review_evidence/bundle_v1.json",
+      "bytes": 3970,
+      "sha256": "11cbf02ee36a9ab1782085f2b139879f26b722cd9c4de7194db12d721accf734",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/bundle_v2.json",
+      "bytes": 3970,
+      "sha256": "5bb07b24f3d96f74510cae19951fd33de29664dbd7c41e9c59a95be8323157f5",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/declaration_boundary_source_only.json",
+      "bytes": 1538,
+      "sha256": "d7a519afd84cbf86eea4ba3d0297f5f617f1618a3182d73951d7e985cf78d98f",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/review_attempt_1_engine_failure.txt",
+      "bytes": 907,
+      "sha256": "2ffa26663f0c36c259ae8e2066f5f1826ea253ec81ef9a98fe0c5d4b4b63d289",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/review_prompt.txt",
+      "bytes": 3177,
+      "sha256": "3e23758846fdec06978a5288c6d152f37a60c4b4000cf1fd9a81258b91aae8eb",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/review_v2.json",
+      "bytes": 491,
+      "sha256": "4a21659ea605a18ed64da0b0dcbef72993c5dddacd8f2932c813d2de79d32622",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/review_v2.txt",
+      "bytes": 459,
+      "sha256": "21f92c9c065b8e220fc294303b7a5933e8f8a3747959d14619216526b8f3f7fb",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/runtime_pins.json",
+      "bytes": 830,
+      "sha256": "8e24505053622c84e7862e2db0f54ab744da16e36cf110c3cb4fe6db792ec69a",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/tests_v1.txt",
+      "bytes": 30991,
+      "sha256": "8b735a618475205d2b74495122a80b0496c36d2eba545d3bb1d6e92625d0d9ec",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/tests_v2.txt",
+      "bytes": 31179,
+      "sha256": "bb3a42d613b055e9073b6f6d532af52aacb5503a72723bdd5a9c754cbdbc3730",
+      "kind": "source_only_test_review_or_pin_evidence"
+    },
+    {
+      "path": "review_evidence/v2_baseline_pins.json",
+      "bytes": 9205,
+      "sha256": "243fad9fafddd8752379d0c160d98a679adecce4f591425c40ae3441288c489a",
+      "kind": "source_only_test_review_or_pin_evidence"
+    }
+  ]
+}
