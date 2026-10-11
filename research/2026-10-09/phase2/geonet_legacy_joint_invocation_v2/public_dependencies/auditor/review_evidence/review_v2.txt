@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.96)
+No actionable defects found. The root-wide xml:space exclusion prevents evidence promotion, and the parser callback rejects real DOCTYPE declarations while preserving the documented comment, PI, and CDATA boundaries. The narrow changes are consistent with the interface, invented tests, and curated public contracts. No tests or schema/XSLT validation were executed.

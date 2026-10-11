@@ -1,0 +1,32 @@
+2026-10-11T03:35:52.790317Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:35:52.790332Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:35:52.796507Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 169796 chars
+codex thread: 01a12908-00d0-7293-a51e-0334f751fc1c
+codex turn started
+2026-10-11T03:35:53.085504Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T03:35:53.085517Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll check the snapshot against the protocol, specification and curated contracts using read-only inspection.
+codex activity: 14 hidden tool/status events
+The comment/PI policy appears consistent with the contract: inside-root nodes fail closed, while outside-root nodes are ignored. I’m checking identity collisions and recovery counts for cases that could incorrectly establish correspondence.
+codex activity: 1 hidden tool/status events
+codex activity: 5 hidden tool/status events
+The slot accounting, original clock handling and literal arrival-weight rules appear consistent with the contract. I found a possible gap in the collision scan: it filters by namespace before checking identities, which can skip a colliding out-of-scope object. I’m checking that against the protocol’s “anywhere inside the document root” rule.
+{"findings":[{"title":"[P2] Check colliding identities before filtering outside objects by namespace","body":"The outside-object scan excludes every node outside BED, and the native scan repeats this namespace filter. An extension such as `<ext:object publicID=\"smi:nz.org.geonet/p\"/>` therefore bypasses identity validation even when a scoped pick has that ID: its local name is not CRITICAL, so reject_foreign also permits it. Projection then accepts the pick despite the cross-type collision. PROTOCOL_v2.md and specification.json require colliding publicID candidates anywhere inside the document root to invalidate correspondence. Scan all publicID-bearing outside nodes in both readers, retaining the existing behavior that ignores unrelated identities.","priority":"P2","confidence":0.96,"category":"bug","code_location":{"file_path":"projection.py","line":404}},{"title":"[P2] Normalize signed zero in canonical origin geometry","body":"Decimal.normalize() retains the sign of zero, so canonical_number(\"-0\") returns \"-0\" while canonical_number(\"0\") returns \"0\". compare() compares these canonical strings directly. Otherwise identical records with signed-zero latitude, longitude or depth consequently report a content mismatch and lose content-matched recovery counts, although their finite numeric geometry is equal. Canonicalize zero to a single representation before returning the geometry string; preserve the lexical arrival-weight guard separately.","priority":"P2","confidence":0.93,"category":"bug","code_location":{"file_path":"projection.py","line":96}}],"overall_correctness":"patch is incorrect","overall_explanation":"The comment/PI boundary policy is implemented consistently, but the outside-scope identity scan misses colliding extension objects, and numeric geometry canonicalization distinguishes equivalent signed zeros. Both can produce incorrect compatibility results. Review used read-only source inspection; no tests or transforms were executed.","overall_confidence":0.93}
+codex usage: input_tokens=309970 cached_input_tokens=237824 output_tokens=5969 reasoning_output_tokens=5051
+autoreview findings: 2
+[P2] [P2] Check colliding identities before filtering outside objects by namespace
+projection.py:404
+The outside-object scan excludes every node outside BED, and the native scan repeats this namespace filter. An extension such as `<ext:object publicID="smi:nz.org.geonet/p"/>` therefore bypasses identity validation even when a scoped pick has that ID: its local name is not CRITICAL, so reject_foreign also permits it. Projection then accepts the pick despite the cross-type collision. PROTOCOL_v2.md and specification.json require colliding publicID candidates anywhere inside the document root to invalidate correspondence. Scan all publicID-bearing outside nodes in both readers, retaining the existing behavior that ignores unrelated identities.
+
+[P2] [P2] Normalize signed zero in canonical origin geometry
+projection.py:96
+Decimal.normalize() retains the sign of zero, so canonical_number("-0") returns "-0" while canonical_number("0") returns "0". compare() compares these canonical strings directly. Otherwise identical records with signed-zero latitude, longitude or depth consequently report a content mismatch and lose content-matched recovery counts, although their finite numeric geometry is equal. Canonicalize zero to a single representation before returning the geometry string; preserve the lexical arrival-weight guard separately.
+
+overall: patch is incorrect (0.93)
+The comment/PI boundary policy is implemented consistently, but the outside-scope identity scan misses colliding extension objects, and numeric geometry canonicalization distinguishes equivalent signed zeros. Both can produce incorrect compatibility results. Review used read-only source inspection; no tests or transforms were executed.

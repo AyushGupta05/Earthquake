@@ -1,0 +1,48 @@
+{
+  "invented_only": true,
+  "XSLT_executed": false,
+  "actual_reads": 0,
+  "new_requests": 0,
+  "results": [
+    {
+      "case": "comment_before",
+      "frozen_v2_status": "unknown_representation",
+      "frozen_v2_reason": "xml_declaration_forbidden",
+      "independent_guarded_parser_root": "{http://quakeml.org/xmlns/quakeml/1.2}quakeml"
+    },
+    {
+      "case": "comment_after",
+      "frozen_v2_status": "unknown_representation",
+      "frozen_v2_reason": "xml_declaration_forbidden",
+      "independent_guarded_parser_root": "{http://quakeml.org/xmlns/quakeml/1.2}quakeml"
+    },
+    {
+      "case": "PI_before",
+      "frozen_v2_status": "unknown_representation",
+      "frozen_v2_reason": "xml_declaration_forbidden",
+      "independent_guarded_parser_root": "{http://quakeml.org/xmlns/quakeml/1.2}quakeml"
+    },
+    {
+      "case": "PI_after",
+      "frozen_v2_status": "unknown_representation",
+      "frozen_v2_reason": "xml_declaration_forbidden",
+      "independent_guarded_parser_root": "{http://quakeml.org/xmlns/quakeml/1.2}quakeml"
+    },
+    {
+      "case": "plain",
+      "independent_guarded_parser_rejection": "xml_declaration_forbidden"
+    },
+    {
+      "case": "internal_entity",
+      "independent_guarded_parser_rejection": "xml_declaration_forbidden"
+    },
+    {
+      "case": "malformed_subset",
+      "independent_guarded_parser_rejection": "xml_declaration_forbidden"
+    },
+    {
+      "case": "external_system",
+      "independent_guarded_parser_rejection": "xml_declaration_forbidden"
+    }
+  ]
+}

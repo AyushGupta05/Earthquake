@@ -1,0 +1,21 @@
+{
+  "review": "autoreview_v4.json",
+  "finding_accepted_after_reproduction": true,
+  "invented_before_fix": {
+    "tests": 124,
+    "exit_code": 1,
+    "failures": 1,
+    "output": "review_v4_counterexample_before_fix.txt"
+  },
+  "narrow_fix": "native acceptance additionally binds retrieved pick raw publicID to arrival raw pickID; a unique original target does not validate another object at the trimmed lookup key; mismatch stays unresolved",
+  "QML_preserved_predicate_changed": false,
+  "affected_full_synthetic_tests": {
+    "run": 124,
+    "passed": 124,
+    "exit_code": 0,
+    "output": "local_tests_v5.txt"
+  },
+  "actual_body_reads": false,
+  "author_transform_execution": false,
+  "v1_processing_modified": false
+}

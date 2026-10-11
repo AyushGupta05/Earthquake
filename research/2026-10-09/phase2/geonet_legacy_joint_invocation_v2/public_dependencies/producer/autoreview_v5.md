@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] P2 Reject XML encoding declarations that contradict the byte encoding
+projection.py:181
+Decoding the body before parsing removes the XML parser's byte-level encoding checks. ElementTree treats Unicode input as already decoded, so an otherwise valid UTF-8 fixture prefixed with `<?xml version="1.0" encoding="UTF-16"?>` can be accepted despite its contradictory declaration. Other declarations can also produce different text when the original bytes are parsed according to XML encoding rules. This violates the protocol's UTF-8/XML and malformed-input policy and can establish a known representation from unsupported bytes. Validate the declaration against the UTF-8 policy or retain byte-level encoding validation when parsing.
+
+[P2] P2 Apply the native reference guard to newly unique object recovery
+comparison.py:79
+`newly_unique_reference_object_count` checks only candidate-key multiplicity, bypassing the native raw-reference guard in `analyse`. For example, let the left QML reference `smi:invented/p` have no pick, and let the right native arrival reference `smi:invented/p ` with no exact target while an amplitude selects the pick `smi:invented/p`. Native analysis correctly leaves that arrival unresolved, but this comprehension reports one newly unique reference object because the trimmed lookup key contains one pick. The counter therefore establishes recovery through the substitution expressly forbidden by the protocol. Require a uniquely resolved native raw target with matching raw publicID before counting a newly unique reference object; pick acceptance need not be required.
+
+overall: patch is incorrect (0.93)
+The inside-root comment/PI rejection implements the declared bounded policy. However, XML encoding contradictions can bypass malformed-byte validation, and the newly unique reference-object counter bypasses the native identity guard. These are concrete contract violations. Review used read-only source inspection; tests and transforms were not executed.

@@ -1,0 +1,11 @@
+# Public schema context for independent replay
+
+These documentation examples contain invented fixtures only. The ten processing files and their exact review/test pins define production behavior; this file adds no selection or interpretation gates. The separate auditor must derive primitives independently, without importing producer helpers.
+
+Bulk-plan row fields used by selection are `event_id` (string), `source` (`reused_tail` or `new_lower_M`), `candidate_calendar_partition` (the selected value is `test2018_2024`) and finite numeric `mw`. All original row fields are retained. The source frame has495 unique rows,149 reused tail and346 new lower-magnitude rows. Original metadata is keyed by `event_id`; incomplete qualification reads `base.reasons` for a positive count in `missing_or_ambiguous_pick_reference`, `invalid_or_naive_pick_time` or `missing_station_identity`, with `base.status=ok`.
+
+Selected rows add `Mw_band` (`[6,7)` or `>=7`), `incomplete` (boolean), `role` (`incomplete_probe` or `complete_control`), `preserved_original_T0_us` (integer or null) and `original_qml` (private path, byte/hash pin, projection SHA256 and status). Literal salts, six-event order and endpoints are in PROTOCOL_v1.md. Request slots are qml_00.xml,scml_01.xml,...,qml_10.xml,scml_11.xml at service.geonet.org.nz; eventid is the sole query parameter. Each source event retains original_qml/fresh_qml/native_scml, yielding18 total slots.
+
+`invented_schema_example.json` shows the private outcome shape with only invented identifiers and values. All creationInfo fields are lexical strings or null. Geometry is canonical numeric text or null; timestamps and anchors are UTC microsecond integers or null. An unknown or unattempted slot has no accepted/coverage denominators. A parsed empty set can have station_count0, null T0/horizon counts, and NZ_coverage_known=false if qualifying associations remain unresolved. Positive incomplete subsets are lower bounds at their preserved accepted-subset clock, not evidence of full operational completeness.
+
+Comparison fields separate missing/ambiguous object recovery from newly accepted references, including existing-object station/time repair. Same-record and revision predicates remain conservative; all physical/operational validation, converter-bug, automatic-reclock and model-improvement claims remain false.

@@ -1077,6 +1077,24 @@
         20
       ]
     },
+    "anonymous_archive_error_code_diagnostic": {
+      "all_body_byte_pins_verified_before_and_after": true,
+      "all_literal_candidates_absent_at_chosen_endpoint_at_observation": true,
+      "day_channel_location_endpoint_general_mapping_verified": false,
+      "error_code_counts": {
+        "NoSuchKey": 4
+      },
+      "manifest_unchanged": true,
+      "maximum_body_bytes_read_each": 1024,
+      "new_requests": 0,
+      "pinned_error_bodies_checked": 4,
+      "private_identifiers_or_body_contents_exported": false,
+      "schema": "geonet-archive-error-code-diagnostic-v1",
+      "scope": "bounded offline XML Error.Code inspection only",
+      "utc": "2026-10-11T04:57:31.344250+00:00",
+      "waveform_absence_or_failed96_repair_claim": false,
+      "waveform_or_metadata_decoding": false
+    },
     "anonymous_archive_transport_independent_parent_source_completion": {
       "actual_audit_performed": false,
       "actual_inputs_read": false,
@@ -1087,6 +1105,58 @@
       "parent_invented_tests": 39,
       "parent_receipt_sha256": "dba93efc0329d40a530fa8f839019fb99000b119f1f01102080dd47d983697d7",
       "public_source_members": 42
+    },
+    "anonymous_archive_transport_v2_actual_gate": {
+      "DEV_events": 1,
+      "TEST_events": 0,
+      "TRAIN_events": 3,
+      "actual_requests_before_invocation": 0,
+      "authorization_sha256": "f95310f953c2f1953a69177b833316cabb3c575f4a2a6ca4643f2d86f2f669d4",
+      "body_budget_bytes": 268435456,
+      "fixed_keys": 4,
+      "mapping_status": "unverified_hypothesis",
+      "maximum_GETs": 4,
+      "paid_AWS_work_authorized_here": false,
+      "plan_sha256": "f318560ea2a92726159a7a195a6d12ebde81e8f0b9ec6fce94155c27b2cd4461",
+      "pushed_freeze": "a5bb212680769c803c5a8e216b8cc9f8ce0869de",
+      "retries_redirects_HEAD_listing_auth_fallback_allowed": false,
+      "run_seconds_cap": 900,
+      "waveforms_decoded": 0
+    },
+    "anonymous_archive_transport_v2_actual_outcome": {
+      "DEV_events": 1,
+      "HTTP_status_counts": {
+        "404": 4
+      },
+      "TEST_events": 0,
+      "TRAIN_events": 3,
+      "attempts": 4,
+      "body_bytes_observed": 1364,
+      "collection_elapsed_seconds": 3.9803600420018483,
+      "complete_accounting": true,
+      "conservative_consumed_bytes_upper": 1364,
+      "distinct_events_and_keys": 4,
+      "failed96_repaired": false,
+      "fixed_slots": 4,
+      "independent_audit_sha256": "6a3d138a0c32166eb390696420ac6451e7e072a33355e2eb5c43188b26bc59f5",
+      "independent_finalization_verified": true,
+      "independent_issues": [],
+      "independent_record_replay_valid": true,
+      "mapping_status": "unverified_hypothesis",
+      "miniSEED_or_waveforms_decoded": 0,
+      "new_AWS_resources_or_training_jobs": 0,
+      "novelty_or_model_improvement_claim": false,
+      "old_failed96_artifacts_or_clock_rules_changed": false,
+      "parent_inventory_and_all_byte_pins_verified": true,
+      "private_artifact_count": 12,
+      "private_execution_summary_sha256": "2e517d2ae5c23aeab6598c78abe288b5fc7144e697e575de8a648c16bc6818ec",
+      "pushed_source_freeze": "a5bb212680769c803c5a8e216b8cc9f8ce0869de",
+      "qualified_transport_slots": 0,
+      "retry_redirect_HEAD_listing_alias_replacement_fallback_used": false,
+      "schema": "geonet-four-slot-literal-archive-transport-public-outcome-v1",
+      "semantic_day_channel_location_endpoint_and_coverage_claims": false,
+      "utc": "2026-10-11T04:50:36.019836+00:00",
+      "waveform_absence_claim": false
     },
     "anonymous_archive_transport_v2_parent_source_completion": {
       "actual_acquisition_started": false,
@@ -1105,6 +1175,7 @@
     "archive_key_mapping_source_audit": {
       "actual_waveform_or_object_reads": 0,
       "audit_sha256": "c4ac22937300dfc9644a0a0b4d5f735b8663234e6839704da3c211d34ce90230",
+      "current_followup": "four literal candidates returned NoSuchKey; narrow official-writer source audit in progress; no blind alias retry or waveform absence claim",
       "mapping_hypothesis_sha256": "5229e3f5fca0ab9fa38c1801c206d2d62be31fc725fdc1d9866b5ac60845670b",
       "public_packet_members": 9,
       "source_pins_sha256": "9723c875d985815fc906b4930cee8cce6ef000f76fc30667f8f1ff0e41c86897",
@@ -1225,6 +1296,7 @@
           "unrelated_dirty_count": 51,
           "utc": "2026-10-11T04:03:29.707442+00:00"
         },
+        "current_status": "jointV1 actual incomplete preserved;9realmoduleinventedcohorts complete; separateV2firstcleanreview1/49parenttests byteverified; sourcepushpending; actualcauseunknown",
         "historical_source_publication": {
           "actual_legacy_projection": false,
           "all_git_pins_verified": true,
@@ -1238,6 +1310,19 @@
           "raw_data_exported": false,
           "unrelated_dirty_files_preserved": 51,
           "utc": "2026-10-11T03:47:15.867134+00:00"
+        },
+        "joint_actual_invocation_gate": {
+          "actual_xml_reads_before_invocation": 0,
+          "authorization_sha256": "7055e1884cb8da6ecf11d6980f69a854d79b25e232892d0727ac1d616ad1f3f1",
+          "body_bytes_cap_each": 4194304,
+          "network_requests_authorized": 0,
+          "original_census_clock_reverification_sha256": "98a573d78409f6718534bf48849a3e3fb7a8a8558856089e8600d59acb972cf4",
+          "output_bytes_cap": 8388608,
+          "same_distinct_bodies": 18,
+          "same_fixed_events": 6,
+          "single_invocation_only": true,
+          "total_input_bytes_cap": 100663296,
+          "whole_invocation_seconds_cap": 120
         },
         "joint_adapter_parent_source_completion": {
           "actual_body_reads": 0,
@@ -1266,6 +1351,92 @@
           "private_joint_plan_sha256": "a091e5a32a98c62af15b7e152f69c2509a4e3fcb9b0866363bbd5dec733a709d",
           "source_bundle_members_reverified": 120,
           "status": "newboundedjointadapterinreview;privateacyclicplanprepared;noexecutionauthority"
+        },
+        "joint_adapter_pushed_freeze": "a5bb212680769c803c5a8e216b8cc9f8ce0869de",
+        "joint_invocation_v1_actual_status": {
+          "CLI_exit_code": 1,
+          "actual_rerun_performed": false,
+          "compatibility_recovery_converter_operational_or_model_claim": false,
+          "complete": false,
+          "complete_scientific_outputs": 0,
+          "confirmed_child_group_stopped": true,
+          "fixed_events": 6,
+          "new_requests": 0,
+          "original_results_or_clocks_changed": false,
+          "preservation_receipt_sha256": "ab1e50c885155b7f2372a2dd3a7987472758d5ac3318b6b267017df475bfedf6",
+          "private_artifacts_preserved": 3,
+          "read_stage_or_XML_cause_known": false,
+          "reason": "child_failed",
+          "reported_elapsed_seconds": 0.7455444170009287,
+          "representation_slots": 18,
+          "schema": "geonet-legacy-joint-incomplete-public-status-v1",
+          "source_freeze": "a5bb212680769c803c5a8e216b8cc9f8ce0869de",
+          "source_only_invented_real_interface_diagnosis_pending": true,
+          "utc": "2026-10-11T04:44:55.505659+00:00"
+        },
+        "joint_v2_parent_source_completion": {
+          "actual_inputs_read": false,
+          "actual_invocations": 0,
+          "additional_python310_smoke": {
+            "log_pin": {
+              "bytes": 6174,
+              "sha256": "3940d44eabb9bb269fb7692531ae5bc489e78f8931f28f379e2ca6535d124be0"
+            },
+            "runtime_sha256": "53815ef772c33a6e786b9702089e7f89bfbc5d43e1759daef3aafeb798a185bd",
+            "tests_passed": 49
+          },
+          "all_manifest_members_and_reviewed_snapshot_verified": true,
+          "child_pin": {
+            "bytes": 26486,
+            "sha256": "a8b4a836a31fcac9ddd099f84b7011d64086719601c77dd72f9cc186fe349af0"
+          },
+          "first_clean_review_attempt": 1,
+          "manifest_pin": {
+            "bytes": 24139,
+            "sha256": "cb877b882d9a5cf7402ae092c9cc78f1069d751460e94d0af56135fb27a89c2d"
+          },
+          "new_requests_or_paid_work": 0,
+          "parent_invented_tests": 49,
+          "parent_test_log_pin": {
+            "bytes": 6174,
+            "sha256": "365c71329e75f7c36da182d3d954c6b9da62ef8110c05303ab3c671b3cccc3d4"
+          },
+          "private_new_plan_authorization_and_pushed_source_required": true,
+          "public_members": 143,
+          "review_exit_code": 0,
+          "review_findings": 0,
+          "review_receipt_pin": {
+            "bytes": 1115,
+            "sha256": "5ca81cc82c29bd83bdb23c791e79ac5dc5293fcb86e61756df22aee867d84cb3"
+          },
+          "runtime_path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+          "runtime_pin": {
+            "bytes": 52448,
+            "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+          },
+          "schema": "geonet-legacy-joint-v2-parent-source-completion-v1",
+          "scientific_dependency_members": 120,
+          "source_frozen_read_only": true,
+          "source_snapshot_pin": {
+            "bytes": 23096,
+            "sha256": "1b9206c1b3dfbaade70238a0351c4ea9ba996519983baa5af672d6c1dc361861"
+          },
+          "supervisor_pin": {
+            "bytes": 13205,
+            "sha256": "935eebb431bfa27f1f8069a6fd8d9719c1181dbc5e6056aed7f431f986d0475d"
+          },
+          "test_arguments": [
+            "-I",
+            "-B",
+            "-Werror",
+            "-m",
+            "unittest",
+            "discover",
+            "-v"
+          ],
+          "test_exit_code": 0,
+          "unchanged_v1_manifest_members": 136,
+          "utc": "2026-10-11T04:59:41.384973+00:00"
         },
         "new_event_requests": 0,
         "original_source_results_and_clocks_unchanged": true,
@@ -1329,6 +1500,36 @@
           "source_sha256": "cc93594acb6c120319d6520b17c7f2e2cdaad86ed4ae5d0de6115dfc58921763",
           "stage": "source-only parent completion; actual use still waits pushed producer and independent source freezes",
           "utc": "2026-10-11T03:51:17.385805+00:00"
+        },
+        "source_only_v1_diagnosis": {
+          "actual_exit_1_reproduced": false,
+          "actual_failure_cause_known": false,
+          "actual_inputs_read": false,
+          "completed_invented_cohorts": 9,
+          "invented_six_event_cohorts": 9,
+          "new_requests_or_actual_reruns": 0,
+          "nonfatal_null_original_clock_shape_mismatch_verified": true,
+          "null_clock_mismatch_explains_actual_failure": false,
+          "original_v1_manifest_members_reverified": 136,
+          "real_frozen_dependency_members_exercised": 120,
+          "schema": "geonet-legacy-v1-source-only-diagnostic-parent-summary-v1",
+          "separate_v2_status": "first clean Codex review1; parent invented tests running; not yet pushed or invoked",
+          "source_documents": {
+            "SOURCE_DIAGNOSIS.md": {
+              "bytes": 3977,
+              "sha256": "c75427edccdfaa147a0bf1d52e86e4c0dd1d3d9f0ae794181c4df9e57e334ab3"
+            },
+            "invented_integration_results.json": {
+              "bytes": 6931,
+              "sha256": "b1f853d369a52a9a2f27f5ed90bfacddc0c8100013d196e1bcaa80079404781b"
+            },
+            "v1_preservation_check.json": {
+              "bytes": 274,
+              "sha256": "2ee1414aa2f905950e3bb568bb0dd3328916e8075bd5620ec9e7e4d62f4b5de4"
+            }
+          },
+          "utc": "2026-10-11T04:57:31.344250+00:00",
+          "v1_members_changed": 0
         },
         "status": "v1 producer and independent semantic v2 first-clean historical sources preserved and barred from unguarded actual use; corrected producer v2 and semantic v3 source-only review ongoing"
       },
@@ -1492,5 +1693,5 @@
       "target": "PGV/CWA intensity, not magnitude"
     }
   },
-  "updated_utc": "2026-10-11T04:40:37.918800+00:00"
+  "updated_utc": "2026-10-11T04:59:41.384973+00:00"
 }

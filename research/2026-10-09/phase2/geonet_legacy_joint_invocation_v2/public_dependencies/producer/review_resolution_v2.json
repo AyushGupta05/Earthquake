@@ -1,0 +1,24 @@
+{
+  "review": "autoreview_v2.json",
+  "both_findings_accepted": true,
+  "invented_before_fix": {
+    "tests": 118,
+    "exit_code": 1,
+    "failures": 2,
+    "errors": 1,
+    "output": "review_v2_counterexamples_before_fix.txt"
+  },
+  "fixes": [
+    "outside identity checks include colliding publicID-bearing foreign extension objects anywhere inside root; unrelated objects still ignored",
+    "canonical numeric geometry collapses signed zero to zero; lexical arrival weight guard unchanged"
+  ],
+  "affected_full_synthetic_tests": {
+    "run": 118,
+    "passed": 118,
+    "exit_code": 0,
+    "output": "local_tests_v3.txt"
+  },
+  "actual_body_reads": false,
+  "author_transform_execution": false,
+  "v1_processing_modified": false
+}

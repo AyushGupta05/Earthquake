@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.91)
+No actionable defects found in the scoped V2 changes. The null preserved-T0 shape matches the frozen producer while retaining the own clock. Failure diagnostics use fixed fields and bounded positions without exposing private values. All 120 dependency members and four implementation pins matched. Tests were inspected but not executed under the read-only constraints.

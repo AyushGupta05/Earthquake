@@ -1,0 +1,121 @@
+{
+  "actual_inputs_read_or_execution_authorized_here": false,
+  "canonical_mapping_encoding": "UTF-8 json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False), no newline",
+  "child_failure_diagnostic_bytes_cap": 1024,
+  "child_failure_diagnostic_exact_fields": {
+    "body_index": "null outside body_validation; zero-based integer0..17 current slot",
+    "complete": false,
+    "exception_class": [
+      "ValueError",
+      "TypeError",
+      "KeyError",
+      "IndexError",
+      "AttributeError",
+      "OSError",
+      "RuntimeError",
+      "OverflowError",
+      "UnicodeError",
+      "MemoryError",
+      "RecursionError",
+      "ZeroDivisionError",
+      "OtherException"
+    ],
+    "protocol_id": "literal protocol_id",
+    "stage": [
+      "startup",
+      "start_gate",
+      "runtime_validation",
+      "plan_authorization",
+      "source_bundles",
+      "event_schema",
+      "body_validation",
+      "native_profile",
+      "module_loading",
+      "producer_projection",
+      "independent_projection",
+      "clock_comparison",
+      "serialization",
+      "stdout_write"
+    ],
+    "validated_body_count": "integer0..18; successfully path/hash/length/budget-validated body slots, not parsed acceptance"
+  },
+  "event_input_exact_fields": {
+    "bodies": "exact original_qml/fresh_qml/native_scml mappings each {path: canonical absolute distinct file, bytes: int, sha256: hex64}",
+    "event_id": "unique nonempty raw private string <=1024 characters",
+    "native_profile": "null when parent has no previously recorded per-event profile, or 0.10/0.11 which must match child recognition after authorized body reads; null receives exact recognized enum for producer with explicit provenance",
+    "original_t0_us": "valid UTC calendar integer microseconds or null; no automatic inference"
+  },
+  "hard_RSS_memory_ceiling_claim": false,
+  "independent_event_fields": [
+    "event_id",
+    "native_root_profile",
+    "primary_qml_profile",
+    "representations",
+    "shadow_clocks",
+    "catalogue_drift",
+    "representation_difference",
+    "producer_clock_comparison",
+    "signed_clock_diagnostics",
+    "profile_input_provenance"
+  ],
+  "null_original_clock_shape": "at_preserved_original_T0:null; own_clock retained without inference",
+  "output_envelope_exact_fields": [
+    "protocol_id",
+    "private",
+    "public_aggregate"
+  ],
+  "private_authorization_exact_fields": {
+    "adapter_review_receipt_sha256": "hex64 parent verified actual clean review receipt",
+    "adapter_sha256": "hex64 of child_harness.py",
+    "adapter_test_receipt_sha256": "hex64 parent verified synthetic test receipt",
+    "auditor_bundle_sha256": "hex64 of canonical JSON source_bundle",
+    "authorization": "one_fixed_offline_invocation",
+    "git_pushed_freeze_independently_verified": true,
+    "network_requests_authorized": 0,
+    "original_census_clock_source_sha256": "hex64 matching plan",
+    "original_census_clocks_independently_verified": true,
+    "plan_sha256": "hex64 of exact plan bytes; plan contains no authorization hash",
+    "producer_bundle_sha256": "hex64 of canonical JSON source_bundle",
+    "protocol_id": "literal protocol_id",
+    "pushed_freeze": "hex40 parent verified published adapter freeze commit",
+    "runtime": "exact {path: resolved absolute executable, sha256: hex64}",
+    "source_freeze_tests_review_verified": true,
+    "supervisor_sha256": "hex64 of supervisor.py"
+  },
+  "private_output_fields": [
+    "producer",
+    "independent",
+    "policy_differences",
+    "invocation_provenance"
+  ],
+  "private_plan_exact_fields": {
+    "auditor": "source_bundle",
+    "events": "exact six event_input dictionaries in original fixed order",
+    "original_census_clock_source_sha256": "hex64; parent independently verified all six original clock bindings",
+    "original_manifest_sha256": "hex64 from preserved fixed paired manifest",
+    "original_plan_sha256": "hex64 from preserved fixed paired plan",
+    "processing_source_mapping_sha256": "hex64 producer V2 processing mapping, parent independently bound",
+    "producer": "source_bundle",
+    "protocol_id": "literal protocol_id"
+  },
+  "protocol_id": "geonet_legacy_joint_invocation_v2",
+  "public_aggregate_fields": [
+    "events",
+    "representation_slots",
+    "independent_status_counts",
+    "known_projection_clock_mismatch_slots",
+    "independent_own_clock_earlier_than_preserved_slots",
+    "shared_known_subset_clock_mismatch_detected",
+    "shared_clock_claim_permitted",
+    "universal_semantic_equality_claim_permitted",
+    "network_requests",
+    "automatic_reclock_applied",
+    "model_improvement_claim",
+    "operational_availability_claim"
+  ],
+  "source_bundle_exact_fields": {
+    "directory": "canonical absolute exact frozen directory",
+    "members": "canonical safe relative public filename (nested allowed) -> {bytes: nonnegative int, sha256: hex64}; full parent-verified allowlist of 86 producer or 34 auditor members"
+  },
+  "v1_preserved_unchanged": true
+}

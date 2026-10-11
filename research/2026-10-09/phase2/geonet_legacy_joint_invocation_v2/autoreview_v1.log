@@ -1,0 +1,23 @@
+2026-10-11T04:55:05.104516Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:55:05.104536Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:55:05.127114Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 110047 chars
+codex thread: 01a12950-8485-7eb3-b385-3f359962e1d5
+codex turn started
+2026-10-11T04:55:05.432698Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T04:55:05.432713Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the snapshot and frozen contracts for concrete defects in the V2 changes, especially null clocks and failure diagnostics.
+codex activity: 11 hidden tool/status events
+codex activity: 5 hidden tool/status events
+The null-T0 fix matches the frozen producer’s clock shape and preserves the own clock. The failure path emits only fixed fields, without exception text or argument values. I’m finishing the source-pin and integration-test inspection.
+codex activity: 4 hidden tool/status events
+{"findings":[],"overall_correctness":"patch is correct","overall_explanation":"No actionable defects found in the scoped V2 changes. The null preserved-T0 shape matches the frozen producer while retaining the own clock. Failure diagnostics use fixed fields and bounded positions without exposing private values. All 120 dependency members and four implementation pins matched. Tests were inspected but not executed under the read-only constraints.","overall_confidence":0.91}
+codex usage: input_tokens=292264 cached_input_tokens=216704 output_tokens=1919 reasoning_output_tokens=878
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.91)
+No actionable defects found in the scoped V2 changes. The null preserved-T0 shape matches the frozen producer while retaining the own clock. Failure diagnostics use fixed fields and bounded positions without exposing private values. All 120 dependency members and four implementation pins matched. Tests were inspected but not executed under the read-only constraints.
