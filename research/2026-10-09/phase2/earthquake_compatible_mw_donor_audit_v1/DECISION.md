@@ -1,0 +1,34 @@
+# Compatible Mw donor: no qualified cohort yet
+
+11 October 2026. Documentation-only decision. Existing authored plans/audits were read first; new research stopped at four targeted queries and seven primary opens. No data, private input, account, author-code execution, acquisition, installation, fit or Git change occurred. Raw third-party sources are excluded from this packet.
+
+**Do not start the matched fit.** Select **PEER NGA-West2 as one conditional source-audit candidate**, not an accepted donor. A compatible causal 1/3/5-second cohort remains unestablished. This is a negative readiness finding, not proof that suitable original recordings do not exist.
+
+The [existing adjudication](../earthquake_next_method_adjudication/ADJUDICATION.md) fixes equal compute, two seeds, target bulk replay and one unchanged encoder/amplitude bypass/five-Gaussian Mw head. Arms A/B/C/D respectively add ordinary target batches, repeated target-tail batches, ordinary donor events and distinct Mw≥5.5 donor events. The donor must support C and D with comparable region/instrument strata. Retain all failures, sequence exclusions and target evaluation guards; transfer itself is established prior art. Chile MA, Japan Mj and INSTANCE ML remain different labels. No unanchored conversion is admitted.
+
+## Primary evidence and its boundary
+
+The May-2013 **PEER 2013/03** report describes a magnitude range 3–7.9 and, in §8, 21,336 three-component records/600 events; these are historical totals, **not Mw-only eligible counts**. The abstract assigns this total to California; §8 assigns it to the database. Appendix D defines J as moment magnitude, K as non-Mw exceptions (ML/MS/Mb/unknown), and uncertainty fields. Its Mo column is calculated treating the magnitude as Mw regardless of type: **Mo is not an independent Mw anchor**. EQID/RSN/SSN identify events/records/stations; class labels describe mainshock/aftershock classification, not a verified sequence partition. New Zealand events are included. §§6.1/6.4 document acausal filtering, whole-record filter/baseline choices and late-P flags. Instrument-response correction is a processing objective; acceleration metrics use g. A waveform sample-unit/response chain and accepted station-P/start-time join for our clock remain unverified. [Official report, §§6,8; Appendix D](https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf).
+
+**Inference:** cropping a processed record cannot certify prefix causality. Do not use origin minute, a late-trigger flag or file index as P time, or assume a missing K value proves a genuine Mw label. No current eligible Mw<5.5/≥5.5/≥6/≥7 count is established.
+
+The official portal's search-indexed landing page says downloads are unscaled/unrotated, provides sign-up/sign-in, cites copyright restrictions and approximately 200-record/two-week and 400-record/month limits, and says the database evolves. Direct landing/documentation opens failed in this pass. Consequently current access terms, redistribution/model-training license and a reproducible immutable release remain **unverified**; this is not a CC-BY/open-download declaration. [Official portal](https://ngawest2.berkeley.edu/).
+
+MLAAPDE's official 15-June-2023 description supports a different useful lead: >5.1 million 120-second three-component **raw-count** arrival records and manually reviewed P/Pn/Pg/S/Sn/Sg annotations. This page does not establish a Mw-type field/cohort, large-Mw event counts, response availability or an earliest-network-P cohort. Its linked Publications Warehouse open failed. Thus the previously audited resource is not silently promoted to a compatible donor. [USGS publication page, DOI10.1785/0220230021](https://www.usgs.gov/publications/mlaapde-a-machine-learning-dataset-determining-global-earthquake-source-parameters).
+
+Prior Alaska audits retain unresolved published/released cohort correspondence, mixed preferred-label eligibility, station-P availability and calibration beyond gain strings. The existing Chile/Japan/Italy/STEAD audits establish neither an interchangeable Mw target nor a new qualified donor here. These negative records are preserved, not re-audited online or relabelled.
+
+## One precise next audit; acquisition and fitting remain closed
+
+For the **NGA-West2 candidate only**, first inspect official documentation for a bounded original-provider route linking published label provenance to raw three-component recordings, absolute sample starts, associated observed P annotations and concurrent response/calibration. Require the following manifest before any data or compute authorization:
+
+1. An immutable release and permitted access/training terms; genuine independently sourced Mw value, type, author/method/uncertainty for every eligible event. Unknown or non-Mw entries stay excluded with their denominators. No Mo back-conversion or MA/ML/Mj extrapolation.
+2. Exact provider/event/record/station joins and a predeclared event/sequence partition, with every donor overlapping the GeoNet evaluation region/events/sequences quarantined. Source class flags alone do not resolve sequence dependence. Freeze ordinary and ≥5.5 counts by region/instrument, distinct independent sequences, and ≥6/≥7 support before allocating C/D.
+3. Observed station P times, eligible stations and complete sample grids sufficient to form earliest accepted network P T0 and half-open [T0−5,T0+h) inputs for h=1/3/5. Keep late/missing stations, timing uncertainty and incomplete windows as failures; do not replace the clock with theoretical travel time or local fixed-length post-P snippets.
+4. Exact sample units, response provenance, orientation/epochs/rates and raw data suitable for prefix-only calibration/filtering/resampling. Use one frozen causal preprocessing contract for target and donor, with no full-record normalization, later peak, eventual station selection, catalogue geometry or target magnitude in inference inputs.
+
+If this documentation route cannot supply those joins and raw calibration, reject NGA-West2 for this experiment. A separate future MLAAPDE schema/response audit could be proposed; it is not a second selected donor or permission granted here. No prospective model improvement is claimed.
+
+The four-file GeoNet precontext feasibility experiment remains separate. Its transport/grid outcomes cannot certify donor labels, units, clock, cohort support or scientific transfer. The target support and simultaneous all-horizon/bulk/worst-error gates in the existing adjudication remain unchanged.
+
+`SOURCE_LEDGER.json` records source editions, failed access, exact local authored-document pins and request accounting. Online original bytes were not downloaded; online byte hashes are deliberately null. The closed public allowlist contains authored documents/pins only.

@@ -1,0 +1,373 @@
+"""Bounded process-group supervisor; no event inputs or authorization are read here."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import selectors
+import signal
+import stat
+import subprocess
+import sys
+import time
+
+OUTPUT_CAP = 8 * 1024 * 1024
+STDERR_CAP = 128 * 1024
+PROTOCOL = "geonet-archive-precontext-sensitivity-v2"
+PRECONTEXTS = (0, 1, 3, 5)
+HORIZONS = (1, 3, 5)
+
+
+def read_code(path, cap):
+    p = Path(path)
+    if not isinstance(path, str) or str(p) != path or not p.is_absolute() or p.resolve() != p or p.is_symlink():
+        raise ValueError("noncanonical executable source path")
+    fd = os.open(p, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "rb") as stream:
+        info = os.fstat(stream.fileno())
+        if not stat.S_ISREG(info.st_mode) or info.st_size > cap:
+            raise ValueError("unbounded executable source")
+        body = stream.read(cap + 1)
+    if len(body) > cap:
+        raise ValueError("executable source grew beyond bound")
+    return body
+
+
+def file_sha(path, cap):
+    return hashlib.sha256(read_code(path, cap)).hexdigest()
+
+
+def exclusive(path):
+    return os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600), "wb")
+
+
+def finalize_owned_receipt(path, owned, receipt):
+    fd = os.open(path, os.O_WRONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "wb") as stream:
+        current = os.fstat(stream.fileno())
+        if (current.st_dev, current.st_ino) != (owned.st_dev, owned.st_ino):
+            raise ValueError("exclusive receipt was replaced")
+        stream.truncate(0)
+        stream.write(json.dumps(receipt, sort_keys=True, allow_nan=False).encode() + b"\n")
+
+
+def terminate_group(proc, deadline):
+    # Kill the session even if its leader exited: inherited pipes can belong to descendants.
+    try:
+        os.killpg(proc.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    except PermissionError:
+        return False
+    try:
+        proc.wait(timeout=max(0.001, deadline - time.monotonic()))
+    except subprocess.TimeoutExpired:
+        return False
+    until = deadline
+    while time.monotonic() < until:
+        try:
+            os.killpg(proc.pid, 0)
+        except ProcessLookupError:
+            return True
+        except PermissionError:
+            return False
+        time.sleep(0.01)
+    return False
+
+
+def validate_result(result, receipt):
+    if not isinstance(result, dict) or set(result) != {"protocol_id", "private", "public_aggregate"} or result["protocol_id"] != PROTOCOL:
+        raise ValueError("invalid result envelope")
+    private = result["private"]
+    if not isinstance(private, dict) or set(private) != {"slots", "provenance"}:
+        raise ValueError("invalid private result")
+    rows = private["slots"]
+    if not isinstance(rows, list) or len(rows) != 4:
+        raise ValueError("four diagnostics required")
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict) or type(row.get("slot_index")) is not int or row["slot_index"] != index or row.get("status") not in ("decoded", "failed"):
+            raise ValueError("ordered diagnostic rows required")
+        if row["status"] == "failed" and any(k in row for k in ("literal_identity_matches", "observed_rate_consistent", "filename_day_boundary_crossing_count")):
+            raise ValueError("failed slot has unknown structural diagnostics")
+        contexts = row.get("precontext_windows")
+        masks = row.get("precontext_masks")
+        if (not isinstance(contexts, dict) or set(contexts) != {str(p) for p in PRECONTEXTS}
+                or not isinstance(masks, dict) or set(masks) != set(contexts)):
+            raise ValueError("four retained contexts required")
+        if row.get("windows") != contexts["5"]:
+            raise ValueError("five-second reference view mismatch")
+        if row["status"] == "decoded" and any(type(row.get(k)) is not bool for k in ("literal_identity_matches", "observed_rate_consistent")):
+            raise ValueError("invalid identity/rate diagnostic")
+        boundary = row.get("filename_day_boundary_crossing_count", 0)
+        if type(boundary) is not int or not 0 <= boundary <= 64_000_000:
+            raise ValueError("invalid boundary count")
+        if row["status"] == "decoded" and any(type(row.get(k)) is not int for k in ("preserved_t0_ns", "metadata_pick_ns")):
+            raise ValueError("invalid preserved clock")
+        for context in PRECONTEXTS:
+            windows = contexts[str(context)]
+            context_masks = masks[str(context)]
+            if (not isinstance(windows, dict) or set(windows) != {str(h) for h in HORIZONS}
+                    or not isinstance(context_masks, dict) or set(context_masks) != set(windows)):
+                raise ValueError("three retained horizons required for every context")
+            for horizon in HORIZONS:
+                window = windows[str(horizon)]
+                if not isinstance(window, dict) or not isinstance(window.get("core"), dict) or "available" not in window["core"]:
+                    raise ValueError("missing window diagnostic")
+                available = window["core"]["available"]
+                if available is not None and type(available) is not bool:
+                    raise ValueError("invalid availability state")
+                mask = "available" if available is True else "incomplete" if available is False else "unknown"
+                if context_masks[str(horizon)] != mask:
+                    raise ValueError("availability mask mismatch")
+                if row["status"] == "failed" and (available is not None or set(window) != {"core"}):
+                    raise ValueError("failed slot must retain unknown windows")
+                if row["status"] == "decoded":
+                    if (set(window) != {"left_ns", "deadline_ns", "target_pick_strictly_before_deadline", "core"}
+                            or type(window["left_ns"]) is not int or type(window["deadline_ns"]) is not int
+                            or window["left_ns"] != row["preserved_t0_ns"]-context*10**9
+                            or window["deadline_ns"] != row["preserved_t0_ns"]+horizon*10**9
+                            or type(window["target_pick_strictly_before_deadline"]) is not bool
+                            or window["target_pick_strictly_before_deadline"] != (row["metadata_pick_ns"] < window["deadline_ns"])):
+                        raise ValueError("fixed half-open window/clock mismatch")
+                if available is True and (row["status"] != "decoded" or not row["literal_identity_matches"] or not row["observed_rate_consistent"]):
+                    raise ValueError("inconsistent qualified window")
+    provenance = private["provenance"]
+    keys = {"plan_sha256", "authorization_sha256", "source_files", "pushed_source_commit", "validated_body_count", "advertised_samples_decoded", "precontexts_seconds"}
+    if not isinstance(provenance, dict) or set(provenance) != keys or type(provenance["validated_body_count"]) is not int or provenance["validated_body_count"] != 4:
+        raise ValueError("invalid result provenance")
+    if provenance["plan_sha256"] != receipt["plan_sha256"] or provenance["authorization_sha256"] != receipt["authorization_sha256"]:
+        raise ValueError("result invocation pins mismatch")
+    if (type(provenance["precontexts_seconds"]) is not list or provenance["precontexts_seconds"] != list(PRECONTEXTS)
+            or any(type(v) is not int for v in provenance["precontexts_seconds"])):
+        raise ValueError("reported precontext contract mismatch")
+    samples = provenance["advertised_samples_decoded"]
+    if type(samples) is not int or not 0 <= samples <= 64_000_000:
+        raise ValueError("invalid decoded count")
+    sources = provenance["source_files"]
+    names = {"core.py", "qualification.py", "child_harness.py", "supervisor.py", "PROTOCOL.md", "SCHEMAS.md", "RUNTIME_PINS.json"}
+    if not isinstance(sources, dict) or set(sources) != names or any(not isinstance(v, str) or len(v) != 64 or any(c not in "0123456789abcdef" for c in v) for v in sources.values()):
+        raise ValueError("invalid reported source pins")
+    if sources["child_harness.py"] != receipt["adapter_sha256"] or sources["supervisor.py"] != receipt["supervisor_sha256"]:
+        raise ValueError("running source report mismatch")
+    commit = provenance["pushed_source_commit"]
+    if not isinstance(commit, str) or len(commit) != 40 or any(c not in "0123456789abcdef" for c in commit):
+        raise ValueError("invalid reported source commit")
+    expected = {"slots": 4, "decoded_slots": sum(r["status"] == "decoded" for r in rows),
+                "failed_slots": sum(r["status"] == "failed" for r in rows),
+                "literal_identity_matching_slots": sum(r.get("literal_identity_matches", False) for r in rows),
+                "consistent_observed_rate_slots": sum(r.get("observed_rate_consistent", False) for r in rows),
+                "complete_decoded_trace_windows": {str(h): sum(r["windows"][str(h)]["core"]["available"] is True for r in rows) for h in (1, 3, 5)},
+                "precontext_window_states": {str(p): {str(h): {
+                    "denominator": 4,
+                    **{state: sum(r["precontext_masks"][str(p)][str(h)] == state for r in rows)
+                       for state in ("available", "incomplete", "unknown")},
+                    "complete_and_catalogue_pick_before_deadline": sum(
+                        r["precontext_windows"][str(p)][str(h)]["core"]["available"] is True
+                        and r["precontext_windows"][str(p)][str(h)].get("target_pick_strictly_before_deadline") is True
+                        for r in rows)} for h in HORIZONS} for p in PRECONTEXTS},
+                "filename_boundary_crossing_trace_count": sum(r.get("filename_day_boundary_crossing_count", 0) for r in rows),
+                "metadata_rate_verified": False, "filename_partition_verified": False,
+                "response_calibration_verified": False, "physical_clipping_verified": False,
+                "three_component_available_verified": False, "operational_availability_verified": False,
+                "model_improvement_verified": False}
+    public = result["public_aggregate"]
+    if not isinstance(public, dict) or set(public) != set(expected):
+        raise ValueError("public aggregate allowlist")
+    def exact_counts(actual, wanted):
+        if isinstance(wanted, dict):
+            if not isinstance(actual, dict) or set(actual) != set(wanted):
+                raise ValueError("public count schema mismatch")
+            for key in wanted:
+                exact_counts(actual[key], wanted[key])
+        elif type(actual) is not type(wanted) or actual != wanted:
+            raise ValueError("public count or false-claim mismatch")
+    exact_counts(public, expected)
+
+
+def supervise(runtime, runtime_sha256, child, child_sha256, supervisor_sha256,
+              plan, plan_sha256, authorization, authorization_sha256, out_dir,
+              max_seconds=120):
+    start = time.monotonic()
+    if type(max_seconds) not in (int, float) or not 0 < max_seconds <= 120:
+        raise ValueError("deadline must be within 120 seconds")
+    deadline = start + max_seconds
+    # Reserve cleanup time inside the whole invocation ceiling. Expiry stays incomplete.
+    processing_deadline = deadline - min(3, max_seconds / 4)
+    root = Path(out_dir)
+    if not isinstance(out_dir, str) or str(root) != out_dir or not root.is_absolute() or root.parent.resolve() != root.parent:
+        raise ValueError("output parent must be canonical")
+    # Existing directories, symlinks and prior failures are never reused or overwritten.
+    root.mkdir(mode=0o700)
+    receipt = {"protocol_id": PROTOCOL, "complete": False, "reason": "preflight_failed",
+               "elapsed_seconds": None, "returncode": None, "group_termination_confirmed": None,
+               "stdout_bytes": 0, "stderr_bytes": 0, "start_gate_released": False,
+               "whole_invocation_limit_seconds": max_seconds,
+               "plan_sha256": plan_sha256, "authorization_sha256": authorization_sha256,
+               "adapter_sha256": child_sha256, "supervisor_sha256": supervisor_sha256,
+               "runtime_sha256": runtime_sha256, "result_sha256": None,
+               "no_network_actions_in_supervisor": True}
+    proc = None
+    interrupted = None
+    try:
+        for value in (runtime_sha256, child_sha256, supervisor_sha256, plan_sha256, authorization_sha256):
+            if not isinstance(value, str) or len(value) != 64 or any(c not in "0123456789abcdef" for c in value):
+                raise ValueError("invalid invocation digest")
+        runtime_path = Path(runtime)
+        if not isinstance(runtime, str) or not runtime_path.is_absolute() or str(runtime_path) != runtime or runtime_path.parent.resolve() != runtime_path.parent:
+            raise ValueError("noncanonical runtime path")
+        # The trusted venv executable may be a final symlink to the pinned base interpreter.
+        child_bytes = read_code(child, 64 * 1024)
+        if file_sha(str(Path(runtime).resolve()), 128 * 1024 * 1024) != runtime_sha256 or hashlib.sha256(child_bytes).hexdigest() != child_sha256:
+            raise ValueError("runtime/child pin mismatch")
+        if file_sha(str(Path(__file__).resolve()), 2 * 1024 * 1024) != supervisor_sha256:
+            raise ValueError("supervisor pin mismatch")
+        if time.monotonic() >= processing_deadline:
+            raise ValueError("preflight elapsed deadline")
+        # Launch the verified UTF-8 entry buffer, not a second read of a mutable script path.
+        entry = "__file__ = " + repr(child) + "\n" + child_bytes.decode("utf-8")
+        argv = [runtime, "-I", "-B", "-S", "-c", entry, "--plan", plan, "--authorization", authorization,
+                "--plan-sha256", plan_sha256, "--authorization-sha256", authorization_sha256,
+                "--adapter-sha256", child_sha256, "--supervisor-sha256", supervisor_sha256,
+                "--runtime-sha256", runtime_sha256, "--runtime-path", runtime, "--deadline", str(processing_deadline)]
+        proc = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=True, close_fds=True,
+                                env={"PATH": "/usr/bin:/bin", "LANG": "C.UTF-8"})
+        receipt["reason"] = "incomplete"
+        # Popen may return late; never release reads after a stalled launch consumed the deadline.
+        if time.monotonic() >= processing_deadline:
+            receipt["reason"] = "launch_deadline"
+        else:
+            proc.stdin.write(b"G")
+            proc.stdin.flush()
+            receipt["start_gate_released"] = True
+        proc.stdin.close()
+        with exclusive(root / "stdout.part") as stdout, exclusive(root / "stderr.part") as stderr:
+            selector = selectors.DefaultSelector()
+            for stream, name, target, cap in ((proc.stdout, "stdout", stdout, OUTPUT_CAP), (proc.stderr, "stderr", stderr, STDERR_CAP)):
+                os.set_blocking(stream.fileno(), False)
+                selector.register(stream, selectors.EVENT_READ, (name, target, cap))
+            try:
+                while selector.get_map() and receipt["reason"] == "incomplete":
+                    remaining = processing_deadline - time.monotonic()
+                    if remaining <= 0:
+                        receipt["reason"] = "deadline"
+                        break
+                    for key, mask in selector.select(min(remaining, 0.05)):
+                        name, target, cap = key.data
+                        chunk = os.read(key.fileobj.fileno(), 65536)
+                        if not chunk:
+                            selector.unregister(key.fileobj)
+                            key.fileobj.close()
+                            continue
+                        before = receipt[name + "_bytes"]
+                        receipt[name + "_bytes"] += len(chunk)
+                        target.write(chunk[:max(0, cap - before)])
+                        if receipt[name + "_bytes"] > cap:
+                            receipt["reason"] = name + "_overflow"
+                            break
+                if receipt["reason"] == "incomplete":
+                    remaining = processing_deadline - time.monotonic()
+                    if remaining <= 0:
+                        receipt["reason"] = "deadline"
+                    else:
+                        try:
+                            proc.wait(timeout=remaining)
+                        except subprocess.TimeoutExpired:
+                            receipt["reason"] = "deadline"
+                        else:
+                            if time.monotonic() >= processing_deadline:
+                                receipt["reason"] = "deadline"
+                            else:
+                                receipt["reason"] = "child_failed" if proc.returncode else "candidate_complete"
+            finally:
+                selector.close()
+        receipt["group_termination_confirmed"] = terminate_group(proc, deadline)
+        receipt["returncode"] = proc.returncode
+        if receipt["reason"] == "candidate_complete" and not receipt["group_termination_confirmed"]:
+            receipt["reason"] = "group_termination_unconfirmed"
+        if receipt["reason"] == "candidate_complete" and receipt["group_termination_confirmed"]:
+            if time.monotonic() >= deadline:
+                receipt["reason"] = "deadline"
+            else:
+                body = (root / "stdout.part").read_bytes()  # already capped on disk
+                def pairs(items):
+                    obj = {}
+                    for key, value in items:
+                        if key in obj:
+                            raise ValueError("duplicate result field")
+                        obj[key] = value
+                    return obj
+                def invalid_constant(value):
+                    raise ValueError("nonfinite result field")
+                result = json.loads(body, object_pairs_hook=pairs, parse_constant=invalid_constant)
+                validate_result(result, receipt)
+                aggregate = json.dumps(result["public_aggregate"], sort_keys=True, allow_nan=False).encode() + b"\n"
+                if len(aggregate) > 65536 or time.monotonic() >= deadline:
+                    raise ValueError("aggregate serialization limit/deadline")
+                with exclusive(root / "public_aggregate.json") as stream:
+                    stream.write(aggregate)
+                os.link(root / "stdout.part", root / "private_result.json")
+                os.unlink(root / "stdout.part")
+                receipt.update(complete=True, reason="complete", result_sha256=hashlib.sha256(body).hexdigest())
+    except BaseException as error:
+        receipt["complete"] = False
+        if not isinstance(error, Exception):
+            interrupted = error
+            receipt["reason"] = "supervisor_interrupted"
+        if receipt["reason"] in ("incomplete", "candidate_complete"):
+            receipt["reason"] = "supervisor_failure"
+        if proc is not None:
+            receipt["group_termination_confirmed"] = terminate_group(proc, deadline)
+            receipt["returncode"] = proc.returncode
+    finally:
+        if proc is not None:
+            for stream in (proc.stdin, proc.stdout, proc.stderr):
+                if stream is not None and not stream.closed:
+                    stream.close()
+        receipt["elapsed_seconds"] = time.monotonic() - start
+        if receipt["elapsed_seconds"] >= max_seconds:
+            receipt["complete"] = False
+            receipt["reason"] = "whole_invocation_limit_elapsed"
+        owned = None
+        try:
+            # The first persisted receipt is fail-closed even if write/close is interrupted.
+            with exclusive(root / "receipt.json") as stream:
+                owned = os.fstat(stream.fileno())
+                initial = dict(receipt, complete=False, reason="receipt_finalization_incomplete")
+                stream.write(json.dumps(initial, sort_keys=True, allow_nan=False).encode() + b"\n")
+            receipt["elapsed_seconds"] = time.monotonic() - start
+            if receipt["elapsed_seconds"] >= max_seconds:
+                receipt.update(complete=False, reason="whole_invocation_limit_elapsed")
+            finalize_owned_receipt(root / "receipt.json", owned, receipt)
+            after_receipt = time.monotonic() - start
+            if after_receipt >= max_seconds:
+                receipt.update(complete=False, reason="whole_invocation_limit_elapsed", elapsed_seconds=after_receipt)
+                finalize_owned_receipt(root / "receipt.json", owned, receipt)
+        except BaseException:
+            receipt.update(complete=False, reason="receipt_finalization_failed", elapsed_seconds=time.monotonic() - start)
+            if owned is not None:
+                try:
+                    finalize_owned_receipt(root / "receipt.json", owned, receipt)
+                except BaseException:
+                    # No normal return/exit means publication is forbidden even if storage failed.
+                    pass
+            raise
+    if interrupted is not None:
+        raise interrupted
+    return receipt
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    for field in ("runtime", "runtime-sha256", "child", "child-sha256", "supervisor-sha256", "plan",
+                  "plan-sha256", "authorization", "authorization-sha256", "out-dir"):
+        parser.add_argument("--" + field, required=True)
+    args = parser.parse_args()
+    receipt = supervise(**vars(args))
+    # The receipt lives privately; stdout is aggregate process status only.
+    print(json.dumps({"complete": receipt["complete"], "reason": receipt["reason"]}))
+    return 0 if receipt["complete"] else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -2,7 +2,7 @@
 
 11 October 2026 (London); completed clock-result replay verified at 01:39 UTC, owned worker poweroff requested for 01:59 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record. Final EC2 state and fresh credit verification await AWS sign-in; further paid runs remain paused until that verification.
 
-The latest archive diagnostic decodes four fixed objects but qualifies only three five-second-pre-P windows at each 1/3/5 deadline. The eight-horizontal gate therefore fails; zero requests. A separately frozen-context sensitivity is being prepared without fitting, clock changes or exclusions. [Data diagnostic](earthquake_archive_transport_source_audit.md).
+The latest archive diagnostic decodes four fixed objects but qualifies only three five-second-pre-P windows at each 1/3/5 deadline. The eight-horizontal gate therefore fails; zero requests. A new 48-cell context sensitivity has clean code-only review 1 and 45 parent tests; actual use awaits publication and a new gate, with no fitting, clock changes or exclusions. [Data diagnostic](earthquake_archive_transport_source_audit.md).
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|
@@ -58,7 +58,7 @@ The censored pilot does not earn a finer sub-second extension. Both the full-dat
 JointV2 diagnostic source is pushed in f1e3955 after49parent tests and first-clean review1. Its separately gated actual invocation failed at serialization with ValueError after18file/hash validations. Three private artifacts and confirmed-stopped group remain preserved; zero complete scientific outputs and no exact serialization-cause conclusion.
 
 
-11October configured archive V3: four fixed TRAIN/DEV object transfers complete (28,633,600bytes); independent transport replay passes4/4. Sample-grid/NSLC/response/causal availability/model evidence still pending. The prior4NoSuchKey and incomplete96 are unchanged. JointV3 source is first clean with60parent tests; actual gate pending.
+11 October configured archive V3: four fixed TRAIN/DEV transfers complete (28,633,600 bytes), independent transport replay passes 4/4. The vertical decoder confirms literal identities and rates but only 3/4 complete five-second-pre-P windows at each deadline; eight-horizontal acquisition is barred. Response, causal availability and model evidence remain unverified. Joint V3 now completes all eighteen metadata projections with zero producer/auditor clock disagreements. Prior failures remain unchanged.
 
 
 11October jointV3 diagnostic completes:18/18supported representations,0known-clock disagreements between implementations; native subsets earlier than original in3/6events.9,490,133Bprivate result/CLI0/complete receipt/stopped group verified. No clock shifts, requests or fits; historicalV1/V2failures remain.

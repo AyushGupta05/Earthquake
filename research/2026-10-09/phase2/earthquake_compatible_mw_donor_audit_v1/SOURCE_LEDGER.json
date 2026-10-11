@@ -1,0 +1,288 @@
+{
+  "audit_id": "earthquake-compatible-mw-donor-source-v1",
+  "authored_at_utc": "2026-10-11T06:18:01.236369+00:00",
+  "research_start_utc": "2026-10-11T06:11:55+00:00",
+  "research_date_utc": "2026-10-11",
+  "status": "no_qualified_donor; one_conditional_NGA_West2_source_audit_candidate",
+  "scope": "Documentation only. No underlying actual rows, dataset bodies, private inputs, credentials, accounts, author-code execution, downloads, installations, fits, AWS or Git. Authored prior reports inspected; their linked evidence remains unopened.",
+  "new_web_budget": {
+    "query_limit": 4,
+    "primary_open_limit": 7,
+    "queries_used": 4,
+    "primary_opens_used": 7,
+    "same_document_find_calls": 14,
+    "additional_new_search_authority": false
+  },
+  "queries": [
+    {
+      "ordinal": 1,
+      "query": "site.usgs.gov MLAAPDE magnitude type moment magnitude waveform response P arrival dataset",
+      "primary_use": [
+        "https://www.usgs.gov/publications/mlaapde-a-machine-learning-dataset-determining-global-earthquake-source-parameters"
+      ],
+      "outcome": "Official publication description located; no cohort-type proof."
+    },
+    {
+      "ordinal": 2,
+      "query": "site.peer.berkeley.edu NGA West2 database moment magnitude P arrival waveform metadata units",
+      "primary_use": [
+        "https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf",
+        "https://ngawest2.berkeley.edu/?C=N%3BO%3DA"
+      ],
+      "outcome": "Official report and search-indexed portal located."
+    },
+    {
+      "ordinal": 3,
+      "query": "site.ngawest2.berkeley.edu \"Data Usage\" \"Copyright\" registration records",
+      "primary_use": [],
+      "outcome": "No new usable primary terms evidence; unrelated/nonprimary results ignored."
+    },
+    {
+      "ordinal": 4,
+      "query": "site.usgs.gov MLAAPDE \"magnitude_type\" \"metadata\" response",
+      "primary_use": [],
+      "outcome": "No usable primary schema result; unrelated/nonprimary results ignored."
+    }
+  ],
+  "primary_opens": [
+    {
+      "ordinal": 1,
+      "url": "https://www.usgs.gov/publications/mlaapde-a-machine-learning-dataset-determining-global-earthquake-source-parameters",
+      "outcome": "success; official publication abstract/metadata"
+    },
+    {
+      "ordinal": 2,
+      "url": "https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf",
+      "outcome": "success; PDF text; initial abstract and contents"
+    },
+    {
+      "ordinal": 3,
+      "url": "https://ngawest2.berkeley.edu/",
+      "outcome": "failed; tool internal error; landing-page text only available in search result"
+    },
+    {
+      "ordinal": 4,
+      "url": "https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf",
+      "requested_line": 2850,
+      "outcome": "success; processing sections"
+    },
+    {
+      "ordinal": 5,
+      "url": "https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf",
+      "requested_line": 4190,
+      "outcome": "success; flatfile field definitions"
+    },
+    {
+      "ordinal": 6,
+      "url": "https://ngawest2.berkeley.edu/site/documentation",
+      "outcome": "failed; tool internal error; no terms/manual contents inferred"
+    },
+    {
+      "ordinal": 7,
+      "url": "https://pubs.usgs.gov/publication/70252648",
+      "outcome": "failed; tool internal error; no full MLAAPDE paper contents inferred"
+    }
+  ],
+  "same_document_find_patterns": {
+    "url": "https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf",
+    "patterns": [
+      "late P",
+      "acausal",
+      "EQID",
+      "Magnitude Type",
+      "30,000",
+      "cm/sec",
+      "Sequence",
+      "21,336",
+      "600",
+      "29,431",
+      "instrument correction",
+      "units of",
+      "absolute time",
+      "time step"
+    ],
+    "purpose": "Find relevant public report sections; no additional page opens or data-object requests."
+  },
+  "primary_sources": [
+    {
+      "id": "peer_2013_03",
+      "url": "https://peer.berkeley.edu/sites/default/files/webpeer-2013-03-timothy_d._ancheta_robert_b._darragh_jonathan_p._stewart_emel_seyhan.pdf",
+      "edition": "PEER 2013/03, May 2013; 172 PDF pages",
+      "official_host": "peer.berkeley.edu",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_byte_pin_established": false,
+      "used_sections": [
+        "abstract",
+        "6.1",
+        "6.4",
+        "8",
+        "Appendix D"
+      ],
+      "claim_detail": "See the single concise evidence paragraph in DECISION.md; no eligible cohort is counted."
+    },
+    {
+      "id": "peer_portal",
+      "url": "https://ngawest2.berkeley.edu/",
+      "edition": "Evolving current portal; search-indexed text only in this pass",
+      "official_host": "ngawest2.berkeley.edu",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_byte_pin_established": false,
+      "access_caveat": "Direct opens failed. Current terms/license/release not verified."
+    },
+    {
+      "id": "mlaapde_usgs_abstract",
+      "url": "https://www.usgs.gov/publications/mlaapde-a-machine-learning-dataset-determining-global-earthquake-source-parameters",
+      "edition": "15 June 2023; DOI 10.1785/0220230021; USGS index 70252648",
+      "official_host": "usgs.gov",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_byte_pin_established": false,
+      "used_scope": "Publication description only; not full paper, released schema, waveform or magnitude-type rows."
+    }
+  ],
+  "local_authored_document_pins": [
+    {
+      "path": "outputs/earthquake_geonet_next_data_plan.md",
+      "bytes": 3252,
+      "sha256": "92d1a362f36ce28e47be3b94b165131ec600c6d9477a6fb91db2b13f0c8e4b20",
+      "inspection_scope": "full authored planning document",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "work/geonet_next_data_plan/PUBLIC_NEXT_DATA_PLAN.md",
+      "bytes": 13797,
+      "sha256": "5f4f839430d3c75d023b94a78061742ca8401377e39282779b7db27cf0046594",
+      "inspection_scope": "full public authored planning document",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "work/earthquake_next_method_adjudication/ADJUDICATION.md",
+      "bytes": 10360,
+      "sha256": "e0b2fceee64945ab340a17f12328a856b9494bcbb654650f4d0cf2b706128940",
+      "inspection_scope": "full authored adjudication",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "work/earthquake_next_method_adjudication/SOURCE_LEDGER.md",
+      "bytes": 3402,
+      "sha256": "5a6e2db63fb159296e4dfb214895fa5fee80e33136dacc2fad28ceb8e7fe7bd2",
+      "inspection_scope": "full authored prior source ledger",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_external_benchmark_plan.md",
+      "bytes": 12862,
+      "sha256": "eedbe36b7833e838575509e6df419b1472187d2359dc6de941916c832c4715d0",
+      "inspection_scope": "full authored benchmark memo",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_archive_transport_source_audit.md",
+      "bytes": 4078,
+      "sha256": "5d914021ed73659960f2740b4d6a03858228153b7ee27b26f4bb381b6a6acd19",
+      "inspection_scope": "full authored report; aggregate context only",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_external_validation_expansion.md",
+      "bytes": 4820,
+      "sha256": "b50d71d734e8554203344f4718eaea07ad6b58d29230c9bb0124355103f3e6da",
+      "inspection_scope": "targeted visible authored excerpts; some earlier batched output truncated",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_source_scaling_audit.md",
+      "bytes": 14867,
+      "sha256": "6e7453d5181829e224cf5f00ce6e0003c68346a587e8c747cef635f1316c536f",
+      "inspection_scope": "targeted visible authored excerpts",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_strain_source_audit.md",
+      "bytes": 1189,
+      "sha256": "4a60d4acadbbbdc5dc43fb70155576a68409bf0db1832137261f214b7e530280",
+      "inspection_scope": "partial visible authored content; earlier batched output truncated",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_geonet_method_shortlist.md",
+      "bytes": 2813,
+      "sha256": "6085a4942410e0ec7f0e31cb4e01d62117179603bd20983793a09e5b1c3c530b",
+      "inspection_scope": "targeted visible authored excerpts",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_method_status.md",
+      "bytes": 13968,
+      "sha256": "97b13ad128777382a7dbba7f6b4a015776307932d191bc16a85a5ba9785c5e3e",
+      "inspection_scope": "targeted visible authored excerpts",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_current_competitors.md",
+      "bytes": 26157,
+      "sha256": "d639fa6ae317b5c240696de8640ef679b04f13a4317f19af473f5ce6a6d82c61",
+      "inspection_scope": "targeted visible authored excerpts",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_alaska_header_audit.md",
+      "bytes": 3648,
+      "sha256": "a35b9b0ee3a1a75c8cfbad261447f8536b024e46474667c901bba56eeff371e2",
+      "inspection_scope": "authored header report; no linked artifacts opened",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "outputs/earthquake_alaska_cohort_audit.md",
+      "bytes": 6320,
+      "sha256": "76eb117204592eaedf88dd20bf7b3090df91752a477557cc466a515ced55d48e",
+      "inspection_scope": "authored reconciliation report; no linked catalog/metadata/artifact opened",
+      "original_mtime_is_not_retrieval_proof": true
+    },
+    {
+      "path": "work/instrument_research/source_scaling_next_method_audit.md",
+      "bytes": 21236,
+      "sha256": "374ee92c661d55e34b3cee3340d88953b0739b83a2f506b2aa9b41933da9d135",
+      "inspection_scope": "partial visible authored content; earlier batched output truncated",
+      "original_mtime_is_not_retrieval_proof": true
+    }
+  ],
+  "negative_evidence_retained": [
+    "NGA-West2 processed-series causal compatibility unresolved/unsupported for prefix use.",
+    "NGA-West2 genuine Mw-only counts and stable current release/terms not established.",
+    "NGA-West2 clock/response/sequence/GeoNet exclusion joins not established.",
+    "MLAAPDE publication description does not establish Mw-type cohort or calibrated causal inputs.",
+    "Existing Chile MA/Japan Mj/INSTANCE ML and Alaska limits remain unresolved or incompatible; no relabelling.",
+    "Search and open failures retained; no result was manufactured to force a donor."
+  ],
+  "claims_false": {
+    "ready_to_fit": false,
+    "compatible_donor_cohort_verified": false,
+    "new_acquisition_authorized": false,
+    "physical_or_operational_clock_verified": false,
+    "cross_scale_conversion_identified": false,
+    "transfer_is_novel": false,
+    "model_improvement_established": false,
+    "four_file_feasibility_is_scientific_support": false
+  },
+  "assembly_runtime": {
+    "python": "3.14.5",
+    "invocation_flags": [
+      "-I",
+      "-B"
+    ],
+    "stdlib_only": true,
+    "implementation_or_author_code_executed": false,
+    "executable": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14"
+  },
+  "curation": {
+    "raw_third_party_sources_bundled": false,
+    "actual_data_or_private_inputs_bundled": false,
+    "online_source_hash_null_reason": "Browser returned rendered text; no original source bytes downloaded.",
+    "new_implementation": false,
+    "autoreview_required": false,
+    "reason": "Documentation-only research; no nontrivial code edits."
+  }
+}
