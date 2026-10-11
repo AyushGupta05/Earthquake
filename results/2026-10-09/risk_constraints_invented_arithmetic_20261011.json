@@ -1,0 +1,47 @@
+{
+  "actual_data_reads": 0,
+  "baseline": {
+    "high_magnitude_error": 5.0,
+    "mae": 0.1
+  },
+  "bound_example": {
+    "assumptions": "Independent event losses; fixed nine candidates and six mean-risk constraints; predetermined capped action shift <=0.1; paired loss-difference range [-0.1,0.1]; one-sided upper Hoeffding bound with union correction, not a power lower bound",
+    "family_error_level": 0.05,
+    "family_size": 54,
+    "minimum_hypothetical_n_for_radius_0.002": 34924,
+    "radius_by_hypothetical_event_count": {
+      "100": 0.03737570419435135,
+      "1000": 0.011819235440685888,
+      "30": 0.06823838763295563,
+      "6000": 0.004825182663249917
+    }
+  },
+  "delta_high_magnitude_error": -0.1,
+  "delta_mae": 0.096,
+  "fits": 0,
+  "inputs": {
+    "baseline": 2,
+    "constant_available_information": true,
+    "magnitudes": [
+      "2",
+      "7"
+    ],
+    "probabilities": [
+      "49/50",
+      "1/50"
+    ],
+    "upward_action": 2.1
+  },
+  "limitations": [
+    "Invented analytical counterexample; not EEW evidence",
+    "Not a proposed training gate, power calculation or actual sample-size requirement",
+    "Mean-risk calculation does not certify median error, CVaR, unbounded NLL, sequence independence or distribution shift"
+  ],
+  "paid_resources": 0,
+  "schema": "invented-no-information-risk-arithmetic-v1",
+  "upward_action": {
+    "high_magnitude_error": 4.9,
+    "mae": 0.196
+  },
+  "utc": "2026-10-11T02:24:18.893302+00:00"
+}

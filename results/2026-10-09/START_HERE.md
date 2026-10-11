@@ -48,8 +48,8 @@ Current reports:
 - [Geometry-distribution mechanism preflight](earthquake_geonet_location_mechanism_preflight.md): chosen synthetic tail gate fails; all negative panels retained, no geometry fit.
 - [Full CMT sequence planning check](earthquake_geonet_cmt_sequence_preflight.md): primary support ceilings and stricter sensitivity percolation; no new data query.
 - [Fixed96-event native-count screen](earthquake_geonet_counts_screen.md): single collection stopped incomplete after a waveform body timeout; no support/absence claim and no retry.
-- [Spectral mechanism primary audit](../../research/2026-10-09/phase2/geonet_spectral_mechanism_research/PRIMARY_AUDIT.md): Fourier, phase, amplitude, station-order and frequency controls; no distinct spectral tail method earned.
-- [Sequence-rule primary audit](../../research/2026-10-09/phase2/geonet_sequence_rule_research/PRIMARY_AUDIT.md): physical sequence rules, a September LLM competitor and conditional clock-completeness limits.
+- [Spectral mechanism primary audit](../work/geonet_spectral_mechanism_research/PRIMARY_AUDIT.md): Fourier, phase, amplitude, station-order and frequency controls; no distinct spectral tail method earned.
+- [Sequence-rule primary audit](../work/geonet_sequence_rule_research/PRIMARY_AUDIT.md): physical sequence rules, a September LLM competitor and conditional clock-completeness limits.
 - [Next GeoNet data plan](earthquake_geonet_next_data_plan.md): proposed direct 96-event waveform screen and larger fixed-cohort benchmark; no acquisition or fit launched.
 - [Continuous prior audit](earthquake_continuous_prior_audit.md): exact noisy-label/repeat-law constraints; no new correction fit.
 - [Rupture survival audit](earthquake_rupture_survival_audit.md): primary full texts and stop/grow identifiability controls; no additional fit.
@@ -74,6 +74,7 @@ Additional current reports:
 
 - [Completed clock results](earthquake_chile_clock_results.md): full tradeoffs, both cohorts/actions/seeds, frozen gate and complete independent aggregate replay.
 - [History-prior source audit](earthquake_history_prior_audit.md): coherent joint-prior replacement, availability limits and matched controls.
+- [Tail-action risk constraints](earthquake_risk_constraint_audit.md): primary post-processing prior art, exact invented tradeoff and requirements for a paired excess-risk comparator; no new fit.
 - [Archived execution checkpoint text](earthquake_execution_history_through_20261011.md): prior dated statuses retained for transparency; not current instructions.
 
 The absolute authorized ceiling remains **$2,000 from eligible AWS credits only**. The applied G/VT quota is16 vCPUs, not GPUs. The conservative resource envelope is$248, not settled task-attributed spending. Last authenticated credits10October22:45UTC: main estimated eligible remainder$4,037.24, expires31October. A cached page with a signed-out dialog is not a fresh credit verification. The owned worker's previous maximum STOP was11October10:50:21UTC, then advanced by its authorized early guest poweroff; API behavior was last verified asSTOP on10October13:12UTC. All unique results reside on preserved EBS and local copies; instance-store cache is disposable.

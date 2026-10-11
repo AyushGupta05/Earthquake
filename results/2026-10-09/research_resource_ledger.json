@@ -68,6 +68,14 @@
     "events": 96,
     "exact_waveform_cache_targets": 9,
     "future_pick_withdrawal_comparisons": 288,
+    "incomplete_preservation_recheck": {
+      "bytes": 3224726,
+      "exact_set_and_all_pins_verified": true,
+      "members": 419,
+      "new_requests": 0,
+      "scientific_decoding": false,
+      "sha256": "6ef21f8e13ec1dafaa071227ae7e7411f79982d502addb6d7b4f809f0275cf51"
+    },
     "independent_plan_assertions": 3812,
     "independent_plan_handoff_sha256": "d4e49fe2d5bf70c1cd4ff47a74ec100b7b7ac14d572f439fad7aa9b96b95b73c",
     "independent_plan_verification_sha256": "45635517c5f638fc23faea3cd2a9d41fd757d82fb849ee3aa1616e83432f9358",
@@ -1102,7 +1110,16 @@
       "manifest_sha256": "5ed4e08f57e080253a1eb0d9fcf5d63726db1eaa0946360e0dd95d6b8990e990",
       "new_fits": 0,
       "real_data_reads": 0
+    },
+    "tail_action_risk_constraints": {
+      "actual_data_reads": 0,
+      "decision": "Known risk-controlled post-processing comparator; no new fit earned; additional early information and independent event calibration required",
+      "fits": 0,
+      "hypothetical_hoeffding_bound_is_power_requirement": false,
+      "paid_resources": 0,
+      "primary_papers_or_records": 4,
+      "status": "primary_source_and_exact_invented_arithmetic_audit_complete"
     }
   },
-  "updated_utc": "2026-10-11T02:16:23.643309+00:00"
+  "updated_utc": "2026-10-11T02:32:23.750569+00:00"
 }
