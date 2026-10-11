@@ -2,7 +2,7 @@
 
 11 October 2026 (London); completed clock-result replay verified at 01:39 UTC, owned worker poweroff requested for 01:59 UTC. **A useful baseline improvement is verified on reused validation; a novel method with an independently matched published-benchmark win is not yet established.** All scientific failures remain part of the experiment record. Final EC2 state and fresh credit verification await AWS sign-in; further paid runs remain paused until that verification.
 
-The latest archive diagnostic decodes four fixed objects but qualifies only three five-second-pre-P windows at each 1/3/5 deadline. The eight-horizontal gate therefore fails; zero requests. A new 48-cell context sensitivity has clean code-only review 1 and 45 parent tests; actual use awaits publication and a new gate, with no fitting, clock changes or exclusions. [Data diagnostic](earthquake_archive_transport_source_audit.md).
+The latest archive diagnostic decodes four fixed objects but qualifies only three five-second-pre-P windows at each 1/3/5 deadline. The eight-horizontal gate therefore fails; zero requests. The new 48-cell context sensitivity completes: p=0/1/3 grids are 4/4 at each deadline, while p=5 remains 3/4. Parent verifies 48 geometries and exact V1 parity. This changes observation support only; no response-state or model improvement is established. [Data diagnostic](earthquake_archive_transport_source_audit.md).
 
 | Approach | What was tested | Current finding / decision |
 |---|---|---|

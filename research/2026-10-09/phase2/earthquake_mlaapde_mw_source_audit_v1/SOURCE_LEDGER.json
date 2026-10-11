@@ -1,0 +1,239 @@
+{
+  "audit_id": "earthquake-mlaapde-mw-source-v1",
+  "status": "source_contract_unverified; conditional_catalogue_join_route_only",
+  "research_start_utc": "2026-10-11T06:27:03+00:00",
+  "authored_at_utc": "2026-10-11T06:31:02.549512+00:00",
+  "new_web_budget": {
+    "query_limit": 4,
+    "primary_open_limit": 8,
+    "queries_used": 4,
+    "primary_opens_used": 8,
+    "same_document_finds_used": 4,
+    "additional_search_authority": false
+  },
+  "queries": [
+    {
+      "ordinal": 1,
+      "query": "site.code.usgs.gov/ghsc/neic/neic-mlaapde magnitude metadata response",
+      "result": "Official repository/config pointers found; no schema fields established."
+    },
+    {
+      "ordinal": 2,
+      "query": "MLAAPDE dataset magnitude type schema source magnitude_type response inventory USGS",
+      "result": "Official USGS publication, magnitude-type and GeoJSON schema descriptions found; nonprimary claims not used."
+    },
+    {
+      "ordinal": 3,
+      "query": "\"MLAAPDE\" \"source_magnitude_type\"",
+      "result": "No exact official MLAAPDE export mapping found. Generic software attribute/schema names were not promoted to released MLAAPDE fields."
+    },
+    {
+      "ordinal": 4,
+      "query": "\"MLAAPDE\" \"metadata\" \"response\" \"Cole\"",
+      "result": "Release pointer discovered through software/citation results; secondary metadata/processing claims ignored."
+    }
+  ],
+  "primary_opens": [
+    {
+      "ordinal": 1,
+      "url": "https://code.usgs.gov/ghsc/neic/neic-mlaapde",
+      "outcome": "failed; 403 Forbidden"
+    },
+    {
+      "ordinal": 2,
+      "url": "https://code.usgs.gov/ghsc/neic/neic-mlaapde/-/blob/main/mlaapde.yaml?ref_type=heads",
+      "outcome": "failed; 403 Forbidden"
+    },
+    {
+      "ordinal": 3,
+      "url": "https://earthquake.usgs.gov/data/comcat/",
+      "outcome": "success; current overview/navigation, not a field dictionary"
+    },
+    {
+      "ordinal": 4,
+      "url": "https://code.usgs.gov/ghsc/neic/neic-mlaapde/-/raw/main/README.md",
+      "outcome": "failed; tool internal error; no raw source bytes or code obtained"
+    },
+    {
+      "ordinal": 5,
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson_detail.php",
+      "outcome": "success; generic schema placeholders, no actual event row"
+    },
+    {
+      "ordinal": 6,
+      "url": "https://www.sciencebase.gov/catalog/item/6127b30fd34e40dd9c05094c",
+      "outcome": "failed; not accessible via tool; no release schema or file contents obtained"
+    },
+    {
+      "ordinal": 7,
+      "url": "https://doi.org/10.1785/0220230021",
+      "outcome": "failed; 403 Forbidden; no full paper obtained"
+    },
+    {
+      "ordinal": 8,
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/response.html",
+      "outcome": "success; theory and generic documentation examples, no station data request"
+    }
+  ],
+  "same_document_finds": [
+    {
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson_detail.php",
+      "pattern": "magType"
+    },
+    {
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/response.html",
+      "pattern": "InstrumentSensitivity"
+    },
+    {
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/response.html",
+      "pattern": "InputUnits"
+    },
+    {
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/response.html",
+      "pattern": "Overall sensitivity",
+      "outcome": "no matching text"
+    }
+  ],
+  "primary_sources_used": [
+    {
+      "id": "mlaapde_usgs_description",
+      "url": "https://www.usgs.gov/publications/mlaapde-a-machine-learning-dataset-determining-global-earthquake-source-parameters",
+      "edition": "15 June 2023; DOI10.1785/0220230021",
+      "access": "Official search-returned publication text in this pass; earlier direct read recorded in the prior authored audit.",
+      "scope": "Resource description, not release dictionary or actual data.",
+      "retrieval_date_utc": "2026-10-11",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_online_byte_pin_established": false
+    },
+    {
+      "id": "geojson_detail_schema",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson_detail.php",
+      "edition": "Official current generic schema viewed 11 October 2026",
+      "access": "Successful direct open and magType find.",
+      "scope": "Generic catalogue schema; no MLAAPDE mapping established.",
+      "retrieval_date_utc": "2026-10-11",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_online_byte_pin_established": false
+    },
+    {
+      "id": "usgs_magnitude_type_definitions",
+      "url": "https://www.usgs.gov/programs/earthquake-hazards/magnitude-types",
+      "edition": "Official current search-indexed definitions",
+      "access": "Search-returned text; no direct open in this bounded pass.",
+      "scope": "Method definitions; no label/cross-scale compatibility cohort established.",
+      "retrieval_date_utc": "2026-10-11",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_online_byte_pin_established": false
+    },
+    {
+      "id": "fdsn_response_documentation",
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/response.html",
+      "edition": "Official current StationXML response documentation",
+      "access": "Successful direct open and 3 finds.",
+      "scope": "Generic response representation and examples; no MLAAPDE response inventory established.",
+      "retrieval_date_utc": "2026-10-11",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_online_byte_pin_established": false
+    },
+    {
+      "id": "comcat_overview",
+      "url": "https://earthquake.usgs.gov/data/comcat/",
+      "edition": "Official current overview",
+      "access": "Successful direct open.",
+      "scope": "Catalogue context only.",
+      "retrieval_date_utc": "2026-10-11",
+      "original_bytes_downloaded": false,
+      "sha256": null,
+      "immutable_online_byte_pin_established": false
+    }
+  ],
+  "discovery_only_release_pointer": {
+    "doi": "10.5066/P96FABIB",
+    "url": "https://www.sciencebase.gov/catalog/item/6127b30fd34e40dd9c05094c",
+    "provenance": "Discovered through software documentation/citation search results. Official record direct access failed.",
+    "verified_official_registration": false,
+    "release_manifest_or_schema_obtained": false
+  },
+  "local_authored_context_pins": [
+    {
+      "path": "work/earthquake_compatible_mw_donor_audit_v1/DECISION.md",
+      "bytes": 6888,
+      "sha256": "6b47913bf5c524cf27db051c45c8c70baf0501da24cd9ba4dd45017be2be2993",
+      "scope": "Authored documentation only; underlying linked artifacts remain unopened."
+    },
+    {
+      "path": "work/earthquake_compatible_mw_donor_audit_v1/SOURCE_LEDGER.json",
+      "bytes": 12180,
+      "sha256": "0732c6240d221f6b51913d0e15c1267c03c7731d1c0351ce286f3461f5dd7e45",
+      "scope": "Authored documentation only; underlying linked artifacts remain unopened."
+    },
+    {
+      "path": "work/earthquake_next_method_adjudication/ADJUDICATION.md",
+      "bytes": 10360,
+      "sha256": "e0b2fceee64945ab340a17f12328a856b9494bcbb654650f4d0cf2b706128940",
+      "scope": "Authored documentation only; underlying linked artifacts remain unopened."
+    }
+  ],
+  "scope": {
+    "actual_event_or_trace_metadata_rows_read": false,
+    "waveforms_or_response_inventory_read": false,
+    "dataset_data_objects_requested": false,
+    "catalogue_or_station_query_made": false,
+    "author_code_downloaded_or_executed": false,
+    "accounts_or_license_acceptance": false,
+    "fits_or_installs": false,
+    "aws_or_git": false,
+    "prior_packets_edited": false,
+    "documentation_only": true
+  },
+  "unresolved_prerequisites": [
+    "Exact version-pinned MLAAPDE schema/export mapping and stable event/provider join keys.",
+    "Magnitude value/type/method/author/uncertainty and catalogue revision correspondence.",
+    "Absolute waveform starts, exact samples/components and observed pick-time linkage.",
+    "Declared accepted-P subset/availability sufficient for the same common clock, with incomplete coverage retained.",
+    "Concurrent epoch-specific response/calibration and original acquisition/processing provenance.",
+    "Ordinary and large genuine-Mw distinct event/sequence counts and overlap partitions."
+  ],
+  "known_version_specific_eligible_counts": {
+    "distinct_Mw_events": null,
+    "Mw_lt_5_5": null,
+    "Mw_ge_5_5": null,
+    "Mw_ge_6": null,
+    "Mw_ge_7": null,
+    "complete_all_1_3_5_prefix_events": null,
+    "response_joined_events": null
+  },
+  "claims_false": {
+    "exact_mlaapde_schema_verified": false,
+    "typed_Mw_join_verified": false,
+    "causal_prefix_join_verified": false,
+    "earliest_complete_network_P_known": false,
+    "operational_clock_known": false,
+    "physical_units_or_full_response_available": false,
+    "compatible_donor_cohort_qualified": false,
+    "novel_transfer_method": false,
+    "ready_to_fit": false,
+    "new_acquisition_authorized": false
+  },
+  "assembly_runtime": {
+    "python": "3.14.5",
+    "executable": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "flags": [
+      "-I",
+      "-B"
+    ],
+    "stdlib_only": true,
+    "documentation_assembly_only": true
+  },
+  "curation": {
+    "raw_third_party_text_or_code_bundled": false,
+    "actual_or_private_input_bundled": false,
+    "online_hash_null_reason": "Only rendered browser/search text obtained, with no downloaded original source bytes.",
+    "autoreview_required": false,
+    "reason": "Documentation-only research; no implementation edits."
+  }
+}

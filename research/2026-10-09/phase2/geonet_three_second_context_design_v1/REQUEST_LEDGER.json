@@ -1,0 +1,71 @@
+{
+  "actual_data_reads": 0,
+  "actual_execution_authorized": false,
+  "actual_requests": 0,
+  "claim_flags": {
+    "model_improvement_verified": false,
+    "model_input_verified": false,
+    "noise_history_adequacy_verified": false,
+    "operational_receipts_verified": false,
+    "physical_orientation_verified": false,
+    "published_benchmark_superiority_verified": false,
+    "response_calibration_verified": false,
+    "response_state_adequacy_verified": false
+  },
+  "horizons_seconds": [
+    1,
+    3,
+    5
+  ],
+  "implementation_authorized_by_this_document": false,
+  "mapping_status": "unverified_hypothesis",
+  "new_test_or_replacement_slots": false,
+  "offline_stage": {
+    "actual_authorized": false,
+    "component_cells": 36,
+    "component_denominator_per_horizon": 12,
+    "horizontal_object_denominator": 8,
+    "joint_denominator_per_horizon": 4,
+    "joint_enz_cells": 12,
+    "joint_rate_and_rational_lattice_compatibility_required": true,
+    "numeric_decode_caps": "must be separately frozen before authorization; this docs-only transfer proposal neither raises existing64MiB/object16M/object caps nor grants decoder authority",
+    "reuse_vertical_p3": "only exact immutable source/body/clock/cell-bound result; otherwise separate reviewed re-decode",
+    "separate_reviewed_protocol_and_parent_gate_required": true,
+    "unknown_and_failed_slots_retained": true
+  },
+  "old_V1_V4_changed": false,
+  "old_V4_prerequisite_satisfied": false,
+  "precontext_seconds": 3,
+  "preserve_three_train_one_dev": true,
+  "proposed_study": "geonet-configured-eight-horizontal-three-second-context-v5",
+  "proposed_transport_protocol": "geonet-anonymous-archive-transport-v5",
+  "retry_redirect_head_list_range_alias_auth_payer_fallback": false,
+  "roles": [
+    "ordinary_e",
+    "ordinary_n",
+    "higher_e",
+    "higher_n",
+    "boundary_e",
+    "boundary_n",
+    "final_e",
+    "final_n"
+  ],
+  "same_four_original_slots": true,
+  "schema": "geonet-three-second-context-prospective-request-ledger-v1",
+  "selection_evidence_scope": "post-collection vertical-only feasibility; no predictive/state/noise optimum",
+  "selection_rule": "largest tested context in [0,1,3,5] with all4 vertical grids complete at all3 horizons, selected on published vertical outcome before horizontal observations",
+  "stopping_rule": "retain all8 slot outcomes; no retry/resume/replacement after ordinary failure; control/pin/cap/deadline/cleanup/finalization failure remains incomplete; no decoder/model use without separate offline gate",
+  "transport_limits": {
+    "connect_seconds": 10,
+    "distinct_get_attempts_max": 8,
+    "first_body_seconds": 20,
+    "minimum_start_spacing_seconds": 1,
+    "object_bytes": 67108864,
+    "request_seconds": 120,
+    "slots": 8,
+    "stop_new_requests_seconds": 660,
+    "stop_transfers_seconds": 780,
+    "total_bytes": 536870912,
+    "whole_seconds": 900
+  }
+}
