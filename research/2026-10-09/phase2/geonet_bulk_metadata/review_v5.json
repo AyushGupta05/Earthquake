@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P1] Terminate the child even when interruption recovery fails",
+      "body": "An exception during interruption recovery before the child-termination block escapes directly to this finally clause, which cancels the hard watchdog while the child may still be running. A concrete trigger is concurrent manifest finalization: the parent writes manifest.json before stopping the worker, and both processes use manifest.json.temporary, so one rename can make the other's replace raise FileNotFoundError. The child is then neither terminated nor protected by the independent 1,800-second watchdog; its finalization disables its own timer. Ensure child termination runs even if recovery persistence fails, and cancel the watchdog only after the child has stopped.",
+      "priority": "P1",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bulk.py",
+        "line": 329
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The interruption handler can abandon a live worker and disarm the hard deadline when recovery itself raises. Otherwise, source inspection found no additional actionable defects. The pinned dependency and immutable specification checksums match; tests and acquisition were not executed.",
+  "overall_confidence": 0.94
+}

@@ -1,0 +1,25 @@
+{
+  "checked_utc": "2026-10-11T00:28:32.083100+00:00",
+  "scope": "Official documentation reads only; no event/station/waveform endpoints queried.",
+  "sources": [
+    {
+      "url": "https://www.geonet.org.nz/data/access/FDSN",
+      "supports": "Archive and near-real-time distinction; multiple-selection POST; miniSEED may include records before/after requested boundaries; larger volumes routed to AWS Open Data."
+    },
+    {
+      "url": "https://www.geonet.org.nz/data/access/aws",
+      "supports": "Public AWS Open Data archive access, not a proof of cheap short-window extraction."
+    },
+    {
+      "url": "https://docs.python.org/3.10/library/datetime.html#datetime.datetime.fromisoformat",
+      "supports": "Historical fromisoformat semantics; native local3.10.20 replay is separate empirical evidence."
+    },
+    {
+      "url": "https://docs.python.org/3.14/library/datetime.html#datetime.datetime.fromisoformat",
+      "supports": "Expanded ISO support since3.11; website patch version is not the pinned3.14.5 runtime."
+    }
+  ],
+  "data_queries": 0,
+  "AWS_actions": 0,
+  "body_volume_estimates_verified_by_docs": false
+}

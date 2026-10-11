@@ -1,0 +1,37 @@
+test_aggregate_contains_no_invented_ID_URL_or_pick_rows (test_bulk.AccountingTests) ... ok
+test_cap_interruption_retains_all_new_and_reused_denominators (test_bulk.AccountingTests) ... ok
+test_gate_uses_positive_not_empty_coverage_and_is_incomplete_safe (test_bulk.AccountingTests) ... ok
+test_initial_reuse_failure_keeps_exact_346_plus_149_denominators_without_requests (test_bulk.AccountingTests) ... ok
+test_invalid_time_or_station_identity_zero_is_unknown (test_bulk.AccountingTests) ... ok
+test_known_zero_and_unknown_weights_are_distinct (test_bulk.AccountingTests) ... ok
+test_reused_bytes_and_base_outcomes_match_before_new_fetch (test_bulk.AccountingTests) ... ok
+test_unresolved_zero_positive_and_deliberate_rejections_are_distinct (test_bulk.AccountingTests) ... ok
+test_whole_request_timeout_stops_and_never_passes_gate (test_bulk.AccountingTests) ... ok
+test_missing_receipt_is_rejected_before_output_reservation (test_bulk.GateTests) ... ok
+test_outer_timeout_recomputes_incomplete_checkpoint_with_denominators (test_bulk.GateTests) ... ok
+test_output_escape_symlink_and_oversize_input_rejected (test_bulk.GateTests) ... ok
+test_receipt_exact_binding_and_plan_replay (test_bulk.GateTests) ... ok
+test_P_singleton_failure_retains_independent_valid_origin_gate (test_bulk.OriginTests) ... ok
+test_descriptive_offsets_300_and_600_boundaries_and_negative (test_bulk.OriginTests) ... ok
+test_duplicate_geometry_container_and_value_are_ambiguous (test_bulk.OriginTests) ... ok
+test_duplicate_time_and_naive_time_do_not_erase_P (test_bulk.OriginTests) ... ok
+test_geometry_failure_does_not_erase_P_or_origin_time (test_bulk.OriginTests) ... ok
+test_missing_duplicate_preferred_linkage_is_unknown (test_bulk.OriginTests) ... ok
+test_off_window_pick_and_optional_origin_provenance (test_bulk.OriginTests) ... ok
+test_origin_window_exact_edges (test_bulk.OriginTests) ... ok
+test_pick_clock_strict_boundaries_and_station_collapse (test_bulk.OriginTests) ... ok
+test_pick_window_flag_does_not_need_valid_origin_time (test_bulk.OriginTests) ... ok
+test_valid_origin_geometry_and_P (test_bulk.OriginTests) ... ok
+test_wrong_namespace_DTD_and_identity_fail_both_diagnostics (test_bulk.OriginTests) ... ok
+test_dates_obey_source_window_and_partition_boundaries (test_bulk.SamplingTests) ... ok
+test_duplicate_groups_and_frozen_hash_change_rejected (test_bulk.SamplingTests) ... ok
+test_exact_boundaries_go_to_upper_bands_and_tail (test_bulk.SamplingTests) ... ok
+test_rejection_denominators_and_no_replacements (test_bulk.SamplingTests) ... ok
+test_selection_and_query_order_are_input_permutation_invariant (test_bulk.SamplingTests) ... ok
+test_chunk_checkpoint_precedes_native_accounting_and_survives_alarm (test_bulk.TransportTests) ... ok
+test_durable_wrapper_retains_native_caps_and_no_redirect (test_bulk.TransportTests) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.053s
+
+OK

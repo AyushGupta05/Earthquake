@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_bulk_metadata/bulk.py", line 346, in <module>
+    if __name__=='__main__':sys.exit(main())
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_bulk_metadata/bulk.py", line 333, in main
+    prepared=make_plan();plan=local(args.plan);plan.parent.mkdir(parents=True,exist_ok=True)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_bulk_metadata/bulk.py", line 147, in make_plan
+    if actual_runtime['version']!=obj['manifest.json'].get('python') or actual_runtime['binary_sha256']!=REQUIRED_PYTHON_SHA:raise ValueError('exact original census Python 3.14.5 runtime required')
+ValueError: exact original census Python 3.14.5 runtime required

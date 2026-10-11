@@ -1,0 +1,112 @@
+{
+  "task": "Bounded docs-only GeoNet metadata benchmark feasibility design",
+  "owned_directory": "work/geonet_benchmark_feasibility_design",
+  "status": "Frozen protocol handoff; no data acquisition, implementation or model fit performed",
+  "inputs": [
+    {
+      "path": "work/geonet_tail_census/local_runs/recovery_20261010/groups.json",
+      "sha256": "2270bd1969f8565dfd2cc683a17c08c766324ab67425d289956f9b68f19a44a8"
+    },
+    {
+      "path": "outputs/earthquake_geonet_tail_census.md",
+      "sha256": "ab29b7f4e562f4dd8cf0ee0519eb8d61405b2682c4f26794240da6d7216f9123"
+    },
+    {
+      "path": "outputs/earthquake_geonet_waveform_feasibility.md",
+      "sha256": "a28aa7ef7a45184011264ffce218509fde70e2bb7640598fe3ddfc543cbd86c5"
+    },
+    {
+      "path": "outputs/earthquake_external_validation_expansion.md",
+      "sha256": "b50d71d734e8554203344f4718eaea07ad6b58d29230c9bb0124355103f3e6da"
+    },
+    {
+      "path": "work/geonet_waveform_feasibility/PROTOCOL_v1.md",
+      "sha256": "e420780bc21e228a78013f7106655beb07d646d047553fcd17ba0066da1173b6"
+    },
+    {
+      "path": "work/geonet_tail_census/PROTOCOL_v1.md",
+      "sha256": "66ff3626ed7b4227c363a18e41261158e142bb92a1ca0bf68bf46136000dc14c"
+    },
+    {
+      "path": "work/geonet_tail_census/RESULTS.md",
+      "sha256": "933f13470e109cbe3b691dfb3c30702981fa38c206fd4c4c01e9f7b641b19be8"
+    },
+    {
+      "path": "work/geonet_tail_census/RECOVERY_WINDOW_v1.md",
+      "sha256": "6fa15021998b9229ed328352a1fd4ec4ec8fb810efe5e6eaa7c9434faa3c68c1"
+    },
+    {
+      "path": "work/geonet_tail_census/AMENDMENT_20261010_PUBLICID.md",
+      "sha256": "72873fc63d5090e3a06f84928af1c7888c8bcba756e2fc05c300c0d5860de7f2"
+    },
+    {
+      "path": "work/geonet_waveform_feasibility/summary.json",
+      "sha256": "17a2aba101bd8894849704436c67e5efa39763c75d395fde6fe58fed0582c671"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "work/geonet_benchmark_feasibility_design/PROTOCOL.md",
+      "sha256": "977fa551f782341696f632ae2e19d0a9d6e144e2ee380c146fc60bf83b46932c"
+    },
+    {
+      "path": "work/geonet_benchmark_feasibility_design/BENCHMARK_DESIGN.md",
+      "sha256": "5d42cc5b56ccfa8aa89ce87ded70e490d4d61189606ac522a7776c4f8775623b"
+    },
+    {
+      "path": "work/geonet_benchmark_feasibility_design/census_aggregate.json",
+      "sha256": "03cefd315e2f4cdb32e296d86635f9c93b5060adb81eaf000837b8a0675d5be4"
+    },
+    {
+      "path": "work/geonet_benchmark_feasibility_design/sample_specification.json",
+      "sha256": "5719ece214bcb4f88a6da7c32f3421efd3d4e5f8bb516b8f9c3e6fe852ac0943"
+    }
+  ],
+  "verified_aggregate_checks": [
+    "3437 eligible unique Mw IDs, zero conflicts, label range 2.8..8.0",
+    "Candidate calendar/band counts and 30-day temporal-guard arithmetic reproduced",
+    "15 lower-M strata, frame N=3288, sample n=346; cached tail n=149, combined n=495",
+    "Selected-set and query-order hashes independently recomputed; no ID roster saved",
+    "n/N and N/n arithmetic verified; pseudorandom and missingness limitations recorded",
+    "Owned artifacts contain no eligible event identifiers"
+  ],
+  "parent_independent_waveform_replay": {
+    "source_data_freeze": "0c377649b06feb81824169d98b4b51291d6db72e",
+    "summary_sha256": "17a2aba101bd8894849704436c67e5efa39763c75d395fde6fe58fed0582c671",
+    "strict_3C_and_screen_targets_each_horizon": 15,
+    "target_denominator": 18,
+    "P_intersection_targets_1_3_5": [
+      9,
+      11,
+      13
+    ],
+    "Mw_ge_7_strict_3C_and_screen_targets": 6,
+    "Mw_ge_7_event_count": 2,
+    "Mw_ge_7_P_intersection_1_3_5": [
+      4,
+      4,
+      5
+    ],
+    "claim_limit": "Small deterministic sample, not representative. Counts furnished by parent after independent replay; no waveform reading in this task."
+  },
+  "known_limits": [
+    "Candidate calendar boundaries do not prove sequence or station independence",
+    "Metadata feasibility sample is not a selected training/evaluation cohort",
+    "Availability and response missingness are not corrected by frame weights",
+    "Existing waveform preparation report predates the completed independent replay; current summary supersedes its not-yet-acquired status",
+    "No new primary-author literature claims were investigated or asserted in this design task"
+  ],
+  "actions": {
+    "metadata_network_requests": 0,
+    "downloads": 0,
+    "new_code_implementations": 0,
+    "review_submissions": 0,
+    "fits": 0,
+    "AWS_actions": 0,
+    "real_waveform_reads": 0,
+    "response_inventory_reads": 0,
+    "forecast_array_reads": 0
+  },
+  "publication_scope": "Aggregate counts/hashes only; cached metadata privacy preserved",
+  "no_fit_decision": "The next reviewed bounded metadata collection can establish feasibility only; no training earned."
+}

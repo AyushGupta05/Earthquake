@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Protect the read-to-checkpoint handoff from interruption
+transport.py:28
+SIGALRM and SIGTERM remain unblocked while the underlying read1 returns and until pthread_sigmask executes. If an exception-raising handler runs in that interval, the returned chunk never reaches the sidecar, active_bytes or active_hash. Native finalization and wrapper reconciliation then retain only earlier chunks, and parent recovery cannot recover the missing bytes. This violates the required accounting of partial bodies on interruption. Protect this handoff while preserving the request deadline; the existing regression only injects interruption when restoring the mask, after persistence.
+
+[P2] [P2] Refresh artifact pins after interruption reconciliation
+bulk.py:322
+If interruption occurs after the worker has written its final manifest—for example, during the parent's final log hashing—the recovery path rewrites summary.json with completed=false but retains the worker's original state['files'] checksums. A previously completed summary necessarily changes, leaving its manifest checksum incorrect. Reconciliation can also change requests.json, outcomes.json and raw files without updating their pins. Refresh affected pins within the hard deadline, or explicitly invalidate unfinished pins, so the recovered manifest does not assert checksums for superseded artifacts.
+
+overall: patch is incorrect (0.98)
+Source inspection found two remaining interruption defects: a returned chunk can escape byte accounting before signal masking, and parent recovery can retain stale artifact checksums. The reviewed dependency and immutable specification hashes match their stated pins. No tests, acquisition commands or external inputs were accessed.

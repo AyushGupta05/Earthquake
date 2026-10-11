@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "[P1] Keep the hard watchdog armed through interruption cleanup",
+      "body": "This cancels the absolute-deadline watchdog installed by hard_watchdog() before loading outcomes, reconciling sidecars, recomputing aggregates, and writing checkpoints. Those operations can process artifacts up to 1 GiB and have no remaining time checks. If cleanup takes longer than the remaining reserve or blocks on filesystem I/O, collection continues beyond the mandatory 1,800-second launch ceiling. Keep the hard watchdog active until all cleanup has finished. The current watchdog fixture tests the helper alone and misses this cancellation in collect().",
+      "priority": "P1",
+      "confidence": 1.0,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bulk.py",
+        "line": 302
+      }
+    },
+    {
+      "title": "[P2] Checkpoint reconciled bytes before removing the recovery sidecar",
+      "body": "When an alarm is delivered after the wrapper checkpoints a returned chunk but before native content accounting, the native Fetcher finally block writes a shorter body and atomically overwrites requests.json with the shorter byte count/hash. This wrapper repairs the in-memory entry, but removes the .received sidecar before checkpointing that repair. If the parent kills the worker between this replace and the following checkpoint, the full body survives in raw while requests.json retains the undercount. Parent reconciliation only hashes surviving .received files, so it cannot repair this state. Persist the corrected ledger before retiring the sidecar, preserving recovery at every interruption point.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "transport.py",
+        "line": 65
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Source inspection found two remaining interruption defects: cleanup disables the hard launch watchdog, and request finalization has a window that loses durable byte accounting. The dependency and immutable specification checksums match their stated pins. No tests or acquisition commands were executed.",
+  "overall_confidence": 0.99
+}

@@ -1,0 +1,23 @@
+autoreview findings: 5
+[P2] [P2] Reconcile bytes against the pre-request counter
+transport.py:60
+If SIGALRM arrives after the inherited Fetcher increments self.bytes but before content.extend(chunk), its finally block records entry['bytes'] without that chunk. This adjustment then adds the already-counted chunk again. For example, one received three-byte chunk can produce response_body_bytes=6 while the raw body and request ledger contain three bytes. The existing fixture interrupts before the native increment and misses this case. Reconcile the total from the pre-request byte count plus active_bytes.
+
+[P2] [P2] Preserve atomic ledger writes during inherited finalization
+transport.py:55
+The delegated Fetcher still calls the census library's non-atomic dump(requests.json) in its finally block. That write truncates the ledger previously preserved by persist(). If the outer watchdog kills the worker during this write, requests.json can be empty or partial, and collect() fails at load(requests.json) before reconciling the received sidecar. The wrapper's later atomic checkpoint cannot repair a process already killed. Ensure inherited persistence cannot truncate the durable attempt ledger.
+
+[P2] [P2] Handle UTC overflow independently of valid P evidence
+origin.py:58
+A timestamp such as 0001-01-01T00:00:00+01:00 parses successfully but raises OverflowError when lib.utc() converts it to UTC. Only ValueError is caught here, so an invalid origin time makes parse_row() throw and execute() replaces the entire row with parse_failed, discarding independently valid associated P coverage. The same overflow in a pick time escapes bulk.parse_row's P-parser catch and prevents independent origin extraction. Handle this conversion failure separately in both paths so it cannot erase the other evidence channel.
+
+[P2] [P2] Use the generated-artifact ceiling when hashing outcomes
+bulk.py:217
+Finalization reads every generated file with a 128MiB ceiling, including outcomes.json. The response-body cap does not bound this file: accepted picks expand into indented JSON, and reused-tail outcomes add bytes outside the acquisition cap. A permitted run can therefore produce outcomes.json larger than 128MiB, causing finalization to raise before manifest.json is written. Use the separate generated-checkpoint ceiling or bounded streaming hashing for these artifacts.
+
+[P2] [P2] Keep parent cleanup within the complete-launch deadline
+bulk.py:246
+When the 1800-second alarm fires, this branch disables the parent watchdog, then permits another ten-second process wait and unbounded checkpoint loading, reconciliation and rewriting. Consequently, the complete launch can exceed the frozen 1800-second limit even though the child is killed on time. The child's five-second reserve does not bound this parent exception path. Begin interruption finalization within the reserve and retain an independently enforced hard deadline through parent cleanup.
+
+overall: patch is incorrect (0.98)
+Source inspection found actionable defects in interruption-safe accounting, atomic ledger preservation, independent timestamp failure handling, generated-artifact finalization and enforcement of the complete-launch deadline. No tests, acquisition commands, external inputs or network access were used.

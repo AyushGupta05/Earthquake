@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-11",
+  "status": "Prospective design only, not source/target freeze, acquisition receipt or authority to acquire.",
+  "inputs": [
+    {
+      "path": "outputs/earthquake_geonet_bulk_metadata.md",
+      "sha256": "7e35bdf76e8214bc572fdd06b75d20d11c183bc4008774dabd086e92c14ab592",
+      "bytes": 4517
+    },
+    {
+      "path": "work/geonet_bulk_metadata/PROTOCOL_v1.md",
+      "sha256": "977fa551f782341696f632ae2e19d0a9d6e144e2ee380c146fc60bf83b46932c",
+      "bytes": 11118
+    },
+    {
+      "path": "work/geonet_waveform_feasibility/RESULTS.md",
+      "sha256": "59888746eabba5ae0b40d2f774677ad1a8154201c425600a21cbe27aed96c72f",
+      "bytes": 4479
+    },
+    {
+      "path": "work/geonet_waveform_feasibility/PROTOCOL_v1.md",
+      "sha256": "e420780bc21e228a78013f7106655beb07d646d047553fcd17ba0066da1173b6",
+      "bytes": 8382
+    },
+    {
+      "path": "work/geonet_tail_census/RESULTS.md",
+      "sha256": "933f13470e109cbe3b691dfb3c30702981fa38c206fd4c4c01e9f7b641b19be8",
+      "bytes": 4970
+    },
+    {
+      "path": "work/geonet_method_shortlist/HANDOFF.md",
+      "sha256": "0118918d3f406f6ec1ef62b6749e2e9bbafacd0ff92ae3a7ad43c042e3f8f436",
+      "bytes": 3565
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "work/geonet_next_data_plan/NEXT_DATA_PLAN.md",
+      "sha256": "15fe0ad21c2c17dcd6f90522b2ff86db9a3eff2e9df399f260c7cfef4799a219",
+      "bytes": 13798
+    },
+    {
+      "path": "work/geonet_next_data_plan/HANDOFF.md",
+      "sha256": "af641666ed07f486d8e876be73c28b31ca581b887fcef27f245eb52e1a455e20",
+      "bytes": 3217
+    },
+    {
+      "path": "work/geonet_next_data_plan/source_access.json",
+      "sha256": "8e4498d4ca79054f380b16760ec4a0059477361b013601c64cda488e00e279e7",
+      "bytes": 1955
+    }
+  ],
+  "parent_independent_cached_149_evidence": {
+    "source": "Parent message and published report; no raw metadata rows read in this task",
+    "all_149_valid_in_window_origin_time_and_finite_geometry": true,
+    "all_149_have_accepted_NZP": true,
+    "at_least_three_accepted_stations_1_3_5_seconds": {
+      "Mw_ge_5_5": [
+        23,
+        57,
+        82
+      ],
+      "Mw_ge_6": [
+        10,
+        22,
+        30
+      ],
+      "Mw_ge_7": [
+        2,
+        6,
+        7
+      ]
+    },
+    "unresolved_reference_event_count": 22,
+    "unresolved_reference_count": 707,
+    "clock_qualification": "Lower-bound counts at fixed currently accepted-subset T0; not hypothetical earlier complete-pick clock."
+  },
+  "direct_screen_draft": {
+    "events": 96,
+    "allocation": {
+      "all_Mw_ge_6": 60,
+      "two_per_15_lower_M_cells": 30,
+      "two_per_3_Mw_5_5_to_6_calendar_cells": 6
+    },
+    "selection_key": "SHA256(geonet-counts-screen-v1|PARTITION|BAND|EVENT_ID), tie by ID; independent of metadata outcome",
+    "cap_stations_per_deadline": 8,
+    "max_union_station_targets": 768,
+    "candidate_TEST_ceiling": 31,
+    "waveform_batch_event_cap": 16,
+    "max_metadata_queries": 768,
+    "max_waveform_POSTs": 6,
+    "max_expected_new_attempts_before_cache": 774,
+    "suggested_attempt_cap": 800,
+    "suggested_combined_body_cap_MiB": 512,
+    "suggested_metadata_response_cap_MiB": 4,
+    "suggested_waveform_batch_cap_MiB": 16,
+    "suggested_outer_seconds": 7200,
+    "request_timeout_seconds": 20,
+    "minimum_request_start_spacing_seconds": 1,
+    "caps_operative_or_authorized_by_this_document": false,
+    "metadata_or_response_failure_suppresses_waveform_attempt": false,
+    "station_nine_replacement_allowed": false,
+    "union_through_5s_is_earlier_model_input": false,
+    "denominators": "All selected events, event deadlines and frozen station slots, including unknown/unattempted/failures."
+  },
+  "larger_benchmark_draft": {
+    "full_pinned_CMT_frame_events": 3437,
+    "current_accounted_metadata_outcomes": 495,
+    "maximum_new_out_of_sample_metadata_IDs": 2942,
+    "current_495_candidate_TEST_ceiling": 169,
+    "full_frame_candidate_calendar_events": [
+      1732,
+      566,
+      1139
+    ],
+    "full_frame_candidate_TEST_tail_ceilings": {
+      "Mw_ge_5_5": 49,
+      "Mw_ge_6": 19,
+      "Mw_ge_7": 5
+    },
+    "planning_available_TEST_floors": {
+      "all": 200,
+      "Mw_ge_5_5": 30,
+      "Mw_ge_6": 15
+    },
+    "maximum_station_targets": 27496,
+    "new_metadata_cap_frozen": false,
+    "sequence_screen_primary": {
+      "days": 30,
+      "km": 100,
+      "cross_cut_components": "quarantine",
+      "calendar_guard_days": 30
+    },
+    "sequence_screen_sensitivity": {
+      "days": 90,
+      "km": 150
+    },
+    "sequence_scope": "All full-frame geometry including known-zero/unknown-P and unsampled-waveform IDs. Full CMT graph remains a heuristic and does not prove independence from non-CMT sequences.",
+    "unknown_geometry_treated_as_isolated": false,
+    "acquire_until_success_floor": false,
+    "planning_floors_are_power_guarantees": false
+  },
+  "byte_assumptions": {
+    "seconds": 10,
+    "components": 3,
+    "sample_rate_Hz": [
+      100,
+      200
+    ],
+    "sample_bytes": 4,
+    "waveform_overhead_factor": 3,
+    "channel_metadata_KiB_per_target": [
+      10,
+      50
+    ],
+    "QuakeML_MiB_per_event": 0.25,
+    "measured_or_approved": false,
+    "HTTP_TLS_counted": false,
+    "no_cache_savings_assumed": true
+  },
+  "byte_estimates": {
+    "direct_96": {
+      "targets": 768,
+      "raw_float32_arrays_MiB": [
+        8.7890625,
+        17.578125
+      ],
+      "waveform_x3_MiB": [
+        26.3671875,
+        52.734375
+      ],
+      "channel_metadata_MiB": [
+        7.5,
+        37.5
+      ],
+      "combined_body_MiB": [
+        33.8671875,
+        90.234375
+      ]
+    },
+    "full_frame": {
+      "targets": 27496,
+      "raw_float32_arrays_MiB": [
+        314.666748046875,
+        629.33349609375
+      ],
+      "waveform_x3_MiB": [
+        944.000244140625,
+        1888.00048828125
+      ],
+      "channel_metadata_MiB": [
+        268.515625,
+        1342.578125
+      ],
+      "combined_body_MiB": [
+        1212.515869140625,
+        3230.57861328125
+      ]
+    },
+    "remaining_2942_metadata_MiB": 735.5,
+    "draft_response_only_288_MiB": [
+      28.125,
+      140.625
+    ]
+  },
+  "checks": {
+    "arithmetic_passed": true,
+    "real_rows_or_IDs_published": false,
+    "existing_protocols_or_reports_changed": false
+  },
+  "actions": {
+    "data_requests": 0,
+    "real_row_or_waveform_reads": 0,
+    "new_code_implementation": 0,
+    "fits": 0,
+    "review_submissions": 0,
+    "AWS": 0,
+    "Git": 0,
+    "shared_file_edits": 0
+  }
+}

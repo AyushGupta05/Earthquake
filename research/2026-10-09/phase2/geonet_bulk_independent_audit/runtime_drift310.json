@@ -1,0 +1,76 @@
+{
+  "AWS_actions": 0,
+  "cached_XML_event_count": 149,
+  "interpretation": "Native datetime.fromisoformat in3.10 accepts only3 or6 fractional digits here; original3.14 accepted all1..6. This is runtime drift, not a source/data mismatch. Use original-compatible frozen3.14 rather than rewrite cached fields.",
+  "mismatch_event_counts": {
+    "accepted_picks": 99,
+    "all_network": 99,
+    "all_network_before_seconds": 46,
+    "all_network_stations": 99,
+    "all_network_strict_1s": 16,
+    "all_network_strict_3s": 33,
+    "all_network_strict_5s": 45,
+    "all_network_t0_utc": 11,
+    "catalog_magnitude_types": 0,
+    "event_id": 0,
+    "event_type": 0,
+    "full_original_base_outcome": 99,
+    "nz": 99,
+    "nz_before_seconds": 46,
+    "nz_stations": 99,
+    "nz_strict_1s": 16,
+    "nz_strict_3s": 33,
+    "nz_strict_5s": 45,
+    "nz_t0_utc": 11,
+    "preferred_origin_id": 0,
+    "reasons": 99,
+    "status": 0
+  },
+  "native310_accepted_P_pick_count": 7468,
+  "native310_rejected_original_accepted_pick_fractional_digit_counts": {
+    "1": 56,
+    "2": 618,
+    "4": 30,
+    "5": 812
+  },
+  "native310_rejected_preferred_origin_time_fractional_digit_counts": {
+    "4": 3,
+    "5": 13
+  },
+  "network_requests": 0,
+  "original_accepted_P_pick_count": 8984,
+  "original_census_manifest_sha256": "a9a81d37096cb8b1763d7f7365e959893a86eda43f17024a9ae3e7882d7de328",
+  "original_census_source_sha256": "076c9fcb419b801c91fa95a01cec21f708284887f6dfae8e7878b513ba1780b8",
+  "original_runtime_version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "production_source_imports": 0,
+  "raw_original_accepted_pick_fractional_digit_counts": {
+    "1": 56,
+    "2": 618,
+    "3": 1368,
+    "4": 30,
+    "5": 812,
+    "6": 6100
+  },
+  "raw_preferred_origin_time_fractional_digit_counts": {
+    "3": 47,
+    "4": 3,
+    "5": 13,
+    "6": 86
+  },
+  "rejection_reason_mismatch_event_counts": {
+    "accepted_missing_time_weight": 42,
+    "invalid_or_naive_pick_time": 99,
+    "missing_or_ambiguous_pick_reference": 0,
+    "nonpositive_or_invalid_time_weight": 0,
+    "other_phase:S": 0,
+    "other_phase:T": 0
+  },
+  "replay_runtime": {
+    "binary_sha256": "53815ef772c33a6e786b9702089e7f89bfbc5d43e1759daef3aafeb798a185bd",
+    "executable": "/Users/ayush/.venvs/ml/bin/python3",
+    "resolved_executable": "/Users/ayush/.local/share/uv/python/cpython-3.10.20-macos-aarch64-none/bin/python3.10",
+    "version": "3.10.20 (main, May 10 2026, 19:20:50) [Clang 22.1.3 ]"
+  },
+  "scope": "Independent negative runtime preflight; no production collector executed, no network",
+  "version": "geonet-native310-cached149-runtime-drift-v1"
+}

@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-11",
+  "scope": "Official GeoNet archive/API and policy pages only. No event, station or waveform data endpoint queried; no local scientific data read.",
+  "sources": [
+    {
+      "title": "GeoNet FDSN webservices documentation",
+      "url": "https://www.geonet.org.nz/data/access/FDSN",
+      "access": "Full official HTML read",
+      "supports": [
+        "Archive event/station/waveform access and metadata detail levels",
+        "Batched selections and caution about request volume",
+        "Waveform boundary over-delivery",
+        "Large waveform access route points to AWS Open Data"
+      ],
+      "limits": "No undocumented service limits, measured byte volumes, operational telemetry or calibration validity inferred."
+    },
+    {
+      "title": "GeoNet data policy",
+      "url": "https://www.geonet.org.nz/policy",
+      "access": "Full official HTML read; initial /data/policy URL failed, corrected to canonical policy page",
+      "supports": [
+        "Research data access with acknowledgement",
+        "Waveform, station, earthquake and moment-tensor dataset DOI citations"
+      ],
+      "limits": "No AWS credit eligibility or legal interpretation inferred."
+    },
+    {
+      "title": "GeoNet AWS Open Data documentation",
+      "url": "https://www.geonet.org.nz/data/access/aws",
+      "access": "Full official HTML read",
+      "supports": [
+        "Archive waveforms provided through public AWS Open Data route for larger access"
+      ],
+      "limits": "No S3 object listings, ranges or AWS account calls. Public access does not establish efficient ten-second extraction or free account compute/storage/transfer."
+    }
+  ],
+  "source_prose_constraint": "Less than 200 words per web source across this document bundle. Proposed rules and byte estimates are agent assumptions rather than source measurements.",
+  "actions": {
+    "data_queries": 0,
+    "downloads": 0,
+    "s3_or_aws_calls": 0
+  }
+}

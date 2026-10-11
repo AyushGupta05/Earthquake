@@ -1,0 +1,307 @@
+{
+  "acquisition_disabled": true,
+  "allowed_paths": [
+    "work/geonet_bulk_metadata/.gitignore",
+    "work/geonet_bulk_metadata/HANDOFF.md",
+    "work/geonet_bulk_metadata/IMPLEMENTATION.md",
+    "work/geonet_bulk_metadata/PARENT_RECEIPT_SCHEMA.json",
+    "work/geonet_bulk_metadata/POST_RUN_REPLAY_CHECKLIST.md",
+    "work/geonet_bulk_metadata/PREPARATION_REPORT.json",
+    "work/geonet_bulk_metadata/PROTOCOL_v1.md",
+    "work/geonet_bulk_metadata/REVIEW_RESOLUTION.md",
+    "work/geonet_bulk_metadata/TESTING.md",
+    "work/geonet_bulk_metadata/aggregate.py",
+    "work/geonet_bulk_metadata/bulk.py",
+    "work/geonet_bulk_metadata/cached_compatibility_preflight_v3.json",
+    "work/geonet_bulk_metadata/census_input_pins.json",
+    "work/geonet_bulk_metadata/dependency_tests_final.txt",
+    "work/geonet_bulk_metadata/origin.py",
+    "work/geonet_bulk_metadata/plan_independent_replay_final.json",
+    "work/geonet_bulk_metadata/plan_independent_replay_v1.json",
+    "work/geonet_bulk_metadata/preflight_failure_310.json",
+    "work/geonet_bulk_metadata/review_context.txt",
+    "work/geonet_bulk_metadata/review_receipt_final.json",
+    "work/geonet_bulk_metadata/review_setup_failure.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v1.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v2.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v3.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v4.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v5.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v6.json",
+    "work/geonet_bulk_metadata/review_source_manifest_v7.json",
+    "work/geonet_bulk_metadata/review_v1.json",
+    "work/geonet_bulk_metadata/review_v1.txt",
+    "work/geonet_bulk_metadata/review_v2.json",
+    "work/geonet_bulk_metadata/review_v2.txt",
+    "work/geonet_bulk_metadata/review_v3.json",
+    "work/geonet_bulk_metadata/review_v3.txt",
+    "work/geonet_bulk_metadata/review_v4.json",
+    "work/geonet_bulk_metadata/review_v4.txt",
+    "work/geonet_bulk_metadata/review_v5.json",
+    "work/geonet_bulk_metadata/review_v5.txt",
+    "work/geonet_bulk_metadata/review_v6.json",
+    "work/geonet_bulk_metadata/review_v6.txt",
+    "work/geonet_bulk_metadata/review_v7.json",
+    "work/geonet_bulk_metadata/review_v7.txt",
+    "work/geonet_bulk_metadata/runtime_guard_310_failure.txt",
+    "work/geonet_bulk_metadata/runtime_receipt.json",
+    "work/geonet_bulk_metadata/runtime_receipt_310_failed_preflight.json",
+    "work/geonet_bulk_metadata/sample_specification.json",
+    "work/geonet_bulk_metadata/sampling.py",
+    "work/geonet_bulk_metadata/test_bulk.py",
+    "work/geonet_bulk_metadata/tests_receipt_final.json",
+    "work/geonet_bulk_metadata/tests_receipt_v1.json",
+    "work/geonet_bulk_metadata/tests_v1.txt",
+    "work/geonet_bulk_metadata/tests_v2.txt",
+    "work/geonet_bulk_metadata/tests_v3.txt",
+    "work/geonet_bulk_metadata/tests_v4.txt",
+    "work/geonet_bulk_metadata/tests_v5.txt",
+    "work/geonet_bulk_metadata/tests_v6.txt",
+    "work/geonet_bulk_metadata/tests_v7.txt",
+    "work/geonet_bulk_metadata/transport.py",
+    "work/geonet_bulk_metadata/safe_to_promote_paths.json"
+  ],
+  "excluded_directories": [
+    "work/geonet_bulk_metadata/local_runs",
+    "work/geonet_bulk_metadata/review_snapshot",
+    "work/geonet_bulk_metadata/__pycache__"
+  ],
+  "files": {
+    "work/geonet_bulk_metadata/.gitignore": {
+      "bytes": 42,
+      "sha256": "49131eedf62e875a93e7fcd9ed0e08990d5faa0f37e1ac5dbce945c181780e85"
+    },
+    "work/geonet_bulk_metadata/HANDOFF.md": {
+      "bytes": 5306,
+      "sha256": "dfaf0c31d290056ca80690e87cd4f7fe93b023f60e39cab6479e7cbea90ef9df"
+    },
+    "work/geonet_bulk_metadata/IMPLEMENTATION.md": {
+      "bytes": 8276,
+      "sha256": "de57cbe36c709c99559e3d57a0eafa62cd4f6f227e6d827113bfa15b78740fde"
+    },
+    "work/geonet_bulk_metadata/PARENT_RECEIPT_SCHEMA.json": {
+      "bytes": 3133,
+      "sha256": "c511cad661c8d2d2a60cb9b3369b87f0139d76676d7ed15c7abb5fdd6bd3bdbd"
+    },
+    "work/geonet_bulk_metadata/POST_RUN_REPLAY_CHECKLIST.md": {
+      "bytes": 5044,
+      "sha256": "d6f062b0b10b962039196511b9ab27912ce9c9030d7dcca42d3a187f808f97f6"
+    },
+    "work/geonet_bulk_metadata/PREPARATION_REPORT.json": {
+      "bytes": 5193,
+      "sha256": "b715edfcbbe83b3129588076393fe131ea9584bfb5f25a00bf7c042182778c08"
+    },
+    "work/geonet_bulk_metadata/PROTOCOL_v1.md": {
+      "bytes": 11118,
+      "sha256": "977fa551f782341696f632ae2e19d0a9d6e144e2ee380c146fc60bf83b46932c"
+    },
+    "work/geonet_bulk_metadata/REVIEW_RESOLUTION.md": {
+      "bytes": 6327,
+      "sha256": "1e2a7afe60a5fe3bd79321f150c1a9d9f92778b5ea2ff1235d6bc344dc371d67"
+    },
+    "work/geonet_bulk_metadata/TESTING.md": {
+      "bytes": 5355,
+      "sha256": "93786b236f3a64265d9a261ed5650df73b85e85f07ae95613028a3cc070465ab"
+    },
+    "work/geonet_bulk_metadata/aggregate.py": {
+      "bytes": 7059,
+      "sha256": "d7d643a002f15860f85fffcf75e002ff63feca8508f3bc765403302f6a96ef3b"
+    },
+    "work/geonet_bulk_metadata/bulk.py": {
+      "bytes": 22476,
+      "sha256": "4a037ecc070471767b0960e644b6c376cc024234dc3e93cee8593e6fc4c40ea5"
+    },
+    "work/geonet_bulk_metadata/cached_compatibility_preflight_v3.json": {
+      "bytes": 2433,
+      "sha256": "ceeeac0b4a8d462f70e3fed63db86a06375d51ee3f87c21b854a8e68529d3ca8"
+    },
+    "work/geonet_bulk_metadata/census_input_pins.json": {
+      "bytes": 608,
+      "sha256": "859367e1feaff84bfde42c2eb7a8a647aaa49259286e5d2e8b61c529b6902938"
+    },
+    "work/geonet_bulk_metadata/dependency_tests_final.txt": {
+      "bytes": 120,
+      "sha256": "9236bc32ab70cbe00d83da674654ed10e4d456c753878383a1bed4d233e68042"
+    },
+    "work/geonet_bulk_metadata/origin.py": {
+      "bytes": 5694,
+      "sha256": "a50bb8ed7149e88bddc9197c84d23adbead7d9ec441b769597760feeb4334b02"
+    },
+    "work/geonet_bulk_metadata/plan_independent_replay_final.json": {
+      "bytes": 7683,
+      "sha256": "aecc95ad4e2da04ffc0b31c3e99979eade7a7e751d3a9c400e3a073cd415a07b"
+    },
+    "work/geonet_bulk_metadata/plan_independent_replay_v1.json": {
+      "bytes": 4828,
+      "sha256": "eef8f6ed039b22e5547049262c70be8108110685b9500c46c4d9736b2f9ecf06"
+    },
+    "work/geonet_bulk_metadata/preflight_failure_310.json": {
+      "bytes": 825,
+      "sha256": "ed5a4e4d1977848d927496d38a252058424649c8b355abc99b9ef1ce06c54291"
+    },
+    "work/geonet_bulk_metadata/review_context.txt": {
+      "bytes": 6167,
+      "sha256": "f472a4faa03bb65ac329662ae10838b5853a2dc4b94998630bca8af9c530c3fe"
+    },
+    "work/geonet_bulk_metadata/review_receipt_final.json": {
+      "bytes": 2170,
+      "sha256": "5a5dd85c102c0ef06f9500fe965b9992301c1c2c0c49fe8135ae69ccc0727f3d"
+    },
+    "work/geonet_bulk_metadata/review_setup_failure.json": {
+      "bytes": 328,
+      "sha256": "df0ab9da1010c834f6a5951fa0917afd9c16a3e148087bde3a9e770e6b929bce"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v1.json": {
+      "bytes": 1203,
+      "sha256": "354d24dc5798c7ab6bfe31e402c58a6d34534e0fc4bf68de2e25002a53bc9062"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v2.json": {
+      "bytes": 1291,
+      "sha256": "4f51403b3f998c007fe8d60bd6d40becb5f68df36913a22f58d506921680cc48"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v3.json": {
+      "bytes": 1291,
+      "sha256": "442556167a25e0d7953b98f8d4df510e55969f515e8ad481bd0991b0b2414a1e"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v4.json": {
+      "bytes": 1291,
+      "sha256": "c3a69adcc0f268a974c7d350e1d320782efe654b9abe4db1c81044c3c7862f65"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v5.json": {
+      "bytes": 1291,
+      "sha256": "de35f48990d17976ea2cfdf03eff0003e1d3644fef01b99ca5f7ec242afe1fb9"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v6.json": {
+      "bytes": 1291,
+      "sha256": "16b0cf2331029b47216680ae2f13df586c2bbfe8dbbd31d7f156d39b2b69390d"
+    },
+    "work/geonet_bulk_metadata/review_source_manifest_v7.json": {
+      "bytes": 1291,
+      "sha256": "f3ade409e984480f3fed252ed8c621516b2bc9ca78a0a99ae643e5bb01337736"
+    },
+    "work/geonet_bulk_metadata/review_v1.json": {
+      "bytes": 3817,
+      "sha256": "8bee7558cade00fb68f0969049388be256b1ab8d9b6cac8569ec789ecd85e9e6"
+    },
+    "work/geonet_bulk_metadata/review_v1.txt": {
+      "bytes": 2988,
+      "sha256": "e439f618ecb1f50bc568eaf2cc17fc3b765ef13443831c0e9bd8adea85e3695e"
+    },
+    "work/geonet_bulk_metadata/review_v2.json": {
+      "bytes": 4311,
+      "sha256": "a5b4161d09c9b73599ddc49d6d878eac30e12b14c9c3ab35f1fbe076a9dbfa4a"
+    },
+    "work/geonet_bulk_metadata/review_v2.txt": {
+      "bytes": 3291,
+      "sha256": "9bda5cef103247c3225a15a399d7b016a12a7df446d2bd898d0994509a0d2e26"
+    },
+    "work/geonet_bulk_metadata/review_v3.json": {
+      "bytes": 2253,
+      "sha256": "e9c1e7a64a81fc68ccad7fb19f3b7f72efa235563eda47c9df79ff675ad98f32"
+    },
+    "work/geonet_bulk_metadata/review_v3.txt": {
+      "bytes": 1804,
+      "sha256": "1e91a216cefb6493fa33ee802dfd22029a7347542438a8480d9301ebdb2d6f91"
+    },
+    "work/geonet_bulk_metadata/review_v4.json": {
+      "bytes": 2220,
+      "sha256": "20a850dbb89b27303fe771e551aef3e94de97a652bc8b18c7c180caa68d4f883"
+    },
+    "work/geonet_bulk_metadata/review_v4.txt": {
+      "bytes": 1764,
+      "sha256": "f46465920d5027e75436354b2a7b93b08a6d95f22e02237d0e47aac728adc465"
+    },
+    "work/geonet_bulk_metadata/review_v5.json": {
+      "bytes": 1363,
+      "sha256": "0a50c8b12f88c7ef80da39661af5449b00c4e5866276b2e194671259c7b9e4f6"
+    },
+    "work/geonet_bulk_metadata/review_v5.txt": {
+      "bytes": 1103,
+      "sha256": "95904549fdfef97f5bcbb3c6a7672da6d808eb14b8a2c2b3e457338a1b34965d"
+    },
+    "work/geonet_bulk_metadata/review_v6.json": {
+      "bytes": 2011,
+      "sha256": "47ea90317c44aabfbf1e56185b89bce56ad9a1660ef214cc9240999e0beec2a1"
+    },
+    "work/geonet_bulk_metadata/review_v6.txt": {
+      "bytes": 1561,
+      "sha256": "31915ee654437bef4f2969c48781d6f5b9da0d67cf9f0a2d7c695006dbccd0ce"
+    },
+    "work/geonet_bulk_metadata/review_v7.json": {
+      "bytes": 480,
+      "sha256": "1bc9783859e0ceb3849247a7828425bfb6bbeba3ac3d182d5cb00db6e8e086ba"
+    },
+    "work/geonet_bulk_metadata/review_v7.txt": {
+      "bytes": 448,
+      "sha256": "7de0d4f26bd5f8449f56927df524567cadf44e682e7937b8dbd9423c688c7429"
+    },
+    "work/geonet_bulk_metadata/runtime_guard_310_failure.txt": {
+      "bytes": 772,
+      "sha256": "a421626aa96626e33bbd94df7c1ba83aafc24c52364ece087218485a3a93c6e7"
+    },
+    "work/geonet_bulk_metadata/runtime_receipt.json": {
+      "bytes": 676,
+      "sha256": "f2a1f3817602201962039e4e059ca746cd08c75a10dbeeadf029551d59d1ff11"
+    },
+    "work/geonet_bulk_metadata/runtime_receipt_310_failed_preflight.json": {
+      "bytes": 425,
+      "sha256": "632580db988024d274d32f61d1a1f1863e9b15b4fb343311a8b1d6fddba2cbb5"
+    },
+    "work/geonet_bulk_metadata/sample_specification.json": {
+      "bytes": 8782,
+      "sha256": "5719ece214bcb4f88a6da7c32f3421efd3d4e5f8bb516b8f9c3e6fe852ac0943"
+    },
+    "work/geonet_bulk_metadata/sampling.py": {
+      "bytes": 4504,
+      "sha256": "4ab291fff87bb5f90f2e493ab2d8ea5253309230704275139e49f34925dac5b7"
+    },
+    "work/geonet_bulk_metadata/test_bulk.py": {
+      "bytes": 42325,
+      "sha256": "c7d948cf86953054a2434586c799259742bf6ff358a3adf7b6ee436d8f73cc94"
+    },
+    "work/geonet_bulk_metadata/tests_receipt_final.json": {
+      "bytes": 2324,
+      "sha256": "59e34efe2b31e8e7e239da09a85bba20a6c487d6a2c52ee9045f6edee9f8a334"
+    },
+    "work/geonet_bulk_metadata/tests_receipt_v1.json": {
+      "bytes": 921,
+      "sha256": "df09af68f90e6a7682a81fb90660471e00b617e10b9a4898c61f9aa21819de11"
+    },
+    "work/geonet_bulk_metadata/tests_v1.txt": {
+      "bytes": 2370,
+      "sha256": "76767ba990f30f5a0a3832862f11966baefb1d91a1a2a9d364458c579ce6b4e3"
+    },
+    "work/geonet_bulk_metadata/tests_v2.txt": {
+      "bytes": 2931,
+      "sha256": "d21d74118c3bd3eb6cfbdd8d4276527bf12f943ae088f009b5c689b2159d8bad"
+    },
+    "work/geonet_bulk_metadata/tests_v3.txt": {
+      "bytes": 5649,
+      "sha256": "e2860e2cf9c7ce1b147572ea87b576abda8f430129cdb62e82c749c5af2f727d"
+    },
+    "work/geonet_bulk_metadata/tests_v4.txt": {
+      "bytes": 5801,
+      "sha256": "a5873bae6454fde0125656df3c27c3e7746dd10cda4d225e065fe36e35307b7f"
+    },
+    "work/geonet_bulk_metadata/tests_v5.txt": {
+      "bytes": 5971,
+      "sha256": "7097b598f1552db122831d9abe988a7086bdbd5e3036b091fda1869dd08bf0a6"
+    },
+    "work/geonet_bulk_metadata/tests_v6.txt": {
+      "bytes": 6152,
+      "sha256": "8242aa13f87b3874786a9ec391713cf4fbd5a97dff2405db7d7f3bc15846fd63"
+    },
+    "work/geonet_bulk_metadata/tests_v7.txt": {
+      "bytes": 6510,
+      "sha256": "ac1c965feb4d018e36c7cab0b7bc7cb7d70b448a12f534ce1e9f709853378568"
+    },
+    "work/geonet_bulk_metadata/transport.py": {
+      "bytes": 4764,
+      "sha256": "0ddca9ccc4453f812342df9ac7dfe02ec06bceafb1818071004e9827e217b135"
+    }
+  },
+  "parent_owns_git_and_execution": true,
+  "raw_metadata_or_rows_or_private_query_plan_included": false,
+  "reviewed_processing_file_count": 10,
+  "version": "geonet-bulk-safe-promotion-v1"
+}

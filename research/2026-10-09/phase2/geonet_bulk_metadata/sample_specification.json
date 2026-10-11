@@ -1,0 +1,214 @@
+{
+  "status": "Frozen docs-only metadata-feasibility proposal; not execution authorization receipt or selected model split",
+  "selection_salt": "geonet-bulk-feasibility-v1",
+  "query_order_salt": "geonet-bulk-feasibility-query-v1",
+  "strata_order": [
+    "train2003_2014",
+    "dev2015_2017",
+    "test2018_2024"
+  ],
+  "Mw_band_order": [
+    "<3.5",
+    "[3.5,4)",
+    "[4,4.5)",
+    "[4.5,5)",
+    "[5,5.5)"
+  ],
+  "strata": [
+    {
+      "candidate_calendar_partition": "train2003_2014",
+      "Mw_band": "<3.5",
+      "frame_N": 43,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.5581395348837209,
+      "inverse_probability_N_over_n": 1.7916666666666667
+    },
+    {
+      "candidate_calendar_partition": "train2003_2014",
+      "Mw_band": "[3.5,4)",
+      "frame_N": 569,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.0421792618629174,
+      "inverse_probability_N_over_n": 23.708333333333332
+    },
+    {
+      "candidate_calendar_partition": "train2003_2014",
+      "Mw_band": "[4,4.5)",
+      "frame_N": 640,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.0375,
+      "inverse_probability_N_over_n": 26.666666666666668
+    },
+    {
+      "candidate_calendar_partition": "train2003_2014",
+      "Mw_band": "[4.5,5)",
+      "frame_N": 300,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.08,
+      "inverse_probability_N_over_n": 12.5
+    },
+    {
+      "candidate_calendar_partition": "train2003_2014",
+      "Mw_band": "[5,5.5)",
+      "frame_N": 111,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.21621621621621623,
+      "inverse_probability_N_over_n": 4.625
+    },
+    {
+      "candidate_calendar_partition": "dev2015_2017",
+      "Mw_band": "<3.5",
+      "frame_N": 10,
+      "sample_n": 10,
+      "inclusion_probability_n_over_N": 1.0,
+      "inverse_probability_N_over_n": 1.0
+    },
+    {
+      "candidate_calendar_partition": "dev2015_2017",
+      "Mw_band": "[3.5,4)",
+      "frame_N": 132,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.18181818181818182,
+      "inverse_probability_N_over_n": 5.5
+    },
+    {
+      "candidate_calendar_partition": "dev2015_2017",
+      "Mw_band": "[4,4.5)",
+      "frame_N": 220,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.10909090909090909,
+      "inverse_probability_N_over_n": 9.166666666666666
+    },
+    {
+      "candidate_calendar_partition": "dev2015_2017",
+      "Mw_band": "[4.5,5)",
+      "frame_N": 133,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.18045112781954886,
+      "inverse_probability_N_over_n": 5.541666666666667
+    },
+    {
+      "candidate_calendar_partition": "dev2015_2017",
+      "Mw_band": "[5,5.5)",
+      "frame_N": 40,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.6,
+      "inverse_probability_N_over_n": 1.6666666666666667
+    },
+    {
+      "candidate_calendar_partition": "test2018_2024",
+      "Mw_band": "<3.5",
+      "frame_N": 118,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.2033898305084746,
+      "inverse_probability_N_over_n": 4.916666666666667
+    },
+    {
+      "candidate_calendar_partition": "test2018_2024",
+      "Mw_band": "[3.5,4)",
+      "frame_N": 404,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.0594059405940594,
+      "inverse_probability_N_over_n": 16.833333333333332
+    },
+    {
+      "candidate_calendar_partition": "test2018_2024",
+      "Mw_band": "[4,4.5)",
+      "frame_N": 327,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.07339449541284404,
+      "inverse_probability_N_over_n": 13.625
+    },
+    {
+      "candidate_calendar_partition": "test2018_2024",
+      "Mw_band": "[4.5,5)",
+      "frame_N": 183,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.13114754098360656,
+      "inverse_probability_N_over_n": 7.625
+    },
+    {
+      "candidate_calendar_partition": "test2018_2024",
+      "Mw_band": "[5,5.5)",
+      "frame_N": 58,
+      "sample_n": 24,
+      "inclusion_probability_n_over_N": 0.41379310344827586,
+      "inverse_probability_N_over_n": 2.4166666666666665
+    }
+  ],
+  "new_lower_M_unique_events": 346,
+  "new_lower_M_by_candidate_partition": {
+    "train2003_2014": 120,
+    "dev2015_2017": 106,
+    "test2018_2024": 120
+  },
+  "reused_existing_tail_events": 149,
+  "combined_feasibility_screen_events": 495,
+  "selected_set_sha256": "6ed849d32a6ab180b7ddb4ddbf85d085d6819011fcebe7c093384c0806452d7c",
+  "query_order_sha256": "8490814535ee0f74e47e7307794a7f296b9694e8aeef68d6c78f293990331993",
+  "list_hash_encoding": "UTF-8 newline-delimited event IDs with one trailing newline; selected-set hash sorts IDs lexicographically, query-order hash preserves specified hash rank. IDs are not published or written here.",
+  "missingness_gate": {
+    "minimum_successfully_resolved_preferred_origin_events": 312,
+    "minimum_events_with_at_least_one_accepted_NZ_associated_P_pick": 277,
+    "minimum_known_NZ_P_coverage_each_stratum": "ceil(0.5*n); all 15 strata retain frozen n, including failed/unknown/unattempted",
+    "all346_outcomes_accounted_for": true,
+    "capped_or_interrupted_is_incomplete_not_absence": true,
+    "resolved_gate_definition": "Identity-matched unique preferred origin with valid timezone-aware origin UTC time in [2003-08-01,2025-01-01); latitude/longitude/depth completeness is not a prerequisite. Preserve reviewed parser status and separately count unique linkage, time validity/window and complete geometry."
+  },
+  "caps": {
+    "planned_event_queries": 346,
+    "total_new_attempt_ceiling": 400,
+    "total_response_body_bytes_ceiling": 134217728,
+    "per_event_body_bytes_ceiling": 4194304,
+    "outer_seconds": 1800,
+    "per_request_seconds": 20,
+    "minimum_request_start_spacing_seconds": 1,
+    "retries": 0,
+    "redirects": 0,
+    "replacement_events": 0,
+    "automatic_resume": false,
+    "source_refetch": false,
+    "AWS_actions": 0
+  },
+  "scope": "New preferred-origin-associated P-pick metadata only; origin time/latlon/depth retained offline for sequence audits, not model inputs. No StationXML, miniSEED, model, fit, cloud resource, origin-derived theoretical arrivals or new CMT labels in this phase.",
+  "sampling_interpretation": {
+    "method": "Fixed reproducible SHA256-ranked pseudorandom stratification, with selection independent of pick/response/model outcomes",
+    "design_probability": "n/N under exchangeable random-hash ranking; no new stochastic draw or empirical unbiasedness guarantee",
+    "frame_weight": "N/n; failures keep weights and frozen denominators",
+    "weight_limitations": [
+      "Does not correct availability-dependent or response-dependent missingness",
+      "Does not correct CMT selection or station-record selection",
+      "Later bulk claims apply to a prespecified evaluable CMT population, not all NZ earthquakes"
+    ]
+  },
+  "origin_audit": {
+    "inference_inputs": false,
+    "reviewed_event_origin_P_statuses_unchanged": true,
+    "origin_time": "One timezone-aware time value, normalized to UTC; absent/invalid/naive/duplicate reasons retained without imputation",
+    "latitude": "One finite value within [-90,90]; missing/invalid/duplicate reasons retained",
+    "longitude": "One finite value within [-180,180]; missing/invalid/duplicate reasons retained",
+    "depth_meters": "One finite value, negative allowed and descriptively flagged; source unit/reference provenance retained",
+    "cardinality": "Zero/multiple preferredOriginID elements or zero/multiple matching origins are missing/ambiguous linkage. Duplicated time/latitude/longitude/depth containers or values are ambiguous; do not choose first. Geometry failures do not erase separately valid associated P coverage.",
+    "counters": [
+      "unique_preferred_origin_linkage",
+      "valid_timezone_aware_origin_time",
+      "valid_in_window_origin_time",
+      "complete_finite_origin_time_latitude_longitude_depth"
+    ],
+    "source_window_UTC": "[2003-08-01T00:00:00Z,2025-01-01T00:00:00Z)",
+    "CMT_origin_comparisons": [
+      "UTC day",
+      "UTC year",
+      "candidate calendar partition"
+    ],
+    "CMT_origin_signed_delta_seconds": "originUTC minus pinned literal CMT minute-start UTC; not true inferred origin seconds",
+    "CMT_origin_abs_delta_flag_seconds": 300,
+    "earliest_NZ_P_origin_signed_delta_seconds": "earliest accepted associated NZ P minus originUTC",
+    "earliest_NZ_P_origin_flags": [
+      "negative signed delta",
+      "signed delta > 600 seconds",
+      "earliest NZ pick outside source window"
+    ],
+    "anomaly_policy": "Descriptive only; cannot reject, reassign, refetch, impute or become magnitude-model inputs. Preserve exact event-ID/parser failure rules; no theoretical-arrival fallback."
+  }
+}

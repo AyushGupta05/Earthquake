@@ -1,0 +1,78 @@
+{
+  "GeoNet_priority": "Independent346+149 completed metadata replay takes priority on handoff",
+  "access_counts": {
+    "AWS_actions": 0,
+    "Git_actions": 0,
+    "checkpoint_tensor_loads": 0,
+    "fits": 0,
+    "forwards": 0,
+    "new_calibration_or_DEV_targets": 0,
+    "new_prediction_arrays": 0,
+    "remote_files": 0,
+    "requests": 0,
+    "reviews": 0
+  },
+  "artifact_plan_sha256_from_handoff": "8bb46ac1ae4296a5aa20ab4724491052ec729c96dba04cf2dd7d3656afe5323d",
+  "baseline_nine_artifact_hashes_from_protocol": {
+    "cache": "c59f7c7d2398b453a2aebf29fb713c44ddd0a2376cf2319a99e31ee3bb6c05cb",
+    "checkpoint": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
+    "dataset_manifest": "4916f30c90a4b3bc6351edadb0c1a720284a1550d95635564d3cbd51d09a892c",
+    "history": "efc390ed56a930fa128eab110ddb636f5ff26b70439d03ec2fb82f79f83007b9",
+    "metadata": "8840a482419afff5a54681beeb901e5a227e12e64cdf76b1faddf5b3d38285a1",
+    "metadata_manifest": "ac7c0b691b5ad7f15013befcedbe38c36e2631db20c906aa95149010d8806ea7",
+    "pretrain_history": "457afa2b45caf69bde92fff7082c2330355864fd92137d570fc639d17633f1a1",
+    "run": "4915819dfed00dab2ea4b1fa5ae1e8bdeb63f2f1f2d3b43edbadd0ea8b6981fe",
+    "split_manifest": "86090ec6692b052f32059f15dfd467afcead7063761c605ad9047013e64f9276"
+  },
+  "expected_final6_fit_keys": [
+    "source_uniform_20261011",
+    "discrete_1_3_5_20261011",
+    "source_uniform_20261012",
+    "discrete_1_3_5_20261012"
+  ],
+  "four_fit_barrier_status": "not passed per parent instruction; latest snapshot contains only1 fit receipt",
+  "future_complete_result_pins": null,
+  "latest_local_snapshot_utc": "2026-10-11T00:13:30.312296+00:00",
+  "local_read_pins": {
+    "work/chile_clock_control/HANDOFF.md": "1bff503dda3166eebebede1c3e722932c58f9a5d5a38857d95c7379ab0272e72",
+    "work/chile_clock_control/README.md": "7f2c247ed6187bd3d1b90e86f69858a547190799670c3b0e67b4ddbb5027bfaa",
+    "work/chile_clock_control/baseline_guards.py": "eeb2fd3882fdf1ebe19f37e7f50c7f54d2bff7f1af792fa1d1c74bc3804f5d3e",
+    "work/chile_clock_control/clock_contract.py": "5e3f7a6acf49a1b1394c94da96f2d5432e4c1e86a764ab24afb3d1d609aa8e9a",
+    "work/chile_clock_control/clock_metrics.py": "8e32e30000624e9598c06e886fc40dc0fc983e82dc5824b8b953a4cb06096efe",
+    "work/chile_clock_control/clock_replay.py": "1385793bc08dd18079938879bc11b7111fc3e17433246af01a0816320cda3f0f",
+    "work/chile_clock_control/clock_rng.py": "f43ddcb9a82be5597c364c5b6091d9b85ac20f511f63e75cfeb021dde9fae579",
+    "work/chile_clock_control/clock_synthetic.py": "840d0c6cd509f8323a4268b8d98628e9e02e624ade8adbb93793575651bc6fc4",
+    "work/chile_clock_control/clock_training.py": "2e6a0571b5009eaacbc480c6c3f190d814c9698e098c7be325bd05b3e11deb4f",
+    "work/chile_clock_control/handoff.json": "bcfd346a89ce1a963472fa744bc68c484a11374210924aec02f2a6767b50df76",
+    "work/chile_clock_control/protocol.json": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+    "work/chile_clock_control/review_v2/dependencies/team_lm.py": "01a8fa1e143feb317815af9a3c35cdbcbcbd5c7b22b318dbd326b5c8a32c1cca",
+    "work/chile_clock_control/review_v2/dependencies/train_team_lm.py": "25b664f752db8df7fc2127801841c400a0c8086d59ff6e6471f48191f065c92b",
+    "work/chile_clock_control/review_v2/dependencies/training_artifacts.py": "816546a0c79d9dd604171ef6d5c8d053d4cb4302884acbbb079bc28b9e8d1754",
+    "work/chile_clock_control/run_clock_control.py": "0767232c9450cdb18bb398b8458416d4b07b1739ca91ebad8497514490794c11",
+    "work/chile_clock_control/source_manifest.json": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f",
+    "work/chile_clock_runtime_af88e126/parent_runtime_receipt.json": "8c6af34da20c87808debb5617289c570a5b53129bed8f1f64734a409ffacb3b5",
+    "work/clock_grid_progress_20261011T0005.txt": "1bc12dea3f48524940b1c20ba453235d6807042e35de49217f64e21e253af164",
+    "work/clock_grid_progress_20261011T0013.txt": "365155dbd1e1f38d5ae5a7386fac30e122368d7b1fe06b1a86c1eb546ab74ade"
+  },
+  "observed_fit_receipt_records": {
+    "source_uniform_20261011": {
+      "completed_epochs_in_snapshot": 6,
+      "files_sha256_in_snapshot": {
+        "INIT.json": "69d29dd23b2336d35a8b5a0d955ff8af9495655973fff6bb23d3b6c7888b4f9f",
+        "history.json": "7bfeea4519a13fa4f046fd0d1fc54ad01ea14532d9ee1367ad267bde2d51d4c9",
+        "latest.pth": "350f5e1be0dff5bcef2f11cee89831865e1dc0d47307c98449d35eaa4a5005bd",
+        "model.pth": "ef96d20dc560dc19c1b91d647d590a3b6196c794acab0537ed7dfdd5a3af4efe"
+      },
+      "identity_digest_of_snapshot_record": "bfbd1aaca8a9aeb57519890cfa7835ed5cece074b3b87d73ac7a603801207e41",
+      "snapshot_record_is_not_an_independent_remote_file_check": true
+    }
+  },
+  "prefit_git_commit_from_parent_receipt": "408cbd2dd651ee148735af4798e6df13b6b0550a",
+  "protocol_sha256": "8d4e2e3ed43c072356d539bb822316ed8f8d2cee3213ff8a02ef419a6f33777b",
+  "scope": "Frozen source/protocol/handoff and local progress receipts only; no new results or remote access",
+  "snapshot_completed_fit_receipt_count": 1,
+  "snapshot_evaluation_file_name_count": 0,
+  "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f",
+  "verified_frozen_runtime_source_members": 12,
+  "version": "chile-clock-result-independent-input-pins-v1"
+}

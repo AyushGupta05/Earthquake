@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-11",
+  "scope": "Small primary-paper audit for at most two prospective GeoNet mechanism experiments",
+  "sources": [
+    {
+      "title": "TEAM-LM: Earthquake magnitude and location estimation from real time seismic waveforms with a transformer network",
+      "doi": "10.1093/gji/ggab139",
+      "primary_url": "https://arxiv.org/pdf/2101.02010",
+      "version": "arXiv v2 dated 14 April 2021, retrieved PDF has 44 pages",
+      "access": "Primary preprint full text accessible in web tool; publisher and GFZ PDF open attempts failed in this task",
+      "checked_claim": "Variable-station attention uses peak-normalized waveforms with a retained log-amplitude feature. Five-Gaussian magnitude and fifteen-Gaussian location outputs are trained separately. Chronological and inter-region experiments exist, but none reproduces this prospective GeoNet Mw cohort."
+    },
+    {
+      "title": "Rapid magnitude estimation for Taiwan earthquake early warning via frequency-domain multi-station deep learning",
+      "doi": "10.1007/s44195-026-00121-4",
+      "primary_url": "https://link.springer.com/article/10.1007/s44195-026-00121-4",
+      "version": "Publisher article, published 22 January 2026",
+      "access": "Publisher full HTML accessible; no author code or checkpoints downloaded/executed",
+      "checked_claim": "FNO features receive distance corrections, followed by an LSTM and scalar output. The trigger clock starts after the fourth P arrival. Weighted-MSE benefits for larger events are modest and not always significant, while aggregate error is comparable. This is distinct from the first-P GeoNet Mw task."
+    },
+    {
+      "title": "Data-Knowledge Driven Hybrid Deep Learning for Earthquake Early Warning",
+      "doi": "10.1029/2023EA003363",
+      "primary_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023EA003363",
+      "access": "Publisher full HTML accessible, particularly methodology and distance-feature discussion",
+      "checked_claim": "CNN/GCN features combine with physical information including epicentral distance. Distance information improves the reported magnitude experiment; a separately predicted-distance arm supports practical inference. Magnitudes >=8 are excluded. No matched GeoNet or first-network-P 1/3/5 reproduction is inferred."
+    },
+    {
+      "title": "A Bayesian Method for Real-Time Earthquake Location Using Multiparameter Data",
+      "doi": "10.1029/2020JB020359",
+      "primary_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020JB020359",
+      "access": "Primary publisher full text/search extraction accessible",
+      "checked_claim": "Evolving location distributions combine differential P times, amplitude ratios and backazimuth. This is direct prior art for probabilistic multi-observation source geometry, rather than proof of a new neural magnitude-tail effect."
+    },
+    {
+      "title": "The Virtual Seismologist (VS) method: a Bayesian approach to earthquake early warning",
+      "doi": "10.1007/978-3-540-72241-0_7",
+      "primary_url": "https://www.its.caltech.edu/~heatont/papers/VSmethod_cua_heaton%20%282%29.pdf",
+      "access": "Primary author-hosted 39-page chapter PDF accessible; no local download",
+      "checked_claim": "Joint magnitude/location posterior estimation uses amplitude relationships and prior information, including station/site terms. The chapter discusses sparse data and long-rupture point-source limitations. Generic marginalization, source uncertainty and site correction therefore cannot be claimed new."
+    },
+    {
+      "title": "Multi-events earthquake early warning algorithm using a Bayesian approach",
+      "doi": "10.1093/gji/ggu437",
+      "primary_url": "https://authors.library.caltech.edu/records/0cdjs-00z18",
+      "access": "Author-institution primary record and abstract accessible; publisher open failed, while indexed primary publisher text was searchable. Full linked PDF was not downloaded in this task",
+      "checked_claim": "A Bayesian method addresses concurrent-event model selection and parameter inference. It establishes joint probabilistic EEW prior art; no magnitude-MAE numerical comparison or exact early-clock reproduction is claimed here."
+    }
+  ],
+  "literature_claim_policy": "Keep paper-derived prose below200 words per web source. Proposal architectures, controls and invented linear arithmetic are agent-designed, not claimed author results. No novelty or benchmark-superiority claims.",
+  "new_literature_downloads_to_disk": 0
+}

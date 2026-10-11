@@ -1,0 +1,51 @@
+{
+  "findings": [
+    {
+      "title": "Keep request-deadline failures from producing a completed feasibility verdict",
+      "body": "The pinned Fetcher raises TimeoutError when its 20-second whole-request deadline expires. This generic handler records retrieval_failed and continues, after which execute sets completed=True. For example, one timed-out request and 345 successful events can still pass every missingness threshold. The frozen protocol explicitly makes a timeout/cap incomplete, so request-deadline failures must prevent a completed scientific feasibility verdict while retaining all denominators.",
+      "priority": "P1",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bulk.py",
+        "line": 196
+      }
+    },
+    {
+      "title": "Preserve active attempt accounting before killing the worker",
+      "body": "When the outer deadline or an interruption occurs during fetch, this SIGKILL prevents the pinned Fetcher's finally block from persisting the current attempt and partial body. That downloader writes its attempt ledger and received bytes only during finalization. The parent then preserves the previous outcomes checkpoint, where the requested event is still unattempted, and cannot account for its received bytes. This is particularly reachable because the child calculates a fresh 1,800-second deadline from its own later PROCESS_STARTED. Preserve durable in-flight accounting and coordinate shutdown with the complete-launch deadline so interrupted runs retain the actual request count and partial-body accounting.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bulk.py",
+        "line": 235
+      }
+    },
+    {
+      "title": "Classify unresolved P references separately from known zero coverage",
+      "body": "The unchanged parser can return status='ok' and nz.stations=0 when a qualifying P arrival has a missing, dangling or ambiguous pickID; it records missing_or_ambiguous_pick_reference and skips the arrival. This condition therefore classifies an unresolved pick set as known zero. Its weight disappears from weighted_unknown_NZ_P_total and the positive-coverage upper bound, and it enters the zero-station histogram. Preserve the reviewed parser output, but derive unknown coverage for unresolved references that prevent establishing zero, as required by the protocol.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "aggregate.py",
+        "line": 14
+      }
+    },
+    {
+      "title": "Compute the pick-window anomaly independently of origin-time validity",
+      "body": "The earliest accepted NZ pick is inspected only inside the origin_time-is-not-None branch. A uniquely linked event with missing, duplicated or timezone-naive origin time can still have valid associated P picks, including a T0 outside the source window, but earliest_NZ_pick_outside_source_window remains unknown. This flag depends only on the observed pick clock and the frozen window. Compute it whenever accepted NZ picks are available; only the origin-relative offsets require valid origin time.",
+      "priority": "P2",
+      "confidence": 1.0,
+      "category": "bug",
+      "code_location": {
+        "file_path": "origin.py",
+        "line": 75
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Static source inspection found defects in timeout completion semantics, interrupted request accounting, unknown-versus-zero P coverage, and independent pick-window diagnostics. The reviewed dependency and immutable specification checksums match their declared pins. No tests or acquisition commands were executed.",
+  "overall_confidence": 0.98
+}

@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Handle SIGTERM in the collecting parent",
+      "body": "The collecting parent installs only a SIGALRM handler. A SIGTERM cancellation therefore terminates it without entering the exception handler or finally block. Because the worker starts in a separate session, it survives and can continue acquisition; its finalization also disables its own timer, leaving no independent hard watchdog. Route parent SIGTERM through the bounded interruption cleanup so the worker is stopped and the run is marked incomplete.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bulk.py",
+        "line": 265
+      }
+    },
+    {
+      "title": "[P2] Wait for worker termination before reconciling checkpoints",
+      "body": "When graceful termination times out, this branch sends SIGKILL and immediately proceeds to read and rewrite worker artifacts. Sending SIGKILL does not establish that the child has exited: an outstanding filesystem operation can still finish while recovery inspects the ledger or retires a sidecar. This can race with checkpoint replacement or sidecar renaming, causing recovery failures or inconsistent recovered accounting. The wait in finally occurs after reconciliation. Wait for termination immediately after SIGKILL, under the existing absolute watchdog, before reading or rewriting worker-owned artifacts.",
+      "priority": "P2",
+      "confidence": 0.93,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bulk.py",
+        "line": 305
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Source inspection identified two remaining interruption-supervision defects: parent SIGTERM bypasses cleanup, and forced termination is not awaited before checkpoint recovery. The pinned dependency and immutable specification checksums match. No tests or acquisition commands were executed.",
+  "overall_confidence": 0.95
+}

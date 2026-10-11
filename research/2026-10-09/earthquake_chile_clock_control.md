@@ -8,6 +8,6 @@ The implementation passed code-only Codex autoreview. All 28 invented-data tests
 
 DEV contains one MA≥5.5 event and no MA≥6 events. Tail errors are descriptive. The fixed bulk gate, proper scores and worst-error measures are all reported; neither a bulk pass nor this training allocation establishes novelty or published-benchmark superiority.
 
-The caps are 9,000 seconds per fit, 36,000 seconds total fitting and 39,600 seconds for the grid. The active cgroup was verified with CPU quota 200%, memory 12 GiB, maximum runtime 39,840 seconds and 120-second stop grace. The worker has a verified earlier STOP deadline of **10:50:21 UTC on 11 October (11:50 London)**. The correct persistent data source is bound read-only; the 16-vCPU account quota is fully occupied. No automatic extension is permitted.
+The caps are 9,000 seconds per fit, 36,000 seconds total fitting and 39,600 seconds for the grid. The active cgroup was verified with CPU quota 200%, memory 12 GiB, maximum runtime 39,840 seconds and 120-second stop grace. Its maximum runtime ends at 10:04:57 UTC, before the worker's verified STOP deadline of **10:50:21 UTC on 11 October (11:50 London)**. The correct persistent data source is bound read-only; the 16-vCPU account quota is fully occupied. No automatic extension is permitted.
 
 [Frozen protocol](phase3/chile_clock_control/protocol.json) · [Reviewed handoff](phase3/chile_clock_control/handoff.json) · [Source clock audit](phase2/chile_training_clock_audit/AUDIT.md)
