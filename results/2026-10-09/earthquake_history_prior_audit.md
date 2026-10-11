@@ -1,0 +1,9 @@
+# History-conditioned magnitude prior: source audit
+
+[Primary-paper/source audit](../../research/2026-10-09/phase2/geonet_history_prior_art/PAPER_CAPSULE.md) and [matched controls](../../research/2026-10-09/phase2/geonet_history_prior_art/MATCHED_CONTROLS_AND_GATES.md) are complete. MAGNET supplies prior art for history-conditioned magnitude distributions, with future space/time query information; its published likelihood comparison does not establish 1/3/5-second EEW magnitude error.
+
+A coherent adaptation replaces the effective TRAIN prior exactly once in a joint magnitude/source posterior, then marginalizes uncertain current source. Multiplying an existing magnitude posterior by another prior repeats the learned prior. Magnitude-only posterior and independently derived location marginal generally cannot implement the necessary conditional expectation. The [derivation](../../research/2026-10-09/phase2/geonet_history_prior_art/EEW_ADAPTATION.md) retains detected-event conditioning, common support, one correction, source dependence and history/noise transport assumptions.
+
+Usable history must be published or received before the absolute warning deadline. Past origin timestamps and latest revised catalog values are insufficient. Our selected CMT census is not a complete background catalog. Exact as-of versions, completeness, label-scale mapping and meaningful independent large-event support are still unverified. No actual background catalog, author model/script, fitted adapter, TEST or paid training was used for this source-only audit.
+
+Known Bayesian EEW, historical priors, sequential inference and source marginalization preclude broad novelty claims. Identity/global/spatial/rolling GR, oracle/plugin/joint-source, publication-delay, past-only permutation and joint-refit controls are specified before any possible implementation. A bounded synthetic/provenance stage may be justified; no actual fit or catalog acquisition is earned yet.

@@ -1,0 +1,20 @@
+{
+  "schema": "eew-owned-guest-early-stop-v1",
+  "requested_utc": "2026-10-11T01:58:13.339007+00:00",
+  "instance_id": "i-08b9781ed60d8497f",
+  "instance_type": "g5.xlarge",
+  "action": [
+    "sudo",
+    "shutdown",
+    "-h",
+    "+1"
+  ],
+  "unit": "Result=success\nExecMainStatus=0\nActiveState=inactive\n",
+  "gpu_compute_processes": 0,
+  "command_returncode": 0,
+  "command_stderr": "Shutdown scheduled for Sun 2026-10-11 01:59:13 UTC, use 'shutdown -c' to cancel.\n",
+  "scheduled": "USEC=1791683953332487\nWARN_WALL=1\nMODE=poweroff\nUID=0\nWALL_MESSAGE=EEW completed clock grid and independently audited results preserved; early task-owned worker stop\n",
+  "prior_API_behavior": "stop",
+  "prior_behavior_verified_utc": "2026-10-10T13:12:18.685979+00:00",
+  "limitation": "Fresh API final state verification pending expired AWS authentication. Original worker is not managed."
+}

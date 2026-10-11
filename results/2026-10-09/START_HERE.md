@@ -29,14 +29,14 @@ Current reports:
 - [Current competitors](earthquake_current_competitors.md): recent primary papers, source-code checks and incompatible evaluation protocols.
 - [Revision prior art](earthquake_revision_prior_art.md): why forecast-revision prediction and distillation alone are not new.
 - [Amplitude-distribution analysis](earthquake_amplitude_distribution_research.md): conditional growth models, derivations and negative synthetic results.
-- [Matched early-clock control](earthquake_chile_clock_control.md): four-fit grid running after 28 AWS tests, exact CUDA replay and exact first 16 TRAIN predictions.
+- [Matched early-clock results](earthquake_chile_clock_results.md): four fits complete, independent replay passes; frozen gate inconclusive, five-second tradeoffs and sparse inconsistent tail evidence retained.
 - [GeoNet tail census](earthquake_geonet_tail_census.md): completed independent metadata audit, 149 Mw≥5.5/60 Mw≥6/15 Mw≥7; separately verified waveform sample now complete.
 - [GeoNet waveform feasibility](earthquake_geonet_waveform_feasibility.md): complete independent replay: 15/18 strict three-component prefixes at1/3/5; six larger-event stress cases, no model result.
 - [GeoNet lower-magnitude metadata](earthquake_geonet_bulk_metadata.md): frozen 346-event lower-M sample plus 149 cached tail events; reviewed source pushed as 6c11dc5; bounded collection completed at 00:51 UTC: 346 requests and 70.2MB; frozen gate independently passes for all346new events, with all495outcomes retained.
 - [Prospective GeoNet method shortlist](earthquake_geonet_method_shortlist.md): spectral-encoder and inferred-location mixture controls; no fitted result or novelty claim.
 - [Geometry-distribution mechanism preflight](earthquake_geonet_location_mechanism_preflight.md): chosen synthetic tail gate fails; all negative panels retained, no geometry fit.
 - [Full CMT sequence planning check](earthquake_geonet_cmt_sequence_preflight.md): primary support ceilings and stricter sensitivity percolation; no new data query.
-- [Fixed96-event native-count screen](earthquake_geonet_counts_screen.md): reviewed52-test source and actual selection independently replayed; source freeze precedes one bounded collection.
+- [Fixed96-event native-count screen](earthquake_geonet_counts_screen.md): single collection stopped incomplete after a waveform body timeout; no support/absence claim and no retry.
 - [Spectral mechanism primary audit](../../research/2026-10-09/phase2/geonet_spectral_mechanism_research/PRIMARY_AUDIT.md): Fourier, phase, amplitude, station-order and frequency controls; no distinct spectral tail method earned.
 - [Sequence-rule primary audit](../../research/2026-10-09/phase2/geonet_sequence_rule_research/PRIMARY_AUDIT.md): physical sequence rules, a September LLM competitor and conditional clock-completeness limits.
 - [Next GeoNet data plan](earthquake_geonet_next_data_plan.md): proposed direct 96-event waveform screen and larger fixed-cohort benchmark; no acquisition or fit launched.
@@ -86,3 +86,5 @@ Native-count source checkpoint: 96frozen events,411station targets,417planned ne
 The native-count pre-acquisition source/replay milestone is pushed as578a537. The one417-request collection started after independently verifying the actual plan and source freeze; incomplete live manifests are checkpoints, not completion evidence.
 
 11 October01:39 UTC: allfour Chile fits have reached finalepoch6 and TRAINING_COMPLETE; calibration/DEV export/reporting is now allowed, with TEST sealed. The independent saved-result auditor is first-clean reviewed and parent-tested25fixtures before any actual result replay. The native-count screen stopped incomplete after412/417 requests and a waveform body timeout;419private files preserved, no retry/resume and no scientific support/absence claim.
+
+11October02:00 UTC: the Chile clock grid completed normally and all35 members are preserved. Independent saved-parameter/checkpoint/aggregate/bootstrap replay passes; frozen mean-action gate is inconclusive. One-second MAE improves but five-second MAE/proper-NLL tradeoffs and sparse inconsistent tail outcomes remain. The owned worker’s early guest poweroff was scheduled for01:59:13 UTC after no active task/GPU processes; final EC2 state awaits expired AWS sign-in. No further paid work until renewed credit/resource verification. A [history-prior source audit](earthquake_history_prior_audit.md) is complete; separate paired native-SCML source and incomplete-counts auditor reviews continue without actual acquisition/replay.

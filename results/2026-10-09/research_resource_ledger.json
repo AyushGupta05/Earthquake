@@ -3,19 +3,25 @@
   "authorized_ceiling_usd": 2000,
   "aws_cli_refresh": {
     "credentials_committed": false,
+    "current_status": "Expired11Oct; routine same-access sign-in handoff pending; no new paid work",
     "permissions_changed": false,
     "result": "Existing default session refreshed; fresh describe reads verified both workers and Chile shutdown behavior stop",
     "utc": "2026-10-10T13:12:18.685979+00:00"
   },
-  "billing_status": "Delayed console estimates; shared balance, not a reserved allocation",
+  "billing_status": "Last authenticated delayed estimates10Oct22:45;11Oct cached signed-out page is not a fresh credit verification",
   "chile_clock_latest_progress": {
     "TEST_reads": 0,
     "automatic_stop_utc": "2026-10-11T10:50:21.004959+00:00",
     "calibration_dev_barrier_passed": true,
     "clock_fits_completed": 4,
-    "grid_complete": false,
+    "frozen_scientific_gate": "inconclusive",
+    "grid_complete": true,
+    "independent_replay_sha256": "917006ccae8645f5c9031fb1b9b983ef6b01d3653133711b8ace5ec86567631b",
+    "independent_saved_replay_pass": true,
     "instance_id": "i-08b9781ed60d8497f",
     "latest_progress_observation_utc": "2026-10-11T01:39:19.519808+00:00",
+    "local_preserved_bytes": 881860378,
+    "local_preserved_members": 35,
     "progress_sha256": "24daf24a081cdcd450bd741fd10b805a54f7f0887be23ec7bc25c4e4d51fdff5",
     "read_only_mount_verified": true,
     "source": "clock_grid_progress_20261011T0142.txt",
@@ -162,11 +168,22 @@
       "security_group": "sg-090fe8835f553328b",
       "shutdown_behavior": "stop",
       "shutdown_behavior_last_verified_utc": "2026-10-10T13:12:18.685979+00:00",
-      "state": "running",
-      "stop_reason": "Completed100+25baseline and negativeTRAINfloor gate; alluniquecheckpoint/diagnosticresults preserved; no earnednextpaidfit",
+      "state": "early_guest_poweroff_requested; API_verification_pending_auth",
+      "stop_reason": "Completed matched clock grid and independent audit; inconclusive result; no earned next paid fit",
       "stop_receipt": "chile_worker_stopped_20261010.json",
       "stop_receipt_sha256": "5bba2bf6f2e412df9707872f92169440e6c5622f4eba5bdf963c26ec4d53271c",
       "stop_request_authorized": true,
+      "stop_request_current": {
+        "all_unique_clock_results_preserved": true,
+        "final_API_state_verified": false,
+        "fresh_instance_identity_verified": true,
+        "no_active_task_or_GPU_process": true,
+        "original_SSH_alive": true,
+        "owned_SSH_reachable_after_poweroff": false,
+        "post_stop_network_receipt": "chile_owned_post_shutdown_network_v2_20261011.json",
+        "receipt": "chile_owned_guest_shutdown_request_20261011.json",
+        "scheduled_utc": "2026-10-11T01:59:13.332487Z"
+      },
       "stop_requested_utc": "2026-10-10T15:39:57.190352+00:00",
       "stop_verified_utc": "2026-10-10T15:49:20.971133+00:00",
       "type": "g5.xlarge",
@@ -265,12 +282,14 @@
         "source_uniform",
         "discrete_1_3_5"
       ],
+      "auditor_synthetic_tests": 25,
       "automatic_stop_utc": "2026-10-11T10:50:21.004959Z",
       "automatic_worker_stop_utc": "2026-10-11T10:50:21.004959Z",
       "aws_synthetic_tests": 28,
       "aws_test_skips": 0,
       "cgroup_runtime_max_seconds": 39840,
       "checkpoint_policy": "Same baseline selected97; freshpairedAdam; finalepoch6only",
+      "checkpoint_proof_sha256": "924efebfca8bb518512bd2e08bdda1d95627c1da2f9496b9cb9d3ca553de280f",
       "checkpoint_sha256": "569d0210ec6329eabe8262785e8f9b66078a0344340bfc3dc2daf6d50c29a4e0",
       "cost_reservation_note": "Bounded12.072USD compute plus margin within existing60USDChile allowance; conservative all-resource envelope244USD; eligible-credit ceiling2000USD unchanged",
       "cpu_quota": "200%",
@@ -278,23 +297,23 @@
       "data_path": "existingHDFEventDataset; noflatstationpretraining/rebuildneeded",
       "epochs_per_fit": 6,
       "fits": 4,
+      "independent_replay_sha256": "917006ccae8645f5c9031fb1b9b983ef6b01d3653133711b8ace5ec86567631b",
       "initial_replay_complete_sha256": "5a57faf612f4dcc136fc4d58f03c64bada1ba7cd56bf013d52236bca4db299fd",
       "initial_replay_max_parameter_error": 0.0,
       "kill_mode": "control-group",
       "known_method_not_novelty": true,
       "latest_observation": {
-        "completed_epochs_first_fit": 6,
-        "completed_epochs_fourth_fit": 0,
-        "completed_epochs_second_fit": 6,
-        "completed_epochs_third_fit": 6,
-        "completed_fits": 3,
-        "held_out_evaluation_status": "Four-fit barrier not passed; no new calibration/DEV metrics; TEST sealed.",
-        "main_pid": 4966,
-        "progress_receipt": "clock_grid_progress_20261011T0102.txt",
-        "progress_receipt_sha256": "4f3a0a459ceaf4eb7a016ebf7199dbe097eb6f444cd16762da9dbd47989411c3",
-        "source_first_fit_completion": "FIT_COMPLETE.json parsed with immutable artifact hashes in the preserved progress receipt",
-        "unit_active": true,
-        "utc": "2026-10-11T01:02:16.450204+00:00"
+        "TEST_reads": 0,
+        "completed_fits": 4,
+        "final_epochs": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "normal_supervisor_exit": 0,
+        "normal_worker_exit": 0,
+        "unit_active": false
       },
       "launch_prerequisites": [
         "Focusedsynthetictests",
@@ -307,10 +326,12 @@
       ],
       "launch_receipt_sha256": "2a9e6d6c99ff819efc722e41e0792d1fb2ff35e636dad69161ffab97ee087ea7",
       "learning_rate": 9e-06,
+      "local_preservation_sha256": "5bcb40999683bec9d54d744f24cf0b565a834f6eab4fcc23f13ea0c997f747d5",
       "main_pid_at_launch": 4966,
       "maximum_cgroup_deadline_utc": "2026-10-11T10:04:57Z",
       "maximum_fit_grid_hours": 10,
       "memory_max_bytes": 12884901888,
+      "no_new_fit_earned": true,
       "outer_timeout_seconds": 39600,
       "output": "/home/ec2-user/eew-work/full-runs/chile_clock_grid_v1_af88e126",
       "planned_worker_stop_hours": 12,
@@ -325,7 +346,7 @@
       "source_manifest_sha256": "af88e1269ef1678c5434a0c5d483adebc24fac7374baded4579ea83fdc8df60f",
       "split_policy": "OriginalfixedTRAINfit/calibrationmanifest; no newseed-derivedsplit",
       "started_utc": "2026-10-10T23:00:57Z",
-      "status": "launched_after_all_correctness_prerequisites; no scientific result yet",
+      "status": "complete_normal_exit; independent_saved_and_state_replay_pass; frozen_gate_inconclusive",
       "stop_grace_seconds": 120,
       "synthetic_cuda_complete_sha256": "572aedb37ce6dabc1b511da0911830044d33360fe1e4b7dfde9e467f8b898ac1",
       "tail_support_limits": {
@@ -1031,6 +1052,14 @@
       "decision": "No learned/paid fit earned; uncertain inherited-state no-fit falsification may be justified",
       "raw_data_reads": 0
     },
+    "history_prior": {
+      "actual_history_reads": 0,
+      "author_commit": "5a3f49850c8a068445402502687b3306e8cf8f8d",
+      "decision": "Joint source posterior/effective prior/as-of history prerequisites unknown; no paid fit earned",
+      "new_fits": 0,
+      "source_manifest_sha256": "739f91cf8938c2a5f5e1b1ff8500061f0764535c37628ebdc1c57b0316c9b0c4",
+      "status": "primary_paper_and_inert_author_source_audited"
+    },
     "native_SCML_clock_check": {
       "candidate_live_route_verified": false,
       "data_queries": 0,
@@ -1059,5 +1088,5 @@
       "real_data_reads": 0
     }
   },
-  "updated_utc": "2026-10-11T01:40:47.752274+00:00"
+  "updated_utc": "2026-10-11T02:00:34.922849+00:00"
 }
