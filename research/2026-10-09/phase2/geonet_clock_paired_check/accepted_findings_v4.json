@@ -1,0 +1,20 @@
+{
+  "version": "paired-accepted-review-findings-v4",
+  "finding_verified_actionable": true,
+  "review_sha256": "5a8202dd056335afe518ea8976e06657765c5c2966b8141df1eb2efe43d3669a",
+  "accepted": [
+    "worker cancellation during start spacing must retain not-attempted when no durable ledger entry exists"
+  ],
+  "regression_tests": [
+    "test_worker_cancellation_before_durable_attempt_not_attempted"
+  ],
+  "additional_verified_source_fix": "Raw use-flag text, including padded true/1, follows pinned XPath literal comparison; native flag text retained; QML predicate strips only the projected weight",
+  "additional_regression": "test_native_xpath_flag_whitespace_is_literal",
+  "source_recheck": "One additional official pinned0.14 transform text GET; hash unchanged; lines489-510 directly test literal true/1 without normalization",
+  "test_output": "tests_v8.txt",
+  "tests": 81,
+  "passed": 81,
+  "immutable_transport_or_census_changes": false,
+  "real_data_used": false,
+  "event_requests": 0
+}

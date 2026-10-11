@@ -1,0 +1,19 @@
+{
+  "accepted": [
+    "Trap inexact Decimal scaling/normalization so nonzero underflow stays an unknown geometry field rather than falsely matching zero"
+  ],
+  "event_requests": 0,
+  "finding_verified_actionable": true,
+  "immutable_transport_or_census_changes": false,
+  "invented_before_fix": "canonical_number(1e-1000100) returned0",
+  "passed": 88,
+  "real_data_used": false,
+  "regression_tests": [
+    "test_canonical_geometry_inexact_underflow_is_unknown",
+    "test_inexact_geometry_cannot_support_revision_resolution"
+  ],
+  "review_sha256": "aae860e47682bcc4f5cab62d9d140eaabdc2c41536b3e84b23a24f1af1f74a24",
+  "test_output": "tests_v12.txt",
+  "tests": 88,
+  "version": "paired-accepted-review-findings-v7"
+}

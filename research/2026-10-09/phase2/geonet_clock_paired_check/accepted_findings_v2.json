@@ -1,0 +1,26 @@
+{
+  "version": "paired-accepted-review-findings-v2",
+  "all_three_findings_verified_actionable": true,
+  "review_sha256": "9858ea6b18df0f165034428e1c789c06b49451d9931293214265fa7379e43c15",
+  "accepted": [
+    "local persistence/provenance failure must stop incomplete",
+    "retain agencyURI/authorURI lexical revision fields",
+    "require a valid aware timestamp for recorded-time evidence"
+  ],
+  "source_text_recheck": "Two official pinned transforms re-read without execution; both body hashes unchanged; creationInfo deliberately exports native modificationTime as a SCML-only extension and both URI fields have ID templates",
+  "additional_source_backed_support": "Exact supported SCML modificationTime extension under BED creationInfo; all other foreign substitutions remain unknown; lexical URI comparison remains conservative",
+  "regression_tests": [
+    "test_worker_local_persistence_failure_stops",
+    "test_worker_unexpected_transport_contract_stops",
+    "test_uri_revision_conflicts_are_retained",
+    "test_empty_malformed_or_naive_revision_times_not_evidence",
+    "test_source_backed_scml_modification_extension",
+    "test_ambiguous_modification_extensions_unknown",
+    "test_foreign_modification_outside_exact_context_unknown"
+  ],
+  "final_test_output": "tests_v5.txt",
+  "tests": 74,
+  "passed": 74,
+  "real_data_used": false,
+  "event_requests": 0
+}

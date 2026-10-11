@@ -1,0 +1,10 @@
+Review only the five source/test/protocol members in this isolated code-only snapshot. The human explicitly authorized code-only Codex review; actual data is excluded. Do not request or inspect actual earthquake metadata, XML, plans, receipts, predictions, credentials or sibling local_runs. Do not run a collector, access network data, install packages or invoke nested reviewers.
+
+This is deliberately a limited independent auditor, not a full native/QML semantic projector. Full arrival/conversion semantics, accepted-pick eligibility, complete recovery counts and operational/physical clock validity are explicitly unverified. Do not report the intentional absence of those features as a defect. Do report incorrect claims, broken provenance/selection/bounds/null denominators, clock or revision arithmetic, supported raw-core false positives, or failing normal invented input chains. All actual data reads require a separately supplied parent gate and are deferred.
+
+The public schema constants are defined in PROTOCOL.md. Six original TEST tail probes/controls are reconstructed from a495 frame with149 reused-tail and346 lower-M. Four incomplete probes (3[6,7),1>=7), one complete control per band, exact frozen SHA ranks. Twelve fixed eventid-only GETs; all18 slots. Artifact members16 plus manifest. Output is new ignored local_runs JSON only. The parent must enforce a330s outer process watchdog around the auditor's300s soft alarm. Logs only certify recorded timings, not an independently instrumented transport deadline.
+
+Run invented fixtures using the existing compatible interpreter only:
+/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_waveform_feasibility/.venv/bin/python -B -W error -m unittest discover -s work/geonet_clock_paired_independent_audit -p test_independent.py -v
+
+Findings must name an actual relative snapshot path such as work/geonet_clock_paired_independent_audit/independent.py. Verify material issues against the code; avoid generic rewrites or hypothetical hostile mutation of trusted local parent receipts. No actual source inputs are available or authorized.

@@ -1,0 +1,592 @@
+{
+  "event_outcome": {
+    "Mw_band": "[6,7)",
+    "automatic_reclock_applied": false,
+    "catalogue_drift": {
+      "arrival_multiset_match": true,
+      "atomic_database_revision_verified": false,
+      "available": true,
+      "content_matched_resolution_candidate_count": 1,
+      "converter_bug_proved": false,
+      "identity_match": true,
+      "newly_accepted_NZ_reference_count": 1,
+      "newly_resolved_reference_count": 1,
+      "newly_unique_reference_object_count": 1,
+      "origin_content_match": true,
+      "origin_fields_complete": true,
+      "paired_recorded_revision_resolution_count": 0,
+      "revision_evidence": "missing_or_incomplete",
+      "same_record_content": true
+    },
+    "event_id": "invented-event",
+    "preserved_original_T0_us": 1577836800000000,
+    "representation_difference": {
+      "arrival_multiset_match": true,
+      "atomic_database_revision_verified": false,
+      "available": true,
+      "content_matched_resolution_candidate_count": 0,
+      "converter_bug_proved": false,
+      "identity_match": true,
+      "newly_accepted_NZ_reference_count": 0,
+      "newly_resolved_reference_count": 0,
+      "newly_unique_reference_object_count": 0,
+      "origin_content_match": true,
+      "origin_fields_complete": true,
+      "paired_recorded_revision_resolution_count": 0,
+      "revision_evidence": "missing_or_incomplete",
+      "same_record_content": true
+    },
+    "representations": {
+      "fresh_qml": {
+        "NZ_coverage_known": true,
+        "accepted_picks": [
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_A",
+            "station": "S0",
+            "time": "2020-01-01T00:00:00+00:00"
+          },
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_B",
+            "station": "S1",
+            "time": "2019-12-31T23:59:59+00:00"
+          },
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_C",
+            "station": "S2",
+            "time": "2020-01-01T00:00:00.800000+00:00"
+          }
+        ],
+        "all_network": {
+          "anchor_us": 1577836799000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 1,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "arrivals": [
+          {
+            "native_flags": null,
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_A",
+            "time_weight": "1"
+          },
+          {
+            "native_flags": null,
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_B",
+            "time_weight": "1"
+          },
+          {
+            "native_flags": null,
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_C",
+            "time_weight": "1"
+          }
+        ],
+        "denominators": {
+          "accepted_NZ_P_picks": 3,
+          "accepted_P_picks": 3,
+          "all_preferred_arrivals": 3,
+          "qualifying_P_references": 3,
+          "unique_qualifying_P_reference_ids": 3,
+          "unique_resolved_qualifying_P_reference_ids": 3
+        },
+        "event_creation": {
+          "agencyID": null,
+          "agencyURI": null,
+          "author": null,
+          "authorURI": null,
+          "creationTime": null,
+          "modificationTime": null,
+          "version": null
+        },
+        "event_id": "invented-event",
+        "incomplete_associated_P_structure": false,
+        "mapped_event_id": "smi:nz.org.geonet/invented-event",
+        "nz": {
+          "anchor_us": 1577836799000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 1,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "origin": {
+          "creation": {
+            "agencyID": null,
+            "agencyURI": null,
+            "author": null,
+            "authorURI": null,
+            "creationTime": null,
+            "modificationTime": null,
+            "version": null
+          },
+          "depth_m": "1.2E+4",
+          "latitude": "-4E+1",
+          "longitude": "175",
+          "time_us": 1577836800000000
+        },
+        "picks": {
+          "smi:nz.org.geonet/pick_A": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_A",
+              "station": "S0",
+              "time": "2020-01-01T00:00:00+00:00"
+            }
+          ],
+          "smi:nz.org.geonet/pick_B": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_B",
+              "station": "S1",
+              "time": "2019-12-31T23:59:59+00:00"
+            }
+          ],
+          "smi:nz.org.geonet/pick_C": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_C",
+              "station": "S2",
+              "time": "2020-01-01T00:00:00.800+00:00"
+            }
+          ]
+        },
+        "preferred_origin_id": "smi:nz.org.geonet/origin_one",
+        "raw_preferred_origin_id": "smi:nz.org.geonet/origin_one",
+        "reasons": {},
+        "status": "ok",
+        "unresolved_pick_ids": [],
+        "version": "QML1.2"
+      },
+      "native_scml": {
+        "NZ_coverage_known": true,
+        "accepted_picks": [
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_A",
+            "station": "S0",
+            "time": "2020-01-01T00:00:00+00:00"
+          },
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_B",
+            "station": "S1",
+            "time": "2019-12-31T23:59:59+00:00"
+          },
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_C",
+            "station": "S2",
+            "time": "2020-01-01T00:00:00.800000+00:00"
+          }
+        ],
+        "all_network": {
+          "anchor_us": 1577836799000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 1,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "arrivals": [
+          {
+            "native_flags": {
+              "backazimuthUsed": null,
+              "horizontalSlownessUsed": null,
+              "timeUsed": null,
+              "weight": "1"
+            },
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_A",
+            "time_weight": "1"
+          },
+          {
+            "native_flags": {
+              "backazimuthUsed": null,
+              "horizontalSlownessUsed": null,
+              "timeUsed": null,
+              "weight": "1"
+            },
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_B",
+            "time_weight": "1"
+          },
+          {
+            "native_flags": {
+              "backazimuthUsed": null,
+              "horizontalSlownessUsed": null,
+              "timeUsed": null,
+              "weight": "1"
+            },
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_C",
+            "time_weight": "1"
+          }
+        ],
+        "denominators": {
+          "accepted_NZ_P_picks": 3,
+          "accepted_P_picks": 3,
+          "all_preferred_arrivals": 3,
+          "qualifying_P_references": 3,
+          "unique_qualifying_P_reference_ids": 3,
+          "unique_resolved_qualifying_P_reference_ids": 3
+        },
+        "event_creation": {
+          "agencyID": null,
+          "agencyURI": null,
+          "author": null,
+          "authorURI": null,
+          "creationTime": null,
+          "modificationTime": null,
+          "version": null
+        },
+        "event_id": "invented-event",
+        "incomplete_associated_P_structure": false,
+        "mapped_event_id": "smi:nz.org.geonet/invented-event",
+        "nz": {
+          "anchor_us": 1577836799000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 1,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "origin": {
+          "creation": {
+            "agencyID": null,
+            "agencyURI": null,
+            "author": null,
+            "authorURI": null,
+            "creationTime": null,
+            "modificationTime": null,
+            "version": null
+          },
+          "depth_m": "1.2E+4",
+          "latitude": "-4E+1",
+          "longitude": "175",
+          "time_us": 1577836800000000
+        },
+        "picks": {
+          "smi:nz.org.geonet/pick_A": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_A",
+              "station": "S0",
+              "time": "2020-01-01T00:00:00+00:00"
+            }
+          ],
+          "smi:nz.org.geonet/pick_B": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_B",
+              "station": "S1",
+              "time": "2019-12-31T23:59:59+00:00"
+            }
+          ],
+          "smi:nz.org.geonet/pick_C": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_C",
+              "station": "S2",
+              "time": "2020-01-01T00:00:00.800+00:00"
+            }
+          ]
+        },
+        "preferred_origin_id": "smi:nz.org.geonet/origin_one",
+        "raw_preferred_origin_id": "origin:one",
+        "reasons": {},
+        "status": "ok",
+        "unresolved_pick_ids": [],
+        "version": "SCML0.14"
+      },
+      "original_qml": {
+        "NZ_coverage_known": true,
+        "accepted_picks": [
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_A",
+            "station": "S0",
+            "time": "2020-01-01T00:00:00+00:00"
+          },
+          {
+            "channel": "HHZ",
+            "evaluation_mode": "missing",
+            "evaluation_status": "missing",
+            "location": "",
+            "network": "NZ",
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_C",
+            "station": "S2",
+            "time": "2020-01-01T00:00:00.800000+00:00"
+          }
+        ],
+        "all_network": {
+          "anchor_us": 1577836800000000,
+          "station_count": 2,
+          "strict_horizon_station_counts": {
+            "1": 2,
+            "3": 2,
+            "5": 2
+          },
+          "t0_us": 1577836800000000
+        },
+        "arrivals": [
+          {
+            "native_flags": null,
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_A",
+            "time_weight": "1"
+          },
+          {
+            "native_flags": null,
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_B",
+            "time_weight": "1"
+          },
+          {
+            "native_flags": null,
+            "phase": "P",
+            "pick_id": "smi:nz.org.geonet/pick_C",
+            "time_weight": "1"
+          }
+        ],
+        "denominators": {
+          "accepted_NZ_P_picks": 2,
+          "accepted_P_picks": 2,
+          "all_preferred_arrivals": 3,
+          "qualifying_P_references": 3,
+          "unique_qualifying_P_reference_ids": 3,
+          "unique_resolved_qualifying_P_reference_ids": 2
+        },
+        "event_creation": {
+          "agencyID": null,
+          "agencyURI": null,
+          "author": null,
+          "authorURI": null,
+          "creationTime": null,
+          "modificationTime": null,
+          "version": null
+        },
+        "event_id": "invented-event",
+        "incomplete_associated_P_structure": true,
+        "mapped_event_id": "smi:nz.org.geonet/invented-event",
+        "nz": {
+          "anchor_us": 1577836800000000,
+          "station_count": 2,
+          "strict_horizon_station_counts": {
+            "1": 2,
+            "3": 2,
+            "5": 2
+          },
+          "t0_us": 1577836800000000
+        },
+        "origin": {
+          "creation": {
+            "agencyID": null,
+            "agencyURI": null,
+            "author": null,
+            "authorURI": null,
+            "creationTime": null,
+            "modificationTime": null,
+            "version": null
+          },
+          "depth_m": "1.2E+4",
+          "latitude": "-4E+1",
+          "longitude": "175",
+          "time_us": 1577836800000000
+        },
+        "picks": {
+          "smi:nz.org.geonet/pick_A": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_A",
+              "station": "S0",
+              "time": "2020-01-01T00:00:00+00:00"
+            }
+          ],
+          "smi:nz.org.geonet/pick_C": [
+            {
+              "channel": "HHZ",
+              "evaluation_mode": "missing",
+              "evaluation_status": "missing",
+              "location": "",
+              "network": "NZ",
+              "pick_id": "smi:nz.org.geonet/pick_C",
+              "station": "S2",
+              "time": "2020-01-01T00:00:00.800+00:00"
+            }
+          ]
+        },
+        "preferred_origin_id": "smi:nz.org.geonet/origin_one",
+        "raw_preferred_origin_id": "smi:nz.org.geonet/origin_one",
+        "reasons": {
+          "missing_or_ambiguous_pick_reference": 1
+        },
+        "status": "ok",
+        "unresolved_pick_ids": [
+          "smi:nz.org.geonet/pick_B"
+        ],
+        "version": "QML1.2"
+      }
+    },
+    "role": "incomplete_probe",
+    "shadow_clocks": {
+      "fresh_qml": {
+        "at_preserved_original_T0": {
+          "anchor_us": 1577836800000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 3,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "own_clock": {
+          "anchor_us": 1577836799000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 1,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "status": "ok"
+      },
+      "native_scml": {
+        "at_preserved_original_T0": {
+          "anchor_us": 1577836800000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 3,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "own_clock": {
+          "anchor_us": 1577836799000000,
+          "station_count": 3,
+          "strict_horizon_station_counts": {
+            "1": 1,
+            "3": 3,
+            "5": 3
+          },
+          "t0_us": 1577836799000000
+        },
+        "status": "ok"
+      },
+      "original_qml": {
+        "at_preserved_original_T0": {
+          "anchor_us": 1577836800000000,
+          "station_count": 2,
+          "strict_horizon_station_counts": {
+            "1": 2,
+            "3": 2,
+            "5": 2
+          },
+          "t0_us": 1577836800000000
+        },
+        "own_clock": {
+          "anchor_us": 1577836800000000,
+          "station_count": 2,
+          "strict_horizon_station_counts": {
+            "1": 2,
+            "3": 2,
+            "5": 2
+          },
+          "t0_us": 1577836800000000
+        },
+        "status": "ok"
+      }
+    }
+  },
+  "scope": "Invented source fixture only; not a real event, roster, plan or acquisition receipt. No new parsing or comparison semantics are established by this schema example.",
+  "unknown_representation_shape": {
+    "accepted_picks": null,
+    "all_network": null,
+    "denominators": null,
+    "event_id": "invented-event",
+    "nz": null,
+    "reason": "invented unsupported representation",
+    "status": "unknown_representation"
+  },
+  "version": "paired-public-invented-schema-example-v1"
+}

@@ -1,0 +1,22 @@
+{
+  "version": "paired-accepted-review-findings-v3",
+  "both_findings_verified_actionable": true,
+  "review_sha256": "649b358f79c867086ae61aef3fd2eb5b602a7c525061e94e6e730333ec8d682c",
+  "accepted": [
+    "retain truncated HTTP response as ordinary failed transport slot and continue fixed sequence",
+    "reconcile saved representations and shadows only after child exit using the recovered ledger"
+  ],
+  "regression_tests": [
+    "test_worker_truncated_http_continues_fixed_attempts",
+    "test_forced_stop_reconciles_attempted_slot_and_shadow",
+    "test_forced_stop_before_attempt_remains_not_attempted",
+    "test_recovery_does_not_promote_or_replace_unknown_body",
+    "test_recovery_rejects_changed_or_duplicate_queries"
+  ],
+  "test_output": "tests_v6.txt",
+  "tests": 79,
+  "passed": 79,
+  "immutable_transport_or_census_changes": false,
+  "real_data_used": false,
+  "event_requests": 0
+}

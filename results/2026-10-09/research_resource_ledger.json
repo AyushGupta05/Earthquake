@@ -1081,7 +1081,14 @@
       "data_queries": 0,
       "existing_clocks_changed": false,
       "fits": 0,
+      "full_semantics_verified": false,
       "manifest_sha256": "6a4cae06f67e05f25d020bb4c438187b7c7e8d1321b54a045f194db3ea381070",
+      "paired_independent_first_clean": 5,
+      "paired_independent_parent_tests": 46,
+      "paired_producer_first_clean": 9,
+      "paired_producer_parent_tests": 93,
+      "private_plan_prepared": true,
+      "private_selection_independently_replayed": false,
       "public_transform_texts_preserved": {
         "body_bytes": 67470,
         "event_queries": 0,
@@ -1090,7 +1097,41 @@
         "requests": 2,
         "transform_execution": false
       },
-      "status": "official_source_route_and_projection_audited; paired6 source-only preparation"
+      "source_freeze_public_packets": [
+        {
+          "directory": "geonet_clock_paired_check",
+          "handoff_pin": {
+            "bytes": 2675,
+            "sha256": "9f41a04004dd8330189ac302d115972f50bea8de955d7a300747ce7b7fa4a123"
+          },
+          "manifest_pin": {
+            "bytes": 14611,
+            "sha256": "bd1b58da90cd6ca9acdc4ad717c618d9fb1d134079c352231b8c015162833f86"
+          },
+          "members": 90,
+          "review_pin": {
+            "bytes": 4642,
+            "sha256": "d660a005758564ea49b52c359eb33484eac0e55cb013a2e136de3c3d586fe3f3"
+          }
+        },
+        {
+          "directory": "geonet_clock_paired_independent_audit",
+          "handoff_pin": {
+            "bytes": 2021,
+            "sha256": "f732ca6d76b817790be2104f2d1c8ab8d6ad5f7a594ed8ec09360b550a8a7ab3"
+          },
+          "manifest_pin": {
+            "bytes": 6808,
+            "sha256": "3bf9a3c22a3406bddfe44bf5f83a76bd16db6656e7d92fe78ea8e7019e0a663a"
+          },
+          "members": 41,
+          "review_pin": {
+            "bytes": 2052,
+            "sha256": "1dc951ceeeb899cdf808e9425e7d81cdd0676465128d4dd47073c5a4d9005293"
+          }
+        }
+      ],
+      "status": "paired6 producer93 and independent scoped auditor46 tests/clean code-only review; private plan prepared, actual selection and single acquisition gated"
     },
     "physical_clipping": {
       "decision": "Verified hardware censoring distinct, with strong likelihood/switching prior art; rails/health unknown; zero new fits",
@@ -1121,5 +1162,5 @@
       "status": "primary_source_and_exact_invented_arithmetic_audit_complete"
     }
   },
-  "updated_utc": "2026-10-11T02:32:23.750569+00:00"
+  "updated_utc": "2026-10-11T02:45:22.714279+00:00"
 }

@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "Preserve hard deadline enforcement during child launch",
+      "body": "If Popen remains blocked when the soft deadline alarm fires, this handler only records the signal. The one-shot timer is then exhausted, and hard_watchdog is installed only after Popen returns and pending cancellation is raised. A stalled launch can therefore exceed the absolute 360-second limit indefinitely. Launch supervision must preserve child ownership while independently enforcing the hard deadline.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "work/geonet_clock_paired_check/paired.py",
+        "line": 374
+      }
+    },
+    {
+      "title": "Include scoped amplitude identities in collision detection",
+      "body": "The collision registry contains event, origin and pick identities but excludes amplitude identities used to establish pick scope. For example, referenced amplitudes named `amp:A` and `amp A` both map to the same publicID, yet this parser returns an ok representation when their picks have distinct IDs. PROTOCOL_v1.md requires mapping collisions to produce unknown representations. Register scoped amplitude IDs and their references before applying the collision check so these unsupported projections cannot contribute content-matched resolution claims.",
+      "priority": "P2",
+      "confidence": 0.91,
+      "category": "bug",
+      "code_location": {
+        "file_path": "work/geonet_clock_paired_check/projection.py",
+        "line": 306
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The launch guard can consume deadline enforcement during a stalled launch, and scoped amplitude mapping collisions escape the required conservative rejection. Review used read-only source inspection; no tests or acquisition were run.",
+  "overall_confidence": 0.94
+}

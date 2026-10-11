@@ -1,0 +1,26 @@
+{
+  "accepted": [
+    "Defer raising cancellation signals across Popen construction until the parent retains the owned child handle; then cancel before wait and stop/reap before recovery"
+  ],
+  "event_requests": 0,
+  "finding_independently_verified_against_current_source": true,
+  "immutable_transport_or_census_changes": false,
+  "passed": 86,
+  "real_data_used": false,
+  "regression_tests": [
+    "test_parent_launch_cancellation_retains_child_before_recovery"
+  ],
+  "review_sha256": "4fa79a9f28f5f000f9af8a5d28a3b292dfaa0dcea3482824edd77608c1f54ec4",
+  "review_snapshot_is_current_candidate": false,
+  "signals": [
+    "SIGTERM",
+    "SIGALRM",
+    "SIGINT"
+  ],
+  "stdlib_source_downloads": 0,
+  "stdlib_source_sha256": "6628ffdd65c093a6c08cae01ffe82877d3ced515aac9e7be0cff16512c30a7d9",
+  "test_output": "tests_v11.txt",
+  "tests": 86,
+  "verified_standard_library_source": "CPython3.14.5 Lib/subprocess.py constructor lines1039-1075",
+  "version": "paired-accepted-review-findings-v6"
+}

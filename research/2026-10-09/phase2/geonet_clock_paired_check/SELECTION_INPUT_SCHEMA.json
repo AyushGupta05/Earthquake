@@ -1,0 +1,62 @@
+{
+  "collect_argv": [
+    "work/geonet_waveform_feasibility/.venv/bin/python",
+    "-B",
+    "work/geonet_clock_paired_check/paired.py",
+    "collect",
+    "--plan",
+    "work/geonet_clock_paired_check/local_runs/planned_inputs_final.json",
+    "--receipt",
+    "work/geonet_clock_paired_check/local_runs/parent_receipt_final.json",
+    "--output",
+    "work/geonet_clock_paired_check/local_runs/collection_final"
+  ],
+  "collect_authorization": "Separate parent-created exact postpush receipt after independent actual selection replay; public schema document does not authorize prepare or collect.",
+  "placement": "A new private nonsymlink child of work/geonet_clock_paired_check/local_runs; no public real receipt or roster",
+  "prepare_argv": [
+    "work/geonet_waveform_feasibility/.venv/bin/python",
+    "-B",
+    "work/geonet_clock_paired_check/paired.py",
+    "prepare",
+    "--inputs",
+    "work/geonet_clock_paired_check/local_runs/selection_inputs_final.json",
+    "--plan",
+    "work/geonet_clock_paired_check/local_runs/planned_inputs_final.json"
+  ],
+  "required_consumed_fields": {
+    "bulk_files": {
+      "exact_keys": [
+        "local_runs/planned_inputs_final.json",
+        "local_runs/parent_receipt_final.json",
+        "local_runs/collection_final/manifest.json",
+        "local_runs/collection_final/outcomes.json",
+        "local_runs/collection_final/summary.json",
+        "local_runs/collection_final/requests.json"
+      ],
+      "type": "object",
+      "values": "Exact SHA256 strings for the six immutable bulk bodies; plan value must equal specification.bulk_plan_sha256"
+    },
+    "bulk_gate_passed": {
+      "const": true,
+      "type": "boolean"
+    },
+    "bulk_independent_replay_path": {
+      "constraints": "Existing nonsymlink independent verification file whose resolved path is within work/geonet_bulk_metadata",
+      "type": "string"
+    },
+    "bulk_independent_replay_sha256": {
+      "constraints": "Exact body SHA256; decoded verification must have all_checks_pass=true",
+      "type": "string"
+    },
+    "completed_bulk_independently_replayed": {
+      "const": true,
+      "type": "boolean"
+    },
+    "version": {
+      "const": "geonet-paired-selection-inputs-v1",
+      "type": "string"
+    }
+  },
+  "scope": "Documentation only; not an acquisition or private selection receipt. Parent fills a new ignored local_runs input only after clean source handoff. No additional gates beyond the reviewed source are imposed.",
+  "version": "paired-selection-input-documentation-v1"
+}

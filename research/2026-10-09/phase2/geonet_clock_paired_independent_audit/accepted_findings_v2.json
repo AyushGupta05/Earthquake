@@ -1,0 +1,11 @@
+{
+  "review":"autoreview_v2.json",
+  "candidate_pins":"review_snapshot_pins_v2.json",
+  "accepted_findings":[
+    {"finding":"Soft alarm swallowed as unsupported XML","verified":true,"fix":"Separate RuntimeError Deadline class propagates across metadata/profile catches and yields failed scoped output","fixture":"test_soft_deadline_during_xml_never_becomes_unavailable_evidence"},
+    {"finding":"Conflicting non-UTF8 encoding declaration accepted","verified":true,"fix":"Require declared encoding to be UTF-8/utf8 before Unicode parsing","fixture":"test_encoding_declaration_matches_the_supported_bytes"},
+    {"finding":"BED modificationTime mistaken for supported native extension","verified":true,"fix":"For QML, accept modificationTime only in either exact supported SCML namespace","fixture":"test_bed_modification_time_is_not_the_native_extension"}
+  ],
+  "actual_data_read":false,
+  "rejected_findings":[]
+}

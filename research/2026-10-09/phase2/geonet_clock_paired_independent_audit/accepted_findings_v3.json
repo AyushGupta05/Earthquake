@@ -1,0 +1,23 @@
+{
+  "review": "autoreview_v3.json",
+  "candidate_pins": "review_snapshot_pins_v3.json",
+  "accepted_findings": [
+    {
+      "finding": "Lexical local_runs path permits dotdot escape",
+      "verified": true,
+      "fix": "Return symlink-checked resolved safe_path before output containment",
+      "fixture": "test_output_dotdot_escape_is_rejected_before_creation"
+    },
+    {
+      "finding": "Unfinished original representation passes completed replay",
+      "verified": true,
+      "fix": "Apply terminal status to all eighteen slots and reject original transport_failed after verified successful retrieval",
+      "fixtures": [
+        "test_completed_original_slot_cannot_remain_unfinished",
+        "test_successfully_retrieved_original_cannot_be_transport_failed"
+      ]
+    }
+  ],
+  "actual_data_read": false,
+  "rejected_findings": []
+}

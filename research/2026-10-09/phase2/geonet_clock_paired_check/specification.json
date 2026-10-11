@@ -1,0 +1,16 @@
+{
+  "version": "geonet-paired-diagnostic-v1",
+  "bulk_plan_sha256": "d849d7751c74a3bbb7f104b3385f8f91bbc078c4d3d5e1e229836bad98096a3d",
+  "census_groups_sha256": "2270bd1969f8565dfd2cc683a17c08c766324ab67425d289956f9b68f19a44a8",
+  "horizons_seconds": [1, 3, 5],
+  "selection": "All four incomplete original TEST tail events Mw>=6, plus one complete control per [6,7) and >=7 by frozen SHA256 rank; no replacement.",
+  "query_order": "geonet-scml-paired-query-v1|ID, then ID; fresh QML followed by SCML for each event.",
+  "versions": ["QML1.2", "SCML0.13", "SCML0.14"],
+  "caps": {
+    "events": 6, "requests": 12, "body_bytes": 50331648,
+    "per_body_bytes": 4194304, "outer_seconds": 360,
+    "finalization_reserve_seconds": 10, "request_seconds": 20,
+    "start_spacing_seconds": 1, "retries": 0, "redirects": 0,
+    "replacements": 0, "resume": false, "AWS": 0, "fits": 0
+  }
+}

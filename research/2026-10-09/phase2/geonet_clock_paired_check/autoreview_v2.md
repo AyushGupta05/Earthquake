@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P2] [P2] Stop acquisition on local persistence failures
+work/geonet_clock_paired_check/paired.py:241
+This catch treats checkpoint and raw-file failures from the durable fetcher as ordinary transport outcomes. For example, a PermissionError creating a .received file, while the output ledger remains writable, is swallowed and acquisition proceeds through the remaining requests; the run can then be marked completed. This violates the protocol's requirement that resource/provenance failures stop acquisition incomplete. Narrow the recoverable exception handling so local persistence failures reach the worker's stop path.
+
+[P2] [P2] Retain authorURI and agencyURI in revision comparisons
+work/geonet_clock_paired_check/projection.py:136
+creation() discards agencyURI and authorURI, which are supported CreationInfo fields ([SeisComP documentation](https://docs.gempa.de/seiscomp/4.9.3/base/api-python.html#creationinfo)). Consequently, original and fresh QML records with conflicting authorURI or agencyURI values project to equal revision dictionaries. With matching timestamps and otherwise matching content, compare() can report matching_recorded_time and count a recorded-revision resolution despite a known revision-field conflict. Retain these fields and include them in conflict detection, as required by the protocol's complete creationInfo comparison.
+
+[P2] [P2] Require a valid timestamp for recorded-revision evidence
+work/geonet_clock_paired_check/comparison.py:45
+The matching-times check only excludes None. An empty creationTime or modificationTime element projects to an empty string, so identical empty elements on both sides satisfy this condition. With equal remaining creationInfo fields, a recovered reference then increments paired_recorded_revision_resolution_count even though neither representation supplies a recorded timestamp. Identical malformed timestamp strings have the same effect. Preserve lexical values for comparison, but require valid, nonempty timestamps before granting matching_recorded_time evidence.
+
+overall: patch is incorrect (0.97)
+Revision comparisons can overstate recorded-revision evidence, and local persistence failures can be swallowed instead of stopping acquisition. Review used read-only inspection; no tests or acquisition were run.

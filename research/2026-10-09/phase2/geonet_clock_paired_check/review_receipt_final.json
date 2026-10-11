@@ -1,0 +1,111 @@
+{
+  "AWS_actions": 0,
+  "accepted_findings_verified_and_regressed": 16,
+  "actual_event_queries": 0,
+  "actual_input_reads": 0,
+  "actual_plans_or_receipts_created": 0,
+  "author_transform_execution": false,
+  "engine": "codex",
+  "findings": 0,
+  "first_clean_iteration": 9,
+  "fits": 0,
+  "helper_exit_code": 0,
+  "human_review": {
+    "bytes": 454,
+    "sha256": "cb909283013262974727967b902bd37c2b4379f166570ccf2bb97edca3f58c6b"
+  },
+  "local_invented_worker_gate_smoke_processes": 2,
+  "passed": 93,
+  "processing_files": {
+    "PROTOCOL_v1.md": "6de600fa33e977a1cb075e6a3211f9a5da742c10f80fbd75fa3e93b8b690a283",
+    "comparison.py": "dbaffd098d180b95622a86228e513de40f3fecd5d09696a1b68edf0fe2567053",
+    "dependencies.py": "0aea7c0a41e110c9c700372b7a948c4a5c0b4492d2a79f61f84d17dc86d22748",
+    "paired.py": "09edcb6c822900e2e4a54215c60b153a861ba99eb11c0ee719b8b2b456ce2c27",
+    "projection.py": "1d2957f5266a87c073cf96f0a8ddff943c8c36af601b9acb70ea222d72b8aa6e",
+    "public_transform_pins.json": "a05208e257ab0f9dd3da698da0a45ed71167a41edc9e22bcfcd094e0b623963c",
+    "reviewed_dependencies.json": "cf176f9bcc7431af5e4232ad2eabaa14d7ec1e6ce105625b260f6f28d24db5b0",
+    "selection.py": "cfd107dd90d35395d279156a248e9b7f11534da3ea92e609f2957e4e44b3a361",
+    "specification.json": "0b4d0614d2b0985915b6c6215edb57a0f6ed686ef93e1f3f3d2da77575e3d2fb",
+    "test_paired.py": "2e9978f0ba5c9ae26ddf547e832c2c205d6588665ffe7ba05b27a279d8f3a43d"
+  },
+  "processing_mapping_sha256": "ae763e59fd37b6b4248923d7d309de4e9d3b1f3b17f5b11143593954b7398a71",
+  "processing_source_changes_after_first_clean": 0,
+  "prompt": {
+    "bytes": 1602,
+    "sha256": "85daec579cd187351998c8ac78d0c6427c8b1da642604bf580b19ce98293120f"
+  },
+  "retained_infrastructure_failures": [
+    "review_setup_failure_v1.json",
+    "review_setup_failure_v5.json",
+    "review_setup_failure_v6.json"
+  ],
+  "retained_intermediate_test_failures": [
+    "tests_v2.txt",
+    "tests_v13.txt"
+  ],
+  "review_confidence": 0.86,
+  "review_limitations": [
+    "Static code inspection; reviewer did not run tests or acquisition",
+    "Upstream transform retrieval unavailable to reviewer; projection assessed against supplied pinned source contract",
+    "No independent full acceptance/use-flag/scope/conversion/recovery semantic validation claimed"
+  ],
+  "review_overall_correctness": "patch is correct",
+  "review_runtime_receipt": {
+    "bytes": 879,
+    "sha256": "9909f80603e9898b45b4489e9c9d3bab8a0994568361376f0dab7bc6cd832ddf"
+  },
+  "reviewed_dependencies": {
+    "dependency_lock": {
+      "relative_path": "geonet_waveform_feasibility/requirements.lock",
+      "sha256": "6cef9a3c43895141c72b5f9187d6b7e8491e0fd869ff52662d787ad8b309d56d"
+    },
+    "dependency_receipt": {
+      "relative_path": "geonet_waveform_feasibility/dependency_receipt.json",
+      "sha256": "14bfc6bc8088e578d0fdf2d76dad3e6fbec2a5e63e24ee4e91beac62e4f6ba21"
+    },
+    "downloader": {
+      "relative_path": "geonet_tail_census/census.py",
+      "sha256": "076c9fcb419b801c91fa95a01cec21f708284887f6dfae8e7878b513ba1780b8"
+    },
+    "transport": {
+      "relative_path": "geonet_bulk_metadata/transport.py",
+      "sha256": "0ddca9ccc4453f812342df9ac7dfe02ec06bceafb1818071004e9827e217b135"
+    },
+    "wheel_receipt": {
+      "relative_path": "geonet_waveform_feasibility/dependency_wheels_receipt.json",
+      "sha256": "ce9aaa5a1bb49f099fcdacc2e6f1a02abea65bc78730a22d714e388c14a8f63c"
+    }
+  },
+  "runtime_receipt": {
+    "bytes": 1229,
+    "sha256": "0e1fc459a6ed7b47e9788875ff5ed10b5eaa13e20b0635c98b88486ed980e984"
+  },
+  "runtime_warnings": [
+    "Configured PATH Codex wrapper failed before dispatch; verified desktop CLI used",
+    "CLI plugin icon paths ignored",
+    "CLI state DB discrepancy fell back",
+    "CLI shell-snapshot cleanup warned about already missing file",
+    "V5 absolute finding paths caused output validation failure",
+    "V6 stale-snapshot launch retained and excluded from current-candidate clean evidence"
+  ],
+  "shared_repository_Git_edits": 0,
+  "source_only": true,
+  "source_snapshot_manifest": {
+    "bytes": 1880,
+    "sha256": "bdef1fe535e51ecc533628c812370762dbdfc5bc937938f7b0a764b063aff40f"
+  },
+  "structured_review": {
+    "bytes": 486,
+    "sha256": "539995d2de12523bbe03faed0d5ac9b0a7270ab5d754994a490fc2d40b1c590e"
+  },
+  "test_output": {
+    "bytes": 11460,
+    "sha256": "d52529157475df84349fce90fa25e5fac8eaa4c6ffaad03266139d4e69c5d12c"
+  },
+  "test_receipt": {
+    "bytes": 3621,
+    "sha256": "56afa3ee0ea4185cb7569a5cb58b3c86f7bf6d3505947ae222309ccaf4ceeb78"
+  },
+  "tests": 93,
+  "version": "paired-first-clean-source-review-v9"
+}

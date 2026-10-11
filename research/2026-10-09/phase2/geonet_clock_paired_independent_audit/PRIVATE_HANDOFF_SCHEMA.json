@@ -1,0 +1,61 @@
+{
+  "version": "paired-independent-private-handoff-documentation-v1",
+  "private_receipt_version": "paired-independent-private-handoff-v1",
+  "authorizes_reads": false,
+  "required_true_flags": [
+    "authorized_private_read",
+    "producer_review_clean",
+    "auditor_review_clean",
+    "freeze_pushed",
+    "inputs_preserved"
+  ],
+  "required_git_freeze_commit": "40 lowercase hex",
+  "auditor_processing_files": {
+    "audit.py": "fd6703dc42d964757e609aa2c4e296b219cd3a9fb72754b21d5feba72ffff0f2",
+    "independent.py": "6e3c028658b1b387d9e5f3e86a4335ee4550f1451d07d687f6c9c24f5d1bb2cc",
+    "test_independent.py": "12631580dc4227b049b64d5da3e5bbf21408054072f1dce4815731739161a1c6",
+    "PROTOCOL.md": "04f6325322489b72f53e841dab56993dddc48c4906c037230936b30f4cca6a8b",
+    "specification.json": "b8fd1a55e0d18ca229675cf6afac6ec2e7e4c880fb2cc383e6026620441ab308"
+  },
+  "auditor_runtime": {
+    "python_version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "cache_tag": "cpython-314",
+    "binary_sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  "producer_processing_files": "Exact ten filename-to-SHA mapping from frozen producer plan",
+  "producer_runtime": "Exact producer plan runtime object",
+  "producer_reviewed_dependencies": "Exact producer plan reviewed_dependencies object",
+  "producer_public_files": "All ten filename-to-{path,pin:{bytes,sha256}} entries; nonsymlink public files under workspace work/",
+  "selection_file_roles": [
+    "paired_plan",
+    "selection_input",
+    "bulk_0",
+    "bulk_1",
+    "bulk_2",
+    "bulk_3",
+    "bulk_4",
+    "bulk_5",
+    "bulk_replay",
+    "census_groups.json",
+    "census_manifest.json",
+    "census_outcomes.json",
+    "census_query_order.json",
+    "census_requests.json",
+    "census_rows.json",
+    "census_summary.json"
+  ],
+  "file_role_values": "{path,pin:{bytes,sha256}}; exact parent supplied nonsymlink work/ paths",
+  "original_bodies": "Exactly six selected event ID keys mapped to original pinned path/pin; stays private",
+  "artifact_additions": {
+    "collection_completed_preserved_normal_exit": true,
+    "file_roles": [
+      "paired_parent",
+      "paired_manifest"
+    ],
+    "collection_root": "Exact completed nonsymlink producer collection directory under work/; stays private"
+  },
+  "watchdog_seconds": 330,
+  "soft_seconds": 300,
+  "output": "New exclusive ignored auditor/local_runs/*.json",
+  "no_actual_values": true
+}

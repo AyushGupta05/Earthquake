@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Preserve uncertainty when Decimal canonicalization underflows",
+      "body": "The local context increases precision but retains the default exponent limits and leaves Underflow untrapped. Consequently, `canonical_number(\"1e-1000100\")` passes the finite-float checks, then multiplication and normalization silently turn the nonzero Decimal into `\"0\"`. A QML origin with latitude `0` and an SCML origin with latitude `1e-1000100` can therefore receive `same_record_content=true`; with matching creationInfo and a recovered pick, this also permits a false recorded-revision resolution count. Preserve the exact value or return an unknown geometry field when arithmetic is inexact, rather than treating underflow as matching content. Python documents these context-dependent rounding rules in its [Decimal documentation](https://docs.python.org/3.14/library/decimal.html#decimal.Decimal.normalize).",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "work/geonet_clock_paired_check/projection.py",
+        "line": 85
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Decimal canonicalization can silently collapse distinct geometry values and enable claims that violate the conservative comparison contract. Review was read-only; no tests or acquisition were run.",
+  "overall_confidence": 0.96
+}

@@ -1,0 +1,61 @@
+{
+  "version": "paired-independent-source-handoff-v1",
+  "processing_files": {
+    "audit.py": {
+      "bytes": 20984,
+      "sha256": "fd6703dc42d964757e609aa2c4e296b219cd3a9fb72754b21d5feba72ffff0f2"
+    },
+    "independent.py": {
+      "bytes": 21431,
+      "sha256": "6e3c028658b1b387d9e5f3e86a4335ee4550f1451d07d687f6c9c24f5d1bb2cc"
+    },
+    "test_independent.py": {
+      "bytes": 34869,
+      "sha256": "12631580dc4227b049b64d5da3e5bbf21408054072f1dce4815731739161a1c6"
+    },
+    "PROTOCOL.md": {
+      "bytes": 8984,
+      "sha256": "04f6325322489b72f53e841dab56993dddc48c4906c037230936b30f4cca6a8b"
+    },
+    "specification.json": {
+      "bytes": 1180,
+      "sha256": "b8fd1a55e0d18ca229675cf6afac6ec2e7e4c880fb2cc383e6026620441ab308"
+    }
+  },
+  "first_clean_review": "v5",
+  "review_receipt": {
+    "bytes": 2052,
+    "sha256": "1dc951ceeeb899cdf808e9425e7d81cdd0676465128d4dd47073c5a4d9005293"
+  },
+  "tests_receipt": {
+    "bytes": 1213,
+    "sha256": "8913a56d915066a49445f91288f52eae43133350a2b24db98166fa35bdc01876"
+  },
+  "runtime_receipt": {
+    "bytes": 604,
+    "sha256": "30ef3ba1ba32c1335615f10f5b8ddce2acf30966536f55da9a40398c18b46ce8"
+  },
+  "producer_public_contract_receipt": {
+    "bytes": 2622,
+    "sha256": "fcd04a94573843137f2ac7e253389d3fe254e2c5c93ba551f9f147ebfee36627"
+  },
+  "private_handoff_schema": {
+    "bytes": 2479,
+    "sha256": "14f0583375f202dd77389e579769bcb5e4524e7409c8dabd5129343aad18f5c7"
+  },
+  "tests_command": "work/geonet_waveform_feasibility/.venv/bin/python -B -W error -m unittest discover -s work/geonet_clock_paired_independent_audit -p 'test_independent.py' -v",
+  "replay_argv_prefix": [
+    "work/geonet_waveform_feasibility/.venv/bin/python",
+    "-B",
+    "work/geonet_clock_paired_independent_audit/audit.py"
+  ],
+  "replay_modes": [
+    "selection",
+    "artifacts"
+  ],
+  "required_parent_watchdog_seconds": 330,
+  "source_changes_after_first_clean": 0,
+  "actual_input_reads": 0,
+  "requests": 0,
+  "full_semantics_or_recovery_verified": false
+}

@@ -1,0 +1,23 @@
+{
+  "accepted": [
+    "Apply frozen QML text stripping after ID mapping to projected native pick references",
+    "Count qualifying references newly accepted through station/time repair independently of unique-object recovery"
+  ],
+  "additional_source_contract_regression": "Projected preferred-origin reference text must resolve literal mapped origin publicID; padded preserved URI fails conservatively",
+  "event_requests": 0,
+  "finding_verified_actionable": true,
+  "helper_validated": false,
+  "immutable_transport_or_census_changes": false,
+  "observed_unvalidated_review_sha256": "789a9517ffbbdfe3b55f26d3841083537fa13fbc370bdb406cb2507f3d3bb1ea",
+  "passed": 85,
+  "real_data_used": false,
+  "regression_tests": [
+    "test_preserved_uri_pick_reference_uses_projected_text_predicate",
+    "test_preserved_uri_preferred_reference_whitespace_unresolved",
+    "test_existing_unique_pick_station_or_time_recovery_is_newly_accepted",
+    "test_newly_accepted_reference_requires_left_qualifying_arrival"
+  ],
+  "test_output": "tests_v9.txt",
+  "tests": 85,
+  "version": "paired-accepted-review-findings-v5"
+}

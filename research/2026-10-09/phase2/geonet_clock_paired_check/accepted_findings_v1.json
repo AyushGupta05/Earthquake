@@ -1,0 +1,22 @@
+{
+  "version": "paired-accepted-review-findings-v1",
+  "all_four_findings_verified_actionable": true,
+  "review_sha256": "7dff439fcb4b458a3065781ac296936870b29201b0f6e4c1ef0fb01e0c2cd702",
+  "accepted": [
+    "foreign evidence fields must not be treated as absent",
+    "frozen census clock must survive unsupported stricter shadow parse",
+    "event identity participates in scoped normalization collisions",
+    "creationInfo lexical revision evidence must not be trimmed"
+  ],
+  "regression_tests": [
+    "test_foreign_evidence_fields_unknown",
+    "test_unsupported_original_keeps_frozen_clock",
+    "test_event_origin_normalization_collision_unknown",
+    "test_lexical_revision_whitespace_conflict"
+  ],
+  "final_test_output": "tests_v4.txt",
+  "tests": 67,
+  "passed": 67,
+  "real_data_used": false,
+  "event_requests": 0
+}

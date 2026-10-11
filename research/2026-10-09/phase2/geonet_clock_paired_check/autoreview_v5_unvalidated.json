@@ -1,0 +1,40 @@
+{
+  "actual_event_requests": 0,
+  "evidence": "Observed terminal JSON from normally completed review; helper rejected absolute snapshot paths before writing requested output files. This receipt transcribes the two findings and is not a validated helper result.",
+  "findings": [
+    {
+      "body": "For identifiers beginning with smi: or quakeml:, mapped_id preserves trailing whitespace, but the frozen QML predicate strips pickID text while leaving pick publicID attributes unchanged. Preserve raw identifiers for native scope selection and object mapping, then apply frozen QML text normalization to the projected arrival reference before resolution.",
+      "category": "bug",
+      "code_location": {
+        "file_path": "work/geonet_clock_paired_check/projection.py",
+        "line": 307
+      },
+      "confidence": 0.96,
+      "priority": "P2",
+      "title": "[P2] Apply the frozen QML text predicate to mapped pick references"
+    },
+    {
+      "body": "Intersecting accepted IDs with newly_unique excludes recovery of already unique pick objects when valid station or time metadata becomes available. Keep newly unique object counts separate and derive newly accepted reference counts from qualifying references accepted on the right but not the left.",
+      "category": "bug",
+      "code_location": {
+        "file_path": "work/geonet_clock_paired_check/comparison.py",
+        "line": 63
+      },
+      "confidence": 0.9,
+      "priority": "P2",
+      "title": "[P2] Count newly accepted references independently of object recovery"
+    }
+  ],
+  "helper_exit_code": 1,
+  "helper_validated": false,
+  "overall_correctness": "patch is incorrect",
+  "real_data_used": false,
+  "review_snapshot_pins_sha256": "daef0f7e3569d83e5be78e66bfe6012abf35eb0ac7abdafc89a05ca8b3a95608",
+  "usage": {
+    "cached_input_tokens": 243712,
+    "input_tokens": 320387,
+    "output_tokens": 9370,
+    "reasoning_output_tokens": 8052
+  },
+  "version": "paired-observed-unvalidated-review-v5"
+}
