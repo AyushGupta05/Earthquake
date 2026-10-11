@@ -1,0 +1,40 @@
+{
+  "findings": [
+    {
+      "title": "Propagate optional-response body cap violations",
+      "body": "When response_body exceeds 4 MiB, stationxml raises AuditError('metadata body cap'), but this handler converts it into response_panel_error and returns ordinary qualification results. The replay can consequently be reported completed despite a resource-cap violation, contrary to the protocol's incomplete-run requirement. Propagate AuditError through both enclosing handlers while retaining ordinary response parsing failures as optional-panel failures.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 742
+      }
+    },
+    {
+      "title": "Preserve channel epoch dates for the exact response join",
+      "body": "start_ns and end_ns retain only the network/station/channel intersection, discarding the channel's own epoch dates. For example, channel starts in 2000 and 2003 both become 2005 when the station starts in 2005. qualify and selected_response_xml therefore accept these different channel epochs as an exact cached-response match when rate and orientation agree. Preserve the channel dates separately and include them in the response join; use the intersection bounds for prefix coverage.",
+      "priority": "P2",
+      "confidence": 0.88,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 343
+      }
+    },
+    {
+      "title": "Compare the scientific qualification claim flags",
+      "body": "The comparison omits the horizon-level physically_calibrated_prefix_verified and operational_picker_replayed flags, and also omits physically_calibrated_prefix_verified from response evidence. Changing only these producer flags from false to true yields no discrepancy, allowing claims explicitly prohibited by the protocol to pass the prefix audit. Include these flags in their respective comparison lists and preserve missing-versus-present differences.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 943
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Static inspection identified an incomplete-run classification defect, a non-exact cached channel epoch join, and omitted scientific claim comparisons. No tests, network requests, or nested reviewers were run.",
+  "overall_confidence": 0.93
+}

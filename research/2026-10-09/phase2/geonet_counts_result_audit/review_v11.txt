@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Allow decoder-rate rounding differences for exact native clocks
+auditor.py:568
+This exact float comparison rejects valid miniSEED2 clocks when the decoder evaluates the factor/multiplier sequentially. For example, factor=-3 and multiplier=100 produce `(1.0 / 3) * 100`, which differs by one floating-point rounding step from `float(Fraction(100, 3))`. The native clock is valid, but the entire body becomes a decode failure. The end-to-end fixture covers only the opposite ordering, factor=100 and multiplier=-3. Validate the decoder rate with a narrowly bounded tolerance while retaining the exact native fraction for cropping; also ensure `pieces()` and `_cropped()` do not reintroduce the same exact-float requirement.
+
+[P1] [P1] Propagate wrapped header and decoder allocation failures
+auditor.py:638
+The header handler checks only resource-related OSError errno values before recording an ordinary header failure. A native wrapper exception carrying an explicit diagnostic such as `Cannot allocate memory` is therefore downgraded to engineering absence. Generic decode exceptions are similarly downgraded by `qualification_batch`. In a mixed fresh/cache block, replay can continue and report valid cached targets despite a resource interruption in the fresh body. Apply the explicit allocation/resource diagnostic check already used for evalresp and raise ResourceStop before these exceptions become target failures.
+
+overall: patch is incorrect (0.94)
+Static review found a valid native-clock rejection caused by floating-point equality and a resource-classification gap that can turn wrapped allocation failures into scientific absence. Tests were not run, as requested.

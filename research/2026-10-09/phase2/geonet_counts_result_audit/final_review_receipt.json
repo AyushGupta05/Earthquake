@@ -1,0 +1,26 @@
+{
+  "version": "first_clean_code_only_review_receipt_v1",
+  "engine": "codex",
+  "cli_version": "0.162.0-alpha.17.2",
+  "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file REVIEW_NOTES.md --prompt 'All finding file paths must be repository-relative, for example auditor.py. Never use an absolute /private/tmp path in a finding.' --output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_counts_result_audit/review_v12.txt --json-output /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_counts_result_audit/review_v12.json",
+  "cwd": "/private/tmp/geonet-counts-auditor-review-e0lfijbi",
+  "web_search": false,
+  "helper_exit_code": 0,
+  "report": {
+    "findings": [],
+    "overall_correctness": "patch is correct",
+    "overall_explanation": "No actionable defects found in the isolated bundle. Static review covered prefix causality, rational sample bounds, metadata and response joins, resource failures, artifact verification, and denominator accounting. Tests and actual-data replay were not run, as instructed.",
+    "overall_confidence": 0.85
+  },
+  "source_freeze": "source_freeze.json",
+  "bundle_manifest": "review_bundle_manifest_v11.json",
+  "focused_tests": "tests_receipt_v11.json",
+  "source_sha256": "7760a14ef895ecf6f15809893725b37eb59d932364a5425ac8eb8faebbf9d7c3",
+  "tests_sha256": "a46be1f0f185941763bb80ee473fe6bdf13c283df8886ecf180be6c38c54acd0",
+  "reviewer_tests_run": false,
+  "reviewer_actual_data_read_or_replayed": false,
+  "first_clean": true,
+  "further_review_stopped": true,
+  "infrastructure_and_failed_attempts_preserved": "review_infrastructure.json",
+  "explicit_code_only_user_consent_applied": true
+}

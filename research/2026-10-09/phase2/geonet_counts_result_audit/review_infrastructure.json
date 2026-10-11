@@ -1,0 +1,123 @@
+{
+  "version": "code_only_review_infrastructure_attempts_v1",
+  "attempts": [
+    {
+      "engine": "codex",
+      "result": "pre_review_ENOENT",
+      "wrapper": "/Users/ayush/.local/bin/codex",
+      "missing_binary": "/Users/ayush/.hermes/node/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/codex/codex"
+    },
+    {
+      "engine": "codex",
+      "result": "pre_review_sandbox_app_server_initialization_operation_not_permitted",
+      "codex_bin": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "cli_version": "0.162.0-alpha.17.2"
+    },
+    {
+      "engine": "codex",
+      "result": "authorized_escalated_review_launched",
+      "codex_bin": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "web_search": false,
+      "bundle_scope": "source_invented_fixtures_frozen_protocol_only"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review1",
+      "result": "validated_findings",
+      "findings": 5,
+      "report": "review_v1.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review2",
+      "result": "helper_report_validation_failed_absolute_finding_path",
+      "finding_path": "/private/tmp/geonet-counts-auditor-review-e0lfijbi/auditor.py",
+      "raw_findings_available": false,
+      "reason": "Helper unlinks last-message JSON before validating; no report output written on validation failure. Underlying issue not dismissed."
+    },
+    {
+      "engine": "codex",
+      "attempt": "review3",
+      "result": "validated_findings",
+      "findings": 3,
+      "report": "review_v3.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review4",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 3,
+      "report": "review_v4.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review5",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 3,
+      "report": "review_v5.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review6",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 3,
+      "report": "review_v6.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review7",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 3,
+      "report": "review_v7.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review8",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 2,
+      "report": "review_v8.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review9",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 1,
+      "report": "review_v9.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review10",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 2,
+      "report": "review_v10.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review11",
+      "result": "validated_findings",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "findings": 2,
+      "report": "review_v11.json"
+    },
+    {
+      "engine": "codex",
+      "attempt": "review12",
+      "result": "first_validated_clean",
+      "scope": "fixed_source_invented_tests_frozen_protocol_only",
+      "exit_code": 0,
+      "findings": 0,
+      "report": "review_v12.json"
+    }
+  ],
+  "failed_attempts_claim_review_result": false,
+  "installed_new_software": false,
+  "first_clean_review": "review12",
+  "reviews_stopped_at_first_clean": true
+}

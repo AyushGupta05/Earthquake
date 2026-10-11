@@ -1,0 +1,132 @@
+{
+  "cached_fresh_bodies_examined": 12,
+  "checked_utc": "2026-10-11T02:49:17.325427+00:00",
+  "collection_manifest_pin": {
+    "bytes": 6351,
+    "sha256": "3a8b1e538e2f9b0d8712f234d95dd302806c0ba655ccb613c248b3ab8059c6d0"
+  },
+  "converter_bug_proved": false,
+  "frozen_projection_reason_counts": [
+    {
+      "count": 5,
+      "reason": "foreign_structural_namespace",
+      "slot": "fresh_qml"
+    },
+    {
+      "count": 1,
+      "reason": null,
+      "slot": "fresh_qml"
+    },
+    {
+      "count": 6,
+      "reason": "unsupported_or_ambiguous_SCML_version",
+      "slot": "native_scml"
+    },
+    {
+      "count": 5,
+      "reason": "foreign_structural_namespace",
+      "slot": "original_qml"
+    },
+    {
+      "count": 1,
+      "reason": null,
+      "slot": "original_qml"
+    }
+  ],
+  "hypothesis_stage": "post-collection compatibility diagnosis only; not a frozen comparison or corrected outcome",
+  "namespace_element_counts": [
+    {
+      "element_count": 765,
+      "kind": "qml",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11"
+    },
+    {
+      "element_count": 49196,
+      "kind": "qml",
+      "namespace": "http://quakeml.org/xmlns/bed/1.2"
+    },
+    {
+      "element_count": 6,
+      "kind": "qml",
+      "namespace": "http://quakeml.org/xmlns/quakeml/1.2"
+    },
+    {
+      "element_count": 12508,
+      "kind": "scml",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.10"
+    },
+    {
+      "element_count": 37559,
+      "kind": "scml",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11"
+    }
+  ],
+  "new_requests": 0,
+  "nonstandard_qml_element_counts": [
+    {
+      "element_count": 11,
+      "local_name": "modificationTime",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11"
+    },
+    {
+      "element_count": 754,
+      "local_name": "passedQC",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11"
+    }
+  ],
+  "original_clocks_changed": false,
+  "recovery_or_accuracy_claim": false,
+  "request_status_counts": [
+    {
+      "count": 6,
+      "http_status": "200",
+      "kind": "qml",
+      "status": "ok"
+    },
+    {
+      "count": 6,
+      "http_status": "200",
+      "kind": "scml",
+      "status": "ok"
+    }
+  ],
+  "response_hashes_verified": true,
+  "root_namespace_counts": [
+    {
+      "count": 6,
+      "kind": "qml",
+      "local_name": "quakeml",
+      "namespace": "http://quakeml.org/xmlns/quakeml/1.2"
+    },
+    {
+      "count": 1,
+      "kind": "scml",
+      "local_name": "seiscomp",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.10"
+    },
+    {
+      "count": 5,
+      "kind": "scml",
+      "local_name": "seiscomp",
+      "namespace": "http://geofon.gfz-potsdam.de/ns/seiscomp3-schema/0.11"
+    }
+  ],
+  "root_version_counts": [
+    {
+      "count": 6,
+      "kind": "qml",
+      "version": null
+    },
+    {
+      "count": 1,
+      "kind": "scml",
+      "version": "0.10"
+    },
+    {
+      "count": 5,
+      "kind": "scml",
+      "version": "0.11"
+    }
+  ],
+  "version": "paired-posthoc-structural-support-diagnostic-v1"
+}

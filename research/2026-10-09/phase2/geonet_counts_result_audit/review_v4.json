@@ -1,0 +1,40 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Reject OS resource-exhaustion diagnostics in attempt ledgers",
+      "body": "The diagnostic filter accepts resource failures whose normal messages lack these keywords. For example, status='OSError' with error='[Errno 24] Too many open files' or '[Errno 28] No space left on device' passes verification when the remaining pins match. This contradicts the contract's requirement that resource interruptions remain incomplete and allows them to become completed retrieval failures. Recognize resource errno diagnostics, including wrapped errors, while retaining ordinary network OSError outcomes.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 261
+      }
+    },
+    {
+      "title": "[P2] Separate private exception counters from the aggregate summary",
+      "body": "The returned summary includes verbatim reason strings as dictionary keys. Those strings originate from decoder/parser exceptions and can contain station identities, local paths, or other private details. Publishing this aggregate as summary.json would therefore expose private text despite the contract explicitly excluding raw reason counters from public artifacts. Keep these counters in separate private evidence and use stable, allowlisted failure categories in the public summary.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "security",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 895
+      }
+    },
+    {
+      "title": "[P2] Defer timestamp overflow errors for irrelevant epochs",
+      "body": "utc_ns can raise OverflowError during UTC conversion, but this handler only catches ValueError and TypeError. An unrelated future channel with a valid future startDate and endDate='9999-12-31T23:59:59-01:00' consequently aborts stationxml before epoch_triplet can exclude it. This makes an earlier valid prefix fail because of future metadata, contrary to the per-epoch timestamp-error and strict-causality contract. Record OverflowError as a timestamp error too, preserving any successfully parsed bounds.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 328
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Read-only inspection identified gaps in resource-interruption rejection, public-summary privacy, and isolation of future epoch timestamp errors. These findings concern the library implementation; pending parent orchestration and real-data replay are not treated as defects. No tests were run.",
+  "overall_confidence": 0.97
+}

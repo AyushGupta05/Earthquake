@@ -76,6 +76,14 @@
       "scientific_decoding": false,
       "sha256": "6ef21f8e13ec1dafaa071227ae7e7411f79982d502addb6d7b4f809f0275cf51"
     },
+    "independent_incomplete_rejection": {
+      "first_clean_review": 12,
+      "incomplete_rejected": true,
+      "member_read_function_calls": 0,
+      "parent_invented_tests": 56,
+      "replay_or_support_result": false,
+      "waveform_decoding": false
+    },
     "independent_plan_assertions": 3812,
     "independent_plan_handoff_sha256": "d4e49fe2d5bf70c1cd4ff47a74ec100b7b7ac14d572f439fad7aa9b96b95b73c",
     "independent_plan_verification_sha256": "45635517c5f638fc23faea3cd2a9d41fd757d82fb849ee3aa1616e83432f9358",
@@ -238,12 +246,12 @@
     }
   ],
   "prelaunch_budget_envelope": {
-    "checked_utc": "2026-10-10T23:46:03.910835+00:00",
+    "checked_utc": "2026-10-11T02:51:32.863435+00:00",
     "chile_worker_resource_allowance_usd": 60,
-    "conservative_total_usd": 248,
-    "limitation": "Whole original-worker uptime since4Oct deliberately overcounts task exposure (150.595USD), plus6.042USD fixed grid caps, rounded upward to5USD. Chile allowance60USD, scratch full month8USD, miscellaneous20USD. Not settled task attribution; no paid resource expansion. Credit coverage remains last authenticated10Oct22:45 receipt.",
+    "conservative_total_usd": 253,
+    "limitation": "Whole original-worker uptime since4Oct deliberately overcounts task exposure; current whole-uptime plus both fixed grid cap upper estimate159.746466USD, rounded upward to165USD to preserve margin. Chile allowance60USD, scratch full month8USD, miscellaneous20USD. This253USD envelope is not settled task attribution, does not authorize expansion and uses last authenticated10Oct22:45 credit coverage; fresh verification still required.",
     "misc_task_margin_usd": 20,
-    "original_worker_entire_uptime_plus_both_grid_caps_usd": 160,
+    "original_worker_entire_uptime_plus_both_grid_caps_usd": 165,
     "research_volume_full_month_allowance_usd": 8
   },
   "price_refresh": {
@@ -1077,18 +1085,33 @@
       "status": "primary_paper_and_inert_author_source_audited"
     },
     "native_SCML_clock_check": {
-      "candidate_live_route_verified": false,
-      "data_queries": 0,
+      "candidate_live_route_verified": true,
+      "data_queries": 12,
+      "delivered_response_bytes": 4942536,
       "existing_clocks_changed": false,
       "fits": 0,
       "full_semantics_verified": false,
+      "legacy_offline_shadow": {
+        "actual_reads": 0,
+        "new_event_requests": 0,
+        "original_source_results_and_clocks_unchanged": true,
+        "post_collection_exploratory": true,
+        "status": "new source-only producer and independent auditor preparation"
+      },
+      "legacy_source_audit_started": true,
       "manifest_sha256": "6a4cae06f67e05f25d020bb4c438187b7c7e8d1321b54a045f194db3ea381070",
+      "native_observed_versions": {
+        "0.10": 1,
+        "0.11": 5
+      },
+      "new_event_requests_authorized_by_legacy_audit": false,
       "paired_independent_first_clean": 5,
       "paired_independent_parent_tests": 46,
       "paired_producer_first_clean": 9,
       "paired_producer_parent_tests": 93,
+      "parsed_slots": 2,
       "private_plan_prepared": true,
-      "private_selection_independently_replayed": false,
+      "private_selection_independently_replayed": true,
       "public_transform_texts_preserved": {
         "body_bytes": 67470,
         "event_queries": 0,
@@ -1097,6 +1120,18 @@
         "requests": 2,
         "transform_execution": false
       },
+      "representation_denominator": 18,
+      "semantic_v1_source": {
+        "actual_semantic_reads": 0,
+        "first_clean_review": 3,
+        "legacy_support": false,
+        "manifest_pin": {
+          "bytes": 7216,
+          "sha256": "c0623d227bae7ba5ab7d708c2d66ac3f19120cdac5e8f351a07cf65c1fe6e427"
+        },
+        "parent_invented_tests": 125
+      },
+      "source_freeze_commit": "3a1f8779084a74f7f971d09750ea561388ab0f1b",
       "source_freeze_public_packets": [
         {
           "directory": "geonet_clock_paired_check",
@@ -1131,7 +1166,8 @@
           }
         }
       ],
-      "status": "paired6 producer93 and independent scoped auditor46 tests/clean code-only review; private plan prepared, actual selection and single acquisition gated"
+      "status": "single paired6 acquisition complete; independent selection/artifact scoped replay passes;16/18unknown version-profile slots; no recovery result",
+      "unknown_slots": 16
     },
     "physical_clipping": {
       "decision": "Verified hardware censoring distinct, with strong likelihood/switching prior art; rails/health unknown; zero new fits",
@@ -1162,5 +1198,5 @@
       "status": "primary_source_and_exact_invented_arithmetic_audit_complete"
     }
   },
-  "updated_utc": "2026-10-11T02:45:22.714279+00:00"
+  "updated_utc": "2026-10-11T02:51:32.863435+00:00"
 }

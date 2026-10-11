@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P2] [P2] Restrict public response parsing to selected epochs
+auditor.py:588
+Although epoch_triplet excludes wholly future epochs, read_inventory receives the entire original XML. A valid selected response plus a future channel with a known future start and an invalid endDate passes the independent epoch selection but can fail here during public parsing. qualify then marks the earlier response panel unavailable solely because of future metadata, violating strict causality. Parse an isolated representation of the selected network/station/channel epochs while preserving their response stages and original evidence pins.
+
+[P1] [P1] Propagate OS resource failures during response evaluation
+auditor.py:634
+The generic handler converts resource-related OSError exceptions into ordinary response errors. For example, os.dup or TemporaryFile in captured_native_stderr can fail with ENOMEM, EMFILE, or ENOSPC; those failures are stored in item['error'], and qualification continues without marking replay incomplete. This violates the required distinction between resource interruptions and engineering absence. Convert resource-related OS failures to ResourceStop and propagate them through the existing interruption handlers.
+
+[P2] [P2] Include optional response failures in aggregate accounting
+auditor.py:818
+The aggregate counts only the top-level horizon reason. Cached-response join/parser failures are stored in response_panel_error, and sensitivity/stage/evalresp failures are stored in response_evidence[channel]['error']; neither is included in any summary counter. Consequently, an otherwise count-valid target with failed response evaluation reports an audited status and no_reason, losing the required response-failure accounting. Add horizon-specific counters for stable response failure categories, retaining all target denominators and keeping private error and warning text out of public summaries.
+
+overall: patch is incorrect (0.97)
+Static inspection found defects in response-panel causality, resource-interruption propagation, and aggregate failure accounting. These can invalidate earlier response evidence or permit incomplete resource failures to appear as ordinary engineering outcomes. No tests were run and no files were modified.

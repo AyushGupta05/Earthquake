@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P1] Keep pinned artifact read failures out of engineering outcomes
+auditor.py:74
+If a pinned file becomes unreadable between the header and decode passes, bounded_body can raise PermissionError or another non-resource OSError from open/read. qualification_batch catches that exception and records an ordinary decode failure, allowing replay to continue despite being unable to reverify the artifact pin. This affects both fresh and cached bodies. Convert artifact-access failures into AuditError, while preserving ResourceStop for resource exhaustion, so unavailable provenance stops replay incomplete.
+
+[P2] Escalate native evalresp allocation diagnostics
+auditor.py:787
+Captured native stderr is retained but never checked for resource failure. If evalresp reports an allocation failure through stderr and its Python wrapper raises a generic exception, the exception handler records evalresp_failure instead of stopping replay incomplete. Only direct MemoryError, ResourceStop and resource OSError instances escape. Inspect explicit native and wrapped resource diagnostics before treating an evaluation failure as ordinary response absence.
+
+overall: patch is incorrect (0.95)
+Two failure paths can convert unverifiable artifacts or resource interruptions into ordinary engineering absence, contrary to the replay contract. The review was read-only; tests were not run.

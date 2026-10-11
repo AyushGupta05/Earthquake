@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Join cached responses to the already-selected triplet
+auditor.py:821
+If channel metadata selects HH1/HH2/HHZ, but the cached response XML additionally contains HHE/HHN, this call independently selects ENZ from the cached body. The subsequent comparison rejects the response panel even when all three selected 12Z channels have exactly matching epochs, rates, orientations, and complete responses. This incorrectly reduces cached-response availability. Restrict response qualification to the already-selected channel codes while retaining uniqueness and coverage checks.
+
+overall: patch is incorrect (0.94)
+Cached-response qualification can reject valid evidence by selecting a different sensor family instead of joining the triplet already selected from channel metadata.

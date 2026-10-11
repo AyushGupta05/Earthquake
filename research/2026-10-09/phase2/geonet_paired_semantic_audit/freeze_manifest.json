@@ -1,0 +1,199 @@
+{
+  "version": "paired-independent-semantic-auditor-v1",
+  "status": "first_clean_source_frozen",
+  "source_only_preparation_complete": true,
+  "actual_metadata_read": false,
+  "actual_semantic_replay_completed": false,
+  "producer_imported_or_copied": false,
+  "transform_execution": false,
+  "data_acquisition": false,
+  "installs": false,
+  "shared_git_modified": false,
+  "source_freeze_sha256": "ca6a5517a1cf78b855b78e000e62d201eec78faab513a4e2bc46f42ec8d6e1a1",
+  "source_files": [
+    {
+      "path": "semantic_audit.py",
+      "sha256": "ca6a5517a1cf78b855b78e000e62d201eec78faab513a4e2bc46f42ec8d6e1a1",
+      "bytes": 21991
+    },
+    {
+      "path": "test_semantic_audit.py",
+      "sha256": "a34df5acae8f36b3654ef761e3800e34bcba0791568cc345401d900ebffed60e",
+      "bytes": 26348
+    },
+    {
+      "path": "README.md",
+      "sha256": "3dd19f3946d7021041f99343506d219fd70c8cc8f1f95da846ed4842055be590",
+      "bytes": 7769
+    },
+    {
+      "path": "public_contract_pins.json",
+      "sha256": "a564bb8a7f920cf786cac7ca1f0d0cb6ae483140a1ce2bdb2e2445f28ac6a023",
+      "bytes": 1476
+    }
+  ],
+  "runtime": {
+    "python_version": "3.14.5",
+    "runtime_executable": {
+      "path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12",
+      "bytes": 52448
+    },
+    "interpreter_entrypoint": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_waveform_feasibility/.venv/bin/python",
+    "stdlib_only": true
+  },
+  "review": {
+    "engine": "codex",
+    "helper": {
+      "path": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview",
+      "sha256": "d29d9bcab7c79505e927e6e6a89d7350ad8cb92ec8acdfcd79d41f4ca8349562",
+      "bytes": 51075
+    },
+    "binary": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28",
+      "bytes": 246046384
+    },
+    "snapshot_commit": "c572012fcf696fd2ebbb993144a10a42d770484a",
+    "attempt": "v3",
+    "exit_code": 0,
+    "first_clean": true,
+    "actionable_findings": 0,
+    "accepted_previous_findings": 1,
+    "rejected_previous_findings": 0,
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode commit --commit HEAD --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file ../review_evidence/review_prompt.txt --output ../review_evidence/review_v3.txt --json-output ../review_evidence/review_v3.json",
+    "working_directory": ".review_snapshot",
+    "no_reviews_after_first_clean": true
+  },
+  "tests": {
+    "count": 125,
+    "exit_code": 0,
+    "proof": "review_evidence/tests_v3.txt",
+    "command": "work/geonet_waveform_feasibility/.venv/bin/python -m unittest discover -s work/geonet_paired_semantic_audit -v",
+    "invented_xml_only": true,
+    "source_sha256": "a34df5acae8f36b3654ef761e3800e34bcba0791568cc345401d900ebffed60e"
+  },
+  "evidence_files": [
+    {
+      "path": "review_evidence/review_prompt.txt",
+      "sha256": "24c131625b48a68fc738d1f4c8f545812ec500e091b2464d40b74414bb2ec48c",
+      "bytes": 2169
+    },
+    {
+      "path": "review_evidence/review_v1_launch_failure.txt",
+      "sha256": "663f91695e55f51ba07fe657ad2e0e27fc6dc5e31dfed2f4bba171f3eca9f001",
+      "bytes": 417
+    },
+    {
+      "path": "review_evidence/review_v1_validation_failure.txt",
+      "sha256": "96960c75e53792ce3b3fd1b10a0890920278c9fcf73e98c9b096f68647aa29bb",
+      "bytes": 461
+    },
+    {
+      "path": "review_evidence/review_v2.json",
+      "sha256": "6cfd285553fcd22d7efaa817eb6eb26e0f1681eb06d3ebcc77a71fae9142853a",
+      "bytes": 1454
+    },
+    {
+      "path": "review_evidence/review_v2.txt",
+      "sha256": "7de177ce5818a1b34798bfa973bed8f5f387b6f7ad41969fb58bfa411804229f",
+      "bytes": 1194
+    },
+    {
+      "path": "review_evidence/review_v2_decisions.txt",
+      "sha256": "521423e9e90e02ba20e4eee697b031521b27f6d950606421f62a71a52d31a863",
+      "bytes": 801
+    },
+    {
+      "path": "review_evidence/review_v2_finding_reproduction.json",
+      "sha256": "89bc01d23ff69a23641e77c4ea467f893f03953854804a99de3b64506ad52bde",
+      "bytes": 452
+    },
+    {
+      "path": "review_evidence/review_v3.json",
+      "sha256": "5e3b3db104dcdaf1f17725649566db73ff674acbcebdf2821ba06375b75c7ade",
+      "bytes": 431
+    },
+    {
+      "path": "review_evidence/review_v3.txt",
+      "sha256": "87575ab765f169cb1ae9ad3a8a724a354a6f80faeb7d7c2abfb38c63c2368c58",
+      "bytes": 399
+    },
+    {
+      "path": "review_evidence/source_runtime_v1.json",
+      "sha256": "7271729689069fca81751be6db75521fa85d67de45fcc4409ef015e81e880600",
+      "bytes": 1341
+    },
+    {
+      "path": "review_evidence/source_runtime_v2.json",
+      "sha256": "76cc90b69b2e9c4941febf1719031f797b4e4fb60c20d57da96bee5879fda763",
+      "bytes": 1782
+    },
+    {
+      "path": "review_evidence/tests_v1.txt",
+      "sha256": "6d0f733da068f6a855132ef42071380ac1dff25a6bbe5d745b205d8b267bbb73",
+      "bytes": 12238
+    },
+    {
+      "path": "review_evidence/tests_v2.txt",
+      "sha256": "e3da63db75a4fe6ea9cfe6d12542fa0b249902c1b0e72f0b52f8feb38cb6a1c5",
+      "bytes": 12563
+    },
+    {
+      "path": "review_evidence/tests_v3.txt",
+      "sha256": "2281d71b146378f690e8e1adda673253ef9afcfa521964a0282db09157044e76",
+      "bytes": 13109
+    }
+  ],
+  "public_allowlist": [
+    "semantic_audit.py",
+    "test_semantic_audit.py",
+    "README.md",
+    "public_contract_pins.json",
+    "review_evidence/review_prompt.txt",
+    "review_evidence/review_v1_launch_failure.txt",
+    "review_evidence/review_v1_validation_failure.txt",
+    "review_evidence/review_v2.json",
+    "review_evidence/review_v2.txt",
+    "review_evidence/review_v2_decisions.txt",
+    "review_evidence/review_v2_finding_reproduction.json",
+    "review_evidence/review_v3.json",
+    "review_evidence/review_v3.txt",
+    "review_evidence/source_runtime_v1.json",
+    "review_evidence/source_runtime_v2.json",
+    "review_evidence/tests_v1.txt",
+    "review_evidence/tests_v2.txt",
+    "review_evidence/tests_v3.txt",
+    "freeze_manifest.json"
+  ],
+  "always_false_claims": [
+    "physical_pick_validity_verified",
+    "operational_receipt_timing_verified",
+    "atomic_database_revision_verified",
+    "converter_bug_proved",
+    "automatic_reclock_applied",
+    "model_improvement_verified"
+  ],
+  "supported_versions": [
+    "QML1.2",
+    "SCML0.13",
+    "SCML0.14"
+  ],
+  "interfaces": {
+    "project": "project(body: bytes, requested_event_id: str, format: qml|scml) -> dict",
+    "compare": "compare(left: project result, right: project result) -> dict"
+  },
+  "exclusions": [
+    ".review_snapshot",
+    ".git",
+    "__pycache__",
+    "local_runs",
+    "actual XML/IDs/metadata/projections/rosters/receipts",
+    "waveforms",
+    "AWS",
+    "fits",
+    "credentials"
+  ],
+  "handoff_required": "This agent has not read actual metadata; later explicit pinned parent handoff is required.",
+  "manifest_self_hash": "Not recursively included; parent should hash exact saved manifest bytes."
+}

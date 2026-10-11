@@ -1,0 +1,23 @@
+autoreview findings: 5
+[P1] Reject timeout, cap, and unknown attempt statuses
+auditor.py:246
+Only three statuses are rejected. An otherwise valid ledger entry with status `timeout`, `cap_exceeded`, or no status passes verification, even when the manifest claims completion. The protocol explicitly treats timeouts and cap interruptions as incomplete. Validate an explicit set of completed terminal statuses and reject interruption or unknown states before allowing replay.
+
+[P2] Isolate timestamp errors to relevant channel epochs
+auditor.py:304
+All epoch timestamps are parsed before horizon filtering. Adding a channel with a valid wholly future start and an invalid endDate makes `stationxml` raise, preventing qualification of an unchanged valid earlier prefix. In `qualification_batch`, an AuditError from this path stops the entire batch. Retain timestamp errors per epoch and evaluate them only when that epoch can affect the requested prefix.
+
+[P2] Apply the eight-sample threshold to flatline candidates
+auditor.py:416
+The `flat` branch bypasses the required run length. A valid six-second prefix at 1 Hz containing six identical samples has `longest_prefix_extreme_run == 6`, but is still marked a clipping candidate and excluded from clean-screen support. The protocol requires flatline/repeated-extreme runs of at least eight samples. Keep flatness as a diagnostic, but require the minimum contiguous run length for candidacy.
+
+[P2] Include component and alignment failures in reason accounting
+auditor.py:773
+Ordinary sample failures return component flags without a horizon-level `reason`. Consequently, gaps, overlaps, nonfinite samples, rate mismatches, edge failures, and cross-component misalignment are aggregated as `no_reason`, although they make `count_valid` false. Derive stable reason categories from these flags and alignment results so the aggregate panels preserve the required scientific failure accounting.
+
+[P2] Compare captured native evalresp warnings
+auditor.py:812
+`response_panel` retains native warnings in `native_stderr`, but this comparison checks only Python `warnings` and `error`. Two response panels differing solely in native evalresp warnings therefore produce no discrepancy. Include the captured native warning evidence in the private comparison so warning differences cannot silently pass replay.
+
+overall: patch is incorrect (0.98)
+The bundle contains actionable defects in incomplete-run rejection, causal metadata isolation, clipping qualification, failure accounting, and response-warning comparison. Review used read-only inspection; no tests, network requests, or nested reviewers were invoked. The documented pending parent orchestration and real-data replay were not treated as defects.

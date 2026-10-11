@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Apply convertOptionalID when checking reference collisions
+semantic_audit.py:298
+Collision registration uses `map_id(raw)`, but native reference projection uses `_mapped_reference(raw)`, which substitutes `NA` for empty or XML-whitespace-only text. Consequently, an empty `<pickID/>` and a literal `<pickID>NA</pickID>` project to the same identifier without triggering `native_id_mapping_collision`. For example, an empty P reference plus an S reference to `NA` scopes a unique pick with publicID `NA`; the empty P reference then resolves and is accepted, returning known denominators despite the required collision guard. Register references using their actual optional-ID conversion while retaining attribute conversion for object identities, and add an invented empty-reference/NA collision fixture.
+
+overall: patch is incorrect (0.95)
+The main eligibility, scoping, revision, and recovery logic follows the stated contract, but collision detection differs from actual native reference conversion for empty references. This can promote ambiguous evidence to a successful accepted subset. Review used static inspection only; no tests or transforms were executed.

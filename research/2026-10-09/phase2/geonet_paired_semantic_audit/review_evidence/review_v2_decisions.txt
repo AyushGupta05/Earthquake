@@ -1,0 +1,5 @@
+Accepted the sole P2 finding: Apply convertOptionalID when checking reference collisions.
+Verified before editing with invented empty P pickID plus S reference to NA and a unique native pick publicID NA. The pre-fix projection returned ok and accepted1, preserving the invented reproduction in review_v2_finding_reproduction.json.
+Fixed collision registration to distinguish optional ID reference conversion (empty=>NA) from attribute conversion, for origin, pick, amplitude and preferred-origin references.
+Added invented empty-pickID/NA, whitespace-only-pickID/NA, empty-amplitudeID/NA collision tests and an empty-reference/unscoped-NA unresolved control. All125 focused tests pass in tests_v3.txt.
+No findings rejected. No actual metadata read; no transform executed. Review engine remains Codex.

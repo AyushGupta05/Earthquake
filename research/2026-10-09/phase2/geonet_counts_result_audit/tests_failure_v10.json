@@ -1,0 +1,15 @@
+{
+  "version": "invented_fixture_edit_failure_v1",
+  "session": 99967,
+  "tests": 54,
+  "errors": 1,
+  "exit_code": 1,
+  "elapsed_seconds": 1.157,
+  "failed_test": "test_artifact_access_race_stops_fresh_and_cached_replay",
+  "error": "KeyError: 0",
+  "cause": "A preexisting pin-mutation assertion was accidentally placed at the end of the new cache-key test. Restored it to its original test and reran the full suite.",
+  "initial_tests_hash_retained": false,
+  "runner_source_unchanged_by_fixture_repair": true,
+  "source_sha256": "26de5c2f7f5bb25d5ab78c9cc55bfc81651e02ca207f956a8e2eeb092feaedd6",
+  "real_data_reads": 0
+}

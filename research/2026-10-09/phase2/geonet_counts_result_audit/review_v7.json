@@ -1,0 +1,40 @@
+{
+  "findings": [
+    {
+      "title": "Preserve the native rational rate before strict-right cropping",
+      "body": "Converting a rounded floating rate into an exact decimal fraction can include a sample exactly at the deadline. For a miniSEED factor/multiplier rate of 100/3 Hz, the floating value is 33.333333333333336. With start=0 and deadline=6*NS, this calculation makes stop=ceil(200.000000000000016)=201, including sample index 200 whose native time is exactly 6 seconds. A nonfinite or extreme boundary sample can consequently change an earlier horizon's qualification. Preserve the original rational rate or sample period through decoding and use it consistently for cropping and alignment.",
+      "priority": "P1",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 406
+      }
+    },
+    {
+      "title": "Propagate ResourceStop from header validation",
+      "body": "The generic exception handler catches ResourceStop raised by backend.headers() or backend.declared(), because ResourceStop inherits from RuntimeError. It records that interruption as a header error; decode() subsequently raises ValueError, and qualification_batch converts it into unresolved_engineering while continuing the replay. This violates the documented requirement that resource interruptions stop replay incomplete. Add an explicit ResourceStop propagation branch before recording ordinary header failures.",
+      "priority": "P2",
+      "confidence": 1.0,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 554
+      }
+    },
+    {
+      "title": "Validate timezone offset components before datetime normalization",
+      "body": "The regex permits offset minutes from 00 through 99, and datetime.fromisoformat normalizes overflowing offset minutes rather than rejecting them. For example, +00:60 is interpreted as +01:00. A malformed StationXML epoch timestamp therefore receives a usable bound instead of a timestamp_errors entry and can pass epoch qualification. Validate the offset component ranges explicitly before conversion so invalid timestamps remain per-epoch failures.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 87
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The implementation preserves denominators and separates optional response evidence, but strict-right cropping can admit deadline samples, header handling can hide resource interruptions, and timestamp parsing accepts malformed offsets. These defects affect the stated qualification and incomplete-replay guarantees. Review was read-only; tests were not run.",
+  "overall_confidence": 0.96
+}

@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "Reject out-of-range orientation metadata",
+      "body": "The tolerance check accepts a selected vertical channel with Dip=100 because its distance from 90 is exactly 10. That exceeds StationXML's valid dip range of [-90, 90], yet an otherwise valid waveform can still become count_valid. Horizontal azimuths outside [0, 360] are likewise accepted through modular arithmetic. Validate the selected channels' declared orientation ranges before applying the triplet tolerances.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 393
+      }
+    },
+    {
+      "title": "Compare the exact rational sample periods",
+      "body": "prefix_component emits sample_period_ns_numerator and sample_period_ns_denominator, and aligned uses them to establish the native lattice, but neither field appears in component_keys. Consequently, changing or removing only a producer component's sample period produces no discrepancy. Matching sample counts, first timestamps and sample_rate_matches booleans does not establish clock agreement. Compare the exact rational periods, retaining missing-versus-present differences.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 1033
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Selected orientation validation can admit invalid metadata, and semantic replay comparison omits the rational sample clock used for qualification. These are actionable scientific-validation defects. Review was read-only; no tests or actual-data replay were run.",
+  "overall_confidence": 0.96
+}

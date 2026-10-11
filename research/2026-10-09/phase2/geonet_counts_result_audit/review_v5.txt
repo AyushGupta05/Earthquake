@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P2] [P2] Retain wrong-root channel responses as target failures
+auditor.py:314
+A bounded, pinned HTTP-200 body containing well-formed XML with a different root, such as `<html/>`, raises AuditError here. qualification_batch explicitly rethrows AuditError, so this ordinary metadata-parser failure aborts the entire replay instead of retaining the affected target's failure and continuing with independent targets. Syntactically malformed XML already follows the ordinary-failure path. Distinguish invalid retrieved metadata from provenance, bounds, and resource interruptions.
+
+[P2] [P2] Include header, decoder, and parser accounting in aggregates
+auditor.py:900
+qualification_batch records waveform_header_status, waveform_decoder_status, and channel_parser_status, but this aggregation loop omits all three. Their failures otherwise collapse into unresolved_engineering, while raw reason counters are deliberately excluded from public summaries. Consequently, the public aggregate cannot distinguish successful retrieval followed by header, decoding, or channel-parsing failure as required by the replay checklist. Publish stable counters for these stages, with explicit failed states where appropriate.
+
+[P2] [P2] Reject requests recorded after the completed launch ended
+auditor.py:283
+The launch-duration check only verifies that outer_elapsed_seconds is within 7200 seconds; it never checks that every request ended before that duration. For example, a request starting at 100 seconds with elapsed_seconds=1 passes alongside outer_elapsed_seconds=5, assuming the other pins match. Those records cannot describe a completed parent/child launch sharing the stated clock. Require the recorded launch duration to encompass every attempt's start plus elapsed time before accepting completion.
+
+overall: patch is incorrect (0.96)
+The bundle has actionable defects in metadata-failure isolation, public failure-stage accounting, and completed-launch clock validation. Review was read-only; no tests, network requests, or nested reviewers were run.
