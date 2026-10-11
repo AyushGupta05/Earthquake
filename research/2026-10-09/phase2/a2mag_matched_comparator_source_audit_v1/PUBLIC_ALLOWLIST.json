@@ -1,0 +1,21 @@
+{
+  "schema": "a2mag-curated-public-allowlist-v1",
+  "directory": "work/a2mag_matched_comparator_source_audit_v1",
+  "paths": [
+    "AUDIT.md",
+    "HANDOFF.md",
+    "SOURCE_PINS.json",
+    "SOURCE_REQUEST_LEDGER.json",
+    "PUBLIC_ALLOWLIST.json",
+    "MANIFEST.json",
+    "SHA256SUMS.txt"
+  ],
+  "closed": true,
+  "scope": "Authored source audit, public identifiers and metadata only",
+  "excluded": [
+    "All existing outputs and cached third-party inputs",
+    "Raw HTML/PDF/DOCX/code and private temporary source bytes",
+    "Actual data, metadata, plans, receipts, credentials and account identifiers",
+    "All prior frozen auditor/collector directories and shared Git"
+  ]
+}

@@ -1,0 +1,28 @@
+2026-10-11T05:41:45.710314Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:41:45.710330Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:41:45.716611Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 81085 chars
+codex thread: 01a1297b-4068-7f90-8ec6-a2d3f6907ced
+codex turn started
+2026-10-11T05:41:46.028059Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:41:46.028069Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the supplied source and allowed runtime metadata for actionable defects, without running tests or reading waveform inputs.
+codex activity: 19 hidden tool/status events
+codex activity: 7 hidden tool/status events
+The fixed-window crops and public aggregate appear consistent with the protocol. I’m checking the decoder’s runtime behavior and failure paths for gating or resource defects.
+codex activity: 17 hidden tool/status events
+codex activity: 5 hidden tool/status events
+{"findings":[{"title":"[P2] Disable site startup until the runtime inventory is verified","body":"Launching with `-I -B` still processes site-packages `.pth` files before the child reaches its start gate or `verify_runtime()`. The documented runtime contains `distutils-precedence.pth`, which imports `_distutils_hack` during startup. Consequently, changes to either file execute before their pinned hashes are checked. A narrow invented reproduction is a temporary venv containing a `.pth` import line that writes an `INVENTED` marker to stderr: the marker appears even with no start-gate byte and an invalid authorization. Rejecting the inventory afterward cannot undo arbitrary code execution or private-file reads. Start with site initialization disabled, then expose the scientific package directory only after authorization and inventory verification.","priority":"P2","confidence":0.99,"category":"security","code_location":{"file_path":"supervisor.py","line":117}}],"overall_correctness":"patch is incorrect","overall_explanation":"The runtime launch executes unverified site-packages startup code before the authorization gate, undermining the declared runtime pinning and read boundary. Source and allowed dependency files were inspected; no tests were run.","overall_confidence":0.96}
+codex usage: input_tokens=381695 cached_input_tokens=333312 output_tokens=3885 reasoning_output_tokens=2299
+autoreview findings: 1
+[P2] [P2] Disable site startup until the runtime inventory is verified
+supervisor.py:117
+Launching with `-I -B` still processes site-packages `.pth` files before the child reaches its start gate or `verify_runtime()`. The documented runtime contains `distutils-precedence.pth`, which imports `_distutils_hack` during startup. Consequently, changes to either file execute before their pinned hashes are checked. A narrow invented reproduction is a temporary venv containing a `.pth` import line that writes an `INVENTED` marker to stderr: the marker appears even with no start-gate byte and an invalid authorization. Rejecting the inventory afterward cannot undo arbitrary code execution or private-file reads. Start with site initialization disabled, then expose the scientific package directory only after authorization and inventory verification.
+
+overall: patch is incorrect (0.96)
+The runtime launch executes unverified site-packages startup code before the authorization gate, undermining the declared runtime pinning and read boundary. Source and allowed dependency files were inspected; no tests were run.

@@ -1,0 +1,28 @@
+2026-10-11T05:38:29.128402Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:38:29.128418Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:38:29.134666Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 81085 chars
+codex thread: 01a12978-4082-7ee1-9eb7-274e4a11a3c6
+codex turn started
+2026-10-11T05:38:29.596978Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T05:38:29.596989Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the source, invented tests, and pinned dependency metadata for concrete defects.
+codex activity: 9 hidden tool/status events
+codex activity: 11 hidden tool/status events
+The core digest matches the prescribed value. I’m checking dependency behavior at the process-start and decoder boundaries for paths that could run before validation or bypass the declared limits.
+codex activity: 14 hidden tool/status events
+The launch uses `-I -B`, which still executes site-packages `.pth` imports before the start gate and inventory check. The pinned runtime contains such a file. I’m assessing whether the remaining concerns affect the actual pinned child.
+{"findings":[{"title":"P1: Disable site startup until the runtime inventory is verified","body":"`-I -B` still enables Python's site initialization, including executable `.pth` lines and `sitecustomize`, before the child reaches its start gate or `verify_runtime()`. The documented inventory contains `distutils-precedence.pth`, which imports `_distutils_hack` during startup, so installed code executes before its digest is checked. A narrow invented reproduction is a disposable runtime fixture with a `.pth` line `import os; os.write(1, b'PTH_SENTINEL\\n')`: the sentinel executes even with the start gate withheld and unchanged expected inventory hashes. Subsequent inventory rejection cannot undo filesystem or network actions performed by that startup code. Launch with site startup disabled and enable the required package paths only after the gate and inventory verification, without executing unverified startup hooks.","priority":"P1","confidence":0.99,"category":"security","code_location":{"file_path":"supervisor.py","line":117}}],"overall_correctness":"patch is incorrect","overall_explanation":"The runtime pinning boundary permits installed startup code to execute before authorization and inventory verification. The prescribed core digest matches. Review was read-only; tests were not run, as requested.","overall_confidence":0.98}
+codex usage: input_tokens=334783 cached_input_tokens=285568 output_tokens=3920 reasoning_output_tokens=2665
+autoreview findings: 1
+[P1] P1: Disable site startup until the runtime inventory is verified
+supervisor.py:117
+`-I -B` still enables Python's site initialization, including executable `.pth` lines and `sitecustomize`, before the child reaches its start gate or `verify_runtime()`. The documented inventory contains `distutils-precedence.pth`, which imports `_distutils_hack` during startup, so installed code executes before its digest is checked. A narrow invented reproduction is a disposable runtime fixture with a `.pth` line `import os; os.write(1, b'PTH_SENTINEL\n')`: the sentinel executes even with the start gate withheld and unchanged expected inventory hashes. Subsequent inventory rejection cannot undo filesystem or network actions performed by that startup code. Launch with site startup disabled and enable the required package paths only after the gate and inventory verification, without executing unverified startup hooks.
+
+overall: patch is incorrect (0.98)
+The runtime pinning boundary permits installed startup code to execute before authorization and inventory verification. The prescribed core digest matches. Review was read-only; tests were not run, as requested.

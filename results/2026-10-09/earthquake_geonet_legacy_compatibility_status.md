@@ -1,32 +1,38 @@
-# GeoNet legacy compatibility — complete scoped diagnostic, 11 October 2026
+# GeoNet legacy metadata diagnostic — complete, 11 October 2026
 
-JointV3 completed with CLI0, a complete independently checked receipt and confirmed-stopped process group in0.761174s. Its9,490,133-byte private result exceeds V2's8MiBcap; that is consistent with a size-bound explanation, without directly proving V2's exact exception condition. No new request, body, event, source implementation or clock binding was substituted. All18fixed cached body pins and six original clock references were verified. Parent independently recomputes the public aggregate.
+The fixed six-event diagnostic now completes with the same eighteen cached metadata bodies and unchanged original reference clocks. The independent auditor supports all eighteen representations. Its accepted-subset clocks agree with the producer in every comparable slot.
 
-The independent auditor supports all18representations across the same six diagnostic events. Producer/independent known-clock comparison has0mismatches. Native metadata's accepted subset gives an earlier clock than the preserved original in3/6events; original/fresh QML does not. All18decoded clocks have scoped status `ok`. These are representation/pick-set diagnostics, not operational availability, universal semantic equality or physical first-station proof. Original clocks and all old unknown/failed outcomes remain preserved; no automatic reclocking or model fitting.
+| Check | Result |
+|---|---:|
+| Events / representations | 6 / 18 |
+| Supported independent projections | 18 |
+| Producer–independent known-clock disagreements | 0 |
+| Native subsets with earlier clocks than the original | 3 events |
+| Earlier original/fresh QML subset clocks | 0 |
+| New requests / model fits / clock shifts | 0 / 0 / 0 |
 
-The single jointV1 invocation failed closed with no complete scientific output. Its CLI returned1 with `child_failed` after0.745544seconds; the child process group is confirmed stopped. All three private artifacts and their preservation receipt remain pinned. Generic V1 diagnostics do not reveal the failed stage or XML cause. That historical V1 failure established no compatibility recovery or earthquake accuracy result.
+The three native differences are pick-set and representation diagnostics. They do not establish operational availability, a physical first-station clock, universal semantic equality or magnitude accuracy. All original clocks and earlier unknowns remain preserved. Neither projection is treated as ground truth merely because both implementations agree.
 
-A separate source-only diagnostic completed nine invented six-event cohorts against the real frozen producer and independent auditor, including one fresh supervised child. It verified all120 dependency members and did not reproduce the actual failure. A nonfatal null-original-T0 comparison-shape mismatch was found. It cannot explain the actual exit: all six actual original clocks are nonnull. All136 V1 manifest members remained unchanged.
+Joint V3 returned CLI 0 in 0.761174 seconds, with a complete receipt, verified result hash and confirmed-stopped process group. Parent verification independently recomputes the aggregate and checks every cached body pin and all six original clock bindings. Its private result is 9,490,133 bytes, above V2's 8 MiB cap. That observation is consistent with a size-bound explanation; it does not directly prove the exact exception condition in the earlier V2 invocation.
 
-A separate jointV2 corrects that verified null case and adds bounded failure-stage diagnostics containing only fixed stage names, body index/count and generic exception classes. It has reached first-clean default Codex review1 and49 invented tests; all49 parent tests pass and every reviewed/source-manifest member matches; pushed in f1e3955. V1 processing source and incomplete actual evidence stay frozen. The separate gated V2 invocation subsequently failed closed during serialization: ValueError,18 validated body slots, zero complete outputs. All three private artifacts and the stopped process group are preserved. Validation count does not mean scientifically accepted picks; the exact serialization condition remains unknown.
+The V3 source was pushed in `5edbe99` before its separate private gate; the verified aggregate milestone is `898aad6`. V3 passed 60 parent invented tests and reached first-clean default Codex review on attempt 3. Both output caps are explicitly 32 MiB, including newline; the whole invocation limit remains 120 seconds. All 120 scientific dependency members and four processing implementation pins are unchanged.
 
-| Component | Preserved verification | Status |
+| Preserved version | Evidence | Current use |
 |---|---|---|
-| Legacy producerV1 | First-clean Codex review5;102 parent invented tests | Barred after a separate verified comment/PI whitespace-boundary limitation; preserved unchanged. |
-| Legacy producerV2 | First-clean review6;129 parent invented tests | Pushed in941fe8b; unchanged scientific dependency. |
-| Independent semantic auditorV2 | First-clean review6;262 parent invented tests | Unguarded use barred after a separate invented inherited-xml:space counterexample; preserved unchanged. |
-| Independent semantic auditorV3 | First-clean attempt2;274 parent invented tests | Pushed in941fe8b; unchanged scientific dependency. |
-| Joint adapterV1 | First-clean review6;40 parent invented tests | Pushed in a5bb212; actual invocation incomplete. |
-| Joint adapterV2 | First-clean review1;49 agent invented tests | Separate version; pushed in f1e3955 after49 parent tests. |
+| Producer V1 | Clean review 5; 102 parent tests | Barred by the separately verified comment/PI boundary limitation; retained. |
+| Producer V2 | Clean review 6; 129 parent tests | Unchanged dependency, pushed in `941fe8b`. |
+| Semantic auditor V2 | Clean review 6; 262 parent tests | Unguarded use barred by the inherited `xml:space` counterexample; retained. |
+| Semantic auditor V3 | Clean review 2; 274 parent tests | Unchanged independent dependency, pushed in `941fe8b`. |
+| Joint V1 | Clean review 6; 40 parent tests | Incomplete invocation and three private artifacts retained. |
+| Joint V2 | Clean review 1; 49 parent tests | Serialization failure after 18 file/hash validations; three artifacts retained. |
+| Joint V3 | Clean review 3; 60 parent tests | Complete scoped diagnostic; no model or operational claim. |
 
-The diagnostic remains limited to the same six events and eighteen cached metadata bodies, zero new requests and unchanged original clocks. Original eighteen-slot results and unknowns are retained. The bounded invocation uses a fresh interpreter,4MiB per body,96MiB total input,8MiB output and a120-second parent deadline. Producer guarded counters cover all networks; the independent auditor's guarded counters cover NZ. Policy differences remain explicit. Metadata representation or shared-clock correspondence would not prove operational pick availability, physical validity, magnitude accuracy or a converter defect.
+The producer's guarded counters cover all networks; the independent auditor's guarded counters cover NZ. Revision-time, boolean and geometry policies remain explicit. This distinction prevents agreement in the accepted NZ subset from becoming a broader converter or database claim.
 
-The separate [archive test](earthquake_archive_transport_source_audit.md) returned four NoSuchKey errors; it produced no usable waveform and leaves the failed96 acquisition incomplete.
+Nine earlier invented cohorts did not reproduce V1's generic failure. A nonfatal null-anchor shape mismatch was corrected separately in V2; all six actual original clocks were nonnull, so it cannot explain that actual failure. The V2 publication omission involved three generic producer companion files that were already present in its reviewed/tested runtime bundle. Their later public supplement leaves every frozen V2 processing/test/review/manifest byte unchanged.
 
-The next model comparator remains conditional: compatible-Mw real-event transfer with target bulk replay and matched ordinary-target, target-tail-exposure and ordinary-donor controls at1/3/5seconds. Labels, independent sequence isolation, usable waveforms and adequate tail calibration remain unverified. Established transfer practice alone is not a novelty claim; no new fit has been launched.
+The separate [configured archive diagnostic](earthquake_archive_transport_source_audit.md) now transfers four fixed TRAIN/DEV objects, while its earlier four NoSuchKey errors and the incomplete 96-event screen remain unchanged. Offline waveform identity and prefix qualification are still separate.
 
-Paid work remains paused until fresh eligible-credit coverage and AWS resource controls can be verified after sign-in. All unique Chile results are preserved. The owned worker is unreachable after its early graceful poweroff request; final EC2 stopped-state verification needs authenticated API access.
+The next model comparison remains conditional: compatible-Mw real-event transfer with target bulk replay and matched ordinary-target, target-tail-exposure and ordinary-donor controls at 1, 3 and 5 seconds. Calibrated waveforms, independent sequence isolation and adequate independent tail support remain unverified. No new fit has been launched.
 
-The actual V2 stage evidence rules out an earlier body-file/hash validation stop in this invocation. It does not establish why serialization failed, validate private semantic counters or earn a compatibility/model result. No automatic retry was performed; V3 separately preregisters its cap change and does not infer that size caused V2 failure.
-
-A separate public packaging supplement adds three already-reviewed, already-public generic producer companion files omitted by the V2 top curation list. All120 members were present in the tested local source and actual dependency gate. Processing/test/review/frozen-manifest bytes remain unchanged; the omission did not cause the serialization failure. JointV3 is separately first clean on default Codex review3 with60passing parent invented tests, precise serializer diagnostics and explicit32MiB caps including newline. All120dependency copies and140V2manifest members are verified unchanged. V3 source was pushed in5edbe99 before its new private gate and completed invocation.
+Paid work remains paused until fresh eligible-credit coverage and AWS resource controls can be verified after sign-in. The owned worker is unreachable after its early graceful poweroff request; authenticated API confirmation is pending. Unique results and unrelated resources remain preserved.

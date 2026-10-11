@@ -1,0 +1,15 @@
+{
+  "accepted": [
+    {
+      "title": "Validate four ordered diagnostics and safe aggregate before completion",
+      "fix": "Exact ordered slots/windows/provenance and count-only false-flag aggregate gate; recomputed counts; unknown failed structural diagnostics retained",
+      "regression": "test_incomplete_or_public_leaking_result_never_published"
+    },
+    {
+      "title": "Validate every body path before body reads",
+      "fix": "Canonical absolute planned paths checked for every slot during authorization gate; FD checks retained at open",
+      "regression": "test_bad_fourth_path_fails_before_any_body_read"
+    }
+  ],
+  "rejected": []
+}

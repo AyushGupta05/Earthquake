@@ -1,0 +1,11 @@
+{
+  "accepted": [
+    {
+      "title": "Disable site startup before scientific inventory verification",
+      "verified_source_evidence": "Installed distutils-precedence.pth executes an import line; invented disposable venv regression proves old flag startup and new -S exclusion",
+      "fix": "-I -B -S child launch; explicit verified package root added only after runtime hash checks",
+      "regression": "test_site_startup_disabled_before_child_gate"
+    }
+  ],
+  "rejected": []
+}

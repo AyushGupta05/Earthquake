@@ -1,0 +1,29 @@
+{
+  "schema": "source-request-ledger-v1",
+  "window_begin_utc": "2026-10-11 05:38:44 UTC",
+  "last_source_request_completed_by_utc": "2026-10-11 05:44:57 UTC",
+  "count_basis": "Submitted query items and explicit primary open attempts; internal web-tool HTTP traffic is unavailable. Repeated PDF line opens and the direct DOCX request are conservatively counted.",
+  "budget": {"targeted_queries_max": 6, "primary_opens_max": 10},
+  "actual": {"targeted_queries": 5, "primary_opens": 7, "pdf_find_items": 6, "pdf_screenshot_attempts": 1},
+  "queries": [
+    {"n": 1, "query": "A2MAG \"00242\" code github supplementary 2026", "result": "Official publisher article found; unrelated numeric matches ignored"},
+    {"n": 2, "query": "\"18050454\" A2MAG code", "result": "No relevant code resource established; unrelated numeric matches ignored"},
+    {"n": 3, "query": "\"A2MAG\" \"Zhang\" github", "result": "Official publisher article; no official repository established"},
+    {"n": 4, "query": "\"18050454\" \"magnitude\" \"Zenodo\"", "domains": ["zenodo.org"], "result": "No relevant indexed primary resource established"},
+    {"n": 5, "query": "\"A2MAG\" earthquake code", "domains": ["github.com", "zenodo.org"], "result": "No relevant official repository established; unrelated source result ignored and not opened"}
+  ],
+  "primary_opens": [
+    {"n": 1, "url": "https://www.nature.com/articles/s44304-026-00242-3", "tool": "web.open", "result": "Internal Error", "view": "turn720view0"},
+    {"n": 2, "url": "https://www.nature.com/articles/s44304-026-00242-3_reference.pdf", "tool": "web.open", "result": "37-page PDF text accessible", "view": "turn721view0"},
+    {"n": 3, "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs44304-026-00242-3/MediaObjects/44304_2026_242_MOESM1_ESM.docx", "tool": "web.open", "result": "Internal Error", "view": "turn721view1"},
+    {"n": 4, "url": "https://www.nature.com/articles/s44304-026-00242-3_reference.pdf", "tool": "web.open", "line": 548, "result": "Architecture/input/label/code-availability text accessible", "view": "turn723view0"},
+    {"n": 5, "url": "https://doi.org/10.5281/zenodo.18050454", "tool": "web.open", "result": "Internal Error", "view": "turn723view1"},
+    {"n": 6, "url": "https://zenodo.org/records/18050454", "tool": "web.open", "result": "Internal Error", "view": "turn724view0"},
+    {"n": 7, "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs44304-026-00242-3/MediaObjects/44304_2026_242_MOESM1_ESM.docx", "tool": "curl", "request_bounds": {"max_seconds": 30, "max_bytes": 4194304, "protocol": "https", "follow_redirects": false}, "exit_code": 28, "result": "Timeout after 30002 milliseconds; zero bytes received; document contents unavailable"}
+  ],
+  "pdf_find_patterns": ["Methods", "Data availability", "Code availability", "transformer", "500", "github"],
+  "pdf_screenshot": {"zero_based_page": 25, "result": "Internal Error", "view": "turn724view1"},
+  "scope": {"actual_data_reads": false, "author_code_download": false, "author_code_execution": false, "authors_contacted": false, "aws_or_account_requests": false, "installs": false, "shared_git_changes": false},
+  "stop_reason": "Official methods establish a conditional clock adaptation; supplement/code retrieval and exact implementation details remain unresolved. No forced success or broad query loop.",
+  "documentation_runtime": {"python": "3.14.5", "flags": ["-I", "-B"], "purpose": "Local allowlisted byte hashing and authored metadata assembly only", "browser_tool": "web.run; version unavailable"}
+}
