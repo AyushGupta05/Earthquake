@@ -74,3 +74,6 @@ This is a separate literal-family observation requirement with unchanged origina
 
 
 12 October next waveform screen: the completed primary-source route advisory supports a separately frozen native POST transport protocol for the same 65 TRAIN/DEV selections (41/24), excluding all 31 TEST inputs. Seventeen consecutive batches contain at most four original prefix? selections in the unchanged [t0-3s,t0+5s] windows. All four metadata-unknown cases remain requested and counted. New collector and independent receipt-auditor source is being implemented and reviewed; no new acquisition, decode or fit has occurred. Fresh eligible AWS credit coverage and task-owned stopped/shutdown-STOP control are verified; no paid restart is justified by funds alone.
+
+
+12October prospective format correction before acquisition: official GeoNet/FDSN documentation specifies miniseed, while the original frozen POST V1proposal used an unverified mseed alias. V1 remains preserved/published with zero actual acquisitions. New frozen V2proposal uses format=miniseed, preserving all65selections, clocks,17batches, caps and unknown annotations. V2neutral read-only preparation/cache check is separate; source drafts are realigning before their first-clean review/freeze. No alias probe, service request, decode, fit or cloud restart occurred.
