@@ -1,0 +1,9 @@
+# Independent saved-score replay API
+
+Import auditor only after parent external cgroup/runtime/input custody checks. audit(result,manifest,histories=None) performs no IO, fitting, checkpoint/native-array replay or data queries. It independently scores saved5Gaussian parameters with SciPy logsumexp/ndtr and validates complete fixed6fit/commonDEV accounting before accepting metrics. See frozen SCHEMA.md for exact strict keys/tolerances/rate/group/advance conventions.
+
+A pass with advanceFalse is valid and must remain a negative activity result. Returnstatusfail never promotes a stored advance or partial computation. The public generic reasons have no actual event/station IDs, clocks, filenames or data. Detailed recomputed result is private. Root binds its actual manifest/result bytes and histories separately, preserves every original65/195unknown/status, and independently replays checkpoint/native-array truth outside this auditor.
+
+Same author previously implemented the producer; this is an independently implemented numerical score path using different SciPy primitives and no producer module imports, not a claim of blinded author independence. It shares NumPy and the saved input custody with the producer. Bootstrap seed/groups/categorical-support semantics intentionally match the frozen prospective protocol. No external empirical science or novelty claims.
+
+Invented focused command: work/geonet_waveform_feasibility/.venv/bin/python -I -B -m unittest discover -s work/earthquake_native_count_score_audit_v1 -p 'test_*.py' -v.12tests passed in7.158s; standard-normal closedforms and a separately integrated mixtureCDF check validate CRPS/NLL/mean, while strict fixtures detect altered labels/rates/denominators/histories/metrics/advance. No actual fit/result read. Parent reruns compatible Linux tests before actual replay if needed; source tests do not establish production runtime custody.
