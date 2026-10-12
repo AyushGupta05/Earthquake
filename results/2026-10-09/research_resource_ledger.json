@@ -147,6 +147,18 @@
     "status": "source_frozen578a537_then_single_acquisition_incomplete_timeout_no_retry",
     "synthetic_tests": 52
   },
+  "geonet_native_POST_V2_outcome": {
+    "actual_invocations": 1,
+    "advertised_samples": 227658,
+    "complete_independent_transport_batches": 17,
+    "fixed_rows": 65,
+    "header_records": 1054,
+    "headers_supported_batches": 17,
+    "public_outcome": "geonet_POST_transport_outcome_20261012.json",
+    "retained_bytes": 539648,
+    "training_performed": false,
+    "waveform_rows_qualified": false
+  },
   "latest_credit_check": {
     "authorized_ceiling_usd": 2000,
     "checked_utc": "2026-10-12T19:16:16.512633+00:00",
@@ -285,15 +297,23 @@
       "type": "gp3"
     }
   ],
+  "prefix_decode_runtime_preparation": {
+    "V1_failed_old_pip_report_option": true,
+    "existing_project_runtime_changed": false,
+    "separate_V2_install_running": true,
+    "synthetic32MiB_effective_memory_limit_and_swap0_oom_verified": true,
+    "task_owned_Chile_API_stopped": true,
+    "whole_install_deadline_s": 600
+  },
   "prelaunch_budget_envelope": {
-    "checked_utc": "2026-10-12T18:39:12.440281+00:00",
+    "checked_utc": "2026-10-12T20:03:45.413389+00:00",
     "chile_worker_resource_allowance_usd": 85,
-    "conservative_total_usd": 318,
+    "conservative_total_usd": 335,
     "current_derived_chile_all_uptime_compute_upper_usd": 71.532301,
-    "current_derived_original_worker_plus_grid_upper_usd": 199.779559,
-    "limitation": "318USD conservative envelope, not settled task attribution. Fresh eligible credit coverage and scoped current EC2 stopped/control proof restored12October. Owned worker remains stopped; no new paid job or restart. Every next run requires a frozen scientific experiment, current quota, read-only mount/checkpoint and verified new stop deadline before training.",
+    "current_derived_original_worker_plus_grid_upper_usd": 201.197173,
+    "limitation": "335USD conservative envelope, not settled attribution. Eligible credits freshly verified12October; own Chile worker scoped API still stopped. CPU containment/runtime preparation only on existing host, no new EC2/GPU restart. Next training needs frozen protocol, source review, read-only inputs, current resource proof and automatic stop.",
     "misc_task_margin_usd": 20,
-    "original_worker_entire_uptime_plus_both_grid_caps_usd": 205,
+    "original_worker_entire_uptime_plus_both_grid_caps_usd": 222,
     "research_volume_full_month_allowance_usd": 8
   },
   "price_refresh": {
