@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "Read-only inspection found no actionable defects under the stated external custody and qualification guarantees. Decoder selection remains restricted to eligible original-common TRAIN rows; frozen reconstruction verifies raw, native-sample and view hashes. Scalar extraction preserves original half-open pick/deadline windows, shared pre-T0 noise, literal tie order and censoring, while retaining all 65 rows and 195 statuses without shrinking the common TRAIN cohort. Tests were inspected but not executed, as requested.",
+  "overall_confidence": 0.9
+}
