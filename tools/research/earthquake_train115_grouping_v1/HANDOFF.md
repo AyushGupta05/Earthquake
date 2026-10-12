@@ -1,0 +1,11 @@
+# Fixed115 grouping source frozen
+
+First default Codex autoreview1 exited0 clean/no findings, confidence.93;21 invented tests pass. Reviewed5 members exactlymatch isolated stage. No source edits/redundant review after FIRST CLEAN. All processing laterchanges require newversion. No actual origin/label/wave/request/receipt/private read or fit/cloud action occurred.
+
+Pure API grouping.group_events(rows), graph_audit.audit(rows,result), grouping.public_summary(result). Exact schema SCHEMA.md.115 original slots0..114, first65 old41TRAIN24DEV, last50TRAIN, total91/24; root projects exact original65 and fixednew50 preferred-origin times/coordinates before NEW waveform values. Boolean/float clocks or missing/invalid/out-of-range/nonfinite geometry remain unknown, not knownsingletons. Structuralrow/order/type/partition/extra-label fields reject. Sameinclusive30d200km/haversine radius6371/minslottransitivegroup rule. NewTRAIN canbridgeoriginalTRAIN/DEV; allmembersmixedsplits ineligible and full115retained. Maximum6555pairs. No physical independence/original metadata truth or fit authority.
+
+Independent graph_audit has no grouping import, independent validator and setgraph traversal, identical literal binary64 distance convention; compares exact typed output/edges/groups/memberstatuses/falseclaims. Root still separately verifies original projection/source/runtime/pins/readonly outputs and recomputes actual metadata graph externally. Audit agreement is documentary arithmetic, not authenticity or physics.
+
+Parent: fresh isolated Python process with sourcefolder sys.path; inputJSON<=131072, outputprivate<=1MiB/public<=64KiB/stderr128KiB, worker120s/outer150s and ownlive1GiB/swap0/32Tasks/stop5/control-group/stoppedgroup proof. Positivepublishsource/testruntime closure before separateactual gate; original65source/result remains unchanged. Current code has no CLI/readers/cloud/labels. Packet positivewhitelist only; no actual/private artifacts. Parent Linux inventedtests remain separate before actual.
+
+Review command: autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file <isolated-code-only-context> --output REVIEW_OUTPUT_v1.txt --json-output REVIEW_RESULT_v1.json.
