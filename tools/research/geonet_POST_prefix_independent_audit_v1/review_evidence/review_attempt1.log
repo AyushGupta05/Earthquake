@@ -1,0 +1,33 @@
+2026-10-12T20:22:34.238646Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-12T20:22:34.238667Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-12T20:22:34.246547Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:22:34.249808Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:22:34.251890Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:22:34.254197Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:22:34.256421Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:22:34.258643Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 123855 chars
+codex thread: 01a131c8-03f2-7aa1-853c-6961c8eb7724
+codex turn started
+2026-10-12T20:22:34.748746Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-12T20:22:34.748755Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the auditor source against the frozen contracts without running code or tests.
+codex activity: 2 hidden tool/status events
+{"findings":[{"title":"Preserve unexpected native RuntimeError as a fatal replay failure","body":"The broad exception handler converts every exception from obspy.read other than MemoryError into Reject, which is a ValueError. Consequently, an unexpected RuntimeError from the actual native adapter is caught by replay as ordinary batch decode_unknown, allowing complete process accounting and promotion of other batches. REVIEW_CONTEXT.md explicitly requires unexpected RuntimeError to produce whole incomplete accounting and zero scientific promotion. Restrict conversion to declared decoder errors and allow unexpected runtime failures to propagate to replay's fatal handler.","priority":"P1","confidence":0.99,"category":"bug","code_location":{"file_path":"native_decode.py","line":25}},{"title":"Validate producer top-level scalar syntax before fresh decoding","body":"The pre-replay validation checks top-level keys, claims and disposition, but never validates schema, study or reason. A pinned producer object with schema:null, an incorrect study, or reason containing an arbitrary object therefore invokes the bounded reader and native decoder before ultimately returning disagreement. API.md requires producer top-level field/claim syntax to be checked before any reader or decoder call, and rejected inputs to raise ValueError before decoder use. Validate the fixed schema/study strings and complete reason='supported' before calling replay.","priority":"P2","confidence":0.97,"category":"bug","code_location":{"file_path":"auditor.py","line":30}}],"overall_correctness":"patch is incorrect","overall_explanation":"The source largely implements the required independent routing, rational crops, hashes and fixed accounting, but its native exception conversion can preserve scientific promotion after an unexpected runtime failure. Producer input validation also fails the documented pre-decode rejection contract. Review was limited to read-only source inspection; no code or tests were executed.","overall_confidence":0.98}
+codex usage: input_tokens=104099 cached_input_tokens=50944 output_tokens=587 reasoning_output_tokens=143
+autoreview findings: 2
+[P1] Preserve unexpected native RuntimeError as a fatal replay failure
+native_decode.py:25
+The broad exception handler converts every exception from obspy.read other than MemoryError into Reject, which is a ValueError. Consequently, an unexpected RuntimeError from the actual native adapter is caught by replay as ordinary batch decode_unknown, allowing complete process accounting and promotion of other batches. REVIEW_CONTEXT.md explicitly requires unexpected RuntimeError to produce whole incomplete accounting and zero scientific promotion. Restrict conversion to declared decoder errors and allow unexpected runtime failures to propagate to replay's fatal handler.
+
+[P2] Validate producer top-level scalar syntax before fresh decoding
+auditor.py:30
+The pre-replay validation checks top-level keys, claims and disposition, but never validates schema, study or reason. A pinned producer object with schema:null, an incorrect study, or reason containing an arbitrary object therefore invokes the bounded reader and native decoder before ultimately returning disagreement. API.md requires producer top-level field/claim syntax to be checked before any reader or decoder call, and rejected inputs to raise ValueError before decoder use. Validate the fixed schema/study strings and complete reason='supported' before calling replay.
+
+overall: patch is incorrect (0.98)
+The source largely implements the required independent routing, rational crops, hashes and fixed accounting, but its native exception conversion can preserve scientific promotion after an unexpected runtime failure. Producer input validation also fails the documented pre-decode rejection contract. Review was limited to read-only source inspection; no code or tests were executed.

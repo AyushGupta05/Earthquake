@@ -1,0 +1,42 @@
+{
+  "packet": "earthquake_activity_persistence_preflight_v1",
+  "status": "frozen first-clean source-only stage0/1",
+  "public_members": [
+    "HANDOFF.md",
+    "MANIFEST.json",
+    "PUBLIC_ALLOWLIST.txt",
+    "README.md",
+    "SCHEMA.md",
+    "SHA256SUMS.txt",
+    "TEST_HISTORY.md",
+    "activity.py",
+    "autoreview_v1_retry.json",
+    "autoreview_v1_retry.txt",
+    "autoreview_v2.json",
+    "autoreview_v2.txt",
+    "grouping.py",
+    "review_prompt.txt",
+    "review_receipt.json",
+    "review_resolution_v1.md",
+    "review_stage_v1.json",
+    "review_stage_v2.json",
+    "test_activity.py",
+    "tests_v1.txt",
+    "tests_v2.txt"
+  ],
+  "reviewed_core": {
+    "activity.py": "aec23566833c9278a3a96538ea5ede1b32e8962bf3107ff1d31c5dc823739521",
+    "grouping.py": "1737372ae31db3a5e363b475c6afc212cd6be42f1b1704933968848a55dda360",
+    "test_activity.py": "48c7b8050d200ce6414e431763c3dbc211135212b27313a2b7e1903409e94add",
+    "SCHEMA.md": "509abe21aaf427fe7622150869882f2925ec46a8385fd1ca7e4adbdef5b6187e",
+    "README.md": "02e5b122066774e657caba85e0655eee4d878cd53acd6a029ebd7735bad40515"
+  },
+  "root_activity_proposal_sha256": "8d025c18547a749f301805881f3b2f138439588c3b4895761e3dfb83959238d9",
+  "root_grouping_proposal_sha256": "b69632b79647f43967785cef2cea367cd3b89658abbf2acdc57b37f7a70abe69",
+  "candidate_protocol_sha256": "989c6e5f13e3589adad58b13d378630f03d0d66932ba8e5c04b916e225d3d61a",
+  "tests": 32,
+  "clean_review": "autoreview_v2",
+  "actual_invocations": 0,
+  "scope": "Own source/invented tests/public protocols/review evidence only; no private actualinputs, provider code, credentials, data, predictions/fits/resources or shared task Git changes.",
+  "checksums": "Every allowlisted member except SHA256SUMS.txt is checksum-bound; checksum file self excluded."
+}

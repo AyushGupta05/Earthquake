@@ -1,0 +1,23 @@
+{
+  "findings": [
+    {
+      "accepted": true,
+      "fix": "propagate scanner sample_cap/output_cap through _Fatal",
+      "priority": "P1",
+      "title": "Treat scanner sample-budget exhaustion as a fatal qualification failure",
+      "verification": "scanner sample_cap is a source budget failure; root requires whole incomplete with zero promotion"
+    },
+    {
+      "accepted": true,
+      "fix": "post-record and pre/post-result elapsed checks with zero promotion",
+      "priority": "P2",
+      "title": "Check the deadline after processing the final record",
+      "verification": "pre-record check cannot bound final vendor/hash/crop or final serialization work"
+    }
+  ],
+  "helper_exit_code": 1,
+  "model_review": 1,
+  "overall_correctness": "patch is incorrect",
+  "source_contract_changed": false,
+  "structured_result_validation": "absolute code location path rejected by helper; findings preserved from returned review output"
+}

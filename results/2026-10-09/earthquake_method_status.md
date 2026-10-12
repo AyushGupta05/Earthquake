@@ -75,3 +75,6 @@ JointV2 diagnostic source is pushed in f1e3955 after49parent tests and first-cle
 
 
 12 October next waveform screen: the completed primary-source route advisory supports a separately frozen native POST transport protocol for the same 65 TRAIN/DEV selections (41/24), excluding all 31 TEST inputs. Seventeen consecutive batches contain at most four original prefix? selections in the unchanged [t0-3s,t0+5s] windows. All four metadata-unknown cases remain requested and counted. New collector and independent receipt-auditor source is being implemented and reviewed; no new acquisition, decode or fit has occurred. Fresh eligible AWS credit coverage and task-owned stopped/shutdown-STOP control are verified; no paid restart is justified by funds alone.
+
+
+12October next candidate: observed receiver-activity renewal likelihood, with exact disjoint activity blocks, nonabsorbing quiet states and right-censored exposure. The duration/survival ingredients are established prior art. Producer/auditor and TRAIN-only preflight implementations are reviewed and source-tested; no real prefix qualification, activity result or fit is asserted at this milestone. A useful new operator requires matched fullprefix/direct-feature/memoryless-hazard competition and larger independent evidence.

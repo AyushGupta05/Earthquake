@@ -1,0 +1,17 @@
+# Frozen V1 schema clarification
+
+This supplements SCHEMA.md SHA256 220ffd9a146602e9ff8056faf887257ae947c3fda3f89aad18509cd70deef775 without changing its keys, timing, hash or rate conventions. Root proposal remains normative.
+
+Top-level complete reason is `supported`, even when one or more original batches are classified unknown/nonpositive. Fatal incomplete reason is `runtime_failure`, `sample_cap`, `output_cap` or `wall_timeout`. Invalid strict plan/body input raises ValueError before callback use; it does not fabricate authority or a bound original projection. The external parent retains65/195 placeholders when invocation/schema authority fails.
+
+An ordinary unknown batch retains its full structurally enumerated `record_count` and advertised sum if available (otherwise0), and the sum of actually reconciled observed counts before the unknown. The top-level records list retains only complete interpreted/reconciled record descriptors reached before that batch failure, including zero-count records; a fully reconciled unexpected identity may be retained with `routed_rows:[]`. These are partial descriptive evidence, never cell promotion. Unvisited records are not falsely described as decoded. A decoded batch's cells may be evaluated; an unknown/nonpositive batch's cells are all unknown. No retry, resume or partial batch promotion.
+
+Fatal incomplete keeps reached record/batch evidence descriptively; unvisited batch entries are `unknown/decode_unknown` with0 counts. Every original65/195 cell is rebuilt unknown, regardless of reached decoded batches, and all joint/component success counts are0. Its component placeholders include frozen nominal codes and any reached scoped literals, but have no promoted pieces. No completed-cohort claim exists.
+
+Unknown component: count0, pieces[], and null rate/first/last/finite/metadata_rate_match/minimum/maximum/flat/extreme_run/view_sha256. Known family required codes never observed use `missing_component`; observed scoped literals with no cropped samples use `no_samples_in_window`; batch-veto and nonpositive use `batch_unknown` / `transport_nonpositive`. These outcomes do not prove waveform absence.
+
+Component failure priority with pieces: `nonfinite`, `mixed_rate`, `edge`, `gap_overlap`, `phase`; otherwise supported. Every piece remains in the failed component's private output. Count/digest and finite status are still descriptive; rate is null for mixed rates. Minimum/maximum/flat/extreme_run are null when any cropped value is nonfinite. Metadata match is null unless there is one rational component rate and a frozen expected rate for that literal.
+
+Joint priority: unknown metadata always `unknown/metadata_unknown`, rate null, channels[]. A known family's channels are its ordered frozen E,N,Z or1,2,Z full codes. If any required component is unknown, joint is `unknown/component_unknown` even if another component is incomplete. Otherwise any incomplete component gives `incomplete/component_incomplete`; only then check common rate and first-phase (`incomplete/joint_rate` or `incomplete/joint_phase`). Complete joint is `complete/supported`. Rate is null unless all required complete components share one rate.
+
+All result rational scalars are exact reduced integer pairs. Public aggregate carries no record/view/body hashes or private timing/identity. Its fixed denominator is retained for complete and incomplete outcomes alike. This clarification freezes before producer/auditor reviews.

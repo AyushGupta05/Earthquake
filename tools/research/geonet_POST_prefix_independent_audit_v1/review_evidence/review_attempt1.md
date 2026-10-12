@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P1] Preserve unexpected native RuntimeError as a fatal replay failure
+native_decode.py:25
+The broad exception handler converts every exception from obspy.read other than MemoryError into Reject, which is a ValueError. Consequently, an unexpected RuntimeError from the actual native adapter is caught by replay as ordinary batch decode_unknown, allowing complete process accounting and promotion of other batches. REVIEW_CONTEXT.md explicitly requires unexpected RuntimeError to produce whole incomplete accounting and zero scientific promotion. Restrict conversion to declared decoder errors and allow unexpected runtime failures to propagate to replay's fatal handler.
+
+[P2] Validate producer top-level scalar syntax before fresh decoding
+auditor.py:30
+The pre-replay validation checks top-level keys, claims and disposition, but never validates schema, study or reason. A pinned producer object with schema:null, an incorrect study, or reason containing an arbitrary object therefore invokes the bounded reader and native decoder before ultimately returning disagreement. API.md requires producer top-level field/claim syntax to be checked before any reader or decoder call, and rejected inputs to raise ValueError before decoder use. Validate the fixed schema/study strings and complete reason='supported' before calling replay.
+
+overall: patch is incorrect (0.98)
+The source largely implements the required independent routing, rational crops, hashes and fixed accounting, but its native exception conversion can preserve scientific promotion after an unexpected runtime failure. Producer input validation also fails the documented pre-decode rejection contract. Review was limited to read-only source inspection; no code or tests were executed.

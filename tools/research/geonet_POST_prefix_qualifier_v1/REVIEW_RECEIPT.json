@@ -1,0 +1,86 @@
+{
+  "accepted_previous_findings": 2,
+  "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode commit --commit HEAD --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file REVIEW_CONTEXT.md --output REVIEW_OUTPUT.txt --json-output REVIEW_RESULT.json --stream-engine-output",
+  "current_source_matches_clean_snapshot": true,
+  "engine": "codex",
+  "findings": [],
+  "first_clean_review": 2,
+  "freeze_on_first_clean": true,
+  "helper_exit_code": 0,
+  "isolated_commit": "0731a3e133c42ef30313e08c6c70b67ac144d8f6",
+  "model_override": false,
+  "overall_confidence": 0.87,
+  "overall_correctness": "patch is correct",
+  "processing_edits_or_further_reviews_after_first_clean": false,
+  "rejected_findings": 0,
+  "reviewed_files": [
+    {
+      "bytes": 23163,
+      "path": "producer.py",
+      "sha256": "a1e8ef420d61a51b27a61f15fd9032aa19ee4aacede9442e678beb2ff4aa28ce"
+    },
+    {
+      "bytes": 6362,
+      "path": "offline_decoder.py",
+      "sha256": "c61b2180f66e6622db99721e35faad4b0e096a516c2709175289dacdd8eb95a0"
+    },
+    {
+      "bytes": 8040,
+      "path": "scanner.py",
+      "sha256": "daa1e6853b1442a9ac7ce3d04fad6ea240b2622fe7e7012709f0a172c357a69b"
+    },
+    {
+      "bytes": 16641,
+      "path": "test_producer.py",
+      "sha256": "9b67ac974fd102462af7b6da0f9b320f3d7f07f20c4d9c96c79a30cfb8634224"
+    },
+    {
+      "bytes": 5772,
+      "path": "PROPOSAL.md",
+      "sha256": "bfa6e8684fb44579ee93192a41bf68ddcff1f228041a727b256183200a57c313"
+    },
+    {
+      "bytes": 10039,
+      "path": "SCHEMA.md",
+      "sha256": "220ffd9a146602e9ff8056faf887257ae947c3fda3f89aad18509cd70deef775"
+    },
+    {
+      "bytes": 3475,
+      "path": "SCHEMA_ADDENDUM.md",
+      "sha256": "3a6e449ff72c331d160ba7655f0296cb8b3b9e9b07a7d0b58bacdc6c5ba40bb4"
+    },
+    {
+      "bytes": 3806,
+      "path": "PROTOCOL.md",
+      "sha256": "c57405a4fcbb72852369afdb0eb005fdd5610c5bc0ad6b5db8e613213540a2b8"
+    },
+    {
+      "bytes": 777,
+      "path": "PUBLIC_PINS.json",
+      "sha256": "ec2c65fb1a07228a3525e730e999f8fd06aaa4f8d44002d76b19609050e65c83"
+    },
+    {
+      "bytes": 3207,
+      "path": "TEST_RECEIPT_v2.txt",
+      "sha256": "03f871a1fc40a0373e2776ce8ace7d54f980fd8cd5acd2553249bebcc77c556c"
+    },
+    {
+      "bytes": 722,
+      "path": "TEST_RECEIPT_v2.json",
+      "sha256": "ebaf44656787eaa0f9fd671c3b166cfb4d53cefd47102692f8c7fa67d19f71e8"
+    },
+    {
+      "bytes": 1581,
+      "path": "REVIEW_CONTEXT.md",
+      "sha256": "d0af462dc3028f1846a829df70581423ba29b6e4b918e49bd2f3a99df6c5421b"
+    },
+    {
+      "bytes": 948,
+      "path": "REVIEW_V1_FINDINGS.json",
+      "sha256": "0245f77837b0ea81a042a25970a43e28f9f449a952fa2982323555544d9dfad1"
+    }
+  ],
+  "shared_git_used": false,
+  "vendor_source_or_actual_inputs_supplied": false,
+  "web_search": false
+}

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] P2: Validate cumulative horizon lengths and prefixes before counting eligibility
+activity.py:306
+`summarize` validates each available sequence independently, accepting any nonempty sequence of up to 20 cells at every horizon. It therefore accepts results that `extract_event` cannot produce: a 1s horizon with 20 cells, a 5s horizon containing only two cells, or earlier ratios that disagree with the corresponding prefix of later horizons. A two-cell `[16, 1]` sequence can count as an observed off transition, and a short active sequence can count as an episode censored at 5s, falsely passing the variation gate without the required complete observation window. Validate the possible cell counts (1–4, 9–12, 17–20, with increments of eight), cumulative ratio prefixes, and shared noise estimates across available horizons before treating the event as all-horizon eligible.
+
+overall: patch is incorrect (0.94)
+The extractor and metadata grouping largely follow the supplied protocols, but the cohort validator accepts impossible or inconsistent horizon sequences and can consequently promote incomplete observations into a passing TRAIN variation gate. This assessment used read-only source inspection; tests were not run.
