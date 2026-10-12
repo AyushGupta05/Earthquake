@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P1] Bound decimal exponents before converting sample rates to Fraction
+qualifier.py:93
+A bounded XML document can contain three matching positive SampleRate values such as `1e1000000000`. The copied numeric parser accepts these as finite positive Decimals, so the family qualifies and this conversion constructs an enormous integer power of ten. This can exhaust the qualifier's memory or deadline despite the document/node caps; smaller exponents can also make final JSON serialization raise because the resulting integer exceeds Python's digit limit. An unsupported metadata value therefore aborts qualification of all 50 rows instead of remaining unknown. Validate the rate's decimal syntax and bound its exponent and resulting rational size before conversion, retaining unsupported rates as unknown.
+
+overall: patch is incorrect (0.96)
+The transport and qualification composition contains an unbounded numeric expansion at the XML trust boundary. Small admitted metadata bodies can cause excessive resource consumption or abort the entire qualifier, contrary to its bounded parsing and unknown-outcome contract. Inspection was read-only; no tests or provider requests were run.

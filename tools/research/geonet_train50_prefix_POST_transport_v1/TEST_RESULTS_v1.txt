@@ -1,0 +1,466 @@
+test_actual_authority_fixtures_assertions_and_pins (test_collector.InputTests) ... ok
+test_all_order_types_partitions_annotations_reject (test_collector.InputTests) ... ok
+test_changed_controls_immutable_plan_and_no_actual_hook (test_collector.InputTests) ... ok
+test_chunk_evidence_delimiters_trailers_caps_and_payload_association (test_collector.InputTests) ... ok
+test_exact_header_framing_nobody_parser_contract (test_collector.InputTests) ... ok
+test_fixed50_train13_final2_blank_exact_negative_ns (test_collector.InputTests) ... ok
+test_hostile_objects_reject_before_comparison (test_collector.InputTests) ... ok
+test_json_duplicates_nonfinite_extra_and_byte_cap (test_collector.InputTests) ... ok
+test_ns_endpoints_identity_and_entity_whitespace_reconstruction (test_collector.InputTests) ... ok
+test_13_binary_posts_exact_entities_groups_and_closed_manifest (test_collector.TransportTests) ... ERROR
+test_204_error_redirect_empty_account_all_qualify0 (test_collector.TransportTests) ... test_absent_trusted_controller_summary_charges_registered_allowances (test_collector.TransportTests) ... ERROR
+test_existing_symlink_output_no_fallback (test_collector.TransportTests) ... ok
+test_final_receipt_failure_preserves_fail_closed_result (test_collector.TransportTests) ... ERROR
+test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests) ... test_launch_cutoff_never_implies_unseen_incomplete_attempt (test_collector.TransportTests) ... ok
+test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests) ... test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests) ... test_receipt_replacement_closed_names_and_public_privacy (test_collector.TransportTests) ... ERROR
+test_spacing_and_group_failure_whole_veto (test_collector.TransportTests) ... ERROR
+test_stalled_launch_retains_failure_and_never_releases_request (test_collector.TransportTests) ... ERROR
+
+======================================================================
+ERROR: test_13_binary_posts_exact_entities_groups_and_closed_manifest (test_collector.TransportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 128, in test_13_binary_posts_exact_entities_groups_and_closed_manifest
+    with server(body=b'\x00\xffbinary') as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_204_error_redirect_empty_account_all_qualify0 (test_collector.TransportTests) (status=204)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 137, in test_204_error_redirect_empty_account_all_qualify0
+    with self.subTest(status=status),server(status=status,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_204_error_redirect_empty_account_all_qualify0 (test_collector.TransportTests) (status=404)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 137, in test_204_error_redirect_empty_account_all_qualify0
+    with self.subTest(status=status),server(status=status,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_204_error_redirect_empty_account_all_qualify0 (test_collector.TransportTests) (status=302)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 137, in test_204_error_redirect_empty_account_all_qualify0
+    with self.subTest(status=status),server(status=status,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_204_error_redirect_empty_account_all_qualify0 (test_collector.TransportTests) (status=200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 137, in test_204_error_redirect_empty_account_all_qualify0
+    with self.subTest(status=status),server(status=status,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_absent_trusted_controller_summary_charges_registered_allowances (test_collector.TransportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 158, in test_absent_trusted_controller_summary_charges_registered_allowances
+    with server() as (endpoint,requests),patch.object(c,'read_regular',side_effect=rejected):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_final_receipt_failure_preserves_fail_closed_result (test_collector.TransportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 196, in test_final_receipt_failure_preserves_fail_closed_result
+    with server() as (endpoint,requests),patch.object(c,'finalize_receipt',side_effect=failed):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests) (mode='fixed', size=64)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 145, in test_fixed_chunked_eof_exactcap_and_one_probe_overflow
+    with self.subTest(mode=mode,size=len(body)),server(mode=mode,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests) (mode='chunked', size=64)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 145, in test_fixed_chunked_eof_exactcap_and_one_probe_overflow
+    with self.subTest(mode=mode,size=len(body)),server(mode=mode,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests) (mode='eof', size=64)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 145, in test_fixed_chunked_eof_exactcap_and_one_probe_overflow
+    with self.subTest(mode=mode,size=len(body)),server(mode=mode,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests) (mode='eof', size=65)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 145, in test_fixed_chunked_eof_exactcap_and_one_probe_overflow
+    with self.subTest(mode=mode,size=len(body)),server(mode=mode,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests) (mode='large', size=64)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 145, in test_fixed_chunked_eof_exactcap_and_one_probe_overflow
+    with self.subTest(mode=mode,size=len(body)),server(mode=mode,body=body) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests) (kwargs={'mode': 'chunk_unclosed'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 151, in test_malformed_terminal_chunks_and_informational_final_halt
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests) (kwargs={'mode': 'chunk_delimiter'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 151, in test_malformed_terminal_chunks_and_informational_final_halt
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests) (kwargs={'mode': 'chunk_trailer'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 151, in test_malformed_terminal_chunks_and_informational_final_halt
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests) (kwargs={'mode': 'eof', 'status': 101, 'body': b''})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 151, in test_malformed_terminal_chunks_and_informational_final_halt
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests) (kwargs={'mode': 'eof', 'status': 103, 'body': b''})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 151, in test_malformed_terminal_chunks_and_informational_final_halt
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests) (kwargs={'mode': 'partial'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 141, in test_partial_deadline_bad_framing_halt_all13_promote0
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests) (kwargs={'mode': 'chunk_bad'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 141, in test_partial_deadline_bad_framing_halt_all13_promote0
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests) (kwargs={'duplicate': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 141, in test_partial_deadline_bad_framing_halt_all13_promote0
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests) (kwargs={'header_value': 'bad'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 141, in test_partial_deadline_bad_framing_halt_all13_promote0
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests) (kwargs={'delay': 1.5})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 141, in test_partial_deadline_bad_framing_halt_all13_promote0
+    with self.subTest(kwargs=kwargs),server(**kwargs) as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_receipt_replacement_closed_names_and_public_privacy (test_collector.TransportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 179, in test_receipt_replacement_closed_names_and_public_privacy
+    for token in ('INVENTED','event_id','t0_ns','worker_group','sha256','body_path'):self.assertNotIn(token,json.dumps(c.public({},False)))
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/collector.py", line 402, in public
+    fields(counts,('queryable_rows','no_target_rows','metadata_unknown_rows','nominal_ENZ_rows','nominal_12Z_rows','no_selection_batches'))
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/collector.py", line 20, in fields
+    if type(obj) is not dict or any(type(k) is not str for k in obj) or set(obj)!=set(names):raise ValueError('field schema')
+ValueError: field schema
+
+======================================================================
+ERROR: test_spacing_and_group_failure_whole_veto (test_collector.TransportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 181, in test_spacing_and_group_failure_whole_veto
+    with server() as (endpoint,requests):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_stalled_launch_retains_failure_and_never_releases_request (test_collector.TransportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 189, in test_stalled_launch_retains_failure_and_never_releases_request
+    with server() as (endpoint,requests),patch.object(c,'spawn',side_effect=stalled):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 54, in server
+    httpd=ThreadingHTTPServer(('127.0.0.1',0),Handler);httpd.daemon_threads=True;thread=threading.Thread(target=httpd.serve_forever,daemon=True);thread.start()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/http/server.py", line 141, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+PermissionError: [Errno 1] Operation not permitted
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.489s
+
+FAILED (errors=25)

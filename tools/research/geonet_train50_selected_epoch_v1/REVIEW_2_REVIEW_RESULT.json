@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "The change bounds numerator and denominator representation sizes before Fraction conversion, removes trailing zeros exactly without Decimal context rounding, and applies the same admission helper to candidate selection and nominal-rate serialization. Rejected rates retain their raw descriptors and leave other rows available. No actionable defects were found in the provided change. Tests were inspected but not run, as requested.",
+  "overall_confidence": 0.94
+}

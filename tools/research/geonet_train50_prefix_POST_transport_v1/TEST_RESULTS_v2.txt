@@ -1,0 +1,59 @@
+test_actual_authority_fixtures_assertions_and_pins (test_collector.InputTests.test_actual_authority_fixtures_assertions_and_pins) ... ok
+test_all_order_types_partitions_annotations_reject (test_collector.InputTests.test_all_order_types_partitions_annotations_reject) ... ok
+test_changed_controls_immutable_plan_and_no_actual_hook (test_collector.InputTests.test_changed_controls_immutable_plan_and_no_actual_hook) ... ok
+test_chunk_evidence_delimiters_trailers_caps_and_payload_association (test_collector.InputTests.test_chunk_evidence_delimiters_trailers_caps_and_payload_association) ... ok
+test_exact_header_framing_nobody_parser_contract (test_collector.InputTests.test_exact_header_framing_nobody_parser_contract) ... ok
+test_fixed50_train13_final2_blank_exact_negative_ns (test_collector.InputTests.test_fixed50_train13_final2_blank_exact_negative_ns) ... ok
+test_hostile_objects_reject_before_comparison (test_collector.InputTests.test_hostile_objects_reject_before_comparison) ... ok
+test_json_duplicates_nonfinite_extra_and_byte_cap (test_collector.InputTests.test_json_duplicates_nonfinite_extra_and_byte_cap) ... ok
+test_ns_endpoints_identity_and_entity_whitespace_reconstruction (test_collector.InputTests.test_ns_endpoints_identity_and_entity_whitespace_reconstruction) ... ok
+test_all_no_targets_have_no_requests_but_fifty_slots (test_collector.ProfileTests.test_all_no_targets_have_no_requests_but_fifty_slots) ... ok
+test_long_station_literal_not_truncated (test_collector.ProfileTests.test_long_station_literal_not_truncated) ... ok
+test_no_selection_cannot_emit_format_only_request (test_collector.ProfileTests.test_no_selection_cannot_emit_format_only_request) ... ok
+test_no_selection_gap_registration_and_final2_absent (test_collector.ProfileTests.test_no_selection_gap_registration_and_final2_absent) ... ok
+test_no_target_null_unknown_family_and_unsorted_roster (test_collector.ProfileTests.test_no_target_null_unknown_family_and_unsorted_roster) ... ok
+test_old_profile_not_accepted (test_collector.ProfileTests.test_old_profile_not_accepted) ... ok
+test_partial_halt_still_retains_no_selection_logical_blocks (test_collector.ProfileTests.test_partial_halt_still_retains_no_selection_logical_blocks) ... ok
+test_unknown_controller_counts_include_no_selection (test_collector.ProfileTests.test_unknown_controller_counts_include_no_selection) ... ok
+test_unknown_family_queryable_is_never_suppressed (test_collector.ProfileTests.test_unknown_family_queryable_is_never_suppressed) ... ok
+test_13_binary_posts_exact_entities_groups_and_closed_manifest (test_collector.TransportTests.test_13_binary_posts_exact_entities_groups_and_closed_manifest) ... FAIL
+test_204_error_redirect_empty_account_all_qualify0 (test_collector.TransportTests.test_204_error_redirect_empty_account_all_qualify0) ... ok
+test_absent_trusted_controller_summary_charges_registered_allowances (test_collector.TransportTests.test_absent_trusted_controller_summary_charges_registered_allowances) ... ok
+test_existing_symlink_output_no_fallback (test_collector.TransportTests.test_existing_symlink_output_no_fallback) ... ok
+test_final_receipt_failure_preserves_fail_closed_result (test_collector.TransportTests.test_final_receipt_failure_preserves_fail_closed_result) ... ok
+test_fixed_chunked_eof_exactcap_and_one_probe_overflow (test_collector.TransportTests.test_fixed_chunked_eof_exactcap_and_one_probe_overflow) ... ok
+test_launch_cutoff_never_implies_unseen_incomplete_attempt (test_collector.TransportTests.test_launch_cutoff_never_implies_unseen_incomplete_attempt) ... ok
+test_malformed_terminal_chunks_and_informational_final_halt (test_collector.TransportTests.test_malformed_terminal_chunks_and_informational_final_halt) ... ok
+test_partial_deadline_bad_framing_halt_all13_promote0 (test_collector.TransportTests.test_partial_deadline_bad_framing_halt_all13_promote0) ... ok
+test_receipt_replacement_closed_names_and_public_privacy (test_collector.TransportTests.test_receipt_replacement_closed_names_and_public_privacy) ... ERROR
+test_spacing_and_group_failure_whole_veto (test_collector.TransportTests.test_spacing_and_group_failure_whole_veto) ... ok
+test_stalled_launch_retains_failure_and_never_releases_request (test_collector.TransportTests.test_stalled_launch_retains_failure_and_never_releases_request) ... ok
+
+======================================================================
+ERROR: test_receipt_replacement_closed_names_and_public_privacy (test_collector.TransportTests.test_receipt_replacement_closed_names_and_public_privacy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 237, in test_receipt_replacement_closed_names_and_public_privacy
+    for token in ('INVENTED','event_id','t0_ns','worker_group','sha256','body_path'):self.assertNotIn(token,json.dumps(c.public({},False)))
+                                                                                                                       ~~~~~~~~^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/collector.py", line 402, in public
+    fields(counts,('queryable_rows','no_target_rows','metadata_unknown_rows','nominal_ENZ_rows','nominal_12Z_rows','no_selection_batches'))
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/collector.py", line 20, in fields
+    if type(obj) is not dict or any(type(k) is not str for k in obj) or set(obj)!=set(names):raise ValueError('field schema')
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: field schema
+
+======================================================================
+FAIL: test_13_binary_posts_exact_entities_groups_and_closed_manifest (test_collector.TransportTests.test_13_binary_posts_exact_entities_groups_and_closed_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_prefix_POST_transport_v1/test_collector.py", line 188, in test_13_binary_posts_exact_entities_groups_and_closed_manifest
+    manifest=json.loads((root/'manifest.private.json').read_bytes());self.assertEqual(len(manifest['members']),73)
+                                                                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 57 != 73
+
+----------------------------------------------------------------------
+Ran 30 tests in 24.725s
+
+FAILED (failures=1, errors=1)

@@ -1,0 +1,7 @@
+# Parent-only actual admission
+
+This file grants no actual authority. Parent must independently verify fresheligiblecredits/remaining$2000/conservativeledger/ownworkercontrol; exactfrozen50rankedroster/acceptedP/T0/firsttarget/31TESTexclusion/readonlyoriginal65; noexactcomplete-successcache orseparatelyfrozenNEWcacheprofile. Currentprofilefresh-only. Matchpublicsource/proposal/review/tests/manifest/publishedcommit andpinnedPython/stdlib runtime with productionAuthority. Captureprocessing_begin beforeload/import/verification, notaftersetup. Liveownnonrootcgroup1GiB/swap0/32Tasks/currentPID isnecessarybutinsufficient: proveownunit1500s/stop5/KillModecontrol-group/emptygroup/nootherresourcechanges/outputcaps/readonlycustody.
+
+Solecollect call onlyafterallgates; noretry/resume/replacement. Immediatelycloseindependentreceipt/request/body/framing/member/time/stop replay beforemetadataqualification; wholeincompletepromote0. Metadataqualifier own150s/worker120s/1GiB/swap0/32Tasks,XML128KiB/nodes4096/depth32,total6.25MiB,private16MiB/public64KiB/stderr128KiB. Readfullovercapentityonlyunderparentrawloadingcap; do nottruncateorclaimresponseabsence. Externalbody/receiptproof notautomaticbooleanauthority.
+
+This source contains no AWS/SSH/cloud/provider invocation fromthechild; fixturesonlyinvented andlocal. Existingdata/original65families/results copiedreadonly later,parentonly. FuturePOST/native115integration/science/controlfit gates are separate andunearned byGETcollector normalreturn.

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Recheck the whole deadline against the final returned timestamp
+collector.py:495
+The last whole-deadline check occurs before `returned` is sampled. If the process is descheduled between that check and the final timestamp, it can return `complete:true` and promote `qualified_batches` even though `returned_at - begin` exceeds `whole_s`. SCHEMA requires a timely normal returned result and explicitly prohibits promotion on any overbudget path. After sampling `returned`, veto completion and set the deadline reason when that timestamp exceeds the whole deadline, before constructing the returned aggregate.
+
+overall: patch is incorrect (0.92)
+The fixed fifty-row/thirteen-block composition handles no-selection blocks and actual registration ordering consistently, but the final promotion boundary has a deadline race that can report success for an overbudget returned result. Review used read-only inspection; no code or tests were executed.
