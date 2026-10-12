@@ -1,0 +1,20 @@
+2026-10-11T06:48:54.383207Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T06:48:54.383222Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T06:48:54.389249Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 123073 chars
+codex thread: 01a129b8-b969-7401-85b1-e1c4cdc8463a
+codex turn started
+2026-10-11T06:48:55.005426Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T06:48:55.005434Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the source and public context for actionable defects without running tests or reading actual inputs.
+codex activity: 10 hidden tool/status events
+The window logic retains all 36 component cells and 12 joint cells and appears to preserve V2’s Z-window behavior. I found gaps in the authority and result validators and am checking their consequences against the stated contract.
+codex activity: 10 hidden tool/status events
+{"findings":[{"title":"[P2] Validate qualified component bounds from rational primitives","body":"The validator trusts `edge_coverage=True` without checking the retained first-sample timestamp against the window. In an otherwise valid 100 Hz result, changing all three components' first-sample timestamps for h=1 to `left_ns + 1_000_000_000` still passes: the primitive types remain valid and the common lattice remains compatible. This contradicts the core's required `0 <= first-left < period`, yet the supervisor publishes the cells as available. Validate rational sample bounds and counts against the retained trace summaries before accepting component availability, rather than relying only on asserted flags.","priority":"P2","confidence":0.99,"category":"bug","code_location":{"file_path":"/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_enz_precontext3_qualification_v3/review_snapshot/supervisor.py","line":173}},{"title":"[P2] Enforce exact integer types in both limits mappings","body":"Python dictionary equality treats integer and float values as equal, so a pinned plan containing `limits.objects: 12.0` or `limits.object_bytes: 67108864.0` passes this check. The authorization check uses the same comparison and also accepts those substitutions. Consequently, malformed plan/authorization limits can authorize body reads despite the required exact-integer schema. Check the exact key set and require `type(value) is int` for every limit in both documents before comparing values.","priority":"P2","confidence":1.0,"category":"bug","code_location":{"file_path":"/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_enz_precontext3_qualification_v3/review_snapshot/child_harness.py","line":152}}],"overall_correctness":"patch is incorrect","overall_explanation":"The immutable core, runtime inventory, proposal and V2 reference hashes match, and the qualification logic retains the required cells. However, the authority gate accepts float substitutions in limits, and the supervisor accepts qualified component timestamps that contradict the required window bounds. Review was read-only; no tests or actual inputs were executed.","overall_confidence":0.99}
+codex usage: input_tokens=289774 cached_input_tokens=242176 output_tokens=3300 reasoning_output_tokens=2339
+finding 0 uses invalid file path: /Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_enz_precontext3_qualification_v3/review_snapshot/supervisor.py

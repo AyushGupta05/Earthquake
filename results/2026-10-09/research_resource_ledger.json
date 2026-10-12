@@ -18,6 +18,29 @@
     "surface": "existing Chrome AWS sign-in tab",
     "utc": "2026-10-11T06:39:30.863262+00:00"
   },
+  "aws_browser_recheck_20261011T1638": {
+    "AWS_API_or_credit_verification_available": false,
+    "credential_entered_or_transmitted": false,
+    "existing_user_signin_handoff_preserved": true,
+    "new_permission_question_sent": false,
+    "owned_worker_API_stopped_state_verified": false,
+    "owned_worker_previous_maximum_STOP_deadline_passed": true,
+    "paid_work_paused": true,
+    "root_signin_empty_email_visible": true,
+    "schema": "aws-browser-recheck-private-v1",
+    "surface": "existing Chrome AWS sign-in tab",
+    "utc": "2026-10-11T16:38:08.377540+00:00"
+  },
+  "aws_browser_recheck_20261012": {
+    "browser_connection_available": false,
+    "existing_sign_in_handoff_still_pending": true,
+    "fresh_credit_or_EC2_API_proof": false,
+    "new_credentials_entered": false,
+    "new_permission_question": false,
+    "paid_work_paused": true,
+    "schema": "aws-access-recheck-v1",
+    "utc": "2026-10-12T11:13:24.311010+00:00"
+  },
   "aws_cli_refresh": {
     "browser_auth_recheck_state": "blank root-user sign-in form; authentication not restored; existing handoff marked",
     "browser_auth_recheck_utc": "2026-10-11T03:48:31.400122+00:00",
@@ -265,12 +288,13 @@
     }
   ],
   "prelaunch_budget_envelope": {
-    "checked_utc": "2026-10-11T02:51:32.863435+00:00",
+    "checked_utc": "2026-10-12T11:11:06.866885+00:00",
     "chile_worker_resource_allowance_usd": 60,
-    "conservative_total_usd": 253,
-    "limitation": "Whole original-worker uptime since4Oct deliberately overcounts task exposure; current whole-uptime plus both fixed grid cap upper estimate159.746466USD, rounded upward to165USD to preserve margin. Chile allowance60USD, scratch full month8USD, miscellaneous20USD. This253USD envelope is not settled task attribution, does not authorize expansion and uses last authenticated10Oct22:45 credit coverage; fresh verification still required.",
+    "conservative_total_usd": 293,
+    "current_derived_original_worker_plus_grid_upper_usd": 192.266535,
+    "limitation": "Whole original-worker uptime deliberately overcounted through current UTC at previously verified1.006USD/hour;205USD retains margin. Chile60/scratch8/misc20 unchanged.293USD is neither settled task attribution nor fresh credit proof and authorizes no paid expansion. Paid work paused pending existing AWS sign-in and API control/eligible-credit verification.",
     "misc_task_margin_usd": 20,
-    "original_worker_entire_uptime_plus_both_grid_caps_usd": 165,
+    "original_worker_entire_uptime_plus_both_grid_caps_usd": 205,
     "research_volume_full_month_allowance_usd": 8
   },
   "price_refresh": {
@@ -2053,6 +2077,16 @@
       "parent_receipt_sha256": "388a847733bc9d8fe11b67d8337d1ef566fea6023918f5a24b50409c041d3c3f",
       "status": "documentation_only_prerequisite_audit_complete"
     },
+    "cached_channel_epoch_parent_custody_prepared": {
+      "XML_parsed": false,
+      "bytes": 23485,
+      "exact_original_requests_body_pins_and_times_verified": true,
+      "fixed_documents": 4,
+      "new_requests_or_fits": 0,
+      "preparation_sha256": "fec91d3790b15404021e327d8755a1e8e57c2a40989405199ff3d4ecca4bb6a3",
+      "readonly_copies": true,
+      "whole96_still_incomplete": true
+    },
     "causal_response_state": {
       "decision": "No learned/paid fit earned; uncertain inherited-state no-fit falsification may be justified",
       "raw_data_reads": 0
@@ -2074,6 +2108,88 @@
       "qualified_causal_Mw_donor_found": false,
       "schema": "earthquake-compatible-Mw-donor-parent-source-verification-v1",
       "utc": "2026-10-11T06:28:00.486038+00:00"
+    },
+    "geofon_Mw_donor": {
+      "actual_acquisition_or_fit": false,
+      "authored_public_members_verified": 5,
+      "checksum_entries_verified": 4,
+      "conditional_release_provenance_candidate": true,
+      "manifest_pin": {
+        "bytes": 666,
+        "sha256": "c6a3d5dfc5fc902ff6e39b446394b3bcbc6b31c7fae386dec49d1271aa53fc4a"
+      },
+      "payload_pins_verified": 3,
+      "qualified_causal_Mw_donor": false,
+      "schema": "earthquake-geofon-donor-parent-source-pins-v1",
+      "utc": "2026-10-11T23:42:59.012675+00:00"
+    },
+    "geonet_ENZ_V3_conditional_source": {
+      "actual_body_reads": 0,
+      "actual_invocations": 0,
+      "all_eight_transport_prerequisite_passed": false,
+      "all_public_members_verified": 101,
+      "checksum_entries_verified": 100,
+      "exact_eight_processing_files_verified": true,
+      "first_clean_Codex_review": 4,
+      "handoff_pin": {
+        "bytes": 4226,
+        "sha256": "e012a2ba71530bad5a5e1c3638ef78339179770bb65bb0b5ee8d4924790e431e"
+      },
+      "hashlist_pin": {
+        "bytes": 9407,
+        "sha256": "a304a10d53823a978ba7a0c9e039c935f313ef44c14e305653a94de7db64ae03"
+      },
+      "manifest_payload_members_verified": 97,
+      "new_fits_or_paid_resources": 0,
+      "parent_invented_tests": 44,
+      "parent_test_elapsed_seconds": 4.822,
+      "parent_test_exit_code": 0,
+      "parent_test_log_pin": {
+        "bytes": 6409,
+        "sha256": "1ba8ea2f885bdfeb0cf2c9d181838b45847244a38a5cb87fa595782c635b74e6"
+      },
+      "public_allowlist_pin": {
+        "bytes": 3737,
+        "sha256": "a303e423554725d42bcf662c54a023f0935839e7aa5ebc4c1a0709b026736bcf"
+      },
+      "raw_record_timing_or_segmentation_verified": false,
+      "review_receipt_pin": {
+        "bytes": 3072,
+        "sha256": "6848949e1f2912e449cf20c0fcb2cd5ccfbcea47b8d6f4bbc548b96270220c91"
+      },
+      "reviewed_source_snapshot_copies_verified": 13,
+      "schema": "geonet-ENZ-precontext3-V3-parent-source-completion-v1",
+      "source_manifest_pin": {
+        "bytes": 15047,
+        "sha256": "e33709955bb1844b9779937012fd09c6aa4b34b4f4e784ec041b0027ccb1c33b"
+      },
+      "source_readonly": true,
+      "test_proof_pin": {
+        "bytes": 3233,
+        "sha256": "2c69b67153155f1507078e1237dc90d3afea83d0dc390d2d0c70756540f054d8"
+      },
+      "utc": "2026-10-11T07:09:52.160870+00:00"
+    },
+    "geonet_cached_epoch_v1_source": {
+      "actual_invocations": 0,
+      "manifest_sha256": "1e799117e5ada7a666c36838997248543923ca31f18d755f8603aea131534f14",
+      "parent_tests": 53,
+      "review": 3,
+      "status": "first_clean_frozen_parent_verified_publication_pending"
+    },
+    "geonet_horizontal_channel_semantics_source": {
+      "actual_stationxml_reads": 0,
+      "authored_public_members_verified": 5,
+      "checksum_entries_verified": 4,
+      "manifest_pin": {
+        "bytes": 760,
+        "sha256": "78425e9e21e6deb61d45ea9949bcc7c1c3358561a390dc97fddf2f8e12b769c4"
+      },
+      "new_data_queries_or_fits": 0,
+      "payload_pins_verified": 3,
+      "schema": "geonet-horizontal-channel-semantics-parent-pins-v1",
+      "source_only": true,
+      "utc": "2026-10-11T07:14:21.094772+00:00"
     },
     "geonet_horizontal_precontext3_source_push": {
       "V4_prerequisite_still_failed": true,
@@ -2170,6 +2286,64 @@
       "transport_qualified_slots": 6,
       "utc": "2026-10-11T07:04:32.309211+00:00",
       "wrapper_merge_padding_clock_shift_or_repair_performed": false
+    },
+    "geonet_horizontal_v5_result_push": {
+      "V5_actual_invocations": 1,
+      "V5_retained_HTTP404_failures": 2,
+      "V5_transport_passes": 6,
+      "actual_private_data_exported": false,
+      "all_eight_decoder_gate_passed": false,
+      "all_published_git_bytes_verified": true,
+      "archive": {
+        "bytes": 51267,
+        "sha256": "4f4d3feec0547acb6c5bcd433e3a600e67851804301be5614adbc5bd08f82243"
+      },
+      "index_empty_after": true,
+      "new_fits_or_paid_resources": 0,
+      "previous_commit": "cadcaa2a65e0b2af6858b021010d878936e3ae72",
+      "public_mapping": {
+        "bytes": 1260,
+        "sha256": "e0fbc9743d1de14e14f82499e161fede542916e5a22c30d82725bc3de7559058"
+      },
+      "public_members": 6,
+      "public_total_bytes": 166637,
+      "pushed_commit": "8afa397c5a75919215d69a2849ae3a5009358801",
+      "remote_main_verified": true,
+      "schema": "eew-horizontal-V5-result-push-receipt-v1",
+      "unrelated_content_and_modes_verified": true,
+      "unrelated_dirty_members_preserved": 51,
+      "utc": "2026-10-11T07:06:55.054119+00:00"
+    },
+    "geonet_next_cached_only_diagnostics": {
+      "actual_invocations": 0,
+      "cached_channel_epoch_V1": "source preparation, proposal0705ffa3edd1e31d4e4f802b52598a1f008646775b0771bc3a00e6333292769b",
+      "requests_or_fits": 0,
+      "retained_failure_V4": "source preparation, proposal cf29847b2c7529b6f12de8365a06c734d11fceff5b5bf51a1500134e6cd93b60"
+    },
+    "geonet_retained_failure_design": {
+      "actual_requests_reads_or_fits": 0,
+      "advisory_design_only": true,
+      "authored_safe_members_verified": 10,
+      "checksum_entries_verified": 9,
+      "manifest_payload_members_verified": 8,
+      "manifest_pin": {
+        "bytes": 1342,
+        "sha256": "ff997e3b827d055a39b073ee349bc3a0488a3f9d6bba8fc54a35a7d2a5a61e45"
+      },
+      "normative_root_proposal_pin": {
+        "bytes": 5734,
+        "sha256": "cf29847b2c7529b6f12de8365a06c734d11fceff5b5bf51a1500134e6cd93b60"
+      },
+      "prior_parent_manifest_schema_assertion_corrected_before_writes": true,
+      "schema": "geonet-retained-failure-design-parent-verification-v1",
+      "utc": "2026-10-11T16:37:00.807896+00:00"
+    },
+    "geonet_retained_failure_v4_source": {
+      "actual_invocations": 0,
+      "manifest_sha256": "e5e5cab8364aa2c49d5b414975936668e3d17742ba02e7c655c0bee6585eb17c",
+      "parent_tests": 54,
+      "review": 2,
+      "status": "first_clean_frozen_parent_verified_publication_pending"
     },
     "history_prior": {
       "actual_history_reads": 0,
@@ -2844,5 +3018,5 @@
       "target": "PGV/CWA intensity, not magnitude"
     }
   },
-  "updated_utc": "2026-10-11T07:04:32.309211+00:00"
+  "updated_utc": "2026-10-12T11:13:24.311010+00:00"
 }

@@ -1,0 +1,81 @@
+{
+  "accepted_scope": "decoded returned-trace qualification; no wrapper merge and no raw-record timing/segmentation verification",
+  "actual_data": false,
+  "initial_failure": {
+    "bytes": 6086,
+    "failures": 1,
+    "output": "tests_v1.txt",
+    "reason": "Invented5ms boundary at100Hz was coalesced by ObsPy into one returned trace; expected raw-piece rejection was not a decoded-trace invariant",
+    "sha256": "1868874d534af20a4e2ca919cb335b3b8627fece73b359a566a899c8a51f1f94",
+    "tests": 37
+  },
+  "review2_guard_reproduction": {
+    "bytes": 40972,
+    "output": "tests_v5_guard_reproduction.txt",
+    "reason": "Accepted retained-identity and incomplete-schema guard findings independently reproduced before source fixes",
+    "seconds": 4.778,
+    "sha256": "4a3fbca9043fb6fccbf5a432824ec4192b15dbde6c1858fd82248c5cd08e75d1",
+    "subtest_failures": 33,
+    "tests": 43
+  },
+  "review3_clock_reproduction": {
+    "bytes": 11165,
+    "output": "tests_v8_clock_reproduction.txt",
+    "reason": "Unsupported retained parent clocks were accepted by supervisor before repeating the child range check",
+    "seconds": 4.782,
+    "sha256": "8ecc361041e6a63cafcbdb8c6d79fc874a8dec233b26bc7019bed51774952977",
+    "subtest_failures": 5,
+    "tests": 44
+  },
+  "source_only": true,
+  "subsequent_runs": [
+    {
+      "bytes": 5471,
+      "failures": 0,
+      "output": "tests_v2.txt",
+      "seconds": 4.659,
+      "sha256": "9a2e811618c22dcb09af824c03425d3dfe270074c04759710b14140684ba3698",
+      "tests": 38
+    },
+    {
+      "bytes": 5637,
+      "failures": 0,
+      "output": "tests_v3.txt",
+      "seconds": 4.649,
+      "sha256": "d29b6ce689617bea68c5fe181c8331bf9f61d025693e13f0f47d44a5995bc50c",
+      "tests": 39
+    },
+    {
+      "bytes": 5935,
+      "failures": 0,
+      "output": "tests_v4.txt",
+      "seconds": 4.753,
+      "sha256": "ca9f29a2544057f72c5af654a4347ac790edfd00bb358e7d6abdce7a3335cf49",
+      "tests": 41
+    },
+    {
+      "bytes": 6257,
+      "failures": 0,
+      "output": "tests_v6.txt",
+      "seconds": 4.755,
+      "sha256": "ca23fb61131974a8c81244ab0bee6a91cbf80997d91f28f525bd4c1e730e7668",
+      "tests": 43
+    },
+    {
+      "bytes": 6257,
+      "failures": 0,
+      "output": "tests_v7.txt",
+      "seconds": 4.765,
+      "sha256": "72c555a605a7559dc546f8548ebf541fa119e521a10d00deaf5173efc1da2bd5",
+      "tests": 43
+    },
+    {
+      "bytes": 6409,
+      "failures": 0,
+      "output": "tests_v9.txt",
+      "seconds": 4.841,
+      "sha256": "b2d8bd902359c688e21b5183c6f2da30ef0a821113db308fdcc6ff961cb7e77e",
+      "tests": 44
+    }
+  ]
+}

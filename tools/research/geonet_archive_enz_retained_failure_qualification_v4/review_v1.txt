@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Validate authorization prerequisite types independently
+child_harness.py:188
+Only the plan's prerequisites pass through validate_prerequisites(). Authorization prerequisites are checked using ordinary dictionary equality, which treats integers and equal-valued floats as equal. Consequently, an authorization with terminal_accounting.horizontal_attempts set to 8.0 (or qualified_http200 set to 6.0) passes the gate and permits body reads despite violating the exact-integer authorization schema. Validate auth['prerequisites'] independently before accepting the authorization, or compare the two objects with recursive type-sensitive equality.
+
+overall: patch is incorrect (0.91)
+The retained-cell processing and summary replay guards appear consistent with the stated contract, but authorization terminal-accounting types are not enforced at the pre-read gate. Review was inspection-only; tests were not executed.

@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-11",
+  "local_pin_lookup_failure": {
+    "outcome": "path not present; no fallback search; frozen public protocol pin used",
+    "path": "work/geonet_archive_transport_independent_audit_v4/source_manifest.json"
+  },
+  "local_reads": "Only exact named authored generic documents/runtime inventory and inert installed vendor source/package metadata listed in SOURCE_PINS.json. No collector implementation read.",
+  "no_additional_search_after_root_freeze": true,
+  "packet_id": "geonet-retained-failure-design-v1",
+  "prohibited_actions_performed": {
+    "Git_actions": false,
+    "account_or_AWS_access": false,
+    "acquisition_or_bucket_requests": false,
+    "actual_metadata_or_key_reads": false,
+    "actual_receipt_or_body_reads": false,
+    "existing_freeze_edits": false,
+    "fits": false,
+    "installation": false,
+    "scientific_import_or_execution": false
+  },
+  "public_curation": "Authored generic docs/pins/ledger/closure only. Inert external source and runtime inventory are not copied.",
+  "public_web_requests": [
+    {
+      "http_status_verified": false,
+      "operation": "web.open",
+      "outcome": "official documentation text returned",
+      "raw_response_bytes": null,
+      "raw_response_sha256": null,
+      "sequence": 1,
+      "url": "https://docs.obspy.org/packages/autogen/obspy.io.mseed.core._read_mseed.html"
+    },
+    {
+      "http_status_verified": false,
+      "operation": "web.click official source link",
+      "outcome": "official Python source documentation text returned",
+      "raw_response_bytes": null,
+      "raw_response_sha256": null,
+      "sequence": 2,
+      "url": "https://docs.obspy.org/_modules/obspy/io/mseed/core.html"
+    },
+    {
+      "http_status_verified": false,
+      "operation": "web.open exact-tag authored-source candidate",
+      "outcome": "tool cache-miss/internal error; no source text returned",
+      "raw_response_bytes": null,
+      "raw_response_sha256": null,
+      "retry": false,
+      "sequence": 3,
+      "url": "https://raw.githubusercontent.com/obspy/obspy/1.5.1/obspy/io/mseed/src/obspy-readbuffer.c"
+    }
+  ],
+  "request_count": 3,
+  "request_count_definition": "Focused web tool operations, not a raw HTTP GET or wire-byte count.",
+  "scope": "Public authored contracts and inert installed ObsPy source/metadata only; documentation generation and hash closure only."
+}

@@ -1,0 +1,50 @@
+{
+  "actual_inputs_read": false,
+  "attempts": [
+    {
+      "accepted_findings": [
+        "exact integer LIMIT types",
+        "qualified retained crop bounds/counts"
+      ],
+      "attempt": 1,
+      "exit_code": 1,
+      "infrastructure": "review_infrastructure_v1.json",
+      "log": "autoreview_v1.log",
+      "note": "Engine returned two findings, but helper rejected absolute code_location paths; no clean result claimed",
+      "raw_engine_result": "engine_result_v1_from_log.json",
+      "snapshot": "review_snapshot_v1.json",
+      "structured_helper_receipt": null
+    },
+    {
+      "accepted_findings": [
+        "retained NSLC/observed-counter/literal-component consistency",
+        "decoded/core schema validation for incomplete states"
+      ],
+      "attempt": 2,
+      "exit_code": 1,
+      "negative_reproduction": "tests_v5_guard_reproduction.txt",
+      "receipt": "autoreview_v2.json",
+      "snapshot": "review_snapshot_v2.json"
+    },
+    {
+      "accepted_findings": [
+        "retained parent signed-64-bit clocks with 10-second margin"
+      ],
+      "attempt": 3,
+      "exit_code": 1,
+      "negative_reproduction": "tests_v8_clock_reproduction.txt",
+      "receipt": "autoreview_v3.json",
+      "snapshot": "review_snapshot_v3.json"
+    },
+    {
+      "attempt": 4,
+      "exit_code": 0,
+      "findings": [],
+      "receipt": "autoreview_v4.json",
+      "snapshot": "review_snapshot_v4.json"
+    }
+  ],
+  "first_clean_attempt": 4,
+  "no_reviews_after_first_clean": true,
+  "source_only": true
+}

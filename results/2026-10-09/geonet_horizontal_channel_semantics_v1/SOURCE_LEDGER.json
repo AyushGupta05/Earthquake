@@ -1,0 +1,253 @@
+{
+  "packet_id": "geonet-horizontal-channel-semantics-v1",
+  "scope": "Bounded primary-document research only; no actual inventory/data access",
+  "retrieval": {
+    "began": "2026-10-11 07:04:24 UTC",
+    "completed": "2026-10-11 07:05:42 UTC",
+    "operations": [
+      {
+        "type": "search",
+        "query": "site.geonet.org.nz channel codes horizontal 1 2 E N",
+        "at": "2026-10-11 07:04:24 UTC",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "search",
+        "query": "site.geonet.org.nz StationXML channel response station metadata epochs availability",
+        "at": "2026-10-11 07:04:24 UTC",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "open",
+        "url": "https://www.geonet.org.nz/data/access/FDSN",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "open",
+        "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "open",
+        "url": "https://www.geonet.org.nz/data/access/aws",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "click_open",
+        "from": "https://www.geonet.org.nz/data/access/FDSN",
+        "link": "Codes Naming Appendix",
+        "id": 95,
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result",
+        "resolved_url": "https://www.geonet.org.nz/data/supplementary/channels"
+      },
+      {
+        "type": "find",
+        "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+        "pattern": "Azimuth",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "find",
+        "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+        "pattern": "DataAvailability",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "find",
+        "url": "https://www.geonet.org.nz/data/access/aws",
+        "pattern": "sync",
+        "transport_status_or_measurements": null,
+        "access_outcome": "no matching extracted text"
+      },
+      {
+        "type": "open_lines",
+        "url": "https://www.geonet.org.nz/data/supplementary/channels",
+        "line": 36,
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "open_lines",
+        "url": "https://www.geonet.org.nz/data/access/aws",
+        "line": 36,
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "find",
+        "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+        "pattern": "## 2.4. <Channel>",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "find",
+        "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+        "pattern": "## 2.5. <Response>",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "find",
+        "url": "https://www.geonet.org.nz/data/supplementary/channels",
+        "pattern": "Orientation",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "find",
+        "url": "https://www.geonet.org.nz/data/supplementary/channels",
+        "pattern": "Horizontal",
+        "transport_status_or_measurements": null,
+        "access_outcome": "no matching extracted text"
+      },
+      {
+        "type": "find",
+        "url": "https://www.geonet.org.nz/data/access/aws",
+        "pattern": "daily",
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      },
+      {
+        "type": "open_lines",
+        "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+        "line": 1195,
+        "transport_status_or_measurements": null,
+        "access_outcome": "successful extracted documentation/search result"
+      }
+    ]
+  },
+  "budget": {
+    "self_imposed_max_queries": 4,
+    "self_imposed_max_primary_opens": 8,
+    "self_imposed_max_find_operations": 8,
+    "used_queries": 2,
+    "used_primary_open_or_click_operations": 7,
+    "used_find_operations": 8,
+    "stopped": true
+  },
+  "source_access_measurement_limit": "Web tool supplies extracted content, not HTTP status, raw bytes, latency, redirect or immutable source hashes; these remain null, not inferred.",
+  "sources": [
+    {
+      "source_id": "geonet_channel_conventions",
+      "url": "https://www.geonet.org.nz/data/supplementary/channels",
+      "primary": true,
+      "access": "extracted official documentation available",
+      "sections": "Channel Code and Example Channels",
+      "negative_access": "find Horizontal had no literal match; orientation content was available",
+      "immutable_revision": null,
+      "raw_sha256": null
+    },
+    {
+      "source_id": "geonet_fdsn",
+      "url": "https://www.geonet.org.nz/data/access/FDSN",
+      "primary": true,
+      "access": "extracted official documentation available",
+      "sections": "Station Service; channel naming link",
+      "actual_example_endpoints_opened": false,
+      "immutable_revision": null,
+      "raw_sha256": null
+    },
+    {
+      "source_id": "fdsn_stationxml",
+      "url": "https://docs.fdsn.org/projects/stationxml/en/latest/reference.html",
+      "primary": true,
+      "access": "extracted official standards documentation available",
+      "sections": "2.4 Channel; 2.4.4 DataAvailability; Azimuth/Dip; 2.5 Response",
+      "version_binding": "latest documentation, not a pinned validation schema for an unopened cache",
+      "immutable_revision": null,
+      "raw_sha256": null
+    },
+    {
+      "source_id": "geonet_aws_doc",
+      "url": "https://www.geonet.org.nz/data/access/aws",
+      "primary": true,
+      "access": "extracted official documentation available",
+      "sections": "Limitations",
+      "negative_access": "find sync had no literal match; daily returned synchronization statement",
+      "cloud_or_object_requests": false,
+      "immutable_revision": null,
+      "raw_sha256": null
+    }
+  ],
+  "read_authored_prior_pins": [
+    {
+      "path": "AUDIT.md",
+      "bytes": 4441,
+      "sha256": "d3f826d1b1e45c59fdd5760dc3b5e9f0a8e954a60c2ec7ee628e80031462ec74",
+      "directory": "work/geonet_archive_writer_source_audit_v1"
+    },
+    {
+      "path": "CONFIGURED_TEMPLATE.json",
+      "bytes": 2619,
+      "sha256": "7031bb9cdb97d1c1463bd0b2f8527bf4fbbec279d81e37d836003a687e98e5da",
+      "directory": "work/geonet_archive_writer_source_audit_v1"
+    },
+    {
+      "path": "SOURCE_PINS.json",
+      "bytes": 4973,
+      "sha256": "c5e6e5c79bd7cbfc34bd3226756625a9730c9b40fa56a549a62ab6e852adde3f",
+      "directory": "work/geonet_archive_writer_source_audit_v1"
+    }
+  ],
+  "inherited_source_provenance_not_refetched": {
+    "official_reader_commit": "5bce92270ba19f30bf8829cdcb471e3a3d28fad7",
+    "configuration_decoded_sha256": "3194fa79e8993b99f0514239d7735dc4461b9d31aefd031b2f43e725612b6412",
+    "reader_configuration_is_writer_or_availability_proof": false
+  },
+  "runtime": {
+    "metadata_hashing_python": "3.14.5",
+    "binary": {
+      "path": "python3.14",
+      "bytes": 52448,
+      "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+    },
+    "research_interface": "web.run extracted primary docs only"
+  },
+  "parent_aggregate_not_replayed": {
+    "fixed_slots": 8,
+    "http_200": 6,
+    "http_404": 2,
+    "private_artifacts_read": false
+  },
+  "supported_fact_tags": [
+    "multiple_literal_orientation_families",
+    "station_metadata_distinct_from_waveform_transport",
+    "optional_transient_availability_metadata"
+  ],
+  "unknowns": [
+    "selected_literal_horizontal_channels",
+    "cache_request_scope_and_epoch_uniqueness",
+    "selected_orientation_and_response",
+    "deployed_archive_writer",
+    "daily_literal_object_availability",
+    "waveform_identity_and_grid_coverage",
+    "causal_clock_and_operational_response_state"
+  ],
+  "candidate_policy": {
+    "mapping_status": "unverified_hypothesis",
+    "cached_only_audit_authorized_by_this_packet": false,
+    "new_requests_authorized": false,
+    "aliases_or_retries_authorized": false,
+    "one_to_north_two_to_east_mapping": false,
+    "rotation_or_fit_authorized": false,
+    "v5_outcomes_relabelled": false
+  },
+  "excluded": [
+    "raw third-party HTML/PDF/code",
+    "actual station/event identifiers and literal keys",
+    "private cache or metadata rows",
+    "waveforms and receipts",
+    "accounts or credentials"
+  ],
+  "autoreview_required": false,
+  "reason": "Authored documentation and custody metadata only; no processing implementation changes."
+}

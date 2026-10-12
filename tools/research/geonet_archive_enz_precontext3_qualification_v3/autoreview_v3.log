@@ -1,0 +1,29 @@
+2026-10-11T07:01:35.784729Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T07:01:35.784747Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T07:01:35.791169Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 137508 chars
+codex thread: 01a129c4-57a2-7d42-a69c-a915fd8a5ba4
+codex turn started
+2026-10-11T07:01:36.087479Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T07:01:36.087489Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+I’ll inspect the supplied source and public context using read-only commands.
+codex activity: 11 hidden tool/status events
+codex activity: 7 hidden tool/status events
+The core, runtime, proposal, and V2 reference hashes match the declared pins. The fixed cells and summary-based geometry checks look consistent; I’m checking the supervisor’s remaining validation boundaries.
+2026-10-11T07:03:24.123458Z  WARN codex_sandboxing::violation: recorded sandbox violation: resource=filesystem backend=seatbelt reason=operation_not_permitted path=unknown
+codex activity: 3 hidden tool/status events
+codex activity: 1 hidden tool/status events
+{"findings":[{"title":"[P2] Enforce signed 64-bit bounds on retained parent clocks","body":"The supervisor checks clock types and arithmetic relationships but never enforces the signed 64-bit range with the 10-second margin required by SCHEMAS.md and enforced by validate_object(). A narrow invented reproduction changed every slot's t0 and pick to 2**80 and adjusted the joint bounds consistently; validate_result() accepted it. Consequently, a malformed child result containing unsupported original clocks can pass the publication gate. Reapply the parent-clock range checks here before reconstructing picks and window bounds.","priority":"P2","confidence":0.99,"category":"bug","code_location":{"file_path":"supervisor.py","line":219}}],"overall_correctness":"patch is incorrect","overall_explanation":"The immutable hashes match, and the fixed component/joint denominators and geometry reconstruction are preserved. However, the supervisor accepts retained parent clocks outside the protocol's supported range, leaving an actionable result-validation gap. Verification used only public source and an in-memory invented fixture.","overall_confidence":0.96}
+codex usage: input_tokens=471867 cached_input_tokens=412416 output_tokens=4964 reasoning_output_tokens=3270
+autoreview findings: 1
+[P2] [P2] Enforce signed 64-bit bounds on retained parent clocks
+supervisor.py:219
+The supervisor checks clock types and arithmetic relationships but never enforces the signed 64-bit range with the 10-second margin required by SCHEMAS.md and enforced by validate_object(). A narrow invented reproduction changed every slot's t0 and pick to 2**80 and adjusted the joint bounds consistently; validate_result() accepted it. Consequently, a malformed child result containing unsupported original clocks can pass the publication gate. Reapply the parent-clock range checks here before reconstructing picks and window bounds.
+
+overall: patch is incorrect (0.96)
+The immutable hashes match, and the fixed component/joint denominators and geometry reconstruction are preserved. However, the supervisor accepts retained parent clocks outside the protocol's supported range, leaving an actionable result-validation gap. Verification used only public source and an in-memory invented fixture.

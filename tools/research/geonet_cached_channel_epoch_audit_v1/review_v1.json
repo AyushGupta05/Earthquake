@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "P2: Enforce the exact string type for slot_id",
+      "body": "The slot role is checked only by equality, unlike the other string fields. A str subclass containing \"ordinary\" passes validation and is returned unchanged in private_rows; an arbitrary object with matching equality can also pass. This violates the exact API/schema validation contract and can produce non-serializable output instead of raising ValueError before XML parsing. Require type(s[\"slot_id\"]) is str before comparing its value.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 62
+      }
+    },
+    {
+      "title": "P2: Distinguish XML markup from comment and CDATA content",
+      "body": "The raw-text declaration and processing-instruction scans also match text inside XML comments and CDATA. For example, an otherwise valid matching document containing <!-- <?example?> --> becomes unknown even though it contains no processing instruction. Likewise, a comment mentioning <!DOCTYPE ...> triggers the DTD rejection. The protocol permits comments and treats their bytes as part of the cap; these checks incorrectly reject supported documents and alter the public census. Detect actual declarations/instructions while excluding comment and CDATA content.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 186
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The auditor largely follows the bounded, private metadata census contract, but its role validation accepts unsupported Python types and its lexical XML checks reject legitimate comment/CDATA content. Both are concrete contract violations. Review used read-only inspection; no tests or nested reviewers were run.",
+  "overall_confidence": 0.97
+}

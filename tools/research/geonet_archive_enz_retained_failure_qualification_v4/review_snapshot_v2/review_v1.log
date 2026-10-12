@@ -1,0 +1,24 @@
+2026-10-11T16:37:03.444797Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T16:37:03.444812Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-11T16:37:03.451042Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-11T16:37:03.454443Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 256698 chars
+codex thread: 01a12bd3-314f-7f33-aeed-6d7e98d61d6d
+codex turn started
+2026-10-11T16:37:03.912468Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-11T16:37:03.912476Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+codex activity: 2 hidden tool/status events
+{"findings":[{"title":"Validate authorization prerequisite types independently","body":"Only the plan's prerequisites pass through validate_prerequisites(). Authorization prerequisites are checked using ordinary dictionary equality, which treats integers and equal-valued floats as equal. Consequently, an authorization with terminal_accounting.horizontal_attempts set to 8.0 (or qualified_http200 set to 6.0) passes the gate and permits body reads despite violating the exact-integer authorization schema. Validate auth['prerequisites'] independently before accepting the authorization, or compare the two objects with recursive type-sensitive equality.","priority":"P2","confidence":0.99,"category":"bug","code_location":{"file_path":"child_harness.py","line":188}}],"overall_correctness":"patch is incorrect","overall_explanation":"The retained-cell processing and summary replay guards appear consistent with the stated contract, but authorization terminal-accounting types are not enforced at the pre-read gate. Review was inspection-only; tests were not executed.","overall_confidence":0.91}
+codex usage: input_tokens=178812 cached_input_tokens=88704 output_tokens=699 reasoning_output_tokens=435
+autoreview findings: 1
+[P2] Validate authorization prerequisite types independently
+child_harness.py:188
+Only the plan's prerequisites pass through validate_prerequisites(). Authorization prerequisites are checked using ordinary dictionary equality, which treats integers and equal-valued floats as equal. Consequently, an authorization with terminal_accounting.horizontal_attempts set to 8.0 (or qualified_http200 set to 6.0) passes the gate and permits body reads despite violating the exact-integer authorization schema. Validate auth['prerequisites'] independently before accepting the authorization, or compare the two objects with recursive type-sensitive equality.
+
+overall: patch is incorrect (0.91)
+The retained-cell processing and summary replay guards appear consistent with the stated contract, but authorization terminal-accounting types are not enforced at the pre-read gate. Review was inspection-only; tests were not executed.

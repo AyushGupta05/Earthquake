@@ -1,0 +1,3 @@
+# Verified review findings
+
+Attempt 1 identified two concrete P2 issues. Both were accepted after source verification: slot_id now requires exact built-in str before equality/serialization, and lexical declaration/instruction checks mask XML comments and CDATA as inert text while parsing the original bytes unchanged. Regression tests retain comments/CDATA containing markup, reject actual declarations/instructions after them, reject malformed comments, and reject matching str subclasses/custom equality objects before parsing. The original attempt, snapshot and test logs remain preserved. No actual cached inventory was read.

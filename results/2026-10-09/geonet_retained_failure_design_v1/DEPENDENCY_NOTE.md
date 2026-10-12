@@ -1,0 +1,7 @@
+# Primary dependency boundary
+
+Verified source facts: official ObsPy documentation describes MiniSEED reads returning a Stream and says `details=True` can change trace splitting when record timing quality or calibration details change. This supports a distinction between returned traces and original records. [ObsPy reader documentation](https://docs.obspy.org/packages/autogen/obspy.io.mseed.core._read_mseed.html)
+
+The official Python source calls native `readMSEEDBuffer`, traverses its returned ID/segment structures, attaches each segment's record count and constructs a Trace per segment. The installed inert source and package metadata separately pin local ObsPy 1.5.1 bytes. They were read as text, not imported or executed. [Official reader source](https://docs.obspy.org/_modules/obspy/io/mseed/core.html)
+
+Conservative inference: wrapper-level no-merge does not certify raw-record segmentation or raw-record timing. Exact native adjacency/tolerance criteria were not verified; do not claim a precise coalescing rule or that any actual body coalesced. One exact-tag raw-source request failed with a tool cache-miss/internal error, which establishes neither HTTP404 nor source absence. Public documentation is not an immutable upstream commit; local vendor hashes do not prove upstream build provenance. See SOURCE_PINS.json and REQUEST_SCOPE.json. No raw dependency source is included in this packet.

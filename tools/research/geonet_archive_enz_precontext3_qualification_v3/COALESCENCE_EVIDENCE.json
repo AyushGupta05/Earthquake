@@ -1,0 +1,26 @@
+{
+  "actual_inputs_read": false,
+  "direct_piece_counterexample": {
+    "context3_horizon5_core_available": false,
+    "gap_and_phase_mismatch_retained": true,
+    "piece_count": 2,
+    "same_sample_count": 800
+  },
+  "distinguishing_fixture": "test_qualification.DecodeTests.test_decoder_coalescing_can_hide_raw_record_half_sample_offset",
+  "fixture": "Two independently encoded INT32 miniSEED sequences; same inventedNSLC;100Hz; first startsT0-3s n300, second startsT0+0.005s n500; concatenate bytes",
+  "observed_obspy_result": {
+    "advertised_and_decoded_samples": 800,
+    "context3_horizon5_decoded_core_available": true,
+    "returned_start_relative_t0_s": -3,
+    "returned_traces": 1
+  },
+  "raw_record_segmentation_verified": false,
+  "raw_record_timing_verified": false,
+  "runtime_pins_sha256": "a5a273ffad973848521d08bb5b730fe226c7a45440c298ac25e20624a158c9f6",
+  "source_only_invented": true,
+  "successful_test_output": {
+    "bytes": 6409,
+    "path": "tests_v9.txt",
+    "sha256": "b2d8bd902359c688e21b5183c6f2da30ef0a821113db308fdcc6ff961cb7e77e"
+  }
+}

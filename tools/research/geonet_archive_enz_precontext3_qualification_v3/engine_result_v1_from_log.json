@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "body": "The validator trusts `edge_coverage=True` without checking the retained first-sample timestamp against the window. In an otherwise valid 100 Hz result, changing all three components' first-sample timestamps for h=1 to `left_ns + 1_000_000_000` still passes: the primitive types remain valid and the common lattice remains compatible. This contradicts the core's required `0 <= first-left < period`, yet the supervisor publishes the cells as available. Validate rational sample bounds and counts against the retained trace summaries before accepting component availability, rather than relying only on asserted flags.",
+      "category": "bug",
+      "code_location": {
+        "file_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_enz_precontext3_qualification_v3/review_snapshot/supervisor.py",
+        "line": 173
+      },
+      "confidence": 0.99,
+      "priority": "P2",
+      "title": "[P2] Validate qualified component bounds from rational primitives"
+    },
+    {
+      "body": "Python dictionary equality treats integer and float values as equal, so a pinned plan containing `limits.objects: 12.0` or `limits.object_bytes: 67108864.0` passes this check. The authorization check uses the same comparison and also accepts those substitutions. Consequently, malformed plan/authorization limits can authorize body reads despite the required exact-integer schema. Check the exact key set and require `type(value) is int` for every limit in both documents before comparing values.",
+      "category": "bug",
+      "code_location": {
+        "file_path": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_archive_enz_precontext3_qualification_v3/review_snapshot/child_harness.py",
+        "line": 152
+      },
+      "confidence": 1.0,
+      "priority": "P2",
+      "title": "[P2] Enforce exact integer types in both limits mappings"
+    }
+  ],
+  "overall_confidence": 0.99,
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The immutable core, runtime inventory, proposal and V2 reference hashes match, and the qualification logic retains the required cells. However, the authority gate accepts float substitutions in limits, and the supervisor accepts qualified component timestamps that contradict the required window bounds. Review was read-only; no tests or actual inputs were executed."
+}

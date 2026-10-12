@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Enforce signed 64-bit bounds on retained parent clocks",
+      "body": "The supervisor checks clock types and arithmetic relationships but never enforces the signed 64-bit range with the 10-second margin required by SCHEMAS.md and enforced by validate_object(). A narrow invented reproduction changed every slot's t0 and pick to 2**80 and adjusted the joint bounds consistently; validate_result() accepted it. Consequently, a malformed child result containing unsupported original clocks can pass the publication gate. Reapply the parent-clock range checks here before reconstructing picks and window bounds.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "supervisor.py",
+        "line": 219
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The immutable hashes match, and the fixed component/joint denominators and geometry reconstruction are preserved. However, the supervisor accepts retained parent clocks outside the protocol's supported range, leaving an actionable result-validation gap. Verification used only public source and an in-memory invented fixture.",
+  "overall_confidence": 0.96
+}

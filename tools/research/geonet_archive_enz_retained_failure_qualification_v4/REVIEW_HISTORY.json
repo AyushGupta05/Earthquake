@@ -1,0 +1,63 @@
+{
+  "actual_inputs_read": false,
+  "attempts": [
+    {
+      "accepted_actionable": 1,
+      "attempt": 1,
+      "exit_code": 1,
+      "finding": "authorization prerequisite integer types bypassed by ordinary dictionary equality",
+      "findings": 1,
+      "fix": "independently validate authorization prerequisites before runtime or body reads",
+      "negative_reproduction_pin": {
+        "bytes": 493,
+        "sha256": "39d457e3e09ceabb49d1ef8beb8add44f38c094eb86e72d19c7ce00de809f474"
+      },
+      "review_json_pin": {
+        "bytes": 1203,
+        "sha256": "4d37373cc92ebac0477c9c55e5b46c60d94c7dc1c400d0b9db044c4bd357229f"
+      },
+      "review_log_pin": {
+        "bytes": 3203,
+        "sha256": "62733cb7253531a26f926b11a72e7b47f9a2de3bea0e35f54eb7fd4f61a31c75"
+      },
+      "snapshot_pin": {
+        "bytes": 2769,
+        "sha256": "c89840674f7ffdd4080c5339eda09bb3d0ecf238bdad87e4dea47bbc2db41c17"
+      }
+    },
+    {
+      "attempt": 2,
+      "exit_code": 0,
+      "findings": 0,
+      "first_clean": true,
+      "review_json_pin": {
+        "bytes": 554,
+        "sha256": "480ac7015ee0785413efcfd0d1319fd71d83315eda5091fa506337cbfffef9fd"
+      },
+      "review_log_pin": {
+        "bytes": 2176,
+        "sha256": "3214e51d08b99e119ec512ca3c25e7ecd7f11fdb580c94194c64f08cf75a0bae"
+      },
+      "snapshot_pin": {
+        "bytes": 3478,
+        "sha256": "b9f20c72af61c2ab95a8be03536125dff197007d20e9e2cdf5407cbf1b66a08e"
+      }
+    }
+  ],
+  "cli_pin": {
+    "bytes": 246046384,
+    "sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28"
+  },
+  "code_only": true,
+  "command_template": "autoreview --mode local --engine codex --codex-bin <pinned app CLI> --no-web-search --stream-engine-output --prompt-file <isolated source-only snapshot>/review_prompt.md --output <owned review text> --json-output <owned review JSON>",
+  "default_engine": "codex",
+  "helper_pin": {
+    "bytes": 51075,
+    "sha256": "d29d9bcab7c79505e927e6e6a89d7350ad8cb92ec8acdfcd79d41f4ca8349562"
+  },
+  "model_override": null,
+  "review_invocations_after_first_clean": 0,
+  "reviewer_execution": "inspection only",
+  "source_edits_after_first_clean": 0,
+  "web_search": false
+}
