@@ -1,0 +1,143 @@
+test_GET_canonical_URL_level_and_namespace_no_READ (test_audit.AuditTests.test_GET_canonical_URL_level_and_namespace_no_READ) ... ok
+test_GET_missing_nulltarget_request_rejected (test_audit.AuditTests.test_GET_missing_nulltarget_request_rejected) ... ok
+test_GET_null_target_empty_request_and_nonfabricated_attempt (test_audit.AuditTests.test_GET_null_target_empty_request_and_nonfabricated_attempt) ... ok
+test_GET_whole_boundary_strict_POST_inclusive (test_audit.AuditTests.test_GET_whole_boundary_strict_POST_inclusive) ... FAIL
+test_HTTP204_representationCL_zeroentity (test_audit.AuditTests.test_HTTP204_representationCL_zeroentity) ... FAIL
+test_POST_empty_blocks_missing_request_and_index_gaps (test_audit.AuditTests.test_POST_empty_blocks_missing_request_and_index_gaps) ... FAIL
+test_POST_hash_order_original_indices_not_sorted (test_audit.AuditTests.test_POST_hash_order_original_indices_not_sorted) ... FAIL
+test_POST_requested_subset_no_dedup_or_mutated_null_clock (test_audit.AuditTests.test_POST_requested_subset_no_dedup_or_mutated_null_clock) ... ok
+test_all_no_targets_whole_complete_zero_candidates (test_audit.AuditTests.test_all_no_targets_whole_complete_zero_candidates) ... FAIL
+test_annotations_not_receipt_family_decisions (test_audit.AuditTests.test_annotations_not_receipt_family_decisions) ... ok
+test_body_mutation_or_swapped_body_detected_after_metadata (test_audit.AuditTests.test_body_mutation_or_swapped_body_detected_after_metadata) ... ok
+test_bool_alias_on_group_index_aggregate_rejected (test_audit.AuditTests.test_bool_alias_on_group_index_aggregate_rejected) ... ok
+test_both_complete_and_callback_one_read_each (test_audit.AuditTests.test_both_complete_and_callback_one_read_each) ... FAIL
+test_callback_missing_oversize_and_foreign_return_types (test_audit.AuditTests.test_callback_missing_oversize_and_foreign_return_types) ... ok
+test_canonical_time_blankloc_and_format (test_audit.AuditTests.test_canonical_time_blankloc_and_format) ... FAIL
+test_chunk_malformed_partial_and_excess_rejected (test_audit.AuditTests.test_chunk_malformed_partial_and_excess_rejected) ... ok
+test_chunk_syntax_associated_with_body_lengths (test_audit.AuditTests.test_chunk_syntax_associated_with_body_lengths) ... FAIL
+test_duplicate_groups_rejected (test_audit.AuditTests.test_duplicate_groups_rejected) ... ok
+test_duplicate_headers_ambiguousCL_TE_rejected (test_audit.AuditTests.test_duplicate_headers_ambiguousCL_TE_rejected) ... ok
+test_duplicate_nonfinite_deepJSON_and_hostile_byte_types (test_audit.AuditTests.test_duplicate_nonfinite_deepJSON_and_hostile_byte_types) ... ok
+test_empty_POST_request_fabrication_rejected (test_audit.AuditTests.test_empty_POST_request_fabrication_rejected) ... ok
+test_empty_framedHTTP200_and_errors_complete_not_candidates (test_audit.AuditTests.test_empty_framedHTTP200_and_errors_complete_not_candidates) ... FAIL
+test_header_and_chunk_combined_byte_cap (test_audit.AuditTests.test_header_and_chunk_combined_byte_cap) ... ok
+test_header_parser_constant_changed_rejected (test_audit.AuditTests.test_header_parser_constant_changed_rejected) ... ok
+test_journal_controller_disagreement_rejected (test_audit.AuditTests.test_journal_controller_disagreement_rejected) ... ok
+test_limits_or_fixture_changed_rejected_before_body (test_audit.AuditTests.test_limits_or_fixture_changed_rejected_before_body) ... ok
+test_malformed_summary_pin_no_member_reads (test_audit.AuditTests.test_malformed_summary_pin_no_member_reads) ... ok
+test_missing_extra_members_and_old17_namespace_rejected (test_audit.AuditTests.test_missing_extra_members_and_old17_namespace_rejected) ... ok
+test_overflow_probe_wrong_position_rejected (test_audit.AuditTests.test_overflow_probe_wrong_position_rejected) ... ok
+test_partial_halts_retains_nontargets_qualifies_zero (test_audit.AuditTests.test_partial_halts_retains_nontargets_qualifies_zero) ... FAIL
+test_plan_old_identity_TEST_wrongglobal_and_duplicates_no_read (test_audit.AuditTests.test_plan_old_identity_TEST_wrongglobal_and_duplicates_no_read) ... ok
+test_provisional_saved_aggregate_cannot_promote (test_audit.AuditTests.test_provisional_saved_aggregate_cannot_promote) ... ok
+test_pub_no_transport_private_pins_or_rows (test_audit.AuditTests.test_pub_no_transport_private_pins_or_rows) ... ok
+test_registration_skip_queryable_slot_rejected_no_read (test_audit.AuditTests.test_registration_skip_queryable_slot_rejected_no_read) ... ok
+test_response_headers_required_even_empty (test_audit.AuditTests.test_response_headers_required_even_empty) ... ok
+test_sparse_accounting_no_reader_nullbytes_uppercharge (test_audit.AuditTests.test_sparse_accounting_no_reader_nullbytes_uppercharge) ... ok
+test_stop_clock_spacing_overlap_false_flags_rejected (test_audit.AuditTests.test_stop_clock_spacing_overlap_false_flags_rejected) ... ok
+test_unknown_consumption_requires_full_conservative_charge (test_audit.AuditTests.test_unknown_consumption_requires_full_conservative_charge) ... ok
+test_unknown_metadata_does_not_suppress_POST (test_audit.AuditTests.test_unknown_metadata_does_not_suppress_POST) ... FAIL
+
+======================================================================
+FAIL: test_GET_whole_boundary_strict_POST_inclusive (test_audit.AuditTests.test_GET_whole_boundary_strict_POST_inclusive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 89, in test_GET_whole_boundary_strict_POST_inclusive
+    b=Bundle(profile);s=json.loads(b.summary);s['elapsed_s']=b.meta['limits']['whole_s'];s['returned_at']=100.+s['elapsed_s'];self._summary(b,s);self.assertEqual(b.audit()['valid'],valid)
+                                                                                                                                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_HTTP204_representationCL_zeroentity (test_audit.AuditTests.test_HTTP204_representationCL_zeroentity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 45, in test_HTTP204_representationCL_zeroentity
+    b=Bundle(profile);b.response(0,204,b'',framing='no_body');r=b.audit();self.assertTrue(r['whole_complete'],r)
+                                                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'audit_protocol': 'geonet-train50-POST-independent-audit-v1', 'valid': False, 'finalization_verified': False, 'whole_complete': False, 'fixed_rows': 50, 'logical_requests': 13, 'qualified_requests': 0, 'aggregate': None, 'transport': None, 'filesystem_inventory_verified': False, 'original_selection_authenticated': False, 'source_runtime_authenticated': False, 'physical_process_stop_verified': False, 'physical_clock_verified': False, 'registered_setup_accounting_verified': False, 'preserve_parent_artifacts': True, 'issues': ['receipt_fields']}
+
+======================================================================
+FAIL: test_POST_empty_blocks_missing_request_and_index_gaps (test_audit.AuditTests.test_POST_empty_blocks_missing_request_and_index_gaps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 26, in test_POST_empty_blocks_missing_request_and_index_gaps
+    b=Bundle('POST',list(range(4))+list(range(20,24))+[48,49]);r=b.audit();self.assertTrue(r['whole_complete'],r);self.assertEqual(r['qualified_requests'],10)
+                                                                           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'audit_protocol': 'geonet-train50-POST-independent-audit-v1', 'valid': False, 'finalization_verified': False, 'whole_complete': False, 'fixed_rows': 50, 'logical_requests': 13, 'qualified_requests': 0, 'aggregate': None, 'transport': None, 'filesystem_inventory_verified': False, 'original_selection_authenticated': False, 'source_runtime_authenticated': False, 'physical_process_stop_verified': False, 'physical_clock_verified': False, 'registered_setup_accounting_verified': False, 'preserve_parent_artifacts': True, 'issues': ['receipt_fields']}
+
+======================================================================
+FAIL: test_POST_hash_order_original_indices_not_sorted (test_audit.AuditTests.test_POST_hash_order_original_indices_not_sorted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 34, in test_POST_hash_order_original_indices_not_sorted
+    b=Bundle('POST');self.assertGreater(b.plan['rows'][0]['original_event_index'],b.plan['rows'][1]['original_event_index']);self.assertTrue(b.audit()['valid'])
+                                                                                                                             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_all_no_targets_whole_complete_zero_candidates (test_audit.AuditTests.test_all_no_targets_whole_complete_zero_candidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 31, in test_all_no_targets_whole_complete_zero_candidates
+    b=Bundle(profile,range(50));r=b.audit();self.assertTrue(r['whole_complete'],r);self.assertEqual(r['qualified_requests'],0)
+                                            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'audit_protocol': 'geonet-train50-POST-independent-audit-v1', 'valid': False, 'finalization_verified': False, 'whole_complete': False, 'fixed_rows': 50, 'logical_requests': 13, 'qualified_requests': 0, 'aggregate': None, 'transport': None, 'filesystem_inventory_verified': False, 'original_selection_authenticated': False, 'source_runtime_authenticated': False, 'physical_process_stop_verified': False, 'physical_clock_verified': False, 'registered_setup_accounting_verified': False, 'preserve_parent_artifacts': True, 'issues': ['receipt_fields']}
+
+======================================================================
+FAIL: test_both_complete_and_callback_one_read_each (test_audit.AuditTests.test_both_complete_and_callback_one_read_each)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 17, in test_both_complete_and_callback_one_read_each
+    b=Bundle(profile);r=b.audit();self.assertTrue(r['valid'],r);self.assertTrue(r['whole_complete']);self.assertEqual(r['qualified_requests'],count);self.assertEqual(len(b.calls),len(set(b.calls)))
+                                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: False is not true : {'audit_protocol': 'geonet-train50-POST-independent-audit-v1', 'valid': False, 'finalization_verified': False, 'whole_complete': False, 'fixed_rows': 50, 'logical_requests': 13, 'qualified_requests': 0, 'aggregate': None, 'transport': None, 'filesystem_inventory_verified': False, 'original_selection_authenticated': False, 'source_runtime_authenticated': False, 'physical_process_stop_verified': False, 'physical_clock_verified': False, 'registered_setup_accounting_verified': False, 'preserve_parent_artifacts': True, 'issues': ['receipt_fields']}
+
+======================================================================
+FAIL: test_canonical_time_blankloc_and_format (test_audit.AuditTests.test_canonical_time_blankloc_and_format)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 111, in test_canonical_time_blankloc_and_format
+    p=plan('POST');entity=p['batches'][0]['request_body'];self.assertTrue(entity.startswith('format=miniseed\n'));self.assertIn(' NZ ', ' '+entity)
+                                                                                                                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: ' NZ ' not found in ' format=miniseed\nNZ X000 -- HH? 1999-12-31T23:59:57.123456789Z 2000-01-01T00:00:05.123456789Z\nNZ X001 -- HH? 1999-12-31T23:59:58.123456789Z 2000-01-01T00:00:06.123456789Z\nNZ X002 -- HH? 1999-12-31T23:59:59.123456789Z 2000-01-01T00:00:07.123456789Z\nNZ X003 -- HH? 2000-01-01T00:00:00.123456789Z 2000-01-01T00:00:08.123456789Z\n'
+
+======================================================================
+FAIL: test_chunk_syntax_associated_with_body_lengths (test_audit.AuditTests.test_chunk_syntax_associated_with_body_lengths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 48, in test_chunk_syntax_associated_with_body_lengths
+    b=Bundle(profile);b.response(0,200,b'abcde','chunked',b'2\r\n\r\n3\r\n\r\n0\r\nX:ok\r\n\r\n');self.assertTrue(b.audit()['whole_complete'])
+                                                                                                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_empty_framedHTTP200_and_errors_complete_not_candidates (test_audit.AuditTests.test_empty_framedHTTP200_and_errors_complete_not_candidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 42, in test_empty_framedHTTP200_and_errors_complete_not_candidates
+    b=Bundle(profile);b.response(0,200,b'',framing='fixed');b.response(1,404,b'error',framing='eof');r=b.audit();self.assertTrue(r['whole_complete'],r);self.assertEqual(r['qualified_requests'],b.meta['count']-2)
+                                                                                                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'audit_protocol': 'geonet-train50-POST-independent-audit-v1', 'valid': False, 'finalization_verified': False, 'whole_complete': False, 'fixed_rows': 50, 'logical_requests': 13, 'qualified_requests': 0, 'aggregate': None, 'transport': None, 'filesystem_inventory_verified': False, 'original_selection_authenticated': False, 'source_runtime_authenticated': False, 'physical_process_stop_verified': False, 'physical_clock_verified': False, 'registered_setup_accounting_verified': False, 'preserve_parent_artifacts': True, 'issues': ['receipt_fields']}
+
+======================================================================
+FAIL: test_partial_halts_retains_nontargets_qualifies_zero (test_audit.AuditTests.test_partial_halts_retains_nontargets_qualifies_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 39, in test_partial_halts_retains_nontargets_qualifies_zero
+    missing=[8,9,10,11];b=Bundle(profile,missing,incomplete_at=0);r=b.audit();self.assertTrue(r['valid'],r);self.assertFalse(r['whole_complete']);self.assertEqual(r['qualified_requests'],0);self.assertIsNone(r['transport'])
+                                                                              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: False is not true : {'audit_protocol': 'geonet-train50-POST-independent-audit-v1', 'valid': False, 'finalization_verified': False, 'whole_complete': False, 'fixed_rows': 50, 'logical_requests': 13, 'qualified_requests': 0, 'aggregate': None, 'transport': None, 'filesystem_inventory_verified': False, 'original_selection_authenticated': False, 'source_runtime_authenticated': False, 'physical_process_stop_verified': False, 'physical_clock_verified': False, 'registered_setup_accounting_verified': False, 'preserve_parent_artifacts': True, 'issues': ['receipt_fields']}
+
+======================================================================
+FAIL: test_unknown_metadata_does_not_suppress_POST (test_audit.AuditTests.test_unknown_metadata_does_not_suppress_POST)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train50_transport_independent_audit_v1/test_audit.py", line 36, in test_unknown_metadata_does_not_suppress_POST
+    b=Bundle('POST');self.assertEqual(b.plan['rows'][0]['metadata_status'],'unknown');self.assertIn(0,b.plan['batches'][0]['requested_row_indices']);self.assertTrue(b.audit()['whole_complete'])
+                                                                                                                                                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 39 tests in 1.288s
+
+FAILED (failures=11)

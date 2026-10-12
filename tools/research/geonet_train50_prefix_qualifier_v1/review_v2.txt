@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P1] Preserve native observed counts before adapter reconciliation
+offline_decoder.py:84
+The native adapter rejects an npts mismatch before returning trace.data to qualify. Consequently, the new observed-sample charging boundary never sees those values: a native overdelivery is classified as ordinary decode_unknown with zero observed samples, and even an over-budget return cannot trigger the required whole-result incomplete/sample_cap reset. The same loss occurs for identity or dtype rejection after decoding. Return decoded values for producer-side accounting before reconciliation, or propagate their observed count through a structured failure that qualify charges before classifying the batch. The invented callback tests exercise only callbacks that return successfully and therefore miss this production path.
+
+overall: patch is incorrect (0.97)
+The pure producer charges returned sample counts before reconciliation, but the native adapter can discard decoded samples before that boundary. This violates the explicitly frozen observed-accounting and fatal overdelivery semantics in the production composition.

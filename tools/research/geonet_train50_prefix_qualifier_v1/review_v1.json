@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Account observed samples before rejecting decoder count mismatches",
+      "body": "A callback returning more samples than advertised reaches the length-mismatch rejection before observed-sample accounting or budget enforcement. For example, returning 8,000,001 values for a nonzero record produces an ordinary `decode_unknown` batch, leaves its observed count unchanged, and allows the result to remain `complete` with other batches' joint promotions retained. The frozen contract requires observed samples, including overdelivery, to be accounted and sample-budget failures to make the whole result `incomplete` with zero promotion. Count returned values and enforce observed budgets before reconciliation can discard them; retain the required overdelivery evidence within those bounds.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "producer.py",
+        "line": 383
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The fixed 50-row composition and no-target routing follow the supplied profile, but decoder count mismatches bypass mandatory observed-sample budget accounting and whole-result fatal semantics. Review was limited to read-only source inspection; no code or tests were executed.",
+  "overall_confidence": 0.94
+}

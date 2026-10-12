@@ -1,0 +1,13 @@
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 152410 chars
+autoreview findings: 1
+[P2] Reject response metadata when the header evidence is absent
+engine.py:149
+When `headers` is null, the auditor never enforces the inherited pre-response failure grammar (`http_status:null`, `framing:unknown`, `declared:null`). An incomplete attempted row can therefore retain a fabricated HTTP status and framing declaration, remove its header member, update the documentary pins, and still receive `valid:true`. This contradicts the pinned contract even though qualification remains zero. Require these three null/unknown values whenever header evidence is absent, before accepting the journal and its aggregate.
+
+overall: patch is incorrect (0.94)
+The replay generally preserves conservative qualification and external authority boundaries, but it accepts an explicitly forbidden pre-response journal shape as valid documentary accounting. Review used read-only inspection; no tests were run.
