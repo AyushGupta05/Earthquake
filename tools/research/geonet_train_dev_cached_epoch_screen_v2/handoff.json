@@ -1,0 +1,71 @@
+{
+  "acquisition": false,
+  "actual_invocation_performed": false,
+  "actual_private_inputs_read": false,
+  "api_schema": {
+    "bytes": 3502,
+    "name": "API_SCHEMA.md",
+    "sha256": "0abfa54d1dbbd7598d34fb8020442dffd6d012d24c46422533951cec219d04f6"
+  },
+  "entry_points": [
+    "selector.select(projection)",
+    "auditor.audit(projection, roster, evidence, documents)"
+  ],
+  "first_clean_attempt": 1,
+  "focused_tests": 99,
+  "frozen": true,
+  "inherited_V1_tests": 53,
+  "new_tests": 46,
+  "paid_or_resource_action": false,
+  "parent_protocol": {
+    "bytes": 11755,
+    "name": "PROTOCOL.md",
+    "sha256": "66b14ad5c594075b0490cec6be166877e22391060f8d0b72c654a66b26ec8a99"
+  },
+  "protocol": "geonet-train-dev-cached-channel-epoch-v2-source-handoff",
+  "requires_parent_source_publication_and_private_actual_gate": true,
+  "review_findings": 0,
+  "review_receipt": {
+    "bytes": 2842,
+    "name": "REVIEW_RECEIPT.json",
+    "sha256": "ba9754dcfb73f1329d6ce1399317ff2fd61e77aa15d64a44ddf2fb792bcd11a7"
+  },
+  "runtime": {
+    "bytes": 441,
+    "name": "PUBLIC_RUNTIME.json",
+    "sha256": "e1d13a140965994c48afbb4e9f74decf87a7623dbdf1513f2543d26745dab7f4"
+  },
+  "source": {
+    "auditor.py": {
+      "bytes": 12719,
+      "sha256": "cb4b691fe5d7d94485920cd15bd0b9ec499bfd05d2f3abf874ab7bec1e2b0d90"
+    },
+    "selector.py": {
+      "bytes": 6514,
+      "sha256": "5030a46c7d40ec0a5df6d07d3efb21235812656fb8dfc849b30d60f9c3377e33"
+    },
+    "v1_reference.py": {
+      "bytes": 17255,
+      "sha256": "71beb6e92e8ebf3ff8bccf4f2f3bc5dad7f36f4cf993a9fc5adea84440afc86b"
+    }
+  },
+  "test_receipt": {
+    "bytes": 1731,
+    "name": "TEST_RECEIPT.json",
+    "sha256": "1f530e76dec671957e7c3afb3a5269fc34dc3709044a0b35692a68dbab3997f9"
+  },
+  "tests": {
+    "test_screen.py": {
+      "bytes": 21449,
+      "sha256": "69b79eb2a66a76f74ef401320e3ddce2975a7d22159f77e7a14cf25de01dd7fc"
+    },
+    "test_v1_reference.py": {
+      "bytes": 697,
+      "sha256": "9190fdc4321a0fc962610b1a08859eec883240a052a45996a1d62b4c6db400bd"
+    },
+    "v1_tests_reference.py": {
+      "bytes": 16492,
+      "sha256": "8298203ce6bb53fddef4826cac835bf37b9394a7890f5b4d3c229402c7d126aa"
+    }
+  }
+}
