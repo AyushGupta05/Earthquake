@@ -1,0 +1,26 @@
+{
+  "schema": "POST-source-only-read-only-closure-verification-v1",
+  "current_equals_first_clean_snapshot": true,
+  "snapshot_files": 8,
+  "first_clean_round": 4,
+  "public_contracts_unchanged_after_review": true,
+  "root_public_proposal_exact": true,
+  "source_only_safe_packet": true,
+  "actual_invocations": 0,
+  "runtime_labels_verified": [
+    "python",
+    "autoreview_helper",
+    "autoreview_skill",
+    "codex_binary"
+  ],
+  "all_safe_files_mode": "0400",
+  "isolated_authored_only_git_excluded": true,
+  "manifest_excludes": [
+    "SOURCE_MANIFEST.json",
+    "CHECKSUMS.sha256"
+  ],
+  "checksums_excludes": [
+    "CHECKSUMS.sha256"
+  ],
+  "closure_checks": "After writing receipts/handoff/allowlist, hash all listed members; freeze0400; reread every checksum/hash/current==snapshot and exact safe membership. Verification metadata does not itself authorize acquisition."
+}

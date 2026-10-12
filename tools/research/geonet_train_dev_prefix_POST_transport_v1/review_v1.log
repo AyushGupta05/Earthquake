@@ -1,0 +1,22 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: HEAD
+bundle: 87500 chars
+autoreview findings: 3
+[P1] P1: Validate chunk termination instead of relying solely on read1
+collector.py:240
+The chunked branch treats an empty result from HTTPResponse.read1() as proof of complete framing. The stdlib chunk parser accepts EOF while discarding trailers and does not validate the two bytes discarded after each chunk as CRLF. Consequently, responses such as `3\r\nabc\r\n0\r\n` followed by connection close, or chunks with invalid delimiters, can be marked framed_complete and qualify HTTP200 transport. Explicitly validate chunk delimiters and the terminal trailer section before promoting chunked responses; the current malformed-chunk test only covers a truncated payload.
+
+[P2] P2: Preserve conservative accounting when the controller is interrupted
+collector.py:384
+If the controller times out or exits before emitting finished, summary remains empty even when registered workers have already made requests and retained response bytes. public({}, False) then reports zero attempted batches and zero consumption_upper. This contradicts the required conservative full-allowance charge for killed/unknown consumption and misreports actual attempts as unattempted. Preserve registered-attempt accounting and recover bounded extant journals/partials, or explicitly represent unknown consumption and charge each released attempt its full allowance when no final controller summary exists.
+
+[P2] P2: Reject informational responses as final EOF-framed responses
+collector.py:240
+For statuses such as 101 or 103, header_framing returns eof when CL/TE are absent, but http.client sets the response length to zero for informational statuses. read1 therefore returns empty without observing socket EOF or a final response, and this code marks the attempt complete. Seventeen such responses can produce whole_complete=true despite the promised final-response/framing accounting. Reject unsupported informational responses or consume them until a supported final response, and require actual EOF evidence for eof framing.
+
+overall: patch is incorrect (0.96)
+The implementation can promote malformed chunked framing and informational responses as completed attempts. Controller interruption also loses conservative attempt and consumption accounting. These defects violate the packet's explicit framing and failure-accounting contracts. Review used read-only source inspection; no tests or author code were executed.

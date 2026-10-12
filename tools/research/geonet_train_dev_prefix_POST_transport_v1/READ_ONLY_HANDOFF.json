@@ -1,0 +1,61 @@
+{
+  "schema": "POST-source-only-read-only-handoff-v1",
+  "directory": "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/geonet_train_dev_prefix_POST_transport_v1",
+  "protocol": "geonet-train-dev-prefix-POST-transport-v1",
+  "study": "geonet-original-TRAINDEV65-prefix3-native-POST-v2",
+  "proposal_pin": {
+    "bytes": 9934,
+    "sha256": "d1fde0107ec473d0452d6354100052a1f7ce716f06bf22af047055cbd87e8f45"
+  },
+  "public_contracts": {
+    "PROTOCOL.md": {
+      "bytes": 6895,
+      "sha256": "ccc0008d115ae9f9cd04b4730f61360227fa1dd659a8bb1c7609a54798e44932"
+    },
+    "SCHEMA.md": {
+      "bytes": 17035,
+      "sha256": "46024980b90458a53d567bc6d5bdf86f21752f1306121f74eda8c8904db9de2c"
+    },
+    "CONTROL_PARITY_PROOF.json": {
+      "bytes": 1345,
+      "sha256": "5ae6bc485133a3066e4e27c229c33d157953d0b4e43eda0b4ba4f6542b548f7b"
+    },
+    "ACTUAL_GATE.md": {
+      "bytes": 1961,
+      "sha256": "f0a0912b172d7bc1ec3150c34dfa86802f30169bd4bbe744c26277425c7e1834"
+    },
+    "PUBLIC_PROPOSAL.md": {
+      "bytes": 9934,
+      "sha256": "d1fde0107ec473d0452d6354100052a1f7ce716f06bf22af047055cbd87e8f45"
+    }
+  },
+  "source_pin": {
+    "bytes": 36558,
+    "sha256": "5ae04adc94bdeda64d87d97853a4989ffaa99fdfca1ffd18d2d80243c45e8be9"
+  },
+  "tests_pin": {
+    "bytes": 18390,
+    "sha256": "9c4cdc8eed9acc357a140b21620e8e4d732073d83706e9f0cbbbc2dd7207b850"
+  },
+  "first_clean_round": 4,
+  "review_snapshot_commit": "744efb47b8941ba2c113208ba4dfdadb524d045a",
+  "review_receipt_file": "REVIEW_RECEIPT.json",
+  "review_receipt_pin": {
+    "bytes": 2523,
+    "sha256": "baaa667c76538efa6fab0eb8aa0e895c3df5e22ba9fe45fc79841f5f239c5cb6"
+  },
+  "test_proof_file": "TEST_PROOF.json",
+  "test_proof_pin": {
+    "bytes": 906,
+    "sha256": "af79ea258ea48678e89f6d39a6ef1d4a8cfc48397a4805611cb56869e7d85121"
+  },
+  "actual_invocations": 0,
+  "actual_inputs_read": false,
+  "source_frozen_no_more_edits_or_reviews": true,
+  "independent_auditor_reads_documents_only": true,
+  "parent_must_publish_reviewed_sources_run_focused_tests_verify_original_cache_custody_authority_before_sole_actual_invocation": true,
+  "saved_public_aggregate_permanently_provisional_false_zero": true,
+  "parent_publishes_only_independently_validated_normal_returned_aggregate": true,
+  "processing_interface": "collector.validate_plan(original private bytes)->Plan; collector.Authority(**fresh parent exact fields); collector.collect(plan,canonical new private out_dir,authority)",
+  "claims": "Transport-only preparation; no row science, physical axes, calibration, novelty or benchmark superiority."
+}

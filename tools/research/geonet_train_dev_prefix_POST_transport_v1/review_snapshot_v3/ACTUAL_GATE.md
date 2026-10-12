@@ -1,0 +1,9 @@
+# Separate parent authority; no actual POST granted
+
+Root must independently verify first-clean publishedcollector AND independentauditor/tests/contracts/source/runtime closure, exact fixed65originalfirst-queryableTRAIN/DEV projection/roster/metadata/selection/no-exact-complete-success-cache proofs. The41/24originalorder,clocks/NSLC/prefix/target/fourmetadataunknown/61nominal annotations cannot change. An existing exactcompletepositivePOST match barsduplicates underthisversion. Daily/partial/oldfailed96inputs not substituted. Newprivateplan/authority repeats allpins/caps/publication andstricttrueassertions. Collector verifies localbytes/types/assertions, not externaldocumentarytruth.
+
+After sourcepublication/rootfocusedtests/custodygate, onlyroot may authorizeone freshsolecollect invocation. No actual/private inputs read during sourcepreparation. Production endpoint/TLS/method/controlcannotbe injected. Parent preserves normalouterreturn, allprocessgroupstopproofs, exact private17batch/65row terminalaccounting andbody/header/chunk-framing/manifest/receipt/returnedsummarypins/read-onlymemberclosure beforeindependentbounded audit. Wholepartial/deadline/framingunknown/process/cap/outputfailure promotes0. No retry/split/resume/repair or targetclock change. Fullyframedempty/error responses can accountcompletely butno dataqualification. HTTP200batch not65row science. Everyphysics/model/novelty flagfalse. No decode/acquisition/AWS/fit bythissourcehandoff.
+
+Independent parent replay requires closed chunk delimiters/zero/trailer evidence; informational finals fail unknown framing. Missing trusted controller accounting remains explicitunknown/fullregistered-attempt consumption allowance and cannot qualify.
+
+Saved public_aggregate.json is permanently provisional false/zero; root publishes only independently audited normal returned aggregate. Full member replay compares other fields exactly and derives any returned promotion independently.

@@ -1,0 +1,15 @@
+{
+  "review_round": 3,
+  "clean": false,
+  "accepted_findings": [
+    {
+      "priority": "P2",
+      "issue": "Saved candidate aggregate could claim success before finalization",
+      "verified_from_source": true,
+      "existing_fixture": "test_final_receipt_failure_preserves_fail_closed_result",
+      "fix": "Saved public_aggregate permanently provisional false/qualified0; only independent-gated normal returned aggregate promotes after finalization",
+      "atomic_multiple_file_publication_claimed": false
+    }
+  ],
+  "actual_provider_requests": 0
+}

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] P2: Keep the saved public aggregate fail-closed during finalization
+collector.py:441
+The saved public_aggregate.json is written with whole_complete=true and positive qualified_batches before receipt and manifest finalization succeeds. If finalize_receipt raises (including the failure already exercised by test_final_receipt_failure_preserves_fail_closed_result), membership verification fails, or finalization exceeds the whole deadline, the returned aggregate becomes incomplete with qualified_batches=0, but the saved public aggregate still advertises success. This leaves contradictory retained/public accounting and violates the contract that output/finalization failure qualifies zero batches. Write the saved aggregate provisionally as incomplete and ensure its final state agrees with the returned result, including all failure paths.
+
+overall: patch is incorrect (0.94)
+The transport and supervision controls are substantial, but finalization failure can leave the saved public aggregate claiming whole completion and qualified batches while the receipt and returned result report failure. Inspection was read-only; no tests or author code were executed.

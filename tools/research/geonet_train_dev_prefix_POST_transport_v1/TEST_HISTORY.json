@@ -1,0 +1,70 @@
+{
+  "schema": "POST-source-only-test-history",
+  "nonqualifying_preparation": [
+    "Two root-relative source/test-write commands mistakenly used source-directory cwd; writes failed before fixture execution. Initial tests_v1.txt reports missing module, not a testpass.",
+    "Rootprimaryaudit rejected unverified format=mseed before review/acquisition. Frozen normativeV1proposal retained; NEW9934B V2proposal/miniseed adopted before sourcefreeze."
+  ],
+  "runs": [
+    {
+      "log": "tests_v2.txt",
+      "methods": 14,
+      "exit": 0,
+      "elapsed_s": 15.061
+    },
+    {
+      "log": "tests_v3.txt",
+      "methods": 17,
+      "exit": 0,
+      "elapsed_s": 20.036
+    },
+    {
+      "log": "tests_v4.txt",
+      "methods": 17,
+      "exit": 0,
+      "elapsed_s": 20.48
+    },
+    {
+      "log": "tests_v5.txt",
+      "methods": 21,
+      "exit": 0,
+      "elapsed_s": 25.396
+    },
+    {
+      "log": "tests_v6.txt",
+      "methods": 21,
+      "exit": 0,
+      "elapsed_s": 25.503
+    }
+  ],
+  "actual_inputs_read": false,
+  "provider_requests": 0,
+  "review_history": [
+    {
+      "round": 1,
+      "exit": 1,
+      "findings": 3,
+      "status": "accepted verified fixes",
+      "snapshot": "review_snapshot_v1"
+    },
+    {
+      "round": 2,
+      "exit": 1,
+      "status": "helper rejected absolute finding path; no structured report",
+      "snapshot": "review_snapshot_v2"
+    },
+    {
+      "round": 3,
+      "exit": 1,
+      "findings": 1,
+      "status": "accepted verified provisional aggregate fix",
+      "snapshot": "review_snapshot_v2"
+    },
+    {
+      "round": 4,
+      "exit": 0,
+      "findings": 0,
+      "status": "FIRST CLEAN then freeze",
+      "snapshot": "review_snapshot_v3"
+    }
+  ]
+}

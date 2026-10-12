@@ -1,0 +1,25 @@
+{
+  "schema": "POST-source-only-invented-test-proof-v1",
+  "test_command": "[pinned Python3.14.5] -I -B -Werror -c import source-local test_collector; unittest.main(module=test_collector,verbosity=2)",
+  "log_file": "tests_v6.txt",
+  "log_pin": {
+    "bytes": 3187,
+    "sha256": "4b93233fd4b8bdacb43c28a1fc3a376b74c02797bef5fed0ac2cf8e9caf5fe21"
+  },
+  "methods": 21,
+  "elapsed_s": 25.503,
+  "exit_code": 0,
+  "source_pin": {
+    "bytes": 36558,
+    "sha256": "5ae04adc94bdeda64d87d97853a4989ffaa99fdfca1ffd18d2d80243c45e8be9"
+  },
+  "tests_pin": {
+    "bytes": 18390,
+    "sha256": "9c4cdc8eed9acc357a140b21620e8e4d732073d83706e9f0cbbbc2dd7207b850"
+  },
+  "snapshot_commit": "744efb47b8941ba2c113208ba4dfdadb524d045a",
+  "invented_plans_numeric_loopback_only": true,
+  "provider_requests": 0,
+  "private_data_or_AWS_actions": false,
+  "code_scope_tests_not_operational_or_scientific_validation": true
+}
