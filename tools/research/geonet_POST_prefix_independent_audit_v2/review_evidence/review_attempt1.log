@@ -1,0 +1,23 @@
+2026-10-12T20:55:32.712566Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-12T20:55:32.712583Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-12T20:55:32.720045Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:55:32.723506Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:55:32.725510Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:55:32.727426Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:55:32.729507Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-12T20:55:32.731645Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 136871 chars
+codex thread: 01a131e6-3460-74c2-9a82-71dee464a22d
+codex turn started
+2026-10-12T20:55:33.273884Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-12T20:55:33.273892Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+{"findings":[],"overall_correctness":"patch is correct","overall_explanation":"Source inspection found no actionable defects against the frozen V2 and inherited contracts. The opaque Blockette1001 reserved byte is preserved without affecting timing interpretation, while other reserved-field checks, independent per-record replay, exact crops, routing, custody checks, and fatal zero-promotion behavior remain intact. No code or tests were executed; production runtime and containment verification remain external prerequisites.","overall_confidence":0.88}
+codex usage: input_tokens=54259 cached_input_tokens=8320 output_tokens=411 reasoning_output_tokens=300
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.88)
+Source inspection found no actionable defects against the frozen V2 and inherited contracts. The opaque Blockette1001 reserved byte is preserved without affecting timing interpretation, while other reserved-field checks, independent per-record replay, exact crops, routing, custody checks, and fatal zero-promotion behavior remain intact. No code or tests were executed; production runtime and containment verification remain external prerequisites.

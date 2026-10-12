@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "No actionable defect found in the scoped V2 change. B1001 reserved remains an opaque unsigned byte, while signed microsecond timing and other validation checks remain intact. The invented regression checks distinct raw hashes and unchanged timing, samples, hashes, and classification for values 0, 1, and 255. Tests were inspected, not executed; production containment and physical/model claims remain unproven.",
+  "overall_confidence": 0.9
+}

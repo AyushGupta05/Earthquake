@@ -1,3 +1,7 @@
+# Latest12October checkpoint
+
+No tested novel winner yet. Corrective native prefix V2 passes23/48 local and AWSLinux invented tests after clean review1; its sole actual invocation is pending publication. V1 failed compatibility because it treated an unused reserved byte as timing evidence; all original inputs and that negative run remain. Frozen operational metadata groups independently agree:41groups/60edges/65eligible/0crosssplit. New six-fit native-count information diagnostic source is being implemented; no pilot fits or activity values have been computed. Goal remains high-magnitude improvement at1/3/5 without bulk regression, with independent evidence required.
+
 # Method status and decisions
 
 12October2026 (London). **No novel method or independently matched published-benchmark win is established.** AWS access/eligible credits are restored and the task-owned Chile worker is freshly confirmed stopped. The fixed65TRAIN/DEV native POST acquisition now passes independent whole transport replay and structural header checks for all17bodies; actual prefix decoding and training remain pending separately reviewed qualification. Existing baselines and negative scientific results remain retained.

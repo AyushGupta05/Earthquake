@@ -1,0 +1,54 @@
+{
+  "accepted_findings": [],
+  "actual_inputs_read": false,
+  "clean_review_json": {
+    "bytes": 574,
+    "sha256": "8d5e425a59aa5c026c992cbd43ecfe99924044b3343e53940b0b8de437273090"
+  },
+  "current_equals_clean_snapshot": true,
+  "findings": [],
+  "first_clean_attempt": 1,
+  "helper_exit_code": 0,
+  "no_processing_edits_or_reviews_after_first_clean": true,
+  "overall_confidence": 0.88,
+  "payload_count": 31,
+  "producer_implementation_or_tests_read": false,
+  "publication_performed": false,
+  "rejected_findings": [],
+  "review_command": [
+    "/Users/ayush/.codex/skills/autoreview/scripts/autoreview",
+    "--mode",
+    "local",
+    "--engine",
+    "codex",
+    "--codex-bin",
+    "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+    "--no-web-search",
+    "--prompt-file",
+    "REVIEW_CONTEXT.md",
+    "--output",
+    "../review_evidence/review_attempt1.md",
+    "--json-output",
+    "../review_evidence/review_attempt1.json",
+    "--stream-engine-output"
+  ],
+  "review_context_pin": {
+    "bytes": 3271,
+    "sha256": "08ebe0e872572b41f23441529577f73f9e2441c78df58e795903bcc428e5da6c"
+  },
+  "review_engine": "codex",
+  "reviewed_file_count": 32,
+  "schema": "first-clean-code-only-review-receipt-v2",
+  "shared_git_used": false,
+  "source_snapshot_pin": {
+    "bytes": 4281,
+    "sha256": "538cadf06e471560f8a67b9d3e39274d71e614e8a0a6ad5b490b4c476f312674"
+  },
+  "test_receipt_pin": {
+    "bytes": 767,
+    "sha256": "83702275860d634a56a20387099632f1ece1a30250df9c069557b0f7db096f72"
+  },
+  "timestamp_utc": "2026-10-12T20:57:35.743307+00:00",
+  "v1_manifest_verified_payloads": 102,
+  "v1_preserved": true
+}
