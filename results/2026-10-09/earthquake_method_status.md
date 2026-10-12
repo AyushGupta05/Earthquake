@@ -1,3 +1,5 @@
+12October latest: corrective V2 sole actual normal return and independent replay pass on all17batches/1054records, with58complete joint prefixes at each1/3/5. Exact scalar common cohort34TRAIN/22DEV,26/13Mw>=5.5,24/11Mw>=6; original65/195unknowns retained. Native activity adapter now frozen after clean review3 and21local/21Linux invented tests; TRAIN-only variation preflight pending publication. Six-fit waveform-versus-metadata pilot source still being completed. No pilot fit/novel accuracy win.
+
 # Latest12October checkpoint
 
 No tested novel winner yet. Corrective native prefix V2 passes23/48 local and AWSLinux invented tests after clean review1; its sole actual invocation is pending publication. V1 failed compatibility because it treated an unused reserved byte as timing evidence; all original inputs and that negative run remain. Frozen operational metadata groups independently agree:41groups/60edges/65eligible/0crosssplit. New six-fit native-count information diagnostic source is being implemented; no pilot fits or activity values have been computed. Goal remains high-magnitude improvement at1/3/5 without bulk regression, with independent evidence required.

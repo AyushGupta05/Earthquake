@@ -1,0 +1,96 @@
+{
+  "V1_actual_invocations_retained": 1,
+  "activity_extractions": 0,
+  "actual_V2_invocations": 1,
+  "aggregate": {
+    "batch_statuses": {
+      "decoded": 17,
+      "nonpositive": 0,
+      "unknown": 0
+    },
+    "batches": 17,
+    "cells": 195,
+    "dev": 24,
+    "horizons": [
+      {
+        "complete_components": 181,
+        "complete_joint": 58,
+        "complete_joint_pick_before_cutoff": 58,
+        "dev_complete_joint": 22,
+        "horizon": 1,
+        "metadata_unknown_complete_components": 3,
+        "train_complete_joint": 36
+      },
+      {
+        "complete_components": 177,
+        "complete_joint": 58,
+        "complete_joint_pick_before_cutoff": 58,
+        "dev_complete_joint": 22,
+        "horizon": 3,
+        "metadata_unknown_complete_components": 3,
+        "train_complete_joint": 36
+      },
+      {
+        "complete_components": 177,
+        "complete_joint": 58,
+        "complete_joint_pick_before_cutoff": 58,
+        "dev_complete_joint": 22,
+        "horizon": 5,
+        "metadata_unknown_complete_components": 3,
+        "train_complete_joint": 36
+      }
+    ],
+    "metadata_known": 61,
+    "metadata_unknown": 4,
+    "rows": 65,
+    "test_excluded": 31,
+    "train": 41
+  },
+  "claims": {
+    "accuracy_improved": false,
+    "full_response_verified": false,
+    "hardware_clipping_verified": false,
+    "novelty_verified": false,
+    "online_availability_verified": false,
+    "physical_axes_verified": false,
+    "physically_calibrated": false,
+    "published_superiority_verified": false,
+    "raw_clock_truth_verified": false,
+    "sequence_independence_verified": false,
+    "usable_model_support_verified": false
+  },
+  "decoded_records": 1054,
+  "elapsed_s": 3.7218673289753497,
+  "independent_fresh_agreement": true,
+  "live_deadline_s": 750,
+  "live_memory_bytes": 1073741824,
+  "live_swap_bytes": 0,
+  "live_tasks_max": 32,
+  "normal_return": true,
+  "original_inputs_clocks_unknowns_retained": true,
+  "pilot_fits": 0,
+  "private_closed_members_verified": 9,
+  "scalar_common_grid_support": {
+    "DEV": {
+      "common": 22,
+      "high55": 13,
+      "high55_groups": 8,
+      "high6": 11,
+      "lower": 9
+    },
+    "TRAIN": {
+      "common": 34,
+      "high55": 26,
+      "high55_groups": 22,
+      "high6": 24,
+      "lower": 8
+    }
+  },
+  "scalar_support_floor_pass": true,
+  "schema": "corrective-native-prefix-v2-parent-verified-outcome",
+  "source_commit": "0b533d2d6d34421c12e145e646e5f68c2453d19b",
+  "stopped_own_cgroup_verified": true,
+  "tensor_support_not_yet_established": true,
+  "transport_reacquisitions": 0,
+  "unused_reserved_byte_only_semantic_change": true
+}

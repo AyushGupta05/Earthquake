@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P1] Preserve supported rational periods when passing records to activity
+adapter.py:165
+A valid qualifier-supported Blockette 100 rate can produce a reduced period outside the frozen activity API's bounds. For example, float32 40.1 Hz is exactly 5255987/131072 Hz, giving period [131072000000000, 5255987]. The adapter verifies and forwards that period unchanged, but activity._piece_geometry rejects numerators above 10^12 with InvalidInput('INTEGER'). Thus a positively qualified, joint-complete eligible TRAIN event can abort the entire 65-row invocation instead of retaining its three outcomes. Reconcile this compatibility boundary before handing arrays to frozen activity, preserving native timing and retaining unsupported outcomes when the period cannot be represented by that API.
+
+overall: patch is incorrect (0.96)
+TRAIN-only decoder selection and record/view replay are carefully implemented, but supported qualifier rates can violate the frozen activity period bounds and abort the cohort. Review used read-only source inspection; no execution was performed.

@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "P2: Handle pre-T0 picks before calling the frozen activity API",
+      "body": "Qualifier V2 accepts original picks before T0, and the adapter explicitly treats these rows as denied. However, it still passes the original pick to activity.extract_event, which validates p_ns >= t0_ns before checking denied conditions. A valid qualified cohort containing such a TRAIN or DEV row therefore raises activity.InvalidInput('INTEGER') and loses the entire 65-row output instead of retaining the denied row's three outcomes. Add a compatible denied-row path that preserves the original clock without passing an unsupported event to extraction.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "adapter.py",
+        "line": 191
+      }
+    },
+    {
+      "title": "P2: Release the event's arrays before reconstructing the next row",
+      "body": "Setting components to None does not release the arrays because event['components'] still references them. On the next eligible iteration, reconstruct builds another event's decoded arrays and builtin scalar lists before event is reassigned. Consequently two events' arrays coexist, violating the documented one-event-at-a-time resource contract and increasing peak memory under the externally enforced 1GiB limit. Clear the event's component reference or delete event after extraction, before entering the next iteration.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "adapter.py",
+        "line": 193
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "Read-only inspection found a frozen activity API incompatibility for pre-T0 picks and retained array references that defeat the intended per-event memory lifetime. No execution was performed.",
+  "overall_confidence": 0.99
+}
