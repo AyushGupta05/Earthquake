@@ -1,0 +1,58 @@
+{
+  "base_url_source_declared": "https://geonet-open-data.s3.ap-southeast-2.amazonaws.com",
+  "combined_key_template": "waveforms/miniseed/{year}/{year}.{day_of_year:03d}/{station}.{network}/{year}.{day_of_year:03d}.{station}.{location}-{channel}.{network}.D",
+  "configured_format_source": {
+    "commit_sha1": "5bce92270ba19f30bf8829cdcb471e3a3d28fad7",
+    "decoded_bytes": 977,
+    "decoded_sha256": "3194fa79e8993b99f0514239d7735dc4461b9d31aefd031b2f43e725612b6412",
+    "git_blob_sha1": "a9834f70ea259cc6cf55205446a2ece47e504785",
+    "line_end": 7,
+    "line_start": 1,
+    "path": "geonet_obspy_utils/clients/aws/client_config.yml",
+    "repository": "GeoNet/geonet-obspy-utils"
+  },
+  "evidence_status": {
+    "archive_partition_utc_verified": false,
+    "blank_location_encoding_verified": false,
+    "configured_format_verified": true,
+    "deployed_archive_writer_verified": false,
+    "endpoint_key_correspondence_verified": false,
+    "selected_channel_identity_verified": false,
+    "waveform_coverage_verified": false
+  },
+  "experimental_shape_only": {
+    "channel": "uppercase ASCII alphanumeric length 3",
+    "day_of_year": "calendar-valid ordinal formatted with three digits",
+    "location": "nonblank uppercase ASCII alphanumeric length 2",
+    "network": "uppercase ASCII alphanumeric length 2",
+    "station": "uppercase ASCII alphanumeric length 3 or 4",
+    "year": "four-digit Gregorian year"
+  },
+  "interpretation": "Source-supported literal-key transport hypothesis only; no semantic/day/LC/endpoint/coverage/physical/EEW/magnitude/repair truth claim.",
+  "literal_policy": {
+    "aliases": false,
+    "alternate_keys": false,
+    "auth_or_payer_fallback": false,
+    "blank_location": false,
+    "head": false,
+    "listing": false,
+    "normalization": false,
+    "redirect": false,
+    "retry": false,
+    "wildcards": false
+  },
+  "mapping_status": "unverified_hypothesis",
+  "mseed_file_format": "{station}.{network}/{year}.{day_of_year:03d}.{station}.{location}-{channel}.{network}.D",
+  "profile_id": "geonet-official-configured-literal-key-profile-v1",
+  "proposal_id": "geonet-official-configured-literal-key-transport-proposal-v1",
+  "uncertainty_ids": [
+    "reader_config_not_writer_proof",
+    "utc_query_convention_not_partition_proof",
+    "nonblank_location_storage_semantics_unverified",
+    "channel_identity_including_prefix_plus_Z_unverified",
+    "direct_https_endpoint_key_correspondence_unverified",
+    "historical_coverage_retention_completeness_unverified"
+  ],
+  "waveform_dir": "waveforms/miniseed/",
+  "year_day_format": "{year}/{year}.{day_of_year:03d}/"
+}

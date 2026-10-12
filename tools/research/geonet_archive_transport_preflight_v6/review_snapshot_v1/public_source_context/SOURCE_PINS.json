@@ -1,0 +1,123 @@
+{
+  "authored_bindings": {
+    "native_request_ledger_sha256": "27fbb508f7193c97ab3e2c80f4b623d630994e5ce4cf7686eda1790cddde7444",
+    "proposal": "PROSPECTIVE_FOUR_SLOT.md",
+    "proposal_sha256": "574eaf45f17987bc4e78b212481748ec1392ed08493eeeef6d13700bd485c679",
+    "request_scope_sha256": "8c4bdf6c26ac54bfeede032108bda59f2fef4893df49ed4724c8986e247fd2de",
+    "template_profile": "CONFIGURED_TEMPLATE.json",
+    "template_profile_sha256": "7031bb9cdb97d1c1463bd0b2f8527bf4fbbec279d81e37d836003a687e98e5da",
+    "uncertainty_document": "AUDIT.md",
+    "uncertainty_document_sha256": "d3f826d1b1e45c59fdd5760dc3b5e9f0a8e954a60c2ec7ee628e80031462ec74"
+  },
+  "claims": {
+    "actual_data_reads_or_requests": false,
+    "blank_location_key_encoding_verified": false,
+    "deployed_writer_found": false,
+    "historical_coverage_verified": false,
+    "live_endpoint_or_object_access_verified": false,
+    "mapping_status": "unverified_hypothesis",
+    "official_reader_format_verified": true,
+    "old_run_repair": false,
+    "source_execution": false,
+    "utc_archive_partition_verified": false
+  },
+  "curated_allowlist": [
+    "AUDIT.md",
+    "PROSPECTIVE_FOUR_SLOT.md",
+    "CONFIGURED_TEMPLATE.json",
+    "SOURCE_PINS.json",
+    "native_request_ledger.json",
+    "REQUEST_SCOPE_LEDGER.md",
+    "CURATED_ALLOWLIST.md",
+    "CURATED_PACKET_SHA256.txt"
+  ],
+  "exact_inert_sources": [
+    {
+      "decoded_bytes": 977,
+      "decoded_sha256": "3194fa79e8993b99f0514239d7735dc4461b9d31aefd031b2f43e725612b6412",
+      "geonet_lines": [
+        1,
+        7
+      ],
+      "git_blob_and_recursive_membership_verified": true,
+      "git_blob_sha1": "a9834f70ea259cc6cf55205446a2ece47e504785",
+      "path": "geonet_obspy_utils/clients/aws/client_config.yml",
+      "url": "https://github.com/GeoNet/geonet-obspy-utils/blob/5bce92270ba19f30bf8829cdcb471e3a3d28fad7/geonet_obspy_utils/clients/aws/client_config.yml"
+    },
+    {
+      "decoded_bytes": 24223,
+      "decoded_sha256": "72fecb7e900bb7022cd0a171e948637474069ca804d9b123118bf3d6db6e1981",
+      "git_blob_and_recursive_membership_verified": true,
+      "git_blob_sha1": "431a93f0d93c7be381fa80ea5d8e778ab9b67bee",
+      "path": "geonet_obspy_utils/clients/aws/client.py",
+      "relevant_lines": [
+        [
+          61,
+          85
+        ],
+        [
+          169,
+          229
+        ]
+      ],
+      "url": "https://github.com/GeoNet/geonet-obspy-utils/blob/5bce92270ba19f30bf8829cdcb471e3a3d28fad7/geonet_obspy_utils/clients/aws/client.py"
+    }
+  ],
+  "inherited_earlier_tutorial_pin": {
+    "bytes": 21951,
+    "provenance": "earlier frozen authored work/geonet_archive_key_mapping_source_audit source packet; not refetched or raw-read here",
+    "sha256": "f6449a1afade401de0e4cc79b9cca081996d6818cfd112468555f91facc9aa56",
+    "url": "https://github.com/GeoNet/data-tutorials/blob/db4574a7b230a5a820c5419bd0234d0bed642184/AWS_Open_Data/README.md#miniseed-waveform-data"
+  },
+  "license_status": "Repository LICENSE text not retrieved; external raw source excluded from curated packet; no redistribution/license determination",
+  "official_document_snapshots": [
+    {
+      "bytes": 127114,
+      "immutability": "retrieval snapshot only; URL is not revision pinned",
+      "native_utc": "2026-10-11T04:58:18.899229+00:00",
+      "sha256": "7f57f8b1f7dc7bb5e57029bf37e59c4f71ce6a7708a34a0b43c1ccf6f3e8b638",
+      "url": "https://www.geonet.org.nz/data/access/aws"
+    },
+    {
+      "bytes": 124603,
+      "immutability": "retrieval snapshot only; URL is not revision pinned",
+      "native_utc": "2026-10-11T04:58:56.268864+00:00",
+      "sha256": "2df267f11d73dfb5f730a2c0facffbbce48feda2b6e8f9c15cca5c652bba6b93",
+      "url": "https://www.geonet.org.nz/data/types/seismic_waveforms"
+    }
+  ],
+  "packet_id": "geonet-archive-writer-source-audit-v1",
+  "retrieval_summary": {
+    "focused_discovery_queries": 6,
+    "native_connection_limit_s": 10,
+    "native_delivered_body_bytes": 614774,
+    "native_details": "native_request_ledger.json",
+    "native_gets": 10,
+    "native_redirects": 0,
+    "native_request_deadline_s": 20,
+    "native_retries": 0,
+    "native_status_counts": {
+      "200": 8,
+      "404": 2
+    },
+    "native_total_cap_bytes": 1048576,
+    "web_command_items": {
+      "find": 2,
+      "open": 5,
+      "search": 6
+    },
+    "web_tool_batches": 4,
+    "web_underlying_transport_measurements_available": false
+  },
+  "scope": "official inert public source/documents only; no actual data or source execution",
+  "utility_repository": {
+    "all_tree_hashes_match_commit_root": true,
+    "commit_sha1": "5bce92270ba19f30bf8829cdcb471e3a3d28fad7",
+    "committer_utc": "2025-11-14T01:15:15Z",
+    "reconstructed_tree_objects": 6,
+    "recursive_tree_truncated": false,
+    "root_tree_sha1": "795fbb5a7e8cc4c639bdfd0dffc2383a8c1df98c",
+    "tree_selector_sha1": "5bce92270ba19f30bf8829cdcb471e3a3d28fad7",
+    "url": "https://github.com/GeoNet/geonet-obspy-utils"
+  }
+}

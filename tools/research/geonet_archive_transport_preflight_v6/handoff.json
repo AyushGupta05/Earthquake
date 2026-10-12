@@ -1,0 +1,64 @@
+{
+  "schema": "v6-collector-source-only-handoff-v1",
+  "utc": "2026-10-12T11:59:44.128353+00:00",
+  "protocol": "geonet-anonymous-archive-transport-v6",
+  "study_id": "geonet-configured-two-numbered-horizontal-precontext3-transport-v6",
+  "precontext_s": 3,
+  "slots": 2,
+  "literal_suffixes": [
+    "1",
+    "2"
+  ],
+  "limits": {
+    "max_GETs": 2,
+    "per_body_bytes": 67108864,
+    "total_body_bytes": 134217728,
+    "request_s": 45,
+    "run_s": 120,
+    "connection_s": 10,
+    "first_body_s": 20,
+    "start_spacing_s": 1,
+    "no_new_after_s": 75,
+    "transfer_stop_s": 105
+  },
+  "plan_fields": 11,
+  "prerequisite_pin_fields": 15,
+  "prerequisite_assertions": 10,
+  "reviewed_snapshot_files": 14,
+  "first_clean_attempt": 2,
+  "review_exit": 0,
+  "findings": [],
+  "tests": 70,
+  "test_elapsed_s": 25.345,
+  "test_proof_sha256": "799af0b47b0513cfb8d1a8a99d7abb89b0eeabc1c58cbade7b163ee73697a62e",
+  "review_receipt_sha256": "85a9429a1c821b32012c7b97310eb8a0bb928f05892035c28c5c82fb5138ca4f",
+  "public_contract_pins": {
+    "PROTOCOL_v6.md": {
+      "bytes": 7010,
+      "sha256": "ed25f4469dd70391e241d5c4b9fc619475369049db9675d15d784672d4f0c464"
+    },
+    "SCHEMA.md": {
+      "bytes": 11788,
+      "sha256": "45799c6eb749d653849a0aca62a1c2dca1b21d687eb20e699f6af898801dabcd"
+    },
+    "CONTROL_PARITY_PROOF.json": {
+      "bytes": 6134,
+      "sha256": "7bbeac87da925b0ccdb33c80c245e0f7e5ddd9ea0d92c178c22f107e4791c15a"
+    },
+    "ACTUAL_INVOCATION_GATE.md": {
+      "bytes": 2109,
+      "sha256": "22de5b795c215c0486a2442a6083821c6a3c282358da6bb71fc06f87f3013ec6"
+    }
+  },
+  "runtime_pins_sha256": "a60543668e55143d3000302e9256334d0642a279184bf386ca6c22d0676cb9f1",
+  "source_only": true,
+  "actual_inputs_read": false,
+  "actual_invocations": 0,
+  "provider_requests": 0,
+  "aws_actions": 0,
+  "old_versions_modified": false,
+  "processing_edits_after_clean": 0,
+  "further_reviews_after_clean": 0,
+  "actual_execution_authorized": false,
+  "parent_next_gate": "Independent parent tests/pins and both collector+auditor published reviewed source before any actual private plan/authorization/invocation."
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "v6-source-only-focused-test-proof-v1",
+  "utc": "2026-10-12T11:59:44.128353+00:00",
+  "python": "3.14.5",
+  "methods": 70,
+  "exit": 0,
+  "elapsed_s": 25.345,
+  "test_log_pin": {
+    "bytes": 10075,
+    "sha256": "d9eec9b130affd52dde7f50cfed7fce6e8234461c7b5f74b55214fcf733ffab0"
+  },
+  "source_pin": {
+    "bytes": 37257,
+    "sha256": "ff11dc5a8cfd934a2f6cb8472c505a03c5d49a6619e951a749723aeba24d4f63"
+  },
+  "test_source_pin": {
+    "bytes": 49887,
+    "sha256": "ec6d89494b7316305564594495b72231b83af14952bef22c916966d6af22aa4f"
+  },
+  "command": "python3.14 -I -B -Werror -c 'import sys,unittest;sys.path.insert(0,\".\");import test_collector;unittest.main(module=test_collector,verbosity=2)'",
+  "network_scope": "numeric-loopback invented HTTP only",
+  "actual_inputs_read": false,
+  "provider_requests": 0,
+  "aws_actions": 0,
+  "new_installs": 0,
+  "earlier_failed_runs_retained": [
+    "tests_v1.txt",
+    "tests_v2.txt"
+  ],
+  "earlier_pre_review_pass_retained": "tests_v3.txt",
+  "accepted_finding_reproduction_retained": "accepted_review1_reproduction.json"
+}

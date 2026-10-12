@@ -1,0 +1,31 @@
+{
+  "schema": "v6-source-only-first-clean-review-receipt-v1",
+  "source_frozen_at_utc": "2026-10-12T11:59:44.128353+00:00",
+  "engine": "codex",
+  "first_clean_attempt": 2,
+  "helper_exit": 0,
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_confidence": 0.9,
+  "accepted_prior_findings_fixed": 1,
+  "rejected_findings": 0,
+  "reviewer_test_execution": false,
+  "reviewer_external_requests": false,
+  "actual_inputs_in_bundle": false,
+  "web_search": false,
+  "tools_enabled": true,
+  "isolated_snapshot_files": 14,
+  "reviewed_snapshot_sha256": "8537a023d5aa1d981be298095025c04cb049eee256e47b01b91935e6f34092c5",
+  "review_json_sha256": "e5d082c44486f6b966b72aa2b0c5ccad543c7fc7f0b466f2d6e267b163f6bfd5",
+  "review_log_sha256": "1a9a02c9e4dcd88f26e718ac5ec07fe00d5df712778b4e2a85bb703ecbf7e3cf",
+  "review_snapshot_commits": {
+    "1": "68e784be9099f6e5ffea5d8ea5ae8922368e4b7f",
+    "2": "8fc56d6d37016c8d9aee32ccf703e2394599ae6e"
+  },
+  "reviewed_directory": "review_snapshot_v2",
+  "command": "autoreview --mode commit --commit HEAD --engine codex --codex-bin <pinned Codex binary> --no-web-search --prompt-file ../review_prompt.md --output ../autoreview_v2.md --json-output ../autoreview_v2.json",
+  "further_reviews_after_first_clean": 0,
+  "processing_edits_after_first_clean": 0,
+  "actual_execution_authorized": false,
+  "stop_rule": "First helper exit0/findings[] freezes processing source/tests/reviewed public contracts; only curation/hash/handoff metadata follows."
+}

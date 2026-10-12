@@ -1,0 +1,95 @@
+{
+  "protocol": "geonet-independent-archive-transport-audit-v5",
+  "collector_protocol": "geonet-anonymous-archive-transport-v6",
+  "study_id": "geonet-configured-two-numbered-horizontal-precontext3-transport-v6",
+  "proposal_sha256": "9958454926c5d90b8084c862bd117adda4b306e88d7ad35a13af997920f0d229",
+  "api": "audit(plan_bytes,manifest_bytes,bounded_member_reader,execution_summary_bytes=raw,execution_summary_pin={bytes,sha256})",
+  "source_only": true,
+  "first_clean_attempt": 1,
+  "review_exit": 0,
+  "findings": 0,
+  "tests": 63,
+  "test_exit": 0,
+  "test_elapsed_s": 0.4246311249999053,
+  "reviewed_snapshot_files": 23,
+  "safe_public_file_count": 74,
+  "source_snapshot_pin": {
+    "path": "SOURCE_SNAPSHOT.json",
+    "bytes": 3881,
+    "sha256": "ae52302e8a4d5d667f9dd3cec0081fcab97087753f765cc4fb740eb381499c4d"
+  },
+  "review_receipt_pin": {
+    "path": "review_evidence/review_receipt.json",
+    "bytes": 1692,
+    "sha256": "d2897fa5903687176c6786589ac0266dc3d04512028acde72a436a33c34530b8"
+  },
+  "test_proof_pin": {
+    "path": "review_evidence/test_receipt.json",
+    "bytes": 1106,
+    "sha256": "427238ad822272ee0f85f76e1d05936cf29a8b7ab6a259a56593308057f7dd0a"
+  },
+  "auditor_pin": {
+    "path": "auditor.py",
+    "bytes": 25472,
+    "sha256": "2264b8125d2839302f9ace3a7d69244dc8864d90c403600f135455d55fa71c24"
+  },
+  "contract_pins": [
+    {
+      "path": "public_contract/PROPOSAL.md",
+      "bytes": 5374,
+      "sha256": "9958454926c5d90b8084c862bd117adda4b306e88d7ad35a13af997920f0d229"
+    },
+    {
+      "path": "public_contract/PROTOCOL_v6.md",
+      "bytes": 7010,
+      "sha256": "ed25f4469dd70391e241d5c4b9fc619475369049db9675d15d784672d4f0c464"
+    },
+    {
+      "path": "public_contract/SCHEMA.md",
+      "bytes": 11788,
+      "sha256": "45799c6eb749d653849a0aca62a1c2dca1b21d687eb20e699f6af898801dabcd"
+    },
+    {
+      "path": "public_contract/CONTROL_PARITY_PROOF.json",
+      "bytes": 6134,
+      "sha256": "7bbeac87da925b0ccdb33c80c245e0f7e5ddd9ea0d92c178c22f107e4791c15a"
+    },
+    {
+      "path": "public_contract/ACTUAL_INVOCATION_GATE.md",
+      "bytes": 2109,
+      "sha256": "22de5b795c215c0486a2442a6083821c6a3c282358da6bb71fc06f87f3013ec6"
+    }
+  ],
+  "fixed_slots": 2,
+  "precontext_s": 3,
+  "strict_prerequisite_pins": 15,
+  "manifest_members": [
+    5,
+    7
+  ],
+  "byte_limits": {
+    "per_body": 67108864,
+    "total": 134217728
+  },
+  "time_limits_s": {
+    "connection": 10,
+    "first_body": 20,
+    "request": 45,
+    "no_new": 75,
+    "transfer": 105,
+    "whole": 120
+  },
+  "completion_requires": "both attempted framed body_complete/empty_body, stricttrue exact/verified/confirmed exits, bounded normal outer finalization",
+  "fully_framed_late_accounting_allowed": true,
+  "incomplete_promotes_zero_slots": true,
+  "actual_inputs_read": false,
+  "actual_invocations": 0,
+  "data_requests": 0,
+  "decodes": 0,
+  "fits": 0,
+  "aws_actions": 0,
+  "shared_git_actions": 0,
+  "source_edits_after_clean": false,
+  "further_reviews_after_clean": 0,
+  "parent_actual_authority_required": true
+}

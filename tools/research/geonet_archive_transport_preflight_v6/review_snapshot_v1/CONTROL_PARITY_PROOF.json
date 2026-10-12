@@ -1,0 +1,131 @@
+{
+  "schema": "v6-v5-control-parity-proof-v1",
+  "baseline": "frozen authored V5 source only",
+  "baseline_collector_sha256": "d201784ea2cc34f0f34a97d854578409965d251493bcfff328b5463a98ad8e6b",
+  "changed_definitions": [
+    "Plan",
+    "validate_plan",
+    "Limits",
+    "ActualInvocationGate",
+    "verify_fixture_manifest"
+  ],
+  "unchanged_definitions": [
+    {
+      "name": "_json",
+      "sha256": "0ab9546d9619c1914b11acb33235d85d59865fe5efa0074c721752c175a5cabf"
+    },
+    {
+      "name": "_bytes",
+      "sha256": "00cc7501899f7d34a39ea5524d126cb7708381d9344dd989800886f2d0644892"
+    },
+    {
+      "name": "_text",
+      "sha256": "ce1fa4961f5af82e7bb33b156b2a9691846017d52328a930779c0224f5ba1a76"
+    },
+    {
+      "name": "_fields",
+      "sha256": "0ea04d906e352a05e57a3c2961c1f51aababe6ee0b83fdacc247df692f2db9c5"
+    },
+    {
+      "name": "Slot",
+      "sha256": "0da129209211f1cc3c63040bf980cd8570d449abfc7f8e444525936170c30d26"
+    },
+    {
+      "name": "_claims",
+      "sha256": "3372dcfe908c7c64bf4dfe549d19072d4363f9a923594601eeb79b22347fcaff"
+    },
+    {
+      "name": "_write_new",
+      "sha256": "628add967838bd1fbc60a6543b116e70fb28f8d90afb000a40c78210a9b70515"
+    },
+    {
+      "name": "_pin",
+      "sha256": "6e015e16c6f8ed5b60962e4d837bfda4534dbad41a3794681c1b80fedb3a759c"
+    },
+    {
+      "name": "_emit",
+      "sha256": "a9365cc14b60bc3947a3149f5716d9918590788892fc50f1a5e79243b9218c37"
+    },
+    {
+      "name": "_worker",
+      "sha256": "84bb6b105749308e109bd4d128be4f24b64c75fafcad6266012dc1216bb104ef"
+    },
+    {
+      "name": "_environment",
+      "sha256": "5e0f0d615835204de6e80eadac7deb9cf2440d9d0e8412a6a2153d0375e91ff0"
+    },
+    {
+      "name": "_spawn",
+      "sha256": "8f89861f52ffffaeaf76113c97de1b11e0f679079247b33172e64886048ed307"
+    },
+    {
+      "name": "_kill",
+      "sha256": "900d746113df84aeca7d2029e189e1a93f63a81fdbc7a30ec35fe9e845777472"
+    },
+    {
+      "name": "_reap",
+      "sha256": "14a8d54e7e2af8e18c233540da21c5628c48b0f6b69bb39215b49e372cbf0897"
+    },
+    {
+      "name": "_terminate_and_confirm",
+      "sha256": "cda25cada0d9befa32f7d7acc850c3569d5adebdeb82bc6f0585f5562bd53eef"
+    },
+    {
+      "name": "_request",
+      "sha256": "068f770629ae832c66df471c7ae5b876b286d1879e3adec5bc55c96828514c75"
+    },
+    {
+      "name": "_controller",
+      "sha256": "4b7f78c6af9f0cd38947023378fca309451b342090e7e4c8d6bd156390c6cd13"
+    },
+    {
+      "name": "_fixture_check",
+      "sha256": "6110c46c9a192eb0e6d700da0b5ecc23082df99b64635ce1e3a11c07ac932c4a"
+    },
+    {
+      "name": "_collect",
+      "sha256": "79429e56504829cdbdcea22e92e7e9a1c511f80498100af1833f5edefeada481"
+    },
+    {
+      "name": "collect",
+      "sha256": "33eb2310d4b056c3002c9837b53bac03ae625bbe864ca4282a0137614a464136"
+    },
+    {
+      "name": "collect_fixture",
+      "sha256": "061750a32fade046fd84ac34cbe62b7205cd6d4d1e53afd2d7e20887ebea37a1"
+    }
+  ],
+  "module_constants": {
+    "PROTOCOL": "changed V6 identity",
+    "PROPOSAL_SHA256": "changed new root proposal pin",
+    "STUDY_ID": "changed exact two-numbered identity",
+    "SLOT_IDS": "changed exactly numbered_1/numbered_2",
+    "DEFAULT_LIMITS": "changed request45/stop-new75/transfer105/whole120/total128MiB; connect10/first20/spacing1/per64MiB preserved",
+    "TEMPLATE_SOURCE_SHA256": "unchanged official decoded config pin",
+    "UNCERTAINTY_EVIDENCE_SHA256": "unchanged authored uncertainty audit pin",
+    "MAPPING_STATUS": "unchanged unverified hypothesis",
+    "TRANSPORT_HYPOTHESIS": "unchanged anonymous literal key GET hypothesis",
+    "SLOT_UNCERTAINTIES": "unchanged exact ordered uncertainty labels",
+    "ARCHIVE_ENDPOINT": "unchanged anonymous HTTPS geonet-open-data endpoint",
+    "MAX_PLAN_BYTES": "unchanged16384",
+    "MAX_INTERNAL_ARGUMENT_BYTES": "unchanged65536",
+    "MAX_OUTPUT_PATH_BYTES": "unchanged4096",
+    "CHUNK_BYTES": "unchanged16384",
+    "MAX_EVENT_BYTES": "unchanged512",
+    "SHA": "unchanged lower64hex",
+    "KEY": "unchanged configured LOCATION-CHANNEL.NETWORK syntax; role restriction now literal1/2 in validation",
+    "PREREQUISITE_PIN_FIELDS": "new strict fifteen documentary pins",
+    "PREREQUISITE_ASSERTION_FIELDS": "new ten strict true parent assertions"
+  },
+  "deliberate_controls": {
+    "plan_validation": "eleven fields exact context; two non-null literal1/2 distinct matching base; new strict prerequisite pins; original bytes/forged Plan guard retained",
+    "local_gate": "V6 protocol local pin filename changed; new matched prerequisite SHA/assertions; old strict booleans/source/test/protocol/proposal/commit/authorization checks retained",
+    "worker": "byte-identical HTTPS/loopback validation, env sanitization, GET identity/close, Content-Length screening, bounded read/framing, error privacy, hash/flush and internal plan/gate revalidation",
+    "controller": "byte-identical exclusive staging, one-pass roster, launch guard, start spacing, conservative caps, deadlines, confirmed writer exit, journals/receipt/manifests; changed constants control scope",
+    "duplicate_unavailable": "inherited defensive branches retained, unreachable after V6 nonnull unique two-slot validation; invalid in V6 auditor contract",
+    "outer_watchdog": "byte-identical process group, absolute deadline, asynchronous reap, returned summary; no fabricated complete state",
+    "fixture_verifier": "only fixed slot count changed8to2; remains invented-only, independent hash/member equality check",
+    "privacy": "no raw actual input/network acquisition in source task; no decoder/config/credentials reader/proxy/fallback/redirect/retry/list/resume exists"
+  },
+  "limitations": "Text parity proves inherited definitions byte-identical, not physical timing, provider holdings, documentary truth or scientific correctness. No actual invocation authorized."
+}

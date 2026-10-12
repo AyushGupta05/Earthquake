@@ -1,0 +1,26 @@
+{
+  "schema": "v6-review1-disposition-v1",
+  "accepted": [
+    {
+      "priority": "P2",
+      "title": "Preserve root proposal incomplete state for partial transfers",
+      "verified": true,
+      "reproduction": "accepted_review1_reproduction.json",
+      "fix": "Both attempted fixed rows require body_complete-or-empty_body, exact verified consumption/receipt and confirmed exits; partial/interruption/unknown remains complete:false",
+      "affected_contracts": [
+        "PROTOCOL_v6.md",
+        "SCHEMA.md",
+        "CONTROL_PARITY_PROOF.json",
+        "ACTUAL_INVOCATION_GATE.md"
+      ],
+      "tests": "tests_v4.txt",
+      "methods": 70,
+      "elapsed_s": 25.345,
+      "exit": 0
+    }
+  ],
+  "rejected": [],
+  "actual_inputs_read": false,
+  "provider_requests": 0,
+  "frozen_old_versions_modified": false
+}

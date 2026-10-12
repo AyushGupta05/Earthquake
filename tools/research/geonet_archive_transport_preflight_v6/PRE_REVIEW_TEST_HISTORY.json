@@ -1,0 +1,33 @@
+{
+  "schema": "v6-prereview-test-history-v1",
+  "actual_inputs_read": false,
+  "provider_requests": 0,
+  "runs": [
+    {
+      "log": "tests_v1.txt",
+      "methods": 68,
+      "exit": 1,
+      "errors": 31,
+      "causes": [
+        "25 inherited numeric-loopback bindings denied by default sandbox",
+        "6 exact production ID length66 rejected by inherited fixture-ID length64 bound"
+      ]
+    },
+    {
+      "log": "tests_v2.txt",
+      "methods": 68,
+      "exit": 1,
+      "errors": 6,
+      "loopback_authorized": true,
+      "cause": "same exact production ID handling; transport fixtures passed"
+    },
+    {
+      "log": "tests_v3.txt",
+      "methods": 68,
+      "status": "passed",
+      "fix": "exact production identity separated from unchanged64-byte invented syntax",
+      "exit": 0,
+      "elapsed_seconds": 24.607
+    }
+  ]
+}

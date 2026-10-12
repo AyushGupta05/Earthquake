@@ -1,0 +1,3 @@
+# Curated primary-source context
+
+This packet carries authored public template/uncertainty context copied byte-exact from frozen V5. It does not acquire provider data or inspect actual inventory. The NEW root proposal uses [GeoNet channel conventions](https://www.geonet.org.nz/data/supplementary/channels) to distinguish E/N from literal nonaligned1/2;1/2 are never renamed cardinal components. [GeoNet archive access](https://www.geonet.org.nz/data/access/aws) describes daily synchronization, not operational latency. Existing nominal configuration uncertainty remains acknowledged; metadata support is a separate private parent prerequisite, not proof of archive holdings or calibrated waveforms.

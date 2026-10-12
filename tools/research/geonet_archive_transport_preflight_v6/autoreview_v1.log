@@ -1,0 +1,14 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: HEAD
+bundle: 144336 chars
+autoreview findings: 1
+[P2] P2: Preserve the root proposal's incomplete state for partial transfers
+collector.py:628
+When both requests are attempted, this expression marks the run complete even if a body is truncated or a worker is interrupted by a request deadline. For example, the existing partial declared-body fixture produces `incomplete_body` rows but still publishes a final receipt and returned summary with `complete:true`. The pinned normative root proposal explicitly says that body partials and interruption prevent complete publication. Although SCHEMA.md currently defines completion differently, that downstream definition contradicts the required root proposal. Align completion accounting and its synthetic assertions with the root contract while retaining partial bodies and failed rows; complete HTTP404 bodies can remain completed failed transport.
+
+overall: patch is incorrect (0.9)
+The literal numbered-key validation, prerequisite bindings, production/fixture separation and conservative transport controls appear consistent with the supplied scope. However, partial or interrupted transfers can be published as complete, contradicting the explicitly normative pinned root proposal. Review was limited to the supplied source packet; no tests or author code were executed.

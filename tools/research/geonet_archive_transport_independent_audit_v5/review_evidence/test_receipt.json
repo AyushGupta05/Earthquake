@@ -1,0 +1,41 @@
+{
+  "scope": "invented-only in-memory fixtures; no actual artifacts or collector implementation",
+  "command": [
+    "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "-B",
+    "-Werror",
+    "-m",
+    "unittest",
+    "-v",
+    "test_auditor"
+  ],
+  "tests": 63,
+  "exit": 0,
+  "elapsed_s": 0.4246311249999053,
+  "actual_utc": "2026-10-12T11:58:42.828777+00:00",
+  "source_pins": [
+    {
+      "path": "auditor.py",
+      "bytes": 25472,
+      "sha256": "2264b8125d2839302f9ace3a7d69244dc8864d90c403600f135455d55fa71c24"
+    },
+    {
+      "path": "test_auditor.py",
+      "bytes": 50769,
+      "sha256": "83f4ce055ddc856c6f4afa5d0ed01362c533def8ad80980448a5c57fd273bb5d"
+    },
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 9231,
+      "sha256": "3a274c705c3dad1cb7e82c0afe080f86932989d78cb5d02dbc6333059d1a53db"
+    }
+  ],
+  "log_pin": {
+    "path": "review_evidence/tests.log",
+    "bytes": 9486,
+    "sha256": "b6c024cb866b0266aff7a10cf882b61c6fb723ace7bcbc3cd9abfe2a8ebf9bec"
+  },
+  "actual_invocations": 0,
+  "acquisitions": 0,
+  "fits": 0
+}
