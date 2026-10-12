@@ -17,3 +17,6 @@ The [full2026 seismogeodetic paper](https://agupubs.onlinelibrary.wiley.com/doi/
 A reusable architecture still needs the same event split, causal preprocessing, available input channels, magnitude scale and clock before its score can be compared. Station holdout alone does not guarantee event holdout: two records of one earthquake can be assigned to different station groups. This is a general evaluation constraint, not a claim that the inspected authors violated it.
 
 The immediate data work remains justified: preserve original arrival clocks, establish usable compatible-Mw waveforms, then test a distributional method against retrained comparators on an independently held-out event/sequence panel. A short-window model cannot acquire GNSS or later energy evidence merely by changing a prior or sampling more posterior values.
+
+
+12October primary addendum: [Taiwan ensemble and GNSS quality filtering](../work/earthquake_20261012_quality_ensemble_primary_addendum/ADDENDUM.md). The former targets PGA/intensity and the latter requires GNSS data; neither supplies matched1/3/5 Mw accuracy evidence. These constrain ensemble/quality-gating novelty claims rather than authorize a new fit.
