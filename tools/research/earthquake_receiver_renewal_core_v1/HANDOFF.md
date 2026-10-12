@@ -1,0 +1,13 @@
+# Frozen source-only numerical core
+
+First-clean default Codex autoreview round 1 returned exit 0 with no findings; confidence .87. Stop review here. Agent ran 23 invented tests successfully on Python 3.14.5 / NumPy 2.5.4 / SciPy 1.18.1. The reviewer performed read-only source inspection and did not execute tests. No processing changes follow first clean.
+
+Reviewed source and protocol snapshot is SOURCE_SNAPSHOT.json; review_stage_v1.json identifies the isolated public-source-only temporary Git stage. All reviewed payload bytes are exact. No actual inputs, credentials, inventory, private clocks or scientific fit enter the stage or this packet. Root controls publication and later actual authority.
+
+API: import renewal; construct Mixture.from_raw(raw15), Hazard(arm, alpha2, beta2, z_weights2xdz, c_weights2xdc, gamma2, extra2, mref). Provide first-cell-only z, static c and the observed complete binary cells. log_likelihood permits an observed prefix length. joint_loss returns base/sequence/joint terms. gauss_hermite supports fixed 64/128; adaptive uses independent SciPy all-line component integrals; checked_inference requires pairwise logZ/mean/NLL parity <=1e-4. Validation exceptions and NumericalFailure never carry an accepted prediction. A rejected checked_inference result retains the three integrals/errors; it must not be silently accepted or replaced by a different inference rule.
+
+H replacement parameters are fixed initial z0*z1 and z0*c0 products, with dz>=2 and dc>=1. C extras use current log-run-age. Both have identical effective parameter counts for identical dimensions. H remains age-free but can vary with local elapsed time. The input base density and shared coefficients are caller-owned for matched initialization; module construction does not initialize or fit a backbone.
+
+Frozen invented numerical failure: broad sigma=10 and slopes +/-50 produces maximum pairwise mean difference .03692384237371371 and logZ/NLL difference .005138855811977816. All-real-line adaptive integration completes, but fixed GH acceptance correctly fails. See NUMERICAL_FAILURE_EXAMPLE.json; no clipping or model repair. Successful invented regimes include sigma=.05, sigma=1000 with magnitude-independent hazards, label=1000, uncapped means from -50 to100, and moderate magnitude-dependent hazards. These are examples, not an exhaustive numerical validity domain.
+
+Limitations: no native waveform extractor, time qualifier, Torch autograd/trainer, optimizer, CRPS, quantiles, score aggregation or automatic experiments. This is low-level existing C/H preparation only. Actual fitting still requires root's independent waveform-information/activity-variation/support/resource gates; no scientific improvement or novelty claim follows.

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Include native-rate strata in the required diagnostic report
+pilot.py:156
+The inherited protocol explicitly requires reporting rate strata because the sample-domain encoder operates at each record's native rate. Here, metrics are aggregated only by horizon, and neither the per-arm summaries nor W-M/W-P comparisons include rate-stratified results. On a mixed-rate cohort, a completed run therefore omits a required diagnostic for acquisition-rate effects. Retain the original qualified rate with each prediction and report per-rate support and metrics, marking insufficient strata unsupported.
+
+overall: patch is incorrect (0.9)
+The implementation omits the explicitly required native-rate stratified reporting. Review was limited to read-only source inspection; no tests or fits were executed, and the pending Linux Torch lane is not treated as passed.

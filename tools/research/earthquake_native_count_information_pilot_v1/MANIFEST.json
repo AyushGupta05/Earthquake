@@ -1,0 +1,216 @@
+{
+  "schema": "closed-authored-native-count-information-pilot-source-v1",
+  "source_only": true,
+  "first_clean_review": 2,
+  "helper_exit": 0,
+  "findings": [],
+  "current_equals_clean_snapshot": true,
+  "local_tests": {
+    "tests": 28,
+    "passed": 23,
+    "skipped": 5
+  },
+  "parent_linux_invented_tests": {
+    "tests": 28,
+    "passed": 28,
+    "skipped": 0
+  },
+  "actual_inputs": false,
+  "actual_fits": 0,
+  "forbidden": [
+    "actual seismic data",
+    "private plans/receipts/metadata/results",
+    "credentials",
+    "vendor source",
+    "local_runs",
+    "shared Git"
+  ],
+  "files": [
+    {
+      "path": "ALLOWLIST.txt",
+      "bytes": 561,
+      "sha256": "55d3c3580be6a3a0f7a52a7a029638eb6d803662933934ce7103ae435ac16a68",
+      "mode": "0400"
+    },
+    {
+      "path": "API.md",
+      "bytes": 3762,
+      "sha256": "b05c58212d42aa5dbadeb5d775a1c45af60d6532ffef53eae15641afc83a7823",
+      "mode": "0400"
+    },
+    {
+      "path": "FREEZE.json",
+      "bytes": 299,
+      "sha256": "4de45fc8ccf2cddd976a92e294715e441d5dbd7af8d7483d5fccb15250d73bb0",
+      "mode": "0400"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 3762,
+      "sha256": "8f7067e725808f49eb116e1798d34906a73c588700b4a4ad87c1e2bbea9c0181",
+      "mode": "0400"
+    },
+    {
+      "path": "INHERITED_PILOT_PROTOCOL.md",
+      "bytes": 7983,
+      "sha256": "a44cb4dab525a71e302fad38b8306cc7b19f4f59cd7caa93e47766e2ab1a91cf",
+      "mode": "0400"
+    },
+    {
+      "path": "LINUX_TEST_PARENT_PUBLIC.json",
+      "bytes": 545,
+      "sha256": "c0af5237fee57d08f9b32b3c211275f98ad143c02a01206f3319fbe17f40d4db",
+      "mode": "0400"
+    },
+    {
+      "path": "LOCAL_TEST_OUTPUT.txt",
+      "bytes": 4264,
+      "sha256": "0d632c55d8b301bdb62788e755359ebdd3ec4f3abcb48965c6fbcc2f003a6515",
+      "mode": "0400"
+    },
+    {
+      "path": "LOCAL_TEST_RECEIPT.json",
+      "bytes": 130,
+      "sha256": "e98a30e516ec1ac246c2d8fe74c9615f8f327cef61398db1409806917c075b26",
+      "mode": "0400"
+    },
+    {
+      "path": "PROPOSAL.md",
+      "bytes": 6405,
+      "sha256": "70b435e5bbbbfd60ee8b8de3f81f620f9fe3fcec8be5a72d3b1353401330d23a",
+      "mode": "0400"
+    },
+    {
+      "path": "READY.json",
+      "bytes": 448,
+      "sha256": "c5375b5d20394143d5505ff281d9a09718847649c083cded6bae28d1942b9dfd",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_1_REVIEW_OUTPUT.txt",
+      "bytes": 888,
+      "sha256": "136aaa1d47cec81d0f4d13ee8b446243362348f92dbdfc46ea717fc981693177",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_1_REVIEW_RESULT.json",
+      "bytes": 1148,
+      "sha256": "b63afd6bf5952d12c01ea7d6088a4bc0d457bc648ff98ca2b59a9f4b9d4d74c0",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_2_REVIEW_OUTPUT.txt",
+      "bytes": 444,
+      "sha256": "5f6f33d50a6af749ec9846264636746084e177e34b0cd16ca23891b3f005f0d8",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_2_REVIEW_RESULT.json",
+      "bytes": 476,
+      "sha256": "1dd5bfb9cb6bb1fb74bfc8b21449c0e6389f9a7e41479db3342c94708af1b506",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_CONTEXT.md",
+      "bytes": 2045,
+      "sha256": "f82402537905e0ac9b7949ce806d977b556e1b9816f96f9401e3174fcfc81b38",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_DECISIONS.md",
+      "bytes": 2118,
+      "sha256": "3f97e7bf1d8d5e2e4a86c516ce6ed0d12444a938abb5b93115ee51b76e2b4f3a",
+      "mode": "0400"
+    },
+    {
+      "path": "REVIEW_SNAPSHOT.json",
+      "bytes": 2956,
+      "sha256": "6ab33e9628f4e0405a4d377f1a77507461199d10d7633d1a7a26509c9c1d93dd",
+      "mode": "0400"
+    },
+    {
+      "path": "SCHEMA.md",
+      "bytes": 8211,
+      "sha256": "af85ab433b67accdc3814da8ede948bf0b18257bb3921b10ad969863e8a8d95b",
+      "mode": "0400"
+    },
+    {
+      "path": "SOURCE_ORIGINS.json",
+      "bytes": 910,
+      "sha256": "6cbacc8d825684b479f7b4c31ee8685e909d4f682fba0847ad61747d0d5c591b",
+      "mode": "0400"
+    },
+    {
+      "path": "artifact.py",
+      "bytes": 21069,
+      "sha256": "aa56191d8eb3c26d09cd2b0692f4f44bda6e300d637e90a0f75a1631ef3dd5a8",
+      "mode": "0400"
+    },
+    {
+      "path": "density.py",
+      "bytes": 1644,
+      "sha256": "c570e94c5d5db80ac296d245d4fdd921072238bc6317c2c3e750f582f79eb2ab",
+      "mode": "0400"
+    },
+    {
+      "path": "invented.py",
+      "bytes": 3388,
+      "sha256": "f17c6cf429733b6cd25b7eb92d5caa792c3c0c4c30ee28bb631f36193e42f3dd",
+      "mode": "0400"
+    },
+    {
+      "path": "invented_lane.py",
+      "bytes": 1950,
+      "sha256": "f4b872645a09d561cec34b9922cdfd087759d7ac73925136578483d7e92f964a",
+      "mode": "0400"
+    },
+    {
+      "path": "model.py",
+      "bytes": 1894,
+      "sha256": "029473b7c708c6e9b12e91973c13646b5052ebcefb17c2b946275d66a6e537db",
+      "mode": "0400"
+    },
+    {
+      "path": "pilot.py",
+      "bytes": 11829,
+      "sha256": "cd5e09e1a7f56a85718bec793a440c2a1a1452f11e74b211d9c783a39215bb17",
+      "mode": "0400"
+    },
+    {
+      "path": "qualified_core.py",
+      "bytes": 23196,
+      "sha256": "62cc5b452f62244389d196302202e9eceb76f4319cad1aeb55f38d78e005b9db",
+      "mode": "0400"
+    },
+    {
+      "path": "record_decoder.py",
+      "bytes": 6380,
+      "sha256": "466bb8ec149d87a842f20f9d087be205ecf77c709ccf323fca8f95cda10c781b",
+      "mode": "0400"
+    },
+    {
+      "path": "scanner.py",
+      "bytes": 8040,
+      "sha256": "daa1e6853b1442a9ac7ce3d04fad6ea240b2622fe7e7012709f0a172c357a69b",
+      "mode": "0400"
+    },
+    {
+      "path": "test_artifact.py",
+      "bytes": 6732,
+      "sha256": "38cae06bdf1519f825ead0add63ef13457012f2679bf25a757d023c940ea3897",
+      "mode": "0400"
+    },
+    {
+      "path": "test_model.py",
+      "bytes": 3692,
+      "sha256": "0bc58a71e7572b933195a4f1b7adbeb45df086905964f1550041d91c133d4fd9",
+      "mode": "0400"
+    },
+    {
+      "path": "test_pilot.py",
+      "bytes": 5894,
+      "sha256": "09b944dc839fad94a19bb6f8d576bf00fc1a251b258cdcc10c18374010fad021",
+      "mode": "0400"
+    }
+  ]
+}

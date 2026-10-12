@@ -1,0 +1,78 @@
+{
+  "DEV_activity_reads": 0,
+  "actual_invocations": 1,
+  "deadline_s": 360,
+  "decoded_train_records": 650,
+  "hazard_fits": 0,
+  "live_memory_bytes": 1073741824,
+  "live_swap_bytes": 0,
+  "live_tasks_max": 32,
+  "negative_reason": "Only4TRAIN operational groups have observed active-to-quiet transitions; frozen floor requires5. No threshold/window/group/censor rule is loosened.",
+  "new_method_claim": false,
+  "normal_return": true,
+  "original65_and195_retained": true,
+  "own_cgroup_stopped": true,
+  "private_closed_members": 4,
+  "schema": "parent-verified-TRAIN-receiver-activity-preflight-outcome-v1",
+  "source_commit": "28a7c6fca361b92f113db1df267da4bab3cb1ca9",
+  "summary": {
+    "active_censored_train_operational_groups": 25,
+    "combined_prospective_gate": false,
+    "distinct_terminal_active_run_ages": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      15,
+      16,
+      19,
+      20
+    ],
+    "events": 65,
+    "external_grouping_frozen_asserted": true,
+    "external_prior_support_floor_asserted": true,
+    "fit_authorized": false,
+    "horizon_cells": 195,
+    "observational_variation_pass": false,
+    "off_train_operational_groups": 4,
+    "partition_counts": {
+      "DEV": 24,
+      "TRAIN": 41
+    },
+    "physical_rupture_state_verified": false,
+    "population_bulk_preservation_verified": false,
+    "schema": "activity-summary-v1",
+    "status_counts": {
+      "DEV:1:DEFERRED_DEV": 24,
+      "DEV:3:DEFERRED_DEV": 24,
+      "DEV:5:DEFERRED_DEV": 24,
+      "TRAIN:1:BAD_NOISE_COVERAGE": 2,
+      "TRAIN:1:UNSUPPORTED": 5,
+      "TRAIN:1:available": 34,
+      "TRAIN:3:BAD_NOISE_COVERAGE": 2,
+      "TRAIN:3:UNSUPPORTED": 5,
+      "TRAIN:3:available": 34,
+      "TRAIN:5:BAD_NOISE_COVERAGE": 2,
+      "TRAIN:5:UNSUPPORTED": 5,
+      "TRAIN:5:available": 34
+    },
+    "train_family_counts": {
+      "12Z": 11,
+      "ENZ": 23
+    },
+    "train_noise_floor_counts_by_family_literal_order": {
+      "12Z": [
+        0,
+        0,
+        0
+      ],
+      "ENZ": [
+        0,
+        0,
+        0
+      ]
+    },
+    "usable_train_events": 34
+  }
+}

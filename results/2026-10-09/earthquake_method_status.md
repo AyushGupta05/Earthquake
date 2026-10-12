@@ -1,3 +1,5 @@
+12October current scientific state: TRAIN-only activity preflight completes normally with650native TRAIN records and34usable TRAIN events; only4operational groups show active-to-quiet, below frozen5floor. Activity candidate earns no hazard fit; keep threshold/cadence/windows fixed and preserve negative outcome. Native-count information-pilot source is frozen after clean review2 and28AWSLinux invented tests with0skips; exact33-member source being published before artifact reconstruction and6fixedCPUfits. No tested novel winner.
+
 12October latest: corrective V2 sole actual normal return and independent replay pass on all17batches/1054records, with58complete joint prefixes at each1/3/5. Exact scalar common cohort34TRAIN/22DEV,26/13Mw>=5.5,24/11Mw>=6; original65/195unknowns retained. Native activity adapter now frozen after clean review3 and21local/21Linux invented tests; TRAIN-only variation preflight pending publication. Six-fit waveform-versus-metadata pilot source still being completed. No pilot fit/novel accuracy win.
 
 # Latest12October checkpoint
