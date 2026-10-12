@@ -1,0 +1,66 @@
+test_JSON_duplicate_nonfinite_depth_and_integer_admission (test_artifact.CombinedTests.test_JSON_duplicate_nonfinite_depth_and_integer_admission) ... ok
+test_future_samples_do_not_change_first_prefix (test_artifact.CombinedTests.test_future_samples_do_not_change_first_prefix) ... ok
+test_global_bridge_masks_all_without_deleting_old_values (test_artifact.CombinedTests.test_global_bridge_masks_all_without_deleting_old_values) ... ok
+test_manifest_and_numeric_role_tamper (test_artifact.CombinedTests.test_manifest_and_numeric_role_tamper) ... FAIL
+test_member_header_object_bounds_and_deadlines (test_artifact.CombinedTests.test_member_header_object_bounds_and_deadlines) ... ok
+test_native_raw_sample_view_and_exact_lattice (test_artifact.CombinedTests.test_native_raw_sample_view_and_exact_lattice) ... FAIL
+test_new_metadata_before_vendor_and_pin_before_loading (test_artifact.CombinedTests.test_new_metadata_before_vendor_and_pin_before_loading) ... ok
+test_no_target_retains_unknown_clock_and_empty_batch (test_artifact.CombinedTests.test_no_target_retains_unknown_clock_and_empty_batch) ... ok
+test_observed_overdelivery_charged_before_wrong_clock_and_exception (test_artifact.CombinedTests.test_observed_overdelivery_charged_before_wrong_clock_and_exception) ... ERROR
+test_old17_or_global_repacking_rejected_before_decode (test_artifact.CombinedTests.test_old17_or_global_repacking_rejected_before_decode) ... ok
+test_old_mw_partition_static_context_and_unknown_group (test_artifact.CombinedTests.test_old_mw_partition_static_context_and_unknown_group) ... ok
+test_preserve_original_bytes_and_namespace_roundtrip (test_artifact.CombinedTests.test_preserve_original_bytes_and_namespace_roundtrip) ... ok
+test_architecture_and_normalized_proper_output (test_model.ModelTests.test_architecture_and_normalized_proper_output) ... skipped 'Torch absent in local declared runtime; Linux invented lane required'
+test_empty_mask_rejected (test_model.ModelTests.test_empty_mask_rejected) ... skipped 'Torch absent in local declared runtime; Linux invented lane required'
+test_metadata_only_and_matched_seed_initialization (test_model.ModelTests.test_metadata_only_and_matched_seed_initialization) ... skipped 'Torch absent in local declared runtime; Linux invented lane required'
+test_padding_invariance_even_nan_future (test_model.ModelTests.test_padding_invariance_even_nan_future) ... skipped 'Torch absent in local declared runtime; Linux invented lane required'
+test_stable_log_mixture_and_scalar_score_replay_backward (test_model.ModelTests.test_stable_log_mixture_and_scalar_score_replay_backward) ... skipped 'Torch absent in local declared runtime; Linux invented lane required'
+
+======================================================================
+ERROR: test_observed_overdelivery_charged_before_wrong_clock_and_exception (test_artifact.CombinedTests.test_observed_overdelivery_charged_before_wrong_clock_and_exception)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/test_artifact.py", line 84, in test_observed_overdelivery_charged_before_wrong_clock_and_exception
+    with self.assertRaises(expected):invented.build(self.f,failure)
+                                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/invented.py", line 47, in build
+    return artifact.build_combined(raw['old_npz'],raw['old_manifest'],raw['new_plan'],raw['new_qualified'],bodies,raw['metadata'],decode,pins=pins,processing_begin=time.monotonic())
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/artifact.py", line 227, in build_combined
+    records.clear();records=_reconstruct(plan,q,new_bodies,decode_record,row['batch'],counts,processing_begin);cached=row['batch']
+                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/artifact.py", line 128, in _reconstruct
+    try:out=decode(record,d)
+            ~~~~~~^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/test_artifact.py", line 82, in failure
+    def failure(*args):raise ObservedDecodeFailure(n)
+                             ~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/new_decode_contract.py", line 7, in __init__
+    raise RuntimeError('observed_accounting_invalid')
+RuntimeError: observed_accounting_invalid
+
+======================================================================
+FAIL: test_manifest_and_numeric_role_tamper (test_artifact.CombinedTests.test_manifest_and_numeric_role_tamper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/test_artifact.py", line 112, in test_manifest_and_numeric_role_tamper
+    with self.assertRaises(ValueError):artifact.validate_arrays(self.arrays,m)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_native_raw_sample_view_and_exact_lattice (test_artifact.CombinedTests.test_native_raw_sample_view_and_exact_lattice)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_train115_information_pilot_v1/test_artifact.py", line 74, in test_native_raw_sample_view_and_exact_lattice
+    a,m=invented.build(invented.changed(self.f,'new_qualified',q));self.assertEqual(m['rows'][65]['cells'][0]['reason'],'reconstruction_unknown');self.assertFalse(m['rows'][65]['cohort'])
+                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'supported' != 'reconstruction_unknown'
+- supported
++ reconstruction_unknown
+
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.564s
+
+FAILED (failures=2, errors=1, skipped=5)

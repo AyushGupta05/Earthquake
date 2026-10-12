@@ -1,0 +1,98 @@
+{
+  "artifact.py": {
+    "actual_private_reads": false,
+    "source_bytes": 21069,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/artifact.py",
+    "source_sha256": "aa56191d8eb3c26d09cd2b0692f4f44bda6e300d637e90a0f75a1631ef3dd5a8",
+    "transformation": "Archive admission/save rules adapted65->115/201->351/10M->20M/40MiB->80MiB/64MiB->128MiB; new combined custody/native/masking API"
+  },
+  "density.py": {
+    "actual_private_reads": false,
+    "source_bytes": 1644,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/density.py",
+    "source_sha256": "c570e94c5d5db80ac296d245d4fdd921072238bc6317c2c3e750f582f79eb2ab",
+    "transformation": "byte-exact copy"
+  },
+  "model.py": {
+    "actual_private_reads": false,
+    "source_bytes": 1894,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/model.py",
+    "source_sha256": "029473b7c708c6e9b12e91973c13646b5052ebcefb17c2b946275d66a6e537db",
+    "transformation": "byte-exact copy"
+  },
+  "new_core.py": {
+    "actual_private_reads": false,
+    "source_bytes": 24753,
+    "source_path": "work/geonet_train50_prefix_qualifier_v1/producer.py",
+    "source_sha256": "7499fb17943f3421a4d8d71afbcea9f2e07bb830a1af2e77185bcde344fc3bff",
+    "transformation": [
+      [
+        "import scanner",
+        "import new_scanner as scanner"
+      ],
+      [
+        "from decode_contract import ObservedDecodeFailure",
+        "from new_decode_contract import ObservedDecodeFailure"
+      ]
+    ]
+  },
+  "new_decode_contract.py": {
+    "actual_private_reads": false,
+    "source_bytes": 414,
+    "source_path": "work/geonet_train50_prefix_qualifier_v1/decode_contract.py",
+    "source_sha256": "70a2741ec1aab60467075449f19a546470642b7c06f1533195a3876449ad67c7",
+    "transformation": "byte-exact copy"
+  },
+  "new_scanner.py": {
+    "actual_private_reads": false,
+    "source_bytes": 8040,
+    "source_path": "work/geonet_train50_prefix_qualifier_v1/scanner.py",
+    "source_sha256": "daa1e6853b1442a9ac7ce3d04fad6ea240b2622fe7e7012709f0a172c357a69b",
+    "transformation": "byte-exact copy"
+  },
+  "old_artifact.py": {
+    "actual_private_reads": false,
+    "source_bytes": 21069,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/artifact.py",
+    "source_sha256": "aa56191d8eb3c26d09cd2b0692f4f44bda6e300d637e90a0f75a1631ef3dd5a8",
+    "transformation": [
+      [
+        "import qualified_core as qc",
+        "import old_core as qc"
+      ]
+    ]
+  },
+  "old_core.py": {
+    "actual_private_reads": false,
+    "source_bytes": 23196,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/qualified_core.py",
+    "source_sha256": "62cc5b452f62244389d196302202e9eceb76f4319cad1aeb55f38d78e005b9db",
+    "transformation": [
+      [
+        "import scanner",
+        "import old_scanner as scanner"
+      ]
+    ]
+  },
+  "old_scanner.py": {
+    "actual_private_reads": false,
+    "source_bytes": 8040,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/scanner.py",
+    "source_sha256": "daa1e6853b1442a9ac7ce3d04fad6ea240b2622fe7e7012709f0a172c357a69b",
+    "transformation": "byte-exact copy"
+  },
+  "pilot.py": {
+    "actual_private_reads": false,
+    "source_bytes": 11829,
+    "source_path": "work/earthquake_native_count_information_pilot_v1/pilot.py",
+    "source_sha256": "cd5e09e1a7f56a85718bec793a440c2a1a1452f11e74b211d9c783a39215bb17",
+    "transformation": "115/global3digit keys/support provenance/required parent deadline/new whole-bulk guard; architecture/optimizer/updates/seeds/arms/density unchanged"
+  },
+  "record_decoder.py": {
+    "actual_private_reads": false,
+    "source_bytes": 7278,
+    "source_path": "work/geonet_train50_prefix_qualifier_v1/offline_decoder.py",
+    "source_sha256": "c2e485acb48780b4b5b4e59bbfe8a3c9eb2fd37843e9ec21990a61bb82a74a91",
+    "transformation": "Copy only helper prefix before main; namespaced new_core/new_decode_contract imports, no CLI/vendor logic change"
+  }
+}

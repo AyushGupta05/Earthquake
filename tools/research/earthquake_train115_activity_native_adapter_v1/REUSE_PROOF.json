@@ -1,0 +1,32 @@
+{
+  "activity115_exact_replacements": {
+    "\"activity-summary-v1\", \"events\": 65, \"horizon_cells\": 195": "\"activity-summary115-v1\", \"events\": 115, \"horizon_cells\": 345",
+    "0, 64)": "0, 114)",
+    "len(results) != 65": "len(results) != 115",
+    "{\"TRAIN\": 41, \"DEV\": 24}": "{\"TRAIN\": 91, \"DEV\": 24}"
+  },
+  "copied_sources": {
+    "work/earthquake_activity_native_adapter_v1/adapter.py": {
+      "bytes": 13177,
+      "sha256": "e03921602f60cdbf2917ce71a3f83f22649f0a66722b710bd362d3ce954710a1"
+    },
+    "work/earthquake_activity_persistence_preflight_v1/activity.py": {
+      "bytes": 17868,
+      "sha256": "aec23566833c9278a3a96538ea5ede1b32e8962bf3107ff1d31c5dc823739521"
+    },
+    "work/geonet_train50_prefix_qualifier_v1/decode_contract.py": {
+      "bytes": 414,
+      "sha256": "70a2741ec1aab60467075449f19a546470642b7c06f1533195a3876449ad67c7"
+    },
+    "work/geonet_train50_prefix_qualifier_v1/producer.py": {
+      "bytes": 24753,
+      "sha256": "7499fb17943f3421a4d8d71afbcea9f2e07bb830a1af2e77185bcde344fc3bff"
+    },
+    "work/geonet_train50_prefix_qualifier_v1/scanner.py": {
+      "bytes": 8040,
+      "sha256": "daa1e6853b1442a9ac7ce3d04fad6ea240b2622fe7e7012709f0a172c357a69b"
+    }
+  },
+  "native_import_renames_only": true,
+  "reconstruction_origin": "work/earthquake_activity_native_adapter_v1/adapter.py; exact algorithm with new queryable route filter and prospective received-count-first budget"
+}
