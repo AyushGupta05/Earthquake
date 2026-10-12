@@ -52,12 +52,12 @@
     "browser_auth_recheck_state": "blank root-user sign-in form; authentication not restored; existing handoff marked",
     "browser_auth_recheck_utc": "2026-10-11T03:48:31.400122+00:00",
     "credentials_committed": false,
-    "current_status": "Expired11Oct; routine same-access sign-in handoff pending; no new paid work",
+    "current_status": "Existing default console-session login refreshed; scoped EC2 API verifies owned stopped and shutdown behavior stop",
     "permissions_changed": false,
-    "result": "Existing default session refreshed; fresh describe reads verified both workers and Chile shutdown behavior stop",
-    "utc": "2026-10-10T13:12:18.685979+00:00"
+    "result": "Existing same-account root default profile session renewed; no access key/IAM/resource changes",
+    "utc": "2026-10-12T17:11:53.402484+00:00"
   },
-  "billing_status": "Last authenticated delayed estimates10Oct22:45;11Oct cached signed-out page is not a fresh credit verification",
+  "billing_status": "Fresh authenticated AWS Credits UI and main service modal12October; shared delayed balances remain unreserved; exact current amounts in private receipt.",
   "chile_clock_latest_progress": {
     "TEST_reads": 0,
     "automatic_stop_utc": "2026-10-11T10:50:21.004959+00:00",
@@ -83,9 +83,10 @@
     "notifications": "Meaningful change, completion, failure or required input only"
   },
   "credits_only": true,
+  "current_credit_exact_balance_scope": "Private local aws_access_restored_20261012.private.json; public ledger carries coverage only.",
   "current_queue_max_seconds": 39600,
   "current_queue_max_seconds_scope": "Clock grid application timeout; cgroup39840seconds plus120second stop grace, all before verified workerSTOP10:50:21UTC11Oct.",
-  "estimated_total_credit_remaining_usd": 4212.56,
+  "estimated_total_credit_remaining_usd": null,
   "existing_training_instance": "i-0911a2d093e1e2a30",
   "existing_worker_verified": {
     "checked_utc": "2026-10-10T13:12:18.685979+00:00",
@@ -147,18 +148,14 @@
     "synthetic_tests": 52
   },
   "latest_credit_check": {
-    "ceiling_usd": 2000,
-    "checked_utc": "2026-10-10T22:45:21.808953+00:00",
-    "estimated_main_remaining_usd": 4037.24,
-    "estimated_total_remaining_usd": 4212.56,
-    "last_receipt_sha256": "abf98330e5dfbce99aa0d2b9d5f1543f6bfafb905206a971452ba4ea3e7bd58a",
-    "limit_note": "Shared delayed account balance; not a reserved task allocation or task-attributed spend. No redemption/payment/settings change.",
+    "checked_utc": "2026-10-12T17:11:53.402484+00:00",
+    "current_main_estimated_coverage_for_remaining_authorized_budget": true,
+    "limit_note": "Shared delayed estimates, not reserved allocation or settled task attribution",
+    "main_credit_active": true,
     "main_expiry": "2026-10-31",
-    "receipt": "aws_credit_recheck_20261010T2247.json",
-    "schema": "aws-credit-coverage-recheck-v1",
-    "settled_main_remaining_usd": 4426.07,
-    "settled_total_remaining_usd": 4601.39,
-    "source": "Authenticated AWS Billing Credits UI, main active-credit service modal",
+    "raw_financial_identifiers_and_balances_private": true,
+    "schema": "aws-restored-coverage-summary-v1",
+    "source": "Fresh authenticated AWS Credits UI/main products modal",
     "verified_main_eligible_products": [
       "Amazon Elastic Compute Cloud",
       "AWS Data Transfer",
@@ -166,7 +163,7 @@
     ]
   },
   "main_credit_expires": "2026-10-31",
-  "main_credit_remaining_usd": 4037.24,
+  "main_credit_remaining_usd": null,
   "new_instances": [
     {
       "access": "Existing researcher public key; private SSH jump through existing earthquake instance; no IAM role",
@@ -175,12 +172,12 @@
       "automatic_stop_verified": true,
       "cleanup": "Preserve results; stop when not training; remove only task-owned worker/root and auxiliary resources when finished; reconcile before2026-10-30",
       "conservative_compute_upper_bound_to_automatic_stop_usd": 40.991,
-      "conservative_compute_upper_bound_to_observation_usd": 70.579556,
-      "cost_upper_bound_note": "All time since9October launch conservatively counted through current UTC, even stopped intervals, because current EC2 API stopped state is unverified.85USD retains compute/EBS/public-IP margin. Historical10October stop proof predates completed clock restart. Guest poweroff and SSH unreachability are not current API proof; no paid expansion or settled task attribution.",
+      "conservative_compute_upper_bound_to_observation_usd": 71.532301,
+      "cost_upper_bound_note": "All elapsed time since launch conservatively counted through first fresh current stopped-state confirmation, including stopped intervals; future compute upper bound stays fixed while stopped until another authorized restart.85USD margin preserved; actual task attribution unknown.",
       "current_36h_compute_estimate_usd": 36.216,
-      "current_API_state_verified": false,
+      "current_API_state_verified": true,
       "current_restart_purpose": "Frozen matched clock-control four-fit grid",
-      "current_state_observation_utc": "2026-10-12T15:54:39.262222+00:00",
+      "current_state_observation_utc": "2026-10-12T17:11:53.402484+00:00",
       "current_worker_resource_allowance_usd": 85,
       "data": {
         "bytes": 30432938039,
@@ -234,23 +231,13 @@
       "root_volume_gib": 80,
       "security_group": "sg-090fe8835f553328b",
       "shutdown_behavior": "stop",
-      "shutdown_behavior_last_verified_utc": "2026-10-10T13:12:18.685979+00:00",
-      "state": "early_guest_poweroff_requested; API_verification_pending_auth",
+      "shutdown_behavior_last_verified_utc": "2026-10-12T17:11:53.402484+00:00",
+      "state": "stopped",
       "stop_reason": "Completed matched clock grid and independent audit; inconclusive result; no earned next paid fit",
       "stop_receipt": "chile_worker_stopped_20261010.json",
       "stop_receipt_sha256": "5bba2bf6f2e412df9707872f92169440e6c5622f4eba5bdf963c26ec4d53271c",
       "stop_request_authorized": true,
-      "stop_request_current": {
-        "all_unique_clock_results_preserved": true,
-        "final_API_state_verified": false,
-        "fresh_instance_identity_verified": true,
-        "no_active_task_or_GPU_process": true,
-        "original_SSH_alive": true,
-        "owned_SSH_reachable_after_poweroff": false,
-        "post_stop_network_receipt": "chile_owned_post_shutdown_network_v2_20261011.json",
-        "receipt": "chile_owned_guest_shutdown_request_20261011.json",
-        "scheduled_utc": "2026-10-11T01:59:13.332487Z"
-      },
+      "stop_request_current": false,
       "stop_requested_utc": "2026-10-10T15:39:57.190352+00:00",
       "stop_verified_utc": "2026-10-10T15:49:20.971133+00:00",
       "type": "g5.xlarge",
@@ -297,12 +284,12 @@
     }
   ],
   "prelaunch_budget_envelope": {
-    "checked_utc": "2026-10-12T16:15:03.974532+00:00",
+    "checked_utc": "2026-10-12T17:11:53.402484+00:00",
     "chile_worker_resource_allowance_usd": 85,
     "conservative_total_usd": 318,
-    "current_derived_chile_all_uptime_compute_upper_usd": 70.579556,
-    "current_derived_original_worker_plus_grid_upper_usd": 197.362793,
-    "limitation": "Whole original-worker uptime deliberately overcounted at previously verified1.006USD/hour;205USD retains margin. Current owned-worker API stop is unknown, so all Chile uptime through current UTC is conservatively counted under85USD; scratch8/misc20 unchanged.318USD is neither settled task spending nor fresh credit proof, and authorizes no paid expansion. Paid work paused pending existing AWS sign-in and control/eligible-credit verification.",
+    "current_derived_chile_all_uptime_compute_upper_usd": 71.532301,
+    "current_derived_original_worker_plus_grid_upper_usd": 198.315539,
+    "limitation": "318USD conservative envelope, not settled task attribution. Fresh eligible credit coverage and scoped current EC2 stopped/control proof restored12October. Owned worker remains stopped; no new paid job or restart. Every next run requires a frozen scientific experiment, current quota, read-only mount/checkpoint and verified new stop deadline before training.",
     "misc_task_margin_usd": 20,
     "original_worker_entire_uptime_plus_both_grid_caps_usd": 205,
     "research_volume_full_month_allowance_usd": 8
@@ -2164,6 +2151,25 @@
       "schema": "earthquake-compatible-Mw-donor-parent-source-verification-v1",
       "utc": "2026-10-11T06:28:00.486038+00:00"
     },
+    "fixed65_native_POST_transport_v1": {
+      "DEV": 24,
+      "TEST_inputs_excluded": 31,
+      "TRAIN": 41,
+      "batches": 17,
+      "fits": 0,
+      "fixed_events": 65,
+      "max_retained_entity_bytes_per_batch": 8388608,
+      "max_rows_per_batch": 4,
+      "new_acquisition_invocations": 0,
+      "paid_resource_restarts": 0,
+      "private_inputs_in_source_review": false,
+      "proposal_pin": {
+        "bytes": 8831,
+        "sha256": "c184d7f728013411883b960d7bfa714c8a3c642addab116c85a3df063256cfd9"
+      },
+      "status": "normative protocol frozen; collector and independent auditor source-only implementation/review underway",
+      "waveform_decodes": 0
+    },
     "geofon_Mw_donor": {
       "actual_acquisition_or_fit": false,
       "authored_public_members_verified": 5,
@@ -3145,7 +3151,18 @@
       "published_run_prefix_causality": "unknown",
       "source_pins_sha256": "919c772f7db712c854ece9f5864e9df8dc15ffe16c683abaa051ac4be08b41aa",
       "target": "PGV/CWA intensity, not magnitude"
+    },
+    "waveform_route_design_v1": {
+      "TEST_inputs_excluded": 31,
+      "data_queries_AWS_fits": 0,
+      "future_fixed_events": 65,
+      "indexed_byte_range_route_verified": false,
+      "native_document_fallback_bytes": 3546,
+      "primary_URL_targets": 8,
+      "recommended_POST_blocks": 17,
+      "recommended_events_per_block_max": 4,
+      "status": "bounded primary source-only advisory frozen,7safe/5manifest/6checksums verified; separate root normative POST protocol frozen; new collector and independent auditor source-only implementation/review underway"
     }
   },
-  "updated_utc": "2026-10-12T16:15:03.974532+00:00"
+  "updated_utc": "2026-10-12T17:43:08.317278+00:00"
 }

@@ -72,3 +72,6 @@ JointV2 diagnostic source is pushed in f1e3955 after49parent tests and first-cle
 
 
 12October corrected metadata support: separate custody-V3 protocol546738bc precedes the sole corrected invocation of unchanged V2processor6d7bab49. Parent independent replay verifies61/65 nominal triplets at all1/3/5deadlines (47ENZ/14numbered12Z),4HTTP204unknowns,183unique epochs and549horizon descriptor checks. Full response stages0 and no waveform/model/accuracy proof. The earlier V2parent-binding failure remains recorded; the next task is a bounded source-only waveform-route design, no automatic acquisition or fit.
+
+
+12 October next waveform screen: the completed primary-source route advisory supports a separately frozen native POST transport protocol for the same 65 TRAIN/DEV selections (41/24), excluding all 31 TEST inputs. Seventeen consecutive batches contain at most four original prefix? selections in the unchanged [t0-3s,t0+5s] windows. All four metadata-unknown cases remain requested and counted. New collector and independent receipt-auditor source is being implemented and reviewed; no new acquisition, decode or fit has occurred. Fresh eligible AWS credit coverage and task-owned stopped/shutdown-STOP control are verified; no paid restart is justified by funds alone.
