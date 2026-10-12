@@ -69,3 +69,6 @@ JointV2 diagnostic source is pushed in f1e3955 after49parent tests and first-cle
 
 
 12October fixed65cached metadata V2: first-clean review1/99parenttests/source6d7bab49/sole invocation complete. All65metadata rows remain unknown because parent preparation omitted the raw/ prefix and supplied0XML bodies. Independent selection/cutoff/count replay passes and identifies the parent binding error; this is not a scientific data-absence result. A separate prospective custody-V3 keeps unchanged65TRAIN/DEV selections, clocks and frozen processor;61cached positive-custody bodies/4HTTP204 are prepared with0XML interpretations, requests or fits.
+
+
+12October corrected metadata support: separate custody-V3 protocol546738bc precedes the sole corrected invocation of unchanged V2processor6d7bab49. Parent independent replay verifies61/65 nominal triplets at all1/3/5deadlines (47ENZ/14numbered12Z),4HTTP204unknowns,183unique epochs and549horizon descriptor checks. Full response stages0 and no waveform/model/accuracy proof. The earlier V2parent-binding failure remains recorded; the next task is a bounded source-only waveform-route design, no automatic acquisition or fit.
