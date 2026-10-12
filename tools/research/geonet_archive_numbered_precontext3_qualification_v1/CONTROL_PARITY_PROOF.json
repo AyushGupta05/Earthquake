@@ -1,0 +1,182 @@
+{
+  "schema": "numbered-v1-frozen-v4-control-parity-v1",
+  "scope": "source-only; no actual inputs/requests",
+  "files": {
+    "qualification.py": {
+      "baseline_pin": {
+        "bytes": 11842,
+        "sha256": "aa03f778671e7f3ee5b2c4bd98098009b77384542b01f6d591b2564c54ba2816"
+      },
+      "changed_definitions": [
+        "make_slot",
+        "aggregate"
+      ],
+      "unchanged_definitions": [
+        {
+          "name": "availability_mask",
+          "sha256": "7a6791ca7d26bc0eb3ddafc51f0630a1400ed18e0f33bac020576e8268aa4723"
+        },
+        {
+          "name": "sample_count",
+          "sha256": "b9bb71eb594c1153bb758d56e9581c5e9b906ea022827ea057578f7c8ea493bf"
+        },
+        {
+          "name": "trace_signature",
+          "sha256": "8cdd82e44b6d0f1e03137433e8607af71ef1ae8b3775c97d119f3e21bd84439d"
+        },
+        {
+          "name": "decode",
+          "sha256": "379d6b6ef0f4ce6a5d7bc6a2573a2ce680e2503332fba6e4933fc3a1ed4f14e0"
+        },
+        {
+          "name": "rational",
+          "sha256": "bc8ad264aa61ef6bab26911991f759af3ccfaa3cf3ffa1ef547e3545dd4d1922"
+        },
+        {
+          "name": "utc_day",
+          "sha256": "b11523c9264e1b9331a709447882a7e753c89c718c3cbad483ba6b100d1ec300"
+        },
+        {
+          "name": "analyze",
+          "sha256": "497130dcd7a69b1979f0aa87b4dae0855b6582e9e81f2eb835321597a140314a"
+        },
+        {
+          "name": "failed",
+          "sha256": "f579996a698021bcdb194d1974a1a96be819b5d6f5aa20581eb9ff6aadc651c8"
+        },
+        {
+          "name": "joint",
+          "sha256": "127c4ac4c9de03cdda818766b2b015a16ae1a38ce52701e81ae03c2a2d479a9b"
+        }
+      ]
+    },
+    "child_harness.py": {
+      "baseline_pin": {
+        "bytes": 19231,
+        "sha256": "be37ccafbabeadce3a16dc0cf8c5e96aacb82b776b034c430b731c67ae8b5b4a"
+      },
+      "changed_definitions": [
+        "validate_object",
+        "status_digest",
+        "validate_prerequisites",
+        "validate_slot",
+        "validate_gate",
+        "run"
+      ],
+      "unchanged_definitions": [
+        {
+          "name": "valid_limits",
+          "sha256": "68c46f79a032bfbd2ae9021f4a31d58d27630136ffee56e443d6c6357c2ddaaf"
+        },
+        {
+          "name": "check_deadline",
+          "sha256": "f2697e301f918b5d3d3979554422934d5ba414f950675f403738d3ad8d1f4cb0"
+        },
+        {
+          "name": "digest",
+          "sha256": "87c79c288b1c51a67410a6242780d192b1cf2d6311521c08b345c10bee2e9a3e"
+        },
+        {
+          "name": "valid_hash",
+          "sha256": "411a969b4a8a6c5daf12be2cdc006a29ea543d4913cec499494a9aa27dfaddcc"
+        },
+        {
+          "name": "bounded_read",
+          "sha256": "a27c6c6b6bd4b00947ae6e1d5cf789887f5c055e8f61a8de5b046d7de74cf97a"
+        },
+        {
+          "name": "strict_json",
+          "sha256": "408a4ea691be2c39c60b05a7edc426cd57c5ae05e97f300f52199b4b4312fdae"
+        },
+        {
+          "name": "load_verified",
+          "sha256": "4256cbe3a0a2528922916928ebec2aa1d7f55c5254e846004762500739551396"
+        },
+        {
+          "name": "verify_runtime",
+          "sha256": "3967aff7c92b60d695f95560c95f88e6abcde405eb2df9ffdd15e57c16803c52"
+        },
+        {
+          "name": "bounded_result",
+          "sha256": "8422ef04334f28369d118cd70393264407e037c750c71f945d0901c7a8d87b49"
+        },
+        {
+          "name": "PrivateArgumentParser",
+          "sha256": "84bcbd0c831165b61ab3f9c010704f9b2b8412c0329cb6c85c20a1e3aabe9d6b"
+        },
+        {
+          "name": "main",
+          "sha256": "596dc4c9fc818dd2d5fb906b0add10f69d33644ce723a434d1d0c31deb7ef3f6"
+        }
+      ]
+    },
+    "supervisor.py": {
+      "baseline_pin": {
+        "bytes": 35682,
+        "sha256": "b33bb56bbdff933e48f7e55970ec39d62b8e970bb6142eec1ef7523d88912c05"
+      },
+      "changed_definitions": [
+        "validate_result"
+      ],
+      "unchanged_definitions": [
+        {
+          "name": "read_code",
+          "sha256": "f9ddf7e5681158fbba9ad1ebf35b877852c5e38cc318340ad72e8583d22c2fae"
+        },
+        {
+          "name": "file_sha",
+          "sha256": "866b3919f2fabda6315652c94b9521b665b409eb0304ce8334950e93b01cb7dd"
+        },
+        {
+          "name": "exclusive",
+          "sha256": "38a836eee62fef6d2431555213024ffc10d051f5782cc90bb3a9bc9f70a48498"
+        },
+        {
+          "name": "finalize_owned_receipt",
+          "sha256": "ebc1da7a37684e19eaef47d32365108d12c74f462ab0e572a910a760c8db7c7e"
+        },
+        {
+          "name": "terminate_group",
+          "sha256": "6bbb99346bdda9fdf47f6c89ed3901d42612c4e9e1ee1f70800f67584c2cc27c"
+        },
+        {
+          "name": "exact_values",
+          "sha256": "762a6429f79c8a29da5c0135ccc38a02e937edc35062e259553972ab216a703d"
+        },
+        {
+          "name": "rational_rate",
+          "sha256": "b2de3e7179059685a11bb12546f999a4047ae5b3d11a6e0956f55354261bbe2e"
+        },
+        {
+          "name": "retained_structure",
+          "sha256": "46442b48665f411cf4e55980f825c04093b32819764052f0729e96d80f672997"
+        },
+        {
+          "name": "retained_geometry",
+          "sha256": "c26c909ff360e6fa7617e15274db31850741626839445abe088064453524ec00"
+        },
+        {
+          "name": "validate_core",
+          "sha256": "ea6402a62e62d6e6b338e9c34369bca4b980d16e8e3fc46e47ea9ea754643209"
+        },
+        {
+          "name": "supervise",
+          "sha256": "3fe40e7d8c7047f052d04c51b1506f82f50fb0d12212100b8c4de7a1dab21c4c"
+        },
+        {
+          "name": "main",
+          "sha256": "c9ea770c270fe7756460bece6fed89daab4236cc8a33e2d2bed8dc4b93c07986"
+        }
+      ]
+    }
+  },
+  "deliberate_changes": {
+    "identity": "NEW conditional protocol/proposal/V6 transport identities; no actual prerequisite assertion",
+    "roster": "one preserved original index0..3, literal1/2/Z plus separate priorE/N; five distinct pins before decode; three eligible only",
+    "caps": "five64MiB bodies/320MiB total;16M per decoded/48M total;120swhole/8MiB stdout/128KiB stderr; exact integer values",
+    "gate": "strict prerequisite ID/pin/count object and seven parent assertions; original index/status maps in trusted digest; auth counters independently validated",
+    "science": "byte-exact core and analyze/decode primitives; all returned trace summaries; fixed9/3/6denominators; prior failures separate unknown; novelty false",
+    "supervisor": "independent selected/prior/index/count/source/schema/rational geometry/joint/public replay; whole lifecycle/publication/control function byte-identical",
+    "limits": "No hard RSS/raw-record/stdlib/OS timing or physical/model claim. Summary cannot replay amplitudes."
+  }
+}

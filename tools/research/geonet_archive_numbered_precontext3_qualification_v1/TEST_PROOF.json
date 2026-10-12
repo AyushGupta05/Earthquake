@@ -1,0 +1,50 @@
+{
+  "schema": "numbered-qualification-v1-invented-test-proof",
+  "utc": "2026-10-12T12:36:47.894324+00:00",
+  "methods": 40,
+  "exit": 0,
+  "elapsed_s": 4.23,
+  "log_pin": {
+    "bytes": 5987,
+    "sha256": "4921437360f5ece89cc4825d22835c5447b0a72ca0e4495ac52768079cbc6068"
+  },
+  "python": "3.14.5",
+  "obspy": "1.5.1",
+  "numpy": "2.5.4",
+  "command": "<RUNTIME_PINS.json python_executable> -I -B -Werror run_tests.py",
+  "invented_only": true,
+  "actual_inputs_read": false,
+  "data_requests": 0,
+  "aws_actions": 0,
+  "model_fits": 0,
+  "reference_pins": {
+    "core.py": {
+      "bytes": 9173,
+      "sha256": "70c2a53c7beef5f1ddfae7d46e52bcdae97ee711cd10636da6250bd20ab9144e"
+    },
+    "RUNTIME_PINS.json": {
+      "bytes": 1192394,
+      "sha256": "a5a273ffad973848521d08bb5b730fe226c7a45440c298ac25e20624a158c9f6"
+    },
+    "qualification_v2_reference.py": {
+      "bytes": 9363,
+      "sha256": "92efdc4d8205fd4124522f4d72147e9e424d50648a819c83537206aa40f33a8f"
+    },
+    "qualification_v4_reference.py": {
+      "bytes": 11842,
+      "sha256": "aa03f778671e7f3ee5b2c4bd98098009b77384542b01f6d591b2564c54ba2816"
+    }
+  },
+  "z_parity": "Real invented record and in-memory grid cases; exact V4 analyze/window parity, V2 p3 windows with frozen-V4 unknown convention for unsupported identity/rate; actual original Z parity remains parent responsibility.",
+  "coverage": [
+    "all4possible original indices and fixed9/3/6cells",
+    "real1/2/Z signed/float ObsPy records and raw coalescence limitation",
+    "rate/phase/gap/overlap/edge/grid and prefix-only poison",
+    "header/full signature/cap/dtype/warning privacy",
+    "all5pins before first decode; errors never decoded; corrupt last error/between-pass mutation yields0decoder calls",
+    "strict plan/auth counter/limit/context/index/source/prerequisite/authority types",
+    "independent geometry/prior/provenance/public replay",
+    "isolated start gate/process group/watchdog/overflow/exclusive partial/finalization/interruption/privacy failures"
+  ],
+  "nonqualifying_initial_discovery_retained": "tests_v1.txt;0methods never accepted as verification"
+}

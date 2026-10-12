@@ -1,0 +1,584 @@
+"""Bounded process-group supervisor; no event inputs or authorization are read here."""
+import argparse
+from collections import Counter
+import hashlib
+import json
+from fractions import Fraction
+import os
+from pathlib import Path
+import selectors
+import signal
+import stat
+import subprocess
+import sys
+import time
+
+OUTPUT_CAP = 8 * 1024 * 1024
+STDERR_CAP = 128 * 1024
+PROTOCOL = "geonet-archive-numbered-precontext3-qualification-v1"
+PRECONTEXT = 3
+COMPONENTS = ('1', '2', 'Z')
+PRIOR_COMPONENTS = ('E', 'N')
+HORIZONS = (1, 3, 5)
+
+
+def read_code(path, cap):
+    p = Path(path)
+    if not isinstance(path, str) or str(p) != path or not p.is_absolute() or p.resolve() != p or p.is_symlink():
+        raise ValueError("noncanonical executable source path")
+    fd = os.open(p, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "rb") as stream:
+        info = os.fstat(stream.fileno())
+        if not stat.S_ISREG(info.st_mode) or info.st_size > cap:
+            raise ValueError("unbounded executable source")
+        body = stream.read(cap + 1)
+    if len(body) > cap:
+        raise ValueError("executable source grew beyond bound")
+    return body
+
+
+def file_sha(path, cap):
+    return hashlib.sha256(read_code(path, cap)).hexdigest()
+
+
+def exclusive(path):
+    return os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600), "wb")
+
+
+def finalize_owned_receipt(path, owned, receipt):
+    fd = os.open(path, os.O_WRONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "wb") as stream:
+        current = os.fstat(stream.fileno())
+        if (current.st_dev, current.st_ino) != (owned.st_dev, owned.st_ino):
+            raise ValueError("exclusive receipt was replaced")
+        stream.truncate(0)
+        stream.write(json.dumps(receipt, sort_keys=True, allow_nan=False).encode() + b"\n")
+
+
+def terminate_group(proc, deadline):
+    # Kill the session even if its leader exited: inherited pipes can belong to descendants.
+    try:
+        os.killpg(proc.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    except PermissionError:
+        return False
+    try:
+        proc.wait(timeout=max(0.001, deadline - time.monotonic()))
+    except subprocess.TimeoutExpired:
+        return False
+    until = deadline
+    while time.monotonic() < until:
+        try:
+            os.killpg(proc.pid, 0)
+        except ProcessLookupError:
+            return True
+        except PermissionError:
+            return False
+        time.sleep(0.01)
+    return False
+
+
+def exact_values(actual, expected):
+    if isinstance(expected, dict):
+        if not isinstance(actual, dict) or set(actual) != set(expected):
+            raise ValueError('result schema mismatch')
+        for key in expected:
+            exact_values(actual[key], expected[key])
+    elif isinstance(expected,list):
+        if not isinstance(actual,list) or len(actual)!=len(expected):
+            raise ValueError('result sequence schema mismatch')
+        for a,e in zip(actual,expected):exact_values(a,e)
+    elif type(actual) is not type(expected) or actual != expected:
+        raise ValueError('result value/type mismatch')
+
+
+def rational_rate(value):
+    if (not isinstance(value, dict) or set(value) != {'numerator','denominator'}
+            or any(type(v) is not int or v <= 0 for v in value.values())):
+        raise ValueError('invalid observed rational rate')
+    rate=Fraction(value['numerator'],value['denominator'])
+    if (rate.numerator,rate.denominator)!=(value['numerator'],value['denominator']):
+        raise ValueError('noncanonical rational rate')
+    return rate
+
+
+def retained_structure(obj, suffix):
+    fields={'slot_index','status','transport_status','literal_identity_matches','observed_rate_consistent','metadata_rate_verified',
+            'observed_nslc','decoded_traces','decoded_sample_grid','filename_day_boundary_crossing_count',
+            'filename_partition_verified','preserved_t0_ns','metadata_pick_ns','pick_minus_t0_ns',
+            'observed_sample_rate','windows','advertised_samples','decode_warning_count'}
+    if set(obj)!=fields or not isinstance(obj['decoded_traces'],list):
+        raise ValueError('decoded component schema mismatch')
+    traces=obj['decoded_traces'];observed=Counter();rates=set();total=0;ordered=[]
+    for trace in traces:
+        if (not isinstance(trace,dict) or set(trace)!={'nslc','start_ns','last_sample_ns','sample_rate','npts','filename_day_boundary_crossing'}
+                or type(trace['start_ns']) is not int or type(trace['npts']) is not int or not 0<=trace['npts']<=16_000_000
+                or not isinstance(trace['nslc'],list) or len(trace['nslc'])!=4 or any(type(v) is not str for v in trace['nslc'])
+                or type(trace['filename_day_boundary_crossing']) is not bool):
+            raise ValueError('invalid retained trace grid')
+        rate=rational_rate(trace['sample_rate']);rates.add(rate);period=Fraction(10**9)/rate
+        start=trace['start_ns'];n=trace['npts'];total+=n;observed[tuple(trace['nslc'])]+=1
+        last=Fraction(start)+(n-1)*period if n else None
+        exact_values(trace['last_sample_ns'],None if last is None else {'numerator':last.numerator,'denominator':last.denominator})
+        if n:ordered.append((start,n,period))
+    if total!=obj['advertised_samples'] or total>16_000_000:
+        raise ValueError('retained trace count mismatch')
+    exact_values(obj['observed_nslc'],[{'nslc':list(k),'decoded_trace_count':v} for k,v in sorted(observed.items())])
+    rate_ok=len(rates)==1
+    exact_values(obj['observed_rate_consistent'],rate_ok)
+    rate=next(iter(rates)) if rate_ok else None
+    exact_values(obj['observed_sample_rate'],None if rate is None else {'numerator':rate.numerator,'denominator':rate.denominator})
+    identity=None
+    if obj['literal_identity_matches']:
+        if len(observed)!=1:raise ValueError('qualified identity requires one literal NSLC')
+        identity=next(iter(observed));channel=identity[3]
+        if len(channel)!=3 or not all(c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' for c in channel) or channel[-1]!=suffix:
+            raise ValueError('literal component suffix mismatch')
+    ordered.sort(key=lambda v:v[0]);gaps=overlaps=0;aligned=None
+    if rate_ok and ordered:
+        period=Fraction(10**9)/rate;tolerance=min(Fraction(1000),period/100)
+        aligned=all(min((v[0]-ordered[0][0])%period,period-((v[0]-ordered[0][0])%period))<=tolerance for v in ordered)
+        for a,b in zip(ordered,ordered[1:]):
+            separation=Fraction(b[0])-(Fraction(a[0])+a[1]*period)
+            gaps+=separation>tolerance;overlaps+=separation < -tolerance
+    exact_values(obj['decoded_sample_grid'],{'gaps':gaps if aligned is not None else None,
+        'overlaps':overlaps if aligned is not None else None,'start_lattice_consistent':aligned,
+        'empty_trace_count':len(traces)-len(ordered)})
+    exact_values(obj['filename_day_boundary_crossing_count'],sum(t['filename_day_boundary_crossing'] for t in traces))
+    return identity
+
+
+def retained_geometry(obj, window, rate):
+    # Reconstruct timing/count evidence only; summaries contain no amplitudes.
+    # This applies to qualified AND incomplete crops, without rechecking values.
+    fragments=[];period=Fraction(10**9)/rate
+    for trace in obj['decoded_traces']:
+        start=trace['start_ns'];n=trace['npts']
+        def ceiling(value):return -(-value.numerator//value.denominator)
+        lo=max(0,ceiling(Fraction(window['left_ns']-start)/period))
+        hi=min(n,ceiling(Fraction(window['deadline_ns']-start)/period))
+        if hi>lo:fragments.append((Fraction(start)+lo*period,Fraction(start)+(hi-1)*period,hi-lo))
+    if not fragments:return None
+    fragments.sort(key=lambda f:f[0]);first=fragments[0][0];last=max(f[1] for f in fragments)
+    tolerance=min(Fraction(1000),period/100)
+    gaps=sum(b[0]-(a[1]+period)>tolerance for a,b in zip(fragments,fragments[1:]))
+    overlaps=sum(b[0]-(a[1]+period)<-tolerance for a,b in zip(fragments,fragments[1:]))
+    lattice=all(min((f[0]-first)%period,period-((f[0]-first)%period))<=tolerance for f in fragments)
+    edges=0<=first-window['left_ns']<period and 0<window['deadline_ns']-last<=period
+    return {'samples':sum(f[2] for f in fragments),'edge_coverage':edges,'sample_rate_matches':True,
+            'gaps':gaps,'overlaps':overlaps,'sample_grid_consistent':lattice,
+            'first_sample_ns_numerator':first.numerator,'first_sample_ns_denominator':first.denominator}
+
+
+def validate_core(obj, window, rate):
+    c=window['core']
+    if not obj['literal_identity_matches']:
+        exact_values(c,{'available':None,'reason':'literal_nslc_mismatch','samples':None});return
+    if not obj['observed_rate_consistent']:
+        exact_values(c,{'available':None,'reason':'multiple_observed_rates','samples':None});return
+    geometry=retained_geometry(obj,window,rate)
+    if geometry is None:
+        exact_values(c,{'available':False,'reason':'no_prefix_samples','samples':0});return
+    booleans={'available','finite','sample_rate_matches','edge_coverage','flatline','sample_grid_consistent',
+              'clipping_candidate','clipping_screen_passed','physically_unclipped_verified'}
+    integers={'samples','gaps','overlaps','first_sample_ns_numerator','first_sample_ns_denominator','longest_prefix_extreme_run'}
+    lists={'timing_quality_values','calibration_type_values'}
+    if (set(c)!=booleans|integers|lists or any(type(c[k]) is not bool for k in booleans)
+            or any(type(c[k]) is not int for k in integers)
+            or any(not isinstance(c[k],list) or any(type(v) is not str for v in c[k]) or c[k]!=sorted(set(c[k])) for k in lists)
+            or c['physically_unclipped_verified'] is not False
+            or not 0<c['samples']<=obj['advertised_samples']
+            or any(not 0<=c[k]<=c['samples'] for k in ('gaps','overlaps','longest_prefix_extreme_run'))
+            or c['first_sample_ns_denominator']<=0):
+        raise ValueError('invalid component core primitives')
+    exact_values({k:c[k] for k in geometry},geometry)
+    good=c['finite'] and c['sample_rate_matches'] and c['edge_coverage'] and c['sample_grid_consistent'] and not c['gaps'] and not c['overlaps']
+    candidate=c['flatline'] or c['longest_prefix_extreme_run']>=8
+    exact_values(c['available'],good)
+    exact_values(c['clipping_candidate'],candidate)
+    exact_values(c['clipping_screen_passed'],good and not candidate)
+    if c['flatline'] and (not c['finite'] or c['longest_prefix_extreme_run']<1):
+        raise ValueError('contradictory flatline diagnostic')
+
+
+def validate_result(result, receipt):
+    if not isinstance(result, dict) or set(result) != {'protocol_id','private','public_aggregate'} or result['protocol_id'] != PROTOCOL:
+        raise ValueError('invalid result envelope')
+    private=result['private']
+    if not isinstance(private,dict) or set(private)!={'slots','provenance'}:
+        raise ValueError('invalid private result')
+    rows=private['slots']
+    if not isinstance(rows,list) or len(rows)!=1:
+        raise ValueError('one preserved original numbered slot required')
+    objects=[];transport_masks=[]
+    for index,row in enumerate(rows):
+        if (not isinstance(row,dict) or set(row)!={'slot_index','precontext_s','preserved_t0_ns','metadata_pick_ns',
+                'pick_minus_t0_ns','catalogue_pick_before_deadline','components','prior_failures','joint_windows'}
+                or type(row['slot_index']) is not int or not 0<=row['slot_index']<=3
+                or type(row['precontext_s']) is not int or row['precontext_s']!=PRECONTEXT
+                or any(type(row[k]) is not int for k in ('preserved_t0_ns','metadata_pick_ns','pick_minus_t0_ns'))
+                or any(not -(2**63)+10**10<=row[k]<2**63-10**10 for k in ('preserved_t0_ns','metadata_pick_ns'))
+                or row['pick_minus_t0_ns']!=row['metadata_pick_ns']-row['preserved_t0_ns']):
+            raise ValueError('ordered fixed-clock slot required')
+        index=row['slot_index']
+        picks={str(h):row['metadata_pick_ns'] < row['preserved_t0_ns']+h*10**9 for h in HORIZONS}
+        exact_values(row['catalogue_pick_before_deadline'],picks)
+        components=row['components']
+        if not isinstance(components,dict) or set(components)!=set(COMPONENTS):
+            raise ValueError('three retained components required')
+        prior=row['prior_failures']
+        if not isinstance(prior,dict) or set(prior)!=set(PRIOR_COMPONENTS):
+            raise ValueError('two separate prior failure components required')
+        for k in PRIOR_COMPONENTS:
+            obj=prior[k]
+            exact_values(obj,{'slot_index':index,'status':'failed','reason':'transport_unqualified',
+                             'transport_status':'unqualified_http404',
+                             'windows':{str(h):{'core':{'available':None}} for h in HORIZONS}})
+            objects.append(obj)
+        transport_masks.append({'slot_index':index,
+            'components':{k:components[k].get('transport_status') if isinstance(components[k],dict) else None for k in COMPONENTS},
+            'prior_failures':{k:prior[k]['transport_status'] for k in PRIOR_COMPONENTS}})
+        rates={};identities={}
+        for k in COMPONENTS:
+            obj=components[k];objects.append(obj)
+            if (not isinstance(obj,dict) or type(obj.get('slot_index')) is not int or obj['slot_index']!=index
+                    or obj.get('status') not in ('decoded','failed')):
+                raise ValueError('component status/index mismatch')
+            transport=obj.get('transport_status')
+            allowed=('prior_vertical_qualified',) if k=='Z' else ('qualified_http200',)
+            if transport not in allowed:raise ValueError('invalid component transport provenance')
+            if obj['status']=='failed':
+                if (set(obj)!={'slot_index','status','reason','windows','transport_status'}
+                        or obj['reason']!=('transport_unqualified' if transport=='unqualified_http404' else 'decode_or_grid_unsupported')):
+                    raise ValueError('unsupported failure row')
+            else:
+                if transport=='unqualified_http404':raise ValueError('error body cannot have decoded evidence')
+                if any(type(obj.get(f)) is not bool for f in ('literal_identity_matches','observed_rate_consistent')):
+                    raise ValueError('invalid structural identity/rate')
+                if (obj.get('metadata_rate_verified') is not False or obj.get('filename_partition_verified') is not False
+                        or any(type(obj.get(f)) is not int for f in ('preserved_t0_ns','metadata_pick_ns','pick_minus_t0_ns'))
+                        or obj['preserved_t0_ns']!=row['preserved_t0_ns'] or obj['metadata_pick_ns']!=row['metadata_pick_ns']
+                        or obj['pick_minus_t0_ns']!=row['pick_minus_t0_ns']):
+                    raise ValueError('component clock/claim mismatch')
+                for f in ('advertised_samples','decode_warning_count','filename_day_boundary_crossing_count'):
+                    if type(obj.get(f)) is not int or not 0 <= obj[f] <= 48_000_000:
+                        raise ValueError('invalid component count')
+                if obj['advertised_samples']>16_000_000:
+                    raise ValueError('object sample cap mismatch')
+                rate=obj.get('observed_sample_rate')
+                if obj['observed_rate_consistent']:
+                    rates[k]=rational_rate(rate)
+                elif rate is not None:
+                    raise ValueError('mixed rate must retain unknown common rate')
+                identity=retained_structure(obj,k)
+                if identity is not None:identities[k]=identity[:3]+(identity[3][:2],)
+            windows=obj.get('windows')
+            if not isinstance(windows,dict) or set(windows)!={str(h) for h in HORIZONS}:
+                raise ValueError('nine selected component cells required')
+            for h in HORIZONS:
+                w=windows[str(h)]
+                if not isinstance(w,dict) or not isinstance(w.get('core'),dict) or 'available' not in w['core']:
+                    raise ValueError('missing component diagnostic')
+                a=w['core']['available']
+                if a is not None and type(a) is not bool:
+                    raise ValueError('invalid component availability')
+                if obj['status']=='failed':
+                    exact_values(w,{'core':{'available':None}})
+                else:
+                    if set(w)!={'left_ns','deadline_ns','target_pick_strictly_before_deadline','core'}:
+                        raise ValueError('component window shape')
+                    exact_values({f:w[f] for f in ('left_ns','deadline_ns','target_pick_strictly_before_deadline')},
+                        {'left_ns':row['preserved_t0_ns']-PRECONTEXT*10**9,
+                         'deadline_ns':row['preserved_t0_ns']+h*10**9,'target_pick_strictly_before_deadline':picks[str(h)]})
+                if obj['status']=='decoded':validate_core(obj,w,rates.get(k))
+        if len(set(identities.values()))>1:
+            raise ValueError('literal triplet base mismatch')
+        joint_windows=row['joint_windows']
+        if not isinstance(joint_windows,dict) or set(joint_windows)!={str(h) for h in HORIZONS}:
+            raise ValueError('three selected joint cells required')
+        for h in HORIZONS:
+            evidence=[components[k]['windows'][str(h)]['core'] for k in COMPONENTS]
+            values=[c['available'] for c in evidence]
+            common=None;compatible=None
+            if any(a is False for a in values):a=False;reason='component_incomplete'
+            elif any(a is None for a in values):a=None;reason='component_unknown'
+            elif len(set(rates.values()))!=1:a=False;reason='mixed_component_rates'
+            else:
+                rate=rates['1'];period=Fraction(10**9)/rate;tolerance=min(Fraction(1000),period/100)
+                first=[Fraction(c['first_sample_ns_numerator'],c['first_sample_ns_denominator']) for c in evidence]
+                compatible=all(min((t-first[0])%period,period-((t-first[0])%period))<=tolerance for t in first)
+                a=compatible;reason='qualified' if a else 'common_lattice_mismatch'
+                common={'numerator':rate.numerator,'denominator':rate.denominator}
+            mask='available' if a is True else 'incomplete' if a is False else 'unknown'
+            exact_values(joint_windows[str(h)],{'left_ns':row['preserved_t0_ns']-PRECONTEXT*10**9,
+                'deadline_ns':row['preserved_t0_ns']+h*10**9,'available':a,'mask':mask,'reason':reason,
+                'common_observed_rate':common,'lattices_compatible':compatible})
+    provenance=private['provenance']
+    keys={'plan_sha256','authorization_sha256','source_files','pushed_source_commit','validated_body_count',
+          'advertised_samples_decoded','precontext_s','prerequisites','transport_statuses_sha256','original_slot_index'}
+    if (not isinstance(provenance,dict) or set(provenance)!=keys or type(provenance['validated_body_count']) is not int
+            or provenance['validated_body_count']!=5 or type(provenance['precontext_s']) is not int or provenance['precontext_s']!=3):
+        raise ValueError('invalid result provenance')
+    if type(provenance['original_slot_index']) is not int or provenance['original_slot_index']!=rows[0]['slot_index']:
+        raise ValueError('preserved original slot index mismatch')
+    if provenance['plan_sha256']!=receipt['plan_sha256'] or provenance['authorization_sha256']!=receipt['authorization_sha256']:
+        raise ValueError('result invocation pin mismatch')
+    if type(provenance['advertised_samples_decoded']) is not int or not 0<=provenance['advertised_samples_decoded']<=48_000_000:
+        raise ValueError('invalid total sample count')
+    mask_sha=hashlib.sha256(json.dumps(transport_masks,sort_keys=True,separators=(',',':')).encode('utf-8')).hexdigest()
+    if mask_sha!=receipt['transport_statuses_sha256'] or provenance['transport_statuses_sha256']!=mask_sha:
+        raise ValueError('trusted result transport mask mismatch')
+    statuses=[o['transport_status'] for o in objects]
+    counts={'qualified_http200':2,'unqualified_http404':2,'prior_vertical_qualified':1}
+    if any(statuses.count(k)!=v for k,v in counts.items()):raise ValueError('result two-qualified/two-prior-failed/one-Z mismatch')
+    recorded=sum(o.get('advertised_samples',0) for o in objects)
+    unrecorded=sum(o['status']=='failed' and o['transport_status']!='unqualified_http404' for o in objects)*16_000_000
+    if not recorded<=provenance['advertised_samples_decoded']<=recorded+unrecorded:
+        raise ValueError('total sample count inconsistent with retained objects')
+    pins=provenance['prerequisites']
+    ids={'transport_protocol_id':'geonet-anonymous-archive-transport-v6',
+         'transport_study_id':'geonet-configured-two-numbered-horizontal-precontext3-transport-v6',
+         'transport_proposal_sha256':'9958454926c5d90b8084c862bd117adda4b306e88d7ad35a13af997920f0d229',
+         'qualification_proposal_sha256':'28131f1ff6eb5ead6159bf8d08a7727fef0d7bfeb195c8af5b347992bdf0c879'}
+    hash_names={'v6_collection_manifest_sha256','v6_returned_summary_sha256','independent_v5_audit_sha256',
+        'v6_parent_custody_sha256','prior_v5_collection_manifest_sha256','prior_v5_audit_sha256',
+        'retained_failure_v4_result_sha256','retained_failure_v4_parent_custody_sha256',
+        'cached_channel_v1_result_sha256','cached_channel_v1_parent_custody_sha256',
+        'vertical_v2_result_sha256','original_selection_sha256','fixed_positional_join_sha256',
+        'numbered_literal_epoch_binding_sha256','parent_metadata_custody_sha256'}
+    def valid_hash(v):return isinstance(v,str) and len(v)==64 and all(c in '0123456789abcdef' for c in v)
+    if (not isinstance(pins,dict) or set(pins)!=set(ids)|hash_names|{'terminal_accounting'} or any(pins[k]!=v for k,v in ids.items())
+            or any(not valid_hash(pins[k]) for k in hash_names)):
+        raise ValueError('invalid prerequisite provenance')
+    exact_values(pins['terminal_accounting'],{'numbered_attempts':2,**counts})
+    sources=provenance['source_files']
+    names={'core.py','qualification.py','child_harness.py','supervisor.py','PROTOCOL.md','SCHEMAS.md',
+           'RUNTIME_PINS.json','PUBLIC_TRANSPORT_PROPOSAL.md','PUBLIC_QUALIFICATION_PROPOSAL.md'}
+    if not isinstance(sources,dict) or set(sources)!=names or any(not valid_hash(v) for v in sources.values()):
+        raise ValueError('invalid source provenance')
+    fixed={'core.py':'70c2a53c7beef5f1ddfae7d46e52bcdae97ee711cd10636da6250bd20ab9144e',
+           'RUNTIME_PINS.json':'a5a273ffad973848521d08bb5b730fe226c7a45440c298ac25e20624a158c9f6',
+           'PUBLIC_TRANSPORT_PROPOSAL.md':ids['transport_proposal_sha256'],
+           'PUBLIC_QUALIFICATION_PROPOSAL.md':ids['qualification_proposal_sha256'],
+           'child_harness.py':receipt['adapter_sha256'],'supervisor.py':receipt['supervisor_sha256']}
+    if any(sources[k]!=v for k,v in fixed.items()):raise ValueError('fixed/running source mismatch')
+    commit=provenance['pushed_source_commit']
+    if not isinstance(commit,str) or len(commit)!=40 or any(c not in '0123456789abcdef' for c in commit):
+        raise ValueError('invalid source commit')
+    def state_counts(evidence,picks):
+        values=[c['available'] for c in evidence]
+        return {'denominator':1,'available':sum(a is True for a in values),'incomplete':sum(a is False for a in values),
+                'unknown':sum(a is None for a in values),
+                'complete_and_catalogue_pick_before_deadline':sum(a is True and p is True for a,p in zip(values,picks))}
+    expected={'slots':1,'objects':5,'selected_objects':3,'prior_failed_objects':2,
+        'selected_component_cells':9,'selected_joint_cells':3,'prior_failure_cells':6,
+        'qualified_http200_objects':2,'unqualified_http404_objects':2,'prior_vertical_qualified_objects':1,
+        'transport_unqualified_objects':sum(o['status']=='failed' and o.get('reason')=='transport_unqualified' for o in objects),'decoded_objects':sum(o['status']=='decoded' for o in objects),
+        'failed_objects':sum(o['status']=='failed' for o in objects),
+        'literal_identity_matching_objects':sum(o.get('literal_identity_matches',False) for o in objects),
+        'consistent_observed_rate_objects':sum(o.get('observed_rate_consistent',False) for o in objects),
+        'component_window_states':{k:{str(h):state_counts([r['components'][k]['windows'][str(h)]['core'] for r in rows],
+            [r['catalogue_pick_before_deadline'][str(h)] for r in rows]) for h in HORIZONS} for k in COMPONENTS},
+        'joint_window_states':{str(h):state_counts([r['joint_windows'][str(h)] for r in rows],
+            [r['catalogue_pick_before_deadline'][str(h)] for r in rows]) for h in HORIZONS},
+        'prior_failure_window_states':{k:{str(h):state_counts([r['prior_failures'][k]['windows'][str(h)]['core'] for r in rows], [r['catalogue_pick_before_deadline'][str(h)] for r in rows]) for h in HORIZONS} for k in PRIOR_COMPONENTS},
+        'catalogue_pick_before_deadline_counts':{str(h):sum(r['catalogue_pick_before_deadline'][str(h)] for r in rows) for h in HORIZONS},
+        'filename_boundary_crossing_trace_count':sum(o.get('filename_day_boundary_crossing_count',0) for o in objects),
+        **{k:False for k in ('metadata_rate_verified','filename_partition_verified','physical_orientation_verified',
+            'physical_units_verified','response_calibration_verified','response_state_adequacy_verified',
+            'physical_clipping_verified','calibrated_three_component_motion_verified','operational_availability_verified',
+            'raw_record_timing_verified','raw_record_segmentation_verified',
+            'model_input_verified','model_improvement_verified','novelty_verified')}}
+    exact_values(result['public_aggregate'],expected)
+
+
+def supervise(runtime, runtime_sha256, child, child_sha256, supervisor_sha256,
+              plan, plan_sha256, authorization, authorization_sha256, transport_statuses_sha256, out_dir,
+              max_seconds=120):
+    start = time.monotonic()
+    if type(max_seconds) not in (int, float) or not 0 < max_seconds <= 120:
+        raise ValueError("deadline must be within 120 seconds")
+    if not isinstance(transport_statuses_sha256,str) or len(transport_statuses_sha256)!=64 or any(c not in '0123456789abcdef' for c in transport_statuses_sha256):
+        raise ValueError('trusted transport status hash')
+    deadline = start + max_seconds
+    # Reserve cleanup time inside the whole invocation ceiling. Expiry stays incomplete.
+    processing_deadline = deadline - min(3, max_seconds / 4)
+    root = Path(out_dir)
+    if not isinstance(out_dir, str) or str(root) != out_dir or not root.is_absolute() or root.parent.resolve() != root.parent:
+        raise ValueError("output parent must be canonical")
+    # Existing directories, symlinks and prior failures are never reused or overwritten.
+    root.mkdir(mode=0o700)
+    receipt = {"protocol_id": PROTOCOL, "complete": False, "reason": "preflight_failed",
+               "elapsed_seconds": None, "returncode": None, "group_termination_confirmed": None,"transport_statuses_sha256":transport_statuses_sha256,
+               "stdout_bytes": 0, "stderr_bytes": 0, "start_gate_released": False,
+               "whole_invocation_limit_seconds": max_seconds,
+               "plan_sha256": plan_sha256, "authorization_sha256": authorization_sha256,
+               "adapter_sha256": child_sha256, "supervisor_sha256": supervisor_sha256,
+               "runtime_sha256": runtime_sha256, "result_sha256": None,
+               "no_network_actions_in_supervisor": True}
+    proc = None
+    interrupted = None
+    try:
+        for value in (runtime_sha256, child_sha256, supervisor_sha256, plan_sha256, authorization_sha256):
+            if not isinstance(value, str) or len(value) != 64 or any(c not in "0123456789abcdef" for c in value):
+                raise ValueError("invalid invocation digest")
+        runtime_path = Path(runtime)
+        if not isinstance(runtime, str) or not runtime_path.is_absolute() or str(runtime_path) != runtime or runtime_path.parent.resolve() != runtime_path.parent:
+            raise ValueError("noncanonical runtime path")
+        # The trusted venv executable may be a final symlink to the pinned base interpreter.
+        child_bytes = read_code(child, 64 * 1024)
+        if file_sha(str(Path(runtime).resolve()), 128 * 1024 * 1024) != runtime_sha256 or hashlib.sha256(child_bytes).hexdigest() != child_sha256:
+            raise ValueError("runtime/child pin mismatch")
+        if file_sha(str(Path(__file__).resolve()), 2 * 1024 * 1024) != supervisor_sha256:
+            raise ValueError("supervisor pin mismatch")
+        if time.monotonic() >= processing_deadline:
+            raise ValueError("preflight elapsed deadline")
+        # Launch the verified UTF-8 entry buffer, not a second read of a mutable script path.
+        entry = "__file__ = " + repr(child) + "\n" + child_bytes.decode("utf-8")
+        argv = [runtime, "-I", "-B", "-S", "-c", entry, "--plan", plan, "--authorization", authorization,
+                "--plan-sha256", plan_sha256, "--authorization-sha256", authorization_sha256,
+                "--adapter-sha256", child_sha256, "--supervisor-sha256", supervisor_sha256,
+                "--transport-statuses-sha256",transport_statuses_sha256,"--runtime-sha256", runtime_sha256, "--runtime-path", runtime, "--deadline", str(processing_deadline)]
+        proc = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                start_new_session=True, close_fds=True,
+                                env={"PATH": "/usr/bin:/bin", "LANG": "C.UTF-8"})
+        receipt["reason"] = "incomplete"
+        # Popen may return late; never release reads after a stalled launch consumed the deadline.
+        if time.monotonic() >= processing_deadline:
+            receipt["reason"] = "launch_deadline"
+        else:
+            proc.stdin.write(b"G")
+            proc.stdin.flush()
+            receipt["start_gate_released"] = True
+        proc.stdin.close()
+        with exclusive(root / "stdout.part") as stdout, exclusive(root / "stderr.part") as stderr:
+            selector = selectors.DefaultSelector()
+            for stream, name, target, cap in ((proc.stdout, "stdout", stdout, OUTPUT_CAP), (proc.stderr, "stderr", stderr, STDERR_CAP)):
+                os.set_blocking(stream.fileno(), False)
+                selector.register(stream, selectors.EVENT_READ, (name, target, cap))
+            try:
+                while selector.get_map() and receipt["reason"] == "incomplete":
+                    remaining = processing_deadline - time.monotonic()
+                    if remaining <= 0:
+                        receipt["reason"] = "deadline"
+                        break
+                    for key, mask in selector.select(min(remaining, 0.05)):
+                        name, target, cap = key.data
+                        chunk = os.read(key.fileobj.fileno(), 65536)
+                        if not chunk:
+                            selector.unregister(key.fileobj)
+                            key.fileobj.close()
+                            continue
+                        before = receipt[name + "_bytes"]
+                        receipt[name + "_bytes"] += len(chunk)
+                        target.write(chunk[:max(0, cap - before)])
+                        if receipt[name + "_bytes"] > cap:
+                            receipt["reason"] = name + "_overflow"
+                            break
+                if receipt["reason"] == "incomplete":
+                    remaining = processing_deadline - time.monotonic()
+                    if remaining <= 0:
+                        receipt["reason"] = "deadline"
+                    else:
+                        try:
+                            proc.wait(timeout=remaining)
+                        except subprocess.TimeoutExpired:
+                            receipt["reason"] = "deadline"
+                        else:
+                            if time.monotonic() >= processing_deadline:
+                                receipt["reason"] = "deadline"
+                            else:
+                                receipt["reason"] = "child_failed" if proc.returncode else "candidate_complete"
+            finally:
+                selector.close()
+        receipt["group_termination_confirmed"] = terminate_group(proc, deadline)
+        receipt["returncode"] = proc.returncode
+        if receipt["reason"] == "candidate_complete" and not receipt["group_termination_confirmed"]:
+            receipt["reason"] = "group_termination_unconfirmed"
+        if receipt["reason"] == "candidate_complete" and receipt["group_termination_confirmed"]:
+            if time.monotonic() >= deadline:
+                receipt["reason"] = "deadline"
+            else:
+                body = (root / "stdout.part").read_bytes()  # already capped on disk
+                def pairs(items):
+                    obj = {}
+                    for key, value in items:
+                        if key in obj:
+                            raise ValueError("duplicate result field")
+                        obj[key] = value
+                    return obj
+                def invalid_constant(value):
+                    raise ValueError("nonfinite result field")
+                result = json.loads(body, object_pairs_hook=pairs, parse_constant=invalid_constant)
+                validate_result(result, receipt)
+                aggregate = json.dumps(result["public_aggregate"], sort_keys=True, allow_nan=False).encode() + b"\n"
+                if len(aggregate) > 65536 or time.monotonic() >= deadline:
+                    raise ValueError("aggregate serialization limit/deadline")
+                with exclusive(root / "public_aggregate.json") as stream:
+                    stream.write(aggregate)
+                os.link(root / "stdout.part", root / "private_result.json")
+                os.unlink(root / "stdout.part")
+                receipt.update(complete=True, reason="complete", result_sha256=hashlib.sha256(body).hexdigest())
+    except BaseException as error:
+        receipt["complete"] = False
+        if not isinstance(error, Exception):
+            interrupted = error
+            receipt["reason"] = "supervisor_interrupted"
+        if receipt["reason"] in ("incomplete", "candidate_complete"):
+            receipt["reason"] = "supervisor_failure"
+        if proc is not None:
+            receipt["group_termination_confirmed"] = terminate_group(proc, deadline)
+            receipt["returncode"] = proc.returncode
+    finally:
+        if proc is not None:
+            for stream in (proc.stdin, proc.stdout, proc.stderr):
+                if stream is not None and not stream.closed:
+                    stream.close()
+        receipt["elapsed_seconds"] = time.monotonic() - start
+        if receipt["elapsed_seconds"] >= max_seconds:
+            receipt["complete"] = False
+            receipt["reason"] = "whole_invocation_limit_elapsed"
+        owned = None
+        try:
+            # The first persisted receipt is fail-closed even if write/close is interrupted.
+            with exclusive(root / "receipt.json") as stream:
+                owned = os.fstat(stream.fileno())
+                initial = dict(receipt, complete=False, reason="receipt_finalization_incomplete")
+                stream.write(json.dumps(initial, sort_keys=True, allow_nan=False).encode() + b"\n")
+            receipt["elapsed_seconds"] = time.monotonic() - start
+            if receipt["elapsed_seconds"] >= max_seconds:
+                receipt.update(complete=False, reason="whole_invocation_limit_elapsed")
+            finalize_owned_receipt(root / "receipt.json", owned, receipt)
+            after_receipt = time.monotonic() - start
+            if after_receipt >= max_seconds:
+                receipt.update(complete=False, reason="whole_invocation_limit_elapsed", elapsed_seconds=after_receipt)
+                finalize_owned_receipt(root / "receipt.json", owned, receipt)
+        except BaseException:
+            receipt.update(complete=False, reason="receipt_finalization_failed", elapsed_seconds=time.monotonic() - start)
+            if owned is not None:
+                try:
+                    finalize_owned_receipt(root / "receipt.json", owned, receipt)
+                except BaseException:
+                    # No normal return/exit means publication is forbidden even if storage failed.
+                    pass
+            raise
+    if interrupted is not None:
+        raise interrupted
+    return receipt
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    for field in ("runtime", "runtime-sha256", "child", "child-sha256", "supervisor-sha256", "plan",
+                  "plan-sha256", "authorization", "authorization-sha256", "transport-statuses-sha256", "out-dir"):
+        parser.add_argument("--" + field, required=True)
+    args = parser.parse_args()
+    receipt = supervise(**vars(args))
+    # The receipt lives privately; stdout is aggregate process status only.
+    print(json.dumps({"complete": receipt["complete"], "reason": receipt["reason"]}))
+    return 0 if receipt["complete"] else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

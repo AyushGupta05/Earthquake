@@ -1,0 +1,19 @@
+{
+  "schema": "numbered-v1-test-history",
+  "runs": [
+    {
+      "log": "tests_v1.txt",
+      "methods": 0,
+      "qualifying": false,
+      "reason": "source-preparation command used source-directory cwd with root-relative paths; source/test writes failed, test discovery found0; no processing invocation or actual input read"
+    },
+    {
+      "log": "tests_v2.txt",
+      "methods": 40,
+      "elapsed_s": 4.23,
+      "exit": 0,
+      "qualifying": true,
+      "scope": "invented inputs/records/lifecycle only"
+    }
+  ]
+}
