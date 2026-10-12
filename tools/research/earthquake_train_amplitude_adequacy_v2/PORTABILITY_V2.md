@@ -1,0 +1,5 @@
+# Portability-only statistical source packet V2
+
+Preserve V1 byte-for-byte and its parent-reported Linux result31PASS/1FAIL. The failure is an invented-test comparison of bootstrap quantiles mathematically equal to -1: a platform-dependent floating accumulation gives -1.0000000000000002. V2 changes ONLY that one expected-quantile assertion to NumPy allclose with rtol0/atol1e-12. The preceding exact deterministic repeat test still requires both bootstrap runs to return identical results on the same platform. No processing, bootstrap RNG, metric, model, optimizer, source deadline, scientific threshold, actual output or normative proposal changes. No actual/private result is read or included here.
+
+The four processing modules, SCHEMA/API/root PROPOSAL and inherited rationale are EXACT predecessor bytes. Processing/input/result protocol remains the original V1 identity; V2 names the corrected source/test packet, not a new scientific estimator or changed gate. FIRST CLEAN default code-only autoreview then freeze; no edits afterward. Root performs Linux invented tests, immutable publication and separately authorized actual controls.
