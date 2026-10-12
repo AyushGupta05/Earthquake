@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "The scanner matches the normative structural-header profile: it validates independent endian candidates, record and blockette bounds, literal fields, fixed-width capacity, uniform layouts, and whole-body count/output caps. Failures do not promote partial records, outputs remain within the declared private scope, and all payload, timing, coverage, RSS, and model claims remain false. The invented tests cover the principal supported layouts and rejection boundaries. No actionable defects were identified by source inspection; tests were not executed.",
+  "overall_confidence": 0.93
+}

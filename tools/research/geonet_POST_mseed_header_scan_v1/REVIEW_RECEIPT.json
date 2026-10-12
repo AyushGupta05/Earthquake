@@ -1,0 +1,69 @@
+{
+  "accepted_actionable_findings": 0,
+  "actual_data_or_vendor_source_supplied": false,
+  "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode commit --commit HEAD --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file REVIEW_CONTEXT.md --output REVIEW_OUTPUT.txt --json-output REVIEW_RESULT.json --stream-engine-output",
+  "current_source_matches_clean_snapshot": true,
+  "engine": "codex",
+  "findings": [],
+  "first_clean_model_review": 1,
+  "freeze_on_first_clean": true,
+  "further_reviews_or_processing_edits": false,
+  "helper_exit_code": 0,
+  "isolated_review_commit": "f7b21123fbf2e4ad847605d7d27b0cc169527a70",
+  "model_override": false,
+  "overall_confidence": 0.93,
+  "overall_correctness": "patch is correct",
+  "pre_review_launch_failures": 2,
+  "public_snapshot_directory": "review_snapshot_v1",
+  "rejected_findings": 0,
+  "reviewed_files": [
+    {
+      "bytes": 8040,
+      "path": "scanner.py",
+      "sha256": "daa1e6853b1442a9ac7ce3d04fad6ea240b2622fe7e7012709f0a172c357a69b"
+    },
+    {
+      "bytes": 16195,
+      "path": "test_scanner.py",
+      "sha256": "2842592e5538c3e97b082036f6e779f3f29f5343cd7a73a13955682ed0051486"
+    },
+    {
+      "bytes": 6621,
+      "path": "PROPOSAL.md",
+      "sha256": "21774961d3007e8049917cabd9e0c2f123a84c6801451f2a7b657b7e939591ef"
+    },
+    {
+      "bytes": 3850,
+      "path": "SCHEMA.md",
+      "sha256": "34c435e4214be9822963e77c0e6388cde454c2e20b82d47e909e9f8cf0a0184c"
+    },
+    {
+      "bytes": 1923,
+      "path": "PROTOCOL.md",
+      "sha256": "c70e83ed1819cb800d665214ed41fc11738fe175b459cd56474bf6190ca39a82"
+    },
+    {
+      "bytes": 1762,
+      "path": "PUBLIC_SOURCE_PINS.json",
+      "sha256": "ec2dd97503d75dd1dbbff099e5c7d305feb8f84f96ea9d8c0ffc90bd08b15e99"
+    },
+    {
+      "bytes": 3145,
+      "path": "TEST_RECEIPT.txt",
+      "sha256": "eb24e020252141be553c280ba80e89d69462e98bf13ab5162ae73f3d1a76c61a"
+    },
+    {
+      "bytes": 832,
+      "path": "TEST_RECEIPT.json",
+      "sha256": "a6830195ac2d9114f1daa1b1b28d353cdc2178e8e9f1e6efbb686a62acce0ed1"
+    },
+    {
+      "bytes": 1193,
+      "path": "REVIEW_CONTEXT.md",
+      "sha256": "6b571f77d2ee867e061f9edcaa20951f58dd3cadf4fae13615e006325e4c9986"
+    }
+  ],
+  "reviewer_started": true,
+  "source_snapshot": "REVIEW_SNAPSHOT.json",
+  "web_search": false
+}

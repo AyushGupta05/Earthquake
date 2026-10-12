@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-12",
+  "scope": "Authored method adjudication only; no raw data or vendor code downloaded; no model/source execution, fits, Git or resources.",
+  "online_budget": {
+    "search_queries_used": 2,
+    "search_queries_limit": 12,
+    "primary_open_calls_used": 4,
+    "primary_open_calls_limit": 6
+  },
+  "sources": [
+    {
+      "id": "TEAM-LM",
+      "url": "https://arxiv.org/html/2101.02010v2",
+      "edition": "arXiv 2101.02010v2, 14 April 2021",
+      "access": "Successful rendered primary HTML; initial open plus targeted continuation at line187",
+      "use": "Existing transfer, finite-data saturation, label/time mismatch and fine-tuning limitation; no matched GeoNet result."
+    },
+    {
+      "id": "PCGrad",
+      "url": "https://arxiv.org/abs/2001.06782",
+      "access": "Successful official primary abstract/metadata",
+      "use": "Reject generic gradient-conflict projection as a new method."
+    },
+    {
+      "id": "PCGrad-full",
+      "url": "https://papers.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf",
+      "edition": "NeurIPS 2020 official proceedings",
+      "access": "Successful rendered primary PDF text; no download",
+      "use": "Conflicting-gradient projection is established; local optimization claims are not held-event error guarantees."
+    }
+  ],
+  "searches": [
+    {
+      "query": "gradient surgery multi task learning PCGrad primary paper arxiv",
+      "outcome": "Official arXiv and proceedings located; third-party summaries not used."
+    },
+    {
+      "query": "earthquake magnitude transfer TEAM-LM largest earthquakes 2101.02010",
+      "outcome": "Search output did not supply a useful TEAM-LM primary result; directly opened already named official arXiv v2 URL instead."
+    }
+  ],
+  "failed_primary_accesses": [],
+  "source_pinning": "URLs and edition/access records identify primary text; original remote bytes were not fetched or immutable-byte-pinned. SHA256SUMS binds only this authored packet.",
+  "local_documents_used": [
+    "outputs/START_HERE.md",
+    "outputs/earthquake_method_status.md",
+    "work/earthquake_next_method_adjudication/ADJUDICATION.md",
+    "work/earthquake_next_method_adjudication/SOURCE_LEDGER.md",
+    "outputs/earthquake_response_posterior_consistency_audit.md",
+    "outputs/earthquake_geonet_method_shortlist.md",
+    "outputs/earthquake_missing_evidence_hypotheses.md",
+    "outputs/earthquake_geonet_next_data_plan.md",
+    "outputs/earthquake_geonet_location_mechanism_preflight.md",
+    "outputs/earthquake_source_scaling_audit.md",
+    "outputs/earthquake_distribution_pilots.md",
+    "outputs/earthquake_risk_constraint_audit.md",
+    "work/geonet_spectral_mechanism_research/PRIMARY_AUDIT.md",
+    "work/geonet_train_dev_prefix_POST_transport_v1/PUBLIC_PROPOSAL.md",
+    "work/geonet_train_dev_waveform_route_design_v1/PROSPECTIVE_PROTOCOL.md",
+    "work/geonet_POST_mseed_header_scan_v1/PROPOSAL.md",
+    "work/geonet_train_dev_cached_epoch_design_v2/DESIGN.md"
+  ],
+  "local_read_qualification": "Some batched outputs were truncated; only visible claims were used. Directory/filename-only discovery did not read bodies. No linked private/raw artifacts were opened. A lightweight memory-registry keyword search had no relevant hits and no memory evidence was used.",
+  "claims": {
+    "novelty_verified": false,
+    "performance_verified": false,
+    "new_physical_mechanism_earned": false,
+    "actual_model_run": false,
+    "private_inputs_read": false
+  }
+}

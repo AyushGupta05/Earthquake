@@ -1,0 +1,109 @@
+{
+  "audit_protocol": "geonet-train-dev-prefix-POST-independent-audit-v1",
+  "collector_protocol": "geonet-train-dev-prefix-POST-transport-v1",
+  "study_id": "geonet-original-TRAINDEV65-prefix3-native-POST-v2",
+  "proposal_sha256": "d1fde0107ec473d0452d6354100052a1f7ce716f06bf22af047055cbd87e8f45",
+  "source_only": true,
+  "api": "audit(plan_bytes,manifest_bytes,bounded_member_reader,execution_summary_bytes=bytes,execution_summary_pin={bytes,sha256})",
+  "first_clean_attempt": 1,
+  "review_exit": 0,
+  "findings": 0,
+  "confidence": 0.87,
+  "tests": 52,
+  "test_exit": 0,
+  "test_elapsed_s": 5.465969209002651,
+  "reviewed_snapshot_files": 21,
+  "source_snapshot_payload_pins": 20,
+  "safe_public_file_count": 51,
+  "source_snapshot_pin": {
+    "path": "SOURCE_SNAPSHOT.json",
+    "bytes": 3525,
+    "sha256": "8aa0ff343ee836b2148d7ad9ca632def73f4e0345cb8834dfc62a791627bf657"
+  },
+  "review_receipt_pin": {
+    "path": "review_evidence/review_receipt.json",
+    "bytes": 1833,
+    "sha256": "2cbe784a59032783b1211d987742b1b186558bbff0b024d633610d9b13f283dc"
+  },
+  "test_proof_pin": {
+    "path": "review_evidence/test_receipt.json",
+    "bytes": 1444,
+    "sha256": "ab6f34d980f12badbc8f03110c6183fbbe51648451d43fd36d36c64c42abfcac"
+  },
+  "processing_pins": [
+    {
+      "path": "auditor.py",
+      "bytes": 36151,
+      "sha256": "3766c8f6a07b9d81d7841135eda94c6a3f7472f42bda2cbd7662db1920fe4d91"
+    },
+    {
+      "path": "strict_inputs.py",
+      "bytes": 3265,
+      "sha256": "108d7cc5c51ada40fc35f6db787de512da245187613069123697211a1d471d56"
+    },
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 13805,
+      "sha256": "d2c0975be0cc0c7cada2243b70a5311a828f0f74b38e63d34dba16a12061cc9e"
+    }
+  ],
+  "contract_pins": [
+    {
+      "path": "public_contract/PROPOSAL.md",
+      "bytes": 9934,
+      "sha256": "d1fde0107ec473d0452d6354100052a1f7ce716f06bf22af047055cbd87e8f45"
+    },
+    {
+      "path": "public_contract/PROTOCOL.md",
+      "bytes": 6895,
+      "sha256": "ccc0008d115ae9f9cd04b4730f61360227fa1dd659a8bb1c7609a54798e44932"
+    },
+    {
+      "path": "public_contract/SCHEMA.md",
+      "bytes": 17035,
+      "sha256": "46024980b90458a53d567bc6d5bdf86f21752f1306121f74eda8c8904db9de2c"
+    },
+    {
+      "path": "public_contract/CONTROL_PARITY_PROOF.json",
+      "bytes": 1345,
+      "sha256": "5ae6bc485133a3066e4e27c229c33d157953d0b4e43eda0b4ba4f6542b548f7b"
+    },
+    {
+      "path": "public_contract/ACTUAL_GATE.md",
+      "bytes": 1961,
+      "sha256": "f0a0912b172d7bc1ec3150c34dfa86802f30169bd4bbe744c26277425c7e1834"
+    }
+  ],
+  "fixed_rows": 65,
+  "TRAIN_rows": 41,
+  "DEV_rows": 24,
+  "fixed_batches": 17,
+  "full_manifest_members": [
+    39,
+    90
+  ],
+  "retained_per_body_bytes": 8388608,
+  "total_retained_bytes": 142606336,
+  "probe_per_batch_bytes": 1,
+  "total_consumption_upper": 142606353,
+  "combined_header_framing_bytes_per_batch": 131072,
+  "whole_s": 2400,
+  "controller_processing_s": 2160,
+  "saved_aggregate_provisional": true,
+  "only_returned_aggregate_promotes": true,
+  "sparse_behavior": "valid/finalization/whole false; qualified0; pure verified conservative registered setup aggregate without member reads",
+  "sparse_overbudget_return_never_promotes": true,
+  "parent_selection_runtime_filesystem_actual_custody_not_authenticated": true,
+  "actual_inputs_read": false,
+  "producer_implementation_read": false,
+  "producer_tests_read": false,
+  "actual_invocations": 0,
+  "data_requests": 0,
+  "wave_decodes": 0,
+  "fits": 0,
+  "AWS_actions": 0,
+  "shared_Git_actions": 0,
+  "source_edits_after_clean": false,
+  "further_reviews_after_clean": 0,
+  "parent_verification_publication_private_gate_required": true
+}

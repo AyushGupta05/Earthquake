@@ -1,0 +1,9 @@
+# Source/test/review scope
+
+This authored source-only scanner implements the exact pinned root proposal copied as PROPOSAL.md. It reads only its function argument. The only imports are Python standard-library hashlib, json, math and struct. It contains no fetcher, supervisor, file reader, vendor source or sample decoder.
+
+The invented test builder manually packs fixed headers and allowed blockettes into finite zero padding. It never executes vendor encoders/decoders. Twenty-six focused tests cover builtin-only types, byte and record geometry caps, sample and output boundaries, literal identities, Gregorian dates and leap-second exclusion, raw fields, known extensions, overlap/count/link/record bounds, both header endians and a deliberately ambiguous dual interpretation, uniform-body restrictions, each encoding and word order, fixed-width capacity, zero samples, header-only STEIM, count sums, claim/privacy invariants and absence of IO/vendor imports.
+
+The root reviews and publishes only this curated authored packet. Review must use default Codex through the autoreview helper in an isolated synthetic Git checkout, with read-only tools constrained to the isolated curated snapshot and web search disabled; include authored source, invented tests, this proposal/schema/protocol and public source pins only. Exclude raw vendor source, actual data, IDs/clocks, request bytes, receipts, inventories and credentials. User code-only review authorization persists. Advisory findings must be verified; accepted concrete issues are fixed and affected tests/review repeated until the first clean result, then processing files freeze immediately.
+
+No actual invocation, new source URL, vendor execution, query, install, AWS action, fit, shared Git mutation or publication is performed by this source agent. All earlier advisory packets remain unchanged. Scanner success earns no payload decode or research/model claim.

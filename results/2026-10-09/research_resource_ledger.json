@@ -148,19 +148,21 @@
     "synthetic_tests": 52
   },
   "latest_credit_check": {
-    "checked_utc": "2026-10-12T17:11:53.402484+00:00",
-    "current_main_estimated_coverage_for_remaining_authorized_budget": true,
-    "limit_note": "Shared delayed estimates, not reserved allocation or settled task attribution",
-    "main_credit_active": true,
-    "main_expiry": "2026-10-31",
-    "raw_financial_identifiers_and_balances_private": true,
-    "schema": "aws-restored-coverage-summary-v1",
-    "source": "Fresh authenticated AWS Credits UI/main products modal",
-    "verified_main_eligible_products": [
+    "authorized_ceiling_usd": 2000,
+    "checked_utc": "2026-10-12T19:16:16.512633+00:00",
+    "credential_or_payment_or_resource_changes": false,
+    "eligible_products": [
       "Amazon Elastic Compute Cloud",
       "AWS Data Transfer",
       "Amazon Virtual Private Cloud"
-    ]
+    ],
+    "estimate_delay_hours": 24,
+    "estimated_main_eligible_credit_covers_remaining_authorized_task_ceiling": true,
+    "main_credit_active": true,
+    "main_credit_expires": "2026-10-31",
+    "raw_balances_and_financial_identifiers_private": true,
+    "read_only_current_Chrome_credit_and_main_services_modal": true,
+    "same_authenticated_account_as_prior_STS": true
   },
   "main_credit_expires": "2026-10-31",
   "main_credit_remaining_usd": null,
@@ -1126,6 +1128,29 @@
       "pure_header_scan_proposal_pin": {
         "bytes": 6621,
         "sha256": "21774961d3007e8049917cabd9e0c2f123a84c6801451f2a7b657b7e939591ef"
+      },
+      "pure_scanner_parent_completion": {
+        "checksums_verified": 28,
+        "current_equals_reviewed_snapshot_files": 9,
+        "first_clean_model_review": 1,
+        "flags": [
+          "-I",
+          "-B",
+          "-S",
+          "-Werror"
+        ],
+        "manifest_members_verified": 27,
+        "native_test_exit": 0,
+        "packet": "geonet_POST_mseed_header_scan_v1",
+        "parent_tests": 26,
+        "private_inputs_providerrequests_AWS_or_fits": 0,
+        "safe_files_verified": 29,
+        "schema": "source-packet-parent-completion-v1",
+        "source_manifest_sha256": "a2adaf2f0a64874c1e9b812079a2e9dbd2133a1f5de7fbaebd6ffa76a93d6285",
+        "test_log_pin": {
+          "bytes": 3145,
+          "sha256": "856bfc782ef790cd94c1847b7e9e1e86bdd54dc040ed30a8ef8adc36cce9cf38"
+        }
       },
       "qualifier_design_and_two_source_audit_packets_closed": true
     },
@@ -2240,6 +2265,29 @@
       },
       "exact_prior_V2_canonical_entity_or_SHA_matches": 0,
       "existing_local_runs_text_records_checked": 228,
+      "independent_parent_completion": {
+        "checksums_verified": 50,
+        "current_equals_reviewed_snapshot_files": 21,
+        "first_clean_model_review": 1,
+        "flags": [
+          "-I",
+          "-B",
+          "-S",
+          "-Werror"
+        ],
+        "manifest_members_verified": 48,
+        "native_test_exit": 0,
+        "packet": "geonet_train_dev_prefix_POST_independent_audit_v1",
+        "parent_tests": 52,
+        "private_inputs_providerrequests_AWS_or_fits": 0,
+        "safe_files_verified": 51,
+        "schema": "source-packet-parent-completion-v1",
+        "source_manifest_sha256": "a397102480d6e861bee1b4f54ae50e7effd0e00a5c14cbc037261df6ef8ed752",
+        "test_log_pin": {
+          "bytes": 9129,
+          "sha256": "f7ed5b2969301712a8799ff6ba01540da492d24de60574188405a77608d3ff46"
+        }
+      },
       "metadata_unknown_retained": 4,
       "new_V2_neutral_selection_and_cache_proofs_read_only": true,
       "new_requests_decodes_fits_AWS_restarts": 0,
@@ -2252,7 +2300,7 @@
       },
       "schema": "fixed65-POST-documented-format-V2-preparation-v1",
       "source_drafts_realign_before_first_clean_review": true,
-      "status": "collector FIRST CLEAN4frozen,21rootinventedtests pass,78/76/77closure+8snapshotverified; independentauditor completingown tests/review; noauthority/request/decode/fit",
+      "status": "collector21/independent52/scanner26root tests+closures pass; clean4/1/1sources frozen; independent/scanner sourcepublicationbeforeactualgate; actual0",
       "study_id": "geonet-original-TRAINDEV65-prefix3-native-POST-v2",
       "utc": "2026-10-12T17:57:15.973855+00:00"
     },
@@ -3257,5 +3305,5 @@
       "status": "bounded primary source-only advisory frozen,7safe/5manifest/6checksums verified; separate root normative POST protocol frozen; new collector and independent auditor source-only implementation/review underway"
     }
   },
-  "updated_utc": "2026-10-12T18:39:12.440281+00:00"
+  "updated_utc": "2026-10-12T19:23:08.571537+00:00"
 }

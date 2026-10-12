@@ -1,0 +1,52 @@
+{
+  "scope": "invented-only pure in-memory audit fixtures; no producer code/tests or actual inputs",
+  "tests": 52,
+  "exit": 0,
+  "elapsed_s": 5.465969209002651,
+  "utc": "2026-10-12T18:38:23.201788+00:00",
+  "command": [
+    "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "-B",
+    "-Werror",
+    "-m",
+    "unittest",
+    "-v",
+    "test_strict_inputs",
+    "test_auditor"
+  ],
+  "processing_pins": [
+    {
+      "path": "auditor.py",
+      "bytes": 36151,
+      "sha256": "3766c8f6a07b9d81d7841135eda94c6a3f7472f42bda2cbd7662db1920fe4d91"
+    },
+    {
+      "path": "strict_inputs.py",
+      "bytes": 3265,
+      "sha256": "108d7cc5c51ada40fc35f6db787de512da245187613069123697211a1d471d56"
+    },
+    {
+      "path": "test_auditor.py",
+      "bytes": 51152,
+      "sha256": "33ce0f82a8bd688afc38d72486aea65f509a7cb1f413effb845c85cf4c749e6c"
+    },
+    {
+      "path": "test_strict_inputs.py",
+      "bytes": 3317,
+      "sha256": "765f7857a13c4a08fa4b1740e1be4edd9296e8ba64194eec8a05ca7c4ad9c426"
+    },
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 13805,
+      "sha256": "d2c0975be0cc0c7cada2243b70a5311a828f0f74b38e63d34dba16a12061cc9e"
+    }
+  ],
+  "log_pin": {
+    "path": "review_evidence/tests.log",
+    "bytes": 9129,
+    "sha256": "3d2b54643e91748c4b842dc7e82b1d2697c9049138ce483d1288a3eb269622d3"
+  },
+  "actual_inputs_read": false,
+  "data_requests": 0,
+  "fits": 0
+}

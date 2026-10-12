@@ -1,0 +1,47 @@
+{
+  "scope": "authored source/helpers/invented tests/exact public protocols only",
+  "engine": "codex",
+  "model_override": false,
+  "no_web_search": true,
+  "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file review_prompt.txt --output ../review_evidence/review_attempt1.md --json-output ../review_evidence/review_attempt1.json --stream-engine-output",
+  "cwd": "review_snapshot",
+  "attempts": [
+    {
+      "attempt": 1,
+      "helper_exit": 0,
+      "status": "first_clean",
+      "findings": 0,
+      "confidence": 0.87
+    }
+  ],
+  "accepted_findings": 0,
+  "rejected_findings": 0,
+  "clean_result_pin": {
+    "path": "review_evidence/clean_review.json",
+    "bytes": 455,
+    "sha256": "9fe1b92cea02fd60a2c2b9ffb8b79e5293bab1e7b0935f27370e965c171c03b1"
+  },
+  "raw_local_helper_log_pin": {
+    "path": "review_evidence/review_attempt1.log",
+    "bytes": 2559,
+    "sha256": "f012f291588cfc74ebebd16474f457a98a5bc0d2957aecd0050d73288feec586"
+  },
+  "raw_helper_log_published": false,
+  "source_snapshot_pin": {
+    "path": "SOURCE_SNAPSHOT.json",
+    "bytes": 3525,
+    "sha256": "8aa0ff343ee836b2148d7ad9ca632def73f4e0345cb8834dfc62a791627bf657"
+  },
+  "source_snapshot_payload_pins": 20,
+  "reviewed_files": 21,
+  "source_snapshot_self_is_external_pin": true,
+  "tests_executed_by_reviewer": false,
+  "focused_tests_run_separately": 52,
+  "source_edits_after_clean": false,
+  "further_reviews_after_first_clean": 0,
+  "producer_implementation_or_tests_in_review": false,
+  "actual_inputs_in_review": false,
+  "actual_gate_satisfied": false,
+  "metadata_finalization_after_clean": true,
+  "source_frozen_at_utc": "2026-10-12T19:13:31.006981+00:00"
+}
