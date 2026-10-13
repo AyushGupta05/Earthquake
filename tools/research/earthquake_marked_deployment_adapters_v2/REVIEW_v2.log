@@ -1,0 +1,65 @@
+test_authority_factory_receives_full_config_contract (test_adapters.Authority.test_authority_factory_receives_full_config_contract) ... ok
+test_bootstrap_read_refuses_links_hash_mismatch (test_adapters.Authority.test_bootstrap_read_refuses_links_hash_mismatch) ... ok
+test_callback_booleans_and_expired_lease_rejected (test_adapters.Authority.test_callback_booleans_and_expired_lease_rejected) ... ok
+test_callback_exact_scope_and_evidence (test_adapters.Authority.test_callback_exact_scope_and_evidence) ... ok
+test_whole_and_source_clock_no_reset (test_adapters.Authority.test_whole_and_source_clock_no_reset) ... ok
+test_historical_origin_and_hash_semantics_preserved (test_adapters.Comparison.test_historical_origin_and_hash_semantics_preserved) ... ok
+test_origin_projection_all528_unchanged (test_adapters.Comparison.test_origin_projection_all528_unchanged) ... ok
+test_relabelled_old_input_and_missing_record_rejected (test_adapters.Comparison.test_relabelled_old_input_and_missing_record_rejected) ... ok
+test_roster_value_role_and_group_mismatch (test_adapters.Comparison.test_roster_value_role_and_group_mismatch) ... ok
+test_wrong_forecast_time_or_target_rejected (test_adapters.Comparison.test_wrong_forecast_time_or_target_rejected) ... ok
+test_closed_source_and_extra_rejection (test_adapters.Source.test_closed_source_and_extra_rejection) ... ok
+test_guard_rejects_external_preloaded_dependency (test_adapters.Source.test_guard_rejects_external_preloaded_dependency) ... ok
+test_interpreter_is_positive_not_version_only (test_adapters.Source.test_interpreter_is_positive_not_version_only) ... ok
+test_manifest_completeness_and_mutated_code (test_adapters.Source.test_manifest_completeness_and_mutated_code) ... ok
+test_reference_copy_mismatch (test_adapters.Source.test_reference_copy_mismatch) ... ok
+test_runtime_full_invented_inventory (test_adapters.Source.test_runtime_full_invented_inventory) ... ok
+test_runtime_mode_and_mutation_stream (test_adapters.Source.test_runtime_mode_and_mutation_stream) ... ok
+test_upload_is_separately_positive (test_adapters.Source.test_upload_is_separately_positive) ... ok
+test_vendor_origin_and_preloaded_rejection (test_adapters.Source.test_vendor_origin_and_preloaded_rejection) ... ok
+test_verified_import_alias_restore (test_adapters.Source.test_verified_import_alias_restore) ... ok
+test_atomic_latest_only (test_adapters.Storage.test_atomic_latest_only) ... ok
+test_cap_checked_before_writing (test_adapters.Storage.test_cap_checked_before_writing) ... ok
+test_durable_exclusive_readback (test_adapters.Storage.test_durable_exclusive_readback) ... ok
+test_exact_readpin_mode_and_duplicates (test_adapters.Storage.test_exact_readpin_mode_and_duplicates) ... ok
+test_hardlink_unknown_and_wrong_modes_rejected (test_adapters.Storage.test_hardlink_unknown_and_wrong_modes_rejected) ... ok
+test_member_cap_and_snapshot_cap (test_adapters.Storage.test_member_cap_and_snapshot_cap) ... ok
+test_nonblocking_process_and_thread_lock (test_adapters.Storage.test_nonblocking_process_and_thread_lock) ... ok
+test_partial_temp_retained_and_blocks_success (test_adapters.Storage.test_partial_temp_retained_and_blocks_success) ... ok
+test_path_and_ancestor_rejected (test_adapters.Storage.test_path_and_ancestor_rejected) ... ok
+test_replacement_requires_full_temp_headroom (test_adapters.Storage.test_replacement_requires_full_temp_headroom) ... ok
+test_symlink_stage_and_member_rejected (test_adapters.Storage.test_symlink_stage_and_member_rejected) ... ok
+test_available_foreign_and_existing (test_adapters.Systemd.test_available_foreign_and_existing) ... ok
+test_durations_and_transport_custody (test_adapters.Systemd.test_durations_and_transport_custody) ... ok
+test_inspection_exact_and_duplicate (test_adapters.Systemd.test_inspection_exact_and_duplicate) ... ok
+test_live_observed_caps_not_requested_only (test_adapters.Systemd.test_live_observed_caps_not_requested_only) ... ok
+test_nonblocking_expired_stop (test_adapters.Systemd.test_nonblocking_expired_stop) ... ok
+test_not_found_nonzero_is_specific_to_availability (test_adapters.Systemd.test_not_found_nonzero_is_specific_to_availability) ... ok
+test_transport_prep_is_subtracted (test_adapters.Systemd.test_transport_prep_is_subtracted) ... ok
+test_transport_timeout_bounded (test_adapters.Systemd.test_transport_timeout_bounded) ... ok
+test_guard_uses_supplemental_source_without_cache (test_adapters.Vendor.test_guard_uses_supplemental_source_without_cache) ... ok
+test_normalized_csv_path_binds_only_inside_root (test_adapters.Vendor.test_normalized_csv_path_binds_only_inside_root) ... ok
+test_preloaded_admitted_source_does_not_prove_executed_cache (test_adapters.Vendor.test_preloaded_admitted_source_does_not_prove_executed_cache) ... ok
+test_record_bound_inventory_does_not_eager_hash_all_bytes (test_adapters.Vendor.test_record_bound_inventory_does_not_eager_hash_all_bytes) ... ok
+test_record_hash_and_size_disagreement_rejected (test_adapters.Vendor.test_record_hash_and_size_disagreement_rejected) ... ok
+test_record_pin_and_duplicate_literal_rejected (test_adapters.Vendor.test_record_pin_and_duplicate_literal_rejected) ... ok
+test_source_loader_ignores_matching_timestamp_unhashed_pyc (test_adapters.Vendor.test_source_loader_ignores_matching_timestamp_unhashed_pyc) ... ok
+test_unadmitted_conflicting_cache_rows_do_not_grant_permission (test_adapters.Vendor.test_unadmitted_conflicting_cache_rows_do_not_grant_permission) ... ok
+test_unhashed_and_outside_root_not_admitted (test_adapters.Vendor.test_unhashed_and_outside_root_not_admitted) ... ok
+test_verified_sourceless_requires_exact_pinned_bytecode (test_adapters.Vendor.test_verified_sourceless_requires_exact_pinned_bytecode) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 2.857s
+
+OK
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 170115 chars
+tests: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_adapters
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.84)
+No actionable defects were identified in the isolated bundle. The supplemental RECORD inventory validates exact admitted path/hash/size correspondence, and verified source and bytecode loaders bind execution to pinned bytes while bypassing stale source caches. The existing storage, authority, deadline, containment and comparison-origin contracts remain consistent. This conclusion is based on read-only inspection; tests were not run.
+tests exit: 0 after 43s

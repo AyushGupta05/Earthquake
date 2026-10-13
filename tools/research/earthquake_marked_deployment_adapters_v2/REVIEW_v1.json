@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Reject preloaded supplemental dependencies with unverified execution bytes",
+      "body": "The preloaded-module scan checks only the resolved `__file__` path for dependencies other than NumPy/SciPy/Torch. A supplemental dependency imported before guard installation (for example by the ROOT authority factory) through an ordinary SourceFileLoader can already have executed a stale adjacent .pyc. Its `__file__` still points to the admitted .py, so this check accepts it; subsequent scientific imports retrieve the cached module from sys.modules and bypass VerifiedSourceLoader entirely. Custom loaders with an admitted filename likewise pass. Reject preloaded non-stdlib dependencies unless their execution was positively bound through the verified loaders; rehashing their source file alone cannot establish which bytes previously executed.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "security",
+      "code_location": {
+        "file_path": "source_binding.py",
+        "line": 167
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The source loaders correctly avoid adjacent cached bytecode for new imports, but preloaded supplemental dependencies bypass that protection and can supply unverified executed code to scientific modules.",
+  "overall_confidence": 0.95
+}
