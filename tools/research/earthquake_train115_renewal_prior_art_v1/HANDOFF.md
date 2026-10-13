@@ -1,0 +1,7 @@
+# Prior-art audit handoff
+
+Documentation-only bounded primary audit13October2026,10targetedqueries/6successfulnewprimaryfulltexts plus2explicitprimaryabstracts. No extra acquisition/fit/code/cloud/Git or actual/private scientific read. Six sources are directly linked in AUDIT.md; olderRTMag/Trugman/STF overlap retained fromexistingprojectaudits, notfreshlyreread. Access gaps andsourceeditions/DOIs/loci inSOURCES.json; no remote-original-byte equivalence or search-exhaustiveness/priority claim. Paraphrases only,0verbatimquotes. No nontrivial code edit or autoreviewneeded.
+
+Strong new overlaps:2015intermediateplateau/laterTohokuslip warning;2023LPVTnearzero-derivativegate before magnitude;2011explicit-duration seismicHSMM;2007Bayesianrunlengthhazard recursion. Candidate canonlyclaim tested usefulness of a particular observed receiver-activity factorization, with censored administrative exposure/reactivation at fixedclocks, ifmatchedcontrolswin. Current tests/actualresultsnotread, no winnerclaimed.
+
+Two precise interpretation checks forroot/implementer: keepinitialz,b1,c/base densityimmutable across1/3/5 whenusing suffixfactorrecursion; Heta0 retainsglobaltimegamma, so describeasrun-age-free/time-inhomogeneous, notgenerallygeometric/memoryless. Do not changefrozenH merelytofixterminology. Controls/identifiabilitylimits detailedinAUDIT.md; proposedfuturediagnosticsarenotcurrentfit authorization. ReusedsmallDEV andnonew>=6TRAINidentitiescannotestablishindependenthighMw/generalbulkproof.
