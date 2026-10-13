@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Anchor the transport timeout to the recorded dispatch deadline
+controller.py:137
+The timeout passed to `adapter.run` always grants a fresh manager+20 interval after the claim write, but the final transport check measures that interval from `request['dispatch_begin']`, captured before the durable claim. With a sufficiently long authorization lease, a slow claim can therefore allow the runner to block beyond the fixed outer transport bound. For example, a 10-second claim followed by a 380-second admission transport permits 390 seconds from dispatch_begin; the controller only rejects this retrospectively as `late_transport`. Compute the remaining timeout from `dispatch_begin + manager_seconds + 20`, also capped by the closure deadline, so the adapter actually enforces the same bound that completion checks use.
+
+overall: patch is incorrect (0.9)
+The stage and custody flow generally follows the supplied contracts, but the transport timeout can exceed its recorded fixed deadline after a slow durable claim. This review used read-only source inspection; no tests or deployment operations were run.

@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Allow parent custody closure within the 200-second reserve
+controller.py:173
+The parent marks a stage incomplete whenever cleanup or final persistence finishes after experiment_begin+7200, although PROTOCOL.md assigns science the 7200-second deadline and closure the separate 7400-second deadline. A child that finishes science on time can therefore be rejected solely because its transport, OS inspection or durable closed.json write uses the explicitly reserved closure time. The same incorrect cutoff appears in the finalization check at line 184. Keep the child science deadline at 7200, but apply the closure deadline and applicable transport bound to parent closure.
+
+[P2] [P2] Attempt owned-unit stop when post-dispatch inspection reveals uncertainty
+controller.py:162
+Stop is attempted only for a timeout or unsuccessful exit code. If run returns code=0 and timeout=False but inspection reports an active/nonempty cgroup or raises, the controller records incomplete cleanup and returns without attempting to stop the owned unit. This leaves a potentially running stage unattended despite the protocol requiring an owned-unit stop after uncertain dispatch. Treat failed cleanup observation as uncertainty and make a bounded stop attempt on this exact unit, followed by inspection where the remaining closure budget permits.
+
+overall: patch is incorrect (0.94)
+The fixed dispatch order and injected trust boundaries are consistent with the supplied contracts, but parent closure incorrectly consumes the science deadline rather than its reserved deadline, and cleanup uncertainty can return without an owned-unit stop attempt. Review used read-only source inspection; no tests or deployment actions were performed.

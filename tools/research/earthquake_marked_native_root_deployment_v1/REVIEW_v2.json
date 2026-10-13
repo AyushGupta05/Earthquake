@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "P2 Disable bytecode writes before importing the closed source bundle",
+      "body": "Running the documented entry point with ordinary Python in a writable source directory creates `__pycache__/anchor.*.pyc` and `__pycache__/deployment.*.pyc` at this import. `bootstrap()` then calls `verify_source()` on that same directory, whose exact inventory check rejects these unregistered files with `source_closed`. Readonly source files do not prevent Python from creating a cache directory. Consequently a freshly verified deployment can fail before preparation, BUILD, or AUDIT begins, while also modifying the frozen source inventory. Set `sys.dont_write_bytecode = True` before these imports, or explicitly require and enforce a bytecode-disabled launcher for every parent invocation.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "invoke.py",
+        "line": 10
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The entry point can generate bytecode files that invalidate its own mandatory closed-source inventory check. The child launcher disables bytecode writes, but the parent entry point does not. Review used read-only inspection; no tests were executed.",
+  "overall_confidence": 0.94
+}

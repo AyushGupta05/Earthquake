@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Attempt owned-unit stop even when the closure budget is exhausted
+controller.py:174
+If transport returns code 0 but persistence consumes the remaining closure budget, the zero-timeout inspection can still report an active cgroup or fail to verify cleanup. In that case, `need(remaining>0, 'closure_expired')` raises before `adapter.stop` is called, leaving an uncertain owned unit without any stop attempt. PROTOCOL.md requires an owned-unit stop after uncertain dispatch, and API.md explicitly requires adapters to honor zero timeouts without blocking. Call stop with the remaining timeout, including zero, while retaining the incomplete outcome.
+
+overall: patch is incorrect (0.93)
+The controller generally preserves the fixed stage sequence and fails closed on custody or deadline failures, but its cleanup reconciliation skips the required stop attempt when uncertainty is discovered after the closure deadline.

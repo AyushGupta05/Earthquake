@@ -1,0 +1,51 @@
+{
+  "accepted_findings": 4,
+  "adapters": "ROOT must independently bind funding, source/runtime/native/strong authority, atomic storage, current owned unit and bounded OS operations",
+  "final_review_pin": {
+    "bytes": 563,
+    "sha256": "2bbcd68446fd2f15913a90266af04a671e7a854d5bd6c3b32a726b876dbcd3e7"
+  },
+  "first_clean": true,
+  "no_extra_review_after_clean": true,
+  "parallel_test_exit": 0,
+  "rejected_findings": 0,
+  "review_command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file REVIEW_CONTEXT.md --output ../REVIEW_v4.txt --json-output ../REVIEW_v4.json --parallel-tests \"python3 -m unittest -v test_controls\"",
+  "review_cwd": "review_stage",
+  "review_exit": 0,
+  "review_version": 4,
+  "reviewed_copies_exact": true,
+  "scope": "source-only invented fixtures; no actual data or resource operations",
+  "source_pins": {
+    "API.md": {
+      "bytes": 8127,
+      "sha256": "ae6aee3259372b733e50e3dad63266fe0fea426ecd491821ac94de65feb05dbb"
+    },
+    "PROTOCOL.md": {
+      "bytes": 4769,
+      "sha256": "eb67dff78071c1dc30dee3f0307042d4029c065eee40fcecb77e44fbc50c20aa"
+    },
+    "REVIEW_ADJUDICATION.md": {
+      "bytes": 2350,
+      "sha256": "02825c508a30e4e36e4367dd1d010401c0312b75f70e2749fbd4e0a2bab3da84"
+    },
+    "child.py": {
+      "bytes": 10026,
+      "sha256": "490be2c69bf5beb28dbd8bbf06328882bf048a91e8e33b8ee954015a2a2b11e5"
+    },
+    "controller.py": {
+      "bytes": 14038,
+      "sha256": "706093471f08529a7b0dc75562b4f3f64bcfde1fd2e1bfc394402bc6c9ece850"
+    },
+    "fixtures.py": {
+      "bytes": 6002,
+      "sha256": "0ee761d253e97e43fc269fdec7ddf0d8d52fe8a51df5333786424ac9f8dd4a00"
+    },
+    "test_controls.py": {
+      "bytes": 10910,
+      "sha256": "f3152787b2e52837400c55b0fd10496889ca4553fda7c39d7c0fa019e8672e32"
+    }
+  },
+  "target_linux_verification": "ROOT pending; source tests do not establish actual adapter or data readiness",
+  "test_command": "python3 -m unittest -v test_controls",
+  "tests": 30
+}
