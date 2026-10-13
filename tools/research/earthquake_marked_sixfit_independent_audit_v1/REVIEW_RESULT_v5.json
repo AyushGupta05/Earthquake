@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "P2 Remove undocumented absolute limits on affine parameters",
+      "body": "The public contracts require finite parameters and independently justified arithmetic bounds, but impose no absolute 1e6 limit on coefficients or derived intercepts. This rejects numerically resolvable, contract-compliant checkpoints: for example, b=300000, mref=5, a=d=e=rho=0 and rawsigma=300000 produce an intercept of -1500000 with a well-scaled likelihood, yet fail here before Gaussian completion or the arithmetic-bound checks. The similar parameter_domain restriction in shape_state also adds an undocumented admission condition. Remove these arbitrary limits and let the specified representation and operation-aware checks determine whether replay is resolvable.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "math_core.py",
+        "line": 63
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The auditor introduces undocumented magnitude restrictions that can reject otherwise valid saved checkpoints before performing the required numerical checks. Review was limited to source inspection; no tests or numerical model runs were performed.",
+  "overall_confidence": 0.89
+}

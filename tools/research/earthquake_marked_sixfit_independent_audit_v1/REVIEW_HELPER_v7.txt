@@ -1,0 +1,18 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: 379c1199d801cdeff507bee1f259b5ea4cbb7d17
+bundle: 165601 chars
+autoreview findings: 2
+[P2] P2 Validate the admitted reconstruction against its absolute error limit
+auditor.py:48
+The admitted reconstruction is checked only through `close(..., tol=1e-10)`. That coefficient-wise relative comparison does not enforce the contract's reconstruction max-absolute error <=1e-10. For example, perturbing a zero reconstruction coefficient by 9e-11 passes `close`, but a retained standardized TRAIN coordinate with magnitude greater than 2 produces reconstruction error greater than 1e-10. The fresh reconstruction check in `packet.schema` validates a different coefficient matrix, and the admitted `reconstruction_max_abs` can remain unchanged. Recompute the reconstruction residual using the admitted scalers and coefficient matrix, enforce the absolute limit, and reconcile the exported maximum with that residual.
+
+[P2] P2 Preserve completed aggregate evidence on failure
+auditor.py:169
+The aggregate exception handler discards all accumulated `fits`, validated stronger results, guard outcomes, and completed paired intervals. If a later bootstrap iteration or deadline fails, the returned report and failure callback contain only the exception type/reason and empty advance fields, despite earlier computations having completed. This violates the requested partial/error retention and prevents the caller from inspecting the completed work from the failed aggregation. Initialize caller-visible aggregate evidence before validation and populate it incrementally, then include it in the failure report without retrying failed callbacks.
+
+overall: patch is incorrect (0.94)
+The source has an admission-validation gap for the saved reconstruction and loses completed aggregate evidence on late failures. Review was limited to the supplied source and public contracts; no tests or numerical models were run.

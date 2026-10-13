@@ -1,0 +1,19 @@
+review still running: codex elapsed=60s pid=6212
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: fcf46e93f90a61631e6c667a9285ba2d4e3e5d69
+bundle: 142222 chars
+autoreview findings: 2
+[P2] P2: Reconcile scaler deviations using arithmetic bounds
+auditor.py:46
+The generic `close` comparison admits absolute differences of approximately 1e-10 for small standard deviations, rather than independently justified reduction roundoff. A nonconstant TRAIN coordinate with std 2e-11 can therefore have its admitted std replaced by zero while retaining the independently derived kept/active indices. Admission passes, returns those admitted scalers, and replay subsequently zero-maps that varying coordinate. Even a smaller relative scaler change can materially alter standardized inputs without being included in the forward error bounds. Byte custody does not establish mathematical correctness of these scalers. Check exact constant/zero semantics and reconcile nonzero scaler differences against operation-aware arithmetic bounds before using the admitted schema.
+
+[P2] P2: Retain evidence for the record that fails auditing
+auditor.py:110
+If source comparison, proper scoring, quantile validation, or a record deadline fails, the exception handler retains only a position, truncated reason, and exception type. `evidence` contains only records that reached the successful-record construction, so the rejected record's identity, constructed reference/posterior, discrepancies, and consumed work disappear from both the callback and returned failure report. This prevents independent diagnosis of precisely the numerical failures the partial/error retention contract requires preserving. Maintain bounded current-record evidence as reconstruction and checks proceed, and include it in the failure callback/report without retrying a failed callback.
+
+overall: patch is incorrect (0.93)
+The independent mathematical replay is undermined by overly permissive scaler reconciliation, and record failures lose the current numerical evidence required for diagnosis. Review used only the supplied source and public contracts; no tests or numerical models were run.

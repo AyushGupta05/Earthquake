@@ -1,0 +1,40 @@
+{
+  "findings": [
+    {
+      "title": "Hash the admitted schema when verifying initial receipts",
+      "body": "The initial callback contract defines schema_sha256 as the canonical hash of admission.schema, but receipt reconstruction hashes the independently recomputed schema instead. The preceding comparison deliberately permits arithmetic roundoff, and the public contract specifically uses Torch for summary standard deviations while this auditor uses NumPy. Even a one-ULP difference that passes TRAIN_schema changes the hash and rejects a valid durable receipt. Verify receipt bytes against admission['schema']; keep independent schema reconciliation as a separate numerical check.",
+      "priority": "P1",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 50
+      }
+    },
+    {
+      "title": "Propagate rounding error through the D summary dot product",
+      "body": "The D mean bound accounts for the magnitude of the final shift but omits the dot product's accumulation error and the errors in summary construction and standardization. With opposing theta terms, sum(abs(standard * theta)) can be large while abs(shift) is small, so legitimate NumPy/Torch differences exceed the reported bound and fail checkpoint_forward_disagreement. Conversely, the required unresolved-bound rejection is skipped. Bound the dot product using its operation count and absolute term sum, propagate summary/scaler uncertainty, and include that bound in newmu before comparing saved outputs.",
+      "priority": "P1",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 70
+      }
+    },
+    {
+      "title": "Do not constrain operational group IDs by row ordinal",
+      "body": "The public native packet contract preserves the original operational integer group; it does not require group <= ordinal. This check rejects a positively bound valid packet whenever, for example, ordinal 0 belongs to group 7. Group IDs are identity labels used for paired bootstrap, so their numeric value has no relationship to row position. Validate the documented group representation and external role binding without introducing this ordinal-dependent range.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "packet.py",
+        "line": 20
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The independent completion and scoring approach is coherent, but valid artifacts can be rejected by receipt hashing and undocumented group restrictions. D replay also lacks the operation-aware error propagation required by its stated contract. Review used source inspection only; no tests or numerical models were run.",
+  "overall_confidence": 0.97
+}

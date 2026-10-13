@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "[P1] Allow the not-found exit status during unit availability checks",
+      "body": "For a fresh unit, `systemctl show` can return a nonzero exit status while reporting `LoadState=not-found`. `show()` rejects that response before `available()` can examine the properties, so the required fresh-unit state prevents authorization and dispatch. Handle the not-found response specifically in `available()`, while still requiring complete transport and the exact not-found/inactive/empty-cgroup properties.",
+      "priority": "P1",
+      "confidence": 0.94,
+      "category": "bug",
+      "code_location": {
+        "file_path": "systemd_adapter.py",
+        "line": 98
+      }
+    },
+    {
+      "title": "[P2] Preserve existing fit origin provenance during projection",
+      "body": "The contract permits ROOT to attach extra fit provenance fields and requires them to remain unchanged. Although the fit is initially deep-copied, assigning a new `origin` dictionary discards any existing `fit['origin']`, potentially losing historical packet-hash semantics or other independently supplied provenance. Preserve the original origin separately or use a distinct field for the comparison-join metadata rather than overwriting it.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "comparison_join.py",
+        "line": 38
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The fresh-unit availability check can reject the normal systemctl not-found response, blocking deployment before dispatch. The comparison projection also overwrites permitted existing origin provenance. Review used read-only inspection; no tests or external data were accessed.",
+  "overall_confidence": 0.94
+}

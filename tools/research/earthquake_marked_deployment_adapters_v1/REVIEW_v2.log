@@ -1,0 +1,61 @@
+test_authority_factory_receives_full_config_contract (test_adapters.Authority.test_authority_factory_receives_full_config_contract) ... ok
+test_bootstrap_read_refuses_links_hash_mismatch (test_adapters.Authority.test_bootstrap_read_refuses_links_hash_mismatch) ... ok
+test_callback_booleans_and_expired_lease_rejected (test_adapters.Authority.test_callback_booleans_and_expired_lease_rejected) ... ok
+test_callback_exact_scope_and_evidence (test_adapters.Authority.test_callback_exact_scope_and_evidence) ... ok
+test_whole_and_source_clock_no_reset (test_adapters.Authority.test_whole_and_source_clock_no_reset) ... ok
+test_origin_projection_all528_unchanged (test_adapters.Comparison.test_origin_projection_all528_unchanged) ... ok
+test_relabelled_old_input_and_missing_record_rejected (test_adapters.Comparison.test_relabelled_old_input_and_missing_record_rejected) ... ok
+test_roster_value_role_and_group_mismatch (test_adapters.Comparison.test_roster_value_role_and_group_mismatch) ... ok
+test_wrong_forecast_time_or_target_rejected (test_adapters.Comparison.test_wrong_forecast_time_or_target_rejected) ... ok
+test_closed_source_and_extra_rejection (test_adapters.Source.test_closed_source_and_extra_rejection) ... ok
+test_guard_rejects_external_preloaded_dependency (test_adapters.Source.test_guard_rejects_external_preloaded_dependency) ... ok
+test_interpreter_is_positive_not_version_only (test_adapters.Source.test_interpreter_is_positive_not_version_only) ... ok
+test_manifest_completeness_and_mutated_code (test_adapters.Source.test_manifest_completeness_and_mutated_code) ... ok
+test_reference_copy_mismatch (test_adapters.Source.test_reference_copy_mismatch) ... ok
+test_runtime_full_invented_inventory (test_adapters.Source.test_runtime_full_invented_inventory) ... ok
+test_runtime_mode_and_mutation_stream (test_adapters.Source.test_runtime_mode_and_mutation_stream) ... ok
+test_upload_is_separately_positive (test_adapters.Source.test_upload_is_separately_positive) ... ok
+test_vendor_origin_and_preloaded_rejection (test_adapters.Source.test_vendor_origin_and_preloaded_rejection) ... ok
+test_verified_import_alias_restore (test_adapters.Source.test_verified_import_alias_restore) ... ok
+test_atomic_latest_only (test_adapters.Storage.test_atomic_latest_only) ... ok
+test_cap_checked_before_writing (test_adapters.Storage.test_cap_checked_before_writing) ... ok
+test_durable_exclusive_readback (test_adapters.Storage.test_durable_exclusive_readback) ... ok
+test_exact_readpin_mode_and_duplicates (test_adapters.Storage.test_exact_readpin_mode_and_duplicates) ... ok
+test_hardlink_unknown_and_wrong_modes_rejected (test_adapters.Storage.test_hardlink_unknown_and_wrong_modes_rejected) ... ok
+test_member_cap_and_snapshot_cap (test_adapters.Storage.test_member_cap_and_snapshot_cap) ... ok
+test_nonblocking_process_and_thread_lock (test_adapters.Storage.test_nonblocking_process_and_thread_lock) ... ok
+test_partial_temp_retained_and_blocks_success (test_adapters.Storage.test_partial_temp_retained_and_blocks_success) ... ok
+test_path_and_ancestor_rejected (test_adapters.Storage.test_path_and_ancestor_rejected) ... ok
+test_replacement_requires_full_temp_headroom (test_adapters.Storage.test_replacement_requires_full_temp_headroom) ... ok
+test_symlink_stage_and_member_rejected (test_adapters.Storage.test_symlink_stage_and_member_rejected) ... ok
+test_available_foreign_and_existing (test_adapters.Systemd.test_available_foreign_and_existing) ... ok
+test_durations_and_transport_custody (test_adapters.Systemd.test_durations_and_transport_custody) ... ok
+test_inspection_exact_and_duplicate (test_adapters.Systemd.test_inspection_exact_and_duplicate) ... ok
+test_live_observed_caps_not_requested_only (test_adapters.Systemd.test_live_observed_caps_not_requested_only) ... ok
+test_nonblocking_expired_stop (test_adapters.Systemd.test_nonblocking_expired_stop) ... ok
+test_transport_prep_is_subtracted (test_adapters.Systemd.test_transport_prep_is_subtracted) ... ok
+test_transport_timeout_bounded (test_adapters.Systemd.test_transport_timeout_bounded) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 3.028s
+
+OK
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 144705 chars
+tests: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_adapters
+autoreview findings: 2
+[P1] [P1] Allow the not-found exit status during unit availability checks
+systemd_adapter.py:98
+For a fresh unit, `systemctl show` can return a nonzero exit status while reporting `LoadState=not-found`. `show()` rejects that response before `available()` can examine the properties, so the required fresh-unit state prevents authorization and dispatch. Handle the not-found response specifically in `available()`, while still requiring complete transport and the exact not-found/inactive/empty-cgroup properties.
+
+[P2] [P2] Preserve existing fit origin provenance during projection
+comparison_join.py:38
+The contract permits ROOT to attach extra fit provenance fields and requires them to remain unchanged. Although the fit is initially deep-copied, assigning a new `origin` dictionary discards any existing `fit['origin']`, potentially losing historical packet-hash semantics or other independently supplied provenance. Preserve the original origin separately or use a distinct field for the comparison-join metadata rather than overwriting it.
+
+overall: patch is incorrect (0.94)
+The fresh-unit availability check can reject the normal systemctl not-found response, blocking deployment before dispatch. The comparison projection also overwrites permitted existing origin provenance. Review used read-only inspection; no tests or external data were accessed.
+tests exit: 0 after 50s

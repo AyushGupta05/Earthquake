@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Preserve computed proper fields when the CRPS crosscheck fails",
+      "body": "If quantile construction, the independent CRPS integration, or the final budget check raises inside `mix.scores()`, its already computed proper fields remain local and are discarded. `audit_fit()` assigns `current_record['fresh']` only after this call returns, so the failure callback retains the posterior and work counters but loses available mean/median/NLL/CRPS/PIT and partial quantiles. This violates the explicit partial-error retention contract precisely on numerical or deadline failures. Populate a caller-owned evidence object incrementally, or attach the partial score fields to the raised exception, before subsequent checks can fail.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "math_core.py",
+        "line": 95
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The independent mathematical replay and custody checks are substantial, but failures during proper-score computation still discard already computed numerical evidence required by the public failure-retention contract. Review used source inspection only; no tests or numerical model runs were performed.",
+  "overall_confidence": 0.9
+}

@@ -1,0 +1,1170 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: fcf46e93f90a61631e6c667a9285ba2d4e3e5d69
+bundle: 142222 chars
+codex engine failed (1)
+2026-10-13T06:58:40.178358Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-13T06:58:40.178375Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-10-13T06:58:40.194820Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-13T06:58:40.198656Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-13T06:58:40.200807Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-13T06:58:40.202754Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+OpenAI Codex v0.162.0-alpha.17.2
+--------
+workdir: /private/tmp/eew-marked-independent-review3-20261013
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: low
+reasoning summaries: none
+session id: 01a1340e-61a5-72d2-a12c-f026c530175e
+--------
+user
+You are a senior code reviewer. Review the provided git change bundle only.
+
+        Hard rules:
+        - Return exactly one JSON object and nothing else. Do not wrap it in Markdown.
+        - The JSON object must match this schema exactly:
+        {
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "findings",
+    "overall_correctness",
+    "overall_explanation",
+    "overall_confidence"
+  ],
+  "properties": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "body",
+          "priority",
+          "confidence",
+          "category",
+          "code_location"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "bug",
+              "security",
+              "regression",
+              "test_gap",
+              "maintainability"
+            ]
+          },
+          "code_location": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "file_path",
+              "line"
+            ],
+            "properties": {
+              "file_path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "overall_correctness": {
+      "type": "string",
+      "enum": [
+        "patch is correct",
+        "patch is incorrect"
+      ]
+    },
+    "overall_explanation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000
+    },
+    "overall_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}
+        - Do not modify files.
+        - Do not invoke nested reviewers or review tools.
+        - Forbidden nested review commands include: codex review, autoreview, claude review, oracle review.
+        - You may use read-only tools and web search to inspect files, dependency contracts, upstream docs, current behavior, and security implications.
+        - Shell commands, if available, must be read-only inspection commands. Do not run tests, formatters, package installs, generators, network mutation commands, git mutation commands, or commands that write files.
+        - Report only actionable defects introduced or exposed by this change.
+        - Prefer high-signal findings over style feedback.
+        - Include security findings: injection, secret leaks, authz/authn bypass, path traversal, unsafe deserialization, unsafe filesystem or shell use, privacy leaks, and credential handling.
+        - Do not reject legitimate functionality merely because it touches shell, filesystem, network, auth, or sensitive data. Report a security finding only when the patch creates a concrete exploitable risk, removes an important safety check, or lacks validation at a trust boundary.
+        - For each finding, use the smallest file/line location that demonstrates the issue.
+        - If there are no actionable findings, return an empty findings array and mark the patch correct.
+
+        Review target: commit fcf46e93f90a61631e6c667a9285ba2d4e3e5d69
+        Repository: /private/tmp/eew-marked-independent-review3-20261013
+
+        Review this isolated source-only commit and invented fixtures. Use ONLY these staged authored/public contracts; no parent workspace/private data, provider, external paper, cloud, or financial reads. Report findings with REPOSITORY-RELATIVE paths. No nested reviewer. Human authorized code-only Codex review. This independent NumPy/SciPy auditor MUST NOT import/copy producer/operator/trainer implementation. Validate mathematical Gaussian completion, real-line scoring/CRPS crosscheck, saved NN replay and operation-aware bounds, TRAIN-only schema, canonical positive custody, fixed6/396 plus8 original comparator guards, partial/error retention. Public ROOT attestations are external prerequisites not self-authenticating actual proof. Intended Python3.9 NumPy2.0 SciPy1.13 Torch2.8 tests; local fixtures use2.14, parent owns intended lane. No actual input/result read or numerical model run occurred.
+
+Review2: previous three actionable findings accepted. Receipt hash now uses exact admitted schema after independent arithmetic check; static/D standardization and D summary slope/mean/std dot roundoff propagates absolute term accumulation with same unresolved1e-10 admission; operational signed group identities no rowordinal restriction. Five added invented regressions;50pass. Preserve source isolation, no actual inputs. Findings paths MUST be repo-relative.
+
+
+
+
+        # Change Bundle
+        # Commit Diff
+
+commit: fcf46e93f90a61631e6c667a9285ba2d4e3e5d69
+
+commit fcf46e93f90a61631e6c667a9285ba2d4e3e5d69
+Author:     Source Review <review@example.invalid>
+AuthorDate: Tue Oct 13 07:58:11 2026 +0100
+Commit:     Source Review <review@example.invalid>
+CommitDate: Tue Oct 13 07:58:11 2026 +0100
+
+    Independent marked six-fit source and invented tests
+
+ PUBLIC_FITTER_AUDIT_SCHEMA.md    |  49 +++++++++++
+ PUBLIC_FITTER_PROTOCOL.md        |  19 +++++
+ PUBLIC_INHERITED_MODEL_SCHEMA.md |  50 +++++++++++
+ PUBLIC_MODEL_SCHEMA.md           |  11 +++
+ PUBLIC_NATIVE_API.md             |  33 ++++++++
+ PUBLIC_PROPOSAL.md               |  19 +++++
+ REVIEW_CONTEXT_v1.md             |   3 +
+ SCHEMA.md                        |  38 +++++++++
+ auditor.py                       | 179 +++++++++++++++++++++++++++++++++++++++
+ fixtures.py                      |  72 ++++++++++++++++
+ math_core.py                     | 125 +++++++++++++++++++++++++++
+ metrics.py                       |  44 ++++++++++
+ packet.py                        |  46 ++++++++++
+ test_audit.py                    | 161 +++++++++++++++++++++++++++++++++++
+ transport.py                     |  36 ++++++++
+ 15 files changed, 885 insertions(+)
+
+
+commit fcf46e93f90a61631e6c667a9285ba2d4e3e5d69
+Author:     Source Review <review@example.invalid>
+AuthorDate: Tue Oct 13 07:58:11 2026 +0100
+Commit:     Source Review <review@example.invalid>
+CommitDate: Tue Oct 13 07:58:11 2026 +0100
+
+    Independent marked six-fit source and invented tests
+
+diff --git a/PUBLIC_FITTER_AUDIT_SCHEMA.md b/PUBLIC_FITTER_AUDIT_SCHEMA.md
+new file mode 100644
+index 0000000..5bb07bc
+--- /dev/null
++++ b/PUBLIC_FITTER_AUDIT_SCHEMA.md
+@@ -0,0 +1,49 @@
++# Public independent audit contract (prospective source)
++
++No actual values. Independent auditor must not import the fitted model/operator/trainer implementation. This describes the frozen fittingV2 scientific equations and numeric export conventions. Final source pins follow first clean review. Original native packet, its exact identities/roles/clocks and ROOT's custody proof remain independent authorities.
++
++Numeric state transport: canonical JSON with sorted keys and compact separators; finite scalar/list/maps only. Arrays encode as exact dict `{"__array__":"<f8","shape":[...],"hex":"little-endian C-order payload hex"}` (dtype must be exactly one of `<f8`, `<f4`, `<i8`, `|u1`). No pickle. Float64 all model/scaler/gradient state; uint8 masks; int64 eventorders; optimizer step alone may be float32. Hash is SHA256 of full canonical JSON bytes. Every callback snapshot <=2MiB. Parent binds source/output byte custody externally.
++
++Stage0 admission has study`earthquake-TRAIN115-marked-noise-fitting-v2`, status`admitted`, packet_sha256, source_pins, schema, capacity, models, runtime, order. Six model keys `20261012:S/P/D`, `20261013:S/P/D`. `schema.static`: reference_keep (34 indices minus15,25,29,33), mean/std(30), constant uint8(30), kept ordered indices in0..29, residual_norms(30), reconstruction(K,30), reconstruction_max_abs. Exact TRAIN constants map0. K is fixed-order twice-orthogonalized Gram–Schmidt residualnorm>1e-12 originalnorm. Reconstruct standardized65TRAIN coordinates via least-squares to maxabs<=1e-10. New model coordinates are standardized30 restricted tokept. `schema.summary`: names fixed20, mean/std(20), active ordered indices omitting4/9/14 and all exact constants on65TRAIN×three horizons. `schema.mref`=65TRAIN meanMw, `train_std`=ddof0; train/dev=ordered common65/22 ordinals. No DEV scalers/labels or current marks in prior inputs.
++
++Each model entry: `initial` numeric state dict; durable initial_receipt; prior_sha256; probe; order int64(300,8). Prior initialization is identical per seed across arms, seed-specific. Five-Gaussian static network K→16→16→14; both hidden activations SiLU(x)=x/(1+exp(-x)). Head first4 logits plus fixed fifth0; stable softmax; next5means; last5 rawscales, sigma=.05+softplus. Parameters whenK>0: `prior.first.weight`(16,K), `prior.first.bias`(16); K=0: `prior.first_bias`(16), nofirst.weight/bias. Then `prior.second.weight`(16,16), `.bias`(16), `prior.head.weight`(14,16), `.bias`(14). Initial hidden standardTorchLinear initialization; headweightN(0,.001), logitbias0, meanbiasmref+.01seededN(0,1), scale bias inverse-softplus(max(train_std,.1)-.05). Cloned prior bytes are the authority; independent audit checks exact equality across arms, not platform RNG equivalence.
++
++S/P adds `coefficients` float64(3,6), `[a,b,d,e,rho,rawsigma]`. mref fixedschema scalar. Cell indexj begins0, t=log1p(.25j), previous reported logvalue0 atfirstcell elseprevious SAME component. beta=b+e*t; intercept=a+d*t+rho*previous−beta*mref; sigma=.05+softplus(rawsigma). Current conditional logpower is Gaussian(intercept+beta*M+nu_ell,c,sigma). S uses single shared ell across allcomponents/cells with12uniform prior masses; P useszero nu. Prior and observations multiply once percomplete prefix, analytically normalized on realM. C anywhere in fixedcommon87×allh fails admission. No activity probability/no rescoring prior/currenth input/no overlap multiplication.
++
++D adds `theta` float64(q,), `tau`float64scalar. Raw20 summary order percomponent latest/mean/max/time-slope/censorfraction; then log1p(.25J),J; then3noise support SD=sqrt(fsum(nu²)/12). Slope againstu=.25j, J1slope0. C fractionsidentically0 and removed. TRAIN-standardized summary[active] dot theta shifts ALL fiveprior means. sigma'=.05+exp(tau)*(sigma−.05), weights unchanged. qactual, nopadded coefficients. S/P16K+544; D16K+527+q; max/min<=1.05; allcoefficient positions nonzero in per-event/per-h union195 initially/finally.
++
++Finalcheckpoint exact core fields: status`final`,study,seed,arm,update300,history300,admission_sha256,packet_sha256,source_pins,prior_sha256,initial_sha256,order_sha256,runtime,parameters,optimizer,final_probe. history itemsupdate1..300,loss(equal24conditionalNLLaverage),gradient_norm(beforeclip5),ordinals8. Original RNGdefault_rng(seed+1009),300independentchoice65withoutreplacement8. Adam1e-3/defaultbetas/eps/noWD. Optimizer is private truth only, never reconstructed by scorer. Probe has events65,horizons3,terms195,used,total,masks(dictparam->uint8shape),maximum_event_gradient_norm(dictparam->scalar).
++
++Perfit score result: statuscomplete,study,seed,arm,admission_sha256,packet_sha256,checkpoint_sha256,source_pins,no_optimizer=true,predictions66,metricsbyh. Predictions ordered commonDEVordinal then1/3/5. Each has seed,arm,ordinal,horizon,target,group,statuscomplete,mean,median,nll,crps,pit,quantiles keys"0.025","0.1","0.25","0.5","0.75","0.9","0.975",builtinboolcoverage50/80/95 inclusive; diagnostics; source. Source: original prior logweights/means/scales, affine percell factors and marks,nu,arm in `reference`; posteriorlog_weights/means/scales; log_normalizer; S jointnu marginal probabilities12 (ell-major5Gaussians perell), nullforP/D. Dreferenceprior is postshift/scaled mixture and facts empty; independent audit must recompute D fromcheckpoint and originalnativepacket, nottrust exported mixture.
++
++Independent checks must reconstruct TRAINrank/scalers/summarymask and exact event-role alignment from positively bound original marked packet, evaluate each savedfinalcheckpoint forward using only immutable34context/currentcompleteprefix, verify normalized continuous all-real density, logZ/mean/NLL<=1e-4 and allCDF/quantile/CRPS<=1e-6. Do not trust exported source factors, metrics, success flags or receipt assertions as custody proof. Exports are evidence to compare independently. Missing any66row/properfield/closure makes incomplete.
++
++Final aggregate recomputes allmetrics; requiressixnew fits andeight external original B/F/H/T closed checkpoint result packets onidentical22DEV identities/labels/groups. Root independently binds stronger reuse; no newoptimizer or substitute baseline. Original24guards remainunchanged,plus12SvsP/D. Externalclosure fields verified=true,no_optimizer=true,checkpoint_sha256,source_sha256,packet_sha256 are ROOT attestations bound toactualindependentaudit, notself-authentication.
++
++## Exact source and diagnostic export keys
++
++`prediction.source` has exactly `reference`, `log_weights`, `means`, `scales`, `log_normalizer`, `noise_probabilities`. Three posterior arrays arefloat64(L,),L60forS/L5forP,D; log_weights normalizedlogmasses, means real, scales positive. `log_normalizer` is finitebuiltinfloat; Snoise_probabilitiesfloat64(12,), P/Dnull. `reference` exactkeys `prior`,`facts`,`nu`,`arm`. prior is length3list of float64(5,) arrays `[logweights,means,scales]`. facts is cell-ordered list lengthJ (or emptylistforD); eachcell is length4list float64(3,) arrays `[intercept,beta,sigma,observed_reported_y]`. These are affine parameters aftermref/previoushistory conversion, no discrete mark/censor/activityfactor. nu isfloat64(12,3). Sreferencearm"S", Preferencearm"P"; Dreferencearm"P",nuzero12×3 andfacts[]; Dprior equals the shifted/scaled directmixture. This Dexport does NOT substitute for independent staticprior+Dsummary reconstruction fromcheckpoint.
++
++`prediction.diagnostics` exactkeys `errors`,`work`,`allpositive_only`,`reference_reserved_points`,`reference_actual_points`. errors exact`mean`,`nll`,`log_normalizer`,`crps`,`pit`, finite nonnegative scalars; first3 tolerance1e-4, last2 tolerance1e-6. work exact`density_points` integer0..1M,`scalar_terms` nonnegativeinteger,`seconds`finitefloat0..10. allpositive_only literaltrue, reservedpoints240, actualpoints<=240. Quantileprobability verification<=1e-6 occurs before returnedrecord; it is not separately exported as an error array. Independent auditor must recompute everyquantileprobability fromreference. No numerical-precision failure may be skipped or replaced by exported success.
++
++Original B/F omit quantiles; preserve their original proper/point/PIT/boolean coverage fields without inventing quantiles or changing guards. H/T retain7quantiles. NewS/P/D alwaysrequire7. Stage0 also includes originaldenominators andslots115 (ordinal,partition,common,status,3hstatus) so all345statuses remain explicitly bound. Checkpoint `current` identifies last visitedupdate/ordinal/horizon/individualNLL; incomplete checkpoints may containpartial_gradients. Nonfinite failure evidence is explicitly tagged rawIEEEhex, never decoded as accepted numericalstate (`nonfinite_array_bits` dtype/shape/hex_chunks≤4096chars, or`nonfinite_scalar_bits` float64hex). It can only accompany failure and cannot become a finalcheckpoint.
++
++## Closed top-level keys and hashing details
++
++`prior_sha256` ALWAYS denotes INITIAL cloned prior-only state, including in finalcheckpoint. Its hash is canonical numeric JSON of initialparameter entries whose names start`prior.`, with that prefix REMOVED: `first.weight/first.bias`(or`first_bias`forK0),`second.weight/second.bias`,`head.weight/head.bias`. Finalprior-only hash is notcurrently anexportedfield; auditor can reconstruct it. `initial_sha256` hashes the entire arm's INITIAL parameter dictionary including observationbranch. Initialhead/hidden parameters saved before anygradientprobe, probes useautograd.gradwithoutoptimizer.
++
++Exact raw summary names: `[c0_latest,c0_mean,c0_max,c0_time_slope,c0_censor_fraction,c1_latest,c1_mean,c1_max,c1_time_slope,c1_censor_fraction,c2_latest,c2_mean,c2_max,c2_time_slope,c2_censor_fraction,log_duration,cells,nu_sd_0,nu_sd_1,nu_sd_2]`. Valuesstringsinthatorder. static.reference_keep andkept arebuiltinlists ofintegers. static.mean/std/residual_norms float64arrays(30),constantuint8array(30),reconstructionfloat64array(K,30),reconstruction_max_abs builtinfloat. K0reconstruction shape(0,30)withzeropayload,kept[],allstandardizedTRAINcolumns0; first_bias16 gives526priorcoefficients. Summarymean/std float64arrays(20),activelistintegers. Initial/finalparametersdict mapsnames tofloat64arrays (tau scalarshape[]). Probe masks areuint8arrays matchingeachparameter. Order int64array(300,8).
++
++Admission exacttopkeys: `status,study,packet_sha256,source_pins,schema,capacity,models,runtime,order,denominators,slots`. schemaexact`static,summary,mref,train_std,train,dev`. modelentryexact`initial,initial_receipt,prior_sha256,probe,order`. Initialcallback exact`status,study,seed,arm,update,parameters,schema_sha256,packet_sha256,source_pins,prior_sha256`.
++
++Finalcheckpoint exacttopkeys: `status,study,seed,arm,update,history,admission_sha256,packet_sha256,source_pins,prior_sha256,initial_sha256,order_sha256,runtime,parameters,optimizer,current,final_probe`. currentexact`update,ordinal,horizon,loss` forlastvisited300thupdateevent/horizon (individualunscaledNLLbeforethatAdamstep). Failurecheckpointmayaddreason,partial_gradientsandlacknot-yet-producedfields; neveracceptedasscoreinput. Optimizerentry keyed sequentialparameterintegerasstring, each`step,exp_avg,exp_avg_sq`; shapesmatchparameterexceptstepscalar. It is auditable retentiononly, scorerdoesnotloadit. Stage0probe exact`events,horizons,terms,used,total,masks,maximum_event_gradient_norm`.
++
++Score result exacttopkeys: `status,study,predictions,seed,arm,admission_sha256,packet_sha256,checkpoint_sha256,source_pins,no_optimizer,metrics`. Prediction exactkeys are theearlierlistedseed/arm/ordinal/horizon/target/group/status,5scalars,quantiles,3coveragebools,diagnostics,source. Per-call API successwraps scorebytes as`status,result,receipt`; fitwrapsfinalbytes as`status,checkpoint,receipt`. Receipt exact`status:"durable",sha256`. Hashwrapper is not scientific closure.
++
++Source_pins exactkeys`operator,native_validator,reference,processor,protocol`, eachpositiveintegerbytes andlowercaseSHA256. ROOT's processor/protocol authority must bind the WHOLE reviewed processor source/dependency manifest and frozen scientific/staged protocol, notjustone entrypoint. These are rootownedauthority handles; module/name/formatchecks do not authenticate custody. runtime exact`torch,numpy,threads,dtype,device`,strings exceptthreadsbuiltin1. Fullpacket fingerprint uses canonical recursivelytypedscalar/map/list encoding with exactarraydtype/shape/payload; ROOT independentlybinds originalpacketbytes and newmarkedsource beforetrusting this fingerprint. Independent auditor should bind originalpacket itself andcompareeveryidentity/role/value, notattempttosubstitutethisinternalfingerprintforcustody.
++
++Static `std[constant]` is explicitly0 after exactelementwise TRAINconstancy check (notrawwobblynp.std); meanstillordinaryfloat64meaninTRAINordinalorder. Remaining std usesddof0. Summary std also explicitly0 forexactTRAINconstant coordinates, remaining Torchfloat64std(unbiased=false); standardizationreturns0forstd0. Independent reconstruction must allow only independently justified arithmeticroundoff; noDEVfitting. Admission`order` is builtinlist `[[20261012,"S"],[20261012,"P"],[20261012,"D"],[20261013,"S"],[20261013,"P"],[20261013,"D"]]`. capacity is exactmap`{"S":16K+544,"P":16K+544,"D":16K+527+q}`, builtinintcounts, noflags. Torchsoftplus defaultbeta1 withlinearbranchonlywhen input>20, otherwise log1p(exp(input)); neithernewcutoff nor clipping.
++
++Input/output identity clarification: native feature input remains frozen representation schema`earthquake-TRAIN115-marked-noise-observations-v1`, study`earthquake-TRAIN115-marked-noise-study-v1`. Alladmission/fitting/checkpoint/resultstudy identities aredistinct`earthquake-TRAIN115-marked-noise-fitting-v2`; no input rename, alias or regenerated nativepins. Failure-onlyreviewclarification: admissionfailure.current retainsdurableinitialreceipt immediately, partialprobe completedcount/masks/norms/currentidentity/availablegradients; scorefailure.current_record retainsrejectedidentity/rawmodelinputs/constructedsource, current_work andunderlyingexception_evidence. These failureonlyfields are neveracceptedfinalscores/checkpoints; complete schemas/criteria unchanged.
++
++Exact literals for independent audit: initialcallbackstatus"initial",updatebuiltin0,schema_sha256=SHAcanonicalnumericadmission.schema,parameters=entry.initial. Runtime dtype"float64",device"cpu",threads1. slots[i] exactordinal/partition/common/status/horizons; horizons3objectsseconds1/3/5andstatusavailable/unavailable. Optimizerindices followactualstateinsertion; fixedAdam/allgradients matchesparameters order: S/Pcoefficients thenprior; Dtheta,tau thenprior. PriorK>0first.weight,first.bias,second.weight,second.bias,head.weight,head.bias; K0first_bias,second.weight,second.bias,head.weight,head.bias. Psource.reference.nu retainsoriginal12×3 support forprovenance whilePmathuseszero; Dnu0. Aggregation validates mandatorynewsource/diagnostic schemas/parity/worklimits andnativeobservedprefix equality; ROOTindependent replay stillrequired fortruth, since artifacts cannotself-attestbyhavingwell-formed diagnostics.
+diff --git a/PUBLIC_FITTER_PROTOCOL.md b/PUBLIC_FITTER_PROTOCOL.md
+new file mode 100644
+index 0000000..64ca19d
+--- /dev/null
++++ b/PUBLIC_FITTER_PROTOCOL.md
+@@ -0,0 +1,19 @@
++# Prospective six-fit processor boundary
++
++13 October 2026, source-only clarification approved by ROOT before marked feature values or fits. This implements the frozen marked-noise fitting study V2, without modifying V1, the native builder, or the Gaussian operator. It grants no actual-data, resource or fitting authority.
++
++Order is Stage0 admission, then seed-major S/P/D for seeds20261012/20261013. Stage0 has its own 300-second source clock from before imports/loading: validate every fixed115/345 status and common65TRAIN/22DEV all-positive prefix; derive TRAIN-only static/scaler/rank and D-mask state; durably save each initialized numeric state; then evaluate all195 per-event/per-horizon TRAIN gradients for all six initialized models. Every coefficient must be used and genuine capacity spread must be at most5%. Failure forbids every optimizer, with retained evidence.
++
++Each subsequent fit has a fresh parent before-import 300-second source clock, including admission/receipt verification, checkpoint construction, exactly300updates of8unique TRAIN events and the final195-gradient probe. Parent must positively bind the Stage0 numeric receipt and enforce once-only identities; source hashes or receipt strings alone are not authorization. The initial six-fit outer7200seconds plus200seconds closure reserve begins before Stage0 and is unchanged. This adds no resource cap. Source uses CPU float64, one Torch thread, hidden CUDA supplied by parent containment, and no IO/provider/process controller.
++
++Static reference coding drops original34 coordinates15/25/29/33. Means/population standard deviations use only65TRAIN in fixed ordinal order; exact constants map tozero. Twice-orthogonalized fixed-order Gram–Schmidt selects standardized columns with residual norm greater than1e-12 times original norm; least-squares reconstruction must have maximum absolute error at most1e-10. D retains its fixed raw20 summary order, excludes4/9/14 and exact TRAIN constants among195 prefixes. All arms/seeds share these states and identical seeded prior initialization bytes.
++
++Fitting uses original `default_rng(seed+1009).choice(TRAIN,8,replace=False)` independently for each of300 updates. Conditional NLL averages all three deadlines equally and all eight events equally. Adam lr1e-3, default betas/epsilon, zero weight decay, norm clipping5. No sampler weighting, DEV calibration, early stop or continuation. Root-injected durable callbacks receive initial/admission/begin-fit/per-step/failure/final numeric snapshots, with hashes and bounded history/optimizer state. Final weights at300updates are durably saved after the fixed final gradient-validity check and before any score. A failed callback never produces successful fit status.
++
++Scoring takes only the verified saved final checkpoint, constructs no optimizer, and uses a separate parent before-import900-second clock. Each of66DEV records has its own10-second shared operator/reference/proper-field clock. The caller injects the positively pinned independent reference. Missing or rejected proper fields yield an incomplete result with partial evidence, never a subset success. Full source factor/posterior arrays and joint-noise marginal probabilities are retained privately for independent replay.
++
++Aggregation requires six complete new fits/66forecasts each and independently closed original B/F/H/T forecasts on the identical22DEV identities/targets/groups and original checkpoints, with no optimizer reuse. Recompute metrics from forecasts; do not trust supplied summary values. Preserve24 original guards against B/F/H/T and add12 S-versus-P/D guards across all horizons/seeds. TailMAE>=5.5 improvement at least.02; whole/lower MAE/MedAE, CVaR95 and maximum cannot worsen. NLL/CRPS must strictly improve against B/F and P/D; H/T proper scores are reported but do not change original guards. No averaging away failed checks or scientific promotion from incomplete support.
++
++All tests use invented fixtures. Local Torch version and timings are evidence for source tests only, not the target AWS runtime or real-data feasibility. Stop at the first clean default Codex autoreview and freeze source pins; ROOT owns later binding, independent auditing and publication. No novelty or accuracy claim.
++
++ROOT clarification before values: input features deliberately retain the frozen representation `earthquake-TRAIN115-marked-noise-observations-v1` / `earthquake-TRAIN115-marked-noise-study-v1`. Fitting admission/checkpoints/results have distinct study `earthquake-TRAIN115-marked-noise-fitting-v2`. V2 changes the all-positive inferential variant, not the already-reviewed native representation. No feature schema/study/pins are rewritten or aliased. The fitter binds the original featurepacket via exact original validation and fingerprint.
+diff --git a/PUBLIC_INHERITED_MODEL_SCHEMA.md b/PUBLIC_INHERITED_MODEL_SCHEMA.md
+new file mode 100644
+index 0000000..2cede3a
+--- /dev/null
++++ b/PUBLIC_INHERITED_MODEL_SCHEMA.md
+@@ -0,0 +1,50 @@
++# Code-free marked-noise study V1 packet/model contract — scientific-review draft
++
++This document is pure source design, contains NO actual pins/values and grants no IO/fit authority. All schemas below are prospective; implementation begins only after parent scientific review. Do not edit frozen original115 receiver packet or numerical-core interfaces.
++
++## Inputs and namespace
++
++NEW builder is a pure memory function receiving exact original old/new plan/qualification bytes, old17/new13 cached body dictionaries, original115 metadata/roster bytes, a positively bound old current ratio/state agreement packet, an injected positively bound native record decoder, source-private prior authorities `{bytes,sha256}` and parent before-import monotonic clock. No paths, requests, SSH/cloud controls or fitted modules. Parent verifies independent transport/native/roster/group/runtime/source custody BEFORE invocation; assertions alone grant none. Old batch0..16/new batch0..12 never merge record IDs; output global ordinal0..64 then65..114.
++
++Full input body bounds8MiB each; old17<=136MiB/new13<=104MiB, combined240MiB. Each nonempty decoded callback returned scalar size is charged BEFORE all count/grid/dtype/hash reconciliation; valid failure counts exactbuiltin integer0..2^63-1 are charged before fatal rejection. Perbody observed8M/old136M/new104M/combined240M; recordcount32768/body. Cached batch reuse may not cause duplicate-count discounts after a second actual decode; decoding cache must retain original verification truth, and no event-level partial-data success. Exact original qualifying raw/native hashes/current allh views must agree before new reductions. No crop-first integrity loophole.
++
++Builder source300s, parent750s own1GiB/swap0/32Tasks/threads1/CUDAhidden, stop5/controlgroup. Source start before imports/loading/validation. Ordinary new scalar output cap4MiB JSON, numeric output<=1MiB, combined<=8MiB serialized numeric archive, no object dtype/pickle, <=4096-byte NPY headers/closed ZIP names/header-count controls. Public summary<=64KiB, depth32/node2M, exact keys/nonfinite/duplicate-denying JSON. No build/record/feature retry after failure. Parent retains bounded original inputs/complete partial diagnostics, no promoted successful packet on any common-row failure. These caps are prospective scientific-review choices; actual limits need source/runtime/resource checks later.
++
++## Packet exact shape
++
++Top-level EXACT keys `{schema,study,rows,denominators,input_pins,observed_samples,fit_authorized}`. Proposed schema=`earthquake-TRAIN115-marked-noise-observations-v1`, study=`earthquake-TRAIN115-marked-noise-study-v1`; fit_authorized literalfalse. Denominators EXACT `{events:115,horizon_cells:345,train:91,dev:24,common_train:65,common_dev:22,test_excluded:31}`. observed_samples EXACT `{old:int,new:int}` within limits above. input_pins EXACT old_plan,old_qualified,new_plan,new_qualified,metadata,roster,activity_anchor each `{bytes,sha256}`, parent-bound before parse. Raw cachedbody/hash source maps remain in private plans, not neural fields.
++
++rows exactly115 in globalordinal order; each EXACT `{ordinal,partition,mw,group,common,status,precontext,noise,horizons}`. Ordinal0..114, partitionTRAIN/DEV with91/24, finite Mw[-5,15], group original operational integer or explicit unavailable; role fields never neural inputs. Common exact65TRAIN/22DEV fixed externally before values, statusavailable; noncommon statusunavailable/precontext=null/noise=null, horizons three EXACT `{seconds:1|3|5,status:unavailable}` in1/3/5 order. No excluded TEST inference/score/scaler/training row. Any required common-row failure rejects whole stage; no changed common bool/denominator.
++
++Common precontext exact float64 C-contiguous ndarray(34,), finite; from original initial35 descriptors removing index6 ONLY. No first-wave tensor/amplitude/b1/ratio/horizon/J/absoluteclock/role/source distance. Original receiver location is permitted static, earthquake source location is not. Timing delta=(P-T0)/1e9 remains immutable coordinate6, native log10 rate coordinate7. Exact index map:
++
++- 0..2: log10 floored component median noise POWER;3..5: floorflag0/1;
++- 6: delta;7: log10 native rate;
++- 8..10: receiver latitude/longitude/elevation;11..13: their missingflags;
++- 14:ENZ;15:12Z;
++- 16..18: log10 sensitivity;19..21: sensitivity missingflags;
++- 22..25,26..29,30..33: component0/1/2 unit one-hots in M/S,M/S**2,M,other order.
++
++Static family/unit reference coding drops prospective indices15,25,29,33, leaving30. Shared TRAIN constant/rank basis selects K from those30, not new arbitrary features. Packet retains all34; model scaler/coding manifest binds exact index order,means,std,constant mask,retained K indices,Gram-Schmidt/reconstruction diagnostics and before-fit hashes. TRAIN-only whole65 context/scaler authority reused EVERY arm/seed; fields never derive from current marks. Descriptor scalers consume no DEV row. Source support/missingness is retained, never response calibration.
++
++noise EXACT `{centers,powers,nhat,floors,nu,weights,rate,arrival_offset_ns}`: centers float64(3,), powers float64(3,12) chronological quarters,nhat float64(3,),floors uint8(3,) exact0/1;nu float64(12,3),weights float64(12,), uniform1/12;rate reducedpositive integerpair same forliteral components/allh;arrival_offset_ns exactinteger0..750000000 private clock role, not an extra model coordinate. Powers finite nonnegative<=1e24, original visited centered values abs<=1e12;nu exactly fixed natural-log leave-one/center recipe. No guessed variance/df, no floor-induced artificial uncertainty. Array-to-scalar reduction order exactly frozen public native convention. Retain original array values; no float32 cast.
++
++Common horizons three EXACT `{seconds,status,ratios,reported,censor,max_ratios,states,run_ages}`. statusavailable,seconds1/3/5. ratios/report float64 C-contiguous ndarray(J,3),finite;ratios>=0<=1e25. censor uint8(J,3) exact0/1 derived R<=exp(-12);reported element =-12 if C,elsemath.log(R)>-12. Stored C's -12 sentinel is allowed only WITH matching censor array: likelihood decoder turns it into None/C, never pointmass density. max_ratios float64(J,) exactbuiltin-reduction max acrossliteral3component rows;states uint8(J,) exactmax>9;run_ages uint8(J,) exact consecutive reset counts. They are audit/description fields, NOT an extra likelihood nor prior input. J exactfloor((h*1e9-arrival_offset_ns)/250000000),1..20;J3-J1=J5-J3=8,earlier prefixes elementwise byte-identical. No partial/unobserved last cell, terminal exit, independent bit or source-time interpretation. Old parent anchor maxratio/states/ages must agree before fitting.
++
++No actual ndarray belongs in public/reviewer artifacts. Parent numeric memory serialization binds dtype/shape/C-orderpayload bytes+SHA for each named array and complete archive/manifest BEFORE load. Names `r_NNN_precontext`, `r_NNN_noise_centers|powers|nhat|floors|nu|weights`, `r_NNN_hH_ratios|reported|censor|max_ratios|states|run_ages`, NNN000..114,H1/3/5; absent noncommon arrays do not exist. Scalar JSON references exact membernames,includes dtype/shape/nbytes/hash and bounded role/rate/arrivaloffset keys. Numbermembers<=115*(7+18)=2875,actualcommon87; no unregistered members/aliases/archive traversal. Parent saves numeric/private full inputs with read-only custody; source exports no filesystem path or credential.
++
++## Model parameter and checkpoint conventions
++
++Common K→16→16→14 SiLU static network. Head outputs[4weight logits,5means,5rawscales];append fixed fifthlogit0,softmax5;sigmas=.05+softplus(raw). No free common-logit gauge, firstwave inputs,currenth or trainable unused columns. Prior coefficients16K+526; main arms S/P/I/T/R/D plus21 =>N=16K+547; G has+24=>N+3, subject5% genuineused-degree gate. Shared raw suggested34→16→16→15 has1108nominal with21; it is not the final capacity claim. Constructor imports of model/Torch/numerical modules are parent-bound before source invocation, no dynamic namespace collision or wildcard dependency.
++
++S/P/I/R raw observation array exactfloat64(3,7),columns `[a,b,d,e,rho,kappa,rawsigma]`,sigma=.05+softplus(rawsigma);mref TRAINmean fixedscalar. Coefficients apply to centered magnitude m-mref; effective sourcecore a/b is `[a+d*t+rho*vprev+kappa*fprev - (b+e*t)*mref, b+e*t]`;this recoversfrozen affine-in-m law exactly. T same shape uses `[a,b,d,e,f,g,rawsigma]`, replacing history by f*t²+g*(m-mref)*t². G meanarray(3,6),Ldiagraw(3,),Loffdiagraw(3,) in(1,0),(2,0),(2,1) order;fixedpositive diagonal,LL^T. R Student-t df5 fixednonparameter. D theta(20,),tau scalar;20schema summaries/scalers exactfixed order detailed inPROPOSAL,all5component mean shift/commonpositive excesssigma multiplier,weights unchanged.
++
++Observed data -> affine/censor records uses complete numbered prefix cells1..J only, original prior/support objects immutable; prior computed once per event/checkpoint, shared q_.25/q1/q3/q5 suffix updates, all cumulative re-evaluations demonstrably equal joint once-only product. P usesnoν,I percelljointredraw,S/T sameellacrossallcells; changing semantics creates a different arm,never a fallback. Parameter/export values finite; no learned horizon-specific head, station/eventembedding/freegain, calibratednoise scale or DEV-fitting keys.
++
++Checkpoint exactbounded maps bind study,seed,arm,update300,packet/scaler/source/initialization/eventorder hashes,prior numericstate,observation numericstate,mref/TRAINpopulationstd,traininghistory300,capacity/variation masks and numerical diagnostics. Adam state/history retained privately fortruth/failureevidence only; resumed score mustneverconstruct/useoptimizer or addupdates. Partialcheckpoint statusfailure and completedupdate count retained; notfinal and cannot replace a final fit. Every newfit identity authorizedonce through parent-controlleddurablecallbacks; checkpointtruth/rootproof required before any score or reuse. This source-only design contains no actual state/receipt paths.
++
++## Prediction and admission conventions
++
++Final acceptedforecastpercommonDEVordinal/h exactly22*3=66 perarm/seed. Exactfields to be finalized BEFORE source review: seed,arm,ordinal,horizon,target/grouproles,mean,median,nll,crps,pit,quantiles(.025,.1,.25,.5,.75,.9,.975),inclusivebuiltinboolcoverage50/80/95,numericaldiagnostics(noiseprobability12 forS/T,sourcecomponent/factorparams/methodintegrals/errors/completecounts/work),fitstatus. Full numeric state/rawdata binding permits independent replay without model implementation/outcome selection. S/P/etc properposterior differs byoperator; never accept a Gaussian-surrogate CRPS or mixedtypeofcoverage. The existing numericalcore's `censored_CRPS_verified=False` makes study gatefalse untilnewscoreimplementation earned.
++
++Complete result must contain ALL fixedarms/seeds/prefixrows, exactmetadata/scalers/capacity/history/checkpoint references and explicitoriginal24guards plusadditionalguards. Any missingforecast/numeric/strongcomparator/control =>incomplete/passfalse,never subsetaverage. Public summary retains allnegative/incompletearms and omitsprivateIDs/labels/rawarrays/clock/hashactuals. Frozenoriginalmetrics exactwhole/lowerMAE/MedAE,CVaR95,max,high55MAE;NLL/CRPSnewcomparators strictlylower,tail>=.02,eachh/bothseeds. Stage1screen isnot fullscientificpromotion. No currentactualfeature/fit authority and no code implementation untilROOTscientificreview.
+diff --git a/PUBLIC_MODEL_SCHEMA.md b/PUBLIC_MODEL_SCHEMA.md
+new file mode 100644
+index 0000000..6c21ddb
+--- /dev/null
++++ b/PUBLIC_MODEL_SCHEMA.md
+@@ -0,0 +1,11 @@
++# V2 all-positive pilot schema overrides
++
++PUBLIC source-only design. All inheritedV1 packet/native/clocks/dtype/hash/input/scaler/private storage/public-role separation are unchanged. New schema/study names must be distinct V2 identities. Common allpositive admission tests complete65TRAIN/22DEV allh/allcomponents; a C anywhere rejects whole variant, preserving115/345/status evidence and no reduced roster.
++
++Source-only operator receives parent-bound initial descriptor tensors(34,), shared retained K-index/scalers; model alone receives standardizedK coordinates. No activity/firstwave/mark/history/currenth in prior. PriorK→16→16→14;4logits+fixed fifth0,5means,5scales. Only S/P/D accepted arm names. Constructor creates no optimizer, actual loader/custody gate or process/network/filesystem authority.
++
++S/P observation parameters3×6 `[a,b,d,e,rho,rawsigma]`, mref fixedparentTRAINmean; firstcellhistory0; t=log1p(.25*(j-1)), effective a=a+d*t+rho*previouslog-(b+e*t)*mref, b=b+e*t;sigma=.05+softplus. Marks exact float64(J,3),finite>delta=-12;nu float64(12,3),uniformweights12,original fiveprior propermixture. Plugin usesnoνbut retainsoriginalsupportforboundprovenance,not parameter-fitted fallback. Joint component ordering ell-major thenk0..4; priorstate fixed through suffix. Nonempty completeJ1..20;deadline count derived fromoriginalimmutablearrival_offset_ns0..750M,horizon1/3/5,notcaller-inventedpartialquietcells.
++
++D orderedraw20summaries inheritedV1:15 percomponent[latest,mean,max,time-slope,Cfraction],log1p(.25J),J,3νSD. Remove Cfraction indices4,9,14 unconditionally underallpositive variant. Remaining constants variance==0 across65TRAIN×3h omitted ONLY by prospectively fixedTRAINmask beforefits. Actualq-weightparameters bind orderedactive mask, no zero padding. Prior meancommonshift;scale=.05+exp(tau)*(priorsigma-.05);weightsunchanged. All retainedused gradients/capacitymax/min<=1.05; otherwisefail, no array modification/replacement.
++
++Pure analytical posterior object stores originalpi/mu/sigma,nu/weights,allaffinepositivefactors,lognormalizer and up-to60 posteriorlogweights/means/scales. No serialized Pythonpickle/actualrowsprovided. Savednumericcallbacks/checkpoint/sourceidentity parent-owned. Allfloat64/autograd retained forloss; exported inference scalarsdetachexplicitlyonlyatserializationboundary. Complete properfields sourcecheckedagainstindependentcore/reference beforeacceptedprediction; no claimedscorer/datasetfitter interface yet. Censorpath always raises explicitallpositive_admission;never convertC toboundarypoint/deletecomponent. After sourcefirstclean processing stops.
+diff --git a/PUBLIC_NATIVE_API.md b/PUBLIC_NATIVE_API.md
+new file mode 100644
+index 0000000..ae9286c
+--- /dev/null
++++ b/PUBLIC_NATIVE_API.md
+@@ -0,0 +1,33 @@
++# Marked native feature builder V1 — source-only handoff
++
++This packet implements the approved marked-noise proposal's native observation layer. It contains invented fixtures and unchanged safe reference source, no actual dataset, IDs, inventory, clocks, gains, fitted state or scientific result. It does not authorize extraction or fitting. ROOT owns all private input/source/runtime/custody bindings and all real runs.
++
++## API
++
++`marked_native.project_anchor(original_packet, source_pins={archive,manifest}) -> bytes`
++
++ROOT first loads its independently verified original observation packet through the original `packet_io.py`. The projection consumes original initial.context35 and horizon ratios/states/run_ages, fixed row roles/statuses and original six input pins; it never inspects original waveform arrays. ROOT must independently prove equality to its bound original packet BEFORE invoking this new builder. A self-generated anchor from new marked outputs is invalid. The projection's source archive/manifest hashes bind its provenance; a hash assertion alone is not custody proof.
++
++`build_marked(old_plan_bytes, old_qualified_bytes, old_bodies, new_plan_bytes, new_qualified_bytes, new_bodies, metadata_bytes, roster_bytes, activity_anchor_bytes, decode_record, *, bindings, pins, processing_begin)`
++
++`bindings = Bindings(positively_bound_original_observations_module)` reuses the original V2 `qualified_validate`, `metadata_validate`, `replay_batch`, `components`, `context` and native reducers. It adds no scanner, decoder, request manager, file access, cloud command, source selection, clock reconstruction or model import. Original old17/new13 namespaces remain separate; every actual decode is charged before returned count/grid/dtype/hash reconciliation, including valid failure counts. Per-body and aggregate bounds are inherited unchanged. The caller's before-import monotonic start is shared with the 300-second source deadline. ROOT must bind source bytes and decoder identity independently; the module name/schema checks are not proof of source identity.
++
++`event_marks(native_components,row,meta,anchor_row,*,bindings,processing_begin)` is the feature-only callable after original whole-record/native-sample and current piece/view hashes are verified. The public function is useful for invented fixtures; calling it without the build replay chain does not establish real source integrity.
++
++`packet_io.save(packet,processing_begin=...) -> (archive_bytes,manifest_bytes)` and `load(...,pins,processing_begin)` provide pure memory numeric custody. Closed names, exact dtypes/shapes, little-endian payload hashes, ≤1MiB numeric payload, ≤4MiB manifest, ≤8MiB archive, bounded NPY headers, no pickle/object dtype, reference closure and complete feature semantics are checked. ROOT owns storage. Successful output has exactly115 rows/345 statuses,91TRAIN24DEV,65TRAIN22DEV common, fit_authorized=false. Unavailable rows retain explicit null features and all horizons.
++
++`FeatureError` carries completed `partial_rows`, charged `observed_samples` and bounded partial event `diagnostics` privately. It never returns a successful reduced cohort or promotes a partial event. Original inputs remain ROOT-owned evidence. No retry or repair is implemented. Numerical boundary case: if R exceeds exp(-12) but float64 log(R) rounds to exactly -12, reject as `censor_log_roundoff`; never manufacture an uncensored value at the censor boundary or change the fixed threshold.
++
++## Exact semantics
++
++The three-second pre-T0 scalar mean is shared by all12 chronological quarter powers and current post-P powers. N=max(1,median12), with floor only for rawmedian<1. Twelve joint support points delete the SAME quarter index in all components, use log(max(1,median11)) and component-wise fsum/12 centering. Duplicate/zero-spread supports stay unchanged with uniform1/12 weights. This is an empirical sensitivity prior, not an identified true-noise law.
++
++Current complete quarters start at the original P time; J=floor((h*1e9−(P−T0))/250000000). Each factor enters once. R is retained per literal native component; Rmax, strict >9 states and consecutive run ages must equal the original anchor bit-for-bit. Every shorter prefix must be byte-identical inside later prefixes. Immutable initial context drops ONLY original index6 (first activity bit); native counts/float widths are never reconstructed from normalized float32. Literal ENZ/12Z and original pieces are preserved, without rotation, resampling, gap/overlap repair or physical response conversion.
++
++## Reference source and tests
++
++`reference/` contains seven unchanged safe original source files for reproducible invented tests and reviewer context; `reference/SOURCE_PINS.json` records their hashes. The production builder uses ROOT-injected originals, not automatic path imports. `fixtures.py` loads only those local source files in isolated module bindings and synthesizes MiniSEED bytes with i4/f4/f8 encodings, separate namespaces, large integers and changing quarter powers. No actual private path appears in executable source.
++
++Tests compare against independent rational sample-index enumeration, not only calls through the implementation. They cover exact activity parity, distinct joint noise indices, integer float32-loss counterexamples, rational grids/empty cells, current offsets, first-cell behavior, future-suffix invariance, floors/censors, full-body/record hashes, count charging on failures, whole-stage rejection, all statuses and strict numeric-byte round trips/adversarial mutations.
++
++Run: `/Users/ayush/.venvs/ml/bin/python3 -m unittest -v test_marked_native test_packet_io` in this packet directory. Test/model results are synthetic only. Required isolated default Codex autoreview must finish clean before a first-clean source freeze; ROOT then independently binds actual inputs. No novelty or accuracy claim is made.
+diff --git a/PUBLIC_PROPOSAL.md b/PUBLIC_PROPOSAL.md
+new file mode 100644
+index 0000000..606e8f6
+--- /dev/null
++++ b/PUBLIC_PROPOSAL.md
+@@ -0,0 +1,19 @@
++# NEW prospective marked-noise fitting V2: exact-conjugate pilot
++
++PUBLIC design before any new feature values. ROOT approved a bounded separate all-positive feasibility variant and TRAIN-only explicit branch availability. V1 docs/source remain unchanged; inherited copies pin original scientific context. This version permits SOURCE preparation only, never actual extraction/fitting/provider/Git actions. No current actual outcome/row/weight was inspected. Implementation must be reviewed/frozen/tested/published and ROOT separately binds data/runtime/resource/control gates before invocation.
++
++Stage1 exactly S(shared finite noise),P(plugin same learned Gaussian marks),D(direct summary posterior)×seeds20261012/13, six fits. Preserve65TRAIN/22DEV common roster,115/345 total statuses, old17/new13 cached native namespaces, exact clocks/fullnative hashes/prefix reductions and agreement anchors,34 static prior descriptors excluding first activity index6, fixed300updates/batch8/Adam1e-3/norm5/original eventorders/finalonly, original24 strict B/F/H/T guards plus S-vs-P/D guards, all1/3/5/bothseeds, no DEV calibration/selection or incomplete score promotion. All unchanged details in inheritedV1 remain normative EXCEPT explicit overrides below.
++
++This is an ALL-POSITIVE exact-conjugate feasibility variant, not a successful implementation of full censoredV1. Admission requires EVERY component/cell in EVERY fixed common65TRAIN/22DEV prefix R>exp(-12), finite, exact native fields/prefixes/agreement. ANY tiny/zero/coarsened-C mark =>whole pilot incomplete before optimization, all115 rows/statuses retained, no drop/relabel/threshold change/retry. Checking DEV admissibility is mechanical source support, not label/score tuning: support failure ends this declared variant and cannot select a replacement fit. Native builder remains a later separate source task. A full censor/proper study would require independently earned new numerical source/protocol; this pilot grants none.
++
++Under this variant the prior network receives only34 immutable precontext descriptors; fixed reference coding/rank/scalers in inheritedV1 apply. K→16→16→14 proper fiveGaussian prior, fifthlogit fixed0, coefficients16K+526. S/P have3×[a,b,d,e,rho,rawsigma] =18 observation coefficients; no κ parameter exists, because all previous-C flags are identically0. sigma=.05+softplus, same affine natural-log power means/history asV1 withκterm absent. Total S/P N=16K+544. D's corresponding3 censor-fraction coefficients are omitted BEFORE fitting. Other TRAIN-constant D summary coordinates may be omitted using a fixed variance==0 rule on65TRAIN×threeprefixes, no DEV/label/performance input. D has q<=17 active summary coefficients plus1 variance coefficient; total16K+527+q. Keep raw20 summary schema/ordered names for independent provenance; a frozen active mask drives only actual learnable coefficients. No new replacement summaries/padding/dummy terms. Every remaining S/P/D coefficient must have nonzero per-event TRAIN gradient in the prescribed initialized/final probes, and max/min genuine degree counts<=1.05; otherwise fail before fits. S/P masks and architecture identical. Missing variation in S/P rho or other remaining branches is an admission failure, not automatic parameter deletion.
++
++For later fullV1 controls, a zero-variation previous-C flag can prospectively remove κ_c from S/P/I/R; D omits the corresponding C-fraction coefficient. T retains informative time-curvature coefficients: no dropping purely for equal nominal counts if genuine spread<=5%. G's covariance coefficients also must be used; any spread violation stops. No omitted control is declared solved by the exact-conjugate pilot. Stage2 remains V1 predeclared I/T/G/R, two seeds, additional guards; THIS source implements NONE of their training/scoring and earns no special-uncertainty claim until their complete matched comparison.
++
++All-positive Gaussian likelihood is a working conditional observation model. Each shared state ell and prior component k yields an analytically completed Gaussian; at most60 posterior Gaussians, with joint weights preserving the SAME ell across all3components/allcells/deadlines. P has5 active components withν0. First mark enters once; original prior excludes waveform/mark/amplitude/b1. Normalized conditional NLL differentiates through posterior normalization, not detached logZ/jointNLL. Once-only suffix and full-prefix computations must agree exactly at the supplied affine-factor level. Learned prior architecture/scalers/initialization are identical across arms; independent fits may learn different weights, each immutable across forecasts.
++
++NEW pure float64 Torch operator source (no optimizer/data IO) supports S/P/D and exact Gaussian-mixture mean/NLL/CDF/CRPS/quantiles. Gradient, independent Gaussian completion, normalized conditional loss, gain/noM-slope, shared-vs-redrawn numerical falsifier, immutable/prefix/firstmark exclusion, censorwhole-denial, used-degree/mask, properCDF/CRPS/quantile and sharp roundoff/deadline tests use INVENTED values only. Independent frozen numericalcore logZ/mean/NLL parity<=1e-4 and proper crosschecks<=1e-6 before accepted forecasts. Same original representation vetoes, all-real magnitude support, full finite IEEE rejection/no clipping/fallback/tolerance changes. Conditional completion and Gaussian-mixture CRPS are analytic, not a Gaussian surrogate for a censored posterior. Target/quantile allreal, no magnitude cap. Quantiles .025,.1,.25,.5,.75,.9,.975, inclusive boolcoverage50/80/95; source10s/1M evaluation accounting shared across all outputs, separate scalar-term count recorded. All-positive analytic formula still requires source/runtime/independent proof; no universal worst-runtime claim.
++
++Root-owned prospective training300s/scoring900s/initial sixfit7200s+200closure, manager360/960stop5/2GiB64Tasks/threads1/hiddenCUDA and builder300/7501GiB32 caps remainV1, contingent credits/custody/publication gates. No new epochs/rescue or automatic optimizer on reused strong checkpoints. Current core source-only tests did not test any actual dataset. A passed internal screen cannot establish population bulk preservation/modern published-benchmark superiority/global firstness on reused exploratoryDEV.
++
++Prior art correction: [2015 GJI, Multi-events earthquake early warning algorithm using a Bayesian approach](https://academic.oup.com/gji/article/200/2/791/610068) already uses Bayesian seismic information and the paper's analytical log-amplitude/Gaussian magnitude treatment is acknowledged as antecedent; analytic Gaussian completion/Rao-Blackwell/sequential Bayes is NOT our contribution. [TEAM-LM2021](https://academic.oup.com/gji/article/226/2/1086/6223459) already learns waveform magnitude distributions; [Talbot & Thrane2020](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.2.043298) already handles estimator-specific uncertain noise. The narrower shared native pre-noise sensitivity plus continuous marked likelihood is an unverified hypothesis; no novelty/accuracy claim. Receiver-gain/source-M ambiguity, count-floor/quantization, correlated residuals, sparse/site-biased cohort and receiver-versus-rupture duration limits remain.
+diff --git a/REVIEW_CONTEXT_v1.md b/REVIEW_CONTEXT_v1.md
+new file mode 100644
+index 0000000..573bf3a
+--- /dev/null
++++ b/REVIEW_CONTEXT_v1.md
+@@ -0,0 +1,3 @@
++Review this isolated source-only commit and invented fixtures. Use ONLY these staged authored/public contracts; no parent workspace/private data, provider, external paper, cloud, or financial reads. Report findings with REPOSITORY-RELATIVE paths. No nested reviewer. Human authorized code-only Codex review. This independent NumPy/SciPy auditor MUST NOT import/copy producer/operator/trainer implementation. Validate mathematical Gaussian completion, real-line scoring/CRPS crosscheck, saved NN replay and operation-aware bounds, TRAIN-only schema, canonical positive custody, fixed6/396 plus8 original comparator guards, partial/error retention. Public ROOT attestations are external prerequisites not self-authenticating actual proof. Intended Python3.9 NumPy2.0 SciPy1.13 Torch2.8 tests; local fixtures use2.14, parent owns intended lane. No actual input/result read or numerical model run occurred.
++
++Review2: previous three actionable findings accepted. Receipt hash now uses exact admitted schema after independent arithmetic check; static/D standardization and D summary slope/mean/std dot roundoff propagates absolute term accumulation with same unresolved1e-10 admission; operational signed group identities no rowordinal restriction. Five added invented regressions;50pass. Preserve source isolation, no actual inputs. Findings paths MUST be repo-relative.
+diff --git a/SCHEMA.md b/SCHEMA.md
+new file mode 100644
+index 0000000..e7e0a99
+--- /dev/null
++++ b/SCHEMA.md
+@@ -0,0 +1,38 @@
++# Independent marked S/P/D audit V1 — prospective source-only API
++
++This is independently authored pure NumPy/SciPy audit source. No operator/trainer/producer/model imports or actual input/result/metadata/weights/private authority/cloud/Git reads. Public fittingV2/native packet/source export contracts are input specifications, not empirical truth. Source tests use invented arrays/networks only. ROOT alone authenticates byte custody, original native/fullroster agreement, once-only optimizer/update/used-gradient truth, source/runtime/resource/funding and old strong independent complete closure before actual invocation.
++
++Pure `audit_fit(score_result, packet, admission, checkpoint, authority, *, processing_begin, retain=None)` stages exactly one seed/arm66 record result. Fixed six identities20261012/13 eachS/P/D. Fresh source900seconds before imports/proofs/loading; each record10seconds/1M evaluation point budget shared across all independentcompletion/properfields/validation. Record outcomes returned through injected durable private callback before later deadline check; failed/partial never promotes success. Six perfit660 is WRONG: exact final count396, six66, source indicesseedmajor S/P/D. Pure `aggregate(fit_audits, score_results, packet, admission, stronger, authority, *,processing_begin)` independently validates allsix/396 identities/order/pins and recomputes metrics/strata/bootstrap/diagnostics/36guards (original24 againstB/F/H/T plus12P/D), no partial count/winner/metricselection. ROOT supplies independently closed original eight B/F/H/T results at identical22DEV roles/target/groups and original checkpoints with no optimizer. Sourcepass distinctscienceadvance.
++
++Inputs are decoded ordinary dicts with NumPy arrays from independently authenticated native packet and encoded finite canonical snapshots. Canonical JSON transport fixed markers <f8,<f4,<i8,|u1; shape builtin integers, bounded payload/hierarchy/counts, little-endian C-order hex, no pickle/object/general dtype coercion. Native fields remain exactfloat64/uint8: no normalizedfloat32 reconstruction. All115/345 statuses,91TRAIN24DEV,common65TRAIN22DEV/noTEST remain preserved. Allpositive R>exp(-12),reportedlog>-12,censor0,firstcell exactlyonce,suffix prefixes+8/bytes,noise12jointdelete-one/floor/centering and original clockcounts checked; source does not infer physical native truth from shape.
++
++Independent TRAIN schema replay uses ordered65 staticprecontext34 only, reference-drop15/25/29/33, original fixed-order twice-orthogonalizedGS residual>1e-12 originalnorm and least-squaresreconstruction<=1e-10. Means/std ddof0/exactconstants/zero-map; no labels/DEV/currentmarks inprior. D fixed20 summaries percomponentlatest/mean/max/slope/Cfraction thenlog1p(.25J),J,noiseSD3; omit4/9/14 and exact TRAIN195 constants only. Shared masks/basis/scalers/order/prior-clone bytes/300updates/probe shapesallused/real counts within5% must bind. ROOT externally verifies actual gradients/optimizer events; declaration masks alone are not proof.
++
++Saved float64 checkpoint prior K→16→16→14 reconstructed independently with NumPy SiLU, fifthlogitfixed0, normalizedfiveGMM. S/P coefficients3x6 produce exactsame-cellpreviousreported/history0first, t=log1p(.25j), effectivea=a+d*t+rho*prev−(b+e*t)*TRAINmref,b=b+e*t,sigma=.05+softplus. One sharedjoint12nu throughall3components/allcells inS; Pnu0/fivecomponents. D checkpointtheta/tau/sharedraw20scalers produces commonmean shift/.05+exp(tau)*(sigma−.05)/sameweights. No waveform/firstmark/activity/currenth/label/role/prior substitution or overlap multiplication.
++
++Forward comparison follows ROOT-approved prospective operational float64 bound: two-sidedγ_(fanin+2)*(|W|@|x|+|b|), propagate |W|@inputbound; SiLU globally1.1 Lipschitz plus16eps localroundoff, headsoftmax/softplus analogous. Finite bounds must not exceed1e-10*(1+absvalue); actual mismatch beyond computedbound is failure. Transcendental16eps assumption is operational/library-specific, NOT a formal IEEE universal proof. Intended Torch2.8 float64 fixtures must test both signs andsoftplusaround20. Reproduce officialdefaultbeta1/strictthreshold>20 linear; branch≤20 stablelog1pexp. If propagated raw intervalstraddles20, reject ambiguousbranch (never silentlyadmit2.1e-9 jump). Direct tau usesexp, notsoftplus. This neuralreplay bound is separate from frozen score1e-4/1e-6 tolerances.
++
++Independent Gaussian completion uses original five prior components and sameell allcells. At most60 ell-major posteriorGaussians forS,5P/D; stableprecision/centeredshift/logmass derived independently, preserve normalizedcomponent/noisemarginal order andoriginal support, no magnitude cap/density clipping/ surrogatecensor. All-real mean/NLL/CDF/median/quantiles/CRPS independently computed analytically; separate all-real CDF²/(survival)² integration split around everycomponent location/scale tests the analyticCRPS and defeatsdistant-small-mode omission. Quantiles expandbracket onR; inclusivecoverageexactbuiltinbool. Fixedprimarymean/NLL/logZtol1e-4/properCRPS/CDF/quantiletol1e-6; diagnostics/errors/work/root-bound numericrepresentation checkscannot be skipped or enlarged.
++
++Prediction source exports compareevidence only: exact reference prior[logw5,mu5,sigma5],factsJ each[a3,b3,sigma3,y3],nu12x3,armS/P; Dfacts[]/nu0/referencearmP withindependentlycomputedshiftedprior. Posteriorlogweights/means/scales L60or5/logZ/noisemarginal12orNone; reference does not replaceNN/native/mark/scalerreplay. Checkstrictallpositiveflag/errors/work/10sec/1Mpoints,reserved240/actual<=240 andevery properquantileprobability; noignoreddiscrepancy/papercomparisonclaim.
++
++Authority/pin/result/checkpoint field details inherit the separately frozen code-free AUDIT_SCHEMA/PROCESSOR_PROTOCOL from sixfit author; input APIs may decode canonical state but never import authorcode. A mandatory rootauthority must bind packet/admission/checkpoint/score/source SHA256 and original8strong closure/pins/nooptimizer known independent audit before actual use. Partialexception reports false/empty advance, retain specificprivate evidence/matchedcounter only; no actual authority fabricated by this source. Firstcleancode-only review freeze ends processing edits; rootLinux/publication/owned numerical stages later.
++
++
++## Exact ROOT authority and closed result contract
++
++Per-fit authority exactkeys schema,verified,native_verified,optimizer_history_verified,gradient_probes_verified,stronger_verified,packet_sha256,admission_sha256,checkpoint_sha256,score_sha256,source_pins,stronger_closure_sha256. Schema literal root-marked-sixfit-independent-authority-v1; six named authority flags all builtinTrue ONLY from ROOT independently known proof. Five canonicalSHA fields lowercase64; source_pins operator/native_validator/reference/processor/protocol {bytes positivebuiltinint,sha256}. ROOT binds whole reviewed dependency manifests under those handles and original raw native archive/manifest custody separately. These flags never authenticate themselves. No default authority or safe bypass. Per-fit runtime exacttorch/numpy/threads/dtype/device; strings,threads builtin1,dtype float64,device cpu. Initial callback status initial/update0 and exact documented schema/packet/source/prior/parameter fields must hash to initial_receipt. Adam retained state is indexed explicit named-parameter order (coefficients or theta,tau before prior); original float64 moments and scalarf32/f64step300 are checked but never loaded. ROOT independently authenticates real optimizer/gradient event truth.
++
++Per-fit successreport exact schema marked-sixfit-independent-audit-v1,status pass,seed,arm,records66,metrics,strata,checked66,authority_sha256,score_sha256,advance {pass_all:false,checks:[]}; this perfit pass alone never means the method wins. Recordcallback receives position,status pass,errors,work,source_sha256,fresh. Failed callbacks are attempted once only; no retry. Sourcefailure returns status fail,completedrecords/evidence,failure/checked,falseadvance; failure evidence is delivered before later clocks, no numeric precision rescue. Caller retains raw returned bytes and exceptions using separate owned controller.
++
++Finalauthority exactschema root-marked-sixfit-aggregate-authority-v1,verified,native_verified,stronger_verified,packet_sha256,admission_sha256,source_pins,stronger_closure_sha256,fits6 in seedmajorS/P/D order. Every fitpin exact seed,arm,audit_sha256,authority_sha256,score_sha256,checkpoint_sha256. ROOT positively authenticates successful audit output bytes before passing such pins; caller cannot invent authority from source tags.
++
++Stronger input exact8 seedmajorB/F/H/T {seed,arm,predictions66,closure}; each closure exact verified:true,no_optimizer:true,checkpoint_sha256,source_sha256,packet_sha256,independent_audit_sha256, all known ROOT independently closed original scientific outputs. CanonicalSHA of entire stronger input equals stronger_closure_sha256; original packet SHA may differ markedpacket, ROOT independently authenticates unchanged common roles/targets/groups before projection. Prediction required ordinal,horizon,target,group,mean,median,nll,crps,pit,coverage50/80/95; original extra fields may remain for custody, B/F omitquantiles and H/Trequireoriginal7. No invented B/Fquantiles. Independent finalmetrics derive forecasts, not exported metrics.
++
++Successful finalreport schema marked-sixfit-independent-aggregate-v1/status pass,checked396,fits6,stronger8,paired36,advance {pass_all,checks24,additional12},authority_sha256. Source success independent of advance, which may be false. Every incomplete/error report falseadvance. Final callback fullreport is attempted before finalclock; failure retention never retries a failed write. Whole source900beforeimports/proofs, rootownedmanager960stop5/resource controls required separately; numerical staged API supplies no provider/IO/optimizer.
++
++transport.decode accepts an already JSON-decoded canonical typed object (not rawJSONbytes). ROOT bounds raw file bytes, JSON parse, source imports and input custodians before calling it. Typed array payload aggregate<=2MiB default, hierarchydepth32/nodes2M, integer1024bits. Native payload numeric<=1MiB inherited; ROOT native agreement binds packet input_pins and observedsample accounting. Auditor checks fixed rows/noise/prefix/roles and independent mathematical reductions, but cannot infer native source truth without that agreement. Metadata log10 reductions admit absolute1e-12 libraryroundoff only; source anchor/hash truth is separately exact. Reference coefficient roundoff uses propagated absolute intermediate sum bounds and rejects any resulting bound beyond the same1e-10relative admission.
++
++Native input_pins exact old_plan,old_qualified,new_plan,new_qualified,metadata,roster,activity_anchor, eachpositivebytes/lowerSHA. observed_samples exact old/new builtinints0..136M/104M/combined<=240M. Root externally proves perbody<=8M counts, old17/new13 namespaces, fullnative anchor truth and original byte caps. No sample accounting inferred from arrayshape. Exact inherited public MODEL_SCHEMA governs all original admission/serializer caps.
++
++Review1 accepted corrections preserve mathematics and limits: initial_receipt hashes actual admitted schema while independent arithmetic reconciliation remains separate; audit uses positively bound admitted scalers after independent numerical agreement. Standardization rounds are propagated into prior input; D summary means/slopes/noiseSD/libm and standardization errors propagate into a dot-product gamma absolute-term bound and meanaddition. Large cancellation or nearconstant ill conditioning exceeding1e-10relative fails, no widened tolerance. Operational group identities are signedbuiltin integers with explicit-1unavailable or commonnonnegative, not bounded by rowordinal.
+diff --git a/auditor.py b/auditor.py
+new file mode 100644
+index 0000000..4beb7d9
+--- /dev/null
++++ b/auditor.py
+@@ -0,0 +1,179 @@
++"""Pure independent per-fit S/P/D saved-state/proper-score audit, no IO/models."""
++import math
++import time
++import numpy as np
++from scipy.special import logsumexp
++import math_core as core
++import packet as pkt
++import transport as tx
++import metrics
++
++STUDY='earthquake-TRAIN115-marked-noise-fitting-v2'
++IDS=tuple((s,a)for s in(20261012,20261013)for a in('S','P','D'))
++SOURCES={'operator','native_validator','reference','processor','protocol'}
++
++
++def stage_tick(begin):
++ now=time.monotonic();core.need(type(begin)in(int,float)and math.isfinite(begin)and 0<=begin<=now and now-begin<=900,'stage_deadline')
++def hashstr(v):core.need(type(v)is str and len(v)==64 and all(c in'0123456789abcdef'for c in v),'sha256')
++def sources(v):
++ pkt.keys(v,SOURCES)
++ for pin in v.values():pkt.keys(pin,('bytes','sha256'));core.need(type(pin['bytes'])is int and pin['bytes']>0,'source_bytes');hashstr(pin['sha256'])
++
++def close(a,b,tol=1e-10):
++ if type(b)is np.ndarray:return type(a)is np.ndarray and a.dtype==b.dtype and a.shape==b.shape and np.isfinite(a).all()and bool(np.all(np.abs(a-b)<=tol*(1+np.abs(b))))
++ if type(b)is dict:return type(a)is dict and set(a)==set(b)and all(close(a[k],v,tol)for k,v in b.items())
++ if type(b)is list:return type(a)is list and len(a)==len(b)and all(close(x,y,tol)for x,y in zip(a,b))
++ if type(b)is float:return type(a)in(int,float)and math.isfinite(a)and abs(a-b)<=tol*(1+abs(b))
++ return type(a)is type(b)and a==b
++
++def runtime(v):
++ pkt.keys(v,('torch','numpy','threads','dtype','device'));core.need(all(type(v[k])is str and v[k] for k in('torch','numpy','dtype','device'))and type(v['threads'])is int and v['threads']==1 and v['dtype']=='float64'and v['device']=='cpu','runtime')
++
++def shape_state(parameters,K,active,arm):
++ shapes={'prior.second.weight':(16,16),'prior.second.bias':(16,),'prior.head.weight':(14,16),'prior.head.bias':(14,)}
++ if K:shapes.update({'prior.first.weight':(16,K),'prior.first.bias':(16,)})
++ else:shapes['prior.first_bias']=(16,)
++ shapes.update({'coefficients':(3,6)}if arm in('S','P')else{'theta':(len(active),),'tau':()});pkt.keys(parameters,shapes)
++ for k,shape in shapes.items():core.array(parameters[k],shape);core.need(np.max(np.abs(parameters[k]))<=1e6 if parameters[k].size else True,'parameter_domain')
++ return sum(math.prod(shape)for shape in shapes.values())
++
++def probe(v,parameters,total):
++ pkt.keys(v,('events','horizons','terms','used','total','masks','maximum_event_gradient_norm'));core.need(all(type(v[k])is int and v[k]==n for k,n in(('events',65),('horizons',3),('terms',195),('used',total),('total',total))),'probe_count');pkt.keys(v['masks'],parameters);pkt.keys(v['maximum_event_gradient_norm'],parameters)
++ for k,a in parameters.items():
++  mask=v['masks'][k];core.need(type(mask)is np.ndarray and mask.dtype==np.uint8 and mask.shape==a.shape and bool(np.all(mask==1)),'probe_mask');norm=v['maximum_event_gradient_norm'][k];core.need(type(norm)in(int,float)and math.isfinite(norm)and norm>0,'probe_norm')
++
++def admission_checked(admission,p,authority):
++ pkt.keys(admission,('status','study','packet_sha256','source_pins','schema','capacity','models','runtime','order','denominators','slots'));core.need(admission['status']=='admitted'and admission['study']==STUDY,'admission');sources(admission['source_pins']);runtime(admission['runtime']);roles=pkt.validate(p);schema=pkt.schema(p,roles);core.need(close(admission['schema'],schema),'TRAIN_schema');core.need(admission['packet_sha256']==tx.sha(p)and admission['packet_sha256']==authority['packet_sha256'],'packet_binding');core.need(admission['denominators']==p['denominators']and type(admission['slots'])is list and len(admission['slots'])==115,'slots')
++ expected=[[s,a]for s,a in IDS];core.need(admission['order']==expected,'six_order');K=len(schema['static']['kept']);q=len(schema['summary']['active']);capacity={'S':16*K+544,'P':16*K+544,'D':16*K+527+q};core.need(admission['capacity']==capacity and all(type(v)is int for v in admission['capacity'].values())and max(capacity.values())<=1.05*min(capacity.values()),'capacity');pkt.keys(admission['models'],[str(s)+':'+a for s,a in IDS]);priors={}
++ for seed,arm in IDS:
++  m=admission['models'][str(seed)+':'+arm];pkt.keys(m,('initial','initial_receipt','prior_sha256','probe','order'));total=shape_state(m['initial'],K,schema['summary']['active'],arm);probe(m['probe'],m['initial'],total);prior={k[6:]:v for k,v in m['initial'].items()if k.startswith('prior.')};hashstr(m['prior_sha256']);core.need(m['prior_sha256']==tx.sha(prior),'initial_prior_hash');core.need(seed not in priors or tx.sha(priors[seed])==tx.sha(prior),'cloned_prior');priors[seed]=prior;order=m['order'];core.need(type(order)is np.ndarray and order.dtype==np.int64 and order.shape==(300,8),'event_order');rng=np.random.default_rng(seed+1009);expected_order=np.asarray([rng.choice(roles['TRAIN'],8,replace=False)for _ in range(300)],dtype=np.int64);core.need(pkt.byteeq(order,expected_order),'TRAIN_event_order');receipt=m['initial_receipt'];pkt.keys(receipt,('status','sha256'));core.need(receipt['status']=='durable','initial_receipt');hashstr(receipt['sha256']);initial=dict(status='initial',study=STUDY,seed=seed,arm=arm,update=0,parameters=m['initial'],schema_sha256=tx.sha(admission['schema']),packet_sha256=tx.sha(p),source_pins=admission['source_pins'],prior_sha256=m['prior_sha256']);core.need(receipt['sha256']==tx.sha(initial),'initial_receipt_binding')
++ for slot,row in zip(admission['slots'],p['rows']):
++  pkt.keys(slot,('ordinal','partition','common','status','horizons'));core.need(slot['horizons']==[dict(seconds=h['seconds'],status=h['status'])for h in row['horizons']],'slot_horizons');core.need(type(slot['ordinal'])is int and slot['ordinal']==row['ordinal']and slot['partition']==row['partition']and slot['common']is row['common']and slot['status']==row['status'],'slot_binding')
++ return admission['schema']
++
++def authority_checked(a):
++ pkt.keys(a,('schema','verified','native_verified','optimizer_history_verified','gradient_probes_verified','stronger_verified','packet_sha256','admission_sha256','checkpoint_sha256','score_sha256','source_pins','stronger_closure_sha256'));core.need(a['schema']=='root-marked-sixfit-independent-authority-v1'and all(a[k]is True for k in('verified','native_verified','optimizer_history_verified','gradient_probes_verified','stronger_verified')),'root_authority')
++ for k in('packet_sha256','admission_sha256','checkpoint_sha256','score_sha256','stronger_closure_sha256'):hashstr(a[k])
++ sources(a['source_pins'])
++
++def checkpoint_checked(cp,admission,schema,pair,authority):
++ pkt.keys(cp,('status','study','seed','arm','update','history','admission_sha256','packet_sha256','source_pins','prior_sha256','initial_sha256','order_sha256','runtime','parameters','optimizer','current','final_probe'));core.need(cp['status']=='final'and cp['study']==STUDY and type(cp['seed'])is int and type(cp['arm'])is str and(cp['seed'],cp['arm'])==pair and type(cp['update'])is int and cp['update']==300,'final_checkpoint');core.need(cp['admission_sha256']==tx.sha(admission)==authority['admission_sha256']and cp['packet_sha256']==admission['packet_sha256']and cp['source_pins']==admission['source_pins']==authority['source_pins'],'checkpoint_binding');runtime(cp['runtime']);core.need(cp['runtime']==admission['runtime'],'runtime_binding');entry=admission['models'][str(pair[0])+':'+pair[1]];core.need(cp['prior_sha256']==entry['prior_sha256']and cp['initial_sha256']==tx.sha(entry['initial'])and cp['order_sha256']==tx.sha(entry['order']),'initial_order_hashes');total=shape_state(cp['parameters'],len(schema['static']['kept']),schema['summary']['active'],pair[1]);probe(cp['final_probe'],cp['parameters'],total);core.need(type(cp['history'])is list and len(cp['history'])==300,'history300')
++ for i,item in enumerate(cp['history']):
++  pkt.keys(item,('update','loss','gradient_norm','ordinals'));core.need(type(item['update'])is int and item['update']==i+1 and type(item['loss'])in(int,float)and math.isfinite(item['loss'])and type(item['gradient_norm'])in(int,float)and math.isfinite(item['gradient_norm'])and item['gradient_norm']>=0 and item['ordinals']==entry['order'][i].tolist(),'history_order')
++ optimizer_checked(cp['optimizer'],cp['parameters']);pkt.keys(cp['current'],('update','ordinal','horizon','loss'));core.need(type(cp['current']['update'])is int and cp['current']['update']==300 and type(cp['current']['ordinal'])is int and type(cp['current']['horizon'])is int and cp['current']['ordinal']==entry['order'][-1,-1]and cp['current']['horizon']==5 and type(cp['current']['loss'])in(int,float)and math.isfinite(cp['current']['loss']),'current_last');core.need(tx.sha(cp)==authority['checkpoint_sha256'],'checkpoint_authority');return cp['parameters']
++
++def reconstruct(row,h,schema,parameters,arm,budget):
++ K=len(schema['static']['kept']);s=schema['static'];raw=row['precontext'][s['reference_keep']];z,ez=core.standardize_bound(raw,np.zeros(30),s['mean'],s['std']);context=np.ascontiguousarray(z[s['kept']],dtype=np.float64);prior,bounds=core.prior_forward(context,parameters,K,np.ascontiguousarray(ez[s['kept']]));marks=row['horizons'][(1,3,5).index(h)]['reported'];nu=row['noise']['nu'];facts=[]
++ if arm in('S','P'):facts=core.factors(marks,parameters['coefficients'],schema['mref']);mix=core.complete(prior,facts,nu,arm,budget);reference=dict(prior=list(prior),facts=facts,nu=nu,arm=arm)
++ else:
++  st=schema['summary'];rawsummary=core.summaries(marks,nu);theta=parameters['theta'];shift,shift_error=core.direct_shift(rawsummary,core.summary_error(marks,nu),st,theta);tau=float(parameters['tau']);core.need(math.isfinite(shift)and math.isfinite(tau),'direct_domain');factor=math.exp(tau);logw,mu,sd=prior;newmu=mu+shift;newsd=.05+factor*(sd-.05);bounds=(bounds[0],bounds[1]+shift_error+16*core.EPS*(1+np.abs(mu)+abs(shift)),factor*bounds[2]+32*core.EPS*(1+np.abs(newsd)));prior=(logw,newmu,newsd)
++  for v,e in zip(prior,bounds):core.bound_ok(v,e)
++  mix=core.Mixture(*prior,budget=budget);reference=dict(prior=list(prior),facts=[],nu=np.zeros((12,3)),arm='P')
++ return mix,reference,bounds
++
++def source_checked(source,mix,reference,bounds,factor_bounds=None):
++ pkt.keys(source,('reference','log_weights','means','scales','log_normalizer','noise_probabilities'));pkt.keys(source['reference'],('prior','facts','nu','arm'));saved=source['reference'];core.need(type(saved['prior'])is list and len(saved['prior'])==3 and type(saved['facts'])is list and len(saved['facts'])==len(reference['facts'])and saved['arm']==reference['arm'],'reference_fields')
++ for v,expected,error in zip(saved['prior'],reference['prior'],bounds):core.compare(v,expected,error)
++ core.need(pkt.byteeq(saved['nu'],reference['nu']),'native_noise_support')
++ for j,(actual,expected) in enumerate(zip(saved['facts'],reference['facts'])):
++  core.need(type(actual)is list and len(actual)==4,'factor_fields')
++  for k,(a,b)in enumerate(zip(actual,expected)):core.compare(a,b,32*core.EPS*(1+np.abs(b))if factor_bounds is None else factor_bounds[j][k])
++ for k,b in(('log_weights',mix.logw),('means',mix.mu),('scales',mix.sd)):core.need(close(source[k],b,1e-10),'completed_gaussian')
++ core.need(type(source['log_normalizer'])is float and abs(source['log_normalizer']-mix.logz)<=1e-4,'log_normalizer')
++ if mix.noise is None:core.need(source['noise_probabilities']is None,'noise_probability_null')
++ else:core.need(close(source['noise_probabilities'],mix.noise,1e-10),'noise_probability')
++
++def diagnostic(d):
++ pkt.keys(d,('errors','work','allpositive_only','reference_reserved_points','reference_actual_points'));core.need(d['allpositive_only']is True and type(d['reference_reserved_points'])is int and d['reference_reserved_points']==240 and type(d['reference_actual_points'])is int and 0<=d['reference_actual_points']<=240,'diagnostic');pkt.keys(d['errors'],('mean','nll','log_normalizer','crps','pit'))
++ for k,v in d['errors'].items():core.need(type(v)in(int,float)and math.isfinite(v)and 0<=v<=(1e-6 if k in('crps','pit')else 1e-4),'diagnostic_error')
++ pkt.keys(d['work'],('density_points','scalar_terms','seconds'));core.need(type(d['work']['density_points'])is int and 0<=d['work']['density_points']<=1_000_000 and type(d['work']['scalar_terms'])is int and d['work']['scalar_terms']>=0 and type(d['work']['seconds'])is float and 0<=d['work']['seconds']<=10,'diagnostic_work')
++
++def audit_fit(score,packet,admission,checkpoint,authority,*,processing_begin,retain=None):
++ records=[];evidence=[];retention_failed=False
++ try:
++  stage_tick(processing_begin);authority_checked(authority);schema=admission_checked(admission,packet,authority);pkt.keys(score,('status','study','predictions','seed','arm','admission_sha256','packet_sha256','checkpoint_sha256','source_pins','no_optimizer','metrics'));pair=(score['seed'],score['arm']);core.need(type(pair[0])is int and type(pair[1])is str and pair in IDS and score['status']=='complete'and score['study']==STUDY and score['no_optimizer']is True and type(score['predictions'])is list and len(score['predictions'])==66,'score_complete');core.need(score['admission_sha256']==authority['admission_sha256']and score['packet_sha256']==authority['packet_sha256']and score['checkpoint_sha256']==authority['checkpoint_sha256']and tx.sha(score)==authority['score_sha256']and score['source_pins']==authority['source_pins'],'score_binding');parameters=checkpoint_checked(checkpoint,admission,schema,pair,authority)
++  for position,(stored,(ordinal,h))in enumerate(zip(score['predictions'],((i,h)for i in schema['dev']for h in(1,3,5)))):
++   stage_tick(processing_begin);budget=core.Budget(time.monotonic());row=packet['rows'][ordinal];pkt.keys(stored,('seed','arm','ordinal','horizon','target','group','status','mean','median','nll','crps','pit','quantiles','coverage_50','coverage_80','coverage_95','diagnostics','source'));core.need(type(stored['seed'])is int and(stored['seed'],stored['arm'])==pair and type(stored['ordinal'])is int and type(stored['horizon'])is int and(stored['ordinal'],stored['horizon'])==(ordinal,h)and type(stored['target'])in(int,float)and math.isfinite(stored['target'])and stored['target']==row['mw']and type(stored['group'])is int and stored['group']==row['group']and stored['status']=='complete','forecast_identity');mix,reference,bounds=reconstruct(row,h,schema,parameters,pair[1],budget);factor_bounds=affine_bounds(row['horizons'][(1,3,5).index(h)]['reported'],parameters['coefficients'],schema['mref'])if pair[1]in('S','P')else None;source_checked(stored['source'],mix,reference,bounds,factor_bounds);diagnostic(stored['diagnostics']);fresh=mix.scores(float(row['mw']));errors={}
++   for k in('mean','median','nll','crps','pit'):
++    v=stored[k];core.need(type(v)in(int,float)and math.isfinite(v),'proper_scalar');errors[k]=abs(v-fresh[k]);core.need(errors[k]<=(1e-4 if k in('mean','nll')else 1e-6),'proper_disagreement')
++   pkt.keys(stored['quantiles'],[str(q)for q in core.Q])
++   for q in core.Q:core.need(type(stored['quantiles'][str(q)])is float and abs(mix.cdf(stored['quantiles'][str(q)])-q)<=1e-6 and abs(stored['quantiles'][str(q)]-fresh['quantiles'][str(q)])<=1e-6,'quantile_disagreement')
++   for level in(50,80,95):core.need(type(stored['coverage_'+str(level)])is bool and stored['coverage_'+str(level)]is fresh['coverage_'+str(level)],'coverage_bool')
++   item=dict(seed=pair[0],arm=pair[1],ordinal=ordinal,horizon=h,target=row['mw'],group=row['group'],family='ENZ'if row['precontext'][14]==1 else'12Z',receiver=row['precontext'][8:11].tolist(),rate=row['noise']['rate'],**fresh);record=dict(position=position,status='pass',errors=errors,work=dict(density_points=budget.points,scalar_terms=budget.terms),source_sha256=tx.sha(stored['source']),fresh=item);evidence.append(record)
++   if retain is not None:
++    try:retain(record)
++    except Exception:retention_failed=True;raise core.AuditFailure('retention_failed')
++   records.append(item);budget.tick();stage_tick(processing_begin)
++  panels={str(h):metrics.panel([v for v in records if v['horizon']==h])for h in(1,3,5)};core.need(close(score['metrics'],panels,1e-4),'stored_metrics');report=dict(schema='marked-sixfit-independent-audit-v1',status='pass',seed=pair[0],arm=pair[1],records=records,metrics=panels,strata=metrics.strata(records),checked=66,authority_sha256=tx.sha(authority),score_sha256=tx.sha(score),advance=dict(pass_all=False,checks=[]));stage_tick(processing_begin);return report
++ except Exception as error:
++  failure=dict(position=len(records),status='fail',reason=str(error)[:128],exception_type=type(error).__name__,advance=dict(pass_all=False,checks=[]))
++  if retain is not None and not retention_failed:
++   try:retain(failure)
++   except Exception:failure['retention_failed']=True
++  return dict(schema='marked-sixfit-independent-audit-v1',status='fail',records=records,evidence=evidence,failure=failure,checked=len(records),advance=dict(pass_all=False,checks=[]))
++
++def optimizer_checked(value,parameters):
++ pkt.keys(value,[str(i)for i in range(len(parameters))])
++ # Root authenticates optimizer event truth; state is retained and never loaded.
++ prior_names=['prior.first.weight','prior.first.bias']if 'prior.first.weight'in parameters else['prior.first_bias'];prior_names+=['prior.second.weight','prior.second.bias','prior.head.weight','prior.head.bias'];names=(['coefficients']if 'coefficients'in parameters else['theta','tau'])+prior_names
++ for i,name in enumerate(names):
++  entry=value[str(i)];parameter=parameters[name]
++  pkt.keys(entry,('step','exp_avg','exp_avg_sq'));step=entry['step'];core.need(type(step)is np.ndarray and step.dtype in(np.dtype('float32'),np.dtype('float64'))and step.shape==()and float(step)==300.,'optimizer_step');core.array(entry['exp_avg'],parameter.shape);core.array(entry['exp_avg_sq'],parameter.shape);core.need(bool((entry['exp_avg_sq']>=0).all()),'optimizer_square')
++
++def stronger_checked(stronger,packet,schema,authority):
++ core.need(type(stronger)is list and len(stronger)==8,'stronger_count');expected=[(s,a)for s in(20261012,20261013)for a in('B','F','H','T')];out=[]
++ for item,pair in zip(stronger,expected):
++  pkt.keys(item,('seed','arm','predictions','closure'));core.need(type(item['seed'])is int and type(item['arm'])is str and(item['seed'],item['arm'])==pair,'stronger_identity');c=item['closure'];pkt.keys(c,('verified','no_optimizer','checkpoint_sha256','source_sha256','packet_sha256','independent_audit_sha256'));core.need(c['verified']is True and c['no_optimizer']is True,'stronger_closed')
++  for key in('checkpoint_sha256','source_sha256','packet_sha256','independent_audit_sha256'):hashstr(c[key])
++  core.need(type(item['predictions'])is list and len(item['predictions'])==66,'stronger_66');records=[]
++  for v,(ordinal,h)in zip(item['predictions'],((i,h)for i in schema['dev']for h in(1,3,5))):
++   required={'ordinal','horizon','target','group','mean','median','nll','crps','pit','coverage_50','coverage_80','coverage_95'};core.need(type(v)is dict and required<=set(v),'stronger_fields');row=packet['rows'][ordinal];core.need(type(v['ordinal'])is int and type(v['horizon'])is int and(v['ordinal'],v['horizon'])==(ordinal,h)and type(v['target'])in(int,float)and v['target']==row['mw']and type(v['group'])is int and v['group']==row['group'],'stronger_roles')
++   for k in('target','mean','median','nll','crps','pit'):core.need(type(v[k])in(int,float)and math.isfinite(v[k]),'stronger_numeric')
++   core.need(v['crps']>=0 and 0<=v['pit']<=1,'stronger_proper')
++   for level in(50,80,95):core.need(type(v['coverage_'+str(level)])is bool,'stronger_coverage')
++   if pair[1]in('H','T'):
++    pkt.keys(v['quantiles'],[str(q)for q in core.Q]);core.need(all(type(x)in(int,float)and math.isfinite(x)for x in v['quantiles'].values()),'stronger_quantiles')
++   records.append(dict(v,family='ENZ'if row['precontext'][14]==1 else'12Z',receiver=row['precontext'][8:11].tolist(),rate=row['noise']['rate']))
++  out.append(dict(seed=pair[0],arm=pair[1],records=records,metrics={str(h):metrics.panel([r for r in records if r['horizon']==h])for h in(1,3,5)}))
++ core.need(tx.sha(stronger)==authority['stronger_closure_sha256'],'stronger_byte_binding');return out
++
++def aggregate(fit_audits,score_results,packet,admission,stronger,authority,*,processing_begin,retain=None):
++ retention_failed=False
++ try:
++  stage_tick(processing_begin);pkt.keys(authority,('schema','verified','native_verified','stronger_verified','packet_sha256','admission_sha256','source_pins','stronger_closure_sha256','fits'));core.need(authority['schema']=='root-marked-sixfit-aggregate-authority-v1'and authority['verified']is True and authority['native_verified']is True and authority['stronger_verified']is True,'aggregate_authority');sources(authority['source_pins'])
++  for k in('packet_sha256','admission_sha256','stronger_closure_sha256'):hashstr(authority[k])
++  core.need(type(fit_audits)is list and type(score_results)is list and len(fit_audits)==len(score_results)==6 and type(authority['fits'])is list and len(authority['fits'])==6,'six_complete');schema=admission_checked(admission,packet,authority);core.need(tx.sha(admission)==authority['admission_sha256']and admission['source_pins']==authority['source_pins'],'aggregate_admission');fits=[]
++  for audit,result,pair,pin in zip(fit_audits,score_results,IDS,authority['fits']):
++   stage_tick(processing_begin);pkt.keys(pin,('seed','arm','audit_sha256','authority_sha256','score_sha256','checkpoint_sha256'));core.need(type(pin['seed'])is int and(pin['seed'],pin['arm'])==pair,'aggregate_fit_identity')
++   for k in('audit_sha256','authority_sha256','score_sha256','checkpoint_sha256'):hashstr(pin[k])
++   core.need(audit['schema']=='marked-sixfit-independent-audit-v1'and audit['status']=='pass'and audit['checked']==66 and(audit['seed'],audit['arm'])==pair and tx.sha(audit)==pin['audit_sha256']and audit['authority_sha256']==pin['authority_sha256']and audit['score_sha256']==pin['score_sha256']==tx.sha(result)and result['checkpoint_sha256']==pin['checkpoint_sha256'],'aggregate_audit_custody');core.need(result['status']=='complete'and result['no_optimizer']is True and(result['seed'],result['arm'])==pair and result['source_pins']==authority['source_pins']and result['packet_sha256']==authority['packet_sha256']and result['admission_sha256']==authority['admission_sha256'],'aggregate_score_binding');records=audit['records'];core.need(type(records)is list and len(records)==66,'aggregate_records')
++   for v,(ordinal,h)in zip(records,((i,h)for i in schema['dev']for h in(1,3,5))):
++    row=packet['rows'][ordinal];core.need(type(v['ordinal'])is int and type(v['horizon'])is int and(v['ordinal'],v['horizon'])==(ordinal,h)and(v['seed'],v['arm'])==pair and v['target']==row['mw']and v['group']==row['group'],'aggregate_record_identity')
++    for k in('mean','median','nll','crps','pit'):core.need(type(v[k])in(int,float)and math.isfinite(v[k]),'aggregate_numeric')
++   fits.append(dict(seed=pair[0],arm=pair[1],records=records,metrics={str(h):metrics.panel([r for r in records if r['horizon']==h])for h in(1,3,5)},strata=metrics.strata(records)))
++  old=stronger_checked(stronger,packet,schema,authority);advance=metrics.guards(fits,old);intervals=[]
++  for fit in fits:
++   if fit['arm']!='S':continue
++   for comparator in [v for v in old+fits if v['seed']==fit['seed']and v['arm']in('B','F','H','T','P','D')]:
++    for h in(1,3,5):intervals.append(dict(seed=fit['seed'],horizon=h,comparator=comparator['arm'],metrics=metrics.paired([v for v in fit['records']if v['horizon']==h],[v for v in comparator['records']if v['horizon']==h],lambda:stage_tick(processing_begin))))
++  report=dict(schema='marked-sixfit-independent-aggregate-v1',status='pass',checked=396,fits=fits,stronger=old,paired=intervals,advance=advance,authority_sha256=tx.sha(authority))
++  if retain is not None:
++   try:retain(report)
++   except Exception:retention_failed=True;raise core.AuditFailure('retention_failed')
++  stage_tick(processing_begin);return report
++ except Exception as error:
++  failure=dict(schema='marked-sixfit-independent-aggregate-v1',status='fail',reason=str(error)[:128],exception_type=type(error).__name__,advance=dict(pass_all=False,checks=[],additional=[]))
++  if retain is not None and not retention_failed:
++   try:retain(failure)
++   except Exception:failure['retention_failed']=True
++  return failure
++
++
++def affine_bounds(marks,coeff,mref):
++ result=[]
++ for j,y in enumerate(marks):
++  t=math.log1p(.25*j);prev=np.zeros(3)if j==0 else marks[j-1];beta=coeff[:,1]+coeff[:,3]*t;eb=32*core.EPS*(1+np.abs(coeff[:,1])+np.abs(coeff[:,3]*t));a=coeff[:,0]+coeff[:,2]*t+coeff[:,4]*prev-beta*mref;ea=abs(mref)*eb+32*core.EPS*(1+np.abs(coeff[:,0])+np.abs(coeff[:,2]*t)+np.abs(coeff[:,4]*prev)+np.abs(beta*mref));sigma=.05+core.softplus(coeff[:,5]);es=32*core.EPS*(1+np.abs(sigma));ey=np.zeros(3)
++  for v,e in((a,ea),(beta,eb),(sigma,es),(y,ey)):core.bound_ok(v,e)
++  result.append([ea,eb,es,ey])
++ return result
+diff --git a/fixtures.py b/fixtures.py
+new file mode 100644
+index 0000000..ee57f92
+--- /dev/null
++++ b/fixtures.py
+@@ -0,0 +1,72 @@
++"""Invented public fixtures only; no real earthquake record or result."""
++import math,time
++import numpy as np
++import packet,transport as tx,math_core as core,auditor,metrics
++
++def packet_fixture():
++ rows=[]
++ for i in range(115):
++  part='TRAIN'if i<91 else'DEV';common=i<65 or 91<=i<113;row=dict(ordinal=i,partition=part,mw=4.8+.1*(i%12),group=i,common=common,status='available'if common else'unavailable',precontext=None,noise=None,horizons=[dict(seconds=h,status='unavailable')for h in(1,3,5)])
++  if common:
++   n=dict(centers=np.zeros(3),powers=np.full((3,12),2.),nhat=np.full(3,2.),floors=np.zeros(3,dtype=np.uint8),nu=np.zeros((12,3)),weights=np.full(12,1/12),rate=[100,1],arrival_offset_ns=0);ctx=np.zeros(34);ctx[:3]=math.log10(2.);ctx[7]=2.;ctx[8]=i/10.;ctx[14]=1.;ctx[[22,26,30]]=1.;hs=[]
++   for h in(1,3,5):
++    J=4*h;R=np.asarray([[2.+.1*j+.01*i,3.+.1*j,4.+.2*j]for j in range(J)]);reported=np.asarray([[math.log(float(v))for v in line]for line in R]);maxima=R.max(1);b=np.asarray(maxima>9,dtype=np.uint8);age=[];last=None;count=0
++    for v in b:count=count+1 if int(v)==last else 1;last=int(v);age.append(count)
++    hs.append(dict(seconds=h,status='available',ratios=R,reported=reported,censor=np.zeros((J,3),dtype=np.uint8),max_ratios=maxima,states=b,run_ages=np.asarray(age,dtype=np.uint8)))
++   row.update(precontext=ctx,noise=n,horizons=hs)
++  rows.append(row)
++ return dict(schema='earthquake-TRAIN115-marked-noise-observations-v1',study='earthquake-TRAIN115-marked-noise-study-v1',rows=rows,denominators=dict(events=115,horizon_cells=345,train=91,dev=24,common_train=65,common_dev=22,test_excluded=31),input_pins={k:dict(bytes=1,sha256='a'*64)for k in('old_plan','old_qualified','new_plan','new_qualified','metadata','roster','activity_anchor')},observed_samples=dict(old=100,new=100),fit_authorized=False)
++
++def state(K,q,arm):
++ p={'prior.second.weight':np.zeros((16,16)),'prior.second.bias':np.zeros(16),'prior.head.weight':np.zeros((14,16)),'prior.head.bias':np.r_[np.zeros(4),np.linspace(4.8,5.2,5),np.full(5,-.5)]}
++ if K:p.update({'prior.first.weight':np.zeros((16,K)),'prior.first.bias':np.zeros(16)})
++ else:p['prior.first_bias']=np.zeros(16)
++ if arm in('S','P'):p['coefficients']=np.c_[np.ones(3),np.full(3,.1),np.zeros((3,3)),np.zeros(3)]
++ else:p.update(theta=np.zeros(q),tau=np.asarray(0.))
++ return p
++
++def probe(parameters):
++ n=sum(a.size for a in parameters.values());return dict(events=65,horizons=3,terms=195,used=n,total=n,masks={k:np.ones(v.shape,dtype=np.uint8)for k,v in parameters.items()},maximum_event_gradient_norm={k:1. for k in parameters})
++
++def source_pins():return {k:dict(bytes=1,sha256='a'*64)for k in auditor.SOURCES}
++
++def admission_fixture(packet):
++ roles=packet_module_validate(packet);s=packet_module_schema(packet,roles);K=len(s['static']['kept']);q=len(s['summary']['active']);models={};runtime=dict(torch='invented',numpy=np.__version__,threads=1,dtype='float64',device='cpu')
++ for seed,arm in auditor.IDS:
++  p=state(K,q,arm);prior=tx.sha({k[6:]:v for k,v in p.items()if k.startswith('prior.')});initial=dict(status='initial',study=auditor.STUDY,seed=seed,arm=arm,update=0,parameters=p,schema_sha256=tx.sha(s),packet_sha256=tx.sha(packet),source_pins=source_pins(),prior_sha256=prior);rng=np.random.default_rng(seed+1009);models[str(seed)+':'+arm]=dict(initial=p,initial_receipt=dict(status='durable',sha256=tx.sha(initial)),prior_sha256=prior,probe=probe(p),order=np.asarray([rng.choice(roles['TRAIN'],8,replace=False)for _ in range(300)],dtype=np.int64))
++ return dict(status='admitted',study=auditor.STUDY,packet_sha256=tx.sha(packet),source_pins=source_pins(),schema=s,capacity={'S':16*K+544,'P':16*K+544,'D':16*K+527+q},models=models,runtime=runtime,order=[[s,a]for s,a in auditor.IDS],denominators=packet['denominators'],slots=[dict(ordinal=r['ordinal'],partition=r['partition'],common=r['common'],status=r['status'],horizons=[dict(seconds=h['seconds'],status=h['status'])for h in r['horizons']])for r in packet['rows']])
++packet_module_validate=packet.validate
++packet_module_schema=packet.schema
++
++def checkpoint_fixture(admission,seed=20261012,arm='P'):
++ m=admission['models'][str(seed)+':'+arm];p=m['initial'];prior=['prior.first.weight','prior.first.bias']if 'prior.first.weight'in p else['prior.first_bias'];prior+=['prior.second.weight','prior.second.bias','prior.head.weight','prior.head.bias'];order=(['coefficients']if arm in('S','P')else['theta','tau'])+prior
++ optimizer={str(i):dict(step=np.asarray(300.,dtype=np.float32),exp_avg=np.zeros(p[k].shape),exp_avg_sq=np.zeros(p[k].shape))for i,k in enumerate(order)}
++ return dict(status='final',study=auditor.STUDY,seed=seed,arm=arm,update=300,history=[dict(update=i+1,loss=1.,gradient_norm=1.,ordinals=rows.tolist())for i,rows in enumerate(m['order'])],admission_sha256=tx.sha(admission),packet_sha256=admission['packet_sha256'],source_pins=admission['source_pins'],prior_sha256=m['prior_sha256'],initial_sha256=tx.sha(p),order_sha256=tx.sha(m['order']),runtime=admission['runtime'],parameters=p,optimizer=optimizer,current=dict(update=300,ordinal=int(m['order'][-1,-1]),horizon=5,loss=1.),final_probe=probe(p))
++
++def authority_fixture(packet,admission,cp,score):
++ return dict(schema='root-marked-sixfit-independent-authority-v1',verified=True,native_verified=True,optimizer_history_verified=True,gradient_probes_verified=True,stronger_verified=True,packet_sha256=tx.sha(packet),admission_sha256=tx.sha(admission),checkpoint_sha256=tx.sha(cp),score_sha256=tx.sha(score),source_pins=admission['source_pins'],stronger_closure_sha256='b'*64)
++
++def score_fixture(packet,admission,cp):
++ s=admission['schema'];rows=[]
++ for i in s['dev']:
++  for h in(1,3,5):
++   row=packet['rows'][i];budget=core.Budget();mix,reference,_=auditor.reconstruct(row,h,s,cp['parameters'],cp['arm'],budget);fresh=mix.scores(row['mw'],crosscheck=False);source=dict(reference=reference,log_weights=mix.logw,means=mix.mu,scales=mix.sd,log_normalizer=float(mix.logz),noise_probabilities=mix.noise);diagnostic=dict(errors=dict(mean=0.,nll=0.,log_normalizer=0.,crps=0.,pit=0.),work=dict(density_points=budget.points,scalar_terms=budget.terms,seconds=0.),allpositive_only=True,reference_reserved_points=240,reference_actual_points=0);rows.append(dict(seed=cp['seed'],arm=cp['arm'],ordinal=i,horizon=h,target=row['mw'],group=row['group'],status='complete',diagnostics=diagnostic,source=source,**fresh))
++ return dict(status='complete',study=auditor.STUDY,predictions=rows,seed=cp['seed'],arm=cp['arm'],admission_sha256=tx.sha(admission),packet_sha256=tx.sha(packet),checkpoint_sha256=tx.sha(cp),source_pins=admission['source_pins'],no_optimizer=True,metrics={str(h):metrics.panel([v for v in rows if v['horizon']==h])for h in(1,3,5)})
++
++def aggregate_fixture():
++ p=packet_fixture();ad=admission_fixture(p);audits=[];scores=[];pins=[]
++ for seed,arm in auditor.IDS:
++  cp=checkpoint_fixture(ad,seed,arm);score=score_fixture(p,ad,cp);auth=authority_fixture(p,ad,cp,score);records=[]
++  for v in score['predictions']:
++   row=p['rows'][v['ordinal']];fresh={k:v[k]for k in('mean','median','nll','crps','pit','quantiles','coverage_50','coverage_80','coverage_95')};records.append(dict(seed=seed,arm=arm,ordinal=v['ordinal'],horizon=v['horizon'],target=v['target'],group=v['group'],family='ENZ',receiver=row['precontext'][8:11].tolist(),rate=row['noise']['rate'],**fresh))
++  report=dict(schema='marked-sixfit-independent-audit-v1',status='pass',seed=seed,arm=arm,records=records,metrics={},strata={},checked=66,authority_sha256=tx.sha(auth),score_sha256=tx.sha(score),advance=dict(pass_all=False,checks=[]));audits.append(report);scores.append(score);pins.append(dict(seed=seed,arm=arm,audit_sha256=tx.sha(report),authority_sha256=tx.sha(auth),score_sha256=tx.sha(score),checkpoint_sha256=tx.sha(cp)))
++ stronger=[]
++ for seed in(20261012,20261013):
++  original=next(v for v in scores if v['seed']==seed and v['arm']=='P')
++  for arm in('B','F','H','T'):
++   records=[]
++   for v in original['predictions']:
++    keys=['ordinal','horizon','target','group','mean','median','nll','crps','pit','coverage_50','coverage_80','coverage_95']+(['quantiles']if arm in('H','T')else[]);records.append({k:v[k]for k in keys})
++   closure=dict(verified=True,no_optimizer=True,checkpoint_sha256='a'*64,source_sha256='b'*64,packet_sha256='c'*64,independent_audit_sha256='d'*64);stronger.append(dict(seed=seed,arm=arm,predictions=records,closure=closure))
++ authority=dict(schema='root-marked-sixfit-aggregate-authority-v1',verified=True,native_verified=True,stronger_verified=True,packet_sha256=tx.sha(p),admission_sha256=tx.sha(ad),source_pins=ad['source_pins'],stronger_closure_sha256=tx.sha(stronger),fits=pins)
++ return p,ad,audits,scores,stronger,authority
+diff --git a/math_core.py b/math_core.py
+new file mode 100644
+index 0000000..8002157
+--- /dev/null
++++ b/math_core.py
+@@ -0,0 +1,125 @@
++"""Independent Gaussian completion and all-real mixture scoring; no producer imports."""
++import math
++import time
++import warnings
++import numpy as np
++from scipy.special import logsumexp,ndtr,expit
++from scipy.integrate import quad,IntegrationWarning
++from scipy.optimize import brentq
++
++EPS=np.finfo(np.float64).eps
++Q=(.025,.1,.25,.5,.75,.9,.975)
++
++class AuditFailure(ValueError):pass
++
++def need(v,reason):
++ if not v:raise AuditFailure(reason)
++
++def array(v,shape=None):
++ need(type(v)is np.ndarray and v.dtype==np.float64 and v.flags.c_contiguous and np.isfinite(v).all(),'float64_array')
++ if shape is not None:need(v.shape==shape,'array_shape')
++ return v
++
++class Budget:
++ def __init__(self,begin=None):self.begin=time.monotonic()if begin is None else begin;self.points=0;self.terms=0;self.tick()
++ def tick(self):
++  now=time.monotonic();need(type(self.begin)in(int,float)and math.isfinite(self.begin)and 0<=self.begin<=now and now-self.begin<=10,'record_deadline')
++ def charge(self,points,terms):
++  need(type(points)is int and type(terms)is int and points>=0 and terms>=0,'work');need(self.points+points<=1_000_000,'record_work_cap');self.points+=points;self.terms+=terms;self.tick()
++
++def softplus(x,error=None):
++ x=np.asarray(x,dtype=np.float64);error=np.zeros_like(x)if error is None else np.asarray(error,dtype=np.float64);need(np.isfinite(x).all()and np.isfinite(error).all()and(error>=0).all(),'softplus_input');need(not np.any((x-error<=20)&(x+error>20)),'softplus_branch_ambiguous');out=np.empty_like(x);linear=x>20;out[linear]=x[linear];other=x[~linear];out[~linear]=np.maximum(other,0)+np.log1p(np.exp(-np.abs(other)));return out
++
++def bound_ok(value,error):
++ need(np.isfinite(value).all()and np.isfinite(error).all()and(error>=0).all()and np.all(error<=1e-10*(1+np.abs(value))),'forward_bound_unresolved')
++
++def compare(value,expected,error):
++ a=np.asarray(value);b=np.asarray(expected);need(a.dtype==np.float64 and b.dtype==np.float64 and a.shape==b.shape and np.isfinite(a).all()and np.isfinite(b).all(),'forward_dtype');bound_ok(b,error);need(np.all(np.abs(a-b)<=error),'checkpoint_forward_disagreement')
++
++def linear(x,e,w,b):
++ n=x.size;gamma=(n+2)*EPS/(1-(n+2)*EPS);y=w@x+b;bound=np.abs(w)@e+2*gamma*(np.abs(w)@np.abs(x)+np.abs(b));bound_ok(y,bound);return y,bound
++
++def silu(x,e):
++ y=x*expit(x);bound=1.1*e+16*EPS*(1+np.abs(y));bound_ok(y,bound);return y,bound
++
++def prior_forward(context,parameters,K,context_error=None):
++ array(context,(K,));e=np.zeros(K)if context_error is None else array(context_error,(K,));bound_ok(context,e)
++ if K:
++  w=array(parameters['prior.first.weight'],(16,K));b=array(parameters['prior.first.bias'],(16,));x,e=linear(context,e,w,b)
++ else:x=array(parameters['prior.first_bias'],(16,)).copy();e=np.zeros(16)
++ x,e=silu(x,e);x,e=linear(x,e,array(parameters['prior.second.weight'],(16,16)),array(parameters['prior.second.bias'],(16,)));x,e=silu(x,e);out,e=linear(x,e,array(parameters['prior.head.weight'],(14,16)),array(parameters['prior.head.bias'],(14,)));logits=np.r_[out[:4],0.];el=np.r_[e[:4],0.];logz=float(logsumexp(logits));logw=logits-logz;ew=el+np.max(el)+16*EPS*(1+np.abs(logw));means=out[4:9];em=e[4:9];scales=.05+softplus(out[9:14],e[9:14]);es=e[9:14]+16*EPS*(1+np.abs(scales))
++ for value,error in((logw,ew),(means,em),(scales,es)):bound_ok(value,error)
++ return (logw,means,scales),(ew,em,es)
++
++def summaries(marks,nu):
++ array(marks);array(nu,(12,3));need(marks.ndim==2 and marks.shape[1]==3 and 1<=len(marks)<=20 and(marks>-12).all(),'positive_marks');J=len(marks);u=.25*np.arange(J,dtype=np.float64);center=float(u.mean());den=math.fsum(float((v-center)**2)for v in u);result=[]
++ for c in range(3):
++  y=marks[:,c];slope=0. if J==1 else math.fsum(float((t-center)*(v-float(y.mean())))for t,v in zip(u,y))/den;result.extend([float(y[-1]),float(y.mean()),float(y.max()),slope,0.])
++ result.extend([math.log1p(.25*J),float(J)]);result.extend(math.sqrt(math.fsum(float(v*v)for v in nu[:,c])/12)for c in range(3));return np.asarray(result,dtype=np.float64)
++
++def factors(marks,coeff,mref):
++ array(marks);array(coeff,(3,6));need(type(mref)in(int,float)and math.isfinite(mref),'mref');facts=[];sigma=.05+softplus(coeff[:,5])
++ for j,y in enumerate(marks):
++  t=math.log1p(.25*j);beta=coeff[:,1]+coeff[:,3]*t;prev=np.zeros(3)if j==0 else marks[j-1];a=coeff[:,0]+coeff[:,2]*t+coeff[:,4]*prev-beta*mref;need(np.isfinite(a).all()and np.isfinite(beta).all()and np.max(np.abs(a))<=1e6 and np.max(np.abs(beta))<=1e6,'affine_domain');facts.append([a.copy(),beta.copy(),sigma.copy(),y.copy()])
++ return facts
++
++class Mixture:
++ def __init__(self,logw,means,scales,logz=0.,budget=None):
++  self.budget=Budget()if budget is None else budget;self.logw=np.asarray(logw,dtype=np.float64);self.mu=np.asarray(means,dtype=np.float64);self.sd=np.asarray(scales,dtype=np.float64);n=len(self.mu);need(n in(5,60)and self.logw.shape==self.mu.shape==self.sd.shape and np.isfinite(self.logw).all()and np.isfinite(self.mu).all()and np.isfinite(self.sd).all()and(self.sd>0).all(),'mixture');need(abs(float(logsumexp(self.logw)))<=1e-12 and type(logz)in(int,float)and math.isfinite(logz),'normalization');self.pi=np.exp(self.logw);self.logz=float(logz);self.noise=None
++ def cdf(self,x,survival=False):
++  self.budget.charge(1,len(self.mu));z=(x-self.mu)/self.sd;return float(np.dot(self.pi,ndtr(-z if survival else z)))
++ def nll(self,y):
++  self.budget.charge(1,len(self.mu));z=(y-self.mu)/self.sd;return -float(logsumexp(self.logw-.5*z*z-np.log(self.sd)-.5*math.log(2*math.pi)))
++ def mean(self):self.budget.charge(0,len(self.mu));return float(math.fsum(float(w*m)for w,m in zip(self.pi,self.mu)))
++ def quantile(self,q):
++  need(type(q)is float and 0<q<1,'quantile');width=max(1.,float(self.sd.max()));lo=float(self.mu.min())-8*width;hi=float(self.mu.max())+8*width
++  while self.cdf(lo)>q:width*=2;lo-=width;need(math.isfinite(lo),'quantile_bracket')
++  while self.cdf(hi)<q:width*=2;hi+=width;need(math.isfinite(hi),'quantile_bracket')
++  root=float(brentq(lambda x:self.cdf(x)-q,lo,hi,xtol=1e-12,rtol=8*EPS,maxiter=200));need(abs(self.cdf(root)-q)<=1e-6,'quantile_probability');return root
++ def crps(self,y):
++  def moment(d,s):
++   z=d/s;return s*math.sqrt(2/math.pi)*np.exp(-.5*z*z)+d*(2*ndtr(z)-1)
++  self.budget.charge(0,len(self.mu)**2+len(self.mu));first=math.fsum(float(w*v)for w,v in zip(self.pi,moment(y-self.mu,self.sd)));d=self.mu[:,None]-self.mu[None,:];s=np.sqrt(self.sd[:,None]**2+self.sd[None,:]**2);second=math.fsum(float(v)for v in(self.pi[:,None]*self.pi[None,:]*moment(d,s)).ravel());value=first-.5*second;need(math.isfinite(value)and value>=-1e-10,'crps');return value
++ def integral_crps(self,y):
++  # Every component, including distant low-mass modes, supplies finite split points.
++  knots=sorted({float(y)}|{float(m+t*s)for m,s in zip(self.mu,self.sd)for t in(-8.,-2.,0.,2.,8.)});bounds=[-math.inf]+knots+[math.inf];total=[]
++  for lo,hi in zip(bounds,bounds[1:]):
++   if lo==hi:continue
++   survival=lo>=y
++   def f(x):v=self.cdf(x,survival);return v*v
++   with warnings.catch_warnings():
++    warnings.simplefilter('error',IntegrationWarning);value,error=quad(f,lo,hi,epsabs=1e-9/max(1,len(bounds)),epsrel=1e-9,limit=150)
++   need(math.isfinite(value)and math.isfinite(error)and error<=1e-7*(1+abs(value)),'cdf_integral');total.append(value);self.budget.tick()
++  return math.fsum(total)
++ def scores(self,y,crosscheck=True):
++  need(type(y)in(int,float)and math.isfinite(y),'target');value=dict(mean=self.mean(),median=self.quantile(.5),nll=self.nll(y),crps=self.crps(y),pit=self.cdf(y));q={str(p):self.quantile(p)for p in Q};value['quantiles']=q
++  for level in(50,80,95):tail={50:.25,80:.1,95:.025}[level];lo=q[str(tail)];hi=q[str({50:.75,80:.9,95:.975}[level])];value['coverage_'+str(level)]=bool(lo<=y<=hi)
++  if crosscheck:need(abs(value['crps']-self.integral_crps(y))<=1e-6,'independent_crps_disagreement')
++  self.budget.tick();return value
++
++def complete(prior,facts,nu,arm,budget):
++ logw,mu,sd=(array(v,(5,))for v in prior);array(nu,(12,3));need(abs(float(logsumexp(logw)))<=1e-12 and(sd>=.05).all()and arm in('S','P'),'prior');need(len(facts)<=20,'factor_count');support=nu if arm=='S'else np.zeros((1,3));outw=[];outmu=[];outsd=[];weights=[]
++ for ell,noise in enumerate(support):
++  for k in range(5):
++   budget.charge(0,6*len(facts)+1);v=[];b=[];s=[]
++   for f in facts:
++    need(type(f)is list and len(f)==4,'factor');a,bb,ss,y=(array(x,(3,))for x in f);need((ss>=.05).all()and(y>-12).all(),'positive_factor');v.extend(float(yy-aa-nn-bb1*mu[k])for yy,aa,nn,bb1 in zip(y,a,noise,bb));b.extend(float(x)for x in bb);s.extend(float(x)for x in ss)
++   precision=math.fsum((bb/ss)**2 for bb,ss in zip(b,s));A=1+sd[k]**2*precision;delta=sd[k]**2*math.fsum(bb*vv/(ss*ss)for bb,vv,ss in zip(b,v,s))/A;mean=float(mu[k]+delta);sigma=float(sd[k]/math.sqrt(A));residual=math.fsum(((vv-bb*delta)/ss)**2 for vv,bb,ss in zip(v,b,s));mass=float(logw[k]-math.log(len(support))-.5*(residual+(delta/sd[k])**2)-math.fsum(math.log(ss)for ss in s)-len(s)*.5*math.log(2*math.pi)-.5*math.log(A));need(all(math.isfinite(x)for x in(mean,sigma,mass))and math.ulp(mass)<=1e-10 and math.ulp(mean)<=1e-10*sigma,'completion_representation');outw.append(mass);outmu.append(mean);outsd.append(sigma)
++ logz=float(logsumexp(outw));need(math.ulp(logz)<=1e-10,'evidence_representation');mix=Mixture(np.asarray(outw)-logz,np.asarray(outmu),np.asarray(outsd),logz,budget)
++ if arm=='S':mix.noise=np.exp(mix.logw).reshape(12,5).sum(1)
++ return mix
++
++
++def summary_error(marks,nu):
++ # Operational float64/libm bounds, not a formal transcendental certificate.
++ J=len(marks);g=(J+4)*EPS/(1-(J+4)*EPS);u=.25*np.arange(J);uc=float(u.mean());den=math.fsum(float((t-uc)**2)for t in u);error=[]
++ for column in marks.T:
++  mean=float(column.mean());em=2*g*float(np.mean(np.abs(column)))+16*EPS*(1+abs(mean));products=[float((t-uc)*(v-mean))for t,v in zip(u,column)];slope_error=0. if J==1 else (math.fsum(abs(float(t-uc))*(em+2*EPS*(abs(float(v))+abs(mean)))for t,v in zip(u,column))+2*g*math.fsum(abs(v)for v in products))/den+2*EPS*abs(math.fsum(products)/den)
++  error.extend([0.,em,0.,slope_error,0.])
++ error.extend([16*EPS*(1+abs(math.log1p(.25*J))),0.]);error.extend(64*EPS*(1+float(np.max(np.abs(nu[:,i]))))for i in range(3));return np.asarray(error,dtype=np.float64)
++
++def standardize_bound(raw,error,mean,std):
++ value=np.divide(raw-mean,std,out=np.zeros_like(raw),where=std>0);bound=np.divide(error+8*EPS*(np.abs(raw)+np.abs(mean)),std,out=np.zeros_like(raw),where=std>0)+8*EPS*np.abs(value);bound_ok(value,bound);return value,bound
++
++def direct_shift(raw,error,scaler,theta):
++ z,ez=standardize_bound(raw,error,scaler['mean'],scaler['std']);active=scaler['active'];v=z[active];e=ez[active];n=len(v);g=(n+2)*EPS/(1-(n+2)*EPS);shift=float(np.dot(v,theta));bound=float(np.dot(np.abs(theta),e)+2*g*np.dot(np.abs(v),np.abs(theta)));bound_ok(np.asarray(shift),np.asarray(bound));return shift,bound
+diff --git a/metrics.py b/metrics.py
+new file mode 100644
+index 0000000..e104332
+--- /dev/null
++++ b/metrics.py
+@@ -0,0 +1,44 @@
++"""Independently derived mean-action errors, group bootstrap and fixed36 guards."""
++import math
++import numpy as np
++from math_core import need
++
++H=(1,3,5)
++def panel(p):
++ y=np.asarray([v['target']for v in p],dtype=np.float64);mean=np.asarray([v['mean']for v in p]);err=mean-y;a=np.abs(err);hi=y>=5.5;higher=y>=6;lo=y<5.5
++ def sub(mask,median=False):return float((np.median if median else np.mean)(a[mask]))if mask.any()else None
++ result=dict(n=len(y),nll=float(np.mean([v['nll']for v in p])),crps=float(np.mean([v['crps']for v in p])),mae=float(a.mean()),medae=float(np.median(a)),tail_mae_5_5=sub(hi),tail_mae_6=sub(higher),lower_mae=sub(lo),lower_medae=sub(lo,True),tail_bias=float(err[hi].mean())if hi.any()else None,cvar95=float(np.sort(a)[-max(1,math.ceil(.05*len(a))):].mean()),maximum=float(a.max()),p95=float(np.quantile(a,.95,method='linear')),median_mae=float(np.mean([abs(v['median']-v['target'])for v in p])))
++ for level in(50,80,95):result['coverage_'+str(level)]=float(np.mean([v['coverage_'+str(level)]for v in p]))
++ return result
++
++def paired(a,b,tick=lambda:None):
++ need([(v['ordinal'],v['target'],v['group'])for v in a]==[(v['ordinal'],v['target'],v['group'])for v in b],'paired_roles');pa,pb=panel(a),panel(b);groups=sorted({v['group']for v in a});support={};draws={}
++ for key in pa:
++  if key=='n':continue
++  members={v['group']for v in a if(v['target']>=5.5 if key in('tail_mae_5_5','tail_bias')else v['target']>=6 if key=='tail_mae_6'else v['target']<5.5 if key in('lower_mae','lower_medae')else True)};support[key]=len(members)
++  if len(members)>=3:draws[key]=[]
++ rng=np.random.default_rng(9919)
++ for _ in range(1000):
++  tick();ids=[i for g in rng.choice(groups,len(groups),replace=True)for i,v in enumerate(a)if v['group']==g];x,y=panel([a[i]for i in ids]),panel([b[i]for i in ids])
++  for key in draws:
++   if x[key]is not None and y[key]is not None:draws[key].append(x[key]-y[key])
++ return {key:dict(status='descriptive'if support[key]>=3 and len(draws.get(key,[]))==1000 else'unsupported',groups=support[key],delta=pa[key]-pb[key]if pa[key]is not None and pb[key]is not None else None,interval=[float(v)for v in np.quantile(draws[key],[.025,.975])]if support[key]>=3 and len(draws.get(key,[]))==1000 else None)for key in support}
++
++def strata(p):
++ result={}
++ for h in H:
++  rows=[v for v in p if v['horizon']==h];out={}
++  for name,key in(('families','family'),('receivers','receiver'),('groups','group'),('rates','rate')):
++   values=sorted({tuple(v[key])if type(v[key])is list else v[key]for v in rows});out[name]=[{key:list(x)if type(x)is tuple else x,'metrics':panel([v for v in rows if(tuple(v[key])if type(v[key])is list else v[key])==x])}for x in values]
++  result[str(h)]=out
++ return result
++
++def guards(fits,stronger):
++ checks=[];extra=[]
++ for seed in(20261012,20261013):
++  current={v['arm']:v for v in fits if v['seed']==seed};old={v['arm']:v for v in stronger if v['seed']==seed};need(set(current)=={'S','P','D'}and set(old)=={'B','F','H','T'},'all_comparators')
++  for h in H:
++   s=current['S']['metrics'][str(h)]
++   for arm in('B','F','H','T','P','D'):
++    b=(current if arm in('P','D')else old)[arm]['metrics'][str(h)];tail=s['tail_mae_5_5']is not None and b['tail_mae_5_5']is not None and b['tail_mae_5_5']-s['tail_mae_5_5']>=.02;proper=s['nll']<b['nll']and s['crps']<b['crps']if arm in('B','F','P','D')else True;bulk={k:s[k]is not None and b[k]is not None and s[k]<=b[k]for k in('mae','medae','lower_mae','lower_medae','cvar95','maximum')};item=dict(seed=seed,horizon=h,comparator=arm,tail=tail,proper=proper,bulk_worst=bulk,passed=tail and proper and all(bulk.values()));(extra if arm in('P','D')else checks).append(item)
++ return dict(pass_all=all(v['passed']for v in checks+extra),checks=checks,additional=extra)
+diff --git a/packet.py b/packet.py
+new file mode 100644
+index 0000000..39a64f4
+--- /dev/null
++++ b/packet.py
+@@ -0,0 +1,46 @@
++"""Independent marked packet semantics and TRAIN-only statistical schema."""
++import math
++import statistics
++import numpy as np
++from math_core import array,need,summaries
++
++KEEP=[i for i in range(34)if i not in(15,25,29,33)]
++NAMES=[f'c{c}_{s}'for c in range(3)for s in('latest','mean','max','time_slope','censor_fraction')]+['log_duration','cells','nu_sd_0','nu_sd_1','nu_sd_2']
++
++def keys(v,names):need(type(v)is dict and set(v)==set(names),'keys')
++def integer(v,lo,hi):need(type(v)is int and lo<=v<=hi,'integer')
++def byteeq(a,b):return type(a)is np.ndarray and type(b)is np.ndarray and a.dtype==b.dtype and a.shape==b.shape and a.tobytes()==b.tobytes()
++
++def validate(p):
++ keys(p,('schema','study','rows','denominators','input_pins','observed_samples','fit_authorized'));need(p['schema']=='earthquake-TRAIN115-marked-noise-observations-v1'and p['study']=='earthquake-TRAIN115-marked-noise-study-v1'and p['fit_authorized']is False,'packet_identity');need(p['denominators']==dict(events=115,horizon_cells=345,train=91,dev=24,common_train=65,common_dev=22,test_excluded=31),'denominators');keys(p['input_pins'],('old_plan','old_qualified','new_plan','new_qualified','metadata','roster','activity_anchor'));keys(p['observed_samples'],('old','new'))
++ for name,pin in p['input_pins'].items():
++  keys(pin,('bytes','sha256'));need(type(pin['bytes'])is int and pin['bytes']>0 and type(pin['sha256'])is str and len(pin['sha256'])==64 and all(c in'0123456789abcdef'for c in pin['sha256']),'native_input_pin')
++ integer(p['observed_samples']['old'],0,136_000_000);integer(p['observed_samples']['new'],0,104_000_000);need(sum(p['observed_samples'].values())<=240_000_000,'native_sample_cap');need(type(p['rows'])is list and len(p['rows'])==115,'rows');roles={'TRAIN':[],'DEV':[]};part={'TRAIN':0,'DEV':0};groups={'TRAIN':set(),'DEV':set()}
++ for i,row in enumerate(p['rows']):
++  keys(row,('ordinal','partition','mw','group','common','status','precontext','noise','horizons'));integer(row['ordinal'],i,i);need(row['partition']in roles and type(row['common'])is bool and type(row['mw'])in(int,float)and math.isfinite(row['mw'])and -5<=row['mw']<=15,'row');part[row['partition']]+=1;integer(row['group'],-1,2**63-1);need(type(row['horizons'])is list and len(row['horizons'])==3,'horizons')
++  if not row['common']:need(row['status']=='unavailable'and row['precontext']is None and row['noise']is None and row['horizons']==[dict(seconds=h,status='unavailable')for h in(1,3,5)],'unavailable');continue
++  need(row['status']=='available'and row['group']>=0,'common');roles[row['partition']].append(i);groups[row['partition']].add(row['group']);ctx=array(row['precontext'],(34,));n=row['noise'];keys(n,('centers','powers','nhat','floors','nu','weights','rate','arrival_offset_ns'));array(n['centers'],(3,));powers=array(n['powers'],(3,12));nhat=array(n['nhat'],(3,));nu=array(n['nu'],(12,3));weights=array(n['weights'],(12,));need((powers>=0).all()and(powers<=1e24).all()and byteeq(weights,np.full(12,1/12,dtype=np.float64)),'noise');need(type(n['floors'])is np.ndarray and n['floors'].dtype==np.uint8 and n['floors'].shape==(3,),'floor_flags');integer(n['arrival_offset_ns'],0,750_000_000);rate=n['rate'];need(type(rate)is list and len(rate)==2 and all(type(v)is int and v>0 for v in rate)and math.gcd(*rate)==1,'rate')
++  expectednu=np.empty((12,3));expectedn=[];floor=[]
++  for c in range(3):
++   med=statistics.median(float(x)for x in powers[c]);expectedn.append(max(1.,med));floor.append(int(med<1.));eta=[math.log(max(1.,statistics.median(float(v)for j,v in enumerate(powers[c])if j!=ell)))for ell in range(12)];mean=math.fsum(eta)/12
++   for ell,v in enumerate(eta):expectednu[ell,c]=v-mean
++  need(byteeq(nhat,np.asarray(expectedn,dtype=np.float64))and byteeq(n['floors'],np.asarray(floor,dtype=np.uint8))and byteeq(nu,expectednu),'noise_reduction');need(bool(np.all(np.abs(ctx[:3]-np.asarray([math.log10(float(v))for v in nhat]))<=1e-12))and np.array_equal(ctx[3:6],n['floors'])and abs(float(ctx[7])-math.log10(rate[0]/rate[1]))<=1e-12,'precontext_noise_rate');need(ctx[6]==n['arrival_offset_ns']/1e9 and all(v in(0.,1.)for v in ctx[[11,12,13,14,15,19,20,21]])and ctx[14]+ctx[15]==1. and all(all(v in(0.,1.)for v in ctx[a:a+4])and float(ctx[a:a+4].sum())==1. for a in(22,26,30)),'static_flags_clock');prior=None
++  for h,item in zip((1,3,5),row['horizons']):
++   keys(item,('seconds','status','ratios','reported','censor','max_ratios','states','run_ages'));integer(item['seconds'],h,h);need(item['status']=='available','horizon_status');J=(h*1_000_000_000-n['arrival_offset_ns'])//250_000_000;R=array(item['ratios'],(J,3));y=array(item['reported'],(J,3));need((R>math.exp(-12)).all()and(R<=1e25).all()and(y>-12).all(),'allpositive');logged=np.asarray([[math.log(float(v))for v in line]for line in R],dtype=np.float64);need(byteeq(y,logged),'reported_log');need(type(item['censor'])is np.ndarray and item['censor'].dtype==np.uint8 and item['censor'].shape==(J,3)and not item['censor'].any(),'censor');maximum=array(item['max_ratios'],(J,));need(byteeq(maximum,np.max(R,axis=1)),'maximum');b=np.asarray(maximum>9,dtype=np.uint8);ages=[];count=0;last=None
++   for v in b:count=count+1 if int(v)==last else 1;ages.append(count);last=int(v)
++   need(byteeq(item['states'],b)and byteeq(item['run_ages'],np.asarray(ages,dtype=np.uint8)),'activity')
++   if prior is not None:
++    need(J-len(prior['reported'])==8 and all(byteeq(item[k][:len(prior[k])],prior[k])for k in('ratios','reported','censor','max_ratios','states','run_ages')),'prefix')
++   prior=item
++ need(part=={'TRAIN':91,'DEV':24}and len(roles['TRAIN'])==65 and len(roles['DEV'])==22 and not(groups['TRAIN']&groups['DEV']),'roles');return roles
++
++def schema(p,roles):
++ X=np.asarray([p['rows'][i]['precontext'][KEEP]for i in roles['TRAIN']],dtype=np.float64);mean=X.mean(0);constant=np.all(X==X[0],axis=0);std=X.std(0,ddof=0);std[constant]=0.;Z=np.divide(X-mean,std,out=np.zeros_like(X),where=std>0);basis=[];kept=[];norms=[]
++ for k in range(30):
++  v=Z[:,k].copy();original=float(np.linalg.norm(v))
++  for _ in range(2):
++   for b in basis:v-=b*float(np.dot(b,v))
++  residual=float(np.linalg.norm(v));norms.append(residual)
++  if original>0 and residual>1e-12*original:basis.append(v/residual);kept.append(k)
++ coef=np.linalg.lstsq(Z[:,kept],Z,rcond=None)[0]if kept else np.empty((0,30));err=float(np.max(np.abs(Z[:,kept]@coef-Z)))if kept else float(np.max(np.abs(Z)));need(err<=1e-10,'static_reconstruction');S=np.asarray([summaries(p['rows'][i]['horizons'][h]['reported'],p['rows'][i]['noise']['nu'])for i in roles['TRAIN']for h in range(3)]);sm=S.mean(0);constantS=np.all(S==S[0],axis=0);ss=S.std(0,ddof=0);ss[constantS]=0.;active=[i for i in range(20)if i not in(4,9,14)and not constantS[i]];labels=np.asarray([p['rows'][i]['mw']for i in roles['TRAIN']],dtype=np.float64)
++ return dict(static=dict(reference_keep=KEEP,mean=mean,std=std,constant=np.asarray(constant,dtype=np.uint8),kept=kept,residual_norms=np.asarray(norms),reconstruction=coef,reconstruction_max_abs=err),summary=dict(names=NAMES,mean=sm,std=ss,active=active),mref=float(labels.mean()),train_std=float(labels.std(ddof=0)),train=roles['TRAIN'],dev=roles['DEV'])
+diff --git a/test_audit.py b/test_audit.py
+new file mode 100644
+index 0000000..20436cd
+--- /dev/null
++++ b/test_audit.py
+@@ -0,0 +1,161 @@
++"""Meaningful invented tests. No real inputs, producer imports or training."""
++import copy,json,math,time,unittest
++from unittest.mock import patch
++import numpy as np
++from scipy.integrate import quad
++from scipy.special import logsumexp
++import auditor,math_core as c,packet,transport as tx,metrics,fixtures as f
++
++class MathTests(unittest.TestCase):
++ def prior(self):return(np.full(5,-math.log(5)),np.linspace(-1,1,5),np.full(5,.8))
++ def test_cdf_integral_crps(self):
++  m=c.Mixture(*self.prior());self.assertAlmostEqual(m.crps(.3),m.integral_crps(.3),places=8)
++ def test_distant_small_mode(self):
++  m=c.Mixture(np.log(np.asarray([.998,.0005,.0005,.0005,.0005])),np.asarray([0.,100000.,-100000.,10.,-10.]),np.ones(5));self.assertAlmostEqual(m.crps(1.),m.integral_crps(1.),places=6)
++ def test_zero_magnitude_coefficients(self):
++  prior=self.prior();facts=[[np.zeros(3),np.zeros(3),np.ones(3),np.ones(3)]];m=c.complete(prior,facts,np.zeros((12,3)),'P',c.Budget());np.testing.assert_allclose(m.logw,prior[0],atol=1e-14);np.testing.assert_array_equal(m.mu,prior[1])
++ def test_completion_against_independent_density(self):
++  prior=self.prior();facts=[[np.zeros(3),np.full(3,.7),np.full(3,.6),np.asarray([.2,.4,.9])]];m=c.complete(prior,facts,np.zeros((12,3)),'P',c.Budget())
++  def logjoint(x):return float(logsumexp(prior[0]-.5*((x-prior[1])/prior[2])**2-np.log(prior[2])-.5*math.log(2*math.pi)))-.5*float(np.sum(((facts[0][3]-.7*x)/.6)**2))-3*math.log(.6)-1.5*math.log(2*math.pi)
++  z=quad(lambda x:math.exp(logjoint(x)),-math.inf,math.inf,epsabs=1e-11)[0];mean=quad(lambda x:x*math.exp(logjoint(x)),-math.inf,math.inf,epsabs=1e-11)[0]/z;self.assertAlmostEqual(m.logz,math.log(z),places=9);self.assertAlmostEqual(m.mean(),mean,places=9)
++ def test_shared_noise_is_not_redrawn(self):
++  nu=np.zeros((12,3));nu[:6]=-.9;nu[6:]=.9;fact=[np.zeros(3),np.ones(3),np.full(3,.3),np.ones(3)];shared=c.complete(self.prior(),[fact,fact],nu,'S',c.Budget());first=c.complete(self.prior(),[fact],nu,'S',c.Budget());redrawn=0.
++  for i in range(12):
++   for j in range(12):
++    # Independent nuisance redraw supports 144 pairs, unlike the shared 12.
++    z=quad(lambda x:math.exp(-first.nll(x))*math.exp(-.5*float(np.sum(((fact[3]-x-nu[j])/.3)**2)))/(math.sqrt(2*math.pi)*.3)**3,-8,8,epsabs=1e-7)[0];redrawn+=z/144
++  self.assertGreater(abs(shared.logz-(first.logz+math.log(redrawn))),.01)
++ def test_normalization_noise_weights(self):
++  m=c.complete(self.prior(),[],np.zeros((12,3)),'S',c.Budget());self.assertEqual(len(m.mu),60);np.testing.assert_allclose(m.noise,np.full(12,1/12),atol=1e-15)
++ def test_no_double_prior_or_first_mark(self):
++  prior=self.prior();one=[np.zeros(3),np.ones(3),np.ones(3),np.ones(3)];a=c.complete(prior,[one],np.zeros((12,3)),'P',c.Budget());b=c.complete(prior,[one,one],np.zeros((12,3)),'P',c.Budget());self.assertGreater(abs(a.mean()-b.mean()),.05)
++ def test_quarter_previous_zero(self):
++  coeff=np.zeros((3,6));coeff[:,4]=1.;facts=c.factors(np.full((2,3),2.),coeff,5.);np.testing.assert_array_equal(facts[0][0],np.zeros(3));np.testing.assert_array_equal(facts[1][0],np.full(3,2.))
++ def test_quantiles_probability_all_real(self):
++  m=c.Mixture(*self.prior())
++  for q in c.Q:self.assertAlmostEqual(m.cdf(m.quantile(q)),q,places=10)
++ def test_coverage_builtin_bool(self):
++  x=c.Mixture(*self.prior()).scores(.1);self.assertIs(type(x['coverage_95']),bool)
++ def test_softplus_exact_threshold(self):
++  x=np.asarray([-100.,-1.,0.,20.,20.0001]);out=c.softplus(x);self.assertGreater(out[3],20.);self.assertEqual(out[4],x[4])
++ def test_softplus_ambiguous_interval(self):
++  with self.assertRaises(c.AuditFailure):c.softplus(np.asarray([20.]),np.asarray([1e-14]))
++ def test_large_integer_cannot_be_array(self):
++  with self.assertRaises(c.AuditFailure):c.array(np.asarray([2**60],dtype=np.int64),(1,))
++ def test_budget_deadline(self):
++  with self.assertRaises(c.AuditFailure):c.Budget(time.monotonic()-11)
++ def test_budget_points(self):
++  with self.assertRaises(c.AuditFailure):c.Budget().charge(1_000_001,0)
++ def test_unresolved_nn_bound(self):
++  with self.assertRaises(c.AuditFailure):c.bound_ok(np.ones(1),np.ones(1))
++ def test_nn_torch_float64_operational_bound(self):
++  import torch
++  rng=np.random.default_rng(4)
++  for K in(0,2):
++   p=f.state(K,3,'P')
++   for key in p:
++    if key.startswith('prior.'):p[key]=np.asarray(rng.normal(0,.15,p[key].shape),dtype=np.float64)
++   z=np.asarray(rng.normal(size=K));result,bounds=c.prior_forward(z,p,K)
++   t={k:torch.from_numpy(v.copy())for k,v in p.items()};x=torch.from_numpy(z.copy());x=t['prior.first.weight']@x+t['prior.first.bias']if K else t['prior.first_bias'];x=torch.nn.functional.silu(x);x=torch.nn.functional.silu(t['prior.second.weight']@x+t['prior.second.bias']);out=t['prior.head.weight']@x+t['prior.head.bias'];logits=torch.cat((out[:4],torch.zeros(1,dtype=torch.float64)));actual=(torch.log_softmax(logits,0).numpy(),out[4:9].numpy(),(.05+torch.nn.functional.softplus(out[9:])).numpy())
++   for a,b,e in zip(actual,result,bounds):c.compare(a,b,e)
++ def test_torch_softplus_positive_negative_twenty(self):
++  import torch
++  x=np.asarray([-40.,-1.,0.,19.99999,20.,20.00001,50.]);np.testing.assert_allclose(c.softplus(x),torch.nn.functional.softplus(torch.from_numpy(x)).numpy(),rtol=0,atol=8*np.finfo(float).eps*(1+abs(x)).max())
++
++class CustodyTests(unittest.TestCase):
++ @classmethod
++ def setUpClass(cls):cls.p=f.packet_fixture();cls.ad=f.admission_fixture(cls.p);cls.cp=f.checkpoint_fixture(cls.ad);cls.score=f.score_fixture(cls.p,cls.ad,cls.cp);cls.auth=f.authority_fixture(cls.p,cls.ad,cls.cp,cls.score)
++ def test_packet_all_roles(self):self.assertEqual({k:len(v)for k,v in packet.validate(self.p).items()},{'TRAIN':65,'DEV':22})
++ def test_train_only_schema(self):
++  p=copy.deepcopy(self.p);p['rows'][91]['precontext'][8]+=1000.;p['rows'][91]['mw']+=.5;self.assertTrue(auditor.close(packet.schema(p,packet.validate(p)),self.ad['schema']))
++ def test_false_static_prior(self):
++  p=copy.deepcopy(self.p);p['rows'][0]['precontext'][8]+=1.;self.assertFalse(auditor.close(packet.schema(p,packet.validate(p)),self.ad['schema']))
++ def test_censor_reject_no_deletion(self):
++  p=copy.deepcopy(self.p);p['rows'][0]['horizons'][0]['censor'][0,0]=1
++  with self.assertRaises(c.AuditFailure):packet.validate(p)
++ def test_prefix_tamper(self):
++  p=copy.deepcopy(self.p);p['rows'][91]['horizons'][1]['reported'][0,0]+=.1
++  with self.assertRaises(c.AuditFailure):packet.validate(p)
++ def test_noise_support_tamper(self):
++  p=copy.deepcopy(self.p);p['rows'][0]['noise']['nu'][0,0]=.1
++  with self.assertRaises(c.AuditFailure):packet.validate(p)
++ def test_initial_receipt_bound(self):
++  ad=copy.deepcopy(self.ad);ad['models']['20261012:P']['initial_receipt']['sha256']='c'*64
++  with self.assertRaises(c.AuditFailure):auditor.admission_checked(ad,self.p,self.auth)
++ def test_checkpoint_parameter_substitution(self):
++  cp=copy.deepcopy(self.cp);cp['parameters']['coefficients'][0,0]+=.01
++  with self.assertRaises(c.AuditFailure):auditor.checkpoint_checked(cp,self.ad,self.ad['schema'],(20261012,'P'),self.auth)
++ def test_history_permutation(self):
++  cp=copy.deepcopy(self.cp);cp['history'][0]['ordinals'].reverse()
++  with self.assertRaises(c.AuditFailure):auditor.checkpoint_checked(cp,self.ad,self.ad['schema'],(20261012,'P'),self.auth)
++ def test_optimizer_not_loaded_but_shape_checked(self):
++  cp=copy.deepcopy(self.cp);cp['optimizer']['0']['exp_avg']=np.zeros(1)
++  with self.assertRaises(c.AuditFailure):auditor.optimizer_checked(cp['optimizer'],cp['parameters'])
++ def test_numeric_transport_exact_roundtrip(self):self.assertTrue(auditor.close(tx.decode(json.loads(tx.canonical(self.cp))),self.cp,0))
++ def test_numeric_transport_nan_reject(self):
++  with self.assertRaises(c.AuditFailure):tx.decode(json.loads(tx.canonical(np.asarray([np.nan]))))
++ def test_root_authority_never_default(self):
++  a=copy.deepcopy(self.auth);a['native_verified']=False
++  with self.assertRaises(c.AuditFailure):auditor.authority_checked(a)
++ def test_full66_independent_replay(self):
++  retained=[];r=auditor.audit_fit(self.score,self.p,self.ad,self.cp,self.auth,processing_begin=time.monotonic(),retain=retained.append);self.assertEqual(r['status'],'pass',r.get('failure'));self.assertEqual(r['checked'],66);self.assertEqual(len(retained),66);self.assertFalse(r['advance']['pass_all'])
++ def test_boolean_coverage_not_float(self):
++  score=copy.deepcopy(self.score);score['predictions'][0]['coverage_95']=1.;auth=f.authority_fixture(self.p,self.ad,self.cp,score);retained=[];r=auditor.audit_fit(score,self.p,self.ad,self.cp,auth,processing_begin=time.monotonic(),retain=retained.append);self.assertEqual(r['status'],'fail');self.assertEqual(r['checked'],0);self.assertIn('coverage',r['failure']['reason']);self.assertEqual(len(retained),1)
++ def test_callback_failure_no_retry(self):
++  calls=[]
++  def bad(v):calls.append(v);raise RuntimeError('invented durable write failure')
++  r=auditor.audit_fit(self.score,self.p,self.ad,self.cp,self.auth,processing_begin=time.monotonic(),retain=bad);self.assertEqual(r['status'],'fail');self.assertEqual(len(calls),1)
++ def test_record_retained_before_expired_postcheck(self):
++  calls=[]
++  def retain(v):calls.append(v)
++  with patch.object(c.Budget,'tick',side_effect=[None]*200+[c.AuditFailure('invented late deadline')]):r=auditor.audit_fit(self.score,self.p,self.ad,self.cp,self.auth,processing_begin=time.monotonic(),retain=retain)
++  self.assertEqual(r['status'],'fail');self.assertTrue(calls)
++ def test_partial_aggregate_never_success(self):
++  self.assertEqual(auditor.aggregate([],[],self.p,self.ad,[],{},processing_begin=time.monotonic())['status'],'fail')
++ def test_guard_count_36(self):
++  panel={str(h):dict(mae=.1,medae=.1,lower_mae=.1,lower_medae=.1,cvar95=.1,maximum=.1,tail_mae_5_5=.1,nll=.1,crps=.1)for h in(1,3,5)};oldpanel={str(h):{k:v+.05 for k,v in p.items()}for h,p in panel.items()};fits=[dict(seed=s,arm=a,metrics=panel if a=='S'else oldpanel)for s,a in auditor.IDS];old=[dict(seed=s,arm=a,metrics=oldpanel)for s in(20261012,20261013)for a in('B','F','H','T')];g=metrics.guards(fits,old);self.assertEqual(len(g['checks']),24);self.assertEqual(len(g['additional']),12);self.assertTrue(g['pass_all']);fits[0]['metrics']['1']['mae']=.2;self.assertFalse(metrics.guards(fits,old)['pass_all'])
++ def test_metric_mean_action_worst_tail(self):
++  rows=[dict(ordinal=i,target=t,mean=m,median=m,nll=0.,crps=0.,group=i,coverage_50=True,coverage_80=True,coverage_95=True)for i,(t,m)in enumerate([(6.,5.),(4.,4.1),(5.,5.2)])];p=metrics.panel(rows);self.assertEqual(p['tail_mae_6'],1.);self.assertEqual(p['maximum'],1.);self.assertAlmostEqual(p['mae'],1.3/3)
++
++if __name__=='__main__':unittest.main()
++
++class AggregateTests(unittest.TestCase):
++ @classmethod
++ def setUpClass(cls):cls.p,cls.ad,cls.audits,cls.scores,cls.old,cls.authority=f.aggregate_fixture()
++ def test_complete_396_with_preserved_negative_gate(self):
++  # Bootstrap math separately tested; avoid redundant 36k repetitions in unit fixtures.
++  with patch.object(metrics,'paired',return_value={'invented':'external'}):r=auditor.aggregate(self.audits,self.scores,self.p,self.ad,self.old,self.authority,processing_begin=time.monotonic())
++  self.assertEqual(r['status'],'pass',r);self.assertEqual(r['checked'],396);self.assertEqual(len(r['advance']['checks']),24);self.assertEqual(len(r['advance']['additional']),12);self.assertEqual(len(r['paired']),36);self.assertFalse(r['advance']['pass_all'])
++ def test_swapped_fit_even_root_pin_rebinding_fails(self):
++  audits=copy.deepcopy(self.audits);audits[0],audits[1]=audits[1],audits[0];self.assertEqual(auditor.aggregate(audits,self.scores,self.p,self.ad,self.old,self.authority,processing_begin=time.monotonic())['status'],'fail')
++ def test_missing_old_comparator_fails(self):
++  auth=copy.deepcopy(self.authority);auth['stronger_closure_sha256']=tx.sha(self.old[:-1]);self.assertEqual(auditor.aggregate(self.audits,self.scores,self.p,self.ad,self.old[:-1],auth,processing_begin=time.monotonic())['status'],'fail')
++ def test_old_closure_false_fails(self):
++  old=copy.deepcopy(self.old);old[0]['closure']['verified']=False;auth=copy.deepcopy(self.authority);auth['stronger_closure_sha256']=tx.sha(old);self.assertEqual(auditor.aggregate(self.audits,self.scores,self.p,self.ad,old,auth,processing_begin=time.monotonic())['status'],'fail')
++ def test_original_quantiles_not_fabricated(self):self.assertNotIn('quantiles',self.old[0]['predictions'][0]);self.assertIn('quantiles',self.old[2]['predictions'][0])
++ def test_bootstrap_actual_paired_groups(self):
++  rows=self.audits[0]['records'][::3];b=[dict(v,mean=v['mean']+.1)for v in rows];r=metrics.paired(rows,b);self.assertEqual(r['mae']['groups'],22);self.assertEqual(len(r['mae']['interval']),2);self.assertEqual(r['mae']['status'],'descriptive')
++ def test_aggregate_retention_exception_exact_once(self):
++  called=[]
++  def bad(v):called.append(v);raise OSError('invented')
++  with patch.object(metrics,'paired',return_value={}):r=auditor.aggregate(self.audits,self.scores,self.p,self.ad,self.old,self.authority,processing_begin=time.monotonic(),retain=bad)
++  self.assertEqual(r['status'],'fail');self.assertEqual(len(called),1)
++
++
++class AcceptedReviewTests(unittest.TestCase):
++ def test_admitted_schema_hash_allows_one_ulp_reduction(self):
++  p=f.packet_fixture();ad=f.admission_fixture(p);ad['schema']['summary']['mean'][0]=np.nextafter(ad['schema']['summary']['mean'][0],math.inf)
++  for seed,arm in auditor.IDS:
++   m=ad['models'][str(seed)+':'+arm];initial=dict(status='initial',study=auditor.STUDY,seed=seed,arm=arm,update=0,parameters=m['initial'],schema_sha256=tx.sha(ad['schema']),packet_sha256=tx.sha(p),source_pins=ad['source_pins'],prior_sha256=m['prior_sha256']);m['initial_receipt']['sha256']=tx.sha(initial)
++  self.assertIs(auditor.admission_checked(ad,p,{'packet_sha256':tx.sha(p)}),ad['schema'])
++ def test_group_identity_independent_of_ordinal(self):
++  p=f.packet_fixture()
++  for row in p['rows']:row['group']+=500
++  self.assertEqual(len(packet.validate(p)['TRAIN']),65)
++ def test_cancellation_dot_bound_includes_absolute_terms(self):
++  raw=np.asarray([1.,1.,1e-8]);e=np.full(3,1e-16);sc=dict(mean=np.zeros(3),std=np.ones(3),active=[0,1,2]);theta=np.asarray([1000.,-1000.,1.]);v,b=c.direct_shift(raw,e,sc,theta);self.assertGreater(b,1e-13);self.assertLess(b,1e-10*(1+abs(v)))
++ def test_unresolved_large_cancellation_reject(self):
++  raw=np.ones(2);sc=dict(mean=np.zeros(2),std=np.ones(2),active=[0,1])
++  with self.assertRaises(c.AuditFailure):c.direct_shift(raw,np.zeros(2),sc,np.asarray([1e6,-1e6]))
++ def test_summary_standardization_small_std_reject(self):
++  with self.assertRaises(c.AuditFailure):c.standardize_bound(np.ones(1),np.full(1,1e-10),np.ones(1),np.full(1,1e-10))
+diff --git a/transport.py b/transport.py
+new file mode 100644
+index 0000000..3dacb8a
+--- /dev/null
++++ b/transport.py
+@@ -0,0 +1,36 @@
++"""Bounded canonical numeric snapshots; no pickle, producer imports or IO."""
++import hashlib
++import json
++import math
++import numpy as np
++from math_core import need
++
++ALLOWED={'<f8':np.dtype('<f8'),'<f4':np.dtype('<f4'),'<i8':np.dtype('<i8'),'|u1':np.dtype('|u1')}
++
++def encode(v):
++ if type(v)is np.ndarray:
++  dtype=v.dtype.str;need(dtype in ALLOWED and v.flags.c_contiguous and v.nbytes<=2*1024*1024,'array_transport');return {'__array__':dtype,'shape':list(v.shape),'hex':v.tobytes().hex()}
++ if type(v)is dict:return {k:encode(x)for k,x in v.items()}
++ if type(v)is list:return [encode(x)for x in v]
++ need(v is None or type(v)in(str,bool,int,float),'scalar_transport')
++ if type(v)is float:need(math.isfinite(v),'finite_scalar')
++ return v
++
++def canonical(v):return json.dumps(encode(v),sort_keys=True,separators=(',',':'),allow_nan=False).encode('utf8')
++def sha(v):return hashlib.sha256(canonical(v)).hexdigest()
++
++def decode(value,cap=2*1024*1024):
++ need(type(cap)is int and 0<cap<=16*1024*1024,'transport_cap');used=[0];nodes=[0]
++ def visit(v,depth):
++  nodes[0]+=1;need(nodes[0]<=2_000_000 and depth<=32,'transport_structure')
++  if type(v)is dict:
++   need(all(type(k)is str for k in v),'transport_keys')
++   if '__array__'in v:
++    need(set(v)=={'__array__','shape','hex'}and v['__array__']in ALLOWED and type(v['shape'])is list and len(v['shape'])<=8 and all(type(n)is int and 0<=n<=100_000 for n in v['shape'])and type(v['hex'])is str,'array_schema');dt=ALLOWED[v['__array__']];size=math.prod(v['shape'])*dt.itemsize;need(size<=cap and len(v['hex'])==2*size and used[0]+size<=cap,'array_cap');need(all(c in'0123456789abcdef'for c in v['hex']),'array_hex');used[0]+=size;a=np.frombuffer(bytes.fromhex(v['hex']),dtype=dt).copy().reshape(tuple(v['shape']));need(not np.issubdtype(dt,np.floating)or np.isfinite(a).all(),'finite_array');return a
++   return {k:visit(x,depth+1)for k,x in v.items()}
++  if type(v)is list:return [visit(x,depth+1)for x in v]
++  need(v is None or type(v)in(str,bool,int,float),'transport_scalar')
++  if type(v)is float:need(math.isfinite(v),'finite_scalar')
++  if type(v)is int:need(v.bit_length()<=1024,'integer_cap')
++  return v
++ return visit(value,0)
+2026-10-13T06:58:40.485436Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-10-13T06:58:40.485444Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+ERROR: Selected model is at capacity. Please try a different model.
+ERROR: Selected model is at capacity. Please try a different model.
+

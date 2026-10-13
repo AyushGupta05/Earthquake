@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Bound completion arithmetic before accepting the posterior mean
+math_core.py:110
+The ULP of the final `mean` does not bound the error incurred computing `delta` and then adding it to `mu[k]`. When those terms nearly cancel, a tiny resulting mean has a tiny ULP even though the subtraction lost substantial precision relative to the posterior sigma. For example, an admitted prior centered at 512 with scale 1 and three factors having beta=1e6, sigma=1, and observed value=1 produces a posterior scale around 5.8e-7 and severe cancellation; its evidence ULP still passes this check. The frozen contract requires conditional-mean roundoff <=1e-10 times sigma. Propagate absolute arithmetic errors through precision, delta, and the final addition, and reject unresolved completion rather than using the result's ULP as an error certificate.
+
+[P2] [P2] Enforce the proper-score representation limit on NLL
+math_core.py:73
+`nll()` returns any finite result without enforcing the frozen operator's rejection of proper arithmetic whose float64 ULP exceeds 1e-10. This is reachable through D, which bypasses completion's mass checks: five Gaussian components with means near 1e6 and scales .05 satisfy the documented prior-output domain, but a target near zero gives an NLL around 2e14, whose ULP is about .03. If the saved scalar matches that rounded value, `audit_fit` accepts it despite the required numerical rejection. Check the NLL's representation and arithmetic resolution before retaining it as an accepted proper field; this should remain a precision gate rather than a magnitude-support clamp.
+
+overall: patch is incorrect (0.93)
+The independent replay and retention paths are substantial, but completion can certify cancellation-damaged means using an insufficient ULP check, and proper NLL scoring omits the documented representation limit. Both leave numerical admission requirements unenforced. Assessment used source inspection only; no tests or numerical models were run.

@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "Enforce the generated observation-scale domain",
+      "body": "The coefficient check permits rawsigma=1e6, but softplus's linear branch then produces sigma=1000000.05. The affine-domain check validates only intercept and beta, and completion checks sigma only for its lower bound. Consequently, the auditor can accept factors outside the frozen generated-factor abs<=1e6 domain. Validate the generated sigma alongside the other affine factors before completion.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "math_core.py",
+        "line": 64
+      }
+    },
+    {
+      "title": "Retain reconstruction evidence before reconstruction can fail",
+      "body": "current_record receives the independently reconstructed reference, posterior and bounds only after reconstruct returns successfully. If completion raises completion_representation or a record deadline after the prior and affine factors have already been constructed, the failure callback retains only identity and the stored candidate; the independent prior/factors and raw model inputs are lost. This violates the explicit failure-evidence contract and prevents inspection of the rejected computation. Populate caller-owned evidence with raw inputs and intermediate reconstruction state incrementally, before invoking operations that can reject or expire.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "auditor.py",
+        "line": 98
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The audit omits a generated-scale domain check and loses available independent reconstruction evidence on failures inside reconstruction. Review was limited to the supplied source and public contracts; no tests or numerical model runs were performed.",
+  "overall_confidence": 0.96
+}
