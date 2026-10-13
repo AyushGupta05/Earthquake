@@ -1,0 +1,10 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: 42e9e092c414a9b57ea0c34cd7f09326883d89ba
+bundle: 112001 chars
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.84)
+No actionable defects were identified in the isolated source packet. Failed invariance checks retain returned numerical evidence before stopping, and cleanup query or validation failures preserve bounded observations and durable incomplete returns without asserting cleanup or permitting advancement. Review was limited to the supplied source and invented tests; external modules and actual scientific inputs were not inspected or executed.

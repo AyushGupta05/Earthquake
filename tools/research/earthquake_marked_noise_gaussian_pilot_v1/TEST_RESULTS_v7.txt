@@ -1,0 +1,70 @@
+test_D_mask_constants_capacity_and_gradient (test_operator.Tests) ... ERROR
+test_censor_operator_never_coerces_or_drops (test_operator.Tests) ... ok
+test_checked_nonGaussian_mixture_proper_scores (test_operator.Tests) ... ERROR
+test_clock_count_wrapper_future_h2_and_offsets (test_operator.Tests) ... ok
+test_differentiable_normalization_gradcheck (test_operator.Tests) ... ok
+test_far_separated_narrow_components_proper_reference (test_operator.Tests) ... ERROR
+test_full_invented65TRAIN22DEV_allprefix_gradient_union (test_operator.Tests) ... ERROR
+test_future_prefix_invariance_and_not_posterior_as_prior (test_operator.Tests) ... ok
+test_gaussian_closed_reference (test_operator.Tests) ... ok
+test_huge_evidence_precision_rejection (test_operator.Tests) ... ok
+test_independent_rejection_no_scorer_replacement (test_operator.Tests) ... ok
+test_joint_fact_suffix_no_evidence_duplication_reference (test_operator.Tests) ... ok
+test_no_magnitude_slope_preserves_prior (test_operator.Tests) ... ok
+test_parameter_tensor_caps_dtype_and_budget (test_operator.Tests) ... ok
+test_prior_all_parameters_used_and_no_first_mark_input (test_operator.Tests) ... ok
+test_real_parameterized_S_P_D_counts_and_all_gradients (test_operator.Tests) ... ok
+test_reference_budget_reserved_before_any_call (test_operator.Tests) ... ok
+test_shared_vs_redrawn_joint_noise_different (test_operator.Tests) ... ok
+test_summary_fields_scaling_and_initializer (test_operator.Tests) ... ok
+test_whole_cohort_censor_and_prefix_failure_denied (test_operator.Tests) ... ok
+test_zero_static_dimension_no_torch_warning (test_operator.Tests) ... ok
+
+======================================================================
+ERROR: test_D_mask_constants_capacity_and_gradient (test_operator.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/test_operator.py", line 85, in test_D_mask_constants_capacity_and_gradient
+    self.assertLess(op.checked_scores(p,.7,reference_core)['diagnostics']['errors']['crps'],1e-6)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/gaussian_operator.py", line 219, in checked_scores
+    errors['crps']=abs(score['crps']-proper_reference);errors['pit']=abs(score['pit']-independent_cdf(target))
+TypeError: list indices must be integers or slices, not str
+
+======================================================================
+ERROR: test_checked_nonGaussian_mixture_proper_scores (test_operator.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/test_operator.py", line 29, in test_checked_nonGaussian_mixture_proper_scores
+    p=run();score=op.checked_scores(p,.7,reference_core)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/gaussian_operator.py", line 219, in checked_scores
+    errors['crps']=abs(score['crps']-proper_reference);errors['pit']=abs(score['pit']-independent_cdf(target))
+TypeError: list indices must be integers or slices, not str
+
+======================================================================
+ERROR: test_far_separated_narrow_components_proper_reference (test_operator.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/test_operator.py", line 117, in test_far_separated_narrow_components_proper_reference
+    p=op.marked(prior,marks,c,nu,'S',0.,processing_begin=time.monotonic());score=op.checked_scores(p,0.,reference_core)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/gaussian_operator.py", line 196, in checked_scores
+    budget.check(240);independent=reference.Posterior(state,target,processing_begin=budget.begin)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/reference_core.py", line 232, in __init__
+    logtarget=evidence_precision(float(logsumexp([c.logdensity_unnormalized(target) for c in self.components])),'target_logmass')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/reference_core.py", line 105, in evidence_precision
+    raise NumericalFailure('evidence_precision',{'label':label,'value':value,'maximum_log_ulp':MAX_LOG_ULP})
+reference_core.NumericalFailure: evidence_precision
+
+======================================================================
+ERROR: test_full_invented65TRAIN22DEV_allprefix_gradient_union (test_operator.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/test_operator.py", line 139, in test_full_invented65TRAIN22DEV_allprefix_gradient_union
+    for mark in prefixes:op.checked_scores(op.marked(fixture()[0],mark,fixture()[2],nu,'S',5.,processing_begin=time.monotonic()),.7,reference_core)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_gaussian_pilot_v1/gaussian_operator.py", line 219, in checked_scores
+    errors['crps']=abs(score['crps']-proper_reference);errors['pit']=abs(score['pit']-independent_cdf(target))
+TypeError: list indices must be integers or slices, not str
+
+----------------------------------------------------------------------
+Ran 21 tests in 2.502s
+
+FAILED (errors=4)

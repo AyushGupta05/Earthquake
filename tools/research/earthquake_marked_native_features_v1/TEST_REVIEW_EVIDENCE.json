@@ -1,0 +1,21 @@
+{
+  "scope": "invented fixtures only; no actual rows, inventory, waves, clocks or outcomes",
+  "command": "/Users/ayush/.venvs/ml/bin/python3 -m unittest -v test_marked_native test_packet_io",
+  "cwd": "review_stage",
+  "python": "3.10.20",
+  "tests": 24,
+  "test_wall_seconds": 3.667,
+  "test_exit_code": 0,
+  "helper_exit_code": 0,
+  "test_evidence_tool_session": 53531,
+  "test_evidence_completion_chunk": "0c9b8c",
+  "review_binary": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+  "review_binary_version": "0.162.0-alpha.17.2",
+  "review_command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file REVIEW_CONTEXT.md --output ../review_v1_escalated.txt --json-output ../review_v1_escalated.json --parallel-tests \"/Users/ayush/.venvs/ml/bin/python3 -m unittest -v test_marked_native test_packet_io\"",
+  "review_model_override": false,
+  "review_first_clean": true,
+  "review_findings": 0,
+  "reviewer_test_execution": "Reviewer itself reports source-only review; helper independently ran parallel tests successfully.",
+  "previous_attempt": "Runtime sandbox initialization failure before review; exact same configured reviewer/bundle retried with authorized escalation.",
+  "source_and_stage_bytes_identical": true
+}

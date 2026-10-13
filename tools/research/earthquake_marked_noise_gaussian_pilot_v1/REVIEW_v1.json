@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Check the shared deadline before returning a direct posterior",
+      "body": "`direct()` constructs a Budget but never calls `budget.check()`. Budget construction validates only that the start time is in the past, so a call with `processing_begin=time.monotonic()-11` still returns a posterior, and `.mean()` can return a prediction without any deadline check. This bypasses the declared 10-second failure rule for D, whereas `marked()` rejects the same expired start immediately. Check the budget at entry and before returning the posterior.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "gaussian_operator.py",
+        "line": 182
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The Gaussian completion, shared-noise normalization, and differentiable conditional likelihood appear consistent on inspection. However, the direct operator fails to enforce its shared processing deadline. Review was limited to the supplied source bundle; no tests were executed.",
+  "overall_confidence": 0.9
+}

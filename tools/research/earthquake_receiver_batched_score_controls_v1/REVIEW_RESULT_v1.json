@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "Preserve returned numerical evidence when an invariance guard fails",
+      "body": "If numerical_record returns successfully but initial_invariance or checkpoint_hazard then fails, the exception handler replaces the available fresh score with fresh=None. The raised ValueError has no evidence attribute, so numeric_evidence is also None and the specific guard reason is reduced to \"ValueError\". This loses the returned numerical evidence precisely on an audit failure; the invented hazard-invariance test exercises this path but checks only the outcome count. Retain the returned score/record and guard reason in the failed outcome while keeping the fit incomplete.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "processor.py",
+        "line": 33
+      }
+    },
+    {
+      "title": "Durably capture failures while verifying manager cleanup",
+      "body": "The post-run systemctl query and post_checked validation are outside any failure-capture handler. A query timeout, unavailable user manager, or still-populated cgroup therefore raises before post_properties or parent_return is written. Although manager streams survive, no durable artifact records the cleanup failure or closes the stage as incomplete, and the exclusive claim prevents retry. Capture the query/validation failure without a scientific deadline check, preserve any returned properties, and record incomplete status without asserting verified cleanup.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 78
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The packet contains two concrete gaps in failure durability: invariance failures discard already returned numerical evidence, and manager cleanup-verification failures escape without durable failure closure. Review was limited to the supplied public files; no tests or external inputs were executed or inspected.",
+  "overall_confidence": 0.97
+}

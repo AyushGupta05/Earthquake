@@ -1,0 +1,38 @@
+{
+  "schema": "marked-gaussian-pending-v2",
+  "stage": "/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/eew-marked-gaussian-pilot-review2-zbi4aztx",
+  "reviewed_files": {
+    "gaussian_operator.py": {
+      "bytes": 16692,
+      "sha256": "35078d781f63715d5f0a2addf9be36ba2c126f31dcbaa73b5629f282eb06bfbb"
+    },
+    "reference_core.py": {
+      "bytes": 16550,
+      "sha256": "06d4eedd91ebe15c3f5c3e77a1f63491827c38dbe0ad272dbf67680c43338a87"
+    },
+    "test_operator.py": {
+      "bytes": 13442,
+      "sha256": "a3469749f14ab7f723640a8dca9d4e52d6984e8cae0bb192de9b73837c28f797"
+    },
+    "PROPOSAL.md": {
+      "bytes": 7245,
+      "sha256": "debfddbe9a3eaad836f075c38e061ab7c9499993738bcde1635a7f27518f91e3"
+    },
+    "MODEL_SCHEMA.md": {
+      "bytes": 2630,
+      "sha256": "e4ea50d0649e87d43a9f945c1be7dcbb602346ce7cf8f6b19e638ea98e836468"
+    },
+    "API.md": {
+      "bytes": 6207,
+      "sha256": "78aa45083645f544dcacf83653e1ebf43b78519f85c34d76edb306cd5b9c21db"
+    },
+    "TEST_RECEIPT.json": {
+      "bytes": 651,
+      "sha256": "b4f8bc443be489d729d1a1420a750a51df0df10859c6578a1297196dcb6f275d"
+    }
+  },
+  "actual_inputs_permitted": false,
+  "source_current_mode": 644,
+  "snapshot_mode": 400,
+  "test_command": "python -W error -m unittest discover -s . -p test_operator.py -v"
+}
