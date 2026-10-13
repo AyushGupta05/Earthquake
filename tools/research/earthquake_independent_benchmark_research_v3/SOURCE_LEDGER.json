@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-13",
+  "scope": "Documentation only; no provider queries or data acquisitions",
+  "search_queries": 10,
+  "explicit_opens": 10,
+  "find_calls": 3,
+  "source_byte_hashes": null,
+  "source_byte_hash_reason": "Web tool rendered documents; no remote source byte files saved. URLs are mutable, not immutable release pins.",
+  "sources": [
+    {
+      "id": "geonet_cmt",
+      "url": "https://github.com/GeoNet/data/tree/main/moment-tensor",
+      "verification": "Official README; Mw/ML/method fields and external W-phase/unknown-ID notes. CSV not opened."
+    },
+    {
+      "id": "geonet_fdsn",
+      "url": "https://www.geonet.org.nz/data/access/FDSN",
+      "verification": "Official service documentation; original miniSEED, response levels and archive/near-real-time distinction. No example query followed."
+    },
+    {
+      "id": "geonet_catalogue",
+      "url": "https://beta.geonet.org.nz/data/types/eq_catalogue",
+      "verification": "Official documentation via search; identity and detailed QuakeML versus summary fields."
+    },
+    {
+      "id": "geonet_policy",
+      "url": "https://www.geonet.org.nz/policy",
+      "verification": "Official policy via search; free access, citation/attribution. FDSN footer supplies CC BY 3.0 NZ."
+    },
+    {
+      "id": "esm25",
+      "url": "https://shake.mi.ingv.it/esm25/",
+      "verification": "Official aggregate release description. Mixed labels. Rendered download table had no executable file links."
+    },
+    {
+      "id": "esm25_pipeline",
+      "url": "https://github.com/SpinaCianetti/ESM25",
+      "verification": "Author README only; full-record resampling/padding/intersection and dataset licence; no notebooks, arrays or rows opened."
+    },
+    {
+      "id": "esm_eventdata",
+      "url": "https://esm-db.eu/esmws/eventdata/1/query-options.html",
+      "verification": "Public GET documentation; CV/MP distinction, units, optional XML. No service query."
+    },
+    {
+      "id": "esm_ps",
+      "url": "https://esm-db.eu/esmws/p-s-arrivals/1/query-options.html",
+      "verification": "Official documentation explicitly says theoretical travel times. Not an observed clock."
+    },
+    {
+      "id": "esm_event",
+      "url": "https://esm-db.eu/esmws/event/1/query-options.html",
+      "verification": "Official documentation via search; per-event magnitude group. No actual event query."
+    },
+    {
+      "id": "esm_index",
+      "url": "https://esm-db.eu/esmws/ogc/1/query-options_event.html",
+      "verification": "Official documentation via search; cross-catalogue aliases and mixed-scale mag_value hierarchy. No capabilities/catalogue request."
+    },
+    {
+      "id": "esm_terms",
+      "url": "https://esm-db.eu/",
+      "verification": "Official current version/terms via search; individual waveform licences distinct from database licence."
+    },
+    {
+      "id": "isc_arrivals",
+      "url": "https://www.isc.ac.uk/iscbulletin/search/webservices/arrivals/",
+      "verification": "Official documentation; observed associated arrival/time and magnitude-author filters. No query executed."
+    },
+    {
+      "id": "alaska_paper",
+      "url": "https://doi.org/10.1785/0120260139",
+      "verification": "Primary search abstract confirms530 M4.5-8.2; full-text open failed. Detailed archive facts explicitly attributed to historical public project audit."
+    },
+    {
+      "id": "alaska_release",
+      "url": "https://zenodo.org/records/19897535",
+      "verification": "Current open failed. No current access/license/data verification claimed."
+    },
+    {
+      "id": "failed_geonet_path",
+      "url": "https://github.com/GeoNet/cmt",
+      "verification": "Guessed documentation path failed; corrected to official GeoNet/data/moment-tensor using prior public memo."
+    }
+  ]
+}

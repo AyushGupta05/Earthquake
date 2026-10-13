@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "P2: Recheck the whole-experiment deadline immediately before launch",
+      "body": "The last pre-launch deadline check occurs inside claim_stage, before the durable claim and output directory are created and both child input files are written and fsynced. If that work crosses the 7200-second experiment deadline, run_stage still invokes systemd-run without another check. The child eventually rejects the expired gate, but a new owned unit has already been launched, contrary to the contract that whole-experiment expiry prevents any new launch. Recheck tick after claim_stage returns and immediately before calling runner; preserve the already-created claim and artifacts if that check fails.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 169
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The aggregate pin binding and interrupted stream preservation corrections are present, but durable claim publication leaves a deadline gap before launching the owned unit. Inspection was read-only; tests were not run.",
+  "overall_confidence": 0.94
+}

@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P1] Bind aggregate inputs to the completed scoring returns
+stage_child.py:105
+The aggregate branch reads any ten pinned files supplied in score_results without comparing their pins against stage_result.private.json in the ten completed score returns in previous. previous_checked validates the return identities and study fingerprint, but never links those returns to these inputs. Consequently, another set of otherwise valid same-identity score records can be aggregated instead of the outputs of this once-only continuation. Validate the ordered score-result pins against the corresponding completed returns before importing or calling the engine; engine validation of numerical records cannot establish this custody relationship.
+
+[P2] Preserve observed stream prefixes when capture raises
+controller.py:145
+If os.read, selector.select, terminate, or wait raises after bytes have been drained, managed_process closes the streams and propagates the exception without returning its accumulated buffers, counts, or hashes. run_stage then substitutes empty streams and zero observed counts. This discards already observed diagnostic evidence precisely on an interrupted manager/transport capture, contrary to the incomplete-artifact preservation contract. Return or otherwise persist the accumulated prefixes and observed hashes on capture errors, marking complete_observation false.
+
+[P2] Recheck the deadline immediately before scientific imports
+stage_child.py:83
+The final deadline check occurs before the git subprocess, which can consume up to five seconds. before_import then returns without another check, and main immediately calls deps_load. A stage or whole-experiment deadline that expires during that subprocess therefore still permits NumPy, Torch, SciPy, candidate, engine, and optional scorer imports and adapter construction. Check the clock after publication verification and at the import boundaries so expiry bars further scientific initialization rather than relying on a later engine check.
+
+overall: patch is incorrect (0.97)
+The controls leave aggregate inputs disconnected from completed-stage custody, discard observed manager streams on capture exceptions, and permit scientific imports after deadline expiry during publication verification. These defects are verifiable from the supplied source. No tests, external paths, or network resources were accessed.
