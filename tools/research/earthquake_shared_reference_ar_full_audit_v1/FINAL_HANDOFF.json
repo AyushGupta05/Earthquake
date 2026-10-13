@@ -1,0 +1,35 @@
+{
+  "accepted_findings": [
+    "Review1: retain independent posterior before completed-mixture parity rejection",
+    "Review2: retain independent posterior before reference parity rejection"
+  ],
+  "production_load_order": [
+    "math_core",
+    "transport",
+    "packet_digest",
+    "packet",
+    "metrics",
+    "auditor",
+    "proper_core",
+    "ar_core",
+    "l_auditor"
+  ],
+  "review": "default Codex review3",
+  "review_confidence": 0.86,
+  "review_exit": 0,
+  "scope": "SOURCE ONLY. Invented numeric fixtures. No actual data/checkpoints/results, no producer/Torch/optimizer, no cloud or paid work.",
+  "source_changes_after_clean": false,
+  "source_snapshot_sha256": "0637ce1a7124461472e36937dd53419bc03d477afe11596b37af98266e179b9d",
+  "status": "first_clean",
+  "target_gate": "ROOT Linux source tests/source binding/cold imports/publication/actual authority remain separate",
+  "tests": {
+    "command": "../alaska_venv/bin/python -B -m unittest test_l_audit -v",
+    "errors": 0,
+    "failures": 0,
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "seconds": 13.637,
+    "skips": 0,
+    "tests": 45
+  }
+}

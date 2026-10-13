@@ -1,0 +1,12 @@
+{
+  "review1": "accepted: completed-mixture rejection lost independent posterior",
+  "review2": "accepted: reference parity rejection also needed independent posterior before rejection",
+  "fix": "complete once from independent primitives, retain posterior, then all producer-source parity checks",
+  "unchanged": "frozen core bytes, numerical law/tolerances/budgets, model, cohort",
+  "regressions": [
+    "source keys failure retains posterior",
+    "loading failure retains posterior",
+    "posterior and logZ mismatch deltas",
+    "completion exactly once in both loading and mixture rejection"
+  ]
+}

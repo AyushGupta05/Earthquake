@@ -509,16 +509,30 @@
   "marked_prospective_AR": {
     "actual_fits": 0,
     "current_L_sources": {
-      "AWS_source_tests_pending": true,
+      "AWS_source_tests_pending": false,
       "actual_fits": 0,
       "criterion_comparisons": 42,
       "full_independent_auditor_and_execution_pending": true,
+      "full_independent_auditor_first_clean_review": 3,
+      "full_independent_auditor_tests_AWS": 45,
       "independent_core_first_clean_review": 1,
+      "independent_core_tests_AWS": 28,
       "independent_core_tests_local": 28,
+      "nine_stage_execution_and_runtime_adapter_pending": true,
       "novelty_or_published_benchmark_claim": false,
       "preserve_closed_originals": true,
       "producer_first_clean_review": 2,
-      "producer_tests_local": 25
+      "producer_tests_AWS": 25,
+      "producer_tests_local": 25,
+      "source_runtime_versions": {
+        "numpy": "2.0.2",
+        "python": "3.9.25",
+        "scipy": "1.13.1",
+        "torch": "2.8.0+cu128"
+      },
+      "source_test_total_including_reporting": 118,
+      "source_test_units_inactive_empty": true,
+      "synthetic_L300_s": 281.42125410505105
     },
     "first_loading": 1,
     "kernel_math_unchanged_from_V1": true,

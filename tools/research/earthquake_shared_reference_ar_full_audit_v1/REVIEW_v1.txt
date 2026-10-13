@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Preserve the reconstructed posterior before checking producer parity
+l_auditor.py:129
+When a producer's completed mixture disagrees, `ar.verify_source` computes the independent mixture and then raises, so this assignment never returns it. Consequently, `audit_fit` retains the reference inputs but loses the independently reconstructed posterior and the numerical values demonstrating the disagreement. For example, the existing `test_posterior_override` exercises this path without checking the retained posterior. This violates the failure-evidence contract precisely on a numerical rejection. Save the independent mixture into the evidence dictionary before comparing producer fields, or expose it through the raised exception, without rerunning reconstruction or relaxing deadlines.
+
+overall: patch is incorrect (0.88)
+The main admission, checkpoint, numerical parity, custody and 42-guard checks are present, but a completed-mixture rejection discards the independently computed posterior required for retained failure evidence. Inspection was read-only; no tests or producer models were executed.

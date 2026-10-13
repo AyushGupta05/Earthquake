@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Retain independent scoring evidence when numerical validation fails
+l_math.py:87
+If independent scoring fails after computing some fields, all of those fields are discarded: `scores` is called without its supported `evidence` argument, and `checked_scores` does not attach its progress to the exception. In particular, `proper_core.Mixture.nll` attaches rejected IEEE values as `numeric_evidence`, whereas `score_final` only reads `exc.evidence`, so that rejection evidence is also lost. Parity failures similarly discard the computed scores and errors. Preserve an externally visible progress dictionary and attach it to failures so the saved `score_failure` record contains the completed independent calculations and exact rejection evidence.
+
+[P2] [P2] Preserve completed aggregate and bootstrap work on failure
+processor.py:566
+The bootstrap dictionary comprehension keeps results local until every panel finishes, and each `desc.paired` call omits its supported `evidence` argument. If the 300-second deadline expires during a later panel, the returned incomplete result loses earlier completed panels, the current panel's draws/support/progress, and the already validated metrics and comparator origins. This violates the required partial-failure retention despite `descriptive.paired` explicitly supporting it. Populate the result incrementally and pass a retained evidence dictionary for each panel before beginning its work.
+
+overall: patch is incorrect (0.92)
+The initialization binding, scalar training cadence, shared-noise loading and scoring checks appear consistent with the specified design, but numerical scoring and aggregate failures discard required partial evidence. These failure paths need correction before the bundle meets its retention contract. No tests were run.

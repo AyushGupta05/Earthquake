@@ -1,0 +1,29 @@
+ERROR
+
+======================================================================
+ERROR: setUpClass (test_processor.LTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_processor_v1/processor.py", line 427, in score_final
+    validate_forecast(record)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_processor_v1/processor.py", line 493, in validate_forecast
+    if p['arm'] in ARMS:numeric_evidence(p)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_processor_v1/processor.py", line 480, in numeric_evidence
+    need(bool((noise>=0).all()) and abs(math.fsum(noise.tolist())-1.)<=1e-12 and np.array_equal(noise,weights.reshape(12,5).sum(1)), 'forecast_noise_mass')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_processor_v1/processor.py", line 31, in need
+    raise Failure(why)
+processor.Failure: forecast_noise_mass
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_processor_v1/test_processor.py", line 33, in setUpClass
+    cls.result=decode(p.score_final(cls.packet,cls.raw,cls.pin,cls.fit['checkpoint'],cls.fit['receipt']['sha256'],cls.b,cls.score_sink,processing_begin=start)['result'])
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_processor_v1/processor.py", line 444, in score_final
+    raise Failure('score_incomplete',evidence) from exc
+processor.Failure: score_incomplete
+
+----------------------------------------------------------------------
+Ran 0 tests in 44.420s
+
+FAILED (errors=1)

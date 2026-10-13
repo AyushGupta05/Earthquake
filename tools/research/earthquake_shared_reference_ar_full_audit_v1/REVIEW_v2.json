@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Complete and retain the independent posterior before reference parity checks",
+      "body": "Producer reference validation still runs before independent Gaussian completion. A wrong loading, lag, prior, clock, or source key causes `ar.check_reference` (or `ar.keys`) to raise, so the retained failure contains the reconstructed reference but no independently completed posterior. This contradicts SCHEMA.md's requirement to save the posterior before producer parity checks and leaves the central loading-law rejection without that evidence. Complete the independently derived reference and store its posterior first, then validate the producer source, without rerunning completion.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "l_auditor.py",
+        "line": 131
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The L auditor retains posterior evidence for completed-mixture mismatches, but reference parity failures still occur before that evidence is produced. The documented failure-retention guarantee is therefore incomplete. Inspection was read-only; no tests or producer models were executed.",
+  "overall_confidence": 0.97
+}
