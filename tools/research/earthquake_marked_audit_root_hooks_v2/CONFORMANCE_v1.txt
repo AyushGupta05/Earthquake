@@ -1,0 +1,50 @@
+test_exact_real_six_public_manifest_formats (test_conformance.Conformance) ... ERROR
+test_new_closed_source_no_missing_extra_or_mode_relaxation (test_conformance.Conformance) ... ERROR
+test_previous_unknownrole_manifest_failures_are_reproduced (test_conformance.Conformance) ... ERROR
+
+======================================================================
+ERROR: test_exact_real_six_public_manifest_formats (test_conformance.Conformance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/test_conformance.py", line 47, in test_exact_real_six_public_manifest_formats
+    if role in ('v6','native'):raw=self.sb.source(spec,'adapters' if role=='v6' else 'native',lambda:None)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_deployment_adapters_v6/first_clean/source_binding.py", line 41, in source
+    files,links,dirs=inventory(spec['directory']);expected=set(spec['files'])
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_deployment_adapters_v6/first_clean/source_binding.py", line 22, in inventory
+    fd=io.directory(root);files={};links={};dirs=set()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/reference/reference/secure_io.py", line 59, in directory
+    nxt=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_new_closed_source_no_missing_extra_or_mode_relaxation (test_conformance.Conformance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/test_conformance.py", line 58, in test_new_closed_source_no_missing_extra_or_mode_relaxation
+    with self.assertRaisesRegex(ValueError,'source_closed'):self.hooks.closed_source(self.io,self.sb,spec,lambda:None)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/hooks.py", line 109, in closed_source
+    expected=set(spec['files']);files,links,dirs=sb.inventory(spec['directory'])
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_deployment_adapters_v6/first_clean/source_binding.py", line 22, in inventory
+    fd=io.directory(root);files={};links={};dirs=set()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/reference/reference/secure_io.py", line 59, in directory
+    nxt=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_previous_unknownrole_manifest_failures_are_reproduced (test_conformance.Conformance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/test_conformance.py", line 53, in test_previous_unknownrole_manifest_failures_are_reproduced
+    with self.assertRaisesRegex(ValueError,'unmanifested_source'):self.sb.source(spec,role,lambda:None)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_deployment_adapters_v6/first_clean/source_binding.py", line 41, in source
+    files,links,dirs=inventory(spec['directory']);expected=set(spec['files'])
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_deployment_adapters_v6/first_clean/source_binding.py", line 22, in inventory
+    fd=io.directory(root);files={};links={};dirs=set()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v2/reference/reference/secure_io.py", line 59, in directory
+    nxt=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.038s
+
+FAILED (errors=3)
