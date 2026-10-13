@@ -1,0 +1,33 @@
+# Adapter source v3: single pinned generated helper
+
+Preserve v2 first-clean packet; extend only exact PyTorch temporary-helper binding. See GENERATED_SOURCE_EXTENSION.md and BASELINE.json. All scientific contracts and budgets remain unchanged.
+
+# Adapter source v2: supplemental import inventory
+
+This new code-only packet extends only deployment-time installed-vendor integrity. Prior first-clean31 remains unchanged; see BASELINE.json and VENDOR_EXTENSION.md. FeatureV1 and fittingV2 identities are unchanged. No actual private metadata, weights or waveform values were accessed.
+
+# Source-only marked six-fit deployment adapters
+
+13 October2026. New source packet; frozen native/ Gaussian/ trainer/ parent modules remain unchanged. No actual inputs, cloud execution or financial authority are present. ROOT later verifies target tests, source publication, current login/funding and actual independent semantic agreement before any invocation.
+
+A sole-stage parent receives ROOT-bound source/runtime/input specifications and a fresh authority callback. All sources are positively hashed and inventories closed before scientific imports. Fixed deployed counts: processor32, Gaussian34, native22, parent32, plus this separate adapter allowlist. Only a separately pinned readonly upload manifest may be outside a role inventory. Nested public source files are preserved. Copied Gaussian/native reference bytes in processor must equal the actual role modules. Temporary import aliases are restored; imported module object identities are explicitly checked.
+
+Runtime verification requires10112 regular files,10 critical files with their exact recorded original modes (including0664/0775 when recorded), and exactly4 pinned symlinks with verified destinations. No chmod normalization, dependency installation or credential read. Source300/300/900/300 and manager360/360/960/360 caps, whole7200+200, stop5,2GiB/swap0/64tasks/CPUWeight10/thread1/CUDAhidden are unchanged. Source origin is captured before scientific imports/loading, and carried into the frozen child.
+
+Fresh funding/publication/semantic authority is a ROOT-implemented callback that independently verifies pinned actual evidence. No default callback returns authorization. The callback's receipt binds the deployment configuration, gate, exact source/runtime/input/funding pins and stage lease. The adapter does not manufacture new credit balances, claim eligibility from shape, or regard invented tests as scientific authority. V1 feature packet must be independently replay-agreed in actual build/native audit; after numeric-only decoding, the adapter itself validates all115/345 statuses/common65TRAIN22DEV and actual all-positive87 support before processor execution. No TEST or cohort repair.
+
+FS storage uses fd-relative traversal, no symlink components, one exclusive lock, bounded current inventory, atomic exclusive creation/atomic latest-update replacement, data/file/directory sync and readback. Root supplies the total storage cap. Only latest_update.json can be replaced; initial/final/history/claims/failure artifacts cannot. Torn or unknown temporary artifacts fail closed and remain available for ROOT reconciliation. Cross-process claims are exclusive. No retry/resume is introduced.
+
+Only the prospectively owned exact systemd unit may run/stop/be inspected. Runtime and environment caps are checked from current cgroup/systemd/process truth, not copied from requested values. Transport consumes the supplied remaining deadline and bounded stdout/stderr; uncertain cleanup receives a bounded or zero-timeout nonblocking stop. Unknown cleanup remains incomplete. The CLI/template never loops, retries or selects another fit.
+
+## Old strong results: explicit comparison join
+
+Old B/F/H/T forecasts originated from the original renewal packet; they were NOT trained or scored on new marked features. A projection for the frozen aggregate may set packet_sha256 and independent_closure.packet_sha256 to the new marked packet hash ONLY as a comparison-join identifier. It must retain original packet pins/hash, eight original checkpoint/result/source/independent-closure pins, and the independently verified join-proof pin in each result's separate origin object. Never silently relabel the old model input.
+
+The join compares all87 common role/ordinal/target/group identities and their1/3/5 horizons, while preserving all115/345 status slots in the feature authority. It must match all528 already-closed proper-score records in fixed two-seed B/F/H/T order. No old prediction is rerun, re-scored, interpolated or fabricated. Original B/F omit quantiles; H/T retain seven. The new comparison hash conveys matching population only; original model input remains explicitly recoverable. ROOT's independent original closure and new native semantic proof are prerequisites, not self-certified flags. New S/P/D independent numerical/scaler/checkpoint audit remains required after later real execution.
+
+V4 compatibility addendum: see OPTIONAL_IMPORT_EXTENSION.md. The guarded standard-finder chain returns None on true module absence and owns the entire meta-path chain; no optional unknown source is authorized. All runtime fields and scientific semantics are unchanged.
+
+V5 prospective addendum: runtime.metadata_finder is now mandatory; see METADATA_FINDER_EXTENSION.md for its exact two-file spec and live inert-finder chain contract. Bootstrap adds positively bound metadata_finder.py before source_binding. Earlier sole-finder wording is superseded only for this exact metadata-only object; all source/config/financial/model authority remains positive and external.
+
+V6 prospective cold-start addendum: see COLD_PATH_EXTENSION.md. The guard appends only canonical roots returned by the same fully verified vendor-inventory load, after existing prefix paths, before guarded imports. Runtime/config/factory fields and scientific protocol stay unchanged. Old failed-stage identities are never retried by this adapter.

@@ -1,0 +1,6 @@
+{
+  "findings": [],
+  "overall_correctness": "patch is correct",
+  "overall_explanation": "The isolated V6 changes return canonical roots only after existing inventory verification completes, preserve the default load API, append roots after existing paths without exact duplicates, and restore the original sys.path and meta-path objects on ordinary exit even when chain validation fails. Existing origin, loader, hash, optional-absence, generated-helper, metadata-finder, and persistent lazy-import guards remain unchanged. No actionable correctness or security defects were found. Tests were inspected but not run, as requested.",
+  "overall_confidence": 0.95
+}
