@@ -1,0 +1,29 @@
+{
+  "tests": {
+    "pass": 17,
+    "skip": 0,
+    "fail": 0,
+    "error": 0,
+    "seconds": 2.441
+  },
+  "log": "TEST_RESULTS_v1.txt",
+  "local_runtime": {
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.14.0"
+  },
+  "focused_warning_as_error_tests": 2,
+  "focused_tests": "require_grad actualTorchGH remains differentiable; actual same-density fast result memoized before focused contexts; accepted proper result and original_fast_disagreement reason checked",
+  "full_local_global_Werror": {
+    "status": "FAILED",
+    "failures": 3,
+    "errors": 3,
+    "tests": 17,
+    "log": "TEST_RESULTS_WARNERROR_v1.txt",
+    "reason": "Preserved frozen fast NumPy2.2.6 matmul RuntimeWarnings, not Torch scalar conversion; no suppression/source repair"
+  },
+  "python39_grammar_files": 8,
+  "actual_inputs_optimizer_steps_provider_operations": false,
+  "target_Linux_global_Werror": "REQUIRED before adoption"
+}

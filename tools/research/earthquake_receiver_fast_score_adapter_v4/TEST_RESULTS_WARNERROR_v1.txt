@@ -1,0 +1,84 @@
+test_C_T_same_initial_run_and_reset_difference (test_adapter.AdapterTests) ... ok
+test_H_initial_interaction_not_run_age (test_adapter.AdapterTests) ... ok
+test_disagreement_reason_with_graph_tensors_under_warnings_as_errors (test_adapter.AdapterTests) ... ERROR
+test_factorization_preserves_allreal_normalizer_all_three_arms (test_adapter.AdapterTests) ... ok
+test_fast_disagreement_rejected_full_evidence (test_adapter.AdapterTests) ... FAIL
+test_fast_failure_evidence_retained_without_retry (test_adapter.AdapterTests) ... ok
+test_fast_proper_score_matches_original_nonGaussian_allreal_reference (test_adapter.AdapterTests) ... FAIL
+test_first_external_tick_failure_has_complete_parameters (test_adapter.AdapterTests) ... ok
+test_input_caps_deny_long_states_without_allocation (test_adapter.AdapterTests) ... ok
+test_invalid_coverage_bool_fraction_and_inconsistent_truth_rejected (test_adapter.AdapterTests) ... FAIL
+test_no_edges_for_first_cell_and_no_appended_exit (test_adapter.AdapterTests) ... ok
+test_nonfinite_parameter_has_diagnostic_tokens_no_accepted_forecast (test_adapter.AdapterTests) ... ok
+test_original_torch_parity_rejects_before_fast (test_adapter.AdapterTests) ... ok
+test_requires_grad_inference_scalars_under_warnings_as_errors (test_adapter.AdapterTests) ... ERROR
+test_returned_fast_evidence_survives_final_tick_failure (test_adapter.AdapterTests) ... ERROR
+test_sharp_GH_rejection_never_calls_fast (test_adapter.AdapterTests) ... ok
+test_signed_factors_equal_original_likelihood_all_three_arms (test_adapter.AdapterTests) ... ok
+
+======================================================================
+ERROR: test_disagreement_reason_with_graph_tensors_under_warnings_as_errors (test_adapter.AdapterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/test_adapter.py", line 138, in test_disagreement_reason_with_graph_tensors_under_warnings_as_errors
+    fast_result=fast.score(mix.weights.tolist(),mix.means.tolist(),mix.sigmas.tolist(),adapter.affine_factors(core,h,zv,cv,sv),.7,processing_begin=time.monotonic(),budget_seconds=10,tolerance=1e-6,require_gh=True,gradients=False)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/fast_scorer.py", line 190, in score
+    d.check();low=Table(d,cuts,32);high=Table(d,cuts,64)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/fast_scorer.py", line 108, in __init__
+    self.coefficients=self.g@coef.T
+RuntimeWarning: divide by zero encountered in matmul
+
+======================================================================
+ERROR: test_requires_grad_inference_scalars_under_warnings_as_errors (test_adapter.AdapterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/test_adapter.py", line 124, in test_requires_grad_inference_scalars_under_warnings_as_errors
+    fast_result=fast.score(mix.weights.tolist(),mix.means.tolist(),mix.sigmas.tolist(),factors,.7,processing_begin=time.monotonic(),budget_seconds=10,tolerance=1e-6,require_gh=True,gradients=False)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/fast_scorer.py", line 190, in score
+    d.check();low=Table(d,cuts,32);high=Table(d,cuts,64)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/fast_scorer.py", line 108, in __init__
+    self.coefficients=self.g@coef.T
+RuntimeWarning: divide by zero encountered in matmul
+
+======================================================================
+ERROR: test_returned_fast_evidence_survives_final_tick_failure (test_adapter.AdapterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/test_adapter.py", line 99, in test_returned_fast_evidence_survives_final_tick_failure
+    score,record=run_example(tuple(values),tick=tick);self.assertIsNone(score);self.assertTrue(record['fast_diagnostics']['accepted']);self.assertEqual(len(record['integrals']),3)
+KeyError: 'accepted'
+
+======================================================================
+FAIL: test_fast_disagreement_rejected_full_evidence (test_adapter.AdapterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/test_adapter.py", line 113, in test_fast_disagreement_rejected_full_evidence
+    deps.fast_scorer=SimpleNamespace(score=changed);score,record=run_example(tuple(values));self.assertIsNone(score);self.assertEqual(record['reason'],'original_fast_disagreement');self.assertIn('gh64',record['fast_parity_errors'])
+AssertionError: 'divide by zero encountered in matmul' != 'original_fast_disagreement'
+- divide by zero encountered in matmul
++ original_fast_disagreement
+
+
+======================================================================
+FAIL: test_fast_proper_score_matches_original_nonGaussian_allreal_reference (test_adapter.AdapterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/test_adapter.py", line 65, in test_fast_proper_score_matches_original_nonGaussian_allreal_reference
+    values=example();score,record=run_example(values);self.assertIsNotNone(score,record)
+AssertionError: unexpectedly None : {'accepted': False, 'errors': {'log_normalizer': 4.440892098500626e-16, 'mean': 0.0, 'nll': 4.440892098500626e-16}, 'torch_errors': {'64': 2.220446049250313e-16, '128': 0.0}, 'base_raw': [-0.5, 0.30000001192092896, 0.20000000298023224, -0.10000000149011612, 0.10000000149011612, -2.0, -0.800000011920929, 0.5, 1.7000000476837158, 3.0, 0.20000000298023224, 0.10000000149011612, -0.10000000149011612, 0.30000001192092896, 0.0], 'z': [-0.4000000059604645, -0.37714287638664246, -0.35428571701049805, -0.331428587436676, -0.3085714280605316, -0.2857142984867096, -0.2628571391105652, -0.24000000953674316, -0.21714286506175995, -0.19428572058677673, -0.17142857611179352, -0.1485714316368103, -0.12571430206298828, -0.10285715013742447, -0.08000001311302185, -0.057142868638038635, -0.03428572416305542, -0.011428581550717354, 0.011428581550717354, 0.03428572416305542, 0.057142868638038635, 0.08000001311302185, 0.10285715013742447, 0.12571430206298828, 0.1485714316368103, 0.17142857611179352, 0.19428572058677673, 0.21714286506175995, 0.24000000953674316, 0.2628571391105652, 0.2857142984867096, 0.3085714280605316, 0.331428587436676, 0.35428571701049805, 0.37714287638664246, 0.4000000059604645], 'c': [0.30000001192092896, 0.2852941155433655, 0.2705882489681244, 0.2558823525905609, 0.24117648601531982, 0.22647060453891754, 0.21176472306251526, 0.19705884158611298, 0.1823529601097107, 0.16764706373214722, 0.15294118225574493, 0.13823530077934265, 0.12352941930294037, 0.10882353782653809, 0.0941176563501358, 0.07941177487373352, 0.06470589339733124, 0.04999999701976776, 0.03529411554336548, 0.020588234066963196, 0.005882350727915764, -0.008823531679809093, -0.02352941408753395, -0.038235295563936234, -0.052941180765628815, -0.0676470622420311, -0.08235294371843338, -0.09705882519483566, -0.11176470667123795, -0.12647059559822083, -0.1411764770746231, -0.1558823585510254, -0.17058824002742767, -0.18529412150382996, -0.20000000298023224], 'states': [1, 1, 0, 0, 1], 'hazard': {'alpha': [-0.20000000298023224, -0.30000001192092896], 'beta': [0.15000000596046448, -0.12999999523162842], 'z_weights': [[0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291], [0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291, 0.004999999888241291]], 'c_weights': [[-0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291], [-0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291, -0.004999999888241291]], 'gamma': [0.10000000149011612, -0.11999999731779099], 'extra': [0.05000000074505806, -0.03999999910593033]}, 'mref': 0.5, 'integrals': {'gh64': {'method': 'GH64', 'log_normalizer': -2.8469612045198427, 'mean': 0.5477895255697225, 'nll': 1.6065113131164908}, 'gh128': {'method': 'GH128', 'log_normalizer': -2.8469612045198427, 'mean': 0.5477895255697225, 'nll': 1.6065113131164908}, 'adaptive': {'method': 'adaptive', 'log_normalizer': -2.8469612045198422, 'mean': 0.5477895255697225, 'nll': 1.6065113131164912}}, 'reason': 'divide by zero encountered in matmul', 'exception_type': 'RuntimeWarning', 'fast_diagnostics': {'status': 'failed', 'exception_type': 'RuntimeWarning', 'reason': 'divide by zero encountered in matmul', 'evidence': None, 'affine': [[0.2982531268441639, 0.12999999523162842], [-0.3363503171322264, -0.12999999523162842], [0.19313106716578315, -0.15000000596046448], [-0.15950467199685037, 0.15000000596046448]]}, 'fast_parity_errors': {}}
+
+======================================================================
+FAIL: test_invalid_coverage_bool_fraction_and_inconsistent_truth_rejected (test_adapter.AdapterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_receiver_fast_score_adapter_v4/test_adapter.py", line 104, in test_invalid_coverage_bool_fraction_and_inconsistent_truth_rejected
+    deps.fast_scorer=SimpleNamespace(score=changed);score,record=run_example(tuple(values));self.assertIsNone(score);self.assertEqual(record['reason'],'coverage_indicator')
+AssertionError: 'divide by zero encountered in matmul' != 'coverage_indicator'
+- divide by zero encountered in matmul
++ coverage_indicator
+
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.910s
+
+FAILED (failures=3, errors=3)

@@ -1,0 +1,12 @@
+{
+  "schema": "inference-portability-only-v4",
+  "original_adapter_sha256": "3f8a1795c1032506ed383f47ab8166e59d0e2e579337fbde25cdd7e843ecbe14",
+  "new_adapter_sha256": "de3a31d4ba01f6dc6db62aba5639beda700cb747accc698e77488b901d9fcb30",
+  "exact_diff": [
+    "float(logz[0]) -> float(logz[0].detach().cpu())",
+    "float(mean[0]) -> float(mean[0].detach().cpu())"
+  ],
+  "reverting_only_these_reads_is_byte_exact_v3": true,
+  "original_differentiable_quadrature_unchanged": true,
+  "no_math_tolerance_or_action_change": true
+}

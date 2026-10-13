@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] [P2] Validate auditor member names against the bundled public contract
+wrapper.py:19
+The guard accepts any 34 distinct safe filenames, rather than the exact 34 members declared in AUDITOR_PUBLIC_ALLOWLIST.json. That bundled contract is never consulted by the wrapper. A substituted member can therefore be hashed into the gate and pass the child's exact pin-map equality when the remote manifest contains the same substitution. This verifies transport agreement without enforcing the declared V3 source closure; omitted required modules may only fail after processing starts. Compare the allowlist's member set with the bundled contract before creating the gate or invoking SSH, and add a same-cardinality substitution rejection test.
+
+overall: patch is incorrect (0.97)
+The corrected allowlist filename and cardinality are enforced, but the exact public source membership contract is not. Review used read-only source inspection; no tests, wrapper execution, or private-file reads were performed.

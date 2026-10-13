@@ -1,0 +1,1 @@
+Prospective no-refit diagnostic V4. Never import/execute wrapper top-level during syntheticverification. child/remote exactembedded extracts. AUDITOR_PUBLIC_ALLOWLIST.json isonlythefrozenpublic34-memberV3source closure, notactualdata. Sourcecontract mismatches aretested BEFOREanyprocessing. Originalmath/strictcoverageBooltruth unchanged.

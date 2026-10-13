@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.97)
+The two bool casts preserve coverage truth and enforce exact builtin-bool comparison through the existing comparator. Aggregated coverage remains explicitly converted to float, and both audit output paths consistently use the V3 schema. No actionable defects introduced by this patch were found. Tests were inspected but not run, as requested.
