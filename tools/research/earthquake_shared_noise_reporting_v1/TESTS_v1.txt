@@ -1,0 +1,119 @@
+test_averaged_guard_failure_not_success (test_reporting.Tests) ... ok
+test_cleanup_not_verified (test_reporting.Tests) ... ok
+test_fetch_not_readonly (test_reporting.Tests) ... ok
+test_incomplete_independent_report (test_reporting.Tests) ... ok
+test_markdown_labels_actions_separately (test_reporting.Tests) ... ok
+test_missing_paired_panel (test_reporting.Tests) ... ok
+test_missing_stage (test_reporting.Tests) ... ERROR
+test_negative_gate_preserved (test_reporting.Tests) ... ok
+test_notebook_fourcells_executes_public_only_fixture (test_reporting.Tests) ... ok
+test_numeric_boolean_guard_not_cast (test_reporting.Tests) ... ok
+test_private_records_group_receiver_stripped (test_reporting.Tests) ... ok
+test_same_changed_cohort_still_root_digest_rejects (test_reporting.Tests) ... ok
+test_timer_stop_unknown (test_reporting.Tests) ... ok
+test_unknown_metric_cannot_export_private_key (test_reporting.Tests) ... ok
+test_unsupported_interval_not_invented (test_reporting.Tests) ... ok
+test_wrong_cohort_rejected (test_reporting.Tests) ... ok
+test_wrong_guard_cohort_triplet (test_reporting.Tests) ... ok
+test_wrong_native_counts (test_reporting.Tests) ... ok
+test_wrong_report_hash_rejected (test_reporting.Tests) ... ok
+test_wrong_root_hash_rejected (test_reporting.Tests) ... ok
+
+======================================================================
+ERROR: test_missing_stage (test_reporting.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_noise_reporting_v1/test_reporting.py", line 59, in test_missing_stage
+    with self.assertRaisesRegex(ValueError,'seven_stages'):prepare(report,c)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_noise_reporting_v1/test_reporting.py", line 39, in prepare
+    raw=r.canonical(report);closed=copy.deepcopy(closed);closed['aggregate_pin']=r.pin(raw);closed['stages'][6]['report_pin']=r.pin(raw);closure=r.canonical(closed);return r.prepare_public(raw,closure,r.pin(closure))
+IndexError: list index out of range
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.104s
+
+FAILED (errors=1)
+| Seed | Arm | Seconds | High ≥5.5 MAE | Mean MAE | Mean MedAE | Lower MAE | Lower MedAE | CVaR95 | Max | NLL | CRPS | Median-action MAE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20261012 | S | 1 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | S | 3 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | S | 5 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | P | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | P | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | P | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | D | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | D | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | D | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | S | 1 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | S | 3 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | S | 5 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.4000 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | P | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | P | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | P | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | D | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | D | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | D | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | B | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | B | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | B | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | F | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | F | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | F | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | H | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | H | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | H | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | T | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | T | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261012 | T | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | B | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | B | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | B | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | F | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | F | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | F | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | H | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | H | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | H | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | T | 1 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | T | 3 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| 20261013 | T | 5 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.4500 | 0.8000 | 1.0000 | 0.7000 | 0.3000 | 0.5000 |
+| Seed | Seconds | Comparator | Tail | Proper | Bulk and worst | Overall |
+|---|---|---|---|---|---|---|
+| 20261012 | 1 | B | pass | fail | pass | fail |
+| 20261012 | 1 | F | pass | fail | pass | fail |
+| 20261012 | 1 | H | pass | pass | pass | pass |
+| 20261012 | 1 | T | pass | pass | pass | pass |
+| 20261012 | 3 | B | pass | fail | pass | fail |
+| 20261012 | 3 | F | pass | fail | pass | fail |
+| 20261012 | 3 | H | pass | pass | pass | pass |
+| 20261012 | 3 | T | pass | pass | pass | pass |
+| 20261012 | 5 | B | pass | fail | pass | fail |
+| 20261012 | 5 | F | pass | fail | pass | fail |
+| 20261012 | 5 | H | pass | pass | pass | pass |
+| 20261012 | 5 | T | pass | pass | pass | pass |
+| 20261013 | 1 | B | pass | fail | pass | fail |
+| 20261013 | 1 | F | pass | fail | pass | fail |
+| 20261013 | 1 | H | pass | pass | pass | pass |
+| 20261013 | 1 | T | pass | pass | pass | pass |
+| 20261013 | 3 | B | pass | fail | pass | fail |
+| 20261013 | 3 | F | pass | fail | pass | fail |
+| 20261013 | 3 | H | pass | pass | pass | pass |
+| 20261013 | 3 | T | pass | pass | pass | pass |
+| 20261013 | 5 | B | pass | fail | pass | fail |
+| 20261013 | 5 | F | pass | fail | pass | fail |
+| 20261013 | 5 | H | pass | pass | pass | pass |
+| 20261013 | 5 | T | pass | pass | pass | pass |
+| 20261012 | 1 | P | pass | fail | pass | fail |
+| 20261012 | 1 | D | pass | fail | pass | fail |
+| 20261012 | 3 | P | pass | fail | pass | fail |
+| 20261012 | 3 | D | pass | fail | pass | fail |
+| 20261012 | 5 | P | pass | fail | pass | fail |
+| 20261012 | 5 | D | pass | fail | pass | fail |
+| 20261013 | 1 | P | pass | fail | pass | fail |
+| 20261013 | 1 | D | pass | fail | pass | fail |
+| 20261013 | 3 | P | pass | fail | pass | fail |
+| 20261013 | 3 | D | pass | fail | pass | fail |
+| 20261013 | 5 | P | pass | fail | pass | fail |
+| 20261013 | 5 | D | pass | fail | pass | fail |
+Exploratory reused DEV cohort; descriptive group bootstrap; no novelty, matched published-benchmark superiority or independent generalization claim.
+Paired descriptive panels: 36

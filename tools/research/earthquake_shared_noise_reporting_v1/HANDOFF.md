@@ -1,0 +1,7 @@
+# First-clean scalar reporting helper
+
+Import reporting.prepare_public(report_raw,closure_raw,expected_closure_pin); ROOT captures expectedclosure pin from independently verified actual7manager returns/emptyunits/stoppedwhole timer/read-onlyfetch/source authority. Exact closure DTO anddevdigest encoding in API.md. It requires completechecked396,6S/P/D+8oldB/F/H/T, same22targets/groups across1/3/5, fixed36guard outcomes and36paired descriptive panels. Dictreturn summary/markdown remains memory-only; ROOT writes actual public_summary.json and result.md after validation. Source author has notread/written actualscores.
+
+Only aggregate scalar panels, guard/paired statuses/counts/intervals, fixedscope/provenance hashes leaveprivateinput. No per-event/group ID/receiver/strata/native/model/rawfinancialdata. Whole MAE/MedAE refer to mean action; posterior-median-action MAE separately labeled. Existing strictgate negative outcomes remainvisible; unsupportedintervalsnull, no averagingfailure/no new criteria. ReusedDEV exploratory; no novelty/SOTA/independentgeneralizationclaim.
+
+4cell Jupyter companion was skill-scaffolded, loads onlycolocatedpublic_summary.json and helper, asserts6/8/36strictgate, prints metric/guard tables/limitations. No private loading, training, plotting/packages installed. Syntheticnotebookexecution20testsPASS; outputs empty in notebooksource. ROOT canexecute withactual publicsummary onceexported. FirstdefaultCodexreviewclean,source unchanged/frozen. Parentfinalverification/publication/externalactualclosure remains required.
