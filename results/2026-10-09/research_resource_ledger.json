@@ -87,12 +87,7 @@
     "source": "clock_grid_progress_20261011T0142.txt",
     "unit": "eew-clock-grid-af88e126"
   },
-  "continuation": {
-    "id": "continue-earthquake-research-and-aws-experiments",
-    "interval_minutes": 30,
-    "kind": "thread heartbeat",
-    "notifications": "Meaningful change, completion, failure or required input only"
-  },
+  "continuation": "No task training running; V2 failed scoring deadline preserved; independent no-fit replay source under review.",
   "corrective_native_prefix_v2": {
     "Linux_tests": [
       23,
@@ -1390,6 +1385,29 @@
       "bytes": 6443,
       "sha256": "a554486fe7cfe8e05fd1e404347697b0ae7255edf069facc978e902ccb0bb2d8"
     }
+  },
+  "receiver_renewal_V2_incomplete": {
+    "actual_invocations": 1,
+    "age_free_control_retained_records": 46,
+    "all_checkpoints_and_history_preserved": true,
+    "automatic_retry": false,
+    "complete_evaluations": 2,
+    "independent_replay": "pending",
+    "new_method_success": false,
+    "own_unit_stopped_empty_cgroup": true,
+    "parent_artifacts_hash_verified": 12,
+    "planned_fits": 10,
+    "reason": "per_fit_300_second_deadline_during_distribution_scoring",
+    "reported_numerical_rejections": 0,
+    "retained_prediction_records": 178,
+    "schema": "earthquake-TRAIN115-receiver-renewal-v2-incomplete-public-v1",
+    "sealed_TEST_used": false,
+    "seeds_attempted": 1,
+    "source_commit": "3ad431bce6caf59993a0a8a5c6102466c63071f7",
+    "status": "incomplete",
+    "trained_fits": 3,
+    "updates_per_trained_fit": 300,
+    "utc": "2026-10-13T02:45:23.364350+00:00"
   },
   "source_audit_followups": {
     "MLAAPDE_Mw_source_audit": {
@@ -3651,5 +3669,5 @@
     "waveform_seconds": 62.13540666701738,
     "waveform_transport_complete": true
   },
-  "updated_utc": "2026-10-12T19:23:08.571537+00:00"
+  "updated_utc": "2026-10-13T02:45:23.364350+00:00"
 }
