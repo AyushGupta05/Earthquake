@@ -1,3 +1,5 @@
+13 October: independent audit-v2 parent admission rejects string-serialized funding before any dispatch/claim/numerical work. All7units notfound/inactive/empty; oldtimer stopped;13readonly control artifacts retained. Separate setupV3 serializes seven monetary amounts as numbers and passes27local/27AWS tests, including the actual frozen finance consumer, with clean review1. Published before a distinct audit-v3 clock; model/S/P/D396forecasts unchanged, producer0/36 remains preliminary, TESTsealed.
+
 # Shared-noise earthquake magnitude study
 
 The AWS experiment is complete: two fixed seeds for shared-noise S, zero-noise P and direct-summary D, with 300 updates per model and forecasts at 1, 3 and 5 seconds. All six checkpoints and 396 forecasts are preserved. The 2,312 retained artifacts have been copied and byte-verified; all 14 task fit units are inactive with empty process groups, and the fit stop timer is stopped.
