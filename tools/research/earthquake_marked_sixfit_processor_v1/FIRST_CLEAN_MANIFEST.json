@@ -1,0 +1,179 @@
+{
+  "schema": "marked-sixfit-processor-first-clean-source-v1",
+  "utc_frozen": "2026-10-13T06:45:58.245112+00:00",
+  "study": "earthquake-TRAIN115-marked-noise-fitting-v2",
+  "status": "source-only first clean; actual resource/input/fit authority remains ROOT-owned",
+  "review": {
+    "first_clean": true,
+    "engine": "codex",
+    "default_model": true,
+    "findings": 0,
+    "helper_exit_code": 0,
+    "parallel_tests": 26,
+    "test_exit_code": 0
+  },
+  "source_stage_equality_verified": true,
+  "actual_data_read": false,
+  "actual_fits": false,
+  "cloud_actions": false,
+  "shared_git_mutation": false,
+  "isolated_review_git_only": true,
+  "files": [
+    {
+      "path": "processor.py",
+      "bytes": 33997,
+      "sha256": "59b8c4160f0bc16821ca2b5bafe2a5900022449010d026182dc2f5883afeb5af"
+    },
+    {
+      "path": "numeric_state.py",
+      "bytes": 3443,
+      "sha256": "acd9f95510b5b2d990f9ff36a0ad1450474dd6d1a12e4b5d2de679d9599a6d03"
+    },
+    {
+      "path": "fixtures.py",
+      "bytes": 4289,
+      "sha256": "e8b43cd0f0c4f625d22a29733254f3f30e78c979b1253b01a5bdc3d362b323c3"
+    },
+    {
+      "path": "test_processor.py",
+      "bytes": 21109,
+      "sha256": "b95fff5177d52bbd80f02a45934e5061065ea77e9ed8d986dc7d6b8c83833cec"
+    },
+    {
+      "path": "PROCESSOR_PROTOCOL.md",
+      "bytes": 4804,
+      "sha256": "3b606072b2dc24b961f776e0741d75d2d40971cb2c32a67b9c4817c3ae449e17"
+    },
+    {
+      "path": "AUDIT_SCHEMA.md",
+      "bytes": 15068,
+      "sha256": "152316e50375d79c167f437d890b30b9bdb71ff6851172d1124ceaced1474463"
+    },
+    {
+      "path": "API.md",
+      "bytes": 4364,
+      "sha256": "8c4e72b65a4fac896da3aaa68bc5d8a5842890f5f4b2e7d09a9d898b20dfd4e0"
+    },
+    {
+      "path": "REVIEW_ADJUDICATION_v1.md",
+      "bytes": 841,
+      "sha256": "5c660c90f28d4749809a5a4f86fa2be01e3fbebe6968ed12e0a7ab331dc78927"
+    },
+    {
+      "path": "REVIEW_ADJUDICATION_v3.md",
+      "bytes": 841,
+      "sha256": "ff210a4ccfbb33cb2823edce7c951dd8aa4bddd493def621578c01cbd8ce2981"
+    },
+    {
+      "path": "reference/gaussian_operator.py",
+      "bytes": 16794,
+      "sha256": "ff41fd6755af0d79d1aa58ead7e97bcd409f7f0720a7fe9593f085e597d51d3a"
+    },
+    {
+      "path": "reference/reference_core.py",
+      "bytes": 16550,
+      "sha256": "06d4eedd91ebe15c3f5c3e77a1f63491827c38dbe0ad272dbf67680c43338a87"
+    },
+    {
+      "path": "reference/marked_native.py",
+      "bytes": 18696,
+      "sha256": "867d427f346a76f8adea7e268975531a947594e462044e41ddafcf8604b18d09"
+    },
+    {
+      "path": "reference/native_packet_io.py",
+      "bytes": 12940,
+      "sha256": "6a05e28582386af1918fdac8544e755cf7a2e60d5fe17aeead31463ada0614e3"
+    },
+    {
+      "path": "reference/SOURCE_PINS.json",
+      "bytes": 894,
+      "sha256": "c1764f37a284ea0fb45e2868d3c30a281afa63de88df111677d352d3c3a9b787"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 3441,
+      "sha256": "4e6aa6685024ab2b45f7d1e321614806e228763bf08de97a6e332cab64388abc"
+    },
+    {
+      "path": "TEST_REVIEW_EVIDENCE.json",
+      "bytes": 1681,
+      "sha256": "82c78b8fd305dbadbd2e88f9108f3997ee70e38c127ca8d3465291cf82ecac4e"
+    },
+    {
+      "path": "TEST_RESULTS_v1.txt",
+      "bytes": 2384,
+      "sha256": "bc8090e0c2672785217a11d1a83fe3d9251dc1cf96811c1bf7d845abe9162d55"
+    },
+    {
+      "path": "TEST_RESULTS_v2.txt",
+      "bytes": 2591,
+      "sha256": "2c8d6abc27c1ec002e6becac7606f100fa4437406f938dcd825c331ae68acae4"
+    },
+    {
+      "path": "TEST_RESULTS_v3.txt",
+      "bytes": 2694,
+      "sha256": "97bbddcb30de12b13ab91439d1604dae033fa7621ab280af6923b540f49bd865"
+    },
+    {
+      "path": "REVIEW_v1.json",
+      "bytes": 2108,
+      "sha256": "eed2f6f82a196f3a791e5d2aea0e7db282ce425f3a509820adaa46f0974d8a3b"
+    },
+    {
+      "path": "REVIEW_v1.txt",
+      "bytes": 1658,
+      "sha256": "4bbf3eec015f00a3572aefa1011f44048e789fa760782525e50097ef39f81510"
+    },
+    {
+      "path": "REVIEW_v3.json",
+      "bytes": 1382,
+      "sha256": "c642f334851d5d0b1f33fa5562a8ab96fbb65f8f342c53e9df111cfe0c79d53b"
+    },
+    {
+      "path": "REVIEW_v3.txt",
+      "bytes": 1122,
+      "sha256": "2687bf41e56059ff855cd7673dbe9b1efc7b9d4bf1fcfbe4fe9372b58f0682e0"
+    },
+    {
+      "path": "REVIEW_v4.json",
+      "bytes": 487,
+      "sha256": "ced1d5fcbc76ac475acbff5af5837fea9abaa7d13d7d91cf83b1b3b6c7f70908"
+    },
+    {
+      "path": "REVIEW_v4.txt",
+      "bytes": 455,
+      "sha256": "28617945931d5c2538245677dccd10024d6fbb5b23a7d145a7c260511cef4a92"
+    },
+    {
+      "path": "REVIEW_v4.log",
+      "bytes": 3341,
+      "sha256": "a5ff9573d6c0a43e9dd62804ef6e0b6605eae8c07f24a1103e194fa7af0788cd"
+    },
+    {
+      "path": "review_stage/REVIEW_CONTEXT.md",
+      "bytes": 1155,
+      "sha256": "8ed7c8bc464c728f593ddbbfa3d3fd94ec17f07f95c19dbac13a532970efaf77"
+    },
+    {
+      "path": "review_stage/APPROVED_PROPOSAL.md",
+      "bytes": 7245,
+      "sha256": "debfddbe9a3eaad836f075c38e061ab7c9499993738bcde1635a7f27518f91e3"
+    },
+    {
+      "path": "review_stage/APPROVED_MODEL_SCHEMA.md",
+      "bytes": 2630,
+      "sha256": "e4ea50d0649e87d43a9f945c1be7dcbb602346ce7cf8f6b19e638ea98e836468"
+    },
+    {
+      "path": "review_stage/APPROVED_INHERITED_V1_PROPOSAL.md",
+      "bytes": 25393,
+      "sha256": "2af961646915c9f69758c63901e257cffb457252b612237ac715e1e2ecadebed"
+    },
+    {
+      "path": "review_stage/APPROVED_INHERITED_V1_MODEL_SCHEMA.md",
+      "bytes": 11417,
+      "sha256": "6e5ebfeed72609ad817f70769b873ccb6e550621555c3496ad3b394b3be7d22b"
+    }
+  ],
+  "excluded": "Generated __pycache__, .git, superseded capacity diagnostics, runtime state; none are source deliverables."
+}

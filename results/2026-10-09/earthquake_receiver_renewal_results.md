@@ -1,3 +1,5 @@
+13 October numerical closure: all660forecast scores now independently agree. The unchanged ten-model/two-seed comparison fails all24guards. Earlier provisional tables/figure below describe the same preserved producer forecasts and remain labeled with their historical verification status; the current negative conclusion is independently supported.
+
 # Receiver-renewal comparison at 1, 3 and 5 seconds
 
 The fixed comparison is complete: ten models, two seeds, 300 updates each, and 660 forecasts. The producer reports **zero of 24 predeclared comparisons passed**. All 660 checkpoint forecasts independently reproduce. Complete probability-score replay hit its 900-second deadline and retained no numerical report, so these aggregate values remain provisional. No novel winner or published-benchmark superiority is claimed.

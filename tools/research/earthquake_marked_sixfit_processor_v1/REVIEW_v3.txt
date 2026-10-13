@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Validate numerical evidence before accepting new score records
+processor.py:428
+Aggregation can return `status='complete'` and `pass_all=True` after `source` and `diagnostics` are removed from every S/P/D prediction: `validate_population` delegates to `validate_forecast`, which checks only point/proper scalars, quantiles and coverage. It also accepts diagnostics that explicitly exceed the frozen parity or work limits. The audit contract requires complete source exports and numerical diagnostics and makes missing numerical evidence incomplete. Validate the required S/P/D source and diagnostic schemas, array shapes, finite values, parity tolerances and work limits before including these records in the guards; preserve the separate inherited B/F/H/T contracts.
+
+overall: patch is incorrect (0.89)
+The training and scoring paths follow the fixed schedule and injected dependency contracts, but aggregation does not enforce the required numerical-evidence completeness for new forecasts. Consequently, incomplete or explicitly numerically rejected records can produce a passing aggregate.

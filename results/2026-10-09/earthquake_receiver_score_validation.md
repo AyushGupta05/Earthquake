@@ -1,3 +1,7 @@
+# Complete numerical closure, 13 October
+
+All ten bounded per-fit audits pass, covering all660forecasts. The final aggregate independently recomputes all30horizon metrics and all24frozen checks, with0passes. Root verifies exact660forward-parameter journal binding, all660fresh numeric outcomes, all ten fit/finalaggregate equality, and recomputes descriptive metrics/guards from the saved independent predictions. All11owned units are inactive/empty. Readonly private artifacts:792members,3196876bytes. The original900-second full replay failure remains preserved separately. No refit, numerical-tolerance change or TEST access occurred. This closes a negative method result; it does not support novelty or published-benchmark superiority.
+
 # Distribution scoring validation before continuing the method comparison
 
 The three saved models reproduce all178 retained forecasts from their final checkpoints, with their TRAIN scalers and300-update histories bound to the original bytes. The first independent score comparison stopped because the saved per-record coverage flags are Boolean, while the auditor generated floating0/1 and rejected the Boolean type. Mean, median, NLL, CRPS andPIT for that first forecast agree; the largest difference is about6e-12. The coverage truth values also agree. Original forecasts and the failed replay remain unchanged.

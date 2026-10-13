@@ -1,0 +1,45 @@
+{
+  "status": "first clean code-only review; no actual admission or fits",
+  "review_engine": "codex",
+  "configured_model_override": false,
+  "review_binary": "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+  "review_binary_version": "0.162.0-alpha.17.2",
+  "review_command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --engine codex --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --no-web-search --prompt-file REVIEW_CONTEXT.md --output ../REVIEW_v4.txt --json-output ../REVIEW_v4.json --parallel-tests '/Users/ayush/.venvs/ml/bin/python3 -m unittest -v test_processor' > ../REVIEW_v4.log 2>&1",
+  "review_cwd": "review_stage",
+  "helper_exit_code": 0,
+  "review_findings": 0,
+  "review_bundle_chars": 208491,
+  "tests": 26,
+  "test_exit_code": 0,
+  "test_seconds": 73.995,
+  "python": "3.10.20",
+  "torch": "2.14.0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "threads": 1,
+  "runtime_scope": "local invented fixtures only; AWS Torch2.8 unverified by this task",
+  "source_stage_bytes_identical": true,
+  "first_clean_stop": true,
+  "attempts": [
+    {
+      "id": "v1",
+      "status": "two accepted partial-evidence findings; fixed"
+    },
+    {
+      "id": "v2",
+      "status": "helper rejected absolute finding path; no accepted structured report retained"
+    },
+    {
+      "id": "v3-initial",
+      "status": "configured model at capacity; same command retried"
+    },
+    {
+      "id": "v3-retry1",
+      "status": "one accepted numerical evidence aggregation finding; fixed"
+    },
+    {
+      "id": "v4",
+      "status": "clean"
+    }
+  ]
+}

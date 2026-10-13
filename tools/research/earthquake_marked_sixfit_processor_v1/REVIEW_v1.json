@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "Retain the initialized receipt before running its gradient probe",
+      "body": "If a gradient probe fails or reaches its deadline after the initial callback succeeds, the current model's durable initial receipt is absent from Failure.evidence and the admission_failure snapshot: it is appended to evidence['completed'] only after the entire probe succeeds. The probe also discards masks and norms accumulated before failure. This violates the promised partial admission evidence precisely when a coefficient or numerical admission gate rejects a model. Record the initial receipt immediately after publication and retain the probe's partial progress on failure.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "processor.py",
+        "line": 224
+      }
+    },
+    {
+      "title": "Preserve numerical failure evidence from the rejected score",
+      "body": "When checked_scores raises a reference NumericalFailure, this handler retains only its exception name and message. The exception's evidence, including counted work and numerical diagnostics, is discarded, and the current posterior/source inputs are never added to the failure snapshot. Consequently score_failure and Failure.evidence contain previously completed forecasts but no replay evidence for the record that actually failed. Preserve the current record identity, available posterior/source state, work counters, and exception evidence before publishing the incomplete result.",
+      "priority": "P2",
+      "confidence": 0.95,
+      "category": "bug",
+      "code_location": {
+        "file_path": "processor.py",
+        "line": 374
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The training and scoring paths follow the fixed schedule and population contracts, but admission and scoring failures lose required partial evidence. These gaps undermine the explicitly promised failure audit and replay behavior. No tests were run, as requested.",
+  "overall_confidence": 0.93
+}

@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P1] Do not persist a complete return before checking the outer deadline",
+      "body": "When execution and cleanup succeed but the final 750-second check fails, this writes an immutable `parent_return.private.json` with `status='complete'` before raising the deadline error. A subsequent AUDIT accepts that file in both `claim()` and `before_import()`, since neither verifies that BUILD passed its final deadline check. Thus an expired BUILD can still authorize AUDIT despite the caller receiving a failure. Preserve the output inventory first, but determine deadline eligibility before persisting a complete parent return; on expiration, persist an incomplete closure.",
+      "priority": "P1",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 121
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The final parent deadline check can leave a successful, reusable BUILD closure behind after the stage has failed, bypassing the required BUILD-to-AUDIT admission condition. Review was limited to public source inspection; no tests or nested reviewers were run.",
+  "overall_confidence": 0.97
+}
