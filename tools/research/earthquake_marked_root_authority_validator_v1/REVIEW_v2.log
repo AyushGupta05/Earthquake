@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Hash supplemental vendor files during live runtime verification
+reference/source_binding.py:105
+`vi.load()` verifies the pinned inventory and RECORD metadata but never reads the admitted vendor files; it returns their bindings for later import checks. The authority callback calls `runtime()` without entering `vendor_guard()` or importing those files, so changing, deleting, or changing the mode of an admitted supplemental dependency still permits an authorized receipt while its inventory and RECORD remain unchanged. This leaves the promised full live runtime check incomplete. Iterate over the bindings returned by `vi.load()` and verify each actual file with `hashed_file()` before completing runtime verification.
+
+overall: patch is incorrect (0.94)
+The source and evidence checks are extensive, but supplemental runtime dependencies are checked only against metadata rather than their live bytes during admission. This permits authorization with a changed or missing dependency despite the stated full runtime binding contract. Review was read-only; no tests were run.

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P1] Align both auditor calls with the frozen API signatures
+wrapper.py:76
+The frozen contract in PUBLIC_AUDITOR_SCHEMA.md declares `audit_fit(score_result, packet, admission, checkpoint, authority, *, processing_begin, retain=None)`, but fit inputs contain `score`, which is forwarded unchanged through `**inputs`. Every fit stage therefore raises an unexpected-keyword TypeError after consuming its once-only claim. Stage 6 likewise supplies `retain` to the documented `aggregate(..., *, processing_begin)` signature, which does not accept it. The invented callbacks accept arbitrary `**kwargs`, hiding both integration failures. Map `score` explicitly to `score_result` and invoke aggregate with only its documented arguments; use signature-faithful fake callbacks to verify the integration.
+
+overall: patch is incorrect (0.99)
+The wrapper's invocation arguments do not match the supplied frozen auditor contract, preventing fit and aggregate stages from completing after their once-only claims. The permissive invented callbacks do not detect these incompatibilities.

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Preserve PathFinder cache invalidation in the owned chain
+source_binding.py:201
+Replacing sys.meta_path with only Guard removes PathFinder from importlib.invalidate_caches() dispatch, and Guard has no invalidate_caches method. The supplied PyTorch instantiator explicitly calls importlib.invalidate_caches() after writing its generated helper. If a prior lookup has cached that temporary directory before the helper is created, a same-directory-timestamp creation can remain invisible and the subsequent helper import raises ModuleNotFoundError despite valid pinned bytes. This regresses the existing generated-helper extension. Add a Guard.invalidate_caches method that delegates to the approved PathFinder while retaining the owned-chain checks.
+
+overall: patch is incorrect (0.97)
+The singleton chain prevents ambient meta-finder fallback and restores the original chain on ordinary exit, but it also removes standard cache-invalidation dispatch required by the existing generated-helper import path. Inspection only; no tests were run.

@@ -1,0 +1,10 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: 74f0a96c3310f5da7acbedf338072036715db5af
+bundle: 55088 chars
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.87)
+No actionable defects were identified within the supplied source-only bundle and stated ROOT trust boundary. The wrapper claims before invoking the auditor, preserves returned reports before validation and deadline checks, prevents callback retries after retention failure, and distinguishes attempted writes from durable acknowledgments. The clarified ABI matches the wrapper calls.

@@ -1,0 +1,40 @@
+{
+  "findings": [
+    {
+      "title": "P1 Bind verified source manifests to the gate's source pins",
+      "body": "The factory binds the runtime and input pins, but never compares the configured processor, gaussian, native, or parent manifest pins with gate.source_pins. Later source_binding.source verifies each tree against its own configured manifest, so a deployment containing a different internally consistent source tree can receive authorization for the original gate/publication source pins. Check the explicit role-to-pin mapping (including operator/reference) before accepting the configuration.",
+      "priority": "P1",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "validator.py",
+        "line": 79
+      }
+    },
+    {
+      "title": "P2 Rehash the authority source file before issuing authorization",
+      "body": "publication.authority_source_pin is compared only with the pin stored in config.authority_source. The callback never reads that file, and it is outside the source groups traversed at line 114. Consequently, changing or deleting the configured validator source after ROOT's bootstrap verification does not prevent an authorized receipt, despite the contract requiring live source-byte checks. Validate the readonly authority_source spec and read its pinned bytes during verification.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "validator.py",
+        "line": 109
+      }
+    },
+    {
+      "title": "P2 Recheck UTC validity after the expensive evidence traversal",
+      "body": "UTC lease and funding validity are checked only before hashing the full source/runtime inventory and reading the remaining closures. The final check uses only the monotonic clock. If the host wall clock advances during verification, the callback can return authorized after expires_utc or funding.valid_until_utc has passed while the monotonic lease remains valid. Recheck current UTC and the UTC-to-monotonic coverage at dispatch, alongside the final monotonic deadline check.",
+      "priority": "P2",
+      "confidence": 0.94,
+      "category": "bug",
+      "code_location": {
+        "file_path": "validator.py",
+        "line": 144
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The callback has substantial pinned-evidence validation, but misses source-to-gate manifest bindings, live authority-source verification, and final UTC validity checks. These gaps allow authorization with inconsistent source subjects or expired UTC authority. Review used read-only inspection; no tests or nested reviewers were run.",
+  "overall_confidence": 0.97
+}
