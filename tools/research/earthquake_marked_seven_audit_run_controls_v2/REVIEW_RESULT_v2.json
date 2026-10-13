@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "P2: Reject retained temporary files before allowing another publication",
+      "body": "If writing or syncing the temporary file fails before os.link(), the temporary file remains but the destination name does not exist. A subsequent call checks only the destination and chooses a new UUID, so it can publish successfully despite the unfinished prior attempt. For stage bundle publication, another invocation using a different local output path can therefore proceed past a failed control attempt. This contradicts the documented terminal failure rule that unfinished temporaries poison later use. Add a durable reservation associated with the destination, or detect its retained temporary state before permitting another publication, while preserving failure evidence.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "custody.py",
+        "line": 33
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The metadata capacity and remaining-deadline corrections are present, but retained temporary publication failures do not enforce the promised terminal once-only control behavior. Review was limited to read-only source inspection; tests were not run.",
+  "overall_confidence": 0.9
+}

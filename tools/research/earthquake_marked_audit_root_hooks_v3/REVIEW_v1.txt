@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.94)
+The three reader bounds consistently admit ROOT receipt metadata up to 1 MiB while retaining mode, ownership, single-link, no-follow, stability, hash readback, and downstream schema checks. Synthetic coverage includes full legal streams, producer-consumer roundtrip, exact-cap acceptance, over-cap rejection, and mode/link/stability denials. No actionable defect was identified in this scoped correction. Tests were inspected but not executed, as requested.

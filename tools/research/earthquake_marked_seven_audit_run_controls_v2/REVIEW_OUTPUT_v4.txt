@@ -1,0 +1,3 @@
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.86)
+No actionable defects found in the source-only bundle. Broken stdin flush and close failures preserve stream draining and process reaping, EOF handling retains the remaining deadline, and destination-specific publication reservations prevent retries after failed writes. Review was read-only; no scripts or tests were executed.

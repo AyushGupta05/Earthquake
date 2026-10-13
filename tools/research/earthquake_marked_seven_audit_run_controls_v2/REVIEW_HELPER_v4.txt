@@ -1,0 +1,10 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: 893d1d2e4b25928e371ebce3dbb8e6506eb85a54
+bundle: 56301 chars
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.86)
+No actionable defects found in the source-only bundle. Broken stdin flush and close failures preserve stream draining and process reaping, EOF handling retains the remaining deadline, and destination-specific publication reservations prevent retries after failed writes. Review was read-only; no scripts or tests were executed.

@@ -1,0 +1,14 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: ccd0e87302ff0ba3600a4e9d087bd9c528b6ce44
+bundle: 51525 chars
+autoreview findings: 1
+[P2] P2: Reject retained temporary files before allowing another publication
+custody.py:33
+If writing or syncing the temporary file fails before os.link(), the temporary file remains but the destination name does not exist. A subsequent call checks only the destination and chooses a new UUID, so it can publish successfully despite the unfinished prior attempt. For stage bundle publication, another invocation using a different local output path can therefore proceed past a failed control attempt. This contradicts the documented terminal failure rule that unfinished temporaries poison later use. Add a durable reservation associated with the destination, or detect its retained temporary state before permitting another publication, while preserving failure evidence.
+
+overall: patch is incorrect (0.9)
+The metadata capacity and remaining-deadline corrections are present, but retained temporary publication failures do not enforce the promised terminal once-only control behavior. Review was limited to read-only source inspection; tests were not run.

@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] P2: Allow the evidence receipt to hold permitted manager streams
+runner.py:131
+The final evidence write uses durable()'s default 262,144-byte cap, but complete_closure() permits 65,536 bytes of stdout and 131,072 bytes of stderr and embeds their retained_hex fields in root_manager. Those fields alone can occupy 393,216 bytes. A valid, complete audit with sufficiently verbose untruncated output therefore fails metadata_cap and cannot publish the evidence needed for the next stage. Set an explicit evidence cap that accommodates the permitted streams plus inventory and return metadata.
+
+[P2] P2: Respect the transport deadline after both streams reach EOF
+runner.py:80
+When both pipes reach EOF, the selector loop ends and p.wait(timeout=5) replaces the remaining configured transport timeout. A process that closes stdout/stderr and then continues working for more than five seconds is killed and reported as timed out even if its 1,130-second deadline is far away. EOF does not establish process termination. Wait using the remaining deadline, and only kill once that deadline expires.
+
+overall: patch is incorrect (0.97)
+The custody checks are substantial, but permitted complete stream evidence can exceed the final publication cap, and transport can terminate a process before its configured deadline. These are actionable failure-path defects identified by source inspection; no scripts or tests were executed.

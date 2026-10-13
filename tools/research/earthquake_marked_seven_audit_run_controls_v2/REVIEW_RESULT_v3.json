@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Drain and reap SSH after a broken stdin pipe",
+      "body": "If SSH exits before consuming the request (for example, because authentication or host-key verification fails), stdin.flush() can raise BrokenPipeError. Although that error is caught, stdin.close() can retry flushing the buffered request and raise again. The outer exception handler then kills the process without waiting for it and closes stdout/stderr without draining them. Consequently, the saved transport receipt can discard SSH's available failure diagnostics and record empty observed streams, while leaving the child unreaped. Handle stdin close errors without abandoning stream collection, and ensure the process is reaped on every exception path.",
+      "priority": "P2",
+      "confidence": 0.95,
+      "category": "bug",
+      "code_location": {
+        "file_path": "runner.py",
+        "line": 69
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The destination-specific publication reservation prevents the documented retry scenario, but transport failure handling can lose available failure evidence and skip child reaping when SSH closes stdin early. Review was limited to source inspection; no tests were executed.",
+  "overall_confidence": 0.91
+}

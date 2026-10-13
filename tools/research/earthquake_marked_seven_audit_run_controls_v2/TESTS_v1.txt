@@ -1,0 +1,293 @@
+test_aggregate_complete_negative_gate10 (test_controls.Tests) ... ERROR
+test_aggregate_record_must_equal_rawreport (test_controls.Tests) ... ERROR
+test_bounded_transport_retains_observed_hash (test_controls.Tests) ... ok
+test_child_hash_substitution (test_controls.Tests) ... ERROR
+test_count_bool_denied (test_controls.Tests) ... ERROR
+test_driver_no_actual_execution_on_import (test_controls.Tests) ... ok
+test_duplicate_json_denied (test_controls.Tests) ... ok
+test_durable_no_overwrite_and_mode (test_controls.Tests) ... ERROR
+test_durable_nonfinite_fails_before_write (test_controls.Tests) ... ok
+test_durable_oversize_before_write (test_controls.Tests) ... ok
+test_fit_complete_exact75 (test_controls.Tests) ... ERROR
+test_fresh_cgroup_nonempty (test_controls.Tests) ... ERROR
+test_large_output_receipt_private_readback (test_controls.Tests) ... ERROR
+test_local_intent_exclusive (test_controls.Tests) ... ERROR
+test_local_symlink_read_denied (test_controls.Tests) ... ok
+test_manager_boolean_zero (test_controls.Tests) ... ERROR
+test_manager_timeout (test_controls.Tests) ... ERROR
+test_manager_truncated (test_controls.Tests) ... ERROR
+test_originalstream_wrong_hash (test_controls.Tests) ... ERROR
+test_persisted_post_differs_live (test_controls.Tests) ... ERROR
+test_provisional_closed_differs_actual_return (test_controls.Tests) ... ok
+test_remote_setup_failure_and_config_python_bind_source (test_controls.Tests) ... ok
+test_reordered_callback (test_controls.Tests) ... ERROR
+test_setup_return_requires_actual_outer_success (test_controls.Tests) ... ERROR
+test_transport_timeout_no_retry (test_controls.Tests) ... ok
+test_unknown_late_member (test_controls.Tests) ... ERROR
+test_wrong_closed_bytes (test_controls.Tests) ... ERROR
+test_wrong_source_callback_hash (test_controls.Tests) ... ERROR
+
+======================================================================
+ERROR: test_aggregate_complete_negative_gate10 (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 70, in test_aggregate_complete_negative_gate10
+    def test_aggregate_complete_negative_gate10(self):f=self.fixture(6);self.assertEqual(len(f.verify()['inventory']),10);self.assertFalse(f.report['advance']['pass_all'])
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_aggregate_record_must_equal_rawreport (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 106, in test_aggregate_record_must_equal_rawreport
+    with self.assertRaisesRegex(ValueError,'aggregate_report'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_child_hash_substitution (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 109, in test_child_hash_substitution
+    with self.assertRaisesRegex(ValueError,'child_custody'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_count_bool_denied (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 112, in test_count_bool_denied
+    with self.assertRaisesRegex(ValueError,'integer'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_durable_no_overwrite_and_mode (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 115, in test_durable_no_overwrite_and_mode
+    spec=c.durable(IO(),d,'stage_00.private.json',{'invented':1});self.assertEqual(IO.read_file(spec),b'{"invented":1}');self.assertEqual(Path(spec['path']).stat().st_mode&0o777,0o400)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 30, in durable
+    need(type(name)is str and name and '/'not in name and name not in('.','..'),'metadata_name');raw=plain(value);need(len(raw)<=cap,'metadata_cap');fd=io.directory(directory);temp='.tmp-'+uuid.uuid4().hex
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_fit_complete_exact75 (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 69, in test_fit_complete_exact75
+    def test_fit_complete_exact75(self):f=self.fixture();self.assertEqual(len(f.verify()['inventory']),75)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_fresh_cgroup_nonempty (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 82, in test_fresh_cgroup_nonempty
+    with self.assertRaisesRegex(ValueError,'fresh_owned_cleanup'):f.verify(lambda u,t:dict(f.post,control_group='/invented'))
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_large_output_receipt_private_readback (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 140, in test_large_output_receipt_private_readback
+    p=str(Path(d)/'transport.private.json');raw=b'x'*(runner.CAP+1000);runner.exclusive(p,raw);self.assertEqual(runner.read_private(p,5*runner.CAP),raw)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 49, in exclusive
+    need(type(raw)is bytes and len(raw)<=5*CAP,'private_cap');p=Path(path);fd=directory(str(p.parent))
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_local_intent_exclusive (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 127, in test_local_intent_exclusive
+    p=str(Path(d)/'intent.private.json');runner.exclusive(p,b'{}')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 49, in exclusive
+    need(type(raw)is bytes and len(raw)<=5*CAP,'private_cap');p=Path(path);fd=directory(str(p.parent))
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_manager_boolean_zero (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 97, in test_manager_boolean_zero
+    with self.assertRaisesRegex(ValueError,'integer'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_manager_timeout (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 91, in test_manager_timeout
+    with self.assertRaisesRegex(ValueError,'raw_manager_complete'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_manager_truncated (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 88, in test_manager_truncated
+    with self.assertRaisesRegex(ValueError,'raw_stream_custody'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_originalstream_wrong_hash (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 94, in test_originalstream_wrong_hash
+    with self.assertRaisesRegex(ValueError,'raw_stream_custody'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_persisted_post_differs_live (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 85, in test_persisted_post_differs_live
+    with self.assertRaisesRegex(ValueError,'fresh_owned_cleanup'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_reordered_callback (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 100, in test_reordered_callback
+    with self.assertRaisesRegex(ValueError,'record_order_source'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_setup_return_requires_actual_outer_success (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 146, in test_setup_return_requires_actual_outer_success
+    with self.assertRaisesRegex(ValueError,'preparation_transport'):runner.main(['0',str(p),str(q),str(Path(d)/'out')])
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 142, in main
+    args=sys.argv[1:]if argv is None else argv;need(len(args)==4,'arguments_index_preparation_runner_output');index=int(args[0]);need(0<=index<7,'index');prepraw=read_private(args[1]);runnerraw=read_private(args[2]);outer=object_read(prepraw);runner=object_read(runnerraw);need(type(outer)is dict and type(outer.get('exit'))is int and outer['exit']==0 and type(outer.get('stdout'))is str,'preparation_transport');prep=object_read(outer['stdout'].encode())
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 35, in read_private
+    p=Path(path);fd=directory(str(p.parent))
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_unknown_late_member (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 79, in test_unknown_late_member
+    with self.assertRaisesRegex(ValueError,'exact_success_inventory'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_wrong_closed_bytes (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 76, in test_wrong_closed_bytes
+    with self.assertRaisesRegex(ValueError,'final_return_agreement'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+======================================================================
+ERROR: test_wrong_source_callback_hash (test_controls.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 103, in test_wrong_source_callback_hash
+    with self.assertRaisesRegex(ValueError,'record_order_source'):f.verify()
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/test_controls.py", line 64, in verify
+    def verify(self,observe=None):return c.complete_closure(self.cfg,self.index,self.actual,self.j,self.io,observe if observe is not None else lambda u,t:dict(self.post),bundle_spec=self.bs)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/custody.py", line 63, in complete_closure
+    root=config['store_directory']+'/stage_%02d'%index;fd=io.directory(root)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_seven_audit_run_controls_v2/runner.py", line 30, in directory
+    nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd);os.close(fd);fd=nxt
+NotADirectoryError: [Errno 20] Not a directory: 'var'
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.195s
+
+FAILED (errors=19)
