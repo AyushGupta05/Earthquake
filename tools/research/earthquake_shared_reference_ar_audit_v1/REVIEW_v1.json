@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Separate predictive stop rules from falsification of the observation model",
+      "body": "Lack of benefit from the corrected loading, or regression in bulk/worst-error metrics, does not falsify a shared denominator-error mechanism. For example, at rho=0 the two loadings are identical even when shared reference error is physically present; an improved nuisance support can then provide the only benefit. More generally, the explicitly uncalibrated delete-one support and other model misspecification can mask a correct loading's value. Keep these criteria as reasons to stop development or reject a predictive-improvement claim, and reserve physical-model falsification for controlled checks that isolate its assumptions.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "RESEARCH_NOTE.md",
+        "line": 74
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The AR loading derivation, finite delete-one support argument, bootstrap sign caveats, and joint-state recursion are sound under the stated assumptions. However, the final stop rules conflate predictive performance with falsification of the physical observation model. External source claims could not be independently verified within the supplied bundle and the prohibition on browsing.",
+  "overall_confidence": 0.92
+}

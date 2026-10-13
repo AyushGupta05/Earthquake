@@ -1,0 +1,5 @@
+# First clean source review
+
+Default Codex review2 clean, confidence0.79, no findings. Review1c actionable P1s accepted after tracing real code: installed ExecStart substring could admit a script suffix; parsing now requires one exact complete argv vector. Fourteen held bundle stages are required before zip history traversal. Added both rejection tests. No findings rejected. Earlier same-byte review1/1b failed helper format validation (absolute paths forbidden); same engine retry with explicit relative-path formatting produced a valid verdict. All source failure/test/review evidence retained. No processing/test edits or additional review after first clean.
+
+Review command: autoreview --mode local --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --prompt <relative-path output requirement> on isolated /private/tmp/eew-marked-seven-audit-hooks-review-v2. Code-only scope contained10 public code/document files with invented fixtures; no actual financial/seismic/results/credentials. Current bytes equal clean stage.

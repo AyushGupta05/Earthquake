@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] P2: Enforce the child authorization expiry during finalization
+audit_deployment.py:129
+A child receipt may expire earlier than config['lease_deadline']. The wrapper checks that shorter expiry before returning, but all subsequent checks use dep.check(), which checks only the configuration lease and source/whole deadlines. If persisting return.json or child_report.json crosses receipt['expires'], the child can still return complete and the manager can close the stage successfully after its independent authorization has expired. Preserve the full return first, then enforce the receipt expiry through the final child check and retain a terminal failure if finalization crosses it.
+
+overall: patch is incorrect (0.94)
+The finalization checks do not enforce the independently issued child authorization expiry, allowing a late child result to be promoted to complete despite an expired receipt.

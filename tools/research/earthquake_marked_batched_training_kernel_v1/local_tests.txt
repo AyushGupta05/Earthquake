@@ -1,0 +1,36 @@
+test_capacity_and_loss_denominator (test_kernel.Tests) ... ok
+test_clock_future_and_censor_rejected (test_kernel.Tests) ... ok
+test_d_parity (test_kernel.Tests) ... ok
+test_deadline (test_kernel.Tests) ... ok
+test_dtype_prior_and_target (test_kernel.Tests) ... ok
+test_joint_support_permutation (test_kernel.Tests) ... ok
+test_mean_precision_rejection_both (test_kernel.Tests) ... ok
+test_one_row (test_kernel.Tests) ... ok
+test_original_separate_backward_order (test_kernel.Tests) ... ERROR
+test_p_broad (test_kernel.Tests) ... ok
+test_p_ragged_gradient (test_kernel.Tests) ... ok
+test_precision_rejection_both (test_kernel.Tests) ... ok
+test_prior_network_gradient_k0_and30 (test_kernel.Tests) ... ok
+test_python39 (test_kernel.Tests) ... ok
+test_s_narrow (test_kernel.Tests) ... ok
+test_s_ragged_gradient (test_kernel.Tests) ... ok
+test_ulp_exact (test_kernel.Tests) ... ok
+
+======================================================================
+ERROR: test_original_separate_backward_order (test_kernel.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_batched_training_kernel_v1/test_kernel.py", line 131, in test_original_separate_backward_order
+    for value in expected:(value/24).backward()
+  File "/Users/ayush/.venvs/ml/lib/python3.10/site-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+  File "/Users/ayush/.venvs/ml/lib/python3.10/site-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+  File "/Users/ayush/.venvs/ml/lib/python3.10/site-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: Trying to backward through the graph a second time (or directly access saved tensors after they have already been freed). Saved intermediate values of the graph are freed when you call .backward() or autograd.grad(). Specify retain_graph=True if you need to backward through the graph a second time or if you need to access saved tensors after calling backward.
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.976s
+
+FAILED (errors=1)

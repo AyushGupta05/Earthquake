@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P1] [P1] Parse and compare the complete installed ExecStart argv
+hooks.py:252
+The installed service command is validated with a substring match. For example, if the pinned stop script is `/proof/stop.sh`, an observed `argv[]=/usr/bin/bash /proof/stop.sh.disabled ;` passes this check while executing a different script. Reading and verifying `/proof/stop.sh` afterward does not establish that systemd will execute it. This can authorize work without the required automatic stop protection. Parse the observed command and require its complete argument vector to equal `exec_argv`, rejecting additional commands or arguments.
+
+[P1] [P1] Require fourteen bundle stages before verifying history
+hooks.py:158
+Only `execution['stages']` is required to contain fourteen entries; `zip` silently skips any execution entries beyond the length of `bundle['stages']`. A held template containing only the admission stage therefore skips verification of all thirteen remaining original stages. Stage-zero authentication can still succeed because it only accesses the admission result, yet the hook issues a positive `history_gradient` proof for the entire execution. Require `bundle['stages']` to be a list of exactly fourteen entries before iterating.
+
+overall: patch is incorrect (0.98)
+The authority checks can accept an installed stop service that executes a different script and can issue full-history proofs after verifying an incomplete original-stage bundle. These are actionable gaps in the stated positive-authority contract. Review was read-only; no tests were run.

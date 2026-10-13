@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Preserve the transport's original stream custody metadata
+audit_control.py:64
+The frozen Systemd adapter returns `stream_custody` containing original byte counts, streaming SHA-256 hashes, truncation flags, and observation completeness, but this code discards it. When stdout exceeds 64 KiB or stderr exceeds 128 KiB, the adapter has already truncated the returned bytes. `clipped()` then hashes that retained prefix as `original_pin` and reports `truncated=False` because its length equals the cap. Although `streams_complete=False` correctly fails the stage, the durable manager evidence loses the original stream hash/count and misrepresents the retained prefix as the original stream. Persist the adapter's `stream_custody` alongside the retained bytes and distinguish original-stream pins from retained-prefix pins.
+
+overall: patch is incorrect (0.88)
+The bounded transport's custody metadata is discarded and replaced with misleading original-stream evidence when transport output is truncated. The stage fails safely, but its immutable failure evidence does not preserve the transport's actual observations. Inspection was read-only; no tests were run.

@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/__main__.py", line 18, in <module>
+    main(module=None)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/main.py", line 100, in __init__
+    self.parseArgs(argv)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/main.py", line 147, in parseArgs
+    self.createTests()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/main.py", line 158, in createTests
+    self.test = self.testLoader.loadTestsFromNames(self.testNames,
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/loader.py", line 220, in loadTestsFromNames
+    suites = [self.loadTestsFromName(name, module) for name in names]
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/loader.py", line 220, in <listcomp>
+    suites = [self.loadTestsFromName(name, module) for name in names]
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_input_adapter_v1/test_adapter.py", line 69
+    bundle['previous_audits'].append(dict(claim=cs,report=rs,return=put(ret),closed=put({'external_fixture_closure':True})))
+                                                             ^^^^^^
+SyntaxError: invalid syntax

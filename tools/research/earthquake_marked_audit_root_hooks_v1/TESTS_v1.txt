@@ -1,0 +1,330 @@
+test_authenticate_requires_authorize (test_hooks.Tests) ... ERROR
+test_authorize_positive (test_hooks.Tests) ... ERROR
+test_clock_precision_and_raw_properties (test_hooks.Tests) ... ERROR
+test_expired_funding (test_hooks.Tests) ... ERROR
+test_full_remaining_ceiling (test_hooks.Tests) ... ERROR
+test_funding_inactive_raw (test_hooks.Tests) ... ERROR
+test_main_balance_binds_raw (test_hooks.Tests) ... ERROR
+test_original_last_return_not_flag (test_hooks.Tests) ... ERROR
+test_original_late_inventory (test_hooks.Tests) ... ERROR
+test_python39 (test_hooks.Tests) ... ERROR
+test_raw_stop_inactive (test_hooks.Tests) ... ERROR
+test_strong_full_report_projection (test_hooks.Tests) ... ERROR
+test_wrong_scope_or_config (test_hooks.Tests) ... ERROR
+
+======================================================================
+ERROR: test_authenticate_requires_authorize (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp8ojxenu4/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_authorize_positive (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpwn4mgvrm/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_clock_precision_and_raw_properties (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpkf1q7tpn/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_expired_funding (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpt7okowd4/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_full_remaining_ceiling (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpioqtvj88/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_funding_inactive_raw (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpie3j35lg/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_main_balance_binds_raw (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp0ssk1bp8/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_original_last_return_not_flag (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpisl039er/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_original_late_inventory (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp4o3yl75i/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_python39 (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpiw4owy64/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_raw_stop_inactive (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp08sowlpy/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_strong_full_report_projection (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp95v_m2o9/original_stages/stage_00/claim.json'
+
+======================================================================
+ERROR: test_wrong_scope_or_config (test_hooks.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/test_hooks.py", line 12, in setUp
+    self.temp=tempfile.TemporaryDirectory();self.c=fixtures.corpus(self.temp.name)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/fixtures.py", line 32, in corpus
+    files['claim.json']=put(claim,name+'/claim.json')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_audit_root_hooks_v1/reference/fixtures.py", line 20, in put
+    p=root/name;p.parent.mkdir(parents=True,exist_ok=True);b=raw if isinstance(raw,bytes) else io.canonical(raw);p.write_bytes(b);p.chmod(mode);return dict(path=str(p),pin=io.pin(b),mode=mode)
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: '/private/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpa9lcmmw6/original_stages/stage_00/claim.json'
+
+----------------------------------------------------------------------
+Ran 13 tests in 8.735s
+
+FAILED (errors=13)
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpa9lcmmw6'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp95v_m2o9'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp08sowlpy'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpiw4owy64'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp4o3yl75i'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpisl039er'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp0ssk1bp8'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpie3j35lg'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpioqtvj88'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpt7okowd4'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpkf1q7tpn'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmpwn4mgvrm'>
+Traceback (most recent call last):
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 667, in _exitfunc
+    f()
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/Users/ayush/.local/share/uv/python/cpython-3.10-macos-aarch64-none/lib/python3.10/tempfile.py", line 869, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/6j/4mzsy4nd5z753j9q5_6w69kr0000gn/T/tmp8ojxenu4'>

@@ -1,0 +1,1 @@
+V2 is separately reviewed source; kernel.py and inherited_kernel.py byte-identical preservedV1. Only independent reference evidence-precision and proper-weight rejection added;32inventedtests include silent-improper-weight regression. No real data/model/outcome access or accuracy claim. V1 known failure is retained, not relabeled success.
