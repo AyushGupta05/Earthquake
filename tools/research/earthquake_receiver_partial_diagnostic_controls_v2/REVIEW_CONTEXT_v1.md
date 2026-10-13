@@ -1,0 +1,7 @@
+# Strict source-only default Codex staged-commit review
+
+Review only the staged authored unlaunched V2wrapper, exact AST extracted child/remote, invented tests and public provenance/control docs. Human code-only Codex review authorization persists. Do not read files referenced by wrapper, original repo, actual scientific source/runtime packages/data/metadata/results/private pins/inventories/AWS/financials/credentials or either publication receipt. Do not import or execute wrapper.py, child.py or remote.py. Only test_controls.py synthetic tests may execute; all subprocess boundaries are mocked and every file is invented temporary data or this public source packet. No web/nested review/model override; approved installed CodexCLI/default engine only.
+
+V1 remains immutable. V2 wrapper differs in exactly one prospective public receipt filename so current live publication commit is obtained after V2controls/Linux evidence publication, before root actual invocation. Original fit_proof sourcecommit/pins and all child/remote/scientific/math/custody/deadline functions are unchanged. Read ORIGIN.md. All24 invented tests PASS/zero skips. Root may concurrently verify these frozen bytes synthetically on Linux but publication/actual invocation wait first clean. Actual scientific validity and resource authority remain external.
+
+Structured code_location.absolute_file_path MUST be repository-relative (wrapper.py, child.py etc) for helper validator. No actual computed pin/value occurs in bundle. Stop at first clean; no redundant review.

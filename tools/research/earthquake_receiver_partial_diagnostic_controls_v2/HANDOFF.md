@@ -1,0 +1,9 @@
+# Frozen V2 diagnostic controls handoff
+
+FIRST CLEAN default Codex staged-commit review1, confidence0.86. Seven reviewed members current==cleanstage, no processing changes or redundant review afterward.24 local invented AST-only tests PASS/zero skips, approximately0.091seconds Python3.10; parent Linux synthetic proof remains separate and may have run concurrently on identical frozen bytes.
+
+/tmp/eew-renewal115-partial-replay-v2.py exactly matches wrapper.py, all0400. The only wrapper change from frozen V1 is the prospective public receipt filename earthquake_receiver_partial_diagnostic_source_push_v2_20261013.json. ROOT creates that receipt after publishing V2controls and Linux proof, before invocation; the review task did not read either receipt. Original trained fit_proof source_commit/pins remain unchanged. child.py/remote.py are exact V1bytes, scientific/mathematical/custody/deadline/partial preservation functions unchanged. Positive V1manifest/member hashes/modes were replayed at closure; V1 and its complete evidence remain unchanged. See ORIGIN.md/CONTROLS.md.
+
+Parent alone owns publication, exact live Git/head/source/runtime/input/resource/read-only custody, sole invocation/no-overwrite and cleanup proof. Retained V1unit/output names are intentional because the prospective V1wrapper was not invoked. No actual reference input/source/runtime/data/result/private pin/inventory/financial file, AWS/SSH/model/fit or shared Git was read/executed in this task; only isolated source-only staged commits support authorized Codex review. No science-win/refit authority.
+
+PUBLIC_FILES.json is the final positive17-member whitelist; MANIFEST.json pins every public member except itself/CHECKSUMS.sha256; checksums include manifest. SOURCE_SNAPSHOT.json binds clean seven-file commit. All final public files0400. Stop after first clean.

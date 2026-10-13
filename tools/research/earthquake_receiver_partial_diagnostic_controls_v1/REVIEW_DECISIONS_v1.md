@@ -1,0 +1,3 @@
+# Review1 accepted finding and root identity guard
+
+Review1 found one valid crash-durability bug: missing fsync for new output directory parent entry. Accepted and minimally fixed in embedded remote and extracted remote.py, before launch. Added parent-directory ordering/failure synthetic tests. Root independently requested explicit saved-record identity/ordered membership guards; these run before any checkpoint forward/scoring, without a model/scorer change or actual data read. New checks cover those mechanisms;23 total invented tests pass zero skips. All first-review evidence/stage is retained.

@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Preserve the current B/F raw forecast when analytic scoring fails
+engine.py:218
+The B/F branch has no diagnostic exception handler around mixture construction and analytic scoring. If `Mixture.from_raw` rejects a nonfinite forward output, or an analytic score raises, the outer handler returns an incomplete fit but discards the current `raw` forecast and leaves `numerical_failures` empty. Earlier predictions survive, but the failed forecast cannot be replayed or diagnosed from the retained stage evidence. Wrap this branch with failure retention analogous to the C/H/T branch, recording ordinal, horizon, raw parameters and exception before stopping without retry.
+
+overall: patch is incorrect (0.9)
+The staged training and scoring preserve the original processing structure, but B/F scoring failures omit the current raw forecast from retained diagnostic evidence, violating the continuation's failure-retention contract. Review was read-only; no code or tests were executed.

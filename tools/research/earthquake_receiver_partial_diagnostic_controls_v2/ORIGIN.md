@@ -1,0 +1,7 @@
+# V2 publication bootstrap correction
+
+Parent integration found that publishing the new controls advances live HEAD beyond the earlier incomplete-outcome publication receipt. This prospective version obtains gate source_commit from work/earthquake_receiver_partial_diagnostic_source_push_v2_20261013.json['pushed_commit'], created by ROOT after V2 publication/Linux evidence and before invocation. The earlier receipt is never read in V2. This task did not read either receipt or actual values. Original fit_proof source_commit/sourcepins stay unchanged.
+
+V1 wrapper16990B SHA2569e9dd3ebfc86020a16659f344b95c81365f02865c34883996178e0bdcd6889c8, manifest8c66266f4ad51d898f43e124720e7f1d1a84279d139c2f077573362460ae9599. V2 wrapper equals V1 after replacing exactly one receipt filename literal. child.py/remote.py are byte-identical to frozen V1; own invented tests add only the prospective receipt path/gate field check. All V1 review/stage/failure evidence remains unchanged.
+
+Source-only: no actual input, source/runtime package, data, results, private pins, inventories, financials, AWS/SSH, shared Git or scientific invocation. Temporary isolated Git commits only support authorized default code-only review. V2 retains V1 invocation/output names because V1 was never invoked; root owns sole-execution/no-overwrite/publication/resource gates. Root must verify current code/protocol/runtime/input and cleanup evidence before invoking the new0400 /tmp/eew-renewal115-partial-replay-v2.py. No method-win/refit authority.

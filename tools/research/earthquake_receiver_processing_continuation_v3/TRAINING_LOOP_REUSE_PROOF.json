@@ -1,0 +1,13 @@
+{
+  "original_loop_sha256": "82ee3c6edcbae02928eccf0315c45541faf87765cb47413df57c485ec7d347d1",
+  "new_normalized_loop_sha256": "82ee3c6edcbae02928eccf0315c45541faf87765cb47413df57c485ec7d347d1",
+  "normalizations": [
+    "check -> tick",
+    "p.event_order/p.batch/p.state_batch -> original names"
+  ],
+  "exact_ast_equality": true,
+  "optimizer": "Adam lr1e-3 weight_decay0",
+  "initialization": "same manual_seed/Net.initialize",
+  "training_updates": 300,
+  "no_real_optimizer_steps_in_tests": true
+}

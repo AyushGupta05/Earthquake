@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Persist the new output directory's entry before launching the child",
+      "body": "The output directory is newly created, but its parent directory is never fsynced. The later put() calls fsync each file and the output directory itself; those operations do not guarantee durability of the output directory's entry in /home/ec2-user. After a host crash, the entire directory, including timeout and partial-evidence receipts whose writes completed successfully, can therefore disappear. Fsync the parent directory after mkdir and before launching the unit so the claimed durable custody extends to the new directory itself. Carry this fix into the embedded remote literal in wrapper.py as well.",
+      "priority": "P2",
+      "confidence": 0.95,
+      "category": "bug",
+      "code_location": {
+        "file_path": "remote.py",
+        "line": 3
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The exclusive private writes and timeout handling preserve evidence across ordinary process failures, but the newly created remote output directory lacks parent-directory fsync, leaving a gap in crash durability. This review used only the supplied source bundle; no referenced inputs or runtime packages were inspected or executed.",
+  "overall_confidence": 0.91
+}

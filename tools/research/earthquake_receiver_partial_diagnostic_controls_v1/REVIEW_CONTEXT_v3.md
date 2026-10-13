@@ -1,0 +1,11 @@
+# Strict source-only default Codex review boundary
+
+Review the staged commit only: authored unlaunched wrapper, exact AST-extracted embedded child/remote, public control docs and invented tests. Human authorization explicitly covers code-only Codex review. Do not open any file referenced by the wrapper, original repository, actual scientific source/runtime packages, data/metadata, results, private pins, AWS console/account inventory, credentials or financial information. No actual value or computed private pin is in this bundle; referenced strings are authored code. Do not execute/import wrapper.py, child.py or remote.py: their top levels read actual files and launch SSH/systemd. Only test_controls.py synthetic tests are allowed; these AST-extract functions and mock every subprocess boundary. No network except this authorized reviewer; web search disabled.
+
+Default installed CodexCLI only; no model override or nested review. Assess concrete custody, timeout/partial evidence preservation, bounded files and no-overwrite behavior. Root supplied the code-only prior score-auditor source pin binding; review agent did not read the actual source package/allowlist. Actual source/input/resource authority and scientific validity remain root-owned; avoid unsupported method-win claims or speculative threat models for externally authenticated task-owned frozen inputs.
+
+Every structured finding code_location.absolute_file_path MUST be repository-relative (e.g. child.py), as required by helper validator. Readable child.py/remote.py are exact copies of wrapper literals; actionable fixes must be carried into the literal wrapper before a new review. All23 invented tests passed.
+
+Stage1 was prepared but never reviewed; root requested the current-publication commit binding before reviewer invocation. Stage2 is the first reviewer call. No actual publication receipt or computed value was read.
+
+Second reviewer call after accepted concrete review1 parent-directory crash durability fix. Also added root-authorized saved record identity/order guards before forward/scoring. Read REVIEW_DECISIONS_v1.md. No actual value, referenced input/source/runtime or private pin was read. Stop after first clean; no redundant review.
