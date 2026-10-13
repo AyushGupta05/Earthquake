@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Retain completed fits when finalization exceeds a bound",
+      "body": "The final result-size checks and deadline check run outside the exception handling that returns retained evidence. If serialization exceeds the private/public size cap, or the whole-comparison deadline expires during finalization, `run` raises instead of returning an incomplete result containing the ten fits, predictions, numerical diagnostics and comparisons. Checkpoint/history callbacks preserve only model state and training history, so they cannot recover the discarded inference evidence. Handle these finalization failures with the same structured incomplete return used for comparison failures, with `advance.pass_all=False` and the accumulated evidence retained.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "pilot.py",
+        "line": 318
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The diagnostic failure-checkpoint change correctly preserves current model state without retrying failed callbacks. However, final result-bound and deadline failures still bypass evidence-preserving incomplete returns. Inspection was read-only; no code or tests were executed.",
+  "overall_confidence": 0.88
+}

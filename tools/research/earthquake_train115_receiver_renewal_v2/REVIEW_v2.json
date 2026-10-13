@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Preserve the current checkpoint when training terminates early",
+      "body": "The checkpoint callback is invoked only after all 300 updates. If a fit hits its deadline, a nonfinite loss/gradient, or another exception during training, the exception handler returns histories and failure metadata but discards the current model state. The parent cannot retain or replay that failed fit through the supplied API, contrary to the frozen requirement that failed runs retain checkpoints as well as histories. Capture the last available model state and shared scalers through the checkpoint callback on the failure path, without continuing or replacing the fit.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "pilot.py",
+        "line": 287
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The early training failure path loses the failed fit's model checkpoint, preventing the required failure retention and replay. Inspection was read-only; no code or tests were executed.",
+  "overall_confidence": 0.92
+}
