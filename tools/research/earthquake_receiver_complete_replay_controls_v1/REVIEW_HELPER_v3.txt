@@ -1,0 +1,10 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: d8fde739dd2f2bc306f15f80a568471f34d54a16
+bundle: 90867 chars
+autoreview clean: no accepted/actionable findings reported
+overall: patch is correct (0.83)
+No actionable defects were identified in the isolated ten-file packet. The runtime correction checks declared symlink membership and literal targets, rejects nonregular entries, and binds resolved targets to verified files or derived directories. Review was limited to the supplied source and contracts; tests and external artifacts were not executed or inspected.

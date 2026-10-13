@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "P1: Preserve relative log densities when evidence has a large common offset",
+      "body": "Valid inputs can produce an accepted, incorrectly normalized posterior because small log-density terms disappear when added to a very large negative observation logmass. For example, use one active N(0,1) prior component, zero noise, and 20 cells with all three b=0, a=0, sigma=0.05, value=1e6. The observations are independent of magnitude, so the posterior must remain N(0,1). However, accumulated mass is approximately -1.2e16, where float spacing is 2; adding the target-zero log density of approximately -0.919 rounds back to the same mass. Consequently target NLL becomes 0 and density(0) becomes 1 instead of approximately 0.919 and 0.399. All three integration methods share this arithmetic, so parity errors are zero and inference accepts. Keep common evidence offsets separate from relative masses and normalized log densities, or reject precision loss explicitly.",
+      "priority": "P1",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "core.py",
+        "line": 168
+      }
+    },
+    {
+      "title": "P2: Reject mutable nested fields in validated State objects",
+      "body": "validate_state constructs immutable copies with start/append but discards them and continues using the original State. A directly constructed State with list-valued pi, mu, noise rows, or cell vectors passes validation because vector accepts lists. The frozen dataclass only prevents field reassignment; these nested lists remain mutable, and append also shares the original prior/support references. Thus a caller can mutate a supposedly validated original prior, noise support, or previously consumed cell after appending a suffix, changing both historical and subsequent inference. Enforce recursively immutable tuple fields at the State boundary, or use a canonical immutable copy consistently while preserving the documented rejection-state identity.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "core.py",
+        "line": 83
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The numerical core can accept a substantially incorrect density and NLL for valid magnitude-independent observations, and its State validation does not enforce the promised nested immutability. These findings come from read-only source inspection; no tests or code were executed.",
+  "overall_confidence": 0.99
+}

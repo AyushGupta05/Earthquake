@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "P2: Avoid cancellation in the Gaussian posterior mean update",
+      "body": "The innovation-form mean update subtracts nearly equal large numbers for valid broad priors and steep observation slopes. For example, a single active prior with mean=1e6 and sd=1e6, zero noise, and a positive factor with b=1e6, a=0, sigma=.05, y=1 has an exact posterior mean approximately 1e-6 and sd approximately 5e-8. The floating-point update produces a mean approximately 1.00000761449e-6; at target=1.05e-6 this changes NLL by roughly 1.5e-4. The evidence ULP checks pass, and all three integration methods reuse the same inaccurate completed Gaussian, so parity reports zero disagreement and accepts it. Use a stable precision-weighted completion or reject numerically unresolved updates.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "core.py",
+        "line": 113
+      }
+    },
+    {
+      "title": "P2: Retain partial diagnostics when posterior construction fails",
+      "body": "The assignment to `posterior` happens only after its constructor returns. Consequently, any constructor failure leaves `posterior=None`, and the exception handler cannot retain already computed integrals, component diagnostics, or work counters. For example, an IntegrationWarning during adaptive integration returns `evidence=None`, despite having consumed counted density/CDF work; an evidence_precision failure retains only its scalar label/value and loses that work. Only exceptions that explicitly package diagnostics, such as quadrature_parity, avoid this loss. This violates the documented rejection contract to retain available diagnostic evidence. Attach the accumulated diagnostics at the constructor failure boundary, or separate object allocation from computation so the handler can inspect partial state.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "core.py",
+        "line": 244
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The source preserves shared-noise semantics and immutable input state, but valid Gaussian inputs can yield an accepted NLL error exceeding the stated numerical tolerance, and constructor failures discard available diagnostic evidence. Review was source-only; no code or tests were executed.",
+  "overall_confidence": 0.97
+}

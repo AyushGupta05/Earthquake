@@ -1,0 +1,26 @@
+{
+  "actual_inputs_read": false,
+  "custody": {
+    "origin": "earthquake_receiver_continuation_parent_controls_v4/custody.py",
+    "sha256": "c408b4cc88594ca4054eafadcbdbd85746d27c85b6b82c1eca9eb7734d0b0c83"
+  },
+  "exact_ast_copied_functions": {
+    "controller.py": [
+      "file_spec",
+      "source_spec",
+      "managed_process",
+      "post_checked"
+    ],
+    "stage_child.py": [
+      "read_raw",
+      "source_verify",
+      "canonical",
+      "hashlib_sha",
+      "import_bound",
+      "load_spec"
+    ]
+  },
+  "review2_corrected_helper": "runtime_verify now includes mandatory separate positively pinned symlink manifest and full entry/link target checks; original regular-file map/canonical unchanged",
+  "review2_modified_from_public_helper": "stage_child.py/runtime_verify",
+  "schema": "complete-replay-inherited-public-helpers-v1"
+}

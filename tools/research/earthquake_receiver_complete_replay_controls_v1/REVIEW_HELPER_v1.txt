@@ -1,0 +1,14 @@
+autoreview target: commit
+branch: main
+engine: codex
+tools: on
+web_search: off
+ref: 1f29cf07b69f6cb5ddb69e4edd2f2cd04185f6cc
+bundle: 81976 chars
+autoreview findings: 1
+[P1] Define the manifest loader used by runtime verification
+controls.py:76
+`runtime_verify()` calls `load_spec`, but that name is neither defined nor imported in `controls.py`. Every real replay reaches this call through `before_import()` and raises `NameError`, preventing runtime verification, all checkpoint forwards, and the independent audit even with a valid authenticated gate. Use the existing pinned file reader or define the missing loader. The invented tests mock `runtime_verify()`, so they do not expose this failure.
+
+overall: patch is incorrect (1)
+The production replay path unconditionally fails at runtime manifest loading because its loader is undefined. Review was limited to the supplied public packet; no tests or external artifacts were accessed.

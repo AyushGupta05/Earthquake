@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Reject undeclared symlinks in the runtime tree
+controls.py:79
+The membership set explicitly excludes symlinks, so adding an undeclared symlink to an otherwise valid 10112-file runtime leaves verification successful. Python can subsequently import a module through such a symlink in site-packages, loading bytes outside the verified manifest. Symlinked directories are similarly omitted from traversal. Reject symlinks and other unexpected entries during runtime enumeration rather than silently excluding them, and extend the invented membership test to cover this case.
+
+overall: patch is incorrect (0.93)
+The loader dependency is restored, but runtime membership verification still accepts undeclared symlinks, leaving a concrete gap in the promised closed runtime and import custody checks.

@@ -1,0 +1,44 @@
+test_allpositive_sequential_suffix_equals_joint_exact (test_core.CoreTests) ... ok
+test_budget_and_caps_reject_without_accepted_repair (test_core.CoreTests) ... ok
+test_censor_is_not_a_boundary_point_and_allzero_still_retained (test_core.CoreTests) ... ok
+test_censor_kernel_mixed_mass_is_normalized (test_core.CoreTests) ... ok
+test_censored_nonGaussian_reference_and_cdf (test_core.CoreTests) ... ok
+test_deadline_counts_horizon2_future_zero_and_noise_override_denied (test_core.CoreTests) ... ok
+test_dimensional_worst_60components_by60censor_timed (test_core.CoreTests) ... ok
+test_duplicate_skipped_cells_and_future_append_do_not_change_old_state (test_core.CoreTests) ... ok
+test_forged_state_or_mutable_input_cannot_bypass_schema (test_core.CoreTests) ... ok
+test_huge_common_logmass_rejected_not_false_normal_density (test_core.CoreTests) ... ok
+test_large_native_noise_powers_and_cdf_not_support_clipped (test_core.CoreTests) ... ok
+test_nested_mutable_forged_state_denied_before_append_or_infer (test_core.CoreTests) ... ok
+test_no_magnitude_slope_preserves_prior_but_updates_noise (test_core.CoreTests) ... ok
+test_noise_state_permutation_invariant_but_sign_spread_sensitive (test_core.CoreTests) ... ok
+test_noise_support_centered_joint_and_floor_retained (test_core.CoreTests) ... ok
+test_posterior_density_allreal_normalized_and_uncensored_closed_form (test_core.CoreTests) ... ERROR
+test_shared_and_independently_redrawn_noise_are_different (test_core.CoreTests) ... ok
+test_sharp_censored_GH_failure_keeps_errors_and_whole_state (test_core.CoreTests) ... ok
+
+======================================================================
+ERROR: test_posterior_density_allreal_normalized_and_uncensored_closed_form (test_core.CoreTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_distribution_core_v1/test_core.py", line 60, in test_posterior_density_allreal_normalized_and_uncensored_closed_form
+    norm,_=quad(p.density,-math.inf,math.inf,epsabs=1e-9);self.assertAlmostEqual(norm,1.,places=9)
+  File "/Users/ayush/.venvs/ml/lib/python3.10/site-packages/scipy/integrate/_quadpack_py.py", line 459, in quad
+    retval = _quad(func, a, b, args, full_output, epsabs, epsrel, limit,
+  File "/Users/ayush/.venvs/ml/lib/python3.10/site-packages/scipy/integrate/_quadpack_py.py", line 608, in _quad
+    return _quadpack._qagie(func, bound, infbounds, args, full_output,
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_distribution_core_v1/core.py", line 235, in density
+    need(type(m) in (int,float) and math.isfinite(m),'density_input');return math.exp(float(logsumexp([c.logdensity_unnormalized(m) for c in self.components]))-self.logz)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_distribution_core_v1/core.py", line 235, in <listcomp>
+    need(type(m) in (int,float) and math.isfinite(m),'density_input');return math.exp(float(logsumexp([c.logdensity_unnormalized(m) for c in self.components]))-self.logz)
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_distribution_core_v1/core.py", line 188, in logdensity_unnormalized
+    kernel=evidence_precision(float(self.logkernel(np.asarray([t]))[0]),'target_logkernel')
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_marked_noise_distribution_core_v1/core.py", line 105, in evidence_precision
+    raise NumericalFailure('evidence_precision',{'label':label,'value':value,'maximum_log_ulp':MAX_LOG_ULP})
+core.NumericalFailure: evidence_precision
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.308s
+
+FAILED (errors=1)
+INVENTED_WORST {'density_points': 53445, 'cdf_scalar_terms': 3206700, 'seconds': 0.2724615420011105}
