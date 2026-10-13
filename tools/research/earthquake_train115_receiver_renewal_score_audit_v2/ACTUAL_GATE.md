@@ -1,0 +1,7 @@
+# Parent-owned independent-audit actual gate
+
+No actual-data/cloud/Git/fit authority is present here. Parent first verifies closed frozen source/review/tests/publication and byte-identical code-free result contracts, then positively authenticates actual packet/result/scalers/histories/runtime/native/role/custody bytes. Original65/new50/31sealedTEST/115roster remain unchanged; no replacement/shrink/retry or favorable-horizon/seed/action selection.
+
+Before NumPy/SciPy imports or private loads, parent establishes an own Linux process scope with effective memory/swap/task/thread/CPU limits and an outer deadline greater than the<=900s source allowance, stop5/control-group. Its deadline/memory profile must be separately frozen from conservative workload estimates; this packet proves no hardRSS or remote runtime. No Torch/CUDA/vendor waveform decode is imported. Detailed private input/output and partial-failure evidence are bounded and retained; public reporting contains only approved generic aggregates.
+
+Parent independently checks model checkpoint-forward/CNNz and effective TRAIN gradient-capacity-probe truth. This scalar auditor cannot recover these from raw saved parameters or declare them true from shaped flags. It recomputes activity/scalers/mref/state/censor/factors/normalization/scores/metrics/24gates and retains numerical discrepancies. Failed/incomplete/missing/oversized/timed-out output cannot grant a scientific pass, new fits or expansion. A favorable descriptive gate is not independent generalization, novelty or published benchmark superiority.

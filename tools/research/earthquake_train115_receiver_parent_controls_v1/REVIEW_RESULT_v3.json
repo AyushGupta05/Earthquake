@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Persist bounded diagnostics before rejecting oversized normal returns",
+      "body": "When systemd-run returns normally with more than 65536 bytes of stdout or 131072 bytes of stderr, this assertion terminates the remote manager before it writes parent_return.private.json. The captured streams then disappear with the manager process; the parent receives only the assertion traceback. A failed child or native dependency producing a verbose diagnostic therefore loses the original failure evidence, despite the evidence-retention contract. Apply bounded_stream to normally returned streams too, persist their hashes/counts/truncation metadata, and record an incomplete outcome before rejecting excessive output.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 74
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The timeout path durably retains bounded partial diagnostics, but the normal-return path still discards oversized diagnostics before creating its durable receipt. This leaves an actionable evidence-retention gap. Inspection was read-only; no controller, child, or tests were executed.",
+  "overall_confidence": 0.96
+}

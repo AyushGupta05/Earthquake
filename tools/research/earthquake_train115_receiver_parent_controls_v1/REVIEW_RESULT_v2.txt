@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P2] [P2] Make retained transport output fit the durable receipt cap
+controller.py:15
+transport() retains up to 131072 characters from each stream, but persist() permits only 262144 serialized bytes for the entire receipt. Two full ASCII streams already exceed that cap after JSON overhead; escaping or multibyte characters can exceed it with substantially shorter streams. Consequently, a timeout or failed SSH invocation with bounded partial output can raise at persist(p, answer), leaving no durable local return or reconciliation marker. Bound the serialized receipt by bytes, including JSON overhead, and preserve explicit truncation metadata.
+
+[P2] [P2] Durably publish history files before acknowledging callbacks
+fit_child.py:59
+On the first history callback, the new directory entry is not fsynced, and the file remains writable until the final cleanup. fsync(f.fileno()) alone does not durably publish that new filename. If the host crashes after the callback returns, acknowledged update history can disappear; if the manager terminates the process, the final permission change and directory fsync may never run. Apply the file permission and fsync the containing directory before acknowledging the first history row, while retaining the already-open descriptor for subsequent writes.
+
+[P2] [P2] Preserve partial diagnostics on the remote manager timeout
+controller.py:47
+When systemd-run exceeds 3520 seconds, this handler discards TimeoutExpired.stdout and stderr and replaces them with empty output and a generic message. Those streams can contain the only traceback or diagnostic from a child killed before writing its failure artifact. The local transport timeout handler cannot recover them because the remote script can subsequently return normally. Retain bounded partial streams in the remote return, and retain the timeout marker even if the stop command itself fails or times out.
+
+overall: patch is incorrect (0.99)
+The child byte pin matches the provided source, but concrete failure paths still lose transport diagnostics or prevent durable receipts, and history callbacks acknowledge newly created files before their directory entries are durable. Inspection was limited to the permitted source files; no execution or tests were performed.

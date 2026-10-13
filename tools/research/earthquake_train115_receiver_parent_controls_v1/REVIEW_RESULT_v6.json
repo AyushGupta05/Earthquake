@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Preserve original stream custody metadata after manager timeout",
+      "body": "On `TimeoutExpired`, line 64 already converts the raw byte streams into bounded text and records their original hashes, byte counts, and truncation flags in `sm`/`em`. This unconditional second call hashes the retained, replacement-decoded text instead. Consequently, `manager_return.private.json` and the exported `parent_return.private.json` report incorrect original hashes/counts for invalid UTF-8 or truncated timeout output, and can report `manager_output_limited=False` for originally oversized output. The timeout marker retains the correct metadata, but the subsequent authoritative receipts contradict it. Reuse the original `sm`/`em` on the timeout branch and bound only raw streams on normal return; add a timeout regression covering oversized and invalid UTF-8 bytes.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 74
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The normal-return byte capture preserves original diagnostic hashes correctly, and the pinned child matches the supplied file. However, the timeout path processes already bounded text again, corrupting the original-stream metadata in subsequent durable and exported receipts. Review was limited to the authorized source files; no controller, child, or tests were executed.",
+  "overall_confidence": 0.97
+}

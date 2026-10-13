@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Persist normal manager diagnostics before checking stopped-unit state",
+      "body": "On normal subprocess return, stdout/stderr are only saved to a durable receipt after the subsequent `systemctl show` call and stopped-control-group assertion succeed. If that query times out/fails, or the unit still has a control group, the remote script exits before writing `parent_return.private.json`; the captured manager diagnostics and their original hashes/counts are lost. This includes oversized normal output that this change intends to preserve. Write a durable incomplete manager receipt before the fallible post-state check, then record reconciliation evidence separately, while continuing to block normal promotion.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 74
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The bounded normal-output handling preserves diagnostics only when post-execution state verification succeeds. A failure in that verification still discards captured normal-return evidence. Inspection was read-only; no controller, child, or tests were executed.",
+  "overall_confidence": 0.94
+}

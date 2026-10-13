@@ -1,0 +1,15 @@
+autoreview findings: 3
+[P1] P1: Bind the executed child to the reviewed source bytes
+controller.py:12
+The controller executes text loaded from a mutable /tmp file, but only compiles it for syntax. Neither the gate nor the remote launcher verifies that this text matches the reviewed fit_child.py. A stale or replaced file can therefore run different callbacks, omit the runtime checks, or launch a different workload while retaining the same source pins and invocation claims. Load the frozen reviewed child and verify its digest before dispatch, recording that digest in the gate.
+
+[P2] P2: Sync the output directory before acknowledging durable evidence
+fit_child.py:12
+put fsyncs file contents but never fsyncs the containing directory after creating the member. On a host crash, the newly created checkpoint or result directory entry can disappear even though the callback returned successfully. This breaks the stated durable callback and evidence-retention contract. Sync the output directory after creation (and ensure the final permissions are persisted) before returning; apply the same discipline to the parent evidence files.
+
+[P2] P2: Persist an incomplete return when the SSH wrapper times out
+controller.py:33
+The outer subprocess.run can raise TimeoutExpired, bypassing all subsequent local return-file creation. This occurs if SSH stalls or if remote startup, shutdown, and evidence collection exceed the small margin beyond the remote 3520-second wait. The remote workload may have run and produced checkpoints, but the controller leaves only the pre-execution gate and no durable record of the uncertain invocation outcome. Catch the timeout, retain its partial output, and write an explicit incomplete return without retrying the fits.
+
+overall: patch is incorrect (0.97)
+The execution wrapper does not bind the dispatched child to the reviewed bytes, and its durability and outer-timeout handling leave concrete gaps in the required evidence custody. Review was limited to the supplied source; no controller, child, or tests were executed.

@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Capture manager output as bytes before decoding and journaling",
+      "body": "The manager subprocess uses `text=True`, so `subprocess.run` decodes both captured streams before returning. If the child or a native dependency emits invalid UTF-8, this raises `UnicodeDecodeError`, which is not caught by the `TimeoutExpired` handler. Execution then exits before writing either manager receipt, losing the captured outcome and diagnostics even though the fits may already have run. Capture bytes and pass them through `bounded_stream` (which already implements replacement decoding and original-byte hashing) before any fallible reconciliation.",
+      "priority": "P2",
+      "confidence": 0.97,
+      "category": "bug",
+      "code_location": {
+        "file_path": "controller.py",
+        "line": 63
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The provisional journal addresses failures during post-run reconciliation, but normal-return stream decoding can still fail before that journal is written and discard execution evidence.",
+  "overall_confidence": 0.94
+}

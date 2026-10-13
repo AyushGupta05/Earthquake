@@ -1,0 +1,20 @@
+test_closed_member_budget_beforewrite (test_custody.Custody) ... ok
+test_directory_fsync_before_acknowledgement (test_custody.Custody) ... ok
+test_duplicate_preserves_old_checkpoint (test_custody.Custody) ... ok
+test_nonfinite_scalar_not_exported (test_custody.Custody) ... ok
+test_permember_cap_beforewrite (test_custody.Custody) ... ok
+test_private_durable_closed_member (test_custody.Custody) ... ok
+test_whole_custody_cap_beforewrite (test_custody.Custody) ... ok
+test_first_history_durable_private_and_second_uses_open_fd (test_custody.History) ... ok
+test_invalid_utf8_is_hashed_before_replacement_decoding (test_custody.RemoteManager) ... ok
+test_manager_evidence_precedes_failed_state_query (test_custody.RemoteManager) ... ok
+test_timeout_marker_and_partial_survive_stop_failure (test_custody.RemoteManager) ... ok
+test_verbose_normal_return_keeps_bounded_diagnostics (test_custody.RemoteManager) ... ok
+test_timeout_keeps_partial_evidence_without_retry (test_custody.Transport) ... ok
+test_timeout_partial_output_bounded (test_custody.Transport) ... ok
+test_two_escaped_unicode_streams_fit_durable_receipt (test_custody.Transport) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.023s
+
+OK
