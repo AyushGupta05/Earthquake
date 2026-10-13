@@ -1,0 +1,7 @@
+# V4 origin and narrow compatibility boundary
+
+ROOT reported the sole initial V3 validation failed `critical_pin` before global claim, output directory, owned unit or scientific import. No new model fits or scores occurred. The source-only author has not read that run's private intent/return/proof or actual runtime paths/pins; only the bare original modes664/775 were supplied as compatibility information.
+
+Frozen V3 remains unchanged. V4 adds only modes `0o664` and `0o775` to the explicit positive critical-runtime mode enum, still tied to exact prior SHA256/size and original-mode verification. Runtime files are never chmodded or normalized. The independently fixed prefix remains0444; source/input/output privacy remains0400. Scientific study remains earthquake-TRAIN115-receiver-renewal-v2, processing/gate schemas remainV3, and model/scorer math/tolerances/custody/import/resource guards are unchanged.
+
+Controller and live child use fresh `eew-receiver-continuation-v4-NN.service` units; publication helper uses the fixed FUTURE ROOT receipt `work/earthquake_receiver_continuation_parent_source_push_v4_20261013.json['pushed_commit']`. ROOT must separately create new config/clock/directories and publish source/Linux proof before actual invocation. No automatic retry or continuation of the failed V3 clock is introduced. Two invented tests check positive664/775 pins, invalid-mode/digest admission, same-size byte tampering and exact mode mismatch without runtime normalization.
