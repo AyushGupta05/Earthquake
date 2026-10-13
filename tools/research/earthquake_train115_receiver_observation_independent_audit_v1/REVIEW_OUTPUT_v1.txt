@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P2] Compare native prefixes without horizon-dependent dtype promotion
+auditor.py:359
+Supported records can use different native dtypes across consecutive pieces: the qualification helpers require a shared rate and continuous grid but do not require a shared dtype. Each horizon independently concatenates its pieces, so an i4-only 1-second view remains int32 while a 5-second view containing a later f8 piece becomes float64. This byte comparison then rejects the unchanged early samples solely because their array representation changed. The same issue occurs with f4 followed by f8. Compare the ordered original piece/sample prefixes with their native dtype evidence, or use a consistent lossless comparison representation across all horizons, while retaining the existing original-dtype hash checks.
+
+overall: patch is incorrect (0.96)
+The replay rejects valid continuous native observations when later records cause dtype promotion in the longer horizon. The supplied fixtures use homogeneous int32 records and do not cover this supported case.

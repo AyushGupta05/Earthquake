@@ -1253,6 +1253,31 @@
     "source": "Authenticated AWS Service Quotas console",
     "type": "Running On-Demand G and VT vCPUs"
   },
+  "receiver_native_semantic_auditor_V1_20261013": {
+    "Linux_seconds": 18.25772438198328,
+    "Linux_tests": 29,
+    "actual_auditor_invocations": 0,
+    "candidate_implementation_tests_or_actual_inputs_read_by_author": false,
+    "checked_utc": "2026-10-13T01:13:37.517091+00:00",
+    "checksum_closure_verified": true,
+    "errors": 0,
+    "failures": 0,
+    "first_clean_default_Codex_review": 2,
+    "local_tests": 29,
+    "manifest_pin": {
+      "bytes": 5399,
+      "sha256": "e33ea791d80c4166683aa447f50e1d88daf0ad30aa1def7946383afeb57570e0"
+    },
+    "no_accuracy_or_novelty_claim": true,
+    "normal_return_expected": "agreed/exact_native_semantics/348observations/115slots/65TRAIN22DEV",
+    "own_unit_stopped": true,
+    "public_members": 32,
+    "reviewed_members": 17,
+    "runtime_regular_pins": 10112,
+    "schema": "root-independent-native115-auditor-verification-v1",
+    "skips": 0,
+    "source_current_review_stage_exact": true
+  },
   "receiver_renewal_V2_20261013": {
     "CUDA_hidden_uninitialized": true,
     "Linux_code_bytes_equal_reviewed_source": true,
@@ -1281,7 +1306,9 @@
       "bytes": 9773,
       "sha256": "b5a3c78bca02738e84547299ed879cc6d076bf003d3d4d4d1659d1dfce960416"
     },
-    "native_builder_invocations": 0,
+    "native_builder_invocations": 1,
+    "native_builder_seconds": 5.31349714694079,
+    "native_roundtrip_arrays": 1044,
     "native_semantic_replay": "pending",
     "new_resources": 0,
     "novel_method_or_matched_published_superiority": false,
@@ -1305,6 +1332,7 @@
     "schema": "root-renewal115-source-verification-v2",
     "settled_spend_claim": false,
     "skips": 0,
+    "source_published_commit": "442e83620805eee2f8e20bbcad514cf78263afce",
     "source_snapshot_pin": {
       "bytes": 6443,
       "sha256": "a554486fe7cfe8e05fd1e404347697b0ae7255edf069facc978e902ccb0bb2d8"
