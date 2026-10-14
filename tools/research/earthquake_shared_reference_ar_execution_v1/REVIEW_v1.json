@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "[P2] Charge replacement temporary bytes against the storage envelope",
+      "body": "When replacing latest_update.json, this check subtracts the existing file's size before admitting the new write. The old checkpoint remains on disk while the complete temporary replacement is written and fsynced, so a stage near its limit can temporarily exceed the fixed 64 MiB envelope and consume the closure reserve. A failed temporary write can also leave those excess bytes permanently present while poisoning subsequent journal access. The inherited secure_io.Store explicitly charges temporary replacement bytes. Check total + len(raw) and payload + len(raw) before creating the temporary file; subtract the old size only for final inventory accounting.",
+      "priority": "P2",
+      "confidence": 0.99,
+      "category": "bug",
+      "code_location": {
+        "file_path": "journal.py",
+        "line": 80
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The replacement storage check permits temporary disk usage beyond the frozen stage envelope and payload reserve. The remaining inspected execution paths preserve the intended external authority boundary, fixed stage sequence, stream custody checks, and failure closure behavior.",
+  "overall_confidence": 0.91
+}

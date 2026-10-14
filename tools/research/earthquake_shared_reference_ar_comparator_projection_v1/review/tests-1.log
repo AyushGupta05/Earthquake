@@ -1,0 +1,21 @@
+test_projection (unittest.loader._FailedTest.test_projection) ... ERROR
+
+======================================================================
+ERROR: test_projection (unittest.loader._FailedTest.test_projection)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_projection
+Traceback (most recent call last):
+  File "/Users/ayush/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/eew-L-comparator-projection-source-v1/test_projection.py", line 12, in <module>
+    import math_core as core
+  File "/private/tmp/eew-L-comparator-projection-source-v1/public_contracts/math_core.py", line 6, in <module>
+    from scipy.special import logsumexp,ndtr,expit
+ModuleNotFoundError: No module named 'scipy'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

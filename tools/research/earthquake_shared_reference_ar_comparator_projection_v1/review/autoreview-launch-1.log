@@ -1,0 +1,12 @@
+autoreview target: local
+branch: main
+engine: codex
+tools: on
+web_search: off
+bundle: 178900 chars
+codex engine failed (1)
+WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)
+2026-10-14T11:19:26.487803Z  WARN codex_state::runtime::logs_maintenance: failed to prune diagnostic logs: error returned from database: (code: 8) attempt to write a readonly database
+2026-10-14T11:19:26.488044Z  WARN codex_state::runtime::logs_maintenance: failed to checkpoint diagnostic logs: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+

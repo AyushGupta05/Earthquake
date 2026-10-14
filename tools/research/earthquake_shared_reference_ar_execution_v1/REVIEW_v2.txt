@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P1] [P1] Enforce the issued child lease through manager closure
+control.py:139
+The parent reads claim.json only to verify its pin; it never reads the child authority's expires value. All transport, cleanup and finalization checks use closure_end derived solely from the parent receipt. Consequently, a child can finish and persist a complete report before its shorter issued lease expires, while EOF, cgroup cleanup and closed.json persistence occur after that expiry, and run_stage still returns complete. This violates the stated requirement that success include postclosure within the issued receipt lease. Parse the pinned child claim and require transport completion, verified cleanup and final persistence to remain within its expiry as well as the parent/whole deadlines; retain evidence and mark the stage incomplete otherwise.
+
+overall: patch is incorrect (0.94)
+The replacement storage accounting correctly charges the existing member and complete temporary replacement before writing. However, parent closure can still promote a stage after its separately issued child authority has expired. Review was read-only; no tests or nested reviewers were run.

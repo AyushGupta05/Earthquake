@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Authenticate prior admission before returning the independent binding",
+      "body": "For stages 6\u20138, frozen `child.execute` decodes stage 0's `result.json` immediately after `adapter.bind` returns, before calling `adapter.audit_authority`. This bridge authenticates prior raw results only inside `audit_authority`, so the admission has already been decoded when `trusted.authenticate_previous` runs\u2014even if that callback subsequently rejects its custody. The existing ordering test invokes `audit_authority` directly and misses this actual child sequence. Authenticate the required previous raw admission against the held receipt before returning the independent binding, preserving the frozen child API and the required authentication-before-decoding boundary.",
+      "priority": "P2",
+      "confidence": 0.98,
+      "category": "bug",
+      "code_location": {
+        "file_path": "bridge.py",
+        "line": 95
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The independent execution path violates the required prior-raw authentication order: the frozen child decodes the previous admission before the bridge invokes its prior authentication callback. The supplied tests do not exercise that ordering through the real independent child path.",
+  "overall_confidence": 0.97
+}

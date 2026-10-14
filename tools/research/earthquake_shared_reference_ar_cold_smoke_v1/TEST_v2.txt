@@ -1,0 +1,54 @@
+test_bad_canonical_pin_preload (test_smoke.Tests.test_bad_canonical_pin_preload) ... ok
+test_bad_raw_pin_preload (test_smoke.Tests.test_bad_raw_pin_preload) ... ok
+test_context_held_until_return (test_smoke.Tests.test_context_held_until_return) ... ok
+test_exact_three_updates (test_smoke.Tests.test_exact_three_updates) ... ok
+test_expired_before_parse (test_smoke.Tests.test_expired_before_parse) ... ok
+test_external_lease_failure (test_smoke.Tests.test_external_lease_failure) ... ok
+test_fixed_prefix_and_noise (test_smoke.Tests.test_fixed_prefix_and_noise) ... ok
+test_independent_three_horizons_sixty_components (test_smoke.Tests.test_independent_three_horizons_sixty_components) ... ERROR
+test_late_context_failure_not_success (test_smoke.Tests.test_late_context_failure_not_success) ... ok
+test_lazy_adam_failure (test_smoke.Tests.test_lazy_adam_failure) ... ok
+test_no_vendor_import (test_smoke.Tests.test_no_vendor_import) ... ok
+test_nonfinite_proper_rejected_preserved (test_smoke.Tests.test_nonfinite_proper_rejected_preserved) ... ERROR
+test_partial_adam_progress (test_smoke.Tests.test_partial_adam_progress) ... ok
+test_partial_proper_evidence (test_smoke.Tests.test_partial_proper_evidence) ... ERROR
+test_producer_dispatch (test_smoke.Tests.test_producer_dispatch) ... ok
+test_zero_gradient_rejected_before_step (test_smoke.Tests.test_zero_gradient_rejected_before_step) ... ok
+
+======================================================================
+ERROR: test_independent_three_horizons_sixty_components (test_smoke.Tests.test_independent_three_horizons_sixty_components)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_cold_smoke_v1/test_smoke.py", line 109, in test_independent_three_horizons_sixty_components
+    f=IndependentFixture();p=self.ip();out=smoke.independent(f.groups,p,lambda:None,lambda:10.);self.assertEqual([r['horizon'] for r in p['records']],[1,3,5]);self.assertTrue(all(r['components']==60 for r in p['records']));self.assertEqual([c for c in f.calls if c[0]=='scores'],[('scores',h,True) for h in (1,3,5)]);self.assertEqual(out['crosscheck'],'cdf-integral-crps');self.assertNotIn('current_work',p)
+                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_cold_smoke_v1/smoke.py", line 98, in independent
+    mix = core.complete(reference, budget)
+TypeError: IndependentFixture.__init__.<locals>.Mix.__init__() takes 2 positional arguments but 3 were given
+
+======================================================================
+ERROR: test_nonfinite_proper_rejected_preserved (test_smoke.Tests.test_nonfinite_proper_rejected_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_cold_smoke_v1/test_smoke.py", line 116, in test_nonfinite_proper_rejected_preserved
+    with self.assertRaisesRegex(ValueError,'proper_finite'):smoke.independent(f.groups,p,lambda:None,lambda:10.)
+                                                            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_cold_smoke_v1/smoke.py", line 98, in independent
+    mix = core.complete(reference, budget)
+TypeError: IndependentFixture.__init__.<locals>.Mix.__init__() takes 2 positional arguments but 3 were given
+
+======================================================================
+ERROR: test_partial_proper_evidence (test_smoke.Tests.test_partial_proper_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_cold_smoke_v1/test_smoke.py", line 112, in test_partial_proper_evidence
+    with self.assertRaisesRegex(ValueError,'late proper'):smoke.independent(f.groups,p,lambda:None,lambda:10.)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayush/Documents/Codex/2026-10-09/ok-x20/work/earthquake_shared_reference_ar_cold_smoke_v1/smoke.py", line 98, in independent
+    mix = core.complete(reference, budget)
+TypeError: IndependentFixture.__init__.<locals>.Mix.__init__() takes 2 positional arguments but 3 were given
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.002s
+
+FAILED (errors=3)

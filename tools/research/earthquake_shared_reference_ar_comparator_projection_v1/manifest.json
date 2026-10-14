@@ -1,0 +1,139 @@
+{
+  "schema": "source-only-L-comparator-projection-manifest-v1",
+  "directory": "/private/tmp/eew-L-comparator-projection-source-v1",
+  "production_entry": "projection.py:make_projector",
+  "abi": "project_comparators(scope,packet,decoded_six,decoded_stronger,decoded_closed_report,decoded_origins,input_receipt)",
+  "outputs": [
+    "reused_results",
+    "strong_results",
+    "origins"
+  ],
+  "tests": {
+    "command": "/Users/ayush/.venvs/ml/bin/python3 -m unittest -v test_projection",
+    "status": "pass",
+    "tests": 11,
+    "log": "review/tests-final.log",
+    "earlier_failures_retained": [
+      "review/test-environment-failure.log",
+      "review/tests-1.log",
+      "review/tests-2.log"
+    ]
+  },
+  "review": {
+    "command": "/Users/ayush/.codex/skills/autoreview/scripts/autoreview --mode local --no-web-search --codex-bin /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex --prompt-file review/context.txt --output review/autoreview-2.txt --json-output review/autoreview-2.json",
+    "engine": "default Codex",
+    "model_override": null,
+    "status": "first valid clean",
+    "exit_code": 0,
+    "findings": [],
+    "operational_failure_retained": "review/autoreview-launch-1.log",
+    "clean_report": "review/autoreview-2.json"
+  },
+  "ROOT_prerequisites": [
+    "independent expected contract authentication and externally held pin",
+    "ROOT-bound exact frozen canonical, packet digest, L population checker, curried independent comparator checker",
+    "exact already authenticated old project_stronger list8; outer historical envelope extraction remains existing ROOT boundary",
+    "preserved full original packet storage-pair/result/checkpoint/source/proof provenance in 14 held origins",
+    "actual independently closed924 report and historical6 raw canonical scores; no input artifact supplied here"
+  ],
+  "limitations": [
+    "invented fixtures only",
+    "no actual scientific data or weights accessed",
+    "no execution authority",
+    "protocol/settings/caps unchanged"
+  ],
+  "files": {
+    ".gitignore": {
+      "bytes": 21,
+      "sha256": "bb010b9d671ae0777ec36dced114561e671f8be58352d5e654fba57d93baeda2"
+    },
+    "README.md": {
+      "bytes": 5078,
+      "sha256": "59c7015bcdb26b83b9c418a54c390aba89d359fb7a403a479fccd08e1688f316"
+    },
+    "projection.py": {
+      "bytes": 10735,
+      "sha256": "0085fc793ce240d32d191f845c93a4d55bab7f20897682ca280484ba77a53c4e"
+    },
+    "public_contracts/auditor.py": {
+      "bytes": 29751,
+      "sha256": "7f2c8260935134594574a54bb504ffbe307a62d9c26907e4770092212aaf1256"
+    },
+    "public_contracts/bridge.py": {
+      "bytes": 15569,
+      "sha256": "be1ba83c1f4d566cd31fdb71f315ab8e9ea7dc962e1661979e2429ce57037b4d"
+    },
+    "public_contracts/l_auditor.py": {
+      "bytes": 26214,
+      "sha256": "b728f9c585eed8ddeb358bc753bcfc4655b5e8d306ed2f0d4cc727a7f29552b7"
+    },
+    "public_contracts/l_processor.py": {
+      "bytes": 39454,
+      "sha256": "8118333ec7f7fe728c0c378485cd7bb6538b4fc66c2340191d25cabb7e450347"
+    },
+    "public_contracts/math_core.py": {
+      "bytes": 13500,
+      "sha256": "d805dbccfcae42cd0867581a677f8e2b9d6531ccfe7b2c616b5f7bf73c7df6ca"
+    },
+    "public_contracts/metrics.py": {
+      "bytes": 3999,
+      "sha256": "b0f0d0f3736a8561346ecb5e913017bdd68e50ce6f31da8635a83f668d13eeec"
+    },
+    "public_contracts/packet.py": {
+      "bytes": 7148,
+      "sha256": "b4f0c7c27e1e73d1395f092f830dc70206789b3ff1beaffc8f3f56665c38def7"
+    },
+    "public_contracts/packet_digest.py": {
+      "bytes": 1526,
+      "sha256": "7bf24b25c3d8f538ede23ea1c6ecb9882951963d1cd1fa82dd96b237238a5b13"
+    },
+    "public_contracts/transport.py": {
+      "bytes": 2169,
+      "sha256": "1a725460d04ca8eb20050c083b48ffb51a3421cb9fc016d8a238c1d612033795"
+    },
+    "review/autoreview-2.json": {
+      "bytes": 504,
+      "sha256": "45382a17972ad6627738e7d57c4efcf6a383ccad6761c62260fc21168b1ce361"
+    },
+    "review/autoreview-2.txt": {
+      "bytes": 472,
+      "sha256": "39d19a98b175faa6e6e3fb0dd88dd01af14e200fc20cf62c7a9cace9775b4260"
+    },
+    "review/autoreview-launch-1.log": {
+      "bytes": 696,
+      "sha256": "da7ae7fb71ee218c83a0069b9c601cf5c5b02249dbdd75ae3cb739fba5eb3edd"
+    },
+    "review/autoreview-launch-2.log": {
+      "bytes": 571,
+      "sha256": "bcbeb9e0cfa2fce2f9e712f76b0bb35ea1c50fa4c04fc27d80a435756ca416bc"
+    },
+    "review/context.txt": {
+      "bytes": 1304,
+      "sha256": "26b0040b34f0cb8d293ad8f8e816f615935566346b256d7ae5ebdb6fc036f680"
+    },
+    "review/test-environment-failure.log": {
+      "bytes": 994,
+      "sha256": "2eaf50385fa9d7904f3ab4382d0df5cfb74aa0a11a43af0fc34e162890b90b08"
+    },
+    "review/tests-1.log": {
+      "bytes": 1054,
+      "sha256": "eadb7dc47f1e59bea66d65790d73d0b0b27432764495e0c0819fe9037ab50b92"
+    },
+    "review/tests-2.log": {
+      "bytes": 17955,
+      "sha256": "c7cd6d5a568147b1dff2ad9512852da0de9547e35c6682cbce781b338c32a50f"
+    },
+    "review/tests-3.log": {
+      "bytes": 930,
+      "sha256": "b56988ed52818d9635b4a3e7593a86cfc816daeb87b08d274ea90ce2f1f18078"
+    },
+    "review/tests-final.log": {
+      "bytes": 930,
+      "sha256": "e57a87265e61e653e6944f864528eff9eae9aa82996fccdd28ea4ba3e408c0f7"
+    },
+    "test_projection.py": {
+      "bytes": 13158,
+      "sha256": "a41c632956280e163b467b0eacf0506cd47a27b697119a7a5163c313d703ecd8"
+    }
+  }
+}

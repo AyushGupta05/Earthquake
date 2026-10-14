@@ -1,0 +1,7 @@
+autoreview findings: 1
+[P1] Preserve the original source clock in kernel calls
+smoke.py:57
+Each marked_nll call receives a fresh clock() timestamp instead of ROOT's processing_begin captured before imports. This resets the kernel's source deadline for every update, allowing a kernel call started near the 300-second source limit to continue beyond that limit. The surrounding tick() checks only detect expiration after the kernel returns; they cannot enforce the original deadline during its work. Pass the original processing_begin through producer() into all three kernel calls.
+
+overall: patch is incorrect (0.94)
+The producer resets the source clock supplied to the bound kernel, violating the required global 300-second deadline. The mock kernel ignores this timestamp, so the provided tests do not detect the defect.
