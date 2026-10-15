@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "P2 Bind the independent stop commands to the verified executable paths",
+      "body": "The manager verifies `request['bash']` and `request['commands']['systemctl']`, but the independent stop executes hard-coded `/usr/bin/bash` and resolves `systemctl` through `/usr/bin:/bin`. Neither path is required to match the verified specs. A positively pinned request using another executable location can therefore pass validation while the emergency timer runs different, unverified binaries; if that systemctl is missing or incompatible, the retained timer cannot perform its intended cleanup. Require the bash spec to identify the actual interpreter and generate the stop script using the verified absolute systemctl path.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "control.py",
+        "line": 195
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The cleanup changes conservatively retain the timer when service closure is uncertain, and absence handling is narrowly constrained. However, the independent stop does not bind its executed binaries to the request's verified executable specs, leaving a concrete custody and cleanup reliability gap.",
+  "overall_confidence": 0.9
+}

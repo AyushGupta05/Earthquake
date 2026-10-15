@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P1] [P1] Accept the expected nonzero status for missing units
+control.py:189
+The initial stop-service/timer absence checks pass their responses to props(), which requires code == 0. A real systemctl show for a nonexistent unit can return 1 or 4 while providing the expected not-found/inactive properties; the frozen Systemd.show(..., allow_not_found=True) explicitly handles this case. Consequently, a valid fresh namespace can fail before timer installation or any phase runs. Handle these expected absence statuses here as well; the harness currently hides the defect by always returning zero.
+
+[P1] [P1] Preserve the stop timer when service cleanup is unverified
+control.py:243
+The timer is stopped unconditionally even when a preceding service stop or closure check failed. For example, if a service remains active after the nonblocking stop, closed() raises, but execution still disables the shared timer. This removes the independent whole-run stop mechanism precisely when cleanup has not established that all owned services are empty. Retain the timer when any service closure is unverified, or positively finish service cleanup before cancelling it.
+
+overall: patch is incorrect (0.97)
+The fresh-unit checks reject legitimate systemctl absence responses, preventing normal startup on affected systems. Cleanup also cancels the independent stop timer despite unverified service termination. The invented harness does not cover these operational cases.

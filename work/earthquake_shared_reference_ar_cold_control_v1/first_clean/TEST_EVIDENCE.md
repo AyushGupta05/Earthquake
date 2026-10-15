@@ -1,0 +1,1 @@
+23 invented focused tests passed in0.218s with python3 -B -m unittest -v test_control before review3. No AWS/systemd/vendor/real-data execution in these tests. Accepted review1: missing-unit statuses, preserving timer on uncertain cleanup. Accepted review2: absolute executable identity. Review3 exit0 clean, confidence0.85. No further code edits/tests/review after first clean.
