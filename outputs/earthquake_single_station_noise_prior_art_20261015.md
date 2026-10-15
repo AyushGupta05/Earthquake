@@ -1,0 +1,11 @@
+The 2026 Thapa et al. paper is relevant noise-aware probabilistic EEW prior art, but its accessible evidence does not establish a matched 1/3/5-second high-Mw/bulk-error comparator. It does not change the frozen L experiment.
+
+The [publisher abstract](https://link.springer.com/article/10.1007/s10518-026-02403-1) confirms the20February2026 publication and a single-station pipeline combining displacement preprocessing, U-Net++ attention, smoothed phase labels and Bayesian MCMC magnitude inference. Distributional inference and noise robustness alone therefore cannot support our novelty claim. The full publisher method was subscription-only in this check.
+
+The separate [September2025 author preprint](https://doi.org/10.21203/rs.3.rs-7479899/v1) describes station-separated70/15/15 splits, synthetic noise tests and a P–S-arrival constraint for location. Its magnitude-comparison table lists different dataset labels across rows. It does not establish our matched early deadlines and high-Mw/bulk guard in the inspected material. These are preprint observations; full version-of-record parity is unverified.
+
+Our inference: a P–S feature is usable at a deadline only if both arrivals are already observed. Phase-label smoothing addresses onset annotations; it does not itself derive the shared observation-level noise law being tested by L. Copying the complete architecture would mix several mechanisms and would not isolate that law. A useful later control is a frozen causal encoder tested under fixed noise perturbations and event/station/time separation, with identical available inputs for every arm. That is a prospective evaluation suggestion, not a new result or a claim of novelty.
+
+The existing EarthESND entry was also rechecked against its [primary publisher text](https://www.sciencedirect.com/science/article/pii/S0045790626002338): multiscale reservoirs and dendritic readouts use2–6-second P-wave windows with conditional tabular augmentation. The entry remains relevant as a low-compute comparator; a matched1-second result is unverified.
+
+Checked15October2026. Search absence is not evidence of novelty. No architecture change, new data request, fit or benchmark claim followed this audit.

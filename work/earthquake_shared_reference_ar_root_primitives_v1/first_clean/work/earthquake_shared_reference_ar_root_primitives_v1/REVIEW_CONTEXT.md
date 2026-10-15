@@ -1,0 +1,11 @@
+# Code-only review scope
+
+Review root_primitives.py, test_primitives.py and PRIVATE_SCHEMA.md in this isolated public source packet. The sibling public Python files are frozen dependencies/contracts, copied without modification. No private evidence, actual data, metadata, weights, account records, original observed financial values, credentials or cloud action are included. All test amounts/records are invented. Policy bounds in source/schema are authorization limits, not observations of an account.
+
+The code supplies the concrete mandatory root glue primitives and read-only custody snapshot, plus actual-return retention. ROOT supplies independently pinned raw authority receipts and is responsible for interpreting provider-specific credit terms and performing native/original-initialization/comparator checks before issuing those narrowly bound receipts. The implementation separately reconstructs all original14+closed7 raw custody and performs complete source/runtime checks. The source does not purport to reproduce a provider account or establish actual gradients from an all-one mask alone.
+
+Check concrete wire compatibility, root pin/subject/expiry boundaries, pre-numerical raw authentication, once-only full streams/return/inventory/cleanup custody, original source subject preservation, complete L300 optimizer/probe custody before true audit flags, and no import-time scientific/cloud work. Old14 wire is bootstrap.request/claim; audit7 wire is dispatch. Original ROOT observations can retain noncanonical bytes only at the three explicitly declared raw-receipt boundaries. New controls and wrappers remain canonical.
+
+Tests use real frozen secure_io/control/journal and source_binding.source on invented readonly files. Current OS interactions are an explicit invented systemd fixture; full10112-file target runtime, actual provider/native data, and a real fit are not exercised here. Two audit tests use an explicitly synthetic authenticated-input cache to isolate the real retained-stage/300-update audit boundary; they do not claim native admission.
+
+Do not inspect anything outside this isolated repository. Do not contact accounts/services or run an additional reviewer. Advisory findings should identify concrete relevant defects; no new architecture, generic policy layer or hypothetical permission flow is requested.

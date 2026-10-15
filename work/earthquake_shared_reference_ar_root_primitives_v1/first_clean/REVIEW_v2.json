@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "title": "[P1] Reject source functions rebound to foreign globals",
+      "body": "`module_code` checks a function only when its `__globals__` is the module dictionary. Replacing a required function such as `control.receipt_checked` with a function defined in another module therefore skips verification entirely and passes this check. The existing replacement test uses `exec` in the original dictionary, so it misses this case. Compare the expected source-defined members against the loaded members and reject foreign replacements instead of silently skipping them; otherwise the source attestation can authorize altered validation code.",
+      "priority": "P1",
+      "confidence": 0.98,
+      "category": "security",
+      "code_location": {
+        "file_path": "work/earthquake_shared_reference_ar_root_primitives_v1/root_primitives.py",
+        "line": 176
+      }
+    },
+    {
+      "title": "[P2] Bound stage authorization by the installed stop deadline",
+      "body": "The installed timer deadline is checked only against `now` and the whole-run upper limit; it does not constrain the returned authorization expiry or cover the upcoming manager interval. A pinned current proof with a timer expiring in one second and resource/publication windows expiring much later passes `current`, including for a parent stage requiring 360 or 960 seconds. The stage is then authorized across a known mandatory stop. Include the installed timer deadline in the effective expiry and apply the parent manager-coverage check to that bound.",
+      "priority": "P2",
+      "confidence": 0.96,
+      "category": "bug",
+      "code_location": {
+        "file_path": "work/earthquake_shared_reference_ar_root_primitives_v1/root_primitives.py",
+        "line": 406
+      }
+    }
+  ],
+  "overall_correctness": "patch is incorrect",
+  "overall_explanation": "The loaded-code verifier permits foreign function replacements to escape validation, and current authorization can extend beyond the installed mandatory stop. These undermine the concrete source and expiry boundaries despite the extensive custody checks.",
+  "overall_confidence": 0.94
+}

@@ -1,0 +1,11 @@
+autoreview findings: 2
+[P2] [P2] Recheck historical directory inventories before reusing authentication
+work/earthquake_shared_reference_ar_root_primitives_v1/root_primitives.py:484
+The cached path checks only metadata for previously discovered files. Adding a new file to an original14 or audit7 directory leaves every existing file seal unchanged, so a later inputs() call accepts newly added failure markers, unfinished files, or unknown members that historical()/read_tree() would reject. Cache and recheck the complete directory inventories as well as file seals before returning the cached attestation.
+
+[P2] [P2] Bind the last step callback to the retained latest checkpoint
+work/earthquake_shared_reference_ar_root_primitives_v1/root_primitives.py:588
+The 300 callback pins are compared only against checkpoint_pin values copied into the update records. Neither copy is compared with the actual retained latest_update.json bytes. Consequently, update_300.json and the final callback can agree on an unrelated checkpoint pin while latest_update.json and result.json contain a different final optimizer state, and the audit still sets optimizer_history_verified=True. Require the final update/callback pin to equal the pin of files['latest_update.json'] before issuing that authority.
+
+overall: patch is incorrect (0.97)
+The implementation leaves two concrete custody gaps: cached historical authentication does not detect added directory members, and the optimizer audit does not bind its final step receipt to the retained checkpoint bytes. Both can produce successful attestations for inconsistent custody.
