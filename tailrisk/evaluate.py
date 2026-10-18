@@ -1,0 +1,216 @@
+"""Pool out-of-fold predictions and compare arms on the bulk/tail frontier.
+
+All point decisions are recomputed from each arm's saved 0.1-bin PMF (uniform
+within bins), so every arm uses an identical decision procedure:
+  * mean action (saved continuous mean),
+  * the tail-weighted-median family a_r = argmin E[w_r(M)|a-M|],
+    w_r = r for M >= 4.0 and 1 below. r = 1 is the median; r > 1 is the
+    user's 'multiply tail mass and take the median' rule; r < 1 trades tail
+    for bulk. Sweeping r traces each arm's bulk/tail frontier.
+Comparison at matched bulk MAE interpolates the frontier, so no arm can win by
+trading bulk error for tail error. Uncertainty: paired bootstrap over
+Gardner-Knopoff sequence clusters (whole sequences resampled together).
+
+  python tailrisk/evaluate.py --arms cat_ce,eq_nll --ref cat_ce
+"""
+import argparse
+import json
+from pathlib import Path
+
+import numpy as np
+
+from common import DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, load_meta, metric_table
+
+FRONTIER_R = np.array([0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8,
+                       11, 16, 24, 35, 50, 75, 100], float)
+KEY = ['MAE', 'MedAE', 'RMSE', 'CVaR95', 'CVaR99', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=4_bias',
+       'M>=4.5_MAE', 'M>=5_MAE', 'M>=5_eventMAE', 'M>=5_bias', 'M<4_MAE', 'FP4_rate']
+COL = {n: i for i, n in enumerate(DECISION_NAMES)}
+EDGES = np.concatenate([PMF_CENTERS - 0.05, [PMF_CENTERS[-1] + 0.05]])
+T_EDGE = int(np.argmin(np.abs(EDGES - 3.95)))
+
+
+def load_arm(arm, n, root):
+    dec = np.full((n, 3, len(DECISION_NAMES)), np.nan, np.float32)
+    pmf = np.zeros((n, 3, len(PMF_CENTERS)), np.float16)
+    files = sorted((root / arm).glob('fold*.npz')) or sorted((root / arm).glob('std.npz'))
+    for f in files:
+        z = np.load(f)
+        dec[z['rows']] = z['dec']
+        pmf[z['rows']] = z['pmf']
+    return dec, pmf, [f.stem for f in files]
+
+
+def wmed_from_pmf(p, ratios):
+    """Tail-weighted medians (N, len(ratios)) from 0.1-bin PMFs (N, K)."""
+    p = p.astype(np.float64)
+    p /= np.maximum(p.sum(1, keepdims=True), 1e-12)
+    F = np.concatenate([np.zeros((len(p), 1)), np.cumsum(p, 1)], 1)    # at EDGES
+    FT = F[:, T_EDGE]
+    out = np.empty((len(p), len(ratios)), np.float32)
+    for j, r in enumerate(ratios):
+        half = 0.5 * (FT + r * (1 - FT))
+        q = np.where(half <= FT, half, FT + 0.5 * (1 - FT) - 0.5 * FT / r)
+        q = np.clip(q, 1e-9, 1 - 1e-9)
+        k = (F < q[:, None]).sum(1).clip(1, F.shape[1] - 1)          # F[k-1] < q <= F[k]
+        f0 = F[np.arange(len(p)), k - 1]
+        f1 = F[np.arange(len(p)), k]
+        w = np.clip((q - f0) / np.maximum(f1 - f0, 1e-15), 0, 1)
+        out[:, j] = EDGES[k - 1] + w * 0.1
+    return out
+
+
+class Boot:
+    """Cluster bootstrap of record/event ratio metrics for many prediction sets."""
+
+    def __init__(self, cluster, y, ev, reps, seed=0):
+        self.cl = np.unique(cluster, return_inverse=True)[1]
+        self.nc = self.cl.max() + 1
+        rng = np.random.default_rng(seed)
+        self.w = rng.multinomial(self.nc, np.full(self.nc, 1 / self.nc), size=reps).astype(np.float64)
+        self.hi = y >= 4 - 1e-6
+        self.hi5 = y >= 5 - 1e-6
+        self.ev = np.unique(ev, return_inverse=True)[1]
+        first = np.unique(self.ev, return_index=True)[1]
+        self.first4 = first[y[first] >= 4 - 1e-6]
+        self.cnt_ev = np.bincount(self.ev)
+        self.N = np.bincount(self.cl, minlength=self.nc).astype(float)
+        self.N4 = np.bincount(self.cl[self.hi], minlength=self.nc).astype(float)
+        self.N5 = np.bincount(self.cl[self.hi5], minlength=self.nc).astype(float)
+        self.C4 = np.bincount(self.cl[self.first4], minlength=self.nc).astype(float)
+
+    def sums(self, err):
+        ev_mean = np.bincount(self.ev, err) / self.cnt_ev
+        return np.stack([np.bincount(self.cl, err, self.nc),
+                         np.bincount(self.cl[self.hi], err[self.hi], self.nc),
+                         np.bincount(self.cl[self.hi5], err[self.hi5], self.nc),
+                         np.bincount(self.cl[self.first4], ev_mean[self.ev[self.first4]], self.nc)])
+
+    def metrics(self, S):
+        """S: (..., 4, nc) cluster sums -> dict of (reps, ...) arrays."""
+        w = self.w
+        return {'MAE': np.einsum('rc,...c->r...', w, S[..., 0, :]) / (w @ self.N)[:, None],
+                'M>=4_MAE': np.einsum('rc,...c->r...', w, S[..., 1, :]) / (w @ self.N4)[:, None],
+                'M>=5_MAE': np.einsum('rc,...c->r...', w, S[..., 2, :]) / (w @ self.N5)[:, None],
+                'M>=4_eventMAE': np.einsum('rc,...c->r...', w, S[..., 3, :]) / (w @ self.C4)[:, None]}
+
+
+def interp_rows(x, y, x0):
+    """Per-row linear interpolation of y(x) at x0 (rows: bootstrap replicates)."""
+    out = np.empty(len(x))
+    for i in range(len(x)):
+        o = np.argsort(x[i])
+        xs, ys = x[i][o], y[i][o]
+        out[i] = np.interp(x0[i], xs, ys) if xs[0] <= x0[i] <= xs[-1] else np.nan
+    return out
+
+
+def ci(d):
+    d = d[np.isfinite(d)]
+    if not len(d):
+        return None
+    return {'mean': float(d.mean()), 'lo': float(np.quantile(d, .025)), 'hi': float(np.quantile(d, .975)),
+            'p_arm_better': float((d < 0).mean()), 'n': int(len(d))}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--arms', required=True)
+    ap.add_argument('--ref', default=None)
+    ap.add_argument('--root', default=str(WORK / 'arms'))
+    ap.add_argument('--out', default=None)
+    ap.add_argument('--reps', type=int, default=1000)
+    args = ap.parse_args()
+    root = Path(args.root)
+    meta = load_meta()
+    y, ev, cluster, fold = meta['mag'], meta['event'], meta['cluster'], meta['fold']
+    arms = args.arms.split(',')
+    dec, pmf = {}, {}
+    for a in arms:
+        dec[a], pmf[a], files = load_arm(a, len(y), root)
+        print(a, 'folds', files, flush=True)
+    have = np.all([np.isfinite(d[:, :, 0]).all(1) for d in dec.values()], 0)
+    print('records with predictions in every arm:', int(have.sum()), 'of', len(y), flush=True)
+    y_, ev_, cl_, fo_ = y[have], ev[have], cluster[have], fold[have]
+    boot = Boot(cl_, y_, ev_, args.reps)
+    report = {'n_records': int(have.sum()), 'n_M4_events': int(len(np.unique(ev_[y_ >= 4]))),
+              'frontier_r': FRONTIER_R.tolist(), 'arms': {}}
+    actions = {}
+    for a in arms:
+        report['arms'][a] = {}
+        for d_i, d in enumerate(DURATIONS):
+            wm = wmed_from_pmf(pmf[a][have, d_i], FRONTIER_R)
+            mean = dec[a][have, d_i, COL['mean']]
+            actions[a, d] = (mean, wm)
+            front = []
+            for j, r in enumerate(FRONTIER_R):
+                m = metric_table(wm[:, j], y_, ev_)
+                front.append({'r': float(r), **{k: m[k] for k in KEY}})
+            med = front[int(np.argmin(np.abs(FRONTIER_R - 1)))]
+            mm = metric_table(mean, y_, ev_)
+            per_fold = {int(f): metric_table(wm[fo_ == f, 7], y_[fo_ == f], ev_[fo_ == f])
+                        for f in np.unique(fo_)}
+            bins = np.arange(0, 7.0, 0.5)
+            by_mag = [{'lo': float(b), 'n': int(((y_ >= b) & (y_ < b + .5)).sum()),
+                       'MAE_median': float(np.abs(wm[(y_ >= b) & (y_ < b + .5), 7] - y_[(y_ >= b) & (y_ < b + .5)]).mean())
+                       if ((y_ >= b) & (y_ < b + .5)).any() else None,
+                       'bias_median': float((wm[(y_ >= b) & (y_ < b + .5), 7] - y_[(y_ >= b) & (y_ < b + .5)]).mean())
+                       if ((y_ >= b) & (y_ < b + .5)).any() else None} for b in bins]
+            report['arms'][a][f'{d}s'] = {
+                'mean_action': {k: mm[k] for k in KEY}, 'median_action': {k: med[k] for k in KEY},
+                'frontier': front,
+                'nll_bin': float(np.mean(dec[a][have, d_i, COL['nll_bin']])),
+                'crps': float(np.mean(dec[a][have, d_i, COL['crps']])),
+                'per_fold_median': {f: {k: v[k] for k in ('MAE', 'M>=4_MAE', 'M>=4_eventMAE', 'CVaR95')}
+                                    for f, v in per_fold.items()},
+                'by_magnitude_median': by_mag}
+    if args.ref:
+        report['vs_ref'] = {}
+        for a in arms:
+            if a == args.ref:
+                continue
+            report['vs_ref'][a] = {}
+            for d in DURATIONS:
+                (mean_a, wm_a), (mean_b, wm_b) = actions[a, d], actions[args.ref, d]
+                Sa = np.stack([boot.sums(np.abs(wm_a[:, j] - y_)) for j in range(len(FRONTIER_R))])
+                Sb = np.stack([boot.sums(np.abs(wm_b[:, j] - y_)) for j in range(len(FRONTIER_R))])
+                Ma, Mb = boot.metrics(Sa), boot.metrics(Sb)       # each (reps, nR)
+                cmp = {}
+                j1 = int(np.argmin(np.abs(FRONTIER_R - 1)))
+                for name, ea, eb in [('mean', np.abs(mean_a - y_), np.abs(mean_b - y_)),
+                                     ('median', np.abs(wm_a[:, j1] - y_), np.abs(wm_b[:, j1] - y_))]:
+                    da = boot.metrics(boot.sums(ea)[None])
+                    db = boot.metrics(boot.sums(eb)[None])
+                    cmp[name] = {k: ci((da[k] - db[k])[:, 0]) for k in da}
+                # matched bulk: tail error of arm at the ref median-action bulk MAE (per replicate)
+                bulk_ref = Mb['MAE'][:, j1]
+                for key in ('M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE'):
+                    arm_t = interp_rows(Ma['MAE'], Ma[key], bulk_ref)
+                    cmp[f'matched_bulk_{key}'] = ci(arm_t - Mb[key][:, j1])
+                # matched tail: bulk error of arm at the ref median-action M>=4 MAE
+                arm_b = interp_rows(Ma['M>=4_MAE'], Ma['MAE'], Mb['M>=4_MAE'][:, j1])
+                cmp['matched_tail_MAE'] = ci(arm_b - bulk_ref)
+                report['vs_ref'][a][f'{d}s'] = cmp
+    out = Path(args.out) if args.out else root / f'eval_{"_".join(arms)}.json'
+    out.write_text(json.dumps(report, indent=1))
+    cols = ('MAE', 'MedAE', 'CVaR95', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE', 'M>=4_bias', 'FP4_rate')
+    for d in DURATIONS:
+        print(f'\n=== {d}s')
+        print(f'{"arm":<26}' + ''.join(f'{k:>14}' for k in cols))
+        for a in arms:
+            for action in ('mean_action', 'median_action'):
+                r = report['arms'][a][f'{d}s'][action]
+                print(f'{a + (" mean" if action == "mean_action" else " med"):<26}' +
+                      ''.join(f'{r[k]:>14.4f}' for k in cols))
+        if args.ref:
+            for a in report['vs_ref']:
+                c = report['vs_ref'][a][f'{d}s']
+                fmt = lambda v: 'n/a' if v is None else f'{v["mean"]:+.4f} [{v["lo"]:+.4f},{v["hi"]:+.4f}]'
+                print(f'  {a} - {args.ref}: matched-bulk M>=4 {fmt(c["matched_bulk_M>=4_MAE"])} | '
+                      f'event {fmt(c["matched_bulk_M>=4_eventMAE"])} | M>=5 {fmt(c["matched_bulk_M>=5_MAE"])} | '
+                      f'matched-tail bulk {fmt(c["matched_tail_MAE"])}')
+                print(f'     median action: ' + ' | '.join(f'{k} {fmt(v)}' for k, v in c['median'].items()))
+
+
+if __name__ == '__main__':
+    main()

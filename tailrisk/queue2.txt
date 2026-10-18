@@ -1,0 +1,4 @@
+--arm eqgr_nll --head eqgr --loss nll --epochs 10
+--arm cat_aug --head cat --loss nll --epochs 10 --amp-aug 0.5
+--arm cat_lds --head cat --loss nll --epochs 10 --weighting lds
+--arm eqh_nll --head eqh --loss nll --epochs 10
