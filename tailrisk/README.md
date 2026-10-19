@@ -36,6 +36,23 @@ MedAE, CVaR95 (largest 5% of all errors) and the false-M4 rate are unchanged or 
 On the completely unseen 2016–17 Central Italy sequence, the 5 s M≥5 MAE falls from 1.008
 to 0.502.
 
+**Against the strongest existing approach** (a TEAM-LM-style free Gaussian-mixture
+posterior on the same trunk), both as two-seed ensembles, eqgr − mix, median action:
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| Δ bulk MAE | −.0007 [−.0020,+.0001] | **−.0015 [−.0030,−.0003]** | **−.0030 [−.0039,−.0024]** |
+| Δ M≥4 MAE | **−.016 [−.023,−.005]** | **−.014 [−.024,−.001]** | **−.022 [−.037,−.006]** |
+| Δ M≥5 MAE | −.028 [−.084,+.029] | **−.106 [−.220,−.006]** | **−.143 [−.281,−.031]** |
+| bulk-capped best M≥4 / M≥5 | **−.051 / −.059** | **−.078 / −.135** | **−.113 / −.166** |
+
+**On the original INSTANCE split** (train 2005–17, no selection on VAL), eqgr − mix on VAL 2018:
+M≥4 MAE −.025 / −.022 / −.038 (CIs exclude zero), with bulk equal / −.0013 / −.0024. Against the
+previous project's best reported VAL model (bulk .365 / .316 / .286, M≥4 .686 / .551 / .487),
+the new model matches its M≥4 error with 14% / 19% / 20% less bulk MAE and lower CVaR95.
+Most of that cross-project gap comes from the new end-to-end pipeline, which the baselines
+here share.
+
 ## Why it works: two failure mechanisms, two components
 
 1. **Rare-bin prior learning.** A categorical (or free) posterior has to learn the label
@@ -68,9 +85,14 @@ two components are complementary.
 | `cat_lds` | LDS loss reweighting (deep imbalanced regression) | dominated even by CE (+8% bulk, 4× false-M4); eqgr bulk −.023 to −.028, bulk-capped M≥4 −.15 at every deadline |
 | `gbm_e3ws` | E3WS-style P-wave features + gradient boosting | far weaker (5 s MAE .310, M≥4 .713) |
 
-Ablations: `eq_nll` (equivariant, no prior factor), `mixgr_nll` (prior factor, no
-equivariance), `eqh_nll`, `eqd_nll` / `eqdgr_nll` (distance-aware), and `eqtgr_nll` (separate
-ML/Mw slopes; exploratory). FINDINGS.md lists which were pre-specified and which exploratory.
+Ablations and exploratory heads:
+* `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).
+* `mixgr_nll`: prior factor, no equivariance. A strict Pareto gain over mix, but smaller M≥5 gains.
+* `eqtgr_nll`: separate ML/Mw slopes. Negative: no gain over eqgr.
+* `eqdgr_nll`: distance-aware likelihood × GR prior. Promising, with the largest M≥5 gains
+  (−.14 / −.17 / −.18 vs mix), but more 1 s false-M4 predictions and a single seed.
+
+FINDINGS.md records which arms were pre-specified (eq, eqgr), which were ablations added after the first results (mixgr), and which exploratory (eqtgr, eqdgr).
 
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for

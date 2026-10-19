@@ -4,6 +4,52 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 16:00 UTC — two-seed ensembles vs the strongest baseline, exploratory heads, and the standard split
+
+### Two-seed ensembles, Δ = arm ensemble − free-mixture (`mix_nll`) ensemble, median action
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| eqgr Δ bulk | −.0007 [−.0020,+.0001] | **−.0015 [−.0030,−.0003]** | **−.0030 [−.0039,−.0024]** |
+| eqgr Δ M≥4 | **−.016 [−.023,−.005]** | **−.014 [−.024,−.001]** | **−.022 [−.037,−.006]** |
+| eqgr Δ M≥5 | −.028 [−.084,+.029] | **−.106 [−.220,−.006]** | **−.143 [−.281,−.031]** |
+| eqgr bulk-capped M≥4 / M≥5 | **−.051 / −.059** | **−.078 / −.135** | **−.113 / −.166** |
+| mixgr Δ bulk / M≥4 / event-M≥4 | **−.0014 / −.009 / −.010** | **−.0023 / −.008 / −.007** | **−.0028 / −.008 / −.007** |
+| cat_ce Δ M≥4 / M≥5 | **+.015 / +.059** | **+.030 / +.099** | **+.034 / +.120** |
+
+With ensembles on both sides, eqgr beats the strongest existing approach on high-magnitude
+error at all three deadlines (M≥4 CIs exclude zero everywhere; M≥5 at 3 and 5 s), with bulk
+error equal (1 s) or better (3 s, 5 s).
+
+### Exploratory heads (single seed, designed after seeing the eqgr results)
+
+* **eqtgr** (separate ML / Mw equivariant slopes, joint likelihood with the reported scale):
+  **negative**. It does not fix Emilia (fold 1 M≥4 .866/.542/.480 vs .853/.530/.455 for eqgr), and
+  pooled it is no better than eqgr anywhere. 1 s M≥5 is *worse* than the free mixture
+  (+.028 [+.002,+.063]).
+* **eqdgr** (distance-aware equivariant likelihood p(r|s)·N(m; κA+G_r(s)) × the same GR prior,
+  distance used only as a training label): **promising**. It has the largest M≥5 gains of any
+  arm, −.139 / −.173 / −.184 vs mix_nll (3 and 5 s CIs exclude zero), and bulk-capped M≥5
+  −.165 / −.223 / −.225. Bulk is −.0004 / −.0030 / −.0049. On fold 0 (unseen Central Italy)
+  1 s M≥5 MAE is .798 vs 1.03 (eqgr) vs 1.26 (mix). Costs: a higher 1 s false-M4 rate (.0012 vs
+  .0006), CVaR95 +.004 to +.009, wider intervals (still worse on Emilia). It needs seed
+  replication before it could replace eqgr.
+
+### Standard INSTANCE split (train 2005–17 → VAL 2018 / TEST 2019–20; no selection on VAL/TEST)
+
+eqgr − mix_nll, median action. **VAL** (13 M≥4 events): bulk −.0000 / **−.0013 / −.0024**;
+M≥4 **−.025 / −.022 / −.038** (CIs exclude zero). **TEST** (10 M≥4 events, max M4.5): bulk
+−.0014 / −.0006 / **−.0014**; M≥4 −.014 / −.009 / −.007 (same direction, n.s.). mixgr improves
+bulk on both splits at every deadline (−.0019 to −.0038, all significant).
+
+**Against the previous project's best reported VAL model** (static instrument features,
+mean action: bulk .365 / .316 / .286, M≥4 .686 / .551 / .487, CVaR95 1.327 / 1.195 / 1.147):
+at the same M≥4 MAE, std_eqgr needs **14% / 19% / 20% less bulk MAE** (.3145 / .2574 / .2278)
+and also has lower CVaR95 (1.240 / 1.073 / 1.025) and MedAE. Most of this cross-project gain
+comes from the new end-to-end physical-unit pipeline, which every arm here shares (the
+free-mixture baseline gets 14% / 18% / 20%). The head's contribution is the within-pipeline
+gain reported above.
+
 ## 2026-10-19 09:50 UTC — negative for deep-imbalanced-regression reweighting: LDS is dominated
 
 `cat_lds` (categorical CE with LDS inverse-sqrt smoothed-density weights, Yang et al. 2021)

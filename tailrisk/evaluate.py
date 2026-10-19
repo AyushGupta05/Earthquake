@@ -25,7 +25,8 @@ FRONTIER_R = np.unique(np.round(np.concatenate([np.geomspace(0.03, 100, 57), [1.
 J1 = int(np.argmin(np.abs(FRONTIER_R - 1)))      # index of the median action (r = 1)
 KEY = ['MAE', 'MedAE', 'RMSE', 'CVaR95', 'CVaR99', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=4_bias',
        'M>=4.5_MAE', 'M>=5_MAE', 'M>=5_eventMAE', 'M>=5_bias', 'M<4_MAE', 'FP4_rate']
-COL = {n: i for i, n in enumerate(DECISION_NAMES)}
+KEEP = ('mean', 'nll_bin', 'crps', 'p_ge4', 'p_ge5')       # decision columns kept in memory
+COL = {n: i for i, n in enumerate(KEEP)}
 EDGES = np.concatenate([PMF_CENTERS - 0.05, [PMF_CENTERS[-1] + 0.05]])
 T_EDGE = int(np.argmin(np.abs(EDGES - 3.95)))
 
@@ -33,22 +34,30 @@ T_EDGE = int(np.argmin(np.abs(EDGES - 3.95)))
 def load_arm(arm, n, root):
     """Load one arm, or an ensemble 'a+b+c' (mixture of the members' posteriors)."""
     if '+' in arm:
-        members = [load_arm(a, n, root) for a in arm.split('+')]
-        dec = np.mean([m[0] for m in members], 0)      # mean action of a mixture = mean of means
-        pmf = np.mean([m[1].astype(np.float32) for m in members], 0).astype(np.float16)
-        return dec, pmf, members[0][2]
-    dec = np.full((n, 3, len(DECISION_NAMES)), np.nan, np.float32)
+        names = arm.split('+')
+        dec, pmf, files = load_arm(names[0], n, root)
+        dec, acc = dec / len(names), pmf.astype(np.float32) / len(names)
+        for a in names[1:]:                       # mixture of posteriors, accumulated in place
+            d2, p2, _ = load_arm(a, n, root)
+            dec += d2 / len(names)
+            acc += p2.astype(np.float32) / len(names)
+            del d2, p2
+        return dec, acc.astype(np.float16), files
+    keep = [DECISION_NAMES.index(c) for c in KEEP]
+    dec = np.full((n, 3, len(KEEP)), np.nan, np.float32)
     pmf = np.zeros((n, 3, len(PMF_CENTERS)), np.float16)
     files = sorted((root / arm).glob('fold*.npz')) or sorted((root / arm).glob('std.npz'))
     for f in files:
         z = np.load(f)
-        dec[z['rows']] = z['dec']
+        dec[z['rows']] = z['dec'][..., keep]
         pmf[z['rows']] = z['pmf']
     return dec, pmf, [f.stem for f in files]
 
 
-def wmed_from_pmf(p, ratios):
+def wmed_from_pmf(p, ratios, chunk=200000):
     """Tail-weighted medians (N, len(ratios)) from 0.1-bin PMFs (N, K)."""
+    if len(p) > chunk:
+        return np.concatenate([wmed_from_pmf(p[i:i + chunk], ratios, chunk) for i in range(0, len(p), chunk)])
     p = p.astype(np.float64)
     p /= np.maximum(p.sum(1, keepdims=True), 1e-12)
     F = np.concatenate([np.zeros((len(p), 1)), np.cumsum(p, 1)], 1)    # at EDGES
@@ -133,6 +142,8 @@ def main():
     ap.add_argument('--root', default=str(WORK / 'arms'))
     ap.add_argument('--out', default=None)
     ap.add_argument('--reps', type=int, default=1000)
+    ap.add_argument('--split', default='all', choices=['all', 'train', 'val', 'test'],
+                    help='restrict to an original INSTANCE split (for --mode std arms)')
     args = ap.parse_args()
     root = Path(args.root)
     meta = load_meta()
@@ -143,15 +154,19 @@ def main():
         dec[a], pmf[a], files = load_arm(a, len(y), root)
         print(a, 'folds', files, flush=True)
     have = np.all([np.isfinite(d[:, :, 0]).all(1) for d in dec.values()], 0)
+    if args.split != 'all':
+        have &= meta['split'] == {'train': 0, 'val': 1, 'test': 2}[args.split]
     print('records with predictions in every arm:', int(have.sum()), 'of', len(y), flush=True)
     y_, ev_, cl_, fo_ = y[have], ev[have], cluster[have], fold[have]
     boot = Boot(cl_, y_, ev_, args.reps)
     report = {'n_records': int(have.sum()), 'n_M4_events': int(len(np.unique(ev_[y_ >= 4]))),
               'frontier_r': FRONTIER_R.tolist(), 'arms': {}}
-    actions = {}
+    report['vs_ref'] = {a: {} for a in arms if args.ref and a != args.ref}
     for a in arms:
         report['arms'][a] = {}
-        for d_i, d in enumerate(DURATIONS):
+    for d_i, d in enumerate(DURATIONS):
+        actions = {}
+        for a in arms:
             wm = wmed_from_pmf(pmf[a][have, d_i], FRONTIER_R)
             mean = dec[a][have, d_i, COL['mean']]
             actions[a, d] = (mean, wm)
@@ -182,39 +197,38 @@ def main():
                 'per_fold_median': {f: {k: v[k] for k in ('MAE', 'M>=4_MAE', 'M>=4_eventMAE', 'CVaR95')}
                                     for f, v in per_fold.items()},
                 'by_magnitude_median': by_mag}
-    if args.ref:
-        report['vs_ref'] = {}
-        for a in arms:
+        for a in (arms if args.ref else []):
             if a == args.ref:
                 continue
-            report['vs_ref'][a] = {}
-            for d in DURATIONS:
-                (mean_a, wm_a), (mean_b, wm_b) = actions[a, d], actions[args.ref, d]
-                Sa = np.stack([boot.sums(np.abs(wm_a[:, j] - y_)) for j in range(len(FRONTIER_R))])
-                Sb = np.stack([boot.sums(np.abs(wm_b[:, j] - y_)) for j in range(len(FRONTIER_R))])
-                Ma, Mb = boot.metrics(Sa), boot.metrics(Sb)       # each (reps, nR)
-                cmp = {}
-                j1 = int(np.argmin(np.abs(FRONTIER_R - 1)))
-                for name, ea, eb in [('mean', np.abs(mean_a - y_), np.abs(mean_b - y_)),
-                                     ('median', np.abs(wm_a[:, j1] - y_), np.abs(wm_b[:, j1] - y_))]:
-                    da = boot.metrics(boot.sums(ea)[None])
-                    db = boot.metrics(boot.sums(eb)[None])
-                    cmp[name] = {k: ci((da[k] - db[k])[:, 0]) for k in da}
-                # bulk-constrained tail: best tail over each arm's r-family subject to
-                # bulk MAE <= the reference median-action bulk MAE (x (1 + tol)), both arms
-                # optimized the same way, per bootstrap replicate
-                bulk_ref = Mb['MAE'][:, j1]
-                for tol in (0.0, 0.002):
-                    budget = bulk_ref * (1 + tol)
-                    for key in ('M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE'):
-                        ta = constrained_best(Ma['MAE'], Ma[key], budget)
-                        tb = constrained_best(Mb['MAE'], Mb[key], budget)
-                        cmp[f'bulkcap{tol:g}_{key}'] = ci(ta - tb)
-                # tail-constrained bulk: least bulk MAE subject to M>=4 MAE <= ref median-action M>=4 MAE
-                cap = Mb['M>=4_MAE'][:, j1]
-                cmp['tailcap_MAE'] = ci(constrained_best(Ma['M>=4_MAE'], Ma['MAE'], cap)
-                                        - constrained_best(Mb['M>=4_MAE'], Mb['MAE'], cap))
-                report['vs_ref'][a][f'{d}s'] = cmp
+            (mean_a, wm_a), (mean_b, wm_b) = actions[a, d], actions[args.ref, d]
+            Sa = np.stack([boot.sums(np.abs(wm_a[:, j] - y_)) for j in range(len(FRONTIER_R))])
+            Sb = np.stack([boot.sums(np.abs(wm_b[:, j] - y_)) for j in range(len(FRONTIER_R))])
+            Ma, Mb = boot.metrics(Sa), boot.metrics(Sb)       # each (reps, nR)
+            cmp = {}
+            j1 = int(np.argmin(np.abs(FRONTIER_R - 1)))
+            for name, ea, eb in [('mean', np.abs(mean_a - y_), np.abs(mean_b - y_)),
+                                 ('median', np.abs(wm_a[:, j1] - y_), np.abs(wm_b[:, j1] - y_))]:
+                da = boot.metrics(boot.sums(ea)[None])
+                db = boot.metrics(boot.sums(eb)[None])
+                cmp[name] = {k: ci((da[k] - db[k])[:, 0]) for k in da}
+            # bulk-constrained tail: best tail over each arm's r-family subject to
+            # bulk MAE <= the reference median-action bulk MAE (x (1 + tol)), both arms
+            # optimized the same way, per bootstrap replicate
+            bulk_ref = Mb['MAE'][:, j1]
+            for tol in (0.0, 0.002):
+                budget = bulk_ref * (1 + tol)
+                for key in ('M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE'):
+                    ta = constrained_best(Ma['MAE'], Ma[key], budget)
+                    tb = constrained_best(Mb['MAE'], Mb[key], budget)
+                    cmp[f'bulkcap{tol:g}_{key}'] = ci(ta - tb)
+            # tail-constrained bulk: least bulk MAE subject to M>=4 MAE <= ref median-action M>=4 MAE
+            cap = Mb['M>=4_MAE'][:, j1]
+            cmp['tailcap_MAE'] = ci(constrained_best(Ma['M>=4_MAE'], Ma['MAE'], cap)
+                                    - constrained_best(Mb['M>=4_MAE'], Mb['MAE'], cap))
+            report['vs_ref'][a][f'{d}s'] = cmp
+        del actions
+    if not args.ref:
+        report.pop('vs_ref')
     out = Path(args.out) if args.out else root / f'eval_{"_".join(arms)}.json'
     out.write_text(json.dumps(report, indent=1))
     cols = ('MAE', 'MedAE', 'CVaR95', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE', 'M>=4_bias', 'FP4_rate')
