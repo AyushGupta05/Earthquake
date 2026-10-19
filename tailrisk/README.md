@@ -90,7 +90,7 @@ two components are complementary.
 | `cat_aug` | amplitude-scaling augmentation (×10^Δ, label +Δ) | dominated even by CE; eqgr bulk −.011, bulk-capped M≥4 −.17 at every deadline |
 | `cat_lds` | LDS loss reweighting (deep imbalanced regression) | dominated even by CE (+8% bulk, 4× false-M4); eqgr bulk −.023 to −.028, bulk-capped M≥4 −.15 at every deadline |
 | `gbm_e3ws` | E3WS-style P-wave features + gradient boosting | far weaker (5 s MAE .310, M≥4 .713) |
-| `magnet_nll` | MagNet-style CNN+BiLSTM on amplitude-retaining waveforms (Mousavi & Beroza 2020), Gaussian NLL | running; see FINDINGS.md |
+| `magnet_nll` | MagNet-style CNN+BiLSTM on amplitude-retaining waveforms (Mousavi & Beroza 2020 layout), Gaussian NLL | far behind at these windows (1 s bulk .397, M≥4 1.03); shows the shared trunk is strong |
 
 **Held-station test.** `mix_nll_hs` and `eqgr_nll_hs` withhold 20% of stations from training in
 every fold and are scored on records that are both held-event *and* held-station (279,812

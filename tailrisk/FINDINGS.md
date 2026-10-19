@@ -4,6 +4,21 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 22:50 UTC — published-architecture control (MagNet-style CNN+BiLSTM) is far behind the shared trunk
+
+`magnet_nll`: Mousavi & Beroza (2020) layout (two convolutions, 64 and 32 kernels of size 3,
+no activation, dropout 0.2, 4× max-pooling, BiLSTM 100) on amplitude-retaining waveforms, the
+same station metadata, a Gaussian head trained with NLL, same folds and schedule. Pooled,
+median action: bulk MAE **.397 / .377 / .355**, M≥4 **1.032 / .866 / .796**, M≥5 1.768 / 1.550 /
+1.429, NLL 3.03 / 3.01 / 2.96 (vs .328 / .270 / .238, .764 / .577 / .530, 1.051 / .765 / .703,
+2.75 / 2.56 / 2.43 for the free mixture).
+
+* Every arm on the residual-CNN trunk beats it by ≈.07–.12 bulk MAE and ≈.25 M≥4 MAE; eqgr −
+  magnet: bulk −.071 / −.107 / −.116, M≥4 −.279 / −.288 / −.271, M≥5 −.740 / −.883 / −.846.
+* This is a *short-window adaptation* of an architecture designed for 30 s records, so it says
+  little about MagNet at its intended window. What it establishes is that the trunk shared by
+  all arms here is a strong one, so the head comparisons are not made on a weak backbone.
+
 ## 2026-10-19 22:20 UTC — held-station test: the gain survives on stations never seen in training
 
 `mix_nll_hs` and `eqgr_nll_hs` were trained with a fixed random **20% of stations withheld in

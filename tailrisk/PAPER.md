@@ -140,7 +140,10 @@ on a held-out fold is selected. Parameter counts differ by < 0.3% between heads.
 Baselines: categorical cross-entropy (71 bins); the previous project's emphasized-Huber + CE
 recipe; TEAM-LM-style free Gaussian mixture with A as an input (`mix`); amplitude-scaling
 augmentation (×10^Δ with label +Δ); LDS reweighting; an E3WS-style P-wave-feature gradient
-boosting model; a MagNet-style CNN+BiLSTM on amplitude-retaining waveforms ⟨pending⟩.
+boosting model; a MagNet-style CNN+BiLSTM on amplitude-retaining waveforms (a short-window
+adaptation of a 30 s architecture; it trails every arm on the shared trunk by ≈.07–.12 bulk
+and ≈.25 M≥4 MAE, which establishes that the trunk is strong rather than saying much about
+MagNet at its own window).
 Ablations: equivariance without the prior factor (`eq`); the prior factor without
 equivariance (`mixgr`); separate M_L/M_w slopes (`eqtgr`); a distance-aware variant (`eqdgr`).
 
