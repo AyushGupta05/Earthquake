@@ -216,9 +216,10 @@ class EquivariantGRHead(nn.Module):
 
     M_C = 3.5
 
-    def __init__(self, dim, k=6, min_sigma=0.03):
+    def __init__(self, dim, k=6, min_sigma=0.03, base_cls=None):
         super().__init__()
-        self.mix = EquivariantMixtureHead(dim, k, min_sigma)
+        # base_cls=MixtureHead gives the matched free-mixture ablation ('mixgr')
+        self.mix = (base_cls or EquivariantMixtureHead)(dim, k, min_sigma)
         centers = torch.round(torch.arange(-1.0, 8.5 + 1e-6, 0.1) * 10) / 10
         self.register_buffer('centers', centers)
         self.n_free = int((centers < self.M_C - 1e-6).sum())
@@ -304,7 +305,8 @@ class EquivariantDistanceHead(nn.Module):
 
 HEADS = {'cat': (CategoricalHead, True), 'mix': (MixtureHead, True), 'eq': (EquivariantMixtureHead, False),
          'eqgr': (EquivariantGRHead, False), 'eqh': (EquivariantHybridHead, False),
-         'eqd': (EquivariantDistanceHead, False)}
+         'eqd': (EquivariantDistanceHead, False),
+         'mixgr': (lambda dim, k=6: EquivariantGRHead(dim, k, base_cls=MixtureHead), True)}
 
 
 class MagnitudeModel(nn.Module):

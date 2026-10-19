@@ -2,7 +2,37 @@
 
 All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (346 M≥4
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
-intervals (500 replicates; whole GK sequences resampled). Negative Δ in an error is better.
+intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
+
+## 2026-10-19 03:45 UTC — eqgr (equivariant likelihood × learned bulk prior × GR tail) improves the tail at all deadlines without worsening the bulk (seed 1)
+
+**Same decision rule (posterior median) for both, eqgr − cat_ce:**
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| Δ bulk MAE | −.0000 [−.0025,+.0019] | **−.0027 [−.0046,−.0013]** | **−.0050 [−.0062,−.0044]** |
+| Δ M≥4 MAE | **−.036 [−.060,−.011]** | **−.045 [−.075,−.017]** | **−.056 [−.092,−.024]** |
+| Δ M≥5 MAE | **−.093 [−.175,−.003]** | **−.210 [−.334,−.092]** | **−.255 [−.401,−.137]** |
+| Δ M≥4 event-MAE | −.025 [−.053,+.002] | **−.036 [−.072,−.008]** | **−.046 [−.086,−.015]** |
+
+MedAE (.2402/.1929/.1649 vs .2398/.1957/.1699), CVaR95 (1.214/1.059/.989 vs 1.215/1.058/.990)
+and the false-M4 rate (.0008/.0006/.0005, identical) are unchanged or better.
+
+**Bulk-capped best tail** (each arm picks its best tail-weight r subject to bulk MAE ≤ cat_ce's):
+M≥4 MAE −.065 [−.112,−.003] (1 s), **−.128 [−.150,−.101] (3 s), −.161 [−.186,−.127] (5 s)**;
+M≥5 MAE −.101 [−.181,−.023], −.245 [−.350,−.143], −.282 [−.407,−.173].
+
+* At 3 s and 5 s the eqgr frontier lies strictly below every baseline across the whole
+  bulk range (`figures/frontier_Mge4MAE.png`).
+* At 1 s the gain is real at the operating point but modest. With a 0.2% bulk tolerance the
+  M≥4 gap is −.025 [−.081,+.035], and the frontiers converge for aggressive r. This is
+  physically expected: at 1 s large ruptures are still growing.
+* The ablation without the prior factor (eq_nll) loses bulk accuracy (+.005 at 1 s). The
+  equivariant constraint and the learned bulk prior are both needed.
+* **Caveats still open:** one optimization seed (seed-2/3 runs queued); `mixgr` ablation (free
+  mixture × same prior) queued to separate equivariance from the prior factor; augmentation /
+  LDS / free-mixture baselines queued. eqgr was specified before the eq_nll results were seen
+  (queue2 created 23:30 UTC); later variants are exploratory.
 
 ## 2026-10-19 02:20 UTC — interim: equivariance fixes the largest events; bulk cost traced to a label-prior cliff
 

@@ -148,7 +148,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arm', required=True)
-    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd'], required=True)
+    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr'], required=True)
     ap.add_argument('--aux-dist', action='store_true', help='auxiliary distance classifier (training only)')
     ap.add_argument('--loss', choices=['nll', 'hubce'], default='nll')
     ap.add_argument('--weighting', choices=['none', 'invsqrt', 'lds'], default='none')

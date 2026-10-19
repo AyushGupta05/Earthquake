@@ -21,8 +21,7 @@ import numpy as np
 
 from common import DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, load_meta, metric_table
 
-FRONTIER_R = np.array([0.03, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8,
-                       11, 16, 24, 35, 50, 75, 100], float)
+FRONTIER_R = np.unique(np.round(np.concatenate([np.geomspace(0.03, 100, 57), [1.0]]), 4))
 J1 = int(np.argmin(np.abs(FRONTIER_R - 1)))      # index of the median action (r = 1)
 KEY = ['MAE', 'MedAE', 'RMSE', 'CVaR95', 'CVaR99', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=4_bias',
        'M>=4.5_MAE', 'M>=5_MAE', 'M>=5_eventMAE', 'M>=5_bias', 'M<4_MAE', 'FP4_rate']
@@ -112,6 +111,13 @@ def interp_rows(x, y, x0):
     return out
 
 
+def constrained_best(bulk, tail, budget):
+    """Per replicate: min tail over r subject to bulk <= budget (NaN if infeasible)."""
+    masked = np.where(bulk <= budget[:, None] + 1e-12, tail, np.inf)
+    best = masked.min(1)
+    return np.where(np.isfinite(best), best, np.nan)
+
+
 def ci(d):
     d = d[np.isfinite(d)]
     if not len(d):
@@ -189,14 +195,20 @@ def main():
                     da = boot.metrics(boot.sums(ea)[None])
                     db = boot.metrics(boot.sums(eb)[None])
                     cmp[name] = {k: ci((da[k] - db[k])[:, 0]) for k in da}
-                # matched bulk: tail error of arm at the ref median-action bulk MAE (per replicate)
+                # bulk-constrained tail: best tail over each arm's r-family subject to
+                # bulk MAE <= the reference median-action bulk MAE (x (1 + tol)), both arms
+                # optimized the same way, per bootstrap replicate
                 bulk_ref = Mb['MAE'][:, j1]
-                for key in ('M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE'):
-                    arm_t = interp_rows(Ma['MAE'], Ma[key], bulk_ref)
-                    cmp[f'matched_bulk_{key}'] = ci(arm_t - Mb[key][:, j1])
-                # matched tail: bulk error of arm at the ref median-action M>=4 MAE
-                arm_b = interp_rows(Ma['M>=4_MAE'], Ma['MAE'], Mb['M>=4_MAE'][:, j1])
-                cmp['matched_tail_MAE'] = ci(arm_b - bulk_ref)
+                for tol in (0.0, 0.002):
+                    budget = bulk_ref * (1 + tol)
+                    for key in ('M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE'):
+                        ta = constrained_best(Ma['MAE'], Ma[key], budget)
+                        tb = constrained_best(Mb['MAE'], Mb[key], budget)
+                        cmp[f'bulkcap{tol:g}_{key}'] = ci(ta - tb)
+                # tail-constrained bulk: least bulk MAE subject to M>=4 MAE <= ref median-action M>=4 MAE
+                cap = Mb['M>=4_MAE'][:, j1]
+                cmp['tailcap_MAE'] = ci(constrained_best(Ma['M>=4_MAE'], Ma['MAE'], cap)
+                                        - constrained_best(Mb['M>=4_MAE'], Mb['MAE'], cap))
                 report['vs_ref'][a][f'{d}s'] = cmp
     out = Path(args.out) if args.out else root / f'eval_{"_".join(arms)}.json'
     out.write_text(json.dumps(report, indent=1))
@@ -213,9 +225,9 @@ def main():
             for a in report['vs_ref']:
                 c = report['vs_ref'][a][f'{d}s']
                 fmt = lambda v: 'n/a' if v is None else f'{v["mean"]:+.4f} [{v["lo"]:+.4f},{v["hi"]:+.4f}]'
-                print(f'  {a} - {args.ref}: matched-bulk M>=4 {fmt(c["matched_bulk_M>=4_MAE"])} | '
-                      f'event {fmt(c["matched_bulk_M>=4_eventMAE"])} | M>=5 {fmt(c["matched_bulk_M>=5_MAE"])} | '
-                      f'matched-tail bulk {fmt(c["matched_tail_MAE"])}')
+                print(f'  {a} - {args.ref}: bulk-capped best tail: M>=4 {fmt(c["bulkcap0_M>=4_MAE"])} | '
+                      f'event {fmt(c["bulkcap0_M>=4_eventMAE"])} | M>=5 {fmt(c["bulkcap0_M>=5_MAE"])} | '
+                      f'(+0.2% bulk) M>=4 {fmt(c["bulkcap0.002_M>=4_MAE"])} | tail-capped bulk {fmt(c["tailcap_MAE"])}')
                 print(f'     median action: ' + ' | '.join(f'{k} {fmt(v)}' for k, v in c['median'].items()))
 
 
