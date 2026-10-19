@@ -116,6 +116,9 @@ large ML labels, which scale ≈1:1 with amplitude.
   exploratory joint heads.
 * **Training.** One network serves all three deadlines. Every arm uses the same fixed
   schedule (10 epochs, AdamW 2e-3, cosine) and nothing on a held-out fold is selected.
+  The heads differ by a few hundred parameters at most (661,474 for `mix`, 661,521 for
+  `eqgr`, 675,095 for `cat`; `eqdgr` 676,941) and all CV arms take 57–65 min for five folds
+  on one A10G, so no arm has a capacity or compute advantage.
 * **Decisions.** The mean, the median, and the tail-weighted median a_r (r times the weight
   on M≥4 errors). r > 1 is exactly the original "multiply tail mass by r, take the median"
   rule. For a fixed posterior it is Bayes-optimal for every bulk/tail trade-off, so arms are
