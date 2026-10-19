@@ -161,22 +161,23 @@ class MixtureHead(nn.Module):
 
 
 class EquivariantMixtureHead(nn.Module):
-    """mu_k = kappa(s) (A - A0) + g_k(s); kappa in [0.3, 1.5]."""
+    """mu_k = kappa(s) (A - A0) + g_k(s); kappa in [kappa_min, 1.5] (default 0.3)."""
 
-    def __init__(self, dim, k=6, min_sigma=0.03):
+    def __init__(self, dim, k=6, min_sigma=0.03, kappa_min=0.3):
         super().__init__()
-        self.k, self.min_sigma = k, min_sigma
+        self.k, self.min_sigma, self.kappa_min = k, min_sigma, kappa_min
         self.lin = nn.Linear(dim, 3 * k)
         self.kappa = nn.Linear(dim, 1)
         with torch.no_grad():
             self.lin.bias[k:2 * k] = torch.linspace(-1.0, 1.0, k) + 3.0
             self.lin.bias[2 * k:] = math.log(math.expm1(0.3))
             self.kappa.weight.zero_()
-            self.kappa.bias.fill_(math.log(0.7 / 0.5))     # kappa = 1.0 at init
+            span = 1.5 - kappa_min
+            self.kappa.bias.fill_(math.log((1.0 - kappa_min) / (span - (1.0 - kappa_min))))   # kappa = 1.0 at init
 
     def forward(self, h, A):
         w, g, s = self.lin(h).float().split(self.k, -1)
-        kappa = 0.3 + 1.2 * torch.sigmoid(self.kappa(h).float())
+        kappa = self.kappa_min + (1.5 - self.kappa_min) * torch.sigmoid(self.kappa(h).float())
         mu = kappa * (A.float() - A0)[:, None] + g
         return Mixture(w, mu, F.softplus(s) + self.min_sigma)
 
@@ -217,10 +218,11 @@ class EquivariantGRHead(nn.Module):
 
     M_C = 3.5
 
-    def __init__(self, dim, k=6, min_sigma=0.03, base_cls=None):
+    def __init__(self, dim, k=6, min_sigma=0.03, base_cls=None, kappa_min=0.3):
         super().__init__()
         # base_cls=MixtureHead gives the matched free-mixture ablation ('mixgr')
-        self.mix = (base_cls or EquivariantMixtureHead)(dim, k, min_sigma)
+        self.mix = (base_cls(dim, k, min_sigma) if base_cls is not None
+                    else EquivariantMixtureHead(dim, k, min_sigma, kappa_min))
         centers = torch.round(torch.arange(-1.0, 8.5 + 1e-6, 0.1) * 10) / 10
         self.register_buffer('centers', centers)
         self.n_free = int((centers < self.M_C - 1e-6).sum())
@@ -412,7 +414,7 @@ class MagNetTrunk(nn.Module):
 
 
 class MagnitudeModel(nn.Module):
-    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0):
+    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
@@ -421,7 +423,12 @@ class MagnitudeModel(nn.Module):
             return
         head_cls, free_amplitude = HEADS[head]
         self.trunk = Trunk(n_static, free_amplitude, width_mult=width_mult)
-        self.head = head_cls(self.trunk.out_dim) if head == 'cat' else head_cls(self.trunk.out_dim, k)
+        if head == 'cat':
+            self.head = head_cls(self.trunk.out_dim)
+        elif head in ('eq', 'eqgr'):
+            self.head = head_cls(self.trunk.out_dim, k, kappa_min=kappa_min)
+        else:
+            self.head = head_cls(self.trunk.out_dim, k)
         # optional auxiliary distance classifier (training-only multi-task control)
         self.aux = nn.Linear(self.trunk.out_dim, len(R_CENTERS)) if aux_dist else None
 

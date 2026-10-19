@@ -4,6 +4,42 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 23:40 UTC — NEGATIVE on a second dataset: on the GEOFON regional subset the equivariant head is worse than the free mixture
+
+Second dataset (`geofon_prep.py`, `results/geofon_folds.json`): GEOFON (SeisBench), records
+within 2,000 km of the epicentre with a catalogue P pick, sensitivity and ≥99% completeness:
+**31,020 records, 2,212 events, 276 M≥6 and 50 M≥7 events**; labels mostly mb (49%), with
+Mw(mB), M, MLv, Mw(Mwp); 78% of traces at 20 Hz (BH), resampled to 100 Hz; GK sequence folds
+balanced on M≥6/M≥7. Same code, seed 1, median action, Δ = arm − mix_nll (`geofon_eval.py`):
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| eqgr Δ bulk | **+.015 [+.010,+.020]** | **+.014 [+.009,+.019]** | **+.013 [+.008,+.018]** |
+| eqgr Δ M≥6 | **+.043 [+.020,+.064]** | **+.053 [+.038,+.067]** | **+.060 [+.047,+.074]** |
+| eqgr Δ M≥7 | **+.067 [+.031,+.104]** | +.026 [−.008,+.063] | +.018 [−.020,+.058] |
+| mixgr Δ bulk | +.001 [−.001,+.002] | +.001 [−.000,+.003] | +.002 [+.001,+.004] |
+| mixgr Δ M≥6 | **−.008 [−.014,−.002]** | **−.009 [−.014,−.005]** | −.004 [−.009,+.001] |
+
+Absolute mix_nll: bulk .533 / .460 / .429, M≥6 .888 / .670 / .579, M≥7 1.542 / 1.243 / 1.108,
+M≥6 bias −.84 / −.61 / −.52 (all models underestimate large events heavily at these windows).
+
+**Diagnosis so far**
+* The deficit is uniform: +.01–.02 in every magnitude-type, sampling-rate, distance and channel
+  subgroup; largest for MLv (+.045, over-predicted by both) and for Mw-labelled M≥6 records
+  (+.05–.07, where eqgr underestimates *more*: bias −.92 vs −.87).
+* The free mixture saturates here too (M≥6, fold 0: response .52 per decade downward, .41
+  upward at 1 s; .49 / .34 at 5 s) while eqgr responds symmetrically with κ ≈ .57, yet the
+  free model is still more accurate. So on this data the symmetric response is not the right
+  prior: with emergent P onsets at 300–2,000 km sampled at 20 Hz, the 1–5 s RMS amplitude is
+  often noise-dominated, and a head that must respond to it with κ ≥ 0.3 cannot learn to
+  ignore it, whereas a free head can.
+* The prior factor alone (`mixgr`) is neutral on bulk and slightly better on M≥6, as on INSTANCE.
+
+**Consequence for the claim.** The equivariant component is not universally beneficial: it
+helps where the amplitude is a reliable signal (INSTANCE: local records, 100 Hz, high SNR)
+and hurts where it is not. Tests queued on GEOFON: κ allowed down to 0 (`--kappa-min 0`), the
+distance-aware head, and the two-scale head; seeds 2–3 of the three main arms.
+
 ## 2026-10-19 22:50 UTC — published-architecture control (MagNet-style CNN+BiLSTM) is far behind the shared trunk
 
 `magnet_nll`: Mousavi & Beroza (2020) layout (two convolutions, 64 and 32 kernels of size 3,

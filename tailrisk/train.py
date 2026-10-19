@@ -56,7 +56,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     np.random.seed(args.seed)
     data.fit_static_norm(train_idx)
     n_static = data.static_raw.shape[1]
-    model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult).to(device)
+    model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult, kappa_min=args.kappa_min).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -69,7 +69,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     r_valid = torch.isfinite(hyp)
     r_bin = distance_bin(torch.nan_to_num(hyp, nan=50.0))   # distance: training label only
     # reported magnitude scale (0 = ML/Md, 1 = Mw): training label only, for 'eqtgr'
-    scale_idx = torch.from_numpy((data.meta['mag_type'][data.rows] == 'Mw').astype(np.int64)).to(device)
+    scale_idx = torch.from_numpy(np.char.startswith(data.meta['mag_type'][data.rows].astype(str), 'Mw').astype(np.int64)).to(device)
     history = []
     t0 = time.time()
     gen = torch.Generator(device=device)
@@ -167,6 +167,7 @@ def main():
     ap.add_argument('--amp-aug', type=float, default=0.0,
                     help='amplitude-scaling augmentation half-width in log10 units (label shifted equally)')
     ap.add_argument('--width-mult', type=float, default=1.0, help='trunk width multiplier (capacity check)')
+    ap.add_argument('--kappa-min', type=float, default=0.3, help='lower bound of the equivariant slope kappa(s)')
     ap.add_argument('--hold-stations', type=float, default=0.0,
                     help='fraction of stations withheld from training in every fold (held-station test)')
     ap.add_argument('--max-train', type=int, default=0, help='smoke test: subsample training rows')
