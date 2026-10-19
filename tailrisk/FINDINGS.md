@@ -4,6 +4,21 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 08:35 UTC — negative for the "just augment" alternative: amplitude-scaling augmentation is dominated
+
+`cat_aug` (categorical CE + waveform ×10^Δ with label +Δ, Δ~U(−.5,.5)) pooled, median action:
+bulk MAE .3374 / .2796 / .2467 (vs .3272 / .2714 / .2400 for cat_ce, i.e. +3–4%); M≥4 MAE
+.737 / .569 / .523; M≥5 1.036 / .782 / .734.
+
+* It lowers tail error only by moving along the trade-off. Plain CE reaches the same M≥4 MAE
+  with **.010 / .008 / .007 less bulk MAE** (tail-capped comparison), so augmentation is
+  dominated even by the baseline.
+* eqgr − cat_aug: bulk **−.0107 / −.0112 / −.0121**; bulk-capped M≥4 **−.171 / −.170 / −.171**;
+  M≥5 −.022 [−.075,+.044] / **−.136 [−.235,−.027] / −.176 [−.276,−.074]**.
+* Teaching the symmetry through data (fixed slope 1, shifted labels) distorts small-event
+  predictions and extrapolates less far than building it into the posterior with a learned
+  slope κ(s).
+
 ## 2026-10-19 07:40 UTC — gains survive two-seed ensembling
 
 eqgr (seeds 1+2, posterior mixture) − cat_ce (seeds 1+2), median action:

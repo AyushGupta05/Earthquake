@@ -130,6 +130,8 @@ pd.DataFrame({d: {k: round(v[k], 4) for k in ('MAE', 'MedAE', 'CVaR95', 'M>=4_MA
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))
+    for i, c in enumerate(cells):
+        c['id'] = f'cell-{i:02d}'
     nb = {'cells': cells, 'metadata': {'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'},
                                        'language_info': {'name': 'python'}}, 'nbformat': 4, 'nbformat_minor': 5}
     out = HERE / 'tail_risk_study.ipynb'
