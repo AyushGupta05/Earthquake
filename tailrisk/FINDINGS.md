@@ -27,6 +27,13 @@ vs .899 / .678 / .635; event-level M≥5 MAE .989 / .606 / .513 vs 1.009 / .706 
 dominated by records whose waveform carries little magnitude information at the deadline, not
 by large events, and the method does not address them. CVaR95 is unchanged (≤ ±.002).
 
+**Tail-probability reliability (`calibration_check.py`):** both arms are well calibrated
+(Brier reliability terms 2×10⁻⁶ to 4×10⁻⁵). eqgr's lower Brier for P(M≥4) and P(M≥5) at 3 s and
+5 s (e.g. 5 s M≥5: .000849 vs .000929) comes from higher resolution. The free mixture is
+systematically **under-confident for M≥5** (predicted .14 → observed .20; .42 → .55; .57 → .64 at
+5 s), the probabilistic face of amplitude saturation; eqgr is near the diagonal in that range
+and slightly over-confident at the top (.97 → .78, 475 records). At 1 s the two are equal.
+
 So both components beat the baseline on both axes, but they are not equivalent: the GR prior
 factor is the bulk-safest change, and equivariance buys the tail for a median +.0006 bulk MAE
 relative to that ablation (still below the baseline's bulk). The pre-specified claim ("tail

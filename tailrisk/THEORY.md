@@ -26,6 +26,14 @@ p(M | A, s) ∝ 10^(−bM) ∫ φ_ε(A − κM − h(z)) p(s | z) p(z) dz = 10^(
 Replace A by A + κδ and M by M + δ. The factor G_s is unchanged and 10^(−b(M+δ)) changes
 only by a constant, which normalization removes. ∎
 
+`test_theory.py` checks this numerically with an arbitrary non-linear attenuation term h(z),
+a broad unknown-distance distribution and κ = 0.7: the shifted and re-evaluated posteriors
+agree to a relative 10⁻¹⁵. Replacing the GR prior by one with a 9× selection cliff at M2.0
+(as in INSTANCE) breaks the identity by up to 84% of the posterior peak when the posterior
+straddles the cliff, and not at all once it lies above it. That is why `eqgr` leaves the
+prior free below M3.5 and makes it GR-linear above: the head is then exactly equivariant
+exactly where the large events are.
+
 Two consequences:
 * Under GR the *amplitude-implied magnitude is never discounted for being large*. The
   shrinkage that GR imposes is a constant shift (for Gaussian ε, −b ln10 σ²/κ), the same
