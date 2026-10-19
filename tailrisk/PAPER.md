@@ -203,8 +203,20 @@ station and event were both unseen (279,812 records, 341 M≥4 events): M≥5 �
 (all CIs exclude zero), M≥4 −.017/−.005/−.011 (significant at 1 and 5 s), bulk never worse,
 false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline. *Standard
 split* (train 2005–17, VAL 2018): M≥4 −.025/−.022/−.038 vs the mixture with bulk equal or
-better. *Capacity and training length* ⟨pending: 1.5× width, 20 epochs⟩. *Second dataset*
-⟨pending: GEOFON regional subset, 2,216 events, 277 M≥6⟩.
+better. *Capacity and training length* ⟨pending: 1.5× width, 20 epochs⟩.
+
+*Second dataset (negative for the equivariant component).* On a GEOFON subset (31,020
+records within 2,000 km, 2,212 events, 276 M≥6 and 50 M≥7, labels mostly mb, 78% of traces at
+20 Hz), the same code gives the opposite ordering: eqgr is worse than the free mixture by
++.015/+.014/+.013 bulk and +.043/+.053/+.060 M≥6 MAE (CIs exclude zero), while the prior factor
+alone is neutral on bulk and slightly better on M≥6 (−.008/−.009/−.004). The free mixture
+saturates on this data as well (upward response .34–.46 per decade vs .49–.55 downward on
+M≥6), and the equivariant head responds symmetrically with κ ≈ .57, yet it is less accurate.
+Our reading is that at 300–2,000 km and 20 Hz the 1–5 s P-wave RMS amplitude is often
+noise-dominated, and a head forced to respond to it (κ ≥ 0.3) cannot learn to discount it;
+variants that allow κ → 0, add a distance head, or use scale-specific slopes are being tested
+⟨pending⟩. Until resolved, the equivariant component should be read as a local-network,
+high-SNR result; the GR prior factor is the portable part.
 
 ### 5.6 What does not improve
 

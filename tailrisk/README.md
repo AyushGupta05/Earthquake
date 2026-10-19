@@ -111,6 +111,14 @@ Ablations and exploratory heads:
 
 FINDINGS.md records which arms were pre-specified (eq, eqgr), which were ablations added after the first results (mixgr), and which exploratory (eqtgr, eqdgr).
 
+**Second dataset, negative for equivariance (19 Oct 23:40 UTC).** On a GEOFON regional subset
+(31k records, 2,212 events, 276 M≥6, labels mostly mb, mostly 20 Hz broadband at 300–2,000 km),
+eqgr is *worse* than the free mixture (bulk +.013–.015, M≥6 +.04–.06), while the GR prior
+factor alone is neutral-to-better. The equivariant response appears to hurt where the short
+P-window amplitude is noise-dominated. Variants (κ allowed to 0, distance-aware, two-scale) are
+running; see FINDINGS.md. Read the equivariance result as established for local, high-SNR
+networks like INSTANCE, not as universal.
+
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for
 large ML labels, which scale ≈1:1 with amplitude.
