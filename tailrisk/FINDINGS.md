@@ -4,6 +4,22 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 07:40 UTC — gains survive two-seed ensembling
+
+eqgr (seeds 1+2, posterior mixture) − cat_ce (seeds 1+2), median action:
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| Δ bulk MAE | −.0005 [−.0026,+.0013] | **−.0028 [−.0050,−.0009]** | **−.0048 [−.0062,−.0039]** |
+| Δ M≥4 MAE | **−.031 [−.049,−.011]** | **−.044 [−.069,−.020]** | **−.056 [−.089,−.027]** |
+| Δ M≥5 MAE | **−.087 [−.155,−.012]** | **−.205 [−.309,−.100]** | **−.263 [−.385,−.154]** |
+| Δ M≥4 event-MAE | **−.022 [−.042,−.003]** | **−.036 [−.065,−.014]** | **−.047 [−.083,−.022]** |
+| bulk-capped best M≥4 / M≥5 | **−.068 / −.114** | **−.130 / −.240** | **−.160 / −.287** |
+
+Ensembling lowers both arms' bulk MAE by ≈.005 (single seed → 2-seed), but the tail gap is
+unchanged, so the improvement is not seed noise or a variance effect. With ensembles, every
+tail metric at every deadline has a 95% interval excluding zero; bulk is equal (1 s) or better.
+
 ## 2026-10-19 06:40 UTC — per-fold consistency and the Emilia exception
 
 Arm − mix_nll per held-out fold (median action; bulk / M≥4 / M≥4-event):

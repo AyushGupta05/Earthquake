@@ -342,11 +342,42 @@ class EquivariantDistanceGRHead(nn.Module):
         return JointBinned(torch.logsumexp(logj, 1), centers, logj)
 
 
+class EquivariantScaleMixtureGRHead(nn.Module):
+    """Label-scale mixture: p(t, b | x) oc p(t|s) P_t(b | x) exp(phi_b).
+
+    t indexes the magnitude scale the catalogue will report (0 = ML/Md, 1 = Mw). Each scale
+    has its own scale-equivariant mixture with its own slope kappa_t(s), because local and
+    moment magnitudes scale differently with amplitude. The scale is a TRAINING label only
+    (joint likelihood); inference marginalizes it. The GR-factorized prior phi is shared.
+    """
+
+    def __init__(self, dim, k=4, min_sigma=0.03):
+        super().__init__()
+        self.heads = nn.ModuleList([EquivariantMixtureHead(dim, k, min_sigma) for _ in range(2)])
+        self.type_logit = nn.Linear(dim, 2)
+        self.prior = EquivariantGRHead(dim, 1)
+        del self.prior.mix
+
+    def forward(self, h, A):
+        centers = self.prior.centers
+        edges = torch.cat([centers - 0.05, centers[-1:] + 0.05])
+        parts = []
+        for t, head in enumerate(self.heads):
+            m = head(h, A)
+            Fe = m.cdf(edges)
+            parts.append((Fe[:, 1:] - Fe[:, :-1]).clamp_min(1e-30).log())
+        logj = (self.type_logit(h).float().log_softmax(-1)[..., None] + torch.stack(parts, 1)
+                + self.prior.log_prior()[None, None])
+        logj = logj - torch.logsumexp(logj.flatten(1), 1)[:, None, None]
+        return JointBinned(torch.logsumexp(logj, 1), centers, logj)
+
+
 HEADS = {'cat': (CategoricalHead, True), 'mix': (MixtureHead, True), 'eq': (EquivariantMixtureHead, False),
          'eqgr': (EquivariantGRHead, False), 'eqh': (EquivariantHybridHead, False),
          'eqd': (EquivariantDistanceHead, False),
          'mixgr': (lambda dim, k=6: EquivariantGRHead(dim, k, base_cls=MixtureHead), True),
-         'eqdgr': (EquivariantDistanceGRHead, False)}
+         'eqdgr': (EquivariantDistanceGRHead, False),
+         'eqtgr': (lambda dim, k=4: EquivariantScaleMixtureGRHead(dim, 4), False)}
 
 
 class MagnitudeModel(nn.Module):
