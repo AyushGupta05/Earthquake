@@ -375,12 +375,42 @@ class EquivariantScaleMixtureGRHead(nn.Module):
         return JointBinned(torch.logsumexp(logj, 1), centers, logj)
 
 
+class FreeDistanceHead(nn.Module):
+    """Distance-marginalized mixture without equivariance (ablation for eqd/eqdgr).
+
+    p(m|x) = sum_r p(r|s,A) N(m; mu_r(s,A), sigma_r(s,A)^2); A enters the trunk freely.
+    Trained with the same joint likelihood p(r|x) p(m|r,x) as the equivariant version.
+    """
+
+    def __init__(self, dim, k=None, min_sigma=0.03):
+        super().__init__()
+        n = len(R_CENTERS)
+        self.n, self.min_sigma = n, min_sigma
+        self.lin = nn.Linear(dim, 3 * n)
+        with torch.no_grad():
+            self.lin.bias[n:2 * n] = 3.0 + 1.5 * (R_CENTERS - 1.7)
+            self.lin.bias[2 * n:] = math.log(math.expm1(0.3))
+
+    def forward(self, h, A):
+        w, mu, s = self.lin(h).float().split(self.n, -1)
+        return DistanceMixture(w, mu, F.softplus(s) + self.min_sigma)
+
+
+class FreeDistanceGRHead(EquivariantDistanceGRHead):
+    """Distance-marginalized free mixture x learned bulk prior x GR tail (ablation for eqdgr)."""
+
+    def __init__(self, dim, k=None, min_sigma=0.03):
+        super().__init__(dim, k, min_sigma)
+        self.base = FreeDistanceHead(dim, min_sigma=min_sigma)
+
+
 HEADS = {'cat': (CategoricalHead, True), 'mix': (MixtureHead, True), 'eq': (EquivariantMixtureHead, False),
          'eqgr': (EquivariantGRHead, False), 'eqh': (EquivariantHybridHead, False),
          'eqd': (EquivariantDistanceHead, False),
          'mixgr': (lambda dim, k=6: EquivariantGRHead(dim, k, base_cls=MixtureHead), True),
          'eqdgr': (EquivariantDistanceGRHead, False),
-         'eqtgr': (lambda dim, k=4: EquivariantScaleMixtureGRHead(dim, 4), False)}
+         'eqtgr': (lambda dim, k=4: EquivariantScaleMixtureGRHead(dim, 4), False),
+         'mixd': (FreeDistanceHead, True), 'mixdgr': (FreeDistanceGRHead, True)}
 
 
 class MagNetTrunk(nn.Module):

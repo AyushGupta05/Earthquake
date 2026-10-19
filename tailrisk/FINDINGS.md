@@ -39,10 +39,30 @@ M≥6 bias −.84 / −.61 / −.52 (all models underestimate large events heavi
 M≥6 **+.036 / +.042 / +.047**, M≥7 +.050 / +.008 / −.006 (all bulk and M≥6 CIs exclude zero);
 mixgr − mix = bulk +.001 / +.001 / +.000 (n.s.), M≥6 −.003 / −.003 / −.003 (5 s CI excludes zero).
 
+**Variants on GEOFON (23:58 UTC, seed 1, Δ vs mix_nll, median action):**
+
+| | bulk 1 / 3 / 5 s | M≥6 1 / 3 / 5 s | M≥7 1 / 3 / 5 s |
+|---|---|---|---|
+| eqgr (κ ≥ 0.3) | +.015 / +.014 / +.013 | +.043 / +.053 / +.060 | +.067 / +.026 / +.018 |
+| eqgr, κ ≥ 0 (`eqgr_k0`) | +.017 / +.014 / +.014 | +.059 / +.055 / +.058 | +.085 / +.021 / +.011 |
+| eqtgr (two slopes) | +.016 / +.021 / +.021 | +.087 / +.104 / +.122 | +.180 / +.185 / +.201 |
+| **eqdgr** (distance-marginalized) | +.019 / +.014 / +.014 | **−.027** / −.008 / −.002 | **−.103 / −.114 / −.141** |
+
+* Letting κ reach 0 changes nothing, so the "forced response to a noise-dominated amplitude"
+  explanation above is **refuted**: the rigidity is in the additive form κ(s)·A + g(s) itself,
+  not in the slope's lower bound.
+* The distance-marginalized GR head recovers the large-event tail (M≥7 −.10 to −.14, the
+  largest tail gain of any arm on GEOFON; M≥7 bias −1.44 vs −1.54 at 1 s) while still paying
+  ≈+.015 bulk. At 300–2,000 km the attenuation term spans several magnitude units, and a head
+  that must infer distance from the waveform shape and apply it as one additive offset is too
+  rigid; mixing over explicit distance hypotheses restores the flexibility for large events.
+* Separate scale slopes make everything worse (two half-size slope estimates).
+
 **Consequence for the claim.** The equivariant component is not universally beneficial: it
-helps where the amplitude is a reliable signal (INSTANCE: local records, 100 Hz, high SNR)
-and hurts where it is not. Tests queued on GEOFON: κ allowed down to 0 (`--kappa-min 0`), the
-distance-aware head, and the two-scale head; seeds 2–3 of the three main arms.
+helps where one amplitude law holds across the population (INSTANCE: local records within a
+few hundred km, 100 Hz, mostly M_L) and hurts where distance-dependent attenuation dominates.
+Next test (both datasets): a distance-marginalized *free* mixture with the GR prior (`mixdgr`),
+to separate distance marginalization from equivariance in eqdgr's tail gains.
 
 ## 2026-10-19 22:50 UTC — published-architecture control (MagNet-style CNN+BiLSTM) is far behind the shared trunk
 
