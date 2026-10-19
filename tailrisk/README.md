@@ -4,7 +4,8 @@
 (tail) error of single-station early magnitude estimates at 1, 3 and 5 s after the P arrival,
 without worsening bulk error**, on INSTANCE (1,159,249 records, 54,008 events). The full
 dated log, including negative results, is in [FINDINGS.md](FINDINGS.md); the theory is in
-[THEORY.md](THEORY.md). An explanatory notebook is in
+[THEORY.md](THEORY.md); the prior-art audit (what is new, what is not) is in
+[NOVELTY.md](NOVELTY.md). An explanatory notebook is in
 [tail_risk_study.ipynb](tail_risk_study.ipynb).
 
 ## Result in one paragraph
@@ -84,6 +85,11 @@ two components are complementary.
 | `cat_aug` | amplitude-scaling augmentation (×10^Δ, label +Δ) | dominated even by CE; eqgr bulk −.011, bulk-capped M≥4 −.17 at every deadline |
 | `cat_lds` | LDS loss reweighting (deep imbalanced regression) | dominated even by CE (+8% bulk, 4× false-M4); eqgr bulk −.023 to −.028, bulk-capped M≥4 −.15 at every deadline |
 | `gbm_e3ws` | E3WS-style P-wave features + gradient boosting | far weaker (5 s MAE .310, M≥4 .713) |
+| `magnet_nll` | MagNet-style CNN+BiLSTM on amplitude-retaining waveforms (Mousavi & Beroza 2020), Gaussian NLL | running; see FINDINGS.md |
+
+Robustness runs: `mix_nll_hs`, `mixgr_nll_hs`, `eqgr_nll_hs` withhold 20% of stations from
+training in every fold and are scored on records that are both held-event and held-station
+(see FINDINGS.md when complete).
 
 Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).

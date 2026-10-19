@@ -93,6 +93,13 @@ class Boot:
         self.N4 = np.bincount(self.cl[self.hi], minlength=self.nc).astype(float)
         self.N5 = np.bincount(self.cl[self.hi5], minlength=self.nc).astype(float)
         self.C4 = np.bincount(self.cl[self.first4], minlength=self.nc).astype(float)
+        self.lo35 = y < 3.5
+        self.N35 = np.bincount(self.cl[self.lo35], minlength=self.nc).astype(float)
+
+    def fp4(self, pred):
+        """False-M4 rate (share of M<3.5 records predicted >= 3.95) per replicate."""
+        s = np.bincount(self.cl[self.lo35], (pred[self.lo35] >= 3.95).astype(float), self.nc)
+        return (self.w @ s) / (self.w @ self.N35)
 
     def sums(self, err):
         ev_mean = np.bincount(self.ev, err) / self.cnt_ev
@@ -144,6 +151,10 @@ def main():
     ap.add_argument('--reps', type=int, default=1000)
     ap.add_argument('--split', default='all', choices=['all', 'train', 'val', 'test'],
                     help='restrict to an original INSTANCE split (for --mode std arms)')
+    ap.add_argument('--station-subset', default=None, choices=['held', 'seen'],
+                    help="restrict to records at stations withheld from (held) or present in (seen) "
+                         "training, using the 'held_station' arrays saved by a --hold-stations arm")
+    ap.add_argument('--station-arm', default=None, help='arm whose held_station arrays define the subset')
     args = ap.parse_args()
     root = Path(args.root)
     meta = load_meta()
@@ -156,6 +167,20 @@ def main():
     have = np.all([np.isfinite(d[:, :, 0]).all(1) for d in dec.values()], 0)
     if args.split != 'all':
         have &= meta['split'] == {'train': 0, 'val': 1, 'test': 2}[args.split]
+    if args.station_subset:
+        held = np.zeros(len(y), bool)
+        src = root / (args.station_arm or arms[0].split('+')[0])
+        n_files = 0
+        for f in sorted(src.glob('fold*.npz')):
+            z = np.load(f)
+            if 'held_station' not in z:
+                raise SystemExit(f'{f} has no held_station array; use --station-arm with a --hold-stations arm')
+            held[z['rows']] = z['held_station']
+            n_files += 1
+        if not n_files:
+            raise SystemExit(f'no fold files in {src}')
+        have &= held if args.station_subset == 'held' else ~held
+        print(f'station subset {args.station_subset}: {int(have.sum())} records', flush=True)
     print('records with predictions in every arm:', int(have.sum()), 'of', len(y), flush=True)
     y_, ev_, cl_, fo_ = y[have], ev[have], cluster[have], fold[have]
     boot = Boot(cl_, y_, ev_, args.reps)
@@ -206,11 +231,11 @@ def main():
             Ma, Mb = boot.metrics(Sa), boot.metrics(Sb)       # each (reps, nR)
             cmp = {}
             j1 = int(np.argmin(np.abs(FRONTIER_R - 1)))
-            for name, ea, eb in [('mean', np.abs(mean_a - y_), np.abs(mean_b - y_)),
-                                 ('median', np.abs(wm_a[:, j1] - y_), np.abs(wm_b[:, j1] - y_))]:
-                da = boot.metrics(boot.sums(ea)[None])
-                db = boot.metrics(boot.sums(eb)[None])
+            for name, pa, pb in [('mean', mean_a, mean_b), ('median', wm_a[:, j1], wm_b[:, j1])]:
+                da = boot.metrics(boot.sums(np.abs(pa - y_))[None])
+                db = boot.metrics(boot.sums(np.abs(pb - y_))[None])
                 cmp[name] = {k: ci((da[k] - db[k])[:, 0]) for k in da}
+                cmp[name]['FP4_rate'] = ci(boot.fp4(pa) - boot.fp4(pb))
             # bulk-constrained tail: best tail over each arm's r-family subject to
             # bulk MAE <= the reference median-action bulk MAE (x (1 + tol)), both arms
             # optimized the same way, per bootstrap replicate

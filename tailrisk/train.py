@@ -51,7 +51,7 @@ def loss_fn(dist, y, w, kind):
     raise ValueError(kind)
 
 
-def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
+def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extra=None):
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
     data.fit_static_norm(train_idx)
@@ -138,7 +138,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
                 dec[s:s + len(idx), d_i] = o.cpu().numpy()
                 pmf[s:s + len(idx), d_i] = p.cpu().numpy().astype(np.float16)
     rows = data.rows[test_idx.cpu().numpy()]
-    np.savez(out_dir / f'{fold_name}.npz', rows=rows, dec=dec, pmf=pmf)
+    np.savez(out_dir / f'{fold_name}.npz', rows=rows, dec=dec, pmf=pmf, **(extra or {}))
     y = data.meta['mag'][rows]
     ev = data.meta['event'][rows]
     summary = {}
@@ -152,7 +152,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arm', required=True)
-    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr', 'eqdgr', 'eqtgr'], required=True)
+    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr', 'eqdgr', 'eqtgr', 'magnet'], required=True)
     ap.add_argument('--aux-dist', action='store_true', help='auxiliary distance classifier (training only)')
     ap.add_argument('--loss', choices=['nll', 'hubce'], default='nll')
     ap.add_argument('--weighting', choices=['none', 'invsqrt', 'lds'], default='none')
@@ -166,6 +166,8 @@ def main():
     ap.add_argument('--seed', type=int, default=20261018)
     ap.add_argument('--amp-aug', type=float, default=0.0,
                     help='amplitude-scaling augmentation half-width in log10 units (label shifted equally)')
+    ap.add_argument('--hold-stations', type=float, default=0.0,
+                    help='fraction of stations withheld from training in every fold (held-station test)')
     ap.add_argument('--max-train', type=int, default=0, help='smoke test: subsample training rows')
     ap.add_argument('--out', default=str(WORK / 'arms'))
     args = ap.parse_args()
@@ -185,12 +187,23 @@ def main():
                 for f in map(int, args.folds.split(','))]
     else:
         plan = [('std', torch.nonzero(split == 0)[:, 0], torch.nonzero(split > 0)[:, 0])]
+    held_row = None
+    if args.hold_stations > 0:
+        # a fixed random subset of stations never enters training; their held-fold records
+        # are evaluated separately (held event AND held station)
+        station = meta['station']
+        held_sta = np.random.default_rng(0).random(int(station.max()) + 1) < args.hold_stations
+        held_row = torch.from_numpy(held_sta[station]).to(device)
+        record['held_stations'] = int(held_sta.sum())
     for name, tr, te in plan:
+        if held_row is not None:
+            tr = tr[~held_row[tr]]
         if args.max_train:
             g = torch.Generator(device=device).manual_seed(0)
             tr = tr[torch.randperm(len(tr), device=device, generator=g)[:args.max_train]]
             te = te[torch.randperm(len(te), device=device, generator=g)[:args.max_train // 4]]
-        record['folds'][name] = train_fold(args, data, tr, te, name, out_dir, device)
+        extra = {'held_station': held_row[te].cpu().numpy()} if held_row is not None else None
+        record['folds'][name] = train_fold(args, data, tr, te, name, out_dir, device, extra)
         (out_dir / 'record.json').write_text(json.dumps(record, indent=1))
 
 

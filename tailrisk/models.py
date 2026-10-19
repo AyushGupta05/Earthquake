@@ -380,9 +380,44 @@ HEADS = {'cat': (CategoricalHead, True), 'mix': (MixtureHead, True), 'eq': (Equi
          'eqtgr': (lambda dim, k=4: EquivariantScaleMixtureGRHead(dim, 4), False)}
 
 
+class MagNetTrunk(nn.Module):
+    """Published-architecture control: CNN + BiLSTM on amplitude-retaining waveforms.
+
+    Layout follows Mousavi & Beroza (2020): two convolutions (64 and 32 kernels of
+    size 3, no activation), dropout and 4x max-pooling after each, a bidirectional
+    LSTM with 100 units. Their regressor sees un-normalized counts so that
+    amplitude is available; here the shape is multiplied back by 10^(A - A0), which
+    keeps the amplitude information while keeping values O(1). Station metadata and
+    the deadline one-hot are concatenated after the LSTM so the control has the same
+    information as the other arms. The head is a single Gaussian (NLL), the
+    probabilistic version of MagNet's MSE output.
+    """
+
+    def __init__(self, n_static, hidden=100, dropout=0.2):
+        super().__init__()
+        self.conv1 = nn.Conv1d(3, 64, 3, padding=1)
+        self.conv2 = nn.Conv1d(64, 32, 3, padding=1)
+        self.drop = nn.Dropout(dropout)
+        self.pool = nn.MaxPool1d(4)
+        self.lstm = nn.LSTM(32, hidden, batch_first=True, bidirectional=True)
+        self.out_dim = 2 * hidden + n_static + 3
+
+    def forward(self, shape, A, invariant, static, dur_idx):
+        x = shape * torch.pow(10.0, (A.float() - A0))[:, None, None]
+        h = self.pool(self.drop(self.conv1(x)))
+        h = self.pool(self.drop(self.conv2(h)))
+        _, (hn, _) = self.lstm(h.transpose(1, 2))
+        return torch.cat([hn[0], hn[1], static, F.one_hot(dur_idx, 3).float()], 1)
+
+
 class MagnitudeModel(nn.Module):
     def __init__(self, head, n_static, k=6, aux_dist=False):
         super().__init__()
+        if head == 'magnet':
+            self.trunk = MagNetTrunk(n_static)
+            self.head = MixtureHead(self.trunk.out_dim, 1)
+            self.aux = None
+            return
         head_cls, free_amplitude = HEADS[head]
         self.trunk = Trunk(n_static, free_amplitude)
         self.head = head_cls(self.trunk.out_dim) if head == 'cat' else head_cls(self.trunk.out_dim, k)
