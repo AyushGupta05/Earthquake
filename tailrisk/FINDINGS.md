@@ -4,6 +4,38 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 22:20 UTC — held-station test: the gain survives on stations never seen in training
+
+`mix_nll_hs` and `eqgr_nll_hs` were trained with a fixed random **20% of stations withheld in
+every fold** (`--hold-stations 0.2`, seed 0), so their held-fold records at those stations are
+*both* held-event and held-station: a station fingerprint cannot explain a gain there.
+Δ = eqgr_hs − mix_hs, median action, 95% cluster-bootstrap CIs (`results/eval_hs_*.json`).
+
+**Held-station records (279,812; 341 of the 346 M≥4 events have at least one held-station record):**
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| Δ bulk MAE | −.0019 [−.0056,+.0035] | −.0003 [−.0015,+.0018] | −.0031 [−.0069,+.0017] |
+| Δ M≥4 MAE | **−.017 [−.026,−.010]** | −.005 [−.018,+.004] | **−.011 [−.019,−.004]** |
+| Δ M≥5 MAE | **−.068 [−.107,−.032]** | **−.111 [−.176,−.041]** | **−.139 [−.208,−.068]** |
+| Δ M≥4 event-MAE | −.009 [−.020,+.002] | +.003 [−.009,+.013] | −.004 [−.013,+.005] |
+| Δ false-M4 rate | −.0012 [−.0029,+.0006] | −.0002 | −.0005 [−.0010,+.0001] |
+| CVaR95 (eqgr vs mix) | 1.275 vs 1.350 | 1.126 vs 1.145 | 1.077 vs 1.107 |
+
+**Seen-station records (879,437), same two models:** bulk −.0015 / −.0019 / −.0034; M≥4
+**−.024 / −.013 / −.021**; M≥5 **−.075 / −.107 / −.135**; event-M≥4 **−.020 / −.010 / −.018**
+(all tail CIs exclude zero).
+
+* On unseen stations the M≥5 improvement is as large as on seen ones and significant at all
+  three deadlines; M≥4 is significant at 1 and 5 s (3 s: same sign, n.s.); event-level M≥4 is
+  not significant on this subset (fewer events per station group). Bulk is never worse.
+* The free mixture degrades more on unknown stations than eqgr does: its false-M4 rate at 1 s
+  is 2.9 per 10³ vs 1.2 for eqgr, and its CVaR95 is higher at every deadline. A constrained
+  amplitude response transfers to new instruments better than a learned one.
+* On seen stations these reduced-data models are within .003 bulk MAE of the full-data arms;
+  on held stations both are ≈.02–.025 worse (unknown instruments), so the held-station numbers
+  are comparable only to each other, not to the main table.
+
 ## 2026-10-19 21:10 UTC — third seed: 3-seed ensembles confirm eqgr; eqdgr's M≥5 gain and its false-alarm cost both replicate
 
 Seed-3 arms (queue3) and eqdgr seeds 2–3 (`queue4.txt`), evaluated by `eval_replication.sh`
