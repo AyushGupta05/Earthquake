@@ -92,9 +92,13 @@ two components are complementary.
 | `gbm_e3ws` | E3WS-style P-wave features + gradient boosting | far weaker (5 s MAE .310, M≥4 .713) |
 | `magnet_nll` | MagNet-style CNN+BiLSTM on amplitude-retaining waveforms (Mousavi & Beroza 2020), Gaussian NLL | running; see FINDINGS.md |
 
-Robustness runs: `mix_nll_hs`, `mixgr_nll_hs`, `eqgr_nll_hs` withhold 20% of stations from
-training in every fold and are scored on records that are both held-event and held-station
-(see FINDINGS.md when complete).
+**Held-station test.** `mix_nll_hs` and `eqgr_nll_hs` withhold 20% of stations from training in
+every fold and are scored on records that are both held-event *and* held-station (279,812
+records, 341 M≥4 events). There eqgr − mix is: M≥5 MAE **−.068 / −.111 / −.139** (CIs exclude
+zero at all deadlines), M≥4 MAE **−.017 / −.005 / −.011** (significant at 1 and 5 s), bulk
+−.002 / −.000 / −.003 (never worse), false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95
+lower at every deadline. A station fingerprint cannot explain the gain, and the constrained
+amplitude response transfers to unknown instruments better than a learned one.
 
 Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).
