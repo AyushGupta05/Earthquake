@@ -4,7 +4,23 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
-## 2026-10-19 07:00 UTC — full attribution against the strongest existing baseline (TEAM-LM-style free mixture)
+## 2026-10-19 06:40 UTC — per-fold consistency and the Emilia exception
+
+Arm − mix_nll per held-out fold (median action; bulk / M≥4 / M≥4-event):
+* **mixgr** improves M≥4 in 14/15 fold×deadline cells and bulk in 13/15. Both bulk
+  exceptions are in fold 1, the smallest fold (9.8k records).
+* **eqgr** improves the tail in folds 0, 2, 3, 4 at every deadline (fold 0, the unseen M6.5
+  Central Italy sequence: M≥4 −.046 / −.038 / −.056). It is **worse in fold 1** (M≥4 +.06 at
+  1–3 s, +.044 at 5 s; bulk +.003 to +.005).
+* Fold 1 is the **2012 Emilia (Po Plain) sequence**: M5.8 and M5.6, 32 M≥4 events, 24 of them
+  ML-labelled. All models underestimate it. eqgr's extra error is on the **ML-labelled**
+  events (3 s bias −.48 vs −.42 for mix_nll), while it is better on the Mw-labelled ones (5 s
+  bias −.08 vs −.18). The equivariant head learns one amplitude slope κ(s) ≈ 0.7, close to Mw's
+  ⅔ scaling. ML scales ≈1:1 with amplitude, so a sequence dominated by large ML labels is where
+  a single learned slope fits worst. **Limitation and future work:** scale-specific slopes
+  (an ML and an Mw head) or magnitude-type-homogeneous labels.
+
+## 2026-10-19 06:30 UTC — full attribution against the strongest existing baseline (TEAM-LM-style free mixture)
 
 All 1,159,249 records; Δ = arm − `mix_nll` (free Gaussian-mixture posterior, the strongest
 existing-method baseline here). Median action; 95% cluster-bootstrap CIs.

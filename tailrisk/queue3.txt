@@ -1,9 +1,11 @@
---arm eqgr_nll_s3 --head eqgr --loss nll --epochs 10 --seed 3
---arm cat_ce_s3 --head cat --loss nll --epochs 10 --seed 3
---arm std_cat_ce --head cat --loss nll --epochs 10 --mode std
+--arm mixgr_nll_s2 --head mixgr --loss nll --epochs 10 --seed 2
+--arm mix_nll_s2 --head mix --loss nll --epochs 10 --seed 2
+--arm std_mix_nll --head mix --loss nll --epochs 10 --mode std
+--arm std_mixgr_nll --head mixgr --loss nll --epochs 10 --mode std
 --arm std_eqgr_nll --head eqgr --loss nll --epochs 10 --mode std
 --arm std_cat_hubce --head cat --loss hubce --epochs 10 --mode std
 --arm eqdgr_nll --head eqdgr --loss nll --epochs 10
---arm cat_dist --head cat --loss nll --epochs 10 --aux-dist
---arm eqd_nll --head eqd --loss nll --epochs 10
---arm eqh_nll --head eqh --loss nll --epochs 10
+--arm eqgr_nll_s3 --head eqgr --loss nll --epochs 10 --seed 3
+--arm mixgr_nll_s3 --head mixgr --loss nll --epochs 10 --seed 3
+--arm mix_nll_s3 --head mix --loss nll --epochs 10 --seed 3
+--arm cat_ce_s3 --head cat --loss nll --epochs 10 --seed 3
