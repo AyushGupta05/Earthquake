@@ -35,6 +35,10 @@ M≥6 bias −.84 / −.61 / −.52 (all models underestimate large events heavi
   ignore it, whereas a free head can.
 * The prior factor alone (`mixgr`) is neutral on bulk and slightly better on M≥6, as on INSTANCE.
 
+**Three-seed ensembles (23:48 UTC) confirm it:** eqgr − mix = bulk **+.010 / +.009 / +.008**,
+M≥6 **+.036 / +.042 / +.047**, M≥7 +.050 / +.008 / −.006 (all bulk and M≥6 CIs exclude zero);
+mixgr − mix = bulk +.001 / +.001 / +.000 (n.s.), M≥6 −.003 / −.003 / −.003 (5 s CI excludes zero).
+
 **Consequence for the claim.** The equivariant component is not universally beneficial: it
 helps where the amplitude is a reliable signal (INSTANCE: local records, 100 Hz, high SNR)
 and hurts where it is not. Tests queued on GEOFON: κ allowed down to 0 (`--kappa-min 0`), the
