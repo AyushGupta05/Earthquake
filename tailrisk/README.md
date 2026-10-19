@@ -38,14 +38,19 @@ On the completely unseen 2016–17 Central Italy sequence, the 5 s M≥5 MAE fal
 to 0.502.
 
 **Against the strongest existing approach** (a TEAM-LM-style free Gaussian-mixture
-posterior on the same trunk), both as two-seed ensembles, eqgr − mix, median action:
+posterior on the same trunk), both as **three-seed ensembles**, eqgr − mix, median action:
 
 | | 1 s | 3 s | 5 s |
 |---|---|---|---|
-| Δ bulk MAE | −.0007 [−.0020,+.0001] | **−.0015 [−.0030,−.0003]** | **−.0030 [−.0039,−.0024]** |
-| Δ M≥4 MAE | **−.016 [−.023,−.005]** | **−.014 [−.024,−.001]** | **−.022 [−.037,−.006]** |
-| Δ M≥5 MAE | −.028 [−.084,+.029] | **−.106 [−.220,−.006]** | **−.143 [−.281,−.031]** |
-| bulk-capped best M≥4 / M≥5 | **−.051 / −.059** | **−.078 / −.135** | **−.113 / −.166** |
+| Δ bulk MAE | −.0008 [−.0021,+.0000] | **−.0015 [−.0031,−.0003]** | **−.0028 [−.0039,−.0020]** |
+| Δ M≥4 MAE | **−.015 [−.023,−.005]** | **−.015 [−.026,−.003]** | **−.025 [−.042,−.009]** |
+| Δ M≥4 event-MAE | −.010 [−.020,+.002] | −.011 [−.025,+.003] | **−.020 [−.039,−.003]** |
+| Δ M≥5 MAE | −.024 [−.075,+.028] | **−.105 [−.220,−.010]** | **−.149 [−.291,−.040]** |
+| Δ false-M4 rate (per 10⁴ records < M3.5) | +1.4 [+0.6,+2.0] | +0.7 [+0.1,+1.3] | +0.7 [+0.2,+1.2] |
+
+The one cost is a small rise in false M≥4 predictions on small events (6.4 vs 5.0 per 10⁴ at
+1 s; plain CE is 7.5). Seed-by-fold sign tests (3 seeds × 5 folds × 3 deadlines) put eqgr
+ahead on M≥4 error in 36/45 cells, all 9 exceptions in the Emilia fold (FINDINGS.md).
 
 **On the original INSTANCE split** (train 2005–17, no selection on VAL), eqgr − mix on VAL 2018:
 M≥4 MAE −.025 / −.022 / −.038 (CIs exclude zero), with bulk equal / −.0013 / −.0024. Against the
