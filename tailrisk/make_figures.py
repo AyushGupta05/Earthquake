@@ -79,9 +79,30 @@ def response_plot(diag, out):
     plt.close(fig)
 
 
+def reliability_plot(calib, out):
+    arms = list(calib)
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.6))
+    for ax, key in zip(axes, ('1s_M>=4', '5s_M>=4', '5s_M>=5')):
+        for i, a in enumerate(arms):
+            rows = [r for r in calib[a][key]['bins'] if r['n_events'] >= 5]
+            ax.plot([r['mean_pred'] for r in rows], [r['obs_freq'] for r in rows], '-o', ms=4,
+                    color=COLORS[i % len(COLORS)], lw=2.4 if 'eqgr' in a else 1.4, label=a)
+        lim = (1e-4, 1)
+        ax.plot(lim, lim, 'k:', lw=.8)
+        ax.set_xscale('log'); ax.set_yscale('log'); ax.set_xlim(lim); ax.set_ylim(lim)
+        ax.set_title(f'{key.replace("_", " ")}: reliability (bins with >= 5 events)')
+        ax.set_xlabel('mean predicted probability'); ax.grid(alpha=.3, which='both')
+    axes[0].set_ylabel('observed frequency')
+    axes[0].legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(out / 'reliability.png', dpi=130)
+    plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--eval', required=True)
+    ap.add_argument('--calib', default=None, help='calibration_check.py JSON')
     ap.add_argument('--diag', default=None)
     ap.add_argument('--out', required=True)
     args = ap.parse_args()
@@ -93,6 +114,8 @@ def main():
     bias_plot(rep, out)
     if args.diag:
         response_plot(json.loads(Path(args.diag).read_text()), out)
+    if args.calib:
+        reliability_plot(json.loads(Path(args.calib).read_text()), out)
     print('figures in', out)
 
 
