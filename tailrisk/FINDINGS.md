@@ -4,6 +4,36 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 07:00 UTC — full attribution against the strongest existing baseline (TEAM-LM-style free mixture)
+
+All 1,159,249 records; Δ = arm − `mix_nll` (free Gaussian-mixture posterior, the strongest
+existing-method baseline here). Median action; 95% cluster-bootstrap CIs.
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| cat_ce: Δ bulk / Δ M≥4 / Δ M≥5 | −.0002 / **+.016** / **+.061** | **+.0012 / +.030 / +.095** | **+.0018 / +.033 / +.114** |
+| **mixgr**: Δ bulk | **−.0011 [−.0019,−.0006]** | **−.0025 [−.0030,−.0022]** | **−.0032 [−.0035,−.0027]** |
+| **mixgr**: Δ M≥4 | **−.013 [−.022,−.003]** | **−.011 [−.018,−.003]** | **−.012 [−.020,−.004]** |
+| **mixgr**: Δ M≥4 event | **−.012 [−.021,−.002]** | **−.010 [−.018,−.001]** | **−.011 [−.020,−.002]** |
+| **mixgr**: bulk-capped M≥4 / M≥5 | **−.070 / −.080** | **−.107 / −.094** | **−.115 / −.082** |
+| **eqgr**: Δ bulk | −.0002 [−.0017,+.0008] | **−.0015 [−.0028,−.0006]** | **−.0032 [−.0038,−.0029]** |
+| **eqgr**: Δ M≥4 | **−.020 [−.034,−.002]** | −.015 [−.028,+.001] | **−.023 [−.040,−.005]** |
+| **eqgr**: Δ M≥5 | −.032 [−.119,+.040] | −.115 [−.246,+.000] | **−.141 [−.289,−.021]** |
+| **eqgr**: bulk-capped M≥4 / M≥5 | −.033 / −.032 (n.s.) | **−.076 / −.143** | **−.114 / −.169** |
+| eq_nll (no prior factor): Δ bulk | **+.0051** | **+.0046** | **+.0032** |
+
+**Interpretation**
+1. A smooth parametric mixture head (as in TEAM-LM) already beats a categorical head on the
+   tail. That part is prior art.
+2. **New, the Gutenberg–Richter-factorized posterior** p(m|x) ∝ L_θ(m|x)·e^{φ(m)}, with φ
+   learned, free below M3.5 and GR-linear above. On top of the mixture it improves bulk,
+   M≥4 and event-level M≥4 at every deadline, all CIs excluding zero: a strict Pareto gain
+   over the strongest baseline.
+3. **New, the scale-equivariant likelihood** (eqgr) adds extrapolation for the largest events
+   (M≥5: −.115 / −.141 at 3 / 5 s vs mix; .548 vs .655 for mixgr at 5 s). Without the
+   prior factor, equivariance costs ≈+.005 bulk MAE because of the M2.0 label-prior cliff. The
+   two components are complementary and should be used together.
+
 ## 2026-10-19 05:40 UTC — replicated across seeds; ablation attributes the gain
 
 **eqgr seed 2 − cat_ce (median action):** bulk −.0000 [−.0022,+.0016] / **−.0021 [−.0044,−.0001]** /

@@ -33,9 +33,14 @@ Two consequences:
   the exponential prior makes the distance posterior p(z | A, s) independent of A.
 * A flexible network trained on finitely many large events need not learn this. In the
   sparse upper tail it is free to flatten the amplitude response and regress to the bulk,
-  which is the classic large-event underestimation. On held-out INSTANCE sequences the
-  categorical baseline raises its predicted median by only **0.39–0.58 magnitude units per
-  10× of ground motion** for M≥4 records. Assumption 2 implies ≈1.
+  which is the classic large-event underestimation.
+* **Measured (diagnostics_*.json, held-out folds):** for held-out M≥4 records the equivariant
+  head learns κ ≈ 0.61–0.77 per decade of RMS amplitude (consistent with Mw ∝ ⅔ log M0), and
+  its response is symmetric under ×10 and ÷10. The free heads respond less in the
+  *extrapolation* direction. On the unseen M6.5 Central Italy sequence the upward response is
+  .46/.44/.39 (categorical) and .53/.54/.51 (free mixture × same prior) at 1/3/5 s, against
+  .54–.66 for the downward response. That asymmetry is saturation where training data end;
+  the equivariant head removes it by construction.
 
 ## Where the assumptions fail, and how the method handles it
 
