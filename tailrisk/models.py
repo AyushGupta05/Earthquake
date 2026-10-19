@@ -256,16 +256,70 @@ class EquivariantHybridHead(nn.Module):
         return Mixture(m.logit_w, m.mu + c, m.sigma)
 
 
+R_CENTERS = torch.arange(0.5, 3.01, 0.1)      # log10 hypocentral distance (3 km .. 1000 km)
+
+
+def distance_bin(hyp_km):
+    r = torch.log10(hyp_km.clamp_min(1.0))
+    return torch.round((r - 0.5) * 10).long().clamp(0, len(R_CENTERS) - 1)
+
+
+class DistanceMixture(Mixture):
+    """Marginal over distance bins; joint likelihood available for training."""
+
+    def log_prob_joint(self, y, rbin):
+        lw = self.logit_w.log_softmax(-1).gather(1, rbin[:, None])[:, 0]
+        mu = self.mu.gather(1, rbin[:, None])
+        sig = self.sigma.gather(1, rbin[:, None])
+        return lw + log_interval(mu, sig, y - 0.05, y + 0.05)[:, 0]
+
+
+class EquivariantDistanceHead(nn.Module):
+    """p(m|x) = sum_r p(r|s) N(m; kappa(s)(A-A0) + G_r(s), sigma_r(s)^2).
+
+    Distance r (log10 hypocentral km) is a TRAINING label only: the joint
+    likelihood p(r|s) p(m|r,x) supervises how the scale-free shape constrains
+    geometry; inference marginalizes r. Scale-equivariant in A exactly.
+    """
+
+    def __init__(self, dim, k=None, min_sigma=0.03):
+        super().__init__()
+        n = len(R_CENTERS)
+        self.n, self.min_sigma = n, min_sigma
+        self.lin = nn.Linear(dim, 3 * n)
+        self.kappa = nn.Linear(dim, 1)
+        with torch.no_grad():
+            # start near M ~ log A + 1.5 log R (local-magnitude-like distance correction)
+            self.lin.bias[n:2 * n] = 3.0 + 1.5 * (R_CENTERS - 1.7)
+            self.lin.bias[2 * n:] = math.log(math.expm1(0.3))
+            self.kappa.weight.zero_()
+            self.kappa.bias.fill_(math.log(0.7 / 0.5))
+
+    def forward(self, h, A):
+        w, g, s = self.lin(h).float().split(self.n, -1)
+        kappa = 0.3 + 1.2 * torch.sigmoid(self.kappa(h).float())
+        mu = kappa * (A.float() - A0)[:, None] + g
+        return DistanceMixture(w, mu, F.softplus(s) + self.min_sigma)
+
+
 HEADS = {'cat': (CategoricalHead, True), 'mix': (MixtureHead, True), 'eq': (EquivariantMixtureHead, False),
-         'eqgr': (EquivariantGRHead, False), 'eqh': (EquivariantHybridHead, False)}
+         'eqgr': (EquivariantGRHead, False), 'eqh': (EquivariantHybridHead, False),
+         'eqd': (EquivariantDistanceHead, False)}
 
 
 class MagnitudeModel(nn.Module):
-    def __init__(self, head, n_static, k=6):
+    def __init__(self, head, n_static, k=6, aux_dist=False):
         super().__init__()
         head_cls, free_amplitude = HEADS[head]
         self.trunk = Trunk(n_static, free_amplitude)
         self.head = head_cls(self.trunk.out_dim) if head == 'cat' else head_cls(self.trunk.out_dim, k)
+        # optional auxiliary distance classifier (training-only multi-task control)
+        self.aux = nn.Linear(self.trunk.out_dim, len(R_CENTERS)) if aux_dist else None
 
     def forward(self, shape, A, invariant, static, dur_idx):
         return self.head(self.trunk(shape, A, invariant, static, dur_idx), A)
+
+    def forward_train(self, shape, A, invariant, static, dur_idx):
+        h = self.trunk(shape, A, invariant, static, dur_idx)
+        aux = self.aux(h).float() if self.aux is not None else None
+        return self.head(h, A), aux

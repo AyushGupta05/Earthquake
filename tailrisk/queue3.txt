@@ -1,0 +1,4 @@
+--arm eqd_nll --head eqd --loss nll --epochs 10
+--arm cat_dist --head cat --loss nll --epochs 10 --aux-dist
+--arm std_cat_hubce --head cat --loss hubce --epochs 10 --mode std
+--arm std_eq_nll --head eq --loss nll --epochs 10 --mode std

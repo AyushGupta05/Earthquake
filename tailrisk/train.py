@@ -20,7 +20,7 @@ from torch.nn import functional as F
 
 from common import (DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, GPUData, decisions,
                     load_meta, metric_table)
-from models import MagnitudeModel
+from models import MagnitudeModel, distance_bin
 
 
 def label_weights(y_train, y, kind, sigma=0.2, power=0.5, clip=20.0):
@@ -56,7 +56,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
     np.random.seed(args.seed)
     data.fit_static_norm(train_idx)
     n_static = data.static_raw.shape[1]
-    model = MagnitudeModel(args.head, n_static, k=args.k).to(device)
+    model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -65,6 +65,9 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
         opt, lambda s: min(1.0, (s + 1) / warm) * 0.5 * (1 + math.cos(math.pi * min(1.0, s / total))))
     y_train = data.mag[train_idx]
     w_all = label_weights(y_train, data.mag, args.weighting)
+    hyp = torch.from_numpy(data.meta['hyp_km'][data.rows].astype(np.float32)).to(device)
+    r_valid = torch.isfinite(hyp)
+    r_bin = distance_bin(torch.nan_to_num(hyp, nan=50.0))   # distance: training label only
     history = []
     t0 = time.time()
     gen = torch.Generator(device=device)
@@ -89,8 +92,17 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
                     if delta is not None:
                         A = A + delta
                     dur = torch.full((len(idx),), d_i, device=device, dtype=torch.long)
-                    dist = model(shape, A, inv, static, dur)
-                    loss = loss + loss_fn(dist, y_fit, w, args.loss) / len(DURATIONS)
+                    dist, aux = model.forward_train(shape, A, inv, static, dur)
+                    if args.head == 'eqd':   # joint likelihood p(r|s) p(m|r,x); marginal if r missing
+                        lp = torch.where(r_valid[idx], dist.log_prob_joint(y_fit, r_bin[idx]),
+                                         dist.log_prob_label(y_fit))
+                        term = (w * -lp).sum() / w.sum()
+                    else:
+                        term = loss_fn(dist, y_fit, w, args.loss)
+                    if aux is not None:
+                        ce = F.cross_entropy(aux, r_bin[idx], reduction='none') * r_valid[idx]
+                        term = term + (w * ce).sum() / w.sum()
+                    loss = loss + term / len(DURATIONS)
             opt.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
@@ -136,7 +148,8 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arm', required=True)
-    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh'], required=True)
+    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd'], required=True)
+    ap.add_argument('--aux-dist', action='store_true', help='auxiliary distance classifier (training only)')
     ap.add_argument('--loss', choices=['nll', 'hubce'], default='nll')
     ap.add_argument('--weighting', choices=['none', 'invsqrt', 'lds'], default='none')
     ap.add_argument('--mode', choices=['cv', 'std'], default='cv')

@@ -21,8 +21,9 @@ import numpy as np
 
 from common import DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, load_meta, metric_table
 
-FRONTIER_R = np.array([0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8,
+FRONTIER_R = np.array([0.03, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8,
                        11, 16, 24, 35, 50, 75, 100], float)
+J1 = int(np.argmin(np.abs(FRONTIER_R - 1)))      # index of the median action (r = 1)
 KEY = ['MAE', 'MedAE', 'RMSE', 'CVaR95', 'CVaR99', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=4_bias',
        'M>=4.5_MAE', 'M>=5_MAE', 'M>=5_eventMAE', 'M>=5_bias', 'M<4_MAE', 'FP4_rate']
 COL = {n: i for i, n in enumerate(DECISION_NAMES)}
@@ -31,6 +32,12 @@ T_EDGE = int(np.argmin(np.abs(EDGES - 3.95)))
 
 
 def load_arm(arm, n, root):
+    """Load one arm, or an ensemble 'a+b+c' (mixture of the members' posteriors)."""
+    if '+' in arm:
+        members = [load_arm(a, n, root) for a in arm.split('+')]
+        dec = np.mean([m[0] for m in members], 0)      # mean action of a mixture = mean of means
+        pmf = np.mean([m[1].astype(np.float32) for m in members], 0).astype(np.float16)
+        return dec, pmf, members[0][2]
     dec = np.full((n, 3, len(DECISION_NAMES)), np.nan, np.float32)
     pmf = np.zeros((n, 3, len(PMF_CENTERS)), np.float16)
     files = sorted((root / arm).glob('fold*.npz')) or sorted((root / arm).glob('std.npz'))
@@ -148,13 +155,13 @@ def main():
                 front.append({'r': float(r), **{k: m[k] for k in KEY}})
             med = front[int(np.argmin(np.abs(FRONTIER_R - 1)))]
             mm = metric_table(mean, y_, ev_)
-            per_fold = {int(f): metric_table(wm[fo_ == f, 7], y_[fo_ == f], ev_[fo_ == f])
+            per_fold = {int(f): metric_table(wm[fo_ == f, J1], y_[fo_ == f], ev_[fo_ == f])
                         for f in np.unique(fo_)}
             bins = np.arange(0, 7.0, 0.5)
             by_mag = [{'lo': float(b), 'n': int(((y_ >= b) & (y_ < b + .5)).sum()),
-                       'MAE_median': float(np.abs(wm[(y_ >= b) & (y_ < b + .5), 7] - y_[(y_ >= b) & (y_ < b + .5)]).mean())
+                       'MAE_median': float(np.abs(wm[(y_ >= b) & (y_ < b + .5), J1] - y_[(y_ >= b) & (y_ < b + .5)]).mean())
                        if ((y_ >= b) & (y_ < b + .5)).any() else None,
-                       'bias_median': float((wm[(y_ >= b) & (y_ < b + .5), 7] - y_[(y_ >= b) & (y_ < b + .5)]).mean())
+                       'bias_median': float((wm[(y_ >= b) & (y_ < b + .5), J1] - y_[(y_ >= b) & (y_ < b + .5)]).mean())
                        if ((y_ >= b) & (y_ < b + .5)).any() else None} for b in bins]
             report['arms'][a][f'{d}s'] = {
                 'mean_action': {k: mm[k] for k in KEY}, 'median_action': {k: med[k] for k in KEY},

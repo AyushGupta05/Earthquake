@@ -1,0 +1,54 @@
+# Why scale equivariance, and when it is the Bayes-correct structure
+
+## Setting
+
+At one station and deadline t we observe a prefix x. Split it into
+* A = log10 of its RMS in physical units (counts / sensitivity), and
+* s = everything scale-free: the waveform divided by its RMS, amplitude ratios,
+  station metadata and the deadline.
+
+The pair (A, s) is a lossless reparameterization of x.
+
+## Proposition (GR equivariance)
+
+Assume
+1. Gutenberg–Richter prior: p(M) ∝ 10^(−bM) over the magnitude range of interest;
+2. log-linear amplitude: A = κ M + h(z) + ε, where z collects every nuisance (distance,
+   depth, radiation pattern, site, path, instrument), p(z) does not depend on M, and ε is
+   noise independent of M;
+3. self-similar shape: p(s | M, z) does not depend on M.
+
+Then for every δ the Bayes posterior satisfies p(M | A + κδ, s) = p(M − δ | A, s): it is
+exactly shift-equivariant in A, *even though distance and the other nuisances are unknown*.
+
+*Proof.* By Bayes,
+p(M | A, s) ∝ 10^(−bM) ∫ φ_ε(A − κM − h(z)) p(s | z) p(z) dz = 10^(−bM) G_s(A − κM).
+Replace A by A + κδ and M by M + δ. The factor G_s is unchanged and 10^(−b(M+δ)) changes
+only by a constant, which normalization removes. ∎
+
+Two consequences:
+* Under GR the *amplitude-implied magnitude is never discounted for being large*. The
+  shrinkage that GR imposes is a constant shift (for Gaussian ε, −b ln10 σ²/κ), the same
+  for an M2 and an M6 with the same shape. Unknown distance does not break this, because
+  the exponential prior makes the distance posterior p(z | A, s) independent of A.
+* A flexible network trained on finitely many large events need not learn this. In the
+  sparse upper tail it is free to flatten the amplitude response and regress to the bulk,
+  which is the classic large-event underestimation. On held-out INSTANCE sequences the
+  categorical baseline raises its predicted median by only **0.39–0.58 magnitude units per
+  10× of ground motion** for M≥4 records. Assumption 2 implies ≈1.
+
+## Where the assumptions fail, and how the method handles it
+
+| failure | effect on the Bayes posterior | handled by |
+|---|---|---|
+| catalogue incompleteness (prior not GR below the completeness magnitude) | small-amplitude records are pulled *up*: response to amplitude decreases < κ at small A | `eqgr`: learned free log-prior below M3.5 times a GR-linear factor above. A linear-exponential factor keeps the head exactly equivariant in the tail |
+| magnitude-dependent shape (corner frequency, rupture still growing at 1 s) | s carries magnitude information, so the slope can differ from κ | κ(s) ∈ [0.3, 1.5] and all mixture weights/offsets depend on s |
+| mixed ML / Mw labels | different amplitude slopes per label type | κ(s) learned; residual misfit visible in per-bin bias |
+| clipping / non-linear sensors | A saturates at the rail | shape (flat tops) is visible in s; accelerometers (HN) are unclipped |
+
+## Relation to the decision rule
+
+For any posterior p, the tail-weighted median a_r (r times the weight on M ≥ 4) is the
+Bayes action for the loss r·|e|·1[M≥4] + |e|·1[M<4]. Sweeping r gives the best bulk/tail
+trade-off available from p. So the comparison that matters is between *posteriors*,
+judged at matched bulk error. That is how every arm is compared.
