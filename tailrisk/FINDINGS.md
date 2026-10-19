@@ -4,6 +4,37 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 05:40 UTC — replicated across seeds; ablation attributes the gain
+
+**eqgr seed 2 − cat_ce (median action):** bulk −.0000 [−.0022,+.0016] / **−.0021 [−.0044,−.0001]** /
+**−.0045 [−.0057,−.0037]**; M≥4 **−.030 [−.052,−.008] / −.042 [−.069,−.017] / −.055 [−.089,−.023]**;
+M≥5 **−.085 [−.151,−.014] / −.198 [−.315,−.087] / −.255 [−.397,−.141]**; M≥4 event-MAE
+**−.021 [−.044,−.002] / −.035 [−.065,−.013] / −.045 [−.082,−.018]** (1 / 3 / 5 s). Seed 1 and
+seed 2 agree to within ≈.006 on every tail metric.
+
+**Probabilistic quality (both seeds):** eqgr beats cat_ce on NLL, CRPS, and Brier(M≥4) and
+Brier(M≥5) at every deadline. Mean P(M≥4) on true M≥4 records rises from .374/.445/.467 to
+≈.40/.49/.52, while on M<3.5 records it moves only from .0072/.0051/.0042 to .0079/.0055/.0046.
+
+**Ablation `mixgr` (free mixture × the identical learned prior factor):**
+
+| median action | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| cat_ce − mixgr, M≥4 MAE | +.029 [+.010,+.048] | +.041 [+.017,+.067] | +.044 [+.018,+.073] |
+| cat_ce − mixgr, M≥5 MAE | +.085 [+.040,+.120] | +.137 [+.071,+.191] | +.156 [+.083,+.220] |
+| eqgr − mixgr, M≥4 MAE | −.007 [−.015,+.008] | −.004 [−.013,+.009] | −.012 [−.021,+.002] |
+| eqgr − mixgr, M≥5 MAE | −.007 [−.064,+.058] | −.073 [−.153,+.022] | **−.100 [−.186,−.009]** |
+| eqgr − mixgr, bulk MAE | +.0009 [−.0000,+.0015] | +.0010 [−.0001,+.0018] | −.0000 [−.0008,+.0004] |
+
+* The **Gutenberg–Richter-factorized posterior** (smooth likelihood × learned global log-prior:
+  free in the bulk, GR-linear above M3.5) gives most of the M≥4 improvement and preserves the
+  bulk. It takes over the label-prior structure (the M2.0 cliff, the steep GR decay) that a
+  categorical head must otherwise learn per input, and underfits in the rare bins.
+* **Scale equivariance** adds extrapolation for the *largest* events: M≥5 MAE at 5 s
+  .548 (eqgr) vs .655 (mixgr) vs .818 (cat_ce), at a ≈.001 (0.3%) bulk cost at 1–3 s.
+* Still pending: `mix_nll` (free mixture without the prior factor) to separate the mixture
+  family from the factorization; augmentation / LDS baselines; seed 3; standard split.
+
 ## 2026-10-19 03:45 UTC — eqgr (equivariant likelihood × learned bulk prior × GR tail) improves the tail at all deadlines without worsening the bulk (seed 1)
 
 **Same decision rule (posterior median) for both, eqgr − cat_ce:**

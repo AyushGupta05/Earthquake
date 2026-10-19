@@ -1,7 +1,7 @@
 --arm eqgr_nll --head eqgr --loss nll --epochs 10
 --arm mixgr_nll --head mixgr --loss nll --epochs 10
 --arm eqgr_nll_s2 --head eqgr --loss nll --epochs 10 --seed 2
+--arm mix_nll --head mix --loss nll --epochs 10
 --arm cat_ce_s2 --head cat --loss nll --epochs 10 --seed 2
 --arm cat_aug --head cat --loss nll --epochs 10 --amp-aug 0.5
 --arm cat_lds --head cat --loss nll --epochs 10 --weighting lds
---arm mix_nll --head mix --loss nll --epochs 10

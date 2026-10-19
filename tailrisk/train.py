@@ -93,7 +93,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
                         A = A + delta
                     dur = torch.full((len(idx),), d_i, device=device, dtype=torch.long)
                     dist, aux = model.forward_train(shape, A, inv, static, dur)
-                    if args.head == 'eqd':   # joint likelihood p(r|s) p(m|r,x); marginal if r missing
+                    if args.head in ('eqd', 'eqdgr'):   # joint likelihood p(r|s) p(m|r,x); marginal if r missing
                         lp = torch.where(r_valid[idx], dist.log_prob_joint(y_fit, r_bin[idx]),
                                          dist.log_prob_label(y_fit))
                         term = (w * -lp).sum() / w.sum()
@@ -148,7 +148,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arm', required=True)
-    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr'], required=True)
+    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr', 'eqdgr'], required=True)
     ap.add_argument('--aux-dist', action='store_true', help='auxiliary distance classifier (training only)')
     ap.add_argument('--loss', choices=['nll', 'hubce'], default='nll')
     ap.add_argument('--weighting', choices=['none', 'invsqrt', 'lds'], default='none')

@@ -174,6 +174,11 @@ def main():
                 'frontier': front,
                 'nll_bin': float(np.mean(dec[a][have, d_i, COL['nll_bin']])),
                 'crps': float(np.mean(dec[a][have, d_i, COL['crps']])),
+                # tail-probability quality: Brier score and event rate vs mean forecast
+                'brier_M4': float(np.mean((dec[a][have, d_i, COL['p_ge4']] - (y_ >= 4 - 1e-6)) ** 2)),
+                'brier_M5': float(np.mean((dec[a][have, d_i, COL['p_ge5']] - (y_ >= 5 - 1e-6)) ** 2)),
+                'mean_p_ge4_on_M4': float(np.mean(dec[a][have, d_i, COL['p_ge4']][y_ >= 4 - 1e-6])),
+                'mean_p_ge4_on_M_lt35': float(np.mean(dec[a][have, d_i, COL['p_ge4']][y_ < 3.5])),
                 'per_fold_median': {f: {k: v[k] for k in ('MAE', 'M>=4_MAE', 'M>=4_eventMAE', 'CVaR95')}
                                     for f, v in per_fold.items()},
                 'by_magnitude_median': by_mag}
@@ -221,6 +226,10 @@ def main():
                 r = report['arms'][a][f'{d}s'][action]
                 print(f'{a + (" mean" if action == "mean_action" else " med"):<26}' +
                       ''.join(f'{r[k]:>14.4f}' for k in cols))
+        for a in arms:
+            r = report['arms'][a][f'{d}s']
+            print(f'  {a:<24} NLL {r["nll_bin"]:.4f} CRPS {r["crps"]:.4f} Brier(M>=4) {r["brier_M4"]:.5f} '
+                  f'Brier(M>=5) {r["brier_M5"]:.6f} mean P(M>=4) on M>=4 {r["mean_p_ge4_on_M4"]:.3f} on M<3.5 {r["mean_p_ge4_on_M_lt35"]:.5f}')
         if args.ref:
             for a in report['vs_ref']:
                 c = report['vs_ref'][a][f'{d}s']

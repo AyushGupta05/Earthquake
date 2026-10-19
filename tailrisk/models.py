@@ -303,10 +303,50 @@ class EquivariantDistanceHead(nn.Module):
         return DistanceMixture(w, mu, F.softplus(s) + self.min_sigma)
 
 
+class JointBinned(Binned):
+    """Marginal magnitude posterior plus the joint (distance, magnitude) likelihood."""
+
+    def __init__(self, logp_marginal, centers, logjoint):
+        super().__init__(logp_marginal, centers)
+        self.logjoint = logjoint                         # (B, R, K) normalized
+
+    def log_prob_joint(self, y, rbin):
+        idx = torch.round((y - float(self.centers[0])) * 10).long().clamp(0, len(self.centers) - 1)
+        lj = self.logjoint.gather(1, rbin[:, None, None].expand(-1, 1, self.logjoint.shape[2]))[:, 0]
+        return lj.gather(1, idx[:, None])[:, 0]
+
+
+class EquivariantDistanceGRHead(nn.Module):
+    """Distance-aware equivariant likelihood x learned bulk prior x GR-linear tail.
+
+    p(r, b | x) oc p(r|s) P(b | r, x) exp(phi_b), normalized jointly over (r, b);
+    inference marginalizes r. Exactly equivariant in A where phi is linear.
+    """
+
+    def __init__(self, dim, k=None, min_sigma=0.03):
+        super().__init__()
+        self.base = EquivariantDistanceHead(dim, min_sigma=min_sigma)
+        self.prior = EquivariantGRHead(dim, 1)     # reuse its prior parametrization only
+        del self.prior.mix
+
+    def forward(self, h, A):
+        d = self.base(h, A)
+        centers = self.prior.centers
+        edges = torch.cat([centers - 0.05, centers[-1:] + 0.05])
+        z = (edges[None, None, :] - d.mu[..., None]) / d.sigma[..., None]           # (B, R, K+1)
+        Fe = torch.special.ndtr(z)
+        mass = (Fe[..., 1:] - Fe[..., :-1]).clamp_min(1e-30)
+        logj = d.logit_w.log_softmax(-1)[..., None] + mass.log() + self.prior.log_prior()[None, None]
+        logz = torch.logsumexp(logj.flatten(1), 1)[:, None, None]
+        logj = logj - logz
+        return JointBinned(torch.logsumexp(logj, 1), centers, logj)
+
+
 HEADS = {'cat': (CategoricalHead, True), 'mix': (MixtureHead, True), 'eq': (EquivariantMixtureHead, False),
          'eqgr': (EquivariantGRHead, False), 'eqh': (EquivariantHybridHead, False),
          'eqd': (EquivariantDistanceHead, False),
-         'mixgr': (lambda dim, k=6: EquivariantGRHead(dim, k, base_cls=MixtureHead), True)}
+         'mixgr': (lambda dim, k=6: EquivariantGRHead(dim, k, base_cls=MixtureHead), True),
+         'eqdgr': (EquivariantDistanceGRHead, False)}
 
 
 class MagnitudeModel(nn.Module):

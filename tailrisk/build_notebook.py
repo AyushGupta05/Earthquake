@@ -76,22 +76,29 @@ pd.set_option('display.width', 200)
 pd.DataFrame(rows).set_index(['deadline', 'action', 'arm']).sort_index()
 """),
         md("""
-## 2. Matched-bulk comparisons against the reference arm
+## 2. Bulk-constrained comparisons against the reference arm
 
-For each bootstrap replicate (whole sequences resampled), we interpolate the arm's
-r-frontier at the reference arm's median-action bulk MAE. `matched_bulk_*` is then arm
-minus reference tail error at equal bulk error; negative means the arm is better. Brackets
-are 95% intervals. `matched_tail_MAE` is the reverse comparison: bulk MAE at equal M≥4 MAE.
+For each bootstrap replicate (whole sequences resampled), each arm picks the tail weight r
+that minimizes its tail error subject to bulk MAE ≤ the reference arm's median-action bulk MAE
+(`bulkcap0_*`), or ≤ that value × 1.002 (`bulkcap0.002_*`). The table shows arm minus
+reference; negative means the arm achieves a lower tail error without spending more bulk
+error. Brackets are 95% intervals. `tailcap_MAE` is the reverse comparison: the least bulk
+MAE subject to M≥4 MAE ≤ the reference's. `median`/`mean` rows compare the fixed actions.
 """),
         code("""
 rows = []
 for arm, by_d in rep.get('vs_ref', {}).items():
     for d, c in by_d.items():
-        for key in ('matched_bulk_M>=4_MAE', 'matched_bulk_M>=4_eventMAE', 'matched_bulk_M>=5_MAE', 'matched_tail_MAE'):
+        for key in ('bulkcap0_M>=4_MAE', 'bulkcap0_M>=4_eventMAE', 'bulkcap0_M>=5_MAE', 'bulkcap0.002_M>=4_MAE', 'tailcap_MAE'):
             v = c.get(key)
             if v:
                 rows.append({'arm': arm, 'deadline': d, 'comparison': key, 'delta': round(v['mean'], 4),
                              'lo95': round(v['lo'], 4), 'hi95': round(v['hi'], 4), 'P(arm better)': round(v['p_arm_better'], 3)})
+        for act in ('median', 'mean'):
+            for key, v in c[act].items():
+                if v:
+                    rows.append({'arm': arm, 'deadline': d, 'comparison': f'{act} action {key}', 'delta': round(v['mean'], 4),
+                                 'lo95': round(v['lo'], 4), 'hi95': round(v['hi'], 4), 'P(arm better)': round(v['p_arm_better'], 3)})
 pd.DataFrame(rows).set_index(['comparison', 'deadline', 'arm']).sort_index()
 """),
         md("## 3. Frontiers\n\nEach curve is one arm's posterior evaluated over r. Lower-left is better. ● marks the median action, □ the mean action."),
