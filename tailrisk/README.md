@@ -65,7 +65,7 @@ two components are complementary.
 | `cat_hubce` | previous project's best recipe: emphasized Huber + 0.075 CE | dominated on the frontier; needs +.005 bulk MAE to match CE's tail |
 | `mix_nll` | free Gaussian mixture (TEAM-LM-style head), the strongest existing baseline | eqgr: bulk equal / −.0015 / −.0032, M≥4 −.020 / −.015 / −.023, M≥5 −.03 / −.115 / −.141 |
 | `cat_aug` | amplitude-scaling augmentation (×10^Δ, label +Δ) | dominated even by CE; eqgr bulk −.011, bulk-capped M≥4 −.17 at every deadline |
-| `cat_lds` | LDS loss reweighting (deep imbalanced regression) | see FINDINGS.md |
+| `cat_lds` | LDS loss reweighting (deep imbalanced regression) | dominated even by CE (+8% bulk, 4× false-M4); eqgr bulk −.023 to −.028, bulk-capped M≥4 −.15 at every deadline |
 | `gbm_e3ws` | E3WS-style P-wave features + gradient boosting | far weaker (5 s MAE .310, M≥4 .713) |
 
 Ablations: `eq_nll` (equivariant, no prior factor), `mixgr_nll` (prior factor, no
