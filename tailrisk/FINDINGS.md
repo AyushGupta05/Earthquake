@@ -83,6 +83,12 @@ every fold** (`--hold-stations 0.2`, seed 0), so their held-fold records at thos
 * The free mixture degrades more on unknown stations than eqgr does: its false-M4 rate at 1 s
   is 2.9 per 10³ vs 1.2 for eqgr, and its CVaR95 is higher at every deadline. A constrained
   amplitude response transfers to new instruments better than a learned one.
+* **Prior-only ablation under the same protocol (`mixgr_nll_hs`, 23:35 UTC):** on held stations
+  mixgr − mix is bulk −.0035 / −.0015 / −.0018 (1 s CI excludes zero), M≥4 −.003 / −.007 / −.006
+  (n.s.), M≥5 −.026 / −.044 / −.065 (3 and 5 s significant). So both components transfer to
+  unseen stations; equivariance carries the larger tail gain (M≥5 −.068 / −.111 / −.139) and,
+  unlike mixgr, also lowers CVaR95 (1.275 / 1.126 / 1.077 vs mixgr 1.317 / 1.167 / 1.120) and the
+  false-M4 rate (1.2 / 0.9 / 0.8 vs mixgr 2.5 / 2.0 / 2.3 per 10³) on unknown instruments.
 * On seen stations these reduced-data models are within .003 bulk MAE of the full-data arms;
   on held stations both are ≈.02–.025 worse (unknown instruments), so the held-station numbers
   are comparable only to each other, not to the main table.
