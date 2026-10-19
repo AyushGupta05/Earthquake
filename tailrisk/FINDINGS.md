@@ -4,6 +4,78 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 21:10 UTC — third seed: 3-seed ensembles confirm eqgr; eqdgr's M≥5 gain and its false-alarm cost both replicate
+
+Seed-3 arms (queue3) and eqdgr seeds 2–3 (`queue4.txt`), evaluated by `eval_replication.sh`
+(`results/eval_ens3.json`, `eval_eqd_*.json`). Ensembles are posterior mixtures. `evaluate.py`
+now also bootstraps the **false-M4 rate**: the share of M<3.5 records whose prediction is ≥3.95,
+given here per 10⁴ such records.
+
+### Three-seed ensembles, Δ = arm ensemble − free-mixture (`mix_nll`) ensemble, median action
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| eqgr Δ bulk | −.0008 [−.0021,+.0000] | **−.0015 [−.0031,−.0003]** | **−.0028 [−.0039,−.0020]** |
+| eqgr Δ M≥4 | **−.015 [−.023,−.005]** | **−.015 [−.026,−.003]** | **−.025 [−.042,−.009]** |
+| eqgr Δ M≥5 | −.024 [−.075,+.028] | **−.105 [−.220,−.010]** | **−.149 [−.291,−.040]** |
+| eqgr bulk-capped M≥4 / M≥5 | **−.056 / −.061** | **−.078 / −.132** | **−.107 / −.166** |
+| eqgr Δ false-M4 per 10⁴ | **+1.5 [+1.0,+2.3]** | **+0.65 [+0.05,+1.02]** | **+0.63 [+0.03,+1.04]** |
+| mixgr Δ bulk / M≥4 / event-M≥4 | **−.0015 / −.008 / −.008** | **−.0022 / −.008 / −.006** | **−.0028 / −.012 / −.010** |
+| cat_ce Δ M≥4 / M≥5 | **+.018 / +.058** | **+.030 / +.094** | **+.032 / +.113** |
+
+* The third seed changes none of the two-seed conclusions; no Δ moves by more than .007.
+  eqgr still lowers M≥4 at every deadline and M≥5 at 3 and 5 s, with bulk equal or better.
+* False-M4 per 10⁴ M<3.5 records (ensembles): mix 5.0 / 4.2 / 3.4, mixgr 5.6 / 4.0 / 3.3,
+  eqgr 6.4 / 4.9 / 4.1, cat_ce 7.5 / 5.2 / 4.2. **eqgr's small false-alarm rise over the mixture
+  is significant at every deadline** (each single seed shows it at 1 s). It stays below plain CE.
+
+### eqdgr replication (seeds 1–3)
+
+M≥5 MAE, median action, eqdgr vs eqgr of the same seed:
+
+| seed | 1 s | 3 s | 5 s | false-M4 per 10⁴ at 1 s |
+|---|---|---|---|---|
+| 1 | .898 vs 1.012 | .578 vs .638 | .503 vs .548 | 12.2 vs 7.8 |
+| 2 | .929 vs 1.022 | .594 vs .651 | .525 vs .549 | 11.8 vs 7.8 |
+| 3 | .918 vs 1.014 | .576 vs .646 | .507 vs .546 | 11.5 vs 7.9 |
+| mix_nll (seed 1) | 1.051 | .765 | .703 | 6.3 |
+
+Each eqdgr seed − mix_nll, M≥5: −.139 / **−.173 / −.184** (seed 1), −.107 / **−.157** / −.163
+[−.367,+.030] (seed 2), −.120 / **−.174 / −.180** (seed 3). Each eqdgr seed − mix_nll, false-M4 at
+1 s: **+5.4 / +5.1 / +4.8** per 10⁴ (all CIs exclude zero).
+
+Three-seed ensembles, Δ = eqdgr ensemble − eqgr ensemble, median action:
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| Δ bulk | +.0000 [−.0007,+.0010] | **−.0016 [−.0022,−.0007]** | **−.0018 [−.0024,−.0013]** |
+| Δ M≥4 | −.001 [−.030,+.025] | −.001 [−.013,+.010] | +.002 [−.009,+.014] |
+| Δ M≥4 event | −.001 [−.032,+.023] | +.002 [−.011,+.013] | +.008 [−.004,+.018] |
+| Δ M≥5 | −.099 [−.212,+.012] | **−.070 [−.126,−.011]** | −.042 [−.090,+.012] |
+| bulk-capped M≥4 / M≥5 | −.007 / **−.120** | **−.066 / −.108** | **−.073 / −.076** |
+| Δ false-M4 per 10⁴ | **+3.0 [+0.7,+4.6]** | **+1.4 [+0.7,+1.8]** | +0.4 [−0.2,+1.4] |
+
+Against the mix ensemble, the eqdgr ensemble has bulk −.0008 / **−.0032 / −.0047**, M≥4 −.016 /
+−.016 / −.023 (no CI excludes zero), M≥5 −.124 [−.287,+.034] / **−.176 [−.346,−.020] / −.191
+[−.379,−.034]**, bulk-capped M≥5 **−.162 / −.223 / −.225**, and false-M4 **+4.5 / +2.0 / +1.0** per 10⁴.
+
+* **The M≥5 advantage replicates.** In every seed, eqdgr's M≥5 MAE is below the same-seed eqgr
+  at every deadline: by .09–.11 at 1 s, .06–.07 at 3 s and .02–.05 at 5 s. In the ensembles
+  the gap is significant at 3 s, and bulk-capped at all three deadlines. eqdgr also has the
+  lowest bulk MAE at 3 and 5 s (.2611 / .2277 vs .2628 / .2295 for eqgr) and the lowest NLL at
+  every deadline of all the 3-seed ensembles.
+* **The higher 1 s false-M4 rate replicates too.** It is 11.5–12.2 per 10⁴ in every seed,
+  against 7.8–7.9 for eqgr. In the ensembles the rates are 9.9 (eqdgr), 6.4 (eqgr), 5.0 (mix)
+  and 7.5 (cat_ce). The excess shrinks with time (3 s +1.4, significant; 5 s n.s.). The
+  other seed-1 costs also hold: CVaR95 is higher than eqgr's (+.005 / +.007 / +.008), and
+  Emilia (fold 1) gets worse (M≥4 .879 / .533 / .477 vs .844 / .513 / .442).
+* **No M≥4 gain over eqgr.** Record and event M≥4 MAE match eqgr within ±.01 at every deadline.
+  The gain is in the largest events and in the unseen Central Italy fold (fold-0 M≥4
+  .609 / .434 / .369 vs .669 / .457 / .389).
+* **Verdict:** eqdgr is a replicated trade-off, not a replacement. It gives better M≥5
+  extrapolation and 3–5 s bulk, but has about 1.5× eqgr's 1 s false-M4 rate and no M≥4 gain.
+  eqgr remains the main method; eqdgr stays exploratory (designed after the eqgr results).
+
 ## 2026-10-19 18:30 UTC — seed × fold consistency (3 seeds × 5 folds × 3 deadlines) and the component trade-off
 
 Sign tests over 45 cells (seed-matched pairs, median action, `seed_consistency.py`).

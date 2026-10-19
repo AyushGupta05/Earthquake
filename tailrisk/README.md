@@ -100,8 +100,10 @@ Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).
 * `mixgr_nll`: prior factor, no equivariance. A strict Pareto gain over mix, but smaller M≥5 gains.
 * `eqtgr_nll`: separate ML/Mw slopes. Negative: no gain over eqgr.
-* `eqdgr_nll`: distance-aware likelihood × GR prior. Promising, with the largest M≥5 gains
-  (−.14 / −.17 / −.18 vs mix), but more 1 s false-M4 predictions and a single seed.
+* `eqdgr_nll`: distance-aware likelihood × GR prior. Replicated over three seeds as a
+  trade-off, not a replacement. It has the largest M≥5 gains (3-seed ensemble −.12 / −.18 / −.19
+  vs mix, −.10 / −.07 / −.04 vs eqgr) and lower 3–5 s bulk. But it gives no M≥4 gain over eqgr
+  and has about 1.5× eqgr's 1 s false-M4 rate (9.9 vs 6.4 per 10⁴).
 
 FINDINGS.md records which arms were pre-specified (eq, eqgr), which were ablations added after the first results (mixgr), and which exploratory (eqtgr, eqdgr).
 
