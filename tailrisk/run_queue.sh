@@ -1,7 +1,7 @@
 #!/bin/bash
 # Usage: run_queue.sh QUEUE_FILE   (each line: arm-args for train.py)
 # Runs arms sequentially on the single GPU; logs to $WORK/logs/<arm>.log
-WORK=/mnt/eew-research/runs/tailwork
+WORK=${TAILWORK_DIR:-/mnt/eew-research/runs/tailwork}
 mkdir -p $WORK/logs
 cd "$(dirname "$0")"
 while read -r line; do

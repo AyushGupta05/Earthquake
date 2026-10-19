@@ -6,20 +6,24 @@ gains/units/families, elevation, Vs30, station coordinates). Catalogue source
 fields in meta.npz are used only for fold construction and analysis.
 """
 import math
+import os
 from pathlib import Path
 
 import numpy as np
 import torch
 
-WORK = Path('/mnt/eew-research/runs/tailwork')
+# A second dataset (e.g. GEOFON) lives in its own directory with the same file layout;
+# TAILWORK_DIR selects it and TAILWORK_MAXMAG widens the saved PMF/decision grids.
+WORK = Path(os.environ.get('TAILWORK_DIR', '/mnt/eew-research/runs/tailwork'))
+MAXMAG = float(os.environ.get('TAILWORK_MAXMAG', '7.5'))
 REPO = Path(__file__).resolve().parents[1]
 DURATIONS = (1, 3, 5)
 SAMPLES = {1: 100, 3: 300, 5: 500}
 # Global standardization constants of the cache: x = (counts - mean) / std.
 CACHE_STD = np.load(REPO / 'train_std_full.npy').astype(np.float64)
 TAIL_T = 3.95                     # continuous threshold equivalent to label >= 4.0
-GRID = torch.arange(-1.0, 8.0 + 1e-9, 0.01)          # fine CDF grid for decisions
-PMF_CENTERS = np.round(np.arange(-0.5, 7.5 + 1e-9, 0.1), 2)  # saved coarse PMF
+GRID = torch.arange(-1.0, MAXMAG + 0.5 + 1e-9, 0.01)          # fine CDF grid for decisions
+PMF_CENTERS = np.round(np.arange(-0.5, MAXMAG + 1e-9, 0.1), 2)  # saved coarse PMF
 RATIOS = (1, 1.5, 2, 3, 4, 6, 8, 11, 16, 24, 35, 50, 75, 100)
 QUANTILES = (0.05, 0.1, 0.25, 0.75, 0.9, 0.95)
 DECISION_NAMES = (['mean'] + [f'wmed_r{r:g}' for r in RATIOS] + [f'q{q:g}' for q in QUANTILES]
@@ -61,9 +65,11 @@ class GPUData:
             chunks.append(torch.from_numpy(np.ascontiguousarray(wave[sel])).to(device))
         self.wave = torch.cat(chunks)
         self.scale = torch.from_numpy(scale[self.rows]).to(device)
-        gains = fallback_gains(self.meta)[self.rows]
-        # physical = (x - prefix mean) * std / gain
-        self.phys_factor = torch.from_numpy((CACHE_STD[None, :] / gains).astype(np.float32)).to(device)
+        if 'phys_factor' in self.meta:           # cache already stores physical units scaled per record
+            pf = self.meta['phys_factor'][self.rows]
+        else:                                     # INSTANCE counts cache: physical = (x - mean) * std / gain
+            pf = CACHE_STD[None, :] / fallback_gains(self.meta)[self.rows]
+        self.phys_factor = torch.from_numpy(pf.astype(np.float32)).to(device)
         static = np.concatenate([self.meta['static'],
                                  self.meta['sta_lat'][:, None], self.meta['sta_lon'][:, None]], 1)
         static = static[self.rows].astype(np.float32)

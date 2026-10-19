@@ -53,9 +53,10 @@ class Encoder(nn.Module):
 class Trunk(nn.Module):
     """Encoder + MLP over [pooled shape, invariants, static, duration, (A)]."""
 
-    def __init__(self, n_static, free_amplitude, hidden=256, dropout=0.1):
+    def __init__(self, n_static, free_amplitude, hidden=256, dropout=0.1, width_mult=1.0):
         super().__init__()
-        self.encoder = Encoder()
+        self.encoder = Encoder(tuple(int(round(w * width_mult / 8)) * 8 for w in (48, 64, 96, 128, 192)))
+        hidden = int(round(hidden * width_mult))
         self.free_amplitude = free_amplitude
         n_in = self.encoder.out_dim + 8 + n_static + 3 + (1 if free_amplitude else 0)
         self.mlp = nn.Sequential(
@@ -411,7 +412,7 @@ class MagNetTrunk(nn.Module):
 
 
 class MagnitudeModel(nn.Module):
-    def __init__(self, head, n_static, k=6, aux_dist=False):
+    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
@@ -419,7 +420,7 @@ class MagnitudeModel(nn.Module):
             self.aux = None
             return
         head_cls, free_amplitude = HEADS[head]
-        self.trunk = Trunk(n_static, free_amplitude)
+        self.trunk = Trunk(n_static, free_amplitude, width_mult=width_mult)
         self.head = head_cls(self.trunk.out_dim) if head == 'cat' else head_cls(self.trunk.out_dim, k)
         # optional auxiliary distance classifier (training-only multi-task control)
         self.aux = nn.Linear(self.trunk.out_dim, len(R_CENTERS)) if aux_dist else None
