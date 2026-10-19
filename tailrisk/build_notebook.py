@@ -26,6 +26,10 @@ def main():
     ap.add_argument('--eval', required=True)
     ap.add_argument('--diag', default=None)
     ap.add_argument('--gbm', default=None)
+    ap.add_argument('--seedcons', default=None, help='seed_consistency.py JSON (eqgr vs mix)')
+    ap.add_argument('--hs-held', default=None, help='evaluate.py JSON on held-station records')
+    ap.add_argument('--hs-seen', default=None, help='evaluate.py JSON on seen-station records')
+    ap.add_argument('--magnet', default=None, help='evaluate.py JSON with the MagNet-style control')
     ap.add_argument('--findings', default=str(HERE / 'FINDINGS.md'))
     args = ap.parse_args()
     cells = [
@@ -127,6 +131,51 @@ for arm, d in diag.items():
 gbm = json.load(open(%r))
 pd.DataFrame({d: {k: round(v[k], 4) for k in ('MAE', 'MedAE', 'CVaR95', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE')} for d, v in gbm.items()})
 """ % args.gbm)]
+    if args.seedcons:
+        cells += [md("""
+## 6. Seed × fold consistency
+
+Three independently trained seeds of the new method and of the strongest baseline, compared
+pairwise in every held-out fold and deadline (45 cells). A sign test asks whether the
+improvement is systematic rather than carried by one fold or one seed.
+"""), code("""
+sc = json.load(open(%r))
+pd.DataFrame({k: {'better / n': f"{v['n_better']}/{v['n']}", 'median Δ': round(v['median_delta'], 4), 'sign-test p': f"{v['p_sign']:.1e}",
+                  **{d: f"{w['n_better']}/{w['n']}" for d, w in v['by_deadline'].items()}} for k, v in sc['summary'].items()}).T
+""" % args.seedcons)]
+    if args.hs_held and args.hs_seen:
+        cells += [md("""
+## 7. Held-station test
+
+Arms suffixed `_hs` were trained with 20% of stations withheld in every fold. Records at those
+stations in the held-out fold are *both* held-event and held-station, so station fingerprinting
+cannot explain a gain there. The same arms are also scored on seen-station records.
+"""), code("""
+rows = []
+for label, path in (('held stations', %r), ('seen stations', %r)):
+    r = json.load(open(path))
+    for arm, by_d in r['arms'].items():
+        for d, v in by_d.items():
+            m = v['median_action']
+            rows.append({'subset': label, 'arm': arm, 'deadline': d, 'n': r['n_records'], **{k: round(m[k], 4) for k in ('MAE', 'M>=4_MAE', 'M>=4_eventMAE', 'M>=5_MAE')}})
+    for arm, by_d in r.get('vs_ref', {}).items():
+        for d, c in by_d.items():
+            for key in ('MAE', 'M>=4_MAE', 'M>=5_MAE'):
+                v = c['median'][key]
+                rows.append({'subset': label, 'arm': f'{arm} − ref', 'deadline': d, 'n': r['n_records'], key: f"{v['mean']:+.4f} [{v['lo']:+.4f},{v['hi']:+.4f}]"})
+pd.DataFrame(rows).set_index(['subset', 'deadline', 'arm']).sort_index()
+""" % (args.hs_held, args.hs_seen))]
+    if args.magnet:
+        cells += [md("""
+## 8. Published-architecture control
+
+A MagNet-style CNN + BiLSTM trunk on amplitude-retaining waveforms (Mousavi & Beroza 2020
+layout), given the same station metadata and trained with a Gaussian NLL on the same folds.
+"""), code("""
+r = json.load(open(%r))
+pd.DataFrame({f"{arm} {d}": {k: round(v[d]['median_action'][k], 4) for k in ('MAE', 'MedAE', 'CVaR95', 'M>=4_MAE', 'M>=5_MAE')}
+              for arm, v in r['arms'].items() for d in ('1s', '3s', '5s')}).T
+""" % args.magnet)]
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))

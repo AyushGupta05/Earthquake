@@ -20,6 +20,13 @@ Sign tests over 45 cells (seed-matched pairs, median action, `seed_consistency.p
 * eqgr − mixgr: M≥4 better in **35/45** (p = 2.5×10⁻⁴), M≥5 30/45 (p = .036), event-M≥4 32/45;
   bulk better in only 11/45 (median Δ **+.0006**, p = 8×10⁻⁴ in mixgr's favour).
 
+**Other tail views (single seed, median action, eqgr vs mix_nll):** M≥4.5 MAE .876 / .639 / .584
+vs .899 / .678 / .635; event-level M≥5 MAE .989 / .606 / .513 vs 1.009 / .706 / .644; M≥5 bias
+−.96 / −.56 / −.46 vs −1.02 / −.74 / −.68. The **worst-1% errors over all records (CVaR99)** are
+*not* improved: 1.663 / 1.487 / 1.429 vs 1.660 / 1.478 / 1.430 (+.009 at 3 s). Those errors are
+dominated by records whose waveform carries little magnitude information at the deadline, not
+by large events, and the method does not address them. CVaR95 is unchanged (≤ ±.002).
+
 So both components beat the baseline on both axes, but they are not equivalent: the GR prior
 factor is the bulk-safest change, and equivariance buys the tail for a median +.0006 bulk MAE
 relative to that ablation (still below the baseline's bulk). The pre-specified claim ("tail
