@@ -4,6 +4,28 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-19 18:30 UTC — seed × fold consistency (3 seeds × 5 folds × 3 deadlines) and the component trade-off
+
+Sign tests over 45 cells (seed-matched pairs, median action, `seed_consistency.py`).
+
+**eqgr − mix_nll (strongest baseline):**
+* M≥4 MAE: eqgr better in **36/45** cells (sign-test p = 7×10⁻⁵). The 9 exceptions are **all fold 1
+  (Emilia)**; every other fold, seed and deadline improves. M≥4 event-MAE 36/45; M≥5 34/45
+  (p = 8×10⁻⁴); bulk MAE 33/45 (p = 2×10⁻³, median Δ −.0014).
+* Pooled per seed: all 9 seed×deadline comparisons are negative for M≥4, event-M≥4 and M≥5;
+  bulk is ≤ 0 in all 9 (worst case +.0000 at 1 s, seed 1).
+
+**Ablations, 3 seeds each:**
+* mixgr − mix: bulk better in **40/45** (p = 8×10⁻⁸), M≥4 31/45 (p = .016), M≥5 29/45 (p = .07).
+* eqgr − mixgr: M≥4 better in **35/45** (p = 2.5×10⁻⁴), M≥5 30/45 (p = .036), event-M≥4 32/45;
+  bulk better in only 11/45 (median Δ **+.0006**, p = 8×10⁻⁴ in mixgr's favour).
+
+So both components beat the baseline on both axes, but they are not equivalent: the GR prior
+factor is the bulk-safest change, and equivariance buys the tail for a median +.0006 bulk MAE
+relative to that ablation (still below the baseline's bulk). The pre-specified claim ("tail
+down at 1/3/5 s, bulk not worse than the baseline") holds for eqgr; relative to its own
+ablation it is a stated trade-off.
+
 ## 2026-10-19 16:00 UTC — two-seed ensembles vs the strongest baseline, exploratory heads, and the standard split
 
 ### Two-seed ensembles, Δ = arm ensemble − free-mixture (`mix_nll`) ensemble, median action
