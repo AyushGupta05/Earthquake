@@ -15,7 +15,8 @@ import numpy as np
 from common import DURATIONS, WORK, load_meta
 from evaluate import load_arm, wmed_from_pmf, COL
 
-THR = (6.0, 6.5, 7.0)
+import os
+THR = tuple(float(x) for x in os.environ.get('TAILWORK_THR', '6,6.5,7').split(','))   # tail thresholds
 
 
 def metrics(pred, y, ev):
@@ -32,7 +33,7 @@ def metrics(pred, y, ev):
         e_sel = present & (ev_mag >= t - 1e-6)
         out[f'M>={t:g}_eventMAE'] = float(ev_err[e_sel].mean()) if e_sel.any() else float('nan')
         out[f'M>={t:g}_n_events'] = int(e_sel.sum())
-    out['M<6_MAE'] = float(err[y < 6 - 1e-6].mean())
+    out[f'M<{THR[0]:g}_MAE'] = float(err[y < THR[0] - 1e-6].mean())
     return out
 
 
@@ -41,11 +42,11 @@ class Boot:
         self.cl = np.unique(cluster, return_inverse=True)[1]
         self.nc = self.cl.max() + 1
         self.w = np.random.default_rng(seed).multinomial(self.nc, np.full(self.nc, 1 / self.nc), size=reps).astype(float)
-        self.masks = {'MAE': np.ones(len(y), bool), 'M>=6_MAE': y >= 6 - 1e-6, 'M>=7_MAE': y >= 7 - 1e-6}
+        self.masks = {'MAE': np.ones(len(y), bool), f'M>={THR[0]:g}_MAE': y >= THR[0] - 1e-6, f'M>={THR[2]:g}_MAE': y >= THR[2] - 1e-6}
         ev_i = np.unique(ev, return_inverse=True)[1]
         first = np.unique(ev_i, return_index=True)[1]
         self.ev_i, self.cnt = ev_i, np.bincount(ev_i)
-        self.first6 = first[y[first] >= 6 - 1e-6]
+        self.first6 = first[y[first] >= THR[0] - 1e-6]
 
     def stats(self, err):
         out = {}
@@ -55,7 +56,7 @@ class Boot:
         ev_mean = np.bincount(self.ev_i, err) / self.cnt
         E = np.bincount(self.cl[self.first6], ev_mean[self.ev_i[self.first6]], self.nc)
         C = np.bincount(self.cl[self.first6], minlength=self.nc).astype(float)
-        out['M>=6_eventMAE'] = (self.w @ E) / (self.w @ C)
+        out[f'M>={THR[0]:g}_eventMAE'] = (self.w @ E) / (self.w @ C)
         return out
 
     def diff(self, ea, eb):
@@ -81,8 +82,8 @@ def main():
         print(a, files, flush=True)
     have = np.all([np.isfinite(d[:, :, 0]).all(1) for d in dec.values()], 0)
     y_, ev_, cl_ = y[have], ev[have], cl[have]
-    print('records', int(have.sum()), 'events', len(np.unique(ev_)), 'M>=6 events', len(np.unique(ev_[y_ >= 6])),
-          'M>=7 events', len(np.unique(ev_[y_ >= 7])), flush=True)
+    print('records', int(have.sum()), 'events', len(np.unique(ev_)), f'M>={THR[0]:g} events', len(np.unique(ev_[y_ >= THR[0]])),
+          f'M>={THR[2]:g} events', len(np.unique(ev_[y_ >= THR[2]])), flush=True)
     boot = Boot(cl_, y_, ev_, args.reps)
     rep = {'n_records': int(have.sum()), 'arms': {}, 'vs_ref': {}}
     acts = {}
@@ -91,7 +92,7 @@ def main():
             med = wmed_from_pmf(pmf[a][have, d_i], np.array([1.0]))[:, 0]
             mean = dec[a][have, d_i, COL['mean']]
             acts[a, d] = (med, mean)
-            bins = np.arange(3.0, 9.01, 0.5)
+            bins = np.arange(THR[0] - 3.0, THR[2] + 2.01, 0.5)
             by_mag = [{'lo': float(b), 'n': int(((y_ >= b) & (y_ < b + .5)).sum()),
                        'bias_median': float((med - y_)[(y_ >= b) & (y_ < b + .5)].mean()) if ((y_ >= b) & (y_ < b + .5)).any() else None}
                       for b in bins]
@@ -107,7 +108,8 @@ def main():
                     'mean': boot.diff(np.abs(acts[a, d][1] - y_), np.abs(acts[args.ref, d][1] - y_))}
     out = Path(args.out) if args.out else root / f'geofon_eval_{"_".join(arms)}.json'
     out.write_text(json.dumps(rep, indent=1))
-    cols = ('MAE', 'MedAE', 'CVaR95', 'M>=6_MAE', 'M>=6_eventMAE', 'M>=7_MAE', 'M>=7_eventMAE', 'M>=6_bias', 'M>=7_bias', 'M<6_MAE')
+    a, c = f'{THR[0]:g}', f'{THR[2]:g}'
+    cols = ('MAE', 'MedAE', 'CVaR95', f'M>={a}_MAE', f'M>={a}_eventMAE', f'M>={c}_MAE', f'M>={c}_eventMAE', f'M>={a}_bias', f'M>={c}_bias', f'M<{a}_MAE')
     for d in DURATIONS:
         print(f'\n=== {d}s')
         print(f'{"arm":<22}' + ''.join(f'{c:>14}' for c in cols))
