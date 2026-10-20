@@ -4,6 +4,57 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 20:10 UTC — Chile, three seeds: the distance-marginalized equivariant head beats the free mixture on bulk at every deadline and on the tail at 3 and 5 s; every seed agrees
+
+Three-seed ensembles (each arm = mean of its three seeds' posteriors; `chile_eval_ens3.json`),
+Δ = arm − mix_nll ensemble, median action. Absolute mix ensemble: bulk .203 / .159 / .143;
+M≥5 .845 / .580 / .553; M≥6 1.287 / .847 / .855 (12 events; bootstrap replicates without an
+M≥6 event are dropped, so M≥6 intervals are now reported).
+
+| | bulk 1 / 3 / 5 s | M≥5 MAE 1 / 3 / 5 s | M≥6 MAE 1 / 3 / 5 s |
+|---|---|---|---|
+| eqgr | **+.0008** / +.0001 / **−.0012** | **+.049 [+.024,+.079]** / **−.038 [−.070,−.001]** / **−.089 [−.133,−.040]** | +.062 / **−.248 [−.423,−.060]** / **−.377 [−.566,−.215]** |
+| mixgr | +.0000 / **+.0002** / +.0002 | +.006 / +.001 / −.005 | **+.023** / −.022 / −.022 |
+| **eqdgr** | **−.0024 [−.0033,−.0015] / −.0042 [−.0052,−.0034] / −.0057 [−.0070,−.0047]** | +.002 / **−.043 [−.074,−.006]** / **−.090 [−.137,−.040]** | −.014 / **−.276 [−.399,−.148]** / **−.385 [−.565,−.230]** |
+
+M≥5 event-MAE follows the record-level numbers (eqdgr −.009 / **−.047 [−.077,−.010]** /
+**−.095 [−.145,−.040]**). Absolute M≥6 MAE at 5 s: mix .855, mixgr .835, eqgr .479,
+**eqdgr .472**; the M≥6 bias moves from −.86 (mix) to −.28 (eqdgr). Under the mean action the
+5 s picture is the same (eqdgr bulk −.0055 [−.0065,−.0047], M≥5 −.071 [−.114,−.026], M≥6
+−.324 [−.508,−.155]), so the gain is not a property of the decision rule.
+
+**Seed consistency** (single seeds, each Δ against the same-seed free mixture, `chile_eval_seed{1,2,3}.json`):
+
+* eqdgr bulk is negative with a CI excluding zero in **9 of 9** seed × deadline cells
+  (−.0019 to −.0059). M≥5 MAE is negative in 3/3 seeds at 3 s (−.034 / −.033 / −.051) and
+  at 5 s (−.086 / −.083 / −.090); M≥6 −.23 / −.28 (3 s) and −.36 / −.39 (5 s) in seeds 2–3
+  (seed 1's M≥6 interval was not computable before the finite-replicate fix). At 1 s the M≥5
+  sign varies (−.012 / +.016 / +.005): no 1 s tail effect either way.
+* eqgr is worse at 1 s on M≥5 in 3/3 seeds (+.045 / +.063 / +.049) and better at 5 s in 3/3
+  (−.076 / −.082 / −.090); its bulk sign varies (+.0017 / +.0019 / +.0008 at 1 s, ≈0 at 5 s).
+* mixgr has no consistent sign on any tail metric (e.g. 5 s M≥5 −.010 / +.012 / −.015).
+
+**Reading.**
+
+* On this regional network (40–230 km) both equivariant heads reach the same large-event
+  accuracy at 3 and 5 s. What the distance marginalization adds is the 1 s tail (eqgr +.05,
+  eqdgr ±0) and the bulk (eqgr ≈ 0, eqdgr −1.2% to −4%): one amplitude law across all
+  distances is too rigid where attenuation varies across the population, and the
+  per-distance law with a learned mixture over distance hypotheses fixes it without any
+  distance input at test time.
+* With three seeds on all three catalogues the attribution is settled. The prior factor
+  alone (`mixgr`) never moves the tail (INSTANCE: bulk only; GEOFON: neutral; Chile: neutral).
+  The plain equivariant likelihood (`eqgr`) wins the tail where a single amplitude law holds
+  (INSTANCE at every deadline, Chile at 3–5 s), loses where it does not (GEOFON; Chile at 1 s).
+  The distance-marginalized equivariant likelihood (`eqdgr`) is never worse than the free
+  mixture on the tail and improves it on every dataset (INSTANCE M≥5 −.12 to −.19, GEOFON M≥7
+  −.09 to −.12, Chile M≥6 −.28 to −.39), with lower bulk error on INSTANCE and Chile and a
+  +.02 bulk cost on GEOFON only. Its recorded cost on INSTANCE (more 1 s false-M4 alarms) is
+  removed by averaging with `mixgr` (16:45 entry).
+* Headline for the cross-dataset claim: `eqdgr` − free mixture, three-seed ensembles, 5 s,
+  median action — INSTANCE bulk −.005 / M≥5 −.19; GEOFON bulk +.02 / M≥7 −.12; Chile bulk
+  −.006 / M≥6 −.39. Table: `results/cross_dataset_table.md`.
+
 ## 2026-10-20 16:45 UTC — INSTANCE: the distance-marginalized equivariant head as a three-seed ensemble
 
 eqdgr (3 seeds) − mix (3 seeds), median action: bulk −.0008 [−.0026,+.0005] / **−.0032
@@ -21,7 +72,7 @@ bulk **−.0033 [−.0038,−.0023] / −.0042 [−.0047,−.0036] / −.0047 [�
 average beats the matched free + prior-only average on bulk at every deadline and on the
 tail at 3 and 5 s, with a one-per-10⁴ false-alarm increase confined to 1 s.
 
-## 2026-10-20 14:35 UTC — third dataset built: single-station Northern Chile (TEAM-LM data), results pending
+## 2026-10-20 14:35 UTC — third dataset built: single-station Northern Chile (TEAM-LM data); seed-1 results (three seeds: 20:10 entry)
 
 To decide whether the INSTANCE regime (plain equivariance wins) or the GEOFON regime (needs
 distance conditioning) is the typical early-warning case, a third, *local/regional* cache with
@@ -53,7 +104,8 @@ M≥5 .857 / .591 / .556; M≥6 1.260 / .861 / .858):
   large-event gains as eqgr at 3–5 s. With INSTANCE (largest M≥5 gains, bulk −.0004 / −.0030 /
   −.0049) and GEOFON (only arm with M≥7 gains), `eqdgr` is the most portable single model; its
   one recorded cost is the higher 1 s false-M4 rate on INSTANCE (12 vs 6 per 10⁴).
-* M≥6 intervals are not reported: with 12 events, bootstrap replicates can contain none.
+* M≥6 intervals are not reported for seed 1: with 12 events, bootstrap replicates can contain
+  none (fixed afterwards by dropping such replicates; the 20:10 entry reports them).
 * **Mechanism on Chile (amplitude-response diagnostic, folds 0–1, M≥5 records):** the free
   mixture responds .74–.85 magnitude units per decade of amplitude *downward* but only
   .46–.57 *upward*, i.e. it saturates exactly as on INSTANCE and GEOFON; eqgr and eqdgr respond

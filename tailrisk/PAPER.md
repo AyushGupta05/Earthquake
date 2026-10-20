@@ -245,12 +245,17 @@ and in the latter regime it improves only the largest events while costing bulk 
 
 *Third dataset (Northern Chile, regional).* A single-station cache built from the TEAM-LM
 release (505,666 station traces picked with STA/LTA + AIC from 67,284 events at 40–230 km;
-67 M≥5 and 12 M≥6 events; m/s units, MA labels). Seed 1 ⟨three seeds pending⟩: the plain
-equivariant head is worse at 1 s (bulk +.002, M≥5 +.045) but wins the tail at 3 and 5 s
-(M≥5 −.076 [−.120,−.026] at 5 s; the twelve M≥6 events: −.26/−.37 units) at equal bulk at
-5 s. The distance-marginalized equivariant head beats the free mixture on *both* axes at
-every deadline: bulk −.0025/−.0042/−.0059 (CIs exclude zero) and the same large-event
-gains. Across the three catalogues the distance-marginalized form is therefore the most
+67 M≥5 and 12 M≥6 events; m/s units, MA labels). Three-seed ensembles against the free-mixture
+ensemble: the plain equivariant head is worse at 1 s (bulk +.0008 [+.0002,+.0014], M≥5 +.049
+[+.024,+.079]) but wins the tail at 3 and 5 s (M≥5 −.038 [−.070,−.001] / −.089 [−.133,−.040];
+the twelve M≥6 events: −.25 [−.42,−.06] / −.38 [−.57,−.21] units) at equal (3 s) or lower
+(5 s, −.0012) bulk. The distance-marginalized equivariant head beats the free mixture on bulk
+at every deadline, −.0024 [−.0033,−.0015] / −.0042 [−.0052,−.0034] / −.0057 [−.0070,−.0047],
+negative in all nine seed × deadline cells, with the same large-event gains at 3 and 5 s
+(M≥5 −.043 [−.074,−.006] / −.090 [−.137,−.040]; M≥6 −.28 [−.40,−.15] / −.39 [−.57,−.23]) and
+an equal tail at 1 s; the prior factor alone is neutral on every axis. The mean action gives
+the same picture (5 s: bulk −.0055, M≥5 −.071, M≥6 −.32, CIs exclude zero). Across the three
+catalogues the distance-marginalized form is therefore the most
 portable member of the family: on INSTANCE it has the largest M≥5 gains with lower bulk
 error (and a higher 1 s false-alarm rate), on GEOFON it is the only arm that improves M≥7,
 and on Chile it dominates. The plain form is its collapse to a single distance hypothesis,

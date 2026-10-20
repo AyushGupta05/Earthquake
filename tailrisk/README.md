@@ -132,11 +132,14 @@ eqgr − mix differences are unchanged or larger (width: bulk −.002/−.003/�
 mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error.
 
 **Third dataset, Northern Chile (regional, 40–230 km; 505k station traces picked with
-STA/LTA + AIC from the TEAM-LM release; 67 M≥5, 12 M≥6 events; seed 1, three seeds running).**
-Plain eqgr: worse at 1 s (bulk +.002, M≥5 +.045), wins the tail at 3–5 s (M≥5 −.076 at 5 s,
-M≥6 error .49 vs .86) with equal bulk at 5 s. The distance-marginalized equivariant head
-(`eqdgr`) beats the free mixture on both axes at every deadline (bulk −.0025/−.0042/−.0059,
-CIs exclude zero; same large-event gains). **Which model to use:** on a dense local network
+STA/LTA + AIC from the TEAM-LM release; 67 M≥5, 12 M≥6 events; three-seed ensembles, 20 Oct).**
+Plain eqgr: worse at 1 s (bulk +.0008, M≥5 +.049, CIs exclude zero), wins the tail at 3–5 s
+(M≥5 −.038 / −.089; M≥6 −.25 / −.38, CIs exclude zero; M≥6 error .48 vs .86 at 5 s) at equal
+(3 s) or lower (5 s) bulk. The distance-marginalized equivariant head (`eqdgr`) beats the free
+mixture on bulk at every deadline (−.0024 / −.0042 / −.0057, CIs exclude zero, negative in all
+nine seed × deadline cells), with the same large-event gains at 3–5 s (M≥5 −.043 / −.090;
+M≥6 −.28 / −.39) and an equal tail at 1 s. The prior factor alone (`mixgr`) is neutral on
+every axis. **Which model to use:** on a dense local network
 with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
 portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
 

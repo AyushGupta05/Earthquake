@@ -46,7 +46,9 @@ is never an input, the per-distance likelihood is an exactly equivariant neural 
 and the mixture over distance hypotheses is learned jointly with the GR-factorized prior. Its
 necessity is shown empirically: without equivariance the same distance mixing gives bulk gains
 only (INSTANCE −.003 to −.006 bulk, no tail change; GEOFON no M≥7 change), and without distance
-mixing the equivariant head loses on far-regional data.
+mixing the equivariant head loses on far-regional data. On a third catalogue (Northern Chile,
+regional, three seeds) the distance-marginalized form beats the free mixture on bulk error at
+every deadline and on M≥5/M≥6 error at 3–5 s, where the plain form loses the 1 s tail.
 
 ## Not claimed as new
 
