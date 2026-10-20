@@ -4,6 +4,21 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 14:35 UTC — third dataset built: single-station Northern Chile (TEAM-LM data), results pending
+
+To decide whether the INSTANCE regime (plain equivariance wins) or the GEOFON regime (needs
+distance conditioning) is the typical early-warning case, a third, *local/regional* cache with
+a real tail was built from the project's existing Northern-Chile TEAM-LM data
+(`chile_prep.py`; sensitivity-corrected m/s, 100 Hz, MA labels). The release has only a
+network-first-P clock, so each station trace was picked: causal 1–20 Hz band-pass on Z,
+STA/LTA 0.5 s/5 s with trigger ≥ 4 after the network P, AIC refinement ±1 s, accepted when
+RMS(1 s after)/RMS(1 s before) ≥ 3 and 5 s of data remain. 505,666 of 1,049,297 traces pass
+(48%). Pick sanity: station P delay after the network P grows with epicentral distance
+(r = 0.78; medians 1.0 s at <80 km, 4.9 s at 80–150 km, 10.3 s at 150–250 km, 17.9 s at
+250–400 km). Cache: 67,284 events, 7,774 GK sequences, epicentral 42 / 126 / 233 km
+(5th / 50th / 95th pct), **67 M≥5 and 12 M≥6 events** (max M8.05) balanced over 5 folds.
+Arms queued: mix / eqgr / mixgr / eqdgr × 3 seeds; tails reported at M≥5, 5.5, 6.
+
 ## 2026-10-20 08:30 UTC — distance-marginalized free mixture on INSTANCE: best bulk of any arm, no tail gain
 
 `mixdgr_nll` (free distance-marginalized mixture × GR prior, distance a training label only,
