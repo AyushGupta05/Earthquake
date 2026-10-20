@@ -123,6 +123,11 @@ gains nothing. So: the plain equivariant head is the right prior for local netwo
 INSTANCE; on far-regional data the amplitude law must be conditioned on distance, and there it
 buys only the largest events. Details in FINDINGS.md.
 
+**Capacity and training length.** At 1.5× trunk width (2.2× parameters) and at 20 epochs the
+eqgr − mix differences are unchanged or larger (width: bulk −.002/−.003/−.003, M≥4
+−.018/−.021/−.027; epochs: bulk −.000/−.002/−.004, M≥4 −.014/−.011/−.017). A 2.2×-larger free
+mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error.
+
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for
 large ML labels, which scale ≈1:1 with amplitude.

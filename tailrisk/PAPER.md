@@ -206,8 +206,10 @@ false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadl
 split* (train 2005–17, VAL 2018): M≥4 −.025/−.022/−.038 vs the mixture with bulk equal or
 better. *Training length.* At 20 epochs the eqgr − mix differences are unchanged (bulk
 −.000/−.002/−.004, M≥4 −.014/−.011/−.017, M≥5 −.098/−.110 at 3/5 s), while doubling the epochs
-itself moves both heads along the trade-off (+.004–.005 bulk, −.02 M≥4). *Capacity*
-⟨pending: 1.5× width⟩.
+itself moves both heads along the trade-off (+.004–.005 bulk, −.02 M≥4). *Capacity.* With a
+1.5×-wide trunk (2.2× parameters) the differences are unchanged or larger (bulk
+−.002/−.003/−.003, M≥4 −.018/−.021/−.027, M≥5 −.109/−.133 at 3/5 s); a 2.2×-larger free
+mixture reaches the standard eqgr's M≥4 error but not its M≥5 or bulk error.
 
 *Second dataset (negative for the equivariant component).* On a GEOFON subset (31,020
 records within 2,000 km, 2,212 events, 276 M≥6 and 50 M≥7, labels mostly mb, 78% of traces at

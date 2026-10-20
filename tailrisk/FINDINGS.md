@@ -4,6 +4,19 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 07:20 UTC — capacity: a 2.2×-larger free mixture does not close the gap
+
+`mix_nll_w15` and `eqgr_nll_w15` (trunk width ×1.5, 1.47 M parameters vs 0.66 M, seed 1).
+eqgr_w15 − mix_w15, median action: bulk **−.0022 [−.0032,−.0017] / −.0025 [−.0039,−.0014] /
+−.0034 [−.0043,−.0026]**; M≥4 **−.018 [−.023,−.010] / −.021 [−.034,−.007] / −.027 [−.045,−.010]**;
+M≥5 −.031 [−.057,+.013] / **−.109 [−.206,−.022] / −.133 [−.263,−.034]**; event-M≥4 **−.016 / −.017 /
+−.023** (CIs exclude zero); false-M4 +0.1 per 10⁴ (n.s.). The gap is unchanged or slightly
+wider at higher capacity. The standard eqgr (0.66 M) against the 2.2×-larger free mixture:
+bulk −.0009 / −.0015 / −.0025 (3 and 5 s CIs exclude zero), M≥4 +.000 / −.004 / −.012 (n.s.),
+M≥5 +.008 / **−.091 / −.125**: extra capacity lets the free model reach eqgr's M≥4 error but
+not its M≥5 error or its bulk error. The constraint is not a substitute for capacity; it is
+information the free model does not recover with more parameters.
+
 ## 2026-10-20 04:25 UTC — training length: the gain persists at 20 epochs; longer training itself trades bulk for tail
 
 `mix_nll_e20` and `eqgr_nll_e20` (20 epochs instead of 10, same schedule shape, seed 1).
