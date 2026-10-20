@@ -260,7 +260,9 @@ class EquivariantHybridHead(nn.Module):
         return Mixture(m.logit_w, m.mu + c, m.sigma)
 
 
-R_CENTERS = torch.arange(0.5, 3.01, 0.1)      # log10 hypocentral distance (3 km .. 1000 km)
+import os as _os
+# log10 hypocentral distance bins, 3 km .. 10^TAILWORK_MAXLOGR km (default 1000 km; GEOFON uses 3.4 = 2,500 km)
+R_CENTERS = torch.arange(0.5, float(_os.environ.get('TAILWORK_MAXLOGR', '3.0')) + 0.01, 0.1)
 
 
 def distance_bin(hyp_km):
