@@ -77,6 +77,14 @@ equivariant-per-distance head extrapolates to M≥7 (bias −1.45 vs −1.55 at 
 +.018, M≥7 **−.095 / −.083 / −.117**; mixdgr_r34 − mix = M≥7 −.010 / +.034 / +.050. So the clamped
 distance label was not the cause; the result is structural and replicated across seeds and grids.
 
+**Exploratory (chosen after seeing the above): posterior averaging on GEOFON (01:15 UTC).** With
+existing predictions only, averaging the three `mixgr` and three `eqdgr` posteriors against a
+size-matched average of three `mix` and three `mixgr` posteriors gives, median action: bulk
++.004 [+.000,+.007] / −.000 [−.003,+.002] / −.001 [−.004,+.001]; M≥6 **−.019 / −.010** / −.008
+(1 s and 3 s CIs exclude zero); M≥7 **−.048 / −.053 / −.070** (all exclude zero). So a
+GR-structured posterior average does reach the far-regional tail without losing bulk at 3 and
+5 s; at 1 s it costs +.004 bulk. This is a post-hoc combination and is reported as such.
+
 **Consequence for the claim.** On INSTANCE (local records within a few hundred km, 100 Hz,
 mostly M_L) the plain equivariant head is the right prior and wins outright. On the GEOFON
 regional/teleseismic subset it is not: the amplitude law must be conditioned on distance, and
