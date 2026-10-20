@@ -4,6 +4,18 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 16:45 UTC — INSTANCE: the distance-marginalized equivariant head as a three-seed ensemble
+
+eqdgr (3 seeds) − mix (3 seeds), median action: bulk −.0008 [−.0026,+.0005] / **−.0032
+[−.0048,−.0021] / −.0047 [−.0062,−.0037]**; M≥4 −.015 / −.016 / −.023 (wide CIs, n.s.); M≥5
+−.122 [−.279,+.030] / **−.174 [−.338,−.025] / −.189 [−.371,−.035]**; false-M4 **+4 / +2 / +1 per 10⁴**
+(all CIs exclude zero; ≈2× the mixture's rate at 1 s). Averaging its posterior with the
+prior-only model (6 members, not size-matched) keeps the tail (M≥4 −.022 / −.024 / −.028, M≥5
+−.083 / −.132 / −.148, all CIs exclude zero), lowers bulk further (−.0055 / −.0067 / −.0076) and
+removes the false-alarm cost (+1 / +0 / −0 per 10⁴). So the distance-marginalized form's
+false-alarm cost on INSTANCE is a property of its sharper tail probabilities and is
+controllable by model averaging; a size-matched check follows.
+
 ## 2026-10-20 14:35 UTC — third dataset built: single-station Northern Chile (TEAM-LM data), results pending
 
 To decide whether the INSTANCE regime (plain equivariance wins) or the GEOFON regime (needs
