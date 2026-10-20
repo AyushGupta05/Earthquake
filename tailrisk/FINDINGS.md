@@ -37,6 +37,12 @@ M≥5 .857 / .591 / .556; M≥6 1.260 / .861 / .858):
   −.0049) and GEOFON (only arm with M≥7 gains), `eqdgr` is the most portable single model; its
   one recorded cost is the higher 1 s false-M4 rate on INSTANCE (12 vs 6 per 10⁴).
 * M≥6 intervals are not reported: with 12 events, bootstrap replicates can contain none.
+* **Mechanism on Chile (amplitude-response diagnostic, folds 0–1, M≥5 records):** the free
+  mixture responds .74–.85 magnitude units per decade of amplitude *downward* but only
+  .46–.57 *upward*, i.e. it saturates exactly as on INSTANCE and GEOFON; eqgr and eqdgr respond
+  symmetrically at .93–1.16, the slope of an amplitude-based local scale (the learned κ was
+  ≈.6–.8 on INSTANCE, where most labels are M_L with M_w above M4, and ≈.57 on GEOFON). On
+  small events (M<3) all heads respond ≈.4–.9 and asymmetrically, as the prior dominates.
 
 ## 2026-10-20 08:30 UTC — distance-marginalized free mixture on INSTANCE: best bulk of any arm, no tail gain
 
