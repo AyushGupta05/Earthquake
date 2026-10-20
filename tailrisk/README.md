@@ -141,7 +141,11 @@ nine seed × deadline cells), with the same large-event gains at 3–5 s (M≥5 
 M≥6 −.28 / −.39) and an equal tail at 1 s. The prior factor alone (`mixgr`) is neutral on
 every axis. Size-matched: the six-model average mixgr + eqdgr beats the six-model free + prior-only
 average on bulk at every deadline (−.0033 / −.0040 / −.0049) and on M≥5 / M≥6 at 3–5 s
-(−.061 / −.088; −.25 / −.33), all CIs excluding zero. **Which model to use:** on a dense local network
+(−.061 / −.088; −.25 / −.33), all CIs excluding zero. Held-station test (7 of the 22 stations
+withheld from training, seed 1): on records at unseen stations eqdgr's bulk gain is at least as
+large (−.004 / −.013 / −.010, CIs exclude zero) and its 5 s large-event gain has the same sign
+(M≥6 −.23) but, with 10 M≥6 events there, is not significant; on seen stations the full-data
+pattern repeats (M≥5 −.094 / −.126 at 3 / 5 s). **Which model to use:** on a dense local network
 with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
 portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
 

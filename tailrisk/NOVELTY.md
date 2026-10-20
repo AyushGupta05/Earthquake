@@ -68,5 +68,6 @@ without the prior hurts bulk; `mixgr_nll` without equivariance loses the M≥5 e
 * Standard INSTANCE split (train 2005–17 → VAL 2018 / TEST 2019–20) with no selection.
 * Mechanism diagnostic (amplitude response) on held-out folds.
 * Held-station test (`*_hs` arms: 20% of stations withheld from training; metrics on
-  held-event-and-held-station records) and a published-architecture control (`magnet_nll`).
+  held-event-and-held-station records) on INSTANCE and on Northern Chile, and a
+  published-architecture control (`magnet_nll`).
   Results are logged in FINDINGS.md when complete.

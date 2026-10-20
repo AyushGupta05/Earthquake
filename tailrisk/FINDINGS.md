@@ -4,6 +4,42 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 21:20 UTC — Chile held-station test: the distance-marginalized head's bulk gain is at least as large on unseen stations; its tail gain there is same-signed at 5 s but underpowered (10 M≥6 events)
+
+Arms retrained with 7 of the 22 Chile stations withheld from training in every fold
+(`--hold-stations 0.2`, rng 0; `queue_chile_hs.txt`; seed 1; 32% fewer training records).
+Records at held stations (held event *and* held station) and at seen stations are evaluated
+separately with `geofon_eval.py --station-subset`, Δ = arm − mix_nll_hs, median action
+(`chile_eval_hs_held.json`, `chile_eval_hs_seen.json`).
+
+**Held stations** (165,670 records; 58 M≥5, 10 M≥6 events). Absolute mix_hs: bulk .259 / .252 /
+.250; M≥5 .927 / .726 / .701; M≥6 1.366 / 1.011 / 1.026. Every arm is worse on unseen stations
+than on seen ones (bulk ≈ +.05 at 1 s), the usual station-generalization gap.
+
+| | bulk 1 / 3 / 5 s | M≥5 MAE 1 / 3 / 5 s | M≥6 MAE 1 / 3 / 5 s |
+|---|---|---|---|
+| eqgr_hs | +.0039 / +.0027 / +.0024 (n.s.) | **+.086 [+.030,+.159]** / −.008 / −.056 | +.186 / −.215 / −.300 (n.s.) |
+| **eqdgr_hs** | **−.0041 [−.0074,−.0006] / −.0131 [−.0154,−.0102] / −.0099 [−.0132,−.0069]** | +.047 / +.011 / −.059 (n.s.) | +.052 / −.092 / −.233 (n.s.) |
+
+**Seen stations** (339,996 records; 67 M≥5, 12 M≥6). eqdgr_hs: bulk −.0018 (n.s.) / **−.0045
+[−.0054,−.0034] / −.0076 [−.0085,−.0066]**; M≥5 −.010 / **−.094 [−.127,−.059] / −.126
+[−.169,−.086]**; M≥6 +.019 / **−.348 [−.529,−.222] / −.422 [−.633,−.273]**. eqgr_hs: bulk
+**+.0027 / +.0018** / +.0002; M≥5 **+.062** / **−.061 / −.107**; M≥6 +.135 / **−.325 / −.425**.
+The full-data three-seed pattern (20:10 entry) repeats on the seen-station subset.
+
+* The distance-marginalized head's bulk advantage is at least as large on unseen stations
+  (−1.6% / −5.2% / −4.0% of the mixture's error) as on seen ones (−0.9% / −2.6% / −4.9%):
+  a per-distance amplitude law with a learned distance mixture transfers to stations never
+  seen in training at least as well as the free mixture's station-specific fit.
+* Its large-event gain on unseen stations has the same sign as on seen stations at 5 s
+  (M≥6 −.23 vs −.42; M≥5 −.06 vs −.13) but, with 10 M≥6 events recorded at 7 stations, the
+  intervals include zero; at 1 and 3 s the held-station M≥5 point estimates are slightly
+  positive (+.05, +.01, n.s.). On Chile the held-station evidence therefore supports the bulk
+  claim and is inconclusive for the tail; the held-station test with power for the tail claim
+  is the INSTANCE one (19 Oct entry), where the eqgr gain survived on unseen stations.
+* eqgr_hs repeats its full-data behaviour on both subsets: worse at 1 s, better large-event
+  estimates at 3–5 s (significant on seen stations, not on held).
+
 ## 2026-10-20 20:10 UTC — Chile, three seeds: the distance-marginalized equivariant head beats the free mixture on bulk at every deadline and on the tail at 3 and 5 s; every seed agrees
 
 Three-seed ensembles (each arm = mean of its three seeds' posteriors; `chile_eval_ens3.json`),
