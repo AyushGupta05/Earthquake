@@ -48,9 +48,10 @@ mixgr − mix = bulk +.001 / +.001 / +.000 (n.s.), M≥6 −.003 / −.003 / −
 | eqtgr (two slopes) | +.016 / +.021 / +.021 | +.087 / +.104 / +.122 | +.180 / +.185 / +.201 |
 | **eqdgr** (distance-marginalized) | +.019 / +.014 / +.014 | **−.027** / −.008 / −.002 | **−.103 / −.114 / −.141** |
 
-* Letting κ reach 0 changes nothing, so the "forced response to a noise-dominated amplitude"
-  explanation above is **refuted**: the rigidity is in the additive form κ(s)·A + g(s) itself,
-  not in the slope's lower bound.
+* Letting κ reach 0 changes nothing (three-seed ensembles, 00:35 UTC: κ≥0 − mix = bulk
+  +.009 / +.008 / +.007, M≥6 +.051 / +.045 / +.041, CIs exclude zero), so the "forced response to
+  a noise-dominated amplitude" explanation above is **refuted**: the rigidity is in the
+  additive form κ(s)·A + g(s) itself, not in the slope's lower bound.
 * The distance-marginalized GR head recovers the large-event tail (M≥7 −.10 to −.14, the
   largest tail gain of any arm on GEOFON; M≥7 bias −1.44 vs −1.54 at 1 s) while still paying
   ≈+.015 bulk. At 300–2,000 km the attenuation term spans several magnitude units, and a head
