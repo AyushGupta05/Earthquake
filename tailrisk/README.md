@@ -105,12 +105,15 @@ Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).
 * `mixgr_nll`: prior factor, no equivariance. A strict Pareto gain over mix, but smaller M≥5 gains.
 * `eqtgr_nll`: separate ML/Mw slopes. Negative: no gain over eqgr.
+* `mixdgr_nll`: distance-marginalized *free* mixture × GR prior. Best bulk of any single model
+  (−.003/−.004/−.006 vs mix) but no tail gain; distance mixing moves bulk, equivariance moves
+  the tail (the same holds on GEOFON).
 * `eqdgr_nll`: distance-aware likelihood × GR prior. Replicated over three seeds as a
   trade-off, not a replacement. It has the largest M≥5 gains (3-seed ensemble −.12 / −.18 / −.19
   vs mix, −.10 / −.07 / −.04 vs eqgr) and lower 3–5 s bulk. But it gives no M≥4 gain over eqgr
   and has about 1.5× eqgr's 1 s false-M4 rate (9.9 vs 6.4 per 10⁴).
 
-FINDINGS.md records which arms were pre-specified (eq, eqgr), which were ablations added after the first results (mixgr), and which exploratory (eqtgr, eqdgr).
+FINDINGS.md records which arms were pre-specified (eq, eqgr), which were ablations added after the first results (mixgr, mixdgr), and which exploratory (eqtgr, eqdgr, the posterior averages).
 
 **Second dataset, negative for equivariance (19 Oct 23:40 UTC).** On a GEOFON regional subset
 (31k records, 2,212 events, 276 M≥6, labels mostly mb, mostly 20 Hz broadband at 300–2,000 km),
