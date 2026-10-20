@@ -33,6 +33,21 @@ decade upward vs 0.54–0.66 downward on held-out large events).
 | Scale/gain invariance in networks: scale-invariant classification stages, zero-mean convolutions for loudness invariance (ISMIR 2018), augmentation-induced homogeneity (2025), equivariant imaging for declipping (2026) | Output unchanged under gain, or gain equivariance induced through data | Here the output is a *distribution over a label* that must translate by a learned, input-dependent amount; exact by construction; combined with a prior factor that preserves it; justified by a Bayesian argument rather than a symmetry of the input domain alone |
 | Previous project (this repository, Sept–Oct 2026): prior-response probes (q_α ∝ p·π^(α−1)), exposure-corrected CE, 11× tail-mass median | Post-hoc re-tempering of the prior of a trained categorical model; training-time prior correction; cost-sensitive decision | All operate on an already-learned categorical posterior or on the decision. None constrained the likelihood's amplitude response. Their negative results are consistent with the finding here that decision rules and reweighting move along the trade-off while the posterior structure moves the frontier |
 
+## The distance-marginalized form (added 20 Oct)
+
+`eqdgr`: p(m|x) ∝ Σ_r p(r|s)·N(m; κ(s)(A−A₀) + G_r(s), σ_r(s)²)·exp φ(m), with r a log-distance
+bin that is a *training label only* (joint likelihood p(r|x)·p(m|r,x) during training,
+marginalized at inference). Closest prior art: the Gutenberg algorithm (Meier et al. 2015)
+forms a joint magnitude–distance posterior from filter-bank amplitudes with hand-built
+likelihoods and a GR prior; TEAM/TEAM-LM feed station coordinates and let the network infer
+geometry; Hou et al. 2024 and DHLnet use differential arrivals or catalogue distance as inputs;
+Kuyuk–Allen-type relations use catalogue distance. The difference here: the distance variable
+is never an input, the per-distance likelihood is an exactly equivariant neural amplitude law,
+and the mixture over distance hypotheses is learned jointly with the GR-factorized prior. Its
+necessity is shown empirically: without equivariance the same distance mixing gives bulk gains
+only (INSTANCE −.003 to −.006 bulk, no tail change; GEOFON no M≥7 change), and without distance
+mixing the equivariant head loses on far-regional data.
+
 ## Not claimed as new
 
 Mixture density heads; Gutenberg–Richter priors in Bayesian EEW; separating amplitude from
