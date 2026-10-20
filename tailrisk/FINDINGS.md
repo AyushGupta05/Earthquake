@@ -4,6 +4,17 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 01:20 UTC — INSTANCE, size-matched posterior average: the structured pair dominates the free + prior-only pair on every axis
+
+Exploratory (same construction as the GEOFON check): three `mixgr` + three `eqgr` posteriors
+averaged, against three `mix` + three `mixgr` (6 vs 6 models), median action, Δ = structured −
+reference: bulk **−.0015 [−.0019,−.0012] / −.0018 [−.0024,−.0014] / −.0024 [−.0028,−.0021]**;
+M≥4 **−.010 [−.015,−.004] / −.010 [−.018,−.003] / −.017 [−.028,−.007]**; M≥5 −.016 [−.046,+.012] /
+**−.063 [−.133,−.010] / −.090 [−.179,−.030]**; event-M≥4 −.007 / −.008 / −.014; false-M4 rate
++0.0 per 10⁴ at every deadline (CI [−0.0, +0.1]). Bulk-capped best M≥4 −.088 / −.092 / −.101.
+Mixing the prior-only posterior in removes eqgr's small false-alarm cost while keeping its tail
+gain. Reported as a post-hoc combination; the pre-specified single-model claims stand above.
+
 ## 2026-10-19 23:40 UTC — NEGATIVE on a second dataset: on the GEOFON regional subset the equivariant head is worse than the free mixture
 
 Second dataset (`geofon_prep.py`, `results/geofon_folds.json`): GEOFON (SeisBench), records
