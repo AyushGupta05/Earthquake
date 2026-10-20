@@ -4,6 +4,17 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 04:25 UTC — training length: the gain persists at 20 epochs; longer training itself trades bulk for tail
+
+`mix_nll_e20` and `eqgr_nll_e20` (20 epochs instead of 10, same schedule shape, seed 1).
+eqgr_e20 − mix_e20, median action: bulk −.0001 [−.0026,+.0018] / **−.0017 [−.0038,−.0001] /
+−.0038 [−.0047,−.0032]**; M≥4 **−.014 [−.020,−.004] / −.011 [−.019,−.001] / −.017 [−.024,−.007]**;
+M≥5 −.047 [−.113,+.019] / **−.098 [−.164,−.043] / −.110 [−.198,−.033]**; false-M4 equal. Same
+pattern and magnitude as at 10 epochs, so the result is not an under-training artefact.
+Doubling the epochs is not itself an improvement: for both heads bulk MAE rises by +.004–.005
+(mix_e20 .332 / .275 / .242 vs .328 / .270 / .238) while M≥4 falls by ≈.02, i.e. a move along the
+trade-off, consistent with the model starting to overfit the bulk.
+
 ## 2026-10-20 01:20 UTC — INSTANCE, size-matched posterior average: the structured pair dominates the free + prior-only pair on every axis
 
 Exploratory (same construction as the GEOFON check): three `mixgr` + three `eqgr` posteriors

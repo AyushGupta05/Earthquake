@@ -204,7 +204,10 @@ station and event were both unseen (279,812 records, 341 M≥4 events): M≥5 �
 (all CIs exclude zero), M≥4 −.017/−.005/−.011 (significant at 1 and 5 s), bulk never worse,
 false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline. *Standard
 split* (train 2005–17, VAL 2018): M≥4 −.025/−.022/−.038 vs the mixture with bulk equal or
-better. *Capacity and training length* ⟨pending: 1.5× width, 20 epochs⟩.
+better. *Training length.* At 20 epochs the eqgr − mix differences are unchanged (bulk
+−.000/−.002/−.004, M≥4 −.014/−.011/−.017, M≥5 −.098/−.110 at 3/5 s), while doubling the epochs
+itself moves both heads along the trade-off (+.004–.005 bulk, −.02 M≥4). *Capacity*
+⟨pending: 1.5× width⟩.
 
 *Second dataset (negative for the equivariant component).* On a GEOFON subset (31,020
 records within 2,000 km, 2,212 events, 276 M≥6 and 50 M≥7, labels mostly mb, 78% of traces at
