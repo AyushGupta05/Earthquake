@@ -160,8 +160,9 @@ Three-seed ensembles, median action, Δ = eqgr − mix (95% intervals):
 | Δ M≥5 MAE | −.024 [−.075, +.028] | −.105 [−.220, −.010] | −.149 [−.291, −.040] |
 | Δ false-M4 per 10⁴ small records | +1.5 [+1.0, +2.3] | +0.65 [+0.05, +1.02] | +0.63 [+0.03, +1.04] |
 
-Against plain cross-entropy (two-seed ensembles) the margins are larger: M≥4 −.031/−.044/−.056,
-M≥5 −.087/−.205/−.263, bulk −.0005/−.0028/−.0048. Absolute values for the eqgr ensemble: bulk
+Against plain cross-entropy (three-seed ensembles) the margins are larger: M≥4
+−.033/−.045/−.057, M≥5 −.083/−.199/−.262, bulk −.0009/−.0029/−.0046, with a lower false-M4
+rate at 1 s. Absolute values for the eqgr ensemble: bulk
 .320/.263/.230; M≥4 .737/.553/.497; M≥5 1.010/.638/.537. On the unseen Central Italy sequence,
 5 s M≥5 MAE falls from 1.008 (CE) to 0.502.
 

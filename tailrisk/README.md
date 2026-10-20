@@ -24,14 +24,15 @@ Against the plain categorical posterior (CE) and every other baseline tested, th
 high-magnitude error at 1, 3 and 5 s while bulk error stays equal (1 s) or improves
 (3 s, 5 s). The leave-sequence-out cross-validation has 346 M≥4 and 31 M≥5 events, with
 95% cluster-bootstrap intervals; the result was replicated across seeds and survives
-ensembling. Two-seed ensembles, eqgr − CE, median action:
+ensembling. Three-seed ensembles, eqgr − CE, median action:
 
 | | 1 s | 3 s | 5 s |
 |---|---|---|---|
-| Δ bulk MAE | −.0005 [−.0026,+.0013] | **−.0028 [−.0050,−.0009]** | **−.0048 [−.0062,−.0039]** |
-| Δ M≥4 MAE | **−.031 [−.049,−.011]** | **−.044 [−.069,−.020]** | **−.056 [−.089,−.027]** |
-| Δ M≥5 MAE | **−.087 [−.155,−.012]** | **−.205 [−.309,−.100]** | **−.263 [−.385,−.154]** |
-| Δ M≥4 event-MAE | **−.022 [−.042,−.003]** | **−.036 [−.065,−.014]** | **−.047 [−.083,−.022]** |
+| Δ bulk MAE | −.0009 [−.0026,+.0006] | **−.0029 [−.0050,−.0011]** | **−.0046 [−.0061,−.0035]** |
+| Δ M≥4 MAE | **−.033 [−.053,−.013]** | **−.045 [−.071,−.021]** | **−.057 [−.089,−.028]** |
+| Δ M≥5 MAE | **−.083 [−.149,−.009]** | **−.199 [−.293,−.100]** | **−.262 [−.379,−.160]** |
+| Δ M≥4 event-MAE | **−.025 [−.046,−.006]** | **−.038 [−.067,−.016]** | **−.048 [−.083,−.022]** |
+| Δ false-M4 rate | lower (−1.0 per 10⁴, CI excludes zero) | equal | equal |
 
 MedAE, CVaR95 (largest 5% of all errors) and the false-M4 rate are unchanged or better.
 On the completely unseen 2016–17 Central Italy sequence, the 5 s M≥5 MAE falls from 1.008
