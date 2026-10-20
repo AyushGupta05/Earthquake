@@ -30,6 +30,8 @@ def main():
     ap.add_argument('--hs-held', default=None, help='evaluate.py JSON on held-station records')
     ap.add_argument('--hs-seen', default=None, help='evaluate.py JSON on seen-station records')
     ap.add_argument('--magnet', default=None, help='evaluate.py JSON with the MagNet-style control')
+    ap.add_argument('--other', default=None,
+                    help='label=path pairs of geofon_eval.py JSONs for other datasets, e.g. GEOFON=results/geofon_eval_ens3.json,Chile=results/chile_eval_ens3.json')
     ap.add_argument('--findings', default=str(HERE / 'FINDINGS.md'))
     args = ap.parse_args()
     cells = [
@@ -176,6 +178,29 @@ r = json.load(open(%r))
 pd.DataFrame({f"{arm} {d}": {k: round(v[d]['median_action'][k], 4) for k in ('MAE', 'MedAE', 'CVaR95', 'M>=4_MAE', 'M>=5_MAE')}
               for arm, v in r['arms'].items() for d in ('1s', '3s', '5s')}).T
 """ % args.magnet)]
+    if args.other:
+        cells += [md("""
+## 9. Other datasets
+
+The same arms trained and evaluated with the same code on other catalogues (leave-sequence-out
+folds, cluster bootstrap). Thresholds follow each dataset's tail (M≥6/7 for the GEOFON
+regional subset, M≥5/6 for Northern Chile). Δ rows are arm − free mixture, median action.
+""")]
+        for item in args.other.split(','):
+            label, path = item.split('=', 1)
+            cells.append(code("""
+r = json.load(open(%r))
+rows = []
+for arm, by_d in r['arms'].items():
+    for d, v in by_d.items():
+        m = v['median_action']
+        rows.append({'dataset': %r, 'arm': arm, 'deadline': d, **{k: round(x, 4) for k, x in m.items() if k.endswith('MAE') or k == 'MedAE' or k == 'CVaR95'}})
+for arm, by_d in r.get('vs_ref', {}).items():
+    for d, c in by_d.items():
+        for key, v in c['median'].items():
+            rows.append({'dataset': %r, 'arm': arm + ' − ref', 'deadline': d, key: f"{v['mean']:+.4f} [{v['lo']:+.4f},{v['hi']:+.4f}]"})
+pd.DataFrame(rows).set_index(['dataset', 'deadline', 'arm']).sort_index()
+""" % (path, label, label)))
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))
