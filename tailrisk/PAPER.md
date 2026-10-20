@@ -47,13 +47,20 @@ into the output distribution.
 
 Contributions. (i) A scale-equivariant likelihood head whose predictive distribution
 translates by κ(s)·log₁₀c when the ground motion is multiplied by c, with κ learned from the
-scale-free shape. (ii) A learned, shape-constrained magnitude prior factored out of the
-network and kept at test time: free in the bulk, Gutenberg–Richter-linear in the tail. (iii) A
-proposition, checked numerically, that this is the exact Bayes structure under a GR prior with
-unknown nuisances. (iv) A controlled evaluation protocol for tail claims: leave-sequence-out
-folds over the whole catalogue, a frontier comparison at matched bulk error so that decision
-rules cannot masquerade as better posteriors, cluster-bootstrap intervals, seed replication,
-and held-station validation. (v) Negative results for the obvious alternatives.
+scale-free shape; and its distance-marginalized form, Σ_r p(r|s)·L_eq(m|A,s,r), in which the
+equivariant amplitude law is conditioned on an explicit distance variable that is a training
+label only and is integrated out at inference. (ii) A learned, shape-constrained magnitude
+prior factored out of the network and kept at test time: free in the bulk,
+Gutenberg–Richter-linear in the tail. (iii) A proposition, checked numerically, that this is
+the exact Bayes structure under a GR prior with unknown nuisances. (iv) A controlled
+evaluation protocol for tail claims: leave-sequence-out folds over the whole catalogue, a
+frontier comparison at matched bulk error so that decision rules cannot masquerade as better
+posteriors, cluster-bootstrap intervals, seed replication, and held-station validation,
+applied on three catalogues (INSTANCE, a GEOFON regional subset, Northern Chile). (v) Negative
+results for the obvious alternatives, and an explicit map of where each component helps:
+the prior factor and distance marginalization move bulk error, only the equivariant
+likelihood moves the high-magnitude tail, and the plain equivariant head is the right prior
+only where one amplitude law holds across the population.
 
 ## 2. Related work
 
@@ -235,6 +242,19 @@ The honest summary across datasets: the amplitude-equivariant structure is the r
 where a single amplitude law holds across the population (local networks like INSTANCE),
 must be conditioned on distance where attenuation dominates (far-regional data like GEOFON),
 and in the latter regime it improves only the largest events while costing bulk error.
+
+*Third dataset (Northern Chile, regional).* A single-station cache built from the TEAM-LM
+release (505,666 station traces picked with STA/LTA + AIC from 67,284 events at 40–230 km;
+67 M≥5 and 12 M≥6 events; m/s units, MA labels). Seed 1 ⟨three seeds pending⟩: the plain
+equivariant head is worse at 1 s (bulk +.002, M≥5 +.045) but wins the tail at 3 and 5 s
+(M≥5 −.076 [−.120,−.026] at 5 s; the twelve M≥6 events: −.26/−.37 units) at equal bulk at
+5 s. The distance-marginalized equivariant head beats the free mixture on *both* axes at
+every deadline: bulk −.0025/−.0042/−.0059 (CIs exclude zero) and the same large-event
+gains. Across the three catalogues the distance-marginalized form is therefore the most
+portable member of the family: on INSTANCE it has the largest M≥5 gains with lower bulk
+error (and a higher 1 s false-alarm rate), on GEOFON it is the only arm that improves M≥7,
+and on Chile it dominates. The plain form is its collapse to a single distance hypothesis,
+which suffices on a dense local network.
 
 ### 5.6 What does not improve
 

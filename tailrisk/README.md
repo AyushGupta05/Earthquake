@@ -131,6 +131,15 @@ eqgr − mix differences are unchanged or larger (width: bulk −.002/−.003/�
 −.018/−.021/−.027; epochs: bulk −.000/−.002/−.004, M≥4 −.014/−.011/−.017). A 2.2×-larger free
 mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error.
 
+**Third dataset, Northern Chile (regional, 40–230 km; 505k station traces picked with
+STA/LTA + AIC from the TEAM-LM release; 67 M≥5, 12 M≥6 events; seed 1, three seeds running).**
+Plain eqgr: worse at 1 s (bulk +.002, M≥5 +.045), wins the tail at 3–5 s (M≥5 −.076 at 5 s,
+M≥6 error .49 vs .86) with equal bulk at 5 s. The distance-marginalized equivariant head
+(`eqdgr`) beats the free mixture on both axes at every deadline (bulk −.0025/−.0042/−.0059,
+CIs exclude zero; same large-event gains). **Which model to use:** on a dense local network
+with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
+portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
+
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for
 large ML labels, which scale ≈1:1 with amplitude.
