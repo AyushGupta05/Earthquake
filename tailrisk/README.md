@@ -139,9 +139,21 @@ Plain eqgr: worse at 1 s (bulk +.0008, M≥5 +.049, CIs exclude zero), wins the 
 mixture on bulk at every deadline (−.0024 / −.0042 / −.0057, CIs exclude zero, negative in all
 nine seed × deadline cells), with the same large-event gains at 3–5 s (M≥5 −.043 / −.090;
 M≥6 −.28 / −.39) and an equal tail at 1 s. The prior factor alone (`mixgr`) is neutral on
-every axis. **Which model to use:** on a dense local network
+every axis. Size-matched: the six-model average mixgr + eqdgr beats the six-model free + prior-only
+average on bulk at every deadline (−.0033 / −.0040 / −.0049) and on M≥5 / M≥6 at 3–5 s
+(−.061 / −.088; −.25 / −.33), all CIs excluding zero. **Which model to use:** on a dense local network
 with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
 portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
+
+**Three catalogues, one model.** `eqdgr` − free mixture, three-seed ensembles, median action
+(bold = 95% cluster-bootstrap CI excludes zero; full table in
+[results/cross_dataset_table.md](results/cross_dataset_table.md)):
+
+| dataset (tail metric) | Δ bulk MAE 1 / 3 / 5 s | Δ tail MAE 1 / 3 / 5 s |
+|---|---|---|
+| INSTANCE, local (M≥5, 31 events) | −.001 / **−.003** / **−.005** | −.12 / **−.17** / **−.19** |
+| GEOFON, far-regional (M≥7, 50 events) | **+.024 / +.017 / +.016** | **−.09 / −.09 / −.12** |
+| Northern Chile, regional (M≥6, 12 events) | **−.002 / −.004 / −.006** | −.01 / **−.28 / −.39** |
 
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for

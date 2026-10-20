@@ -200,8 +200,12 @@ Equivariance on top of it buys the tail (M≥4 better in 35/45, M≥5 in 30/45) 
 +.0006 bulk MAE, still below the baseline's bulk. Equivariance without the prior factor
 costs +.005 bulk MAE at 1 s, because a smooth likelihood cannot represent the M2.0
 selection cliff. Separate M_L/M_w slopes do not help. The distance-aware variant gives the
-largest M≥5 gains (−.14/−.17/−.18 vs mix, replicated over three seeds) but doubles the 1 s
-false-alarm rate; it is a trade-off, not a replacement. Its own ablation, the same distance
+largest M≥5 gains (three-seed ensembles −.12/−.17/−.19 vs mix; single seeds −.14/−.17/−.18,
+replicated) with lower bulk error (−.0008/−.0032/−.0047) but doubles the 1 s false-alarm rate.
+Averaging its posterior with the prior-only model removes that cost: size-matched, the six-model
+average mixgr + eqdgr against the six-model free + prior-only average mix + mixgr has bulk
+−.0033/−.0042/−.0047, M≥4 −.017/−.018/−.021 and M≥5 −.077/−.118/−.129 (3 and 5 s intervals
+exclude zero) at +1 false alarm per 10⁴ confined to 1 s. Its own ablation, the same distance
 mixing without equivariance (`mixdgr`), has the best bulk error of any single model
 (−.003/−.004/−.006 vs mix) and no tail gain (M≥5 +.065 at 1 s, otherwise n.s.): across both
 datasets, the prior factor and distance mixing move bulk error, and only the equivariant
@@ -254,7 +258,11 @@ at every deadline, −.0024 [−.0033,−.0015] / −.0042 [−.0052,−.0034] /
 negative in all nine seed × deadline cells, with the same large-event gains at 3 and 5 s
 (M≥5 −.043 [−.074,−.006] / −.090 [−.137,−.040]; M≥6 −.28 [−.40,−.15] / −.39 [−.57,−.23]) and
 an equal tail at 1 s; the prior factor alone is neutral on every axis. The mean action gives
-the same picture (5 s: bulk −.0055, M≥5 −.071, M≥6 −.32, CIs exclude zero). Across the three
+the same picture (5 s: bulk −.0055, M≥5 −.071, M≥6 −.32, CIs exclude zero). The size-matched
+comparison of §5.4 repeats here: the six-model average of the prior-only and distance-marginalized
+heads beats the six-model free + prior-only average on bulk at every deadline (−.0033 / −.0040 /
+−.0049) and on M≥5 and M≥6 at 3 and 5 s (−.061 / −.088 and −.25 / −.33), all intervals excluding
+zero, with no false-alarm cost. Across the three
 catalogues the distance-marginalized form is therefore the most
 portable member of the family: on INSTANCE it has the largest M≥5 gains with lower bulk
 error (and a higher 1 s false-alarm rate), on GEOFON it is the only arm that improves M≥7,

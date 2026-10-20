@@ -55,6 +55,17 @@ M≥5 event-MAE follows the record-level numbers (eqdgr −.009 / **−.047 [−
   median action — INSTANCE bulk −.005 / M≥5 −.19; GEOFON bulk +.02 / M≥7 −.12; Chile bulk
   −.006 / M≥6 −.39. Table: `results/cross_dataset_table.md`.
 
+**Size-matched average on Chile (20:15 UTC, `chile_eval_combo6.json`).** As on INSTANCE
+(16:45 entry), the structured six-model average mixgr×3 + eqdgr×3 against the free + prior-only
+six-model average mix×3 + mixgr×3, median action: bulk **−.0033 [−.0038,−.0030] / −.0040
+[−.0047,−.0034] / −.0049 [−.0059,−.0042]**; M≥5 −.013 [−.029,+.004] / **−.061 [−.087,−.033] /
+−.088 [−.124,−.050]**; M≥6 −.011 / **−.252 [−.312,−.177] / −.333 [−.422,−.242]**. Under the
+mean action the same cells are significant (5 s: bulk −.0046, M≥5 −.067, M≥6 −.246). So on
+Chile the structured average dominates the matched free average on both axes at every deadline
+(1 s tail equal), without the 1 s false-alarm cost seen on INSTANCE; the gain is not an
+ensemble-size effect. `eqdgr` alone against the six-model free average: bulk −.0015 / −.0033 /
+−.0045 (CIs exclude zero), tail as above.
+
 ## 2026-10-20 16:45 UTC — INSTANCE: the distance-marginalized equivariant head as a three-seed ensemble
 
 eqdgr (3 seeds) − mix (3 seeds), median action: bulk −.0008 [−.0026,+.0005] / **−.0032
