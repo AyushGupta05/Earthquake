@@ -77,6 +77,10 @@ def main():
     ap.add_argument('--ref', default=None)
     ap.add_argument('--reps', type=int, default=1000)
     ap.add_argument('--out', default=None)
+    ap.add_argument('--station-subset', default=None, choices=['held', 'seen'],
+                    help="restrict to records at stations withheld from (held) or present in (seen) "
+                         "training, using the 'held_station' arrays saved by a --hold-stations arm")
+    ap.add_argument('--station-arm', default=None, help='arm whose held_station arrays define the subset')
     args = ap.parse_args()
     meta = load_meta()
     y, ev, cl = meta['mag'], meta['event'], meta['cluster']
@@ -87,6 +91,19 @@ def main():
         dec[a], pmf[a], files = load_arm(a, len(y), root)
         print(a, files, flush=True)
     have = np.all([np.isfinite(d[:, :, 0]).all(1) for d in dec.values()], 0)
+    if args.station_subset:
+        held = np.zeros(len(y), bool)
+        src = root / (args.station_arm or arms[0].split('+')[0])
+        files = sorted(src.glob('fold*.npz'))
+        if not files:
+            raise SystemExit(f'no fold files in {src}')
+        for f in files:
+            z = np.load(f)
+            if 'held_station' not in z:
+                raise SystemExit(f'{f} has no held_station array; use --station-arm with a --hold-stations arm')
+            held[z['rows']] = z['held_station']
+        have &= held if args.station_subset == 'held' else ~held
+        print(f'station subset {args.station_subset}: {int(have.sum())} records', flush=True)
     y_, ev_, cl_ = y[have], ev[have], cl[have]
     print('records', int(have.sum()), 'events', len(np.unique(ev_)), f'M>={THR[0]:g} events', len(np.unique(ev_[y_ >= THR[0]])),
           f'M>={THR[2]:g} events', len(np.unique(ev_[y_ >= THR[2]])), flush=True)
