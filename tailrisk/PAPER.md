@@ -194,7 +194,11 @@ Equivariance on top of it buys the tail (M≥4 better in 35/45, M≥5 in 30/45) 
 costs +.005 bulk MAE at 1 s, because a smooth likelihood cannot represent the M2.0
 selection cliff. Separate M_L/M_w slopes do not help. The distance-aware variant gives the
 largest M≥5 gains (−.14/−.17/−.18 vs mix, replicated over three seeds) but doubles the 1 s
-false-alarm rate; it is a trade-off, not a replacement.
+false-alarm rate; it is a trade-off, not a replacement. Its own ablation, the same distance
+mixing without equivariance (`mixdgr`), has the best bulk error of any single model
+(−.003/−.004/−.006 vs mix) and no tail gain (M≥5 +.065 at 1 s, otherwise n.s.): across both
+datasets, the prior factor and distance mixing move bulk error, and only the equivariant
+likelihood moves the high-magnitude tail.
 
 ### 5.5 Robustness
 

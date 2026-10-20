@@ -4,6 +4,20 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-20 08:30 UTC — distance-marginalized free mixture on INSTANCE: best bulk of any arm, no tail gain
+
+`mixdgr_nll` (free distance-marginalized mixture × GR prior, distance a training label only,
+seed 1) − mix_nll, median action: bulk **−.0031 [−.0043,−.0008] / −.0042 [−.0051,−.0026] /
+−.0061 [−.0071,−.0045]** (absolute .3244 / .2661 / .2320, the lowest of any single model);
+M≥4 +.006 / +.001 / −.013 (all n.s.); M≥5 **+.065 [+.014,+.125]** / +.010 / −.029 (n.s.);
+false-M4 equal. For comparison, eqdgr (equivariant, same distance mixing) has M≥5 −.139 /
+−.173 / −.184 and eqgr −.032 / −.115 / −.141.
+
+Across both datasets the attribution is now consistent: **the GR prior factor and distance
+marginalization improve bulk error; only the equivariant likelihood improves the
+high-magnitude tail** (plainly on INSTANCE, per distance on GEOFON). Distance information
+without the equivariant structure does not extrapolate to large events.
+
 ## 2026-10-20 07:20 UTC — capacity: a 2.2×-larger free mixture does not close the gap
 
 `mix_nll_w15` and `eqgr_nll_w15` (trunk width ×1.5, 1.47 M parameters vs 0.66 M, seed 1).
