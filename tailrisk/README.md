@@ -113,11 +113,14 @@ FINDINGS.md records which arms were pre-specified (eq, eqgr), which were ablatio
 
 **Second dataset, negative for equivariance (19 Oct 23:40 UTC).** On a GEOFON regional subset
 (31k records, 2,212 events, 276 M≥6, labels mostly mb, mostly 20 Hz broadband at 300–2,000 km),
-eqgr is *worse* than the free mixture (bulk +.013–.015, M≥6 +.04–.06), while the GR prior
-factor alone is neutral-to-better. The equivariant response appears to hurt where the short
-P-window amplitude is noise-dominated. Variants (κ allowed to 0, distance-aware, two-scale) are
-running; see FINDINGS.md. Read the equivariance result as established for local, high-SNR
-networks like INSTANCE, not as universal.
+eqgr is *worse* than the free mixture (three-seed ensembles: bulk +.008–.010, M≥6 +.04–.05),
+while the GR prior factor alone is neutral-to-better. Allowing κ → 0 or using scale-specific
+slopes does not help. Conditioning the equivariant likelihood on an explicit distance variable
+and marginalizing it (`eqdgr`) recovers the largest events (M≥7 −.09 to −.12, three seeds,
+CIs exclude zero) at +.02 bulk, and the same distance mixing without equivariance (`mixdgr`)
+gains nothing. So: the plain equivariant head is the right prior for local networks like
+INSTANCE; on far-regional data the amplitude law must be conditioned on distance, and there it
+buys only the largest events. Details in FINDINGS.md.
 
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for

@@ -72,9 +72,10 @@ only when the per-distance likelihood is equivariant. On GEOFON, then, the two s
 pieces are complementary in the other direction from INSTANCE: equivariance alone is too rigid
 (one additive attenuation offset for 300–2,000 km), distance mixing alone is too free, and the
 equivariant-per-distance head extrapolates to M≥7 (bias −1.45 vs −1.55 at 1 s; −.97 vs −1.11 at
-5 s). Both distance heads pay +.011–.024 bulk here. A likely defect in this run: the distance
-grid ends at 1,000 km and 43% of GEOFON records lie at 1,000–2,000 km, so their training
-distance label is clamped; re-run queued with the grid extended to 2,500 km.
+5 s). Both distance heads pay +.011–.024 bulk here. **Extending the distance grid to 2,500 km
+(01:07 UTC, `*_r34`, 3 seeds) changes nothing:** eqdgr_r34 ensemble − mix = bulk +.026 / +.020 /
++.018, M≥7 **−.095 / −.083 / −.117**; mixdgr_r34 − mix = M≥7 −.010 / +.034 / +.050. So the clamped
+distance label was not the cause; the result is structural and replicated across seeds and grids.
 
 **Consequence for the claim.** On INSTANCE (local records within a few hundred km, 100 Hz,
 mostly M_L) the plain equivariant head is the right prior and wins outright. On the GEOFON

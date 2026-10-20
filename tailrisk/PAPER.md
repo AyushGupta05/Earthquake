@@ -212,11 +212,19 @@ records within 2,000 km, 2,212 events, 276 M≥6 and 50 M≥7, labels mostly mb,
 alone is neutral on bulk and slightly better on M≥6 (−.008/−.009/−.004). The free mixture
 saturates on this data as well (upward response .34–.46 per decade vs .49–.55 downward on
 M≥6), and the equivariant head responds symmetrically with κ ≈ .57, yet it is less accurate.
-Our reading is that at 300–2,000 km and 20 Hz the 1–5 s P-wave RMS amplitude is often
-noise-dominated, and a head forced to respond to it (κ ≥ 0.3) cannot learn to discount it;
-variants that allow κ → 0, add a distance head, or use scale-specific slopes are being tested
-⟨pending⟩. Until resolved, the equivariant component should be read as a local-network,
-high-SNR result; the GR prior factor is the portable part.
+Allowing κ → 0 does not help (three seeds), nor do scale-specific slopes, so the rigidity is in
+the single additive attenuation offset κ(s)·A + g(s): at 300–2,000 km the attenuation term
+spans several magnitude units and must be inferred from the waveform shape. Making the
+equivariant likelihood conditional on an explicit distance variable and marginalizing it
+(`eqdgr`, distance used only as a training label) recovers the largest events: M≥7 MAE
+−.094/−.089/−.123 (three-seed ensembles, CIs exclude zero; M≥7 bias −1.45 vs −1.55 at 1 s) at a
+bulk cost of +.016–.024. The same distance marginalization without equivariance (`mixdgr`)
+gains nothing at M≥7 (−.014/+.015/+.020), so on this data equivariance is necessary but not
+sufficient. The GR prior factor alone is neutral on bulk and slightly better at M≥6 (−.003).
+The honest summary across datasets: the amplitude-equivariant structure is the right prior
+where a single amplitude law holds across the population (local networks like INSTANCE),
+must be conditioned on distance where attenuation dominates (far-regional data like GEOFON),
+and in the latter regime it improves only the largest events while costing bulk error.
 
 ### 5.6 What does not improve
 
