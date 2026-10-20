@@ -19,6 +19,25 @@ RMS(1 s after)/RMS(1 s before) ≥ 3 and 5 s of data remain. 505,666 of 1,049,29
 (5th / 50th / 95th pct), **67 M≥5 and 12 M≥6 events** (max M8.05) balanced over 5 folds.
 Arms queued: mix / eqgr / mixgr / eqdgr × 3 seeds; tails reported at M≥5, 5.5, 6.
 
+**Seed 1 (16:30 UTC), Δ = arm − mix_nll, median action** (absolute mix: bulk .208 / .164 / .148;
+M≥5 .857 / .591 / .556; M≥6 1.260 / .861 / .858):
+
+| | bulk 1 / 3 / 5 s | M≥5 1 / 3 / 5 s | M≥6 (point) 1 / 3 / 5 s |
+|---|---|---|---|
+| eqgr | **+.0017 / +.0014** / +.0002 | **+.045** / −.037 / **−.076 [−.120,−.026]** | +.110 / **−.260 / −.366** |
+| mixgr | +.0003 / +.0004 / +.0003 | +.004 / −.010 / −.010 | −.001 / −.066 / −.066 |
+| **eqdgr** | **−.0025 / −.0042 / −.0059** (all CIs exclude zero) | −.012 / −.034 / **−.086 [−.129,−.037]** | −.002 / **−.261 / −.374** |
+
+* Chile sits between the other two regimes: the plain equivariant head wins the tail at 3 and
+  5 s (the twelve M≥6 events: −.26 / −.37 magnitude units of error) with equal bulk at 5 s, but
+  loses at 1 s on both axes.
+* **The distance-marginalized equivariant head dominates the free mixture on both axes at every
+  deadline here**: lower bulk error everywhere (−1.2% to −4%), equal tail at 1 s and the same
+  large-event gains as eqgr at 3–5 s. With INSTANCE (largest M≥5 gains, bulk −.0004 / −.0030 /
+  −.0049) and GEOFON (only arm with M≥7 gains), `eqdgr` is the most portable single model; its
+  one recorded cost is the higher 1 s false-M4 rate on INSTANCE (12 vs 6 per 10⁴).
+* M≥6 intervals are not reported: with 12 events, bootstrap replicates can contain none.
+
 ## 2026-10-20 08:30 UTC — distance-marginalized free mixture on INSTANCE: best bulk of any arm, no tail gain
 
 `mixdgr_nll` (free distance-marginalized mixture × GR prior, distance a training label only,

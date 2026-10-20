@@ -50,9 +50,10 @@ class Boot:
 
     def stats(self, err):
         out = {}
-        for k, m in self.masks.items():
-            S = np.bincount(self.cl[m], err[m], self.nc); N = np.bincount(self.cl[m], minlength=self.nc).astype(float)
-            out[k] = (self.w @ S) / (self.w @ N)
+        with np.errstate(divide='ignore', invalid='ignore'):
+            for k, m in self.masks.items():
+                S = np.bincount(self.cl[m], err[m], self.nc); N = np.bincount(self.cl[m], minlength=self.nc).astype(float)
+                out[k] = (self.w @ S) / (self.w @ N)
         ev_mean = np.bincount(self.ev_i, err) / self.cnt
         E = np.bincount(self.cl[self.first6], ev_mean[self.ev_i[self.first6]], self.nc)
         C = np.bincount(self.cl[self.first6], minlength=self.nc).astype(float)
@@ -61,8 +62,13 @@ class Boot:
 
     def diff(self, ea, eb):
         a, b = self.stats(ea), self.stats(eb)
-        return {k: {'mean': float((a[k] - b[k]).mean()), 'lo': float(np.quantile(a[k] - b[k], .025)),
-                    'hi': float(np.quantile(a[k] - b[k], .975))} for k in a}
+        out = {}
+        for k in a:
+            d = a[k] - b[k]
+            d = d[np.isfinite(d)]                    # replicates with no record in a sparse tail are dropped
+            out[k] = ({'mean': float(d.mean()), 'lo': float(np.quantile(d, .025)), 'hi': float(np.quantile(d, .975)),
+                       'n_reps': int(len(d))} if len(d) >= 50 else None)
+        return out
 
 
 def main():
@@ -120,7 +126,8 @@ def main():
         for a in rep['vs_ref']:
             for act in ('median', 'mean'):
                 c = rep['vs_ref'][a][f'{d}s'][act]
-                print(f'  {a} - {args.ref} ({act}): ' + ' | '.join(f'{k} {v["mean"]:+.4f} [{v["lo"]:+.4f},{v["hi"]:+.4f}]' for k, v in c.items()))
+                print(f'  {a} - {args.ref} ({act}): ' + ' | '.join(
+                    f'{k} ' + ('n/a' if v is None else f'{v["mean"]:+.4f} [{v["lo"]:+.4f},{v["hi"]:+.4f}]') for k, v in c.items()))
 
 
 if __name__ == '__main__':
