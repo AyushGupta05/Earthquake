@@ -14,7 +14,12 @@ prior-only model (6 members, not size-matched) keeps the tail (M≥4 −.022 / �
 −.083 / −.132 / −.148, all CIs exclude zero), lowers bulk further (−.0055 / −.0067 / −.0076) and
 removes the false-alarm cost (+1 / +0 / −0 per 10⁴). So the distance-marginalized form's
 false-alarm cost on INSTANCE is a property of its sharper tail probabilities and is
-controllable by model averaging; a size-matched check follows.
+controllable by model averaging. **Size-matched (6 vs 6: mixgr+eqdgr against mix+mixgr):**
+bulk **−.0033 [−.0038,−.0023] / −.0042 [−.0047,−.0036] / −.0047 [−.0053,−.0043]**; M≥4 −.017
+[−.042,+.003] / **−.018 [−.035,−.004] / −.021 [−.039,−.004]**; M≥5 −.077 [−.174,+.007] / **−.118
+[−.231,−.033] / −.129 [−.253,−.041]**; false-M4 +1 [+1,+1] / +0 / +0 per 10⁴. The structured
+average beats the matched free + prior-only average on bulk at every deadline and on the
+tail at 3 and 5 s, with a one-per-10⁴ false-alarm increase confined to 1 s.
 
 ## 2026-10-20 14:35 UTC — third dataset built: single-station Northern Chile (TEAM-LM data), results pending
 
