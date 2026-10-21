@@ -249,6 +249,16 @@ for key, by_t in r['metrics'].items():
 pd.DataFrame(rows).set_index(['dataset', 'arm:rule'])
 """ % (path, label)))
             cells.append(md(f'![timeline {label}](figures/fusion_timeline_{label.lower()}_s1.png)'))
+    if (HERE / 'figures' / 'bias_by_magnitude_all.png').exists():
+        cells += [md("""
+## 12. Bias by magnitude bin on all three catalogues
+
+Mean signed error of the median action per 0.5-unit label bin, three-seed ensembles
+(`results/bias_by_magnitude.md`). The heads coincide below M5 and separate above it on INSTANCE
+and Chile; on GEOFON every head saturates.
+
+![bias by magnitude](figures/bias_by_magnitude_all.png)
+""")]
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))

@@ -120,6 +120,29 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 12:50 UTC — Calibration of the three-seed ensembles on INSTANCE: the distance-marginalized head has the best Brier score for P(M≥4) and P(M≥5) at 3 and 5 s and is the best-calibrated for P(M≥4); at 1 s it is slightly over-confident
+
+`calibration_check.py` on the three-seed ensembles (`results/calibration_ens3.json`; reliability
+diagram `figures/reliability_ens3.png`). Brier score (reliability / resolution components),
+mixture → plain equivariant → distance-marginalized:
+
+| | P(M≥4) | P(M≥5) |
+|---|---|---|
+| 1 s | .01068 → .01070 → .01083 (rel. .00001 / .00000 / .00008) | .00110 → .00110 → .00114 |
+| 3 s | .00911 → .00904 → **.00903** | .00095 → **.00091** → .00092 |
+| 5 s | .00857 → .00830 → **.00822** (res. .00870 / .00895 / .00903) | .00091 → .00083 → **.00082** |
+
+Reliability bins at 5 s: for P(M≥4) the mixture is under-confident in every mid bin (predicted
+.27 / .42 / .57 / .72 / .85 → observed .31 / .47 / .62 / .79 / .90), the plain head less so
+(.28 / .43 / .60 / .75 / .87) and the distance-marginalized head is on the diagonal (.26 / .42 /
+.57 / .73 / .85). For P(M≥5) the mixture under-predicts (.14 → .21, .27 → .36, .42 → .52), the
+plain head is close in the middle (.14 / .27 / .46) and the distance-marginalized head
+over-predicts (.14 → .09, .27 → .22, .42 → .37; top bin .97 → .77 for both structured heads).
+So the distance-marginalized head's higher false-M4 rate is the price of its sharper, on
+average correct, M≥4 probabilities, and its M≥5 probabilities are somewhat too confident; the
+mixture's probabilities are too low throughout, which is the same under-estimation seen in the
+point estimates.
+
 ## 2026-10-21 12:50 UTC — Event magnitude versus time since the first P arrival: with the naive rule the free mixture's M≥5 estimate never improves as stations arrive; with the prior divided out the equivariant heads reach .3 within 4 s of the first P on INSTANCE and Chile
 
 `fusion_timeline.py`: at wall-clock time T after an event's first P, each station contributes its

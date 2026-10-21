@@ -159,6 +159,12 @@ stations the full-data pattern repeats (ensembles: M≥5 −.087 / −.127, M≥
 with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
 portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
 
+**Calibration (three-seed ensembles, INSTANCE).** The distance-marginalized head has the best
+Brier score for P(M≥4) and P(M≥5) at 3 and 5 s (.00822 / .00082 at 5 s vs .00857 / .00091 for the
+mixture) and lies on the reliability diagonal for P(M≥4), where the mixture is under-confident
+throughout; at 1 s it is slightly over-confident, and both structured heads over-predict P(M≥5) in
+the top bin ([figures/reliability_ens3.png](figures/reliability_ens3.png), `results/calibration_ens3.json`).
+
 **What to deploy.** A single station: the distance-marginalized head (`eqdgr`), or the plain
 head (`eqgr`) on a dense local network with one magnitude scale. A network: never multiply raw
 posteriors; divide each by the training-label prior before multiplying (or use `eqdgr`'s own
