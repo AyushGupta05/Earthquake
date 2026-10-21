@@ -9,6 +9,11 @@ combined by rules that are wrong or heuristic:
 
     prod_i p(m|x_i)                                   'post_prod'   (prior counted k times)
     (1/k) sum_i p(m|x_i)                              'post_mean'   (no sharpening)
+    prod_i [p(m|x_i)/e^phi(m)] . e^(phi(m)+gamma (m-M_C)+)  'lik_prior_cal' (gamma: one tilt of the
+                                                       prior above M_C per held-out fold, chosen
+                                                       to minimize the other folds' fused
+                                                       all-event MAE at k = all; cross-fitted)
+    prod_i [p(m|x_i)/pi_hat(m)] . pi_hat(m) e^(gamma m)  'hist_adj_cal' (same calibrated tilt on pi_hat)
     prod_i p(m|x_i)/pi_hat(m) . pi_hat(m)             'hist_adj'    (pi_hat = training-label
                                                        histogram of the fold, smoothed with a
                                                        0.25-unit kernel and floored at 1e-5:
@@ -34,7 +39,10 @@ import numpy as np
 from common import DURATIONS, PMF_CENTERS, WORK, load_meta
 from evaluate import wmed_from_pmf
 
-RULES = ('post_prod', 'post_mean', 'hist_adj', 'lik_prior')
+RULES = ('post_prod', 'post_mean', 'hist_adj', 'hist_adj_cal', 'lik_prior', 'lik_prior_cal')
+GAMMAS = np.arange(-3.0, 3.01, 0.25)
+M_C = 3.5                                   # the tilt acts only where the prior factor is GR-linear
+HINGE = np.maximum(PMF_CENTERS - M_C, 0.0).astype(np.float32)
 
 
 def extend_prior(phi):
@@ -82,7 +90,13 @@ def train_hist_logprior(mag, fold, nf, sigma=0.25, floor=1e-5):
     return out
 
 
-def combine(lp_rows, rule, k, phi_ev, pihat_ev):
+def normalize(S):
+    S = S - S.max(1, keepdims=True)
+    p = np.exp(S)
+    return p / p.sum(1, keepdims=True)
+
+
+def combine(lp_rows, rule, k, phi_ev, pihat_ev, gamma_ev=None):
     """lp_rows: (n_ev, k, K) float32 log-posteriors of the k stations. Returns normalized pmf."""
     if rule == 'post_mean':
         S = np.logaddexp.reduce(lp_rows, axis=1) - np.log(k)
@@ -90,11 +104,31 @@ def combine(lp_rows, rule, k, phi_ev, pihat_ev):
         S = lp_rows.sum(1)
         if rule == 'lik_prior':
             S = S - (k - 1) * phi_ev
+        elif rule == 'lik_prior_cal':
+            S = S - (k - 1) * (phi_ev + gamma_ev['phi'][:, None] * HINGE[None, :])
         elif rule == 'hist_adj':
             S = S - (k - 1) * pihat_ev
-    S = S - S.max(1, keepdims=True)
-    p = np.exp(S)
-    return p / p.sum(1, keepdims=True)
+        elif rule == 'hist_adj_cal':
+            S = S - (k - 1) * (pihat_ev + gamma_ev['hist'][:, None] * HINGE[None, :])
+    return normalize(S)
+
+
+def calibrate_gamma(S_all, kv, phi_ev, m_ev, ev_fold, mask):
+    """Cross-fitted tilt of the prior above M_C: for each held-out fold f, the gamma that minimizes
+    the fused event MAE (median action) over the masked events of the *other* folds at k = all.
+    Returns gamma per event and the chosen value per fold."""
+    errs = np.zeros((len(GAMMAS), len(m_ev)), np.float32)
+    for gi, g in enumerate(GAMMAS):
+        p = normalize(S_all - (kv - 1) * (phi_ev + g * HINGE[None, :]))
+        errs[gi] = np.abs(wmed_from_pmf(p, np.array([1.0]))[:, 0] - m_ev)
+    gamma_ev = np.zeros(len(m_ev), np.float32)
+    chosen = {}
+    for f in np.unique(ev_fold):
+        sel = mask & (ev_fold != f)
+        gi = int(np.argmin(errs[:, sel].mean(1))) if sel.any() else int(np.argmin(np.abs(GAMMAS)))
+        chosen[int(f)] = float(GAMMAS[gi])
+        gamma_ev[ev_fold == f] = GAMMAS[gi]
+    return gamma_ev, chosen
 
 
 def decide(p):
@@ -134,6 +168,7 @@ def main():
     ap.add_argument('--out', required=True)
     ap.add_argument('--hist-sigma', type=float, default=0.25, help='kernel width (magnitude units) of the smoothed training-label prior')
     ap.add_argument('--hist-floor', type=float, default=1e-5, help='floor of the smoothed training-label prior (fraction of total)')
+    ap.add_argument('--cal-on', default='all', choices=['all', 'tail'], help='events whose fused MAE selects the calibrated tilt (cross-fitted over folds)')
     args = ap.parse_args()
     thr = [float(t) for t in args.thr.split(',')]
     arms = args.arms.split(',')
@@ -159,8 +194,25 @@ def main():
     ev_cl = cl[order[starts]]
     print(f'{len(ev_ids)} events with usable records; sizes: median {np.median(sizes):.0f}, '
           f'>=4: {(sizes >= 4).sum()}, >=8: {(sizes >= 8).sum()}', flush=True)
-    rep = {'arms': arms, 'thr': thr, 'hist_sigma': args.hist_sigma, 'hist_floor': args.hist_floor, 'ks': {}, 'metrics': {}, 'vs_ref': {}}
+    rep = {'arms': arms, 'thr': thr, 'hist_sigma': args.hist_sigma, 'hist_floor': args.hist_floor, 'ks': {}, 'metrics': {}, 'vs_ref': {}, 'gamma': {}}
     ks = [k for k in args.ks.split(',')]
+    # calibrated tilt per arm and deadline (cross-fitted over folds at k = all, on M>=thr[0] events)
+    gamma = {}
+    cal_mask = np.ones(len(ev_mag), bool) if args.cal_on == 'all' else ev_mag >= thr[0] - 1e-6
+    pihat_all = np.stack([pihat[f] for f in ev_fold])
+    kv_all = sizes[:, None].astype(np.float32)
+    for a in arms:
+        bases = {'hist': pihat_all}
+        if phi[a]:
+            bases['phi'] = np.stack([phi[a][f] for f in ev_fold])
+        for d_i, d in enumerate(DURATIONS):
+            x = lp[a][order, d_i].astype(np.float32)
+            S_all = np.add.reduceat(x, starts, axis=0)
+            gamma[a, d] = {}
+            for base, prior_all in bases.items():
+                gamma[a, d][base], chosen = calibrate_gamma(S_all, kv_all, prior_all, ev_mag, ev_fold, cal_mask)
+                rep['gamma'].setdefault(a, {}).setdefault(f'{d}s', {})[base] = chosen
+                print(f'{a} {d}s calibrated tilt on {base} per held-out fold: {chosen}', flush=True)
     for ks_ in ks:
         kk = None if ks_ == 'all' else int(ks_)
         sel = sizes >= (kk or 1)
@@ -178,12 +230,13 @@ def main():
             for a in arms:
                 phi_ev = np.stack([phi[a][f] for f in ev_fold[idx_ev]]) if phi[a] else None
                 pihat_ev = np.stack([pihat[f] for f in ev_fold[idx_ev]])
+                gamma_ev = {b: g[idx_ev] for b, g in gamma[a, d].items()}
                 for rule in RULES:
-                    if rule == 'lik_prior' and phi_ev is None:
+                    if rule in ('lik_prior', 'lik_prior_cal') and phi_ev is None:
                         continue
                     if kk is not None:
                         lpr = lp[a][rows, d_i].astype(np.float32)                   # (n_ev, k, K)
-                        p = combine(lpr, rule, kk, phi_ev, pihat_ev)
+                        p = combine(lpr, rule, kk, phi_ev, pihat_ev, gamma_ev)
                     else:   # all stations of each event, ragged: reduce over sorted rows
                         x = lp[a][order, d_i].astype(np.float32)
                         if rule == 'post_mean':
@@ -193,10 +246,13 @@ def main():
                             kv = sizes[idx_ev][:, None].astype(np.float32)
                             if rule == 'lik_prior':
                                 S = S - (kv - 1) * phi_ev
+                            elif rule == 'lik_prior_cal':
+                                S = S - (kv - 1) * (phi_ev + gamma_ev['phi'][:, None] * HINGE[None, :])
                             elif rule == 'hist_adj':
                                 S = S - (kv - 1) * pihat_ev
-                        S = S - S.max(1, keepdims=True)
-                        p = np.exp(S); p /= p.sum(1, keepdims=True)
+                            elif rule == 'hist_adj_cal':
+                                S = S - (kv - 1) * (pihat_ev + gamma_ev['hist'][:, None] * HINGE[None, :])
+                        p = normalize(S)
                     for act, dec in decide(p).items():
                         err = np.abs(dec - m_ev)
                         key = f'{a}:{rule}:{act}'
