@@ -1637,6 +1637,130 @@ Source: `results/chile_eval_hs_seen.json`; 339,996 records; Δ = arm − `mix_nl
 | eqgr_nll_hs | +0.000 [-0.000, +0.001] | **-0.102 [-0.143, -0.060]** | **-0.412 [-0.574, -0.269]** | **-0.112 [-0.154, -0.070]** |
 | eqdgr_nll_hs | **-0.008 [-0.008, -0.007]** | **-0.112 [-0.154, -0.072]** | **-0.379 [-0.607, -0.195]** | **-0.115 [-0.163, -0.070]** |
 
+## Northern Chile, held stations, three-seed ensembles (records at held stations)
+
+Source: `results/chile_eval_hs_held_ens3.json`; 165,670 records; Δ = arm − `mix_nll_hs (3 models)`.
+
+
+### Northern Chile, held stations, three-seed ensembles (records at held stations) — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll_hs (3 models) | 0.250 | 0.184 | 1.013 | 0.903 | 1.405 | 1.020 | 1.463 | -1.405 | 0.248 | 2.610 | 0.188 |
+| eqdgr_nll_hs (3 models) | 0.249 | 0.183 | 0.993 | 0.965 | 1.478 | 1.097 | 1.526 | -1.470 | 0.247 | 2.592 | 0.186 |
+
+### Northern Chile, held stations, three-seed ensembles (records at held stations) — 1 s, paired differences vs `mix_nll_hs (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | -0.001 [-0.005, +0.003] | +0.066 [-0.009, +0.145] | +0.079 [-0.142, +0.332] | **+0.078 [+0.003, +0.149]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | -0.001 [-0.005, +0.003] | **+0.099 [+0.026, +0.176]** | +0.177 [-0.029, +0.391] | **+0.109 [+0.040, +0.182]** |
+
+### Northern Chile, held stations, three-seed ensembles (records at held stations) — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll_hs (3 models) | 0.244 | 0.178 | 0.958 | 0.711 | 1.027 | 0.829 | 1.061 | -1.027 | 0.239 | 2.768 | 0.188 |
+| eqdgr_nll_hs (3 models) | 0.234 | 0.172 | 0.927 | 0.714 | 0.898 | 0.850 | 0.937 | -0.806 | 0.230 | 2.579 | 0.176 |
+
+### Northern Chile, held stations, three-seed ensembles (records at held stations) — 3 s, paired differences vs `mix_nll_hs (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.009 [-0.014, -0.005]** | +0.010 [-0.083, +0.095] | -0.102 [-0.406, +0.295] | +0.026 [-0.061, +0.103] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.008 [-0.012, -0.004]** | +0.044 [-0.050, +0.136] | -0.034 [-0.330, +0.346] | +0.063 [-0.029, +0.148] |
+
+### Northern Chile, held stations, three-seed ensembles (records at held stations) — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll_hs (3 models) | 0.240 | 0.181 | 0.913 | 0.682 | 1.057 | 0.807 | 1.107 | -1.057 | 0.235 | 2.846 | 0.187 |
+| eqdgr_nll_hs (3 models) | 0.233 | 0.174 | 0.902 | 0.632 | 0.789 | 0.766 | 0.751 | -0.734 | 0.228 | 2.606 | 0.175 |
+
+### Northern Chile, held stations, three-seed ensembles (records at held stations) — 5 s, paired differences vs `mix_nll_hs (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.007 [-0.013, -0.001]** | -0.045 [-0.129, +0.040] | -0.263 [-0.530, +0.026] | -0.037 [-0.137, +0.053] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.006 [-0.012, -0.001]** | -0.007 [-0.104, +0.092] | -0.180 [-0.489, +0.159] | +0.001 [-0.108, +0.103] |
+
+## Northern Chile, held stations, three-seed ensembles (records at seen stations)
+
+Source: `results/chile_eval_hs_seen_ens3.json`; 339,996 records; Δ = arm − `mix_nll_hs (3 models)`.
+
+
+### Northern Chile, held stations, three-seed ensembles (records at seen stations) — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll_hs (3 models) | 0.205 | 0.151 | 0.852 | 0.848 | 1.275 | 0.853 | 1.310 | -1.275 | 0.208 | 2.337 | 0.152 |
+| eqdgr_nll_hs (3 models) | 0.203 | 0.149 | 0.849 | 0.841 | 1.254 | 0.832 | 1.245 | -1.227 | 0.205 | 2.325 | 0.150 |
+
+### Northern Chile, held stations, three-seed ensembles (records at seen stations) — 1 s, paired differences vs `mix_nll_hs (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.002 [-0.004, -0.000]** | -0.008 [-0.050, +0.027] | -0.024 [-0.191, +0.121] | -0.022 [-0.065, +0.015] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.002 [-0.004, -0.000]** | +0.010 [-0.031, +0.044] | +0.018 [-0.152, +0.172] | +0.000 [-0.044, +0.035] |
+
+### Northern Chile, held stations, three-seed ensembles (records at seen stations) — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll_hs (3 models) | 0.164 | 0.116 | 0.739 | 0.618 | 0.921 | 0.618 | 0.916 | -0.921 | 0.166 | 2.121 | 0.123 |
+| eqdgr_nll_hs (3 models) | 0.160 | 0.111 | 0.733 | 0.529 | 0.518 | 0.523 | 0.515 | -0.333 | 0.163 | 2.070 | 0.120 |
+
+### Northern Chile, held stations, three-seed ensembles (records at seen stations) — 3 s, paired differences vs `mix_nll_hs (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.004 [-0.005, -0.003]** | **-0.087 [-0.123, -0.044]** | **-0.401 [-0.538, -0.292]** | **-0.093 [-0.128, -0.052]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.003 [-0.004, -0.002]** | **-0.066 [-0.100, -0.022]** | **-0.337 [-0.466, -0.228]** | **-0.070 [-0.107, -0.026]** |
+
+### Northern Chile, held stations, three-seed ensembles (records at seen stations) — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll_hs (3 models) | 0.149 | 0.102 | 0.695 | 0.588 | 0.901 | 0.581 | 0.878 | -0.901 | 0.150 | 2.028 | 0.113 |
+| eqdgr_nll_hs (3 models) | 0.142 | 0.095 | 0.686 | 0.460 | 0.419 | 0.445 | 0.397 | -0.227 | 0.144 | 1.950 | 0.107 |
+
+### Northern Chile, held stations, three-seed ensembles (records at seen stations) — 5 s, paired differences vs `mix_nll_hs (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.006 [-0.007, -0.005]** | **-0.127 [-0.173, -0.078]** | **-0.477 [-0.655, -0.352]** | **-0.135 [-0.181, -0.088]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll_hs (3 models) | **-0.006 [-0.007, -0.005]** | **-0.107 [-0.153, -0.055]** | **-0.425 [-0.611, -0.280]** | **-0.112 [-0.160, -0.060]** |
+
 
 # Multi-station fusion (instance)
 

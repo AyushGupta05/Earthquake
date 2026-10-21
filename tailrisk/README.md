@@ -151,9 +151,11 @@ every axis. Size-matched: the six-model average mixgr + eqdgr beats the six-mode
 average on bulk at every deadline (−.0033 / −.0040 / −.0049) and on M≥5 / M≥6 at 3–5 s
 (−.061 / −.088; −.25 / −.33), all CIs excluding zero. Held-station test (7 of the 22 stations
 withheld from training, seed 1): on records at unseen stations eqdgr's bulk gain is at least as
-large (−.004 / −.013 / −.010, CIs exclude zero) and its 5 s large-event gain has the same sign
-(M≥6 −.23) but, with 10 M≥6 events there, is not significant; on seen stations the full-data
-pattern repeats (M≥5 −.094 / −.126 at 3 / 5 s). **Which model to use:** on a dense local network
+large (−.004 / −.013 / −.010, CIs exclude zero; three-seed ensembles −.001 / −.009 / −.007) and
+its 5 s large-event gain is negative in all three seeds (M≥6 −.23 / −.29 / −.23, two intervals
+excluding zero; ensemble −.26 [−.53,+.03] with 10 M≥6 events) but absent at 1 s; on seen
+stations the full-data pattern repeats (ensembles: M≥5 −.087 / −.127, M≥6 −.40 / −.48 at
+3 / 5 s). **Which model to use:** on a dense local network
 with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
 portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
 

@@ -287,9 +287,11 @@ heads beats the six-model free + prior-only average on bulk at every deadline (�
 −.0049) and on M≥5 and M≥6 at 3 and 5 s (−.061 / −.088 and −.25 / −.33), all intervals excluding
 zero, with no false-alarm cost. With 7 of the 22 stations withheld from training (seed 1),
 records at unseen stations show a bulk gain at least as large as on seen stations (−.0041
-[−.0074,−.0006] / −.0131 [−.0154,−.0102] / −.0099 [−.0132,−.0069]) and a same-signed 5 s
-large-event gain (M≥6 −.23) that is not significant with the 10 M≥6 events recorded there; on
-seen stations the full-data pattern repeats (M≥5 −.094 / −.126 at 3 / 5 s). Across the three
+[−.0074,−.0006] / −.0131 [−.0154,−.0102] / −.0099 [−.0132,−.0069]; three-seed ensembles −.001 /
+−.009 / −.007) and a 5 s large-event gain that is negative in all three seeds (M≥6 −.23 / −.29 /
+−.23, two intervals excluding zero; ensemble −.26 [−.53,+.03] with 10 M≥6 events) but absent at
+1 s; on seen stations the full-data pattern repeats (ensembles: M≥5 −.087 / −.127, M≥6 −.40 /
+−.48 at 3 / 5 s). Across the three
 catalogues the distance-marginalized form is therefore the most
 portable member of the family: on INSTANCE it has the largest M≥5 gains with lower bulk
 error (and a higher 1 s false-alarm rate), on GEOFON it is the only arm that improves M≥7,

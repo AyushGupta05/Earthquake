@@ -120,6 +120,33 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 10:15 UTC — Chile held-station test, three seeds: bulk gain on unseen stations holds in every seed; the M≥6 gain at 5 s is negative in all three (two with CIs excluding zero) and the ensemble's interval just includes zero; nothing at 1 s
+
+Seeds 2 and 3 of `eqdgr_nll_hs` and `mix_nll_hs` on Chile (same 7 of 22 stations withheld);
+per-seed Δ = eqdgr_hs − mix_hs of the same seed, and three-seed ensembles
+(`chile_eval_hs_{held,seen}_{s2,s3,ens3}.json`), median action, 1 / 3 / 5 s.
+
+**Held stations (165,670 records; 58 M≥5, 10 M≥6 events).**
+
+| | bulk | M≥5 MAE | M≥6 MAE |
+|---|---|---|---|
+| seed 1 | **−.004 / −.013 / −.010** | +.047 / +.011 / −.059 | +.052 / −.092 / −.233 |
+| seed 2 | −.003 / −.007 / −.003 | +.064 / −.011 / −.041 | +.047 / **−.295 [−.497,−.045] / −.294 [−.582,−.008]** |
+| seed 3 | **+.004** / **−.007 / −.008** | **+.091** / +.047 / −.012 | +.163 / +.043 / **−.225 [−.439,−.014]** |
+| ensembles (3 v 3) | −.001 / **−.009 [−.014,−.005] / −.007 [−.013,−.001]** | +.066 / +.010 / −.045 | +.079 / −.102 / −.263 [−.530,+.026] |
+
+**Seen stations (339,996 records), ensembles:** bulk **−.002 / −.004 / −.006**, M≥5 −.008 /
+**−.087 / −.127**, M≥6 −.024 / **−.401 [−.538,−.292] / −.477 [−.655,−.352]** — the full-data
+pattern, as in seed 1.
+
+On the 7 unseen Chilean stations the bulk gain of the distance-marginalized head holds at 3 and
+5 s in every seed and in the ensemble; its large-event gain at 5 s is negative in all three
+seeds (−.23 / −.29 / −.23) with two intervals excluding zero and the ensemble's just including
+it (10 M≥6 events); at 3 s the seeds disagree and at 1 s the head is slightly worse on M≥5
+(+.05 to +.09, one seed significant). The held-station tail evidence on Chile therefore
+stays "same sign, underpowered" at 5 s and inconclusive earlier, while the INSTANCE
+held-station test (09:05 entry) is where the tail claim is replicated with power.
+
 ## 2026-10-21 09:05 UTC — INSTANCE held-station test, three seeds: the distance-marginalized head's M≥5 gain on unseen stations replicates in every seed and in the ensemble
 
 Seeds 2 and 3 of `eqdgr_nll_hs` and `mix_nll_hs` (same 20% of stations withheld, rng 0);
