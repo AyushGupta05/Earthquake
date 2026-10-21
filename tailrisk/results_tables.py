@@ -99,9 +99,18 @@ def main():
           'Ensembles ("k models") average their members\' posteriors. Bold differences have a 95% '
           'cluster-bootstrap interval (1,000 replicates over aftershock sequences) excluding zero.')
     for spec in sys.argv[1:]:
+        if spec.startswith('--include='):
+            continue
         label, rest = spec.split('=', 1)
         path, tails = rest.split(':', 1)
         print(section(label, path, tails.split(',')))
+    for spec in sys.argv[1:]:
+        if spec.startswith('--include='):
+            path = spec.split('=', 1)[1]
+            print(f'\n\n# Multi-station fusion ({Path(path).stem.replace("multistation_summary_", "")})\n')
+            print(f'Source: `{path}` (from `multistation_summary.py`; event-level MAE, median action; '
+                  'k = nearest stations combined; per-seed values in brackets).')
+            print(Path(path).read_text())
 
 
 if __name__ == '__main__':

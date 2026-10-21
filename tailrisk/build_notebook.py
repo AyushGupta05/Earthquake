@@ -32,6 +32,8 @@ def main():
     ap.add_argument('--magnet', default=None, help='evaluate.py JSON with the MagNet-style control')
     ap.add_argument('--other', default=None,
                     help='label=path pairs of geofon_eval.py JSONs for other datasets, e.g. GEOFON=results/geofon_eval_ens3.json,Chile=results/chile_eval_ens3.json')
+    ap.add_argument('--multistation', default=None,
+                    help='label=path pairs of multistation.py JSONs, e.g. INSTANCE=results/multistation_instance_s1.json')
     ap.add_argument('--findings', default=str(HERE / 'FINDINGS.md'))
     args = ap.parse_args()
     cells = [
@@ -201,6 +203,31 @@ for arm, by_d in r.get('vs_ref', {}).items():
             rows.append({'dataset': %r, 'arm': arm + ' − ref', 'deadline': d, key: f"{v['mean']:+.4f} [{v['lo']:+.4f},{v['hi']:+.4f}]"})
 pd.DataFrame(rows).set_index(['dataset', 'deadline', 'arm']).sort_index()
 """ % (path, label, label)))
+    if args.multistation:
+        cells += [md("""
+## 10. Multi-station fusion
+
+Single-station posteriors of one event are combined over its k nearest stations (each with the
+same d seconds of P wave). For a factorized posterior p(m|x) ∝ L(m|x)·π(m) the Bayes combination
+is Π L_i · π with the prior counted once; a free posterior can only be multiplied (prior counted k
+times), averaged, or divided by the empirical training-label prior before multiplying. Event-level
+MAE of the top-tail events and of all events versus k, median action (figures in `figures/`).
+""")]
+        for item in args.multistation.split(','):
+            label, path = item.split('=', 1)
+            cells.append(code("""
+r = json.load(open(%r))
+top = f"M>={r['thr'][-1]:g}"
+rows = []
+for key, by_k in r['metrics'].items():
+    if not key.endswith(':median'):
+        continue
+    for k, by_d in by_k.items():
+        rows.append({'dataset': %r, 'arm:rule': key[:-7], 'k': k, **{f"{d} {sub}": round(v[sub], 3) for d, v in by_d.items() for sub in (top, 'all')}})
+df = pd.DataFrame(rows).set_index(['dataset', 'arm:rule', 'k']).sort_index()
+df.loc[(slice(None), slice(None), ['1', '4', 'all']), :]
+""" % (path, label)))
+            cells.append(md(f'![multi-station {label}](figures/multistation_{label.lower()}_s1.png)'))
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))

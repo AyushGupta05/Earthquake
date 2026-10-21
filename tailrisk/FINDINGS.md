@@ -4,6 +4,109 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-21 01:40 UTC — Multi-station fusion: the naive product of free posteriors makes large-event estimates *worse* as stations are added; dividing out the training prior repairs it; the equivariant heads keep their advantage at the event level on INSTANCE and Chile, tie on GEOFON
+
+**Question.** EEW systems combine stations. For a factorized posterior p(m|x) ∝ L(m|x)·π(m),
+Bayes gives p(m|x₁..x_k) ∝ Π_i L(m|x_i)·π(m) with the prior counted once. A posterior with no
+identifiable prior factor can only be multiplied (Π p_i: prior counted k times), averaged, or
+divided by an *assumed* prior before multiplying. Four rules were compared on every head
+(`multistation.py`; stations ordered by hypocentral distance as a proxy for arrival order,
+each with the same d seconds; events with ≥ k usable stations; event-level MAE, median
+action; cluster bootstrap over sequences; three seeds per dataset):
+
+* `post_prod` Π_i p(m|x_i) — the naive rule;
+* `post_mean` (1/k) Σ_i p(m|x_i);
+* `hist_adj` Π_i p(m|x_i)/π̂(m) · π̂(m), π̂ = the fold's training-label histogram, smoothed
+  (σ = 0.25) and floored (10⁻⁵) — the logit-adjustment analogue, available to any posterior;
+* `lik_prior` Π_i [p(m|x_i)/e^φ(m)] · e^φ(m), with φ the head's own learned prior factor
+  (GR heads only).
+
+Full-precision log-posteriors were re-exported from the fold checkpoints (`export_logpmf.py`;
+the saved float16 PMFs underflow in the tail). Tables: `results/multistation_summary_*.md`
+(every k, every deadline, per seed); figures `figures/multistation_*_s1.png`.
+
+**1. The naive product fails on large events, on all three catalogues** (three-seed means,
+event-level MAE at 1 / 3 / 5 s, k = all stations of the event, median ≈ 15 stations on INSTANCE):
+
+| | nearest station only | Π posteriors (naive) | posterior mean | ÷ training prior (`hist_adj`) |
+|---|---|---|---|---|
+| INSTANCE M≥5 (31 events), free mixture | .670 / .649 / .629 | **.921 / .651 / .600** | .932 / .655 / .603 | .331 / .264 / .252 |
+| Chile M≥6 (12), free mixture | 1.022 / .798 / .790 | **1.281 / .870 / .846** | 1.234 / .794 / .780 | .840 / .547 / .526 |
+| GEOFON M≥7 (50), free mixture | 1.546 / 1.150 / .999 | **1.562 / 1.226 / 1.071** | 1.517 / 1.219 / 1.069 | .864 / .693 / .603 |
+
+Adding every station of the event to the free mixture's posterior product leaves the M≥5 /
+M≥6 / M≥7 error equal to or *worse* than the nearest station alone (INSTANCE 1 s: .67 → .92).
+This is prior over-counting (THEORY.md, Proposition 2): each posterior carries the
+Gutenberg–Richter prior, so the product carries it k times and is pulled toward the bulk.
+Averaging does not help. Dividing each posterior by the training-label histogram before
+multiplying removes it: .25 / .53 / .60 at 5 s. Seeds agree (every one of the 9 seed ×
+deadline cells has the naive product worse than `hist_adj` on the top tail, CIs exclude zero).
+
+**2. The equivariant heads are far less sensitive to the rule, and their nearest-station
+estimates are already better** (same layout; eqgr = plain, eqdgr = distance-marginalized):
+
+| | nearest station | Π posteriors | `hist_adj` | own factor once (`lik_prior`) |
+|---|---|---|---|---|
+| INSTANCE M≥5, eqgr | .548 / .379 / .432 | .889 / .514 / .392 | .304 / .202 / .207 | .698 / .401 / .309 |
+| INSTANCE M≥5, eqdgr | .621 / .728 / .616 | .733 / .346 / .277 | .262 / .221 / .229 | **.273 / .203 / .226** |
+| Chile M≥6, eqgr | .811 / .397 / .300 | 1.146 / .361 / .235 | .730 / .314 / .226 | 1.017 / .342 / .221 |
+| Chile M≥6, eqdgr | .736 / .384 / .299 | 1.241 / .339 / .212 | .751 / .302 / .217 | 1.032 / .319 / **.199** |
+| GEOFON M≥7, eqgr | 1.621 / 1.197 / .972 | 1.630 / 1.231 / 1.066 | 1.027 / .873 / .687 | 1.636 / 1.236 / 1.070 |
+| GEOFON M≥7, eqdgr | 1.362 / 1.025 / .802 | 1.450 / 1.131 / .956 | 1.039 / .728 / .609 | 1.458 / 1.136 / .961 |
+
+* With the best rule for each head, at all stations and 5 s: INSTANCE M≥5 eqgr .207 and
+  eqdgr .226 against the mixture's .252; Chile M≥6 eqdgr .199 and eqgr .221 against .526;
+  GEOFON M≥7 eqdgr .609 against .603 (tie). Paired against the mixture's `hist_adj`
+  (seed 1; sign over three seeds): INSTANCE eqgr `hist_adj` M≥5 −.001 / −.058 / **−.038
+  [−.074,−.001]** (3/3 seeds negative at every deadline); eqdgr `lik_prior` −.051 / −.054 /
+  −.012 (3/3 negative; CIs include zero with 31 events). Chile eqdgr `lik_prior` M≥6 −.170
+  [−.308,+.029] / **−.337 [−.581,−.121]** at 3 / 5 s and eqgr `lik_prior` **−.316
+  [−.531,−.134]** at 5 s (3/3 negative). GEOFON: the mixture's `hist_adj` is as good as any
+  rule of any head on M≥7 (eqdgr `hist_adj` +.008 [−.098,+.109]; eqgr +.126 [−.009,+.262]).
+* **Bulk (all events, event level) at all stations** is where the factorized rule pays:
+  INSTANCE eqdgr `lik_prior` .239 / .190 / .168 and eqgr `lik_prior` .243 / .192 / .168
+  against the mixture's best (`hist_adj`) .250 / .201 / .176 — Δ = **−.007 [−.016,+.002] /
+  −.008 [−.011,−.004] / −.007 [−.009,−.004]** for eqdgr (3/3 seeds negative at every
+  deadline); Chile eqdgr `lik_prior` .106 / .082 / .073 vs .102 / .084 / .078 (3 s −.002,
+  5 s **−.004 [−.006,−.003]**, 3/3). On GEOFON the histogram rule costs bulk (+.03 for the
+  mixture at 5 s; it destroys eqdgr's broad posteriors: 1.02) while the factorized rule does
+  not (eqdgr `lik_prior` .350 vs the naive .348).
+
+**3. Why the learned prior factor is only sometimes the right prior to divide out.** Proposition 2
+(THEORY.md) shows that the tail slope of the factor is not identified from single-station
+data: an exponential tilt of a Gaussian mixture is a shifted mixture, so any slope can be
+absorbed by the likelihood head. The learned slopes confirm this — they are arbitrary and
+differ by head and catalogue, and fusion with the learned factor works exactly where the
+slope happens to be close to the catalogue's:
+
+| catalogue (empirical ln-density slope above M3.5–4.8) | eqgr β | mixgr β | eqdgr β | `lik_prior` vs `hist_adj` at 5 s, top tail |
+|---|---|---|---|---|
+| INSTANCE (−2.29 / unit, b = 1.00) | −0.81 | −0.17 | **−1.85** | eqdgr: equal (.226 vs .229); eqgr: worse (.309 vs .207) |
+| Chile (−1.79, b = 0.78) | −0.60 | −0.04 | −0.46 | eqdgr: better (.199 vs .217); eqgr: equal; both worse at 1 s |
+| GEOFON (−1.32, b = 0.57) | +0.02 | +0.02 | +0.02 | identical to the naive product (flat factor) |
+
+(β in nats per magnitude unit, mean over folds.) mixgr's factor is nearly flat on every
+catalogue, so its `lik_prior` is the naive product in disguise (INSTANCE M≥5 .878 / .604 /
+.534); eqgr's is flatter than the catalogue's, so counting it once under-corrects; eqdgr's is
+close to the catalogue's on INSTANCE and its rule is the best there on both axes. **The prior
+a fusion rule must divide out is the label distribution the posteriors were trained under,
+not a learned factor whose slope is free.** A model whose factor is pinned to the catalogue
+b-value during training (β fixed, not learned) would make the two coincide; that is the
+natural next experiment and was not run.
+
+**4. Practical reading.** (i) Never multiply free neural posteriors across stations without
+dividing out the training prior: on all three catalogues the naive product makes M≥5–7
+estimates worse than the nearest station alone, by up to .25 units. (ii) The histogram rule
+is a one-line fix but needs a smoothing/floor choice and is fragile where posteriors are broad
+(GEOFON bulk +.03 to +.7). (iii) The structured heads give better single-station estimates of
+large events (nearest station: INSTANCE eqgr .43 vs .63, Chile .30 vs .79 at 5 s) *and* better
+fused bulk error at every deadline; at the fused tail they are better on INSTANCE and Chile
+and tie on GEOFON. (iv) The decision rule matters less than the fusion rule: all numbers are
+medians; mean-action values are in the JSONs.
+
+Sensitivity of `hist_adj` to σ and floor and the INSTANCE held-station eqdgr arm are reported
+below when complete.
+
 ## 2026-10-20 21:20 UTC — Chile held-station test: the distance-marginalized head's bulk gain is at least as large on unseen stations; its tail gain there is same-signed at 5 s but underpowered (10 M≥6 events)
 
 Arms retrained with 7 of the 22 Chile stations withheld from training in every fold

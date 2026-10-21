@@ -28,7 +28,11 @@ training, amplitude-scaling augmentation, LDS reweighting and a feature-plus-boo
 baseline on the bulk/tail frontier. The cost is roughly one additional false M≥4 prediction
 per 10⁴ small records at 1 s. The one sequence where the method loses, Emilia 2012, is one
 whose large events carry local-magnitude labels, whose amplitude scaling differs from the
-moment-magnitude slope the model learns.
+moment-magnitude slope the model learns. Fusing the stations of an event exposes a second
+structural failure: the product of free neural posteriors counts the training prior once per
+station, and on all three catalogues the fused M≥5–7 estimate is no better than the nearest
+station alone; dividing out the training prior repairs it, and the equivariant heads keep the
+best fused large-event and bulk error on the two local/regional networks.
 
 ## 1. Introduction
 
@@ -60,7 +64,11 @@ applied on three catalogues (INSTANCE, a GEOFON regional subset, Northern Chile)
 results for the obvious alternatives, and an explicit map of where each component helps:
 the prior factor and distance marginalization move bulk error, only the equivariant
 likelihood moves the high-magnitude tail, and the plain equivariant head is the right prior
-only where one amplitude law holds across the population.
+only where one amplitude law holds across the population. (vi) A multi-station fusion study
+with a second proposition: the tail slope of a learned prior factor is not identified from
+single-station data, so the prior a fusion rule must divide out is the training-label
+distribution; the naive product of neural posteriors over-counts it and worsens large-event
+estimates on every catalogue tested.
 
 ## 2. Related work
 
@@ -129,6 +137,17 @@ tail-weighted median a_r of the posterior. r = 1 is the median; r > 1 recovers t
 tail mass and take the median" rule of earlier work. Sweeping r traces, for a fixed posterior,
 the best achievable bulk/tail trade-off, so we compare posteriors by their frontiers at
 matched bulk error, and report the median and mean actions as fixed rules.
+
+### 3.6 Multi-station fusion
+
+For k stations of one event, Bayes gives p(m | x₁..x_k) ∝ Π_i L(m|x_i) · π(m): the prior is
+counted once. A posterior with no identifiable prior factor can only be multiplied, which
+counts the prior k times, averaged, or divided by an assumed prior before multiplying. The
+second proposition (THEORY.md) shows that the factor learned here is only determined up to an
+exponential tilt in the GR tail, because a tilted Gaussian mixture is again a Gaussian mixture
+with shifted components; single-station training therefore cannot pin the slope, and the prior
+to divide out is the label distribution the posteriors were trained under. Section 5.7 compares
+the four rules.
 
 ## 4. Data and protocol
 
@@ -281,13 +300,41 @@ difference is within noise. In the Emilia sequence, where the large events carry
 the method is worse than the mixture (M≥4 +.06 at 1–3 s): one learned slope near the M_w
 value under-responds to amplitude for M_L labels, which scale about 1:1 with amplitude.
 
+### 5.7 Multi-station fusion
+
+Stations of an event are combined, nearest first, each contributing its d-second posterior;
+event-level MAE over events with at least k usable stations, three seeds per catalogue
+(`results/multistation_summary_*.md`). With every station of the event (median 15 on INSTANCE),
+the free mixture's posterior product has M≥5 / M≥6 / M≥7 error of .600 / .846 / 1.071 at 5 s on
+INSTANCE / Chile / GEOFON against .629 / .790 / .999 for its nearest station alone, and .921
+against .670 at 1 s on INSTANCE; the posterior mean is no better. Dividing each posterior by the
+fold's smoothed training-label histogram before multiplying gives .252 / .526 / .603 (CIs
+against the product exclude zero in every seed and deadline). The equivariant heads are less
+sensitive to the rule (their products still improve with k on INSTANCE and Chile), start from
+better nearest-station estimates (5 s: .432 vs .629 on INSTANCE, .300 vs .790 on Chile), and
+with the best rule per head reach .207 (plain) and .226 (distance-marginalized) on INSTANCE
+against the mixture's .252 (plain-head difference −.038 [−.074,−.001], three seeds negative at
+every deadline), .199 and .221 on Chile against .526 (−.337 [−.581,−.121]), and .609 on GEOFON
+against .603 (a tie). On the fused bulk the distance-marginalized head with its own factor
+counted once is best at every deadline on INSTANCE (−.007 / −.008 / −.007 against the mixture's
+best rule, three seeds) and at 3–5 s on Chile. The learned factor is the right prior to divide
+out only when its slope matches the catalogue's: measured slopes are −1.85 (distance-marginalized
+head, INSTANCE), −0.81 (plain), −0.17 (prior-only) and +0.02 on GEOFON for every head, against
+catalogue slopes of −2.29, −1.79 and −1.32 nats per unit, and fusion quality with the learned
+factor tracks that match exactly as the proposition predicts. The histogram rule is the robust
+fix for any posterior but needs a smoothing and floor choice and costs bulk error where
+posteriors are broad (GEOFON +.03 for the mixture).
+
 ## 6. Limitations
 
-Single region and catalogue so far ⟨GEOFON pending⟩; mixed magnitude types; catalogue P picks
+Three catalogues, but one trunk and one training recipe; mixed magnitude types; catalogue P picks
 rather than an online picker; a sequence-based rather than physically certified independence
 structure; the comparisons are to re-implementations of baseline ideas on a shared trunk, not
 to the authors' code. The method does not help where the waveform is uninformative, and its
-false-alarm cost at 1 s, while small, is real.
+false-alarm cost at 1 s, while small, is real. The learned prior factor's tail slope is not
+identified, so fusion with it is only correct by coincidence; pinning the slope to the
+catalogue b-value during training is the obvious remedy and was not run. The fusion study orders
+stations by distance rather than by measured arrival and gives every station the same window.
 
 ## 7. Conclusion
 

@@ -50,6 +50,22 @@ mixing the equivariant head loses on far-regional data. On a third catalogue (No
 regional, three seeds) the distance-marginalized form beats the free mixture on bulk error at
 every deadline and on M≥5/M≥6 error at 3–5 s, where the plain form loses the 1 s tail.
 
+## Multi-station fusion (added 21 Oct)
+
+Closest prior art: Bayesian EEW (Virtual Seismologist, Cua & Heaton 2007; the Gutenberg
+algorithm, Meier et al. 2015) multiplies hand-built per-station likelihoods and applies the
+GR prior once; network systems such as ElarmS average per-station magnitudes; TEAM/TEAM-LM
+fuse stations inside the network. What is new here: (i) the demonstration, on three
+catalogues and three seeds, that the natural fusion of *neural* posteriors (their product)
+counts the training prior once per station and makes M≥5–7 event estimates worse than the
+nearest station alone, with averaging no better; (ii) the proof that the tail slope of a
+learned prior factor is not identified from single-station data (THEORY.md, Proposition 2),
+so "prior counted once" with a learned factor is only correct when that factor happens to
+match the catalogue's, which the measured slopes show is not generally the case; (iii) the
+controlled comparison of the four rules across heads, showing that dividing out the empirical
+training prior is the robust fix for any posterior, that the equivariant heads need it less,
+and that they keep their large-event advantage at the event level on local/regional networks.
+
 ## Not claimed as new
 
 Mixture density heads; Gutenberg–Richter priors in Bayesian EEW; separating amplitude from

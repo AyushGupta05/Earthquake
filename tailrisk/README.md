@@ -161,6 +161,24 @@ portable across the three catalogues (its one recorded cost: more 1 s false alar
 | GEOFON, far-regional (M≥7, 50 events) | **+.024 / +.017 / +.016** | **−.09 / −.09 / −.12** |
 | Northern Chile, regional (M≥6, 12 events) | **−.002 / −.004 / −.006** | −.01 / **−.28 / −.39** |
 
+**Multi-station fusion (21 Oct).** Combining the stations of one event exposes a failure mode
+of free posteriors: the naive product Π_i p(m|x_i) counts the Gutenberg–Richter prior once per
+station, so on all three catalogues the fused M≥5 / M≥6 / M≥7 estimate of the free mixture is
+*no better or worse than the nearest station alone* (INSTANCE 1 s: .67 → .92; Chile 5 s: .79 →
+.85; GEOFON 5 s: 1.00 → 1.07 event-level MAE), and averaging does not help. Dividing each
+posterior by the training-label histogram before multiplying repairs it (.25 / .53 / .60 at 5 s).
+The equivariant heads are much less sensitive to the rule, start from better nearest-station
+estimates (5 s: INSTANCE .43 vs .63, Chile .30 vs .79), and with the best rule per head give the
+best fused large-event error on INSTANCE (eqgr .207, eqdgr .226 vs .252) and Chile (eqdgr .199,
+eqgr .221 vs .526; CIs exclude zero) and a tie on GEOFON, plus the best fused bulk error at every
+deadline on INSTANCE and Chile (eqdgr with its own factor counted once: −.007 / −.008 / −.007 vs the
+mixture's best rule on INSTANCE, three seeds agree). A new proposition (THEORY.md, Proposition 2)
+explains when the learned factor is the right prior to divide out: its tail slope is not
+identified from single-station data (any exponential tilt is absorbed by the mixture), and the
+learned slopes range from −1.85 (eqdgr, INSTANCE) to +0.02 (GEOFON) nats per unit against
+catalogue slopes of −2.3 to −1.3. Tables: [results/multistation_summary_instance.md](results/multistation_summary_instance.md),
+[…chile.md](results/multistation_summary_chile.md), […geofon.md](results/multistation_summary_geofon.md); figures `figures/multistation_*`.
+
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),
 eqgr is worse than the free mixture. One learned slope κ ≈ 0.7 (Mw-like) under-responds for
 large ML labels, which scale ≈1:1 with amplitude.
@@ -203,7 +221,7 @@ large ML labels, which scale ≈1:1 with amplitude.
 | `make_figures.py`, `build_notebook.py` | figures and the explanatory notebook |
 | `geofon_prep.py`, `chile_prep.py`, `geofon_eval.py`, `cross_dataset_table.py` | second and third datasets, their evaluator and the cross-dataset summary |
 | `results_tables.py` → `RESULTS.md` | every arm's metrics at 1, 3 and 5 s with paired differences, from the evaluation JSONs |
-| `export_logpmf.py`, `multistation.py` | full-precision log-posterior export and the multi-station (event-level) combination study |
+| `export_logpmf.py`, `multistation.py`, `multistation_summary.py`, `multistation_table.py` | full-precision log-posterior export and the multi-station (event-level) fusion study with its cross-seed summaries |
 | `results/` | evaluation JSON, diagnostics, fold summary |
 | `figures/` | frontier, bias-by-magnitude and amplitude-response plots |
 
