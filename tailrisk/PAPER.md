@@ -238,7 +238,9 @@ likelihood moves the high-magnitude tail.
 ### 5.5 Robustness
 
 *Seeds.* eqgr beats the mixture on M≥4 error in 36/45 cells; all nine exceptions are the
-Emilia fold. *Held stations.* With 20% of stations withheld from training, on records whose
+Emilia fold. The distance-marginalized head beats it on M≥5 error in 33/45 cells (13/15 at 3 s
+and at 5 s, 7/15 at 1 s; p = .002) and on bulk error in 30/45 (p = .04), with the M≥4 event error
+a coin flip (22/45). *Held stations.* With 20% of stations withheld from training, on records whose
 station and event were both unseen (279,812 records, 341 M≥4 events): M≥5 −.068/−.111/−.139
 (all CIs exclude zero), M≥4 −.017/−.005/−.011 (significant at 1 and 5 s), bulk never worse,
 false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline; the

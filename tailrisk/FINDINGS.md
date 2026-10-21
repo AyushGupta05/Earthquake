@@ -120,6 +120,29 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 13:00 UTC — Seed × fold sign test for the distance-marginalized head on INSTANCE: ahead of the mixture on M≥5 error in 33/45 cells (p = .002) and on bulk in 30/45 (p = .04); M≥4 event error is a coin flip
+
+`seed_consistency.py --pairs mix_nll:eqdgr_nll,…_s2,…_s3` (`results/seedcons_eqdgr_nll_vs_mix_nll.json`),
+median action, 3 seeds × 5 folds × 3 deadlines, same-seed pairs:
+
+| metric | cells with eqdgr better | by deadline (1 / 3 / 5 s) | median Δ | sign-test p |
+|---|---|---|---|---|
+| bulk MAE | 30/45 | 6/15 / 12/15 / 12/15 | −.0022 | .036 |
+| M≥4 MAE | 28/45 | 6/15 / 10/15 / 12/15 | −.0036 | .13 |
+| M≥4 event-MAE | 22/45 | 7/15 / 7/15 / 8/15 | +.0004 | 1.0 |
+| M≥5 MAE | 33/45 | 7/15 / 13/15 / 13/15 | −.050 | .0025 |
+
+Pooled per seed, eqdgr − mix: M≥5 −.153 / −.187 / −.200 (seed 1), −.115 / −.158 / −.174
+(seed 2), −.119 / −.185 / −.212 (seed 3) at 1 / 3 / 5 s; bulk −.0003 / −.0028 / −.0048,
+−.0003 / −.0026 / −.0048, +.0003 / −.0033 / −.0055. Compared with the plain head's sign test
+(M≥4 better in 36/45, all nine exceptions in the Emilia fold), the distance-marginalized head
+wins the M≥5 cells more consistently at 3 and 5 s (13/15 each) but is a coin flip at 1 s and on
+the M≥4 *event* error, where its gains at the record level come with more 1 s false alarms.
+The exceptions are again concentrated in the Emilia fold (fold 1, M_L-labelled large events):
+it holds 9 of the 15 bulk cells and 7 of the 12 M≥5 cells where eqdgr is worse, and all 9 of its
+own M≥4 cells; folds 0 and 3 (Central Italy, the largest M_w events) have no M≥4 or M≥5 cell
+where eqdgr is worse.
+
 ## 2026-10-21 12:50 UTC — Calibration of the three-seed ensembles on INSTANCE: the distance-marginalized head has the best Brier score for P(M≥4) and P(M≥5) at 3 and 5 s and is the best-calibrated for P(M≥4); at 1 s it is slightly over-confident
 
 `calibration_check.py` on the three-seed ensembles (`results/calibration_ens3.json`; reliability

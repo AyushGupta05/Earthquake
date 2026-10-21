@@ -53,7 +53,9 @@ posterior on the same trunk), both as **three-seed ensembles**, eqgr − mix, me
 
 The one cost is a small rise in false M≥4 predictions on small events (6.4 vs 5.0 per 10⁴ at
 1 s; plain CE is 7.5). Seed-by-fold sign tests (3 seeds × 5 folds × 3 deadlines) put eqgr
-ahead on M≥4 error in 36/45 cells, all 9 exceptions in the Emilia fold (FINDINGS.md).
+ahead on M≥4 error in 36/45 cells, all 9 exceptions in the Emilia fold, and the
+distance-marginalized head ahead on M≥5 error in 33/45 (13/15 at both 3 and 5 s; p = .002) and on
+bulk error in 30/45 (FINDINGS.md).
 
 **On the original INSTANCE split** (train 2005–17, no selection on VAL), eqgr − mix on VAL 2018:
 M≥4 MAE −.025 / −.022 / −.038 (CIs exclude zero), with bulk equal / −.0013 / −.0024. Against the
