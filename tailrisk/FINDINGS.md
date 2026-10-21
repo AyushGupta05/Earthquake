@@ -120,6 +120,52 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 12:50 UTC — Event magnitude versus time since the first P arrival: with the naive rule the free mixture's M≥5 estimate never improves as stations arrive; with the prior divided out the equivariant heads reach .3 within 4 s of the first P on INSTANCE and Chile
+
+`fusion_timeline.py`: at wall-clock time T after an event's first P, each station contributes its
+posterior at the largest deadline it has reached (1, 3 or 5 s; none below 1 s). Arrival times are
+t_i = hyp_km / 6.5 km/s (a stated proxy; on Chile the measured per-station picks give the same
+curves, `fusion_timeline_summary_chile_measured.md`). Event-level MAE, median action, three seeds
+(`fusion_timeline_summary_{instance,chile}.md`; figures `figures/fusion_timeline_*.png`;
+GEOFON is single-station at every T — stations 300–2,000 km apart — and is reported for
+completeness only).
+
+**INSTANCE, 31 M≥5 events (median stations with data: 3 at T = 2 s, 6 at 4 s, 8 at 6 s, 14 at
+15 s), three-seed means:**
+
+| rule | T = 2 s | 3 s | 4 s | 6 s | 8 s | 10 s | 15 s | 20 s |
+|---|---|---|---|---|---|---|---|---|
+| mixture, naive product | .61 | .70 | .75 | .69 | .68 | .68 | .63 | .60 |
+| mixture, ÷ training histogram | .43 | .39 | .34 | .31 | .32 | .31 | .27 | .26 |
+| plain equivariant, ÷ histogram | .45 | .37 | .31 | **.24** | **.25** | **.23** | **.22** | **.21** |
+| distance-marginalized, own factor once | .54 | .37 | .35 | .30 | .29 | .26 | .23 | .24 |
+| all events (bulk): mixture naive / mixture ÷ hist / eqgr factor / eqdgr factor at 20 s | | | | | | | | .182 / .176 / **.167** / .169 |
+
+**Chile, 12 M≥6 events (median stations: 1 at 2 s, 2 at 4 s, 3 at 6 s, 7 at 20 s):**
+
+| rule | T = 2 s | 3 s | 4 s | 6 s | 8 s | 10 s | 15 s | 20 s |
+|---|---|---|---|---|---|---|---|---|
+| mixture, naive product | 1.03 | .85 | .88 | .88 | .95 | .87 | .85 | .85 |
+| mixture, ÷ training histogram | 1.00 | .75 | .71 | .67 | .69 | .59 | .54 | .55 |
+| plain equivariant, ÷ histogram | .84 | .39 | .36 | .28 | .25 | .23 | .20 | .22 |
+| distance-marginalized, own factor once | .77 | **.34** | **.28** | **.24** | .26 | .23 | **.17** | **.19** |
+
+* With the naive product the free mixture's large-event estimate does not improve as stations
+  arrive: on INSTANCE it is *worse* at 4–10 s than at 2 s (.75 vs .61), on Chile flat at .85–.95.
+  Paired against the mixture's histogram rule, the naive rule is worse by +.32 to +.36 (INSTANCE,
+  CIs exclude zero from T = 4 s) and +.20 to +.32 (Chile, from 4 s). This is the over-counting of
+  the 01:40 entry seen in wall-clock time: every additional station adds another copy of the
+  prior.
+* With the prior divided out, the structured heads converge fastest: on Chile the M≥6 error is
+  .28–.36 four seconds after the first P against .71 for the mixture's best rule (Δ −.33 to −.41,
+  CIs exclude zero from T = 3–4 s, 3/3 seeds), and .17–.20 at 15 s against .54. On INSTANCE
+  the plain head reaches .24 at 6 s against .31 (Δ −.04 to −.07, n.s. with 31 events; 3/3 seeds
+  below the mixture at every T ≥ 3 s), and the fused bulk at 20 s is best for the equivariant
+  factors (.167 / .169 vs .176).
+* The 2 s column is the nearest one to three stations with 1 s of data each: all rules agree and
+  all are poor (INSTANCE .43–.61, Chile .77–1.03). The information arrives with the 3 s and 5 s
+  windows of the first stations, between 3 and 6 s after the first P.
+
 ## 2026-10-21 10:50 UTC — Bias by magnitude bin on all three catalogues: the structural heads cut the large-event under-estimation by half to two thirds on INSTANCE and Chile, by a tenth on GEOFON
 
 Mean signed error of the median action per 0.5-unit label bin, three-seed ensembles

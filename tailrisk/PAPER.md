@@ -356,7 +356,13 @@ mixture's .60, at +.20 bulk). The fusion prior is therefore catalogue- and head-
 must be validated on held-out fused events; what holds throughout is that the naive product is
 worst and that, with a sensible prior divided out, the equivariant heads give the best fused
 large-event error on every catalogue (.20–.23 vs .25 on INSTANCE, .18–.20 vs .53 on Chile,
-.52–.54 vs .60 on GEOFON at 5 s).
+.52–.54 vs .60 on GEOFON at 5 s). In wall-clock time (each station contributing the longest
+window it has reached, arrivals from hypocentral distance at 6.5 km/s, confirmed on Chile with
+measured picks), the naive product leaves the mixture's large-event estimate flat or worse as
+stations arrive (INSTANCE M≥5: .61 at 2 s, .75 at 4 s, .60 at 20 s after the first P; Chile
+M≥6: .85–.95), while the equivariant heads with the prior divided out reach .28–.36 on Chile's
+M≥6 events four seconds after the first P against .71 for the mixture's best rule (three seeds,
+intervals exclude zero) and .24 on INSTANCE's M≥5 events at six seconds against .31.
 
 ## 6. Limitations
 

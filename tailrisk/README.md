@@ -169,6 +169,15 @@ portable across the three catalogues (its one recorded cost: more 1 s false alar
 | GEOFON, far-regional (M≥7, 50 events) | **+.024 / +.017 / +.016** | **−.09 / −.09 / −.12** |
 | Northern Chile, regional (M≥6, 12 events) | **−.002 / −.004 / −.006** | −.01 / **−.28 / −.39** |
 
+**Event magnitude versus time since the first P** ([figures/fusion_timeline_instance_s1.png](figures/fusion_timeline_instance_s1.png),
+[…chile_s1.png](figures/fusion_timeline_chile_s1.png); tables `results/fusion_timeline_summary_*.md`): each station
+contributes the posterior of the longest window it has reached. With the naive product the free
+mixture's M≥5 / M≥6 estimate never improves as stations arrive (INSTANCE .61 → .75 → .60 from 2 to
+4 to 20 s after the first P; Chile flat at .85–.95). With the prior divided out, the equivariant
+heads reach .28–.36 on Chile's M≥6 events four seconds after the first P against .71 for the
+mixture's best rule (three seeds, CIs exclude zero), and .24 on INSTANCE's M≥5 events at six
+seconds against .31.
+
 **Bias by magnitude on all three catalogues** ([figures/bias_by_magnitude_all.png](figures/bias_by_magnitude_all.png),
 [results/bias_by_magnitude.md](results/bias_by_magnitude.md)): at 5 s the mean under-estimation of
 M6–7 records falls from −.72 / −1.50 (mixture, INSTANCE bins [6, 6.5) / [6.5, 7)) to −.20 / −.36

@@ -79,14 +79,18 @@ def main():
         rep['stations_used'][str(T)] = {'median_k': float(np.median(k_ev[has])), 'events_with_data': int(has.sum()),
                                         'share_at_5s': float((d_idx[sel] == 2).mean()), 'share_at_1s': float((d_idx[sel] == 0).mean())}
         reps_store = {}
+        e_sel = ev_idx[sel]                                                   # sorted: contiguous groups
+        g_start = np.r_[0, np.nonzero(np.diff(e_sel))[0] + 1] if sel.any() else np.zeros(0, int)
+        g_ev = e_sel[g_start]
         for a in arms:
             x = lp[a][order[sel], d_idx[sel]].astype(np.float32)                  # (n_sel, K)
             S = np.zeros((len(starts), len(PMF_CENTERS)), np.float32)
-            np.add.at(S, ev_idx[sel], x)
             M = np.full((len(starts), len(PMF_CENTERS)), -np.inf, np.float32)   # logsumexp for the mean rule
-            np.maximum.at(M, ev_idx[sel], x)
             E = np.zeros_like(S)
-            np.add.at(E, ev_idx[sel], np.exp(x - M[ev_idx[sel]]))
+            if len(g_start):
+                S[g_ev] = np.add.reduceat(x, g_start, axis=0)
+                M[g_ev] = np.maximum.reduceat(x, g_start, axis=0)
+                E[g_ev] = np.add.reduceat(np.exp(x - M[e_sel]), g_start, axis=0)
             phi_ev = np.stack([phi[a][f] for f in ev_fold]) if phi[a] else None
             for rule in RULES:
                 if rule == 'lik_prior' and phi_ev is None:

@@ -129,6 +129,32 @@ def multistation_plot(ms, out, name):
     plt.close(fig)
 
 
+def timeline_plot(ft, out, name):
+    """Event-level MAE versus time since the first P arrival (median action), top tail and all events."""
+    times = ft['times']
+    top = f"M>={ft['thr'][-1]:g}"
+    fig, axes = plt.subplots(1, 2, figsize=(13, 4.6))
+    style = {'post_prod': ':', 'post_mean': '--', 'hist_adj': '-.', 'lik_prior': '-'}
+    colors = {}
+    for ax, sub in zip(axes, (top, 'all')):
+        for key, by_t in ft['metrics'].items():
+            if not key.endswith(':median'):
+                continue
+            arm, rule, _ = key.split(':')
+            if rule == 'post_mean':
+                continue
+            c = colors.setdefault(arm, f'C{len(colors)}')
+            ax.plot(times, [by_t[str(T)][sub] for T in times], style[rule], color=c, marker='o', ms=3,
+                    label=f'{arm.replace("_nll", "")} {rule}')
+        ax.set_title(f'{name}: {sub} events, event-level MAE vs time since first P')
+        ax.set_xlabel('seconds after the first P arrival')
+        ax.grid(alpha=.3)
+    axes[0].legend(fontsize=7, ncol=2)
+    fig.tight_layout()
+    fig.savefig(out / f'fusion_timeline_{name}.png', dpi=130)
+    plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--eval', required=True)
@@ -136,6 +162,7 @@ def main():
     ap.add_argument('--diag', default=None)
     ap.add_argument('--out', required=True)
     ap.add_argument('--multistation', default=None, help='name=path pairs of multistation.py JSONs, comma-separated')
+    ap.add_argument('--timeline', default=None, help='name=path pairs of fusion_timeline.py JSONs, comma-separated')
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -151,6 +178,10 @@ def main():
         for item in args.multistation.split(','):
             name, path = item.split('=', 1)
             multistation_plot(json.loads(Path(path).read_text()), out, name)
+    if args.timeline:
+        for item in args.timeline.split(','):
+            name, path = item.split('=', 1)
+            timeline_plot(json.loads(Path(path).read_text()), out, name)
     print('figures in', out)
 
 

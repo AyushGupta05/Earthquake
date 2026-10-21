@@ -34,6 +34,7 @@ def main():
                     help='label=path pairs of geofon_eval.py JSONs for other datasets, e.g. GEOFON=results/geofon_eval_ens3.json,Chile=results/chile_eval_ens3.json')
     ap.add_argument('--multistation', default=None,
                     help='label=path pairs of multistation.py JSONs, e.g. INSTANCE=results/multistation_instance_s1.json')
+    ap.add_argument('--timeline', default=None, help='label=path pairs of fusion_timeline.py JSONs')
     ap.add_argument('--findings', default=str(HERE / 'FINDINGS.md'))
     args = ap.parse_args()
     cells = [
@@ -228,6 +229,26 @@ df = pd.DataFrame(rows).set_index(['dataset', 'arm:rule', 'k']).sort_index()
 df.loc[(slice(None), slice(None), ['1', '4', 'all']), :]
 """ % (path, label)))
             cells.append(md(f'![multi-station {label}](figures/multistation_{label.lower()}_s1.png)'))
+    if args.timeline:
+        cells += [md("""
+## 11. Event magnitude versus time since the first P arrival
+
+At wall-clock time T after the first P, each station contributes its posterior at the largest
+deadline (1, 3 or 5 s) it has reached; arrival times are approximated from hypocentral distance
+(V_P = 6.5 km/s). Event-level MAE of the top-tail events and of all events versus T, by fusion rule.
+""")]
+        for item in args.timeline.split(','):
+            label, path = item.split('=', 1)
+            cells.append(code("""
+r = json.load(open(%r))
+top = f"M>={r['thr'][-1]:g}"
+rows = []
+for key, by_t in r['metrics'].items():
+    if key.endswith(':median'):
+        rows.append({'dataset': %r, 'arm:rule': key[:-7], **{f"T={T}s {sub}": round(by_t[str(T)][sub], 3) for T in r['times'] for sub in (top, 'all')}})
+pd.DataFrame(rows).set_index(['dataset', 'arm:rule'])
+""" % (path, label)))
+            cells.append(md(f'![timeline {label}](figures/fusion_timeline_{label.lower()}_s1.png)'))
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))
