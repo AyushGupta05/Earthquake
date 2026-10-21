@@ -64,7 +64,13 @@ so "prior counted once" with a learned factor is only correct when that factor h
 match the catalogue's, which the measured slopes show is not generally the case; (iii) the
 controlled comparison of the four rules across heads, showing that dividing out the empirical
 training prior is the robust fix for any posterior, that the equivariant heads need it less,
-and that they keep their large-event advantage at the event level on local/regional networks.
+and that they keep their large-event advantage at the event level on local/regional networks;
+(iv) the follow-ups that bound the claim: pinning the factor's slope to the catalogue b-value
+leaves single-station accuracy unchanged (the proposition's prediction) but is the right fusion
+prior only for some heads and catalogues, a cross-fitted one-parameter tilt helps on Chile and
+cannot serve bulk and tail on GEOFON, and in wall-clock time the naive product leaves the free
+mixture's large-event estimate flat as stations arrive while the structured heads with the
+prior divided out reach .3 units within four seconds of the first P on INSTANCE and Chile.
 
 ## Not claimed as new
 

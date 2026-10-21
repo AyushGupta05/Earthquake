@@ -159,6 +159,13 @@ stations the full-data pattern repeats (ensembles: M≥5 −.087 / −.127, M≥
 with one magnitude scale, eqgr; otherwise the distance-marginalized form, which is the most
 portable across the three catalogues (its one recorded cost: more 1 s false alarms on INSTANCE).
 
+**What to deploy.** A single station: the distance-marginalized head (`eqdgr`), or the plain
+head (`eqgr`) on a dense local network with one magnitude scale. A network: never multiply raw
+posteriors; divide each by the training-label prior before multiplying (or use `eqdgr`'s own
+factor once on a local network), and check the fused large-event bias on held-out events of the
+target catalogue, since the right fusion prior is catalogue- and head-specific. Decide with the
+median (or the tail-weighted median for a cost-sensitive alert).
+
 **Three catalogues, one model.** `eqdgr` − free mixture, three-seed ensembles, median action
 (bold = 95% cluster-bootstrap CI excludes zero; full table in
 [results/cross_dataset_table.md](results/cross_dataset_table.md)):

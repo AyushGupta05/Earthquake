@@ -381,4 +381,8 @@ Building the amplitude law and the Gutenberg–Richter prior into the output dis
 deep magnitude estimator removes a measurable, learned saturation and lowers high-magnitude
 error at 1, 3 and 5 s without worsening bulk error, with a Bayesian justification and
 controlled, replicated evidence. The structure is independent of the trunk and should apply
-to any waveform encoder and any amplitude-defined magnitude.
+to any waveform encoder and any amplitude-defined magnitude. At the network level the same
+analysis exposes a second failure of free posteriors, prior over-counting under the product
+rule, which leaves their large-event estimate flat as stations arrive; dividing out the
+training prior repairs it for any head, and the structured heads then give the fastest and most
+accurate fused estimates on the two local and regional catalogues.
