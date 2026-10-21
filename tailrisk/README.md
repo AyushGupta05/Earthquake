@@ -101,7 +101,11 @@ records, 341 M≥4 events). There eqgr − mix is: M≥5 MAE **−.068 / −.111
 zero at all deadlines), M≥4 MAE **−.017 / −.005 / −.011** (significant at 1 and 5 s), bulk
 −.002 / −.000 / −.003 (never worse), false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95
 lower at every deadline. A station fingerprint cannot explain the gain, and the constrained
-amplitude response transfers to unknown instruments better than a learned one.
+amplitude response transfers to unknown instruments better than a learned one. The
+distance-marginalized head, added to this test on 21 Oct (`eqdgr_nll_hs`), keeps the largest
+M≥5 gain on unseen stations: −.158 / **−.201 [−.345,−.060] / −.217 [−.365,−.066]** at equal bulk
+error and false-M4 rate (absolute M≥5 MAE at 5 s: mixture .771, plain equivariant .624,
+distance-marginalized .538).
 
 Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).
@@ -176,7 +180,10 @@ mixture's best rule on INSTANCE, three seeds agree). A new proposition (THEORY.m
 explains when the learned factor is the right prior to divide out: its tail slope is not
 identified from single-station data (any exponential tilt is absorbed by the mixture), and the
 learned slopes range from −1.85 (eqdgr, INSTANCE) to +0.02 (GEOFON) nats per unit against
-catalogue slopes of −2.3 to −1.3. Tables: [results/multistation_summary_instance.md](results/multistation_summary_instance.md),
+catalogue slopes of −2.3 to −1.3; with its own factor the distance-marginalized head's fused
+M≥5 estimates are nearly unbiased (−.13 / +.06 / +.05) where the plain head's stay at −.69 /
+−.38 / −.29. The histogram rule's level depends on its smoothing and floor (±.06 for the
+mixture; the ordering plain-equivariant < mixture holds in every setting at 3–5 s). Tables: [results/multistation_summary_instance.md](results/multistation_summary_instance.md),
 […chile.md](results/multistation_summary_chile.md), […geofon.md](results/multistation_summary_geofon.md); figures `figures/multistation_*`.
 
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),

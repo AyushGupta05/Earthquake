@@ -236,7 +236,10 @@ likelihood moves the high-magnitude tail.
 Emilia fold. *Held stations.* With 20% of stations withheld from training, on records whose
 station and event were both unseen (279,812 records, 341 M≥4 events): M≥5 −.068/−.111/−.139
 (all CIs exclude zero), M≥4 −.017/−.005/−.011 (significant at 1 and 5 s), bulk never worse,
-false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline. *Standard
+false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline; the
+distance-marginalized head keeps the largest M≥5 gain there, −.158 / −.201 [−.345,−.060] /
+−.217 [−.365,−.066], at equal bulk error and false-M4 rate (M≥5 MAE at 5 s: mixture .771,
+plain head .624, distance-marginalized .538). *Standard
 split* (train 2005–17, VAL 2018): M≥4 −.025/−.022/−.038 vs the mixture with bulk equal or
 better. *Training length.* At 20 epochs the eqgr − mix differences are unchanged (bulk
 −.000/−.002/−.004, M≥4 −.014/−.011/−.017, M≥5 −.098/−.110 at 3/5 s), while doubling the epochs
@@ -323,7 +326,15 @@ head, INSTANCE), −0.81 (plain), −0.17 (prior-only) and +0.02 on GEOFON for e
 catalogue slopes of −2.29, −1.79 and −1.32 nats per unit, and fusion quality with the learned
 factor tracks that match exactly as the proposition predicts. The histogram rule is the robust
 fix for any posterior but needs a smoothing and floor choice and costs bulk error where
-posteriors are broad (GEOFON +.03 for the mixture).
+posteriors are broad (GEOFON +.03 for the mixture); across smoothing widths of 0.1–0.5 and
+floors of 10⁻⁴–10⁻⁶ its fused M≥5 error on INSTANCE moves by ±.06 for the mixture while the
+plain equivariant head stays better at 3 and 5 s in every setting, and the distance-marginalized
+head, whose broad posteriors make the rule floor-sensitive (.19–.49), is better served by its own
+factor, which needs no such choice. The signed bias of the fused M≥5 estimates makes the
+mechanism visible: the naive product is more biased than the nearest station alone (mixture
+−.93 / −.67 / −.62 against −.62 / −.56 / −.53 at 1 / 3 / 5 s), the histogram rule leaves −.25 /
+−.22 / −.15, the plain head with its flat learned factor stays at −.69 / −.38 / −.29, and the
+distance-marginalized head with its own factor is nearly unbiased (−.13 / +.06 / +.05).
 
 ## 6. Limitations
 

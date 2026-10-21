@@ -411,147 +411,165 @@ Source: `results/eval_dist.json`; 1,159,249 records; Δ = arm − `mix_nll`.
 | eqgr_nll | **-0.003 [-0.004, -0.003]** | **-0.028 [-0.050, -0.006]** | **-0.167 [-0.335, -0.035]** | -0.023 [-0.049, +0.002] |
 | mixgr_nll | **-0.003 [-0.003, -0.003]** | **-0.014 [-0.024, -0.004]** | -0.040 [-0.099, +0.011] | **-0.013 [-0.024, -0.003]** |
 
-## INSTANCE, held stations (20% withheld; records at held stations)
+## INSTANCE, held stations (20% withheld; records at held stations; four arms)
 
-Source: `results/eval_hs_held3.json`; 279,812 records; Δ = arm − `mix_nll_hs`.
+Source: `results/eval_hs_held4.json`; 279,812 records; Δ = arm − `mix_nll_hs`.
 
 
-### INSTANCE, held stations (20% withheld; records at held stations) — 1 s, absolute (median action unless stated)
+### INSTANCE, held stations (20% withheld; records at held stations; four arms) — 1 s, absolute (median action unless stated)
 
 | arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | mix_nll_hs | 0.353 | 0.259 | 1.350 | 0.767 | 1.135 | 0.790 | 1.098 | -1.107 | 29.2 | 0.355 | 2.837 | 0.253 |
-| mixgr_nll_hs | 0.349 | 0.257 | 1.317 | 0.764 | 1.111 | 0.789 | 1.054 | -1.077 | 25.0 | 0.352 | 2.820 | 0.250 |
 | eqgr_nll_hs | 0.350 | 0.261 | 1.275 | 0.752 | 1.067 | 0.781 | 1.063 | -1.037 | 11.9 | 0.353 | 2.848 | 0.252 |
+| mixgr_nll_hs | 0.349 | 0.257 | 1.317 | 0.764 | 1.111 | 0.789 | 1.054 | -1.077 | 25.0 | 0.352 | 2.820 | 0.250 |
+| eqdgr_nll_hs | 0.349 | 0.259 | 1.274 | 0.741 | 0.961 | 0.777 | 0.962 | -0.870 | 20.8 | 0.351 | 2.824 | 0.250 |
 
-### INSTANCE, held stations (20% withheld; records at held stations) — 1 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
+### INSTANCE, held stations (20% withheld; records at held stations; four arms) — 1 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
 |---|---|---|---|---|---|
-| mixgr_nll_hs | **-0.004 [-0.005, -0.002]** | -0.003 [-0.010, +0.001] | -0.026 [-0.065, +0.002] | -0.001 [-0.008, +0.006] | **-3.7 [-5.7, -0.4]** |
 | eqgr_nll_hs | -0.002 [-0.006, +0.003] | **-0.016 [-0.026, -0.010]** | **-0.068 [-0.107, -0.032]** | -0.009 [-0.020, +0.002] | -12.3 [-29.2, +6.1] |
+| mixgr_nll_hs | **-0.004 [-0.005, -0.002]** | -0.003 [-0.010, +0.001] | -0.026 [-0.065, +0.002] | -0.001 [-0.008, +0.006] | **-3.7 [-5.7, -0.4]** |
+| eqdgr_nll_hs | -0.003 [-0.008, +0.006] | -0.021 [-0.053, +0.016] | -0.158 [-0.331, +0.018] | -0.010 [-0.046, +0.026] | -3.5 [-20.0, +14.6] |
 
 *Mean action:*
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
 |---|---|---|---|---|
-| mixgr_nll_hs | **-0.004 [-0.005, -0.002]** | **-0.006 [-0.011, -0.000]** | -0.017 [-0.057, +0.009] | -0.004 [-0.010, +0.002] |
 | eqgr_nll_hs | -0.002 [-0.005, +0.004] | **-0.021 [-0.027, -0.013]** | **-0.089 [-0.126, -0.039]** | **-0.013 [-0.024, -0.003]** |
+| mixgr_nll_hs | **-0.004 [-0.005, -0.002]** | **-0.006 [-0.011, -0.000]** | -0.017 [-0.057, +0.009] | -0.004 [-0.010, +0.002] |
+| eqdgr_nll_hs | -0.003 [-0.008, +0.004] | -0.020 [-0.062, +0.021] | -0.149 [-0.330, +0.023] | -0.009 [-0.049, +0.029] |
 
-### INSTANCE, held stations (20% withheld; records at held stations) — 3 s, absolute (median action unless stated)
+### INSTANCE, held stations (20% withheld; records at held stations; four arms) — 3 s, absolute (median action unless stated)
 
 | arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | mix_nll_hs | 0.293 | 0.212 | 1.145 | 0.583 | 0.830 | 0.598 | 0.770 | -0.804 | 11.6 | 0.295 | 2.657 | 0.211 |
-| mixgr_nll_hs | 0.292 | 0.210 | 1.167 | 0.576 | 0.783 | 0.592 | 0.731 | -0.755 | 20.2 | 0.294 | 2.644 | 0.210 |
 | eqgr_nll_hs | 0.292 | 0.213 | 1.126 | 0.579 | 0.711 | 0.601 | 0.677 | -0.650 | 9.3 | 0.294 | 2.671 | 0.211 |
+| mixgr_nll_hs | 0.292 | 0.210 | 1.167 | 0.576 | 0.783 | 0.592 | 0.731 | -0.755 | 20.2 | 0.294 | 2.644 | 0.210 |
+| eqdgr_nll_hs | 0.290 | 0.209 | 1.134 | 0.577 | 0.613 | 0.604 | 0.569 | -0.462 | 13.0 | 0.290 | 2.636 | 0.208 |
 
-### INSTANCE, held stations (20% withheld; records at held stations) — 3 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
+### INSTANCE, held stations (20% withheld; records at held stations; four arms) — 3 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
 |---|---|---|---|---|---|
-| mixgr_nll_hs | -0.001 [-0.004, +0.001] | **-0.007 [-0.012, -0.000]** | **-0.044 [-0.084, -0.006]** | -0.006 [-0.012, +0.001] | +5.4 [-6.0, +15.6] |
 | eqgr_nll_hs | -0.000 [-0.001, +0.002] | -0.005 [-0.018, +0.004] | **-0.111 [-0.176, -0.041]** | +0.003 [-0.009, +0.013] | -1.6 [-4.2, +2.4] |
+| mixgr_nll_hs | -0.001 [-0.004, +0.001] | **-0.007 [-0.012, -0.000]** | **-0.044 [-0.084, -0.006]** | -0.006 [-0.012, +0.001] | +5.4 [-6.0, +15.6] |
+| eqdgr_nll_hs | -0.002 [-0.005, +0.003] | -0.004 [-0.019, +0.016] | **-0.201 [-0.345, -0.060]** | +0.008 [-0.011, +0.028] | +2.7 [-1.8, +9.5] |
 
 *Mean action:*
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
 |---|---|---|---|---|
-| mixgr_nll_hs | **-0.002 [-0.004, -0.000]** | **-0.009 [-0.015, -0.001]** | -0.027 [-0.053, +0.004] | **-0.008 [-0.014, -0.001]** |
 | eqgr_nll_hs | -0.001 [-0.002, +0.002] | **-0.011 [-0.019, -0.005]** | **-0.133 [-0.213, -0.052]** | -0.004 [-0.012, +0.005] |
+| mixgr_nll_hs | **-0.002 [-0.004, -0.000]** | **-0.009 [-0.015, -0.001]** | -0.027 [-0.053, +0.004] | **-0.008 [-0.014, -0.001]** |
+| eqdgr_nll_hs | -0.004 [-0.007, +0.001] | -0.006 [-0.026, +0.019] | **-0.187 [-0.321, -0.056]** | +0.006 [-0.016, +0.028] |
 
-### INSTANCE, held stations (20% withheld; records at held stations) — 5 s, absolute (median action unless stated)
+### INSTANCE, held stations (20% withheld; records at held stations; four arms) — 5 s, absolute (median action unless stated)
 
 | arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | mix_nll_hs | 0.265 | 0.188 | 1.107 | 0.536 | 0.771 | 0.551 | 0.700 | -0.745 | 14.6 | 0.267 | 2.560 | 0.191 |
-| mixgr_nll_hs | 0.264 | 0.186 | 1.120 | 0.530 | 0.702 | 0.546 | 0.638 | -0.675 | 22.9 | 0.265 | 2.545 | 0.190 |
 | eqgr_nll_hs | 0.261 | 0.185 | 1.077 | 0.525 | 0.624 | 0.547 | 0.568 | -0.543 | 8.3 | 0.262 | 2.549 | 0.189 |
+| mixgr_nll_hs | 0.264 | 0.186 | 1.120 | 0.530 | 0.702 | 0.546 | 0.638 | -0.675 | 22.9 | 0.265 | 2.545 | 0.190 |
+| eqdgr_nll_hs | 0.261 | 0.184 | 1.075 | 0.524 | 0.538 | 0.552 | 0.486 | -0.385 | 9.9 | 0.261 | 2.529 | 0.187 |
 
-### INSTANCE, held stations (20% withheld; records at held stations) — 5 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
+### INSTANCE, held stations (20% withheld; records at held stations; four arms) — 5 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
 |---|---|---|---|---|---|
-| mixgr_nll_hs | **-0.002 [-0.004, -0.001]** | -0.006 [-0.011, +0.002] | **-0.065 [-0.101, -0.027]** | -0.004 [-0.011, +0.003] | +5.3 [-5.5, +15.2] |
 | eqgr_nll_hs | -0.003 [-0.007, +0.002] | **-0.011 [-0.019, -0.004]** | **-0.138 [-0.208, -0.068]** | -0.004 [-0.013, +0.005] | -4.9 [-9.7, +1.3] |
+| mixgr_nll_hs | **-0.002 [-0.004, -0.001]** | -0.006 [-0.011, +0.002] | **-0.065 [-0.101, -0.027]** | -0.004 [-0.011, +0.003] | +5.3 [-5.5, +15.2] |
+| eqdgr_nll_hs | -0.004 [-0.007, +0.000] | -0.009 [-0.027, +0.013] | **-0.217 [-0.365, -0.066]** | +0.002 [-0.016, +0.021] | -2.7 [-9.5, +5.9] |
 
 *Mean action:*
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
 |---|---|---|---|---|
-| mixgr_nll_hs | **-0.002 [-0.003, -0.001]** | **-0.008 [-0.013, -0.001]** | **-0.045 [-0.064, -0.020]** | **-0.007 [-0.014, -0.000]** |
 | eqgr_nll_hs | -0.004 [-0.008, +0.001] | **-0.017 [-0.025, -0.006]** | **-0.159 [-0.245, -0.076]** | **-0.011 [-0.021, -0.001]** |
+| mixgr_nll_hs | **-0.002 [-0.003, -0.001]** | **-0.008 [-0.013, -0.001]** | **-0.045 [-0.064, -0.020]** | **-0.007 [-0.014, -0.000]** |
+| eqdgr_nll_hs | **-0.005 [-0.008, -0.001]** | -0.011 [-0.032, +0.014] | **-0.209 [-0.357, -0.063]** | +0.001 [-0.020, +0.022] |
 
-## INSTANCE, held stations (records at seen stations)
+## INSTANCE, held stations (records at seen stations; four arms)
 
-Source: `results/eval_hs_seen3.json`; 879,437 records; Δ = arm − `mix_nll_hs`.
+Source: `results/eval_hs_seen4.json`; 879,437 records; Δ = arm − `mix_nll_hs`.
 
 
-### INSTANCE, held stations (records at seen stations) — 1 s, absolute (median action unless stated)
+### INSTANCE, held stations (records at seen stations; four arms) — 1 s, absolute (median action unless stated)
 
 | arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | mix_nll_hs | 0.330 | 0.243 | 1.224 | 0.771 | 1.078 | 0.781 | 1.036 | -1.050 | 7.4 | 0.333 | 2.766 | 0.237 |
-| mixgr_nll_hs | 0.329 | 0.241 | 1.219 | 0.766 | 1.048 | 0.776 | 1.004 | -1.013 | 7.0 | 0.331 | 2.759 | 0.236 |
 | eqgr_nll_hs | 0.329 | 0.241 | 1.220 | 0.747 | 1.001 | 0.760 | 0.979 | -0.954 | 7.7 | 0.332 | 2.760 | 0.237 |
+| mixgr_nll_hs | 0.329 | 0.241 | 1.219 | 0.766 | 1.048 | 0.776 | 1.004 | -1.013 | 7.0 | 0.331 | 2.759 | 0.236 |
+| eqdgr_nll_hs | 0.329 | 0.240 | 1.229 | 0.738 | 0.894 | 0.752 | 0.865 | -0.772 | 14.5 | 0.332 | 2.755 | 0.237 |
 
-### INSTANCE, held stations (records at seen stations) — 1 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
+### INSTANCE, held stations (records at seen stations; four arms) — 1 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
 |---|---|---|---|---|---|
-| mixgr_nll_hs | **-0.002 [-0.003, -0.001]** | **-0.005 [-0.012, -0.001]** | **-0.028 [-0.048, -0.003]** | -0.005 [-0.012, +0.000] | -0.3 [-1.0, +0.8] |
 | eqgr_nll_hs | -0.001 [-0.003, +0.000] | **-0.024 [-0.028, -0.018]** | **-0.075 [-0.112, -0.041]** | **-0.020 [-0.025, -0.015]** | +0.4 [-0.2, +1.5] |
+| mixgr_nll_hs | **-0.002 [-0.003, -0.001]** | **-0.005 [-0.012, -0.001]** | **-0.028 [-0.048, -0.003]** | -0.005 [-0.012, +0.000] | -0.3 [-1.0, +0.8] |
+| eqdgr_nll_hs | -0.001 [-0.004, +0.001] | **-0.027 [-0.060, -0.000]** | **-0.169 [-0.316, -0.044]** | -0.025 [-0.059, +0.001] | **+6.9 [+5.5, +7.8]** |
 
 *Mean action:*
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
 |---|---|---|---|---|
-| mixgr_nll_hs | **-0.002 [-0.003, -0.001]** | **-0.008 [-0.015, -0.004]** | -0.020 [-0.053, +0.004] | **-0.009 [-0.017, -0.002]** |
 | eqgr_nll_hs | -0.001 [-0.003, +0.000] | **-0.030 [-0.038, -0.020]** | **-0.098 [-0.144, -0.057]** | **-0.027 [-0.034, -0.019]** |
+| mixgr_nll_hs | **-0.002 [-0.003, -0.001]** | **-0.008 [-0.015, -0.004]** | -0.020 [-0.053, +0.004] | **-0.009 [-0.017, -0.002]** |
+| eqdgr_nll_hs | -0.001 [-0.004, +0.001] | -0.029 [-0.066, +0.003] | **-0.167 [-0.318, -0.044]** | -0.027 [-0.066, +0.003] |
 
-### INSTANCE, held stations (records at seen stations) — 3 s, absolute (median action unless stated)
+### INSTANCE, held stations (records at seen stations; four arms) — 3 s, absolute (median action unless stated)
 
 | arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | mix_nll_hs | 0.274 | 0.198 | 1.065 | 0.584 | 0.765 | 0.603 | 0.719 | -0.743 | 6.6 | 0.276 | 2.582 | 0.197 |
-| mixgr_nll_hs | 0.272 | 0.195 | 1.060 | 0.580 | 0.724 | 0.596 | 0.671 | -0.696 | 5.7 | 0.273 | 2.571 | 0.195 |
 | eqgr_nll_hs | 0.273 | 0.196 | 1.067 | 0.570 | 0.649 | 0.592 | 0.616 | -0.591 | 6.6 | 0.274 | 2.573 | 0.196 |
+| mixgr_nll_hs | 0.272 | 0.195 | 1.060 | 0.580 | 0.724 | 0.596 | 0.671 | -0.696 | 5.7 | 0.273 | 2.571 | 0.195 |
+| eqdgr_nll_hs | 0.270 | 0.192 | 1.072 | 0.565 | 0.559 | 0.588 | 0.526 | -0.372 | 9.7 | 0.272 | 2.550 | 0.194 |
 
-### INSTANCE, held stations (records at seen stations) — 3 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
+### INSTANCE, held stations (records at seen stations; four arms) — 3 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
 |---|---|---|---|---|---|
-| mixgr_nll_hs | **-0.003 [-0.003, -0.002]** | -0.004 [-0.008, +0.000] | -0.037 [-0.071, +0.011] | **-0.007 [-0.012, -0.002]** | -0.7 [-1.6, +0.5] |
 | eqgr_nll_hs | **-0.002 [-0.004, -0.000]** | **-0.013 [-0.021, -0.004]** | **-0.107 [-0.196, -0.039]** | **-0.010 [-0.019, -0.001]** | +0.1 [-0.5, +1.0] |
+| mixgr_nll_hs | **-0.003 [-0.003, -0.002]** | -0.004 [-0.008, +0.000] | -0.037 [-0.071, +0.011] | **-0.007 [-0.012, -0.002]** | -0.7 [-1.6, +0.5] |
+| eqdgr_nll_hs | **-0.004 [-0.006, -0.003]** | -0.015 [-0.038, +0.006] | **-0.191 [-0.326, -0.085]** | -0.013 [-0.034, +0.007] | **+3.2 [+2.3, +4.8]** |
 
 *Mean action:*
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
 |---|---|---|---|---|
-| mixgr_nll_hs | **-0.003 [-0.003, -0.002]** | **-0.006 [-0.011, -0.001]** | -0.026 [-0.051, +0.015] | **-0.010 [-0.016, -0.005]** |
 | eqgr_nll_hs | **-0.002 [-0.004, -0.000]** | **-0.020 [-0.032, -0.008]** | **-0.133 [-0.234, -0.052]** | **-0.018 [-0.030, -0.008]** |
+| mixgr_nll_hs | **-0.003 [-0.003, -0.002]** | **-0.006 [-0.011, -0.001]** | -0.026 [-0.051, +0.015] | **-0.010 [-0.016, -0.005]** |
+| eqdgr_nll_hs | **-0.004 [-0.006, -0.003]** | -0.018 [-0.043, +0.006] | **-0.192 [-0.333, -0.082]** | -0.017 [-0.041, +0.005] |
 
-### INSTANCE, held stations (records at seen stations) — 5 s, absolute (median action unless stated)
+### INSTANCE, held stations (records at seen stations; four arms) — 5 s, absolute (median action unless stated)
 
 | arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | mix_nll_hs | 0.242 | 0.171 | 1.000 | 0.538 | 0.703 | 0.559 | 0.658 | -0.681 | 5.8 | 0.244 | 2.451 | 0.175 |
-| mixgr_nll_hs | 0.239 | 0.168 | 0.995 | 0.533 | 0.650 | 0.551 | 0.600 | -0.618 | 5.1 | 0.241 | 2.434 | 0.172 |
 | eqgr_nll_hs | 0.239 | 0.168 | 1.000 | 0.516 | 0.556 | 0.540 | 0.519 | -0.475 | 6.2 | 0.241 | 2.431 | 0.172 |
+| mixgr_nll_hs | 0.239 | 0.168 | 0.995 | 0.533 | 0.650 | 0.551 | 0.600 | -0.618 | 5.1 | 0.241 | 2.434 | 0.172 |
+| eqdgr_nll_hs | 0.235 | 0.163 | 1.003 | 0.513 | 0.493 | 0.542 | 0.461 | -0.310 | 7.4 | 0.237 | 2.402 | 0.169 |
 
-### INSTANCE, held stations (records at seen stations) — 5 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
+### INSTANCE, held stations (records at seen stations; four arms) — 5 s, paired differences vs `mix_nll_hs` (median action; 95% cluster-bootstrap CI)
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
 |---|---|---|---|---|---|
-| mixgr_nll_hs | **-0.003 [-0.004, -0.002]** | -0.004 [-0.008, +0.001] | -0.049 [-0.094, +0.001] | **-0.007 [-0.013, -0.001]** | -0.4 [-1.6, +1.0] |
 | eqgr_nll_hs | **-0.003 [-0.005, -0.002]** | **-0.021 [-0.033, -0.008]** | **-0.135 [-0.255, -0.049]** | **-0.018 [-0.030, -0.007]** | +0.6 [-0.1, +1.7] |
+| mixgr_nll_hs | **-0.003 [-0.004, -0.002]** | -0.004 [-0.008, +0.001] | -0.049 [-0.094, +0.001] | **-0.007 [-0.013, -0.001]** | -0.4 [-1.6, +1.0] |
+| eqdgr_nll_hs | **-0.007 [-0.008, -0.005]** | -0.021 [-0.045, +0.002] | **-0.195 [-0.350, -0.077]** | -0.015 [-0.037, +0.005] | **+1.8 [+0.9, +3.2]** |
 
 *Mean action:*
 
 | arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
 |---|---|---|---|---|
-| mixgr_nll_hs | **-0.003 [-0.004, -0.002]** | **-0.006 [-0.009, -0.001]** | -0.035 [-0.064, +0.008] | **-0.010 [-0.014, -0.003]** |
 | eqgr_nll_hs | **-0.003 [-0.005, -0.002]** | **-0.026 [-0.042, -0.011]** | **-0.159 [-0.293, -0.059]** | **-0.025 [-0.040, -0.011]** |
+| mixgr_nll_hs | **-0.003 [-0.004, -0.002]** | **-0.006 [-0.009, -0.001]** | -0.035 [-0.064, +0.008] | **-0.010 [-0.014, -0.003]** |
+| eqdgr_nll_hs | **-0.007 [-0.008, -0.005]** | -0.022 [-0.049, +0.002] | **-0.192 [-0.350, -0.074]** | -0.018 [-0.042, +0.003] |
 
 ## INSTANCE, MagNet-style control
 

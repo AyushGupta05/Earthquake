@@ -104,8 +104,43 @@ fused bulk error at every deadline; at the fused tail they are better on INSTANC
 and tie on GEOFON. (iv) The decision rule matters less than the fusion rule: all numbers are
 medians; mean-action values are in the JSONs.
 
-Sensitivity of `hist_adj` to σ and floor and the INSTANCE held-station eqdgr arm are reported
-below when complete.
+**5. Signed bias of the fused M≥5 estimates (INSTANCE seed 1, k = all, 1 / 3 / 5 s).** The naive
+product is more biased than the nearest station (mixture −.93 / −.67 / −.62 vs −.62 / −.56 /
+−.53): over-counting pulls down. `hist_adj` leaves the mixture at −.25 / −.22 / −.15 and eqgr at
+−.18 / −.03 / −.03; eqgr with its own flat factor stays at −.69 / −.38 / −.29 (under-corrected,
+as Proposition 2 predicts for a learned slope of −0.81 against −2.29), while eqdgr with its own
+factor (slope −1.85) is nearly unbiased, −.13 / +.06 / +.05.
+
+**6. Sensitivity of the histogram rule (INSTANCE seed 1, k = all, M≥5 / bulk at 5 s;
+`results/multistation_instance_s1_hist_*.json`).** Default (σ = 0.25, floor 10⁻⁵): mixture
+.242 / .176, eqgr .205 / .172, eqdgr .231 / .175. σ = 0.1: .252 / .179, .213 / .175, .254 / .181.
+σ = 0.5: .304 / .176, .255 / .170, .285 / .172. Floor 10⁻⁴: .284 / .176, .224 / .171, .191 / .174.
+Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused tail error moves by
+±.06 for the mixture and the ordering eqgr < mixture holds in every setting at 3 and 5 s; the
+distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
+why its own factor, which needs no such choice, is the better rule for it.
+
+## 2026-10-21 01:50 UTC — INSTANCE held-station test now includes the distance-marginalized head: its M≥5 gain survives on stations never seen in training
+
+`eqdgr_nll_hs` (20% of stations withheld, seed 1) joins the three held-station arms of 19 Oct;
+four-arm evaluation on records at held stations only (279,812 records; `eval_hs_held4.json`),
+Δ = arm − mix_nll_hs, median action, 1 / 3 / 5 s:
+
+| | bulk | M≥4 MAE | M≥5 MAE |
+|---|---|---|---|
+| eqgr_hs | −.002 / −.000 / −.003 (n.s.) | **−.017 [−.026,−.010]** / −.005 / **−.011 [−.019,−.004]** | **−.068 [−.107,−.032] / −.111 [−.176,−.041] / −.139 [−.208,−.068]** |
+| mixgr_hs | **−.004** / −.002 / **−.002** | −.003 / −.007 / −.006 | −.026 / **−.044 [−.084,−.006] / −.065 [−.101,−.027]** |
+| **eqdgr_hs** | −.003 / −.002 / −.004 (n.s.) | −.021 / −.004 / −.010 (n.s.) | −.158 [−.332,+.018] / **−.201 [−.345,−.060] / −.217 [−.365,−.066]** |
+
+Absolute M≥5 MAE at held stations, 5 s: mixture .771, prior-only .702, plain equivariant .624,
+distance-marginalized .538. So on unseen stations the distance-marginalized head keeps the
+largest M≥5 gain of any arm (as on seen stations), at equal bulk error and equal false-M4 rate.
+On the seen-station subset (879,437 records; `eval_hs_seen4.json`) the full-data pattern
+repeats: eqdgr_hs − mix_hs M≥5 **−.169 [−.316,−.044] / −.191 [−.326,−.085] / −.195
+[−.350,−.077]**, bulk −.001 / **−.004 / −.007**, false-M4 **+.7 / +.3 / +.2 per 10⁴** (its known
+1 s cost; absent on the held-station subset); eqgr_hs M≥5 **−.075 / −.107 / −.135**, bulk
+−.002 / **−.002 / −.003**, false-M4 equal. Absolute M≥5 MAE at 5 s, seen stations: mixture
+.703, prior-only .650, plain .556, distance-marginalized .493.
 
 ## 2026-10-20 21:20 UTC — Chile held-station test: the distance-marginalized head's bulk gain is at least as large on unseen stations; its tail gain there is same-signed at 5 s but underpowered (10 M≥6 events)
 
