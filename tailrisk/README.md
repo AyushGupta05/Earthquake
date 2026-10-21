@@ -271,6 +271,7 @@ large ML labels, which scale ≈1:1 with amplitude.
 | `export_logpmf.py`, `multistation.py`, `multistation_summary.py`, `multistation_table.py` | full-precision log-posterior export and the multi-station (event-level) fusion study with its cross-seed summaries |
 | `fusion_timeline.py` | event magnitude versus time since the first P arrival, fusing whatever each station has |
 | `bias_by_magnitude.py`, `test_fusion.py`, `test_theory.py` | bias-by-magnitude figure and table for every catalogue; synthetic checks of the fusion rules and of the two propositions |
+| `cross_dataset_figure.py` | cross-catalogue summary figure (Δ bulk and Δ top-tail MAE with intervals at 1, 3, 5 s) |
 | `make_results.sh`, `make_notebook.sh` | regenerate RESULTS.md and the executed notebook |
 | `results/` | evaluation JSON, diagnostics, fold summary |
 | `figures/` | frontier, bias-by-magnitude and amplitude-response plots |

@@ -315,6 +315,19 @@ value under-responds to amplitude for M_L labels, which scale about 1:1 with amp
 
 ### 5.7 Multi-station fusion
 
+Table 3 summarizes the fused event-level error of the top tail with every station of the event
+(three-seed means, median action; full per-k and per-seed tables in
+`results/multistation_summary_*.md`):
+
+| rule, 1 / 3 / 5 s | INSTANCE M≥5 (31 events) | Chile M≥6 (12) | GEOFON M≥7 (50) |
+|---|---|---|---|
+| mixture, nearest station only | .67 / .65 / .63 | 1.02 / .80 / .79 | 1.55 / 1.15 / 1.00 |
+| mixture, naive product | .92 / .65 / .60 | 1.28 / .87 / .85 | 1.56 / 1.23 / 1.07 |
+| mixture, ÷ training histogram | .33 / .26 / .25 | .84 / .55 / .53 | .86 / .69 / .60 |
+| plain equivariant, ÷ histogram | .30 / .20 / .21 | .73 / .31 / .23 | 1.03 / .87 / .69 |
+| distance-marginalized, own factor once | .27 / .20 / .23 | 1.03 / .32 / .20 | 1.46 / 1.14 / .96 |
+| distance-marginalized, ÷ histogram | .26 / .22 / .23 | .75 / .30 / .22 | 1.04 / .73 / .61 |
+
 Stations of an event are combined, nearest first, each contributing its d-second posterior;
 event-level MAE over events with at least k usable stations, three seeds per catalogue
 (`results/multistation_summary_*.md`). With every station of the event (median 15 on INSTANCE),
