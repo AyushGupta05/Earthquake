@@ -249,6 +249,15 @@ for key, by_t in r['metrics'].items():
 pd.DataFrame(rows).set_index(['dataset', 'arm:rule'])
 """ % (path, label)))
             cells.append(md(f'![timeline {label}](figures/fusion_timeline_{label.lower()}_s1.png)'))
+    if (HERE / 'figures' / 'cross_dataset.png').exists():
+        cells += [md("""
+## 11b. Three catalogues at a glance
+
+Δ(arm − free mixture) for the plain (eqgr) and distance-marginalized (eqdgr) heads, three-seed
+ensembles, median action, with 95% cluster-bootstrap intervals (`cross_dataset_figure.py`).
+
+![cross-catalogue summary](figures/cross_dataset.png)
+""")]
     if (HERE / 'figures' / 'bias_by_magnitude_all.png').exists():
         cells += [md("""
 ## 12. Bias by magnitude bin on all three catalogues
