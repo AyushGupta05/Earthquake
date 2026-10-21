@@ -120,6 +120,31 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 09:05 UTC — INSTANCE held-station test, three seeds: the distance-marginalized head's M≥5 gain on unseen stations replicates in every seed and in the ensemble
+
+Seeds 2 and 3 of `eqdgr_nll_hs` and `mix_nll_hs` (same 20% of stations withheld, rng 0);
+per-seed Δ = eqdgr_hs − mix_hs of the same seed, and three-seed ensembles
+(`eval_hs_{held,seen}_{s2,s3,ens3}.json`), median action, 1 / 3 / 5 s.
+
+**Held stations (279,812 records).**
+
+| | bulk | M≥5 MAE | false-M4 per 10⁴ |
+|---|---|---|---|
+| seed 1 | −.003 / −.002 / −.004 | −.158 / **−.201 / −.217** | −.4 / +.3 / −.3 (n.s.) |
+| seed 2 | +.001 / −.000 / −.003 | −.159 / **−.207 / −.197** | **+1.0 / +.6 / +.4** |
+| seed 3 | +.002 / +.002 / +.001 | −.146 / **−.215 / −.202** | +.3 / +.1 / −.2 (n.s.) |
+| ensembles (3 v 3) | −.000 / −.001 / −.002 (n.s.) | −.154 [−.316,+.012] / **−.216 [−.367,−.062] / −.218 [−.367,−.063]** | **+.9 / +.6 / +.4** |
+
+**Seen stations (879,437 records), ensembles:** bulk −.001 / **−.004 / −.007**, M≥4 **−.031 /
+−.024 / −.027**, M≥5 **−.160 / −.195 / −.194** (all CIs exclude zero), false-M4 **+.6 / +.3 /
++.2 per 10⁴**.
+
+The large-event gain on stations never seen in training is the same size in all three seeds
+and in the ensemble (−.20 to −.22 at 3 and 5 s, intervals excluding zero), at equal bulk error;
+the head's small false-alarm excess appears on held stations too (+.4 to +.9 per 10⁴ for the
+ensemble). This completes the held-station evidence for the portable model on INSTANCE; the
+Chile replication (seeds 2–3) is running.
+
 ## 2026-10-21 05:45 UTC — Pinned prior slope on Chile and GEOFON: harmless and useful for fusion on Chile; on GEOFON it costs the distance-marginalized head accuracy and does not make fusion competitive
 
 `eqgr_bfix`, `eqdgr_bfix` with β = −1.79 (Chile) and −1.32 (GEOFON), seed 1

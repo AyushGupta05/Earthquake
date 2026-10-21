@@ -104,8 +104,10 @@ lower at every deadline. A station fingerprint cannot explain the gain, and the 
 amplitude response transfers to unknown instruments better than a learned one. The
 distance-marginalized head, added to this test on 21 Oct (`eqdgr_nll_hs`), keeps the largest
 M≥5 gain on unseen stations: −.158 / **−.201 [−.345,−.060] / −.217 [−.365,−.066]** at equal bulk
-error and false-M4 rate (absolute M≥5 MAE at 5 s: mixture .771, plain equivariant .624,
-distance-marginalized .538).
+error (absolute M≥5 MAE at 5 s: mixture .771, plain equivariant .624, distance-marginalized
+.538); replicated in seeds 2 and 3 (−.207 / −.197 and −.215 / −.202 at 3 / 5 s) and as
+three-seed ensembles (**−.216 [−.367,−.062] / −.218 [−.367,−.063]**, bulk equal, false-M4 +.4 to
++.9 per 10⁴).
 
 Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).

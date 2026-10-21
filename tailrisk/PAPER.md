@@ -238,8 +238,9 @@ station and event were both unseen (279,812 records, 341 M≥4 events): M≥5 �
 (all CIs exclude zero), M≥4 −.017/−.005/−.011 (significant at 1 and 5 s), bulk never worse,
 false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline; the
 distance-marginalized head keeps the largest M≥5 gain there, −.158 / −.201 [−.345,−.060] /
-−.217 [−.365,−.066], at equal bulk error and false-M4 rate (M≥5 MAE at 5 s: mixture .771,
-plain head .624, distance-marginalized .538). *Standard
+−.217 [−.365,−.066] for seed 1 and −.154 / −.216 [−.367,−.062] / −.218 [−.367,−.063] for
+three-seed ensembles, at equal bulk error and +.4 to +.9 false M≥4 per 10⁴ (M≥5 MAE at 5 s,
+seed 1: mixture .771, plain head .624, distance-marginalized .538). *Standard
 split* (train 2005–17, VAL 2018): M≥4 −.025/−.022/−.038 vs the mixture with bulk equal or
 better. *Training length.* At 20 epochs the eqgr − mix differences are unchanged (bulk
 −.000/−.002/−.004, M≥4 −.014/−.011/−.017, M≥5 −.098/−.110 at 3/5 s), while doubling the epochs
