@@ -58,11 +58,11 @@ def main():
                     if x['bias_median'] is not None and x['n'] >= 5:
                         rows.append({'dataset': label, 'deadline': d, 'arm': b, 'bin_lo': x['lo'], 'n': x['n'], 'bias': x['bias_median']})
             ax.axhline(0, color='k', lw=.6)
-            ax.set_title(f'{label}, {d[0]} s: mean signed error by label bin (median action)')
+            ax.set_title(f'{label}, {d[0]} s')
             ax.set_xlabel('magnitude bin centre')
             ax.grid(alpha=.3)
             if d_i == 0:
-                ax.set_ylabel('estimate − label')
+                ax.set_ylabel('mean (estimate − label), median action')
         axes[r_i, 0].legend(fontsize=8)
     fig.tight_layout()
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)

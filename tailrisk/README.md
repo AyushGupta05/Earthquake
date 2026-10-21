@@ -169,6 +169,13 @@ portable across the three catalogues (its one recorded cost: more 1 s false alar
 | GEOFON, far-regional (M≥7, 50 events) | **+.024 / +.017 / +.016** | **−.09 / −.09 / −.12** |
 | Northern Chile, regional (M≥6, 12 events) | **−.002 / −.004 / −.006** | −.01 / **−.28 / −.39** |
 
+**Bias by magnitude on all three catalogues** ([figures/bias_by_magnitude_all.png](figures/bias_by_magnitude_all.png),
+[results/bias_by_magnitude.md](results/bias_by_magnitude.md)): at 5 s the mean under-estimation of
+M6–7 records falls from −.72 / −1.50 (mixture, INSTANCE bins [6, 6.5) / [6.5, 7)) to −.20 / −.36
+with the distance-marginalized head, and from −1.01 to −.31 on Chile's [6.5, 7) bin; on GEOFON all
+heads saturate (−1.74 vs −1.56 at M8+). At 1 s every head stays strongly biased on the largest
+events.
+
 **Multi-station fusion (21 Oct).** Combining the stations of one event exposes a failure mode
 of free posteriors: the naive product Π_i p(m|x_i) counts the Gutenberg–Richter prior once per
 station, so on all three catalogues the fused M≥5 / M≥6 / M≥7 estimate of the free mixture is

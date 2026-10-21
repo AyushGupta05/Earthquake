@@ -211,6 +211,11 @@ while eqgr sits near the diagonal; both are otherwise well calibrated (Brier rel
 terms ≤ 4·10⁻⁵), and eqgr's lower Brier scores for P(M≥4) and P(M≥5) at 3 and 5 s come from
 higher resolution.
 
+The same picture per label bin (three-seed ensembles, median action, 5 s): the mean signed
+error of M[6.5, 7) records is −1.50 for the mixture, −.65 for the plain head and −.36 for the
+distance-marginalized head on INSTANCE, −1.01 / −.41 / −.31 on Chile, and −1.29 / −1.22 / −1.16
+on GEOFON's M[7.5, 8) bin; the bins below M5 coincide across heads (`results/bias_by_magnitude.md`).
+
 ### 5.4 Ablations
 
 Three seeds each, sign tests over 45 seed×fold×deadline cells. The prior factor alone

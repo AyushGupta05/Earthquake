@@ -120,6 +120,31 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 10:50 UTC — Bias by magnitude bin on all three catalogues: the structural heads cut the large-event under-estimation by half to two thirds on INSTANCE and Chile, by a tenth on GEOFON
+
+Mean signed error of the median action per 0.5-unit label bin, three-seed ensembles
+(`bias_by_magnitude.py`; figure `figures/bias_by_magnitude_all.png`; full table
+`results/bias_by_magnitude.md`, 509 rows). Records, not events, so sequences with many stations
+dominate the top bins (INSTANCE [6.5, 7.0) is the 2016 Norcia M6.5, 75 records).
+
+| catalogue, bin (records) | mixture | plain equivariant | distance-marginalized |
+|---|---|---|---|
+| INSTANCE [6.0, 6.5) (89), 5 s | −.72 | −.38 | **−.20** |
+| INSTANCE [6.5, 7.0) (75), 5 s | −1.50 | −.65 | **−.36** |
+| INSTANCE [6.5, 7.0), 1 s | −1.88 | −1.66 | **−1.27** |
+| Chile [6.5, 7.0) (31), 5 s | −1.01 | −.41 | **−.31** |
+| Chile [8.0, 8.5) (6), 5 s | −1.88 | **−.51** | −.56 |
+| Chile [8.0, 8.5), 1 s | −2.67 | −2.26 | **−2.13** |
+| GEOFON [7.5, 8.0) (113), 5 s | −1.29 | −1.22 | **−1.16** |
+| GEOFON [8.0, 8.5) (38), 5 s | −1.74 | −1.72 | **−1.56** |
+
+The small-magnitude bins are identical across heads (the prior-dominated regime), the curves
+separate above M5 on INSTANCE and Chile exactly where the amplitude-response diagnostic
+showed the free mixture saturating, and on GEOFON every head saturates with only the
+distance-marginalized one slightly less so. At 1 s all heads remain strongly biased on the
+largest events (the first second does not carry the information), which is the honest
+reading of the 1 s columns throughout this study.
+
 ## 2026-10-21 10:15 UTC — Chile held-station test, three seeds: bulk gain on unseen stations holds in every seed; the M≥6 gain at 5 s is negative in all three (two with CIs excluding zero) and the ensemble's interval just includes zero; nothing at 1 s
 
 Seeds 2 and 3 of `eqdgr_nll_hs` and `mix_nll_hs` on Chile (same 7 of 22 stations withheld);
