@@ -336,8 +336,11 @@ mechanism visible: the naive product is more biased than the nearest station alo
 −.22 / −.15, the plain head with its flat learned factor stays at −.69 / −.38 / −.29, and the
 distance-marginalized head with its own factor is nearly unbiased (−.13 / +.06 / +.05).
 Pinning the factor's slope to the catalogue b-value during training leaves single-station
-error unchanged, as the proposition predicts, repairs the plain head's fusion (.32 / .22 / .26)
-but over-corrects the distance-marginalized head; a cross-fitted one-parameter tilt of the
+error unchanged on INSTANCE and Chile, as the proposition predicts (on GEOFON the optimizer
+did not recover the compensating solution and the distance-marginalized head lost .05–.09 on
+M≥7), repairs the plain head's fusion on INSTANCE (.32 / .22 / .26) and both heads' on Chile
+(.20 at 5 s, nearly unbiased) but over-corrects the distance-marginalized head on INSTANCE and
+stays behind the histogram rule on GEOFON; a cross-fitted one-parameter tilt of the
 fusion prior, chosen on held-out fused events, makes the GR heads' own factor the best rule on
 Chile (eqdgr .282 / .177 at 3 / 5 s) and cannot help on GEOFON, where bulk and tail want
 opposite tilts (with a tail objective the equivariant heads reach .52–.54 at 5 s against the

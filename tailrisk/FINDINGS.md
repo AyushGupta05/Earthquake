@@ -120,6 +120,37 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 05:45 UTC — Pinned prior slope on Chile and GEOFON: harmless and useful for fusion on Chile; on GEOFON it costs the distance-marginalized head accuracy and does not make fusion competitive
+
+`eqgr_bfix`, `eqdgr_bfix` with β = −1.79 (Chile) and −1.32 (GEOFON), seed 1
+(`chile_eval_bfix.json`, `geofon_eval_bfix.json`, `multistation_{chile,geofon}_bfix.json`).
+
+**Chile.** Single-station Δ vs the mixture is the same as with the learned slope (eqgr_bfix
+M≥6 +.105 / **−.220 / −.365** vs eqgr +.108 / −.266 / −.367; eqdgr_bfix bulk **−.0028 / −.0044 /
+−.0059**, M≥6 +.018 / **−.259 / −.331** vs eqdgr −.002 / −.262 / −.378). Fusion with the pinned
+factor counted once, k = all, M≥6: eqgr_bfix .733 / .356 / **.201**, eqdgr_bfix .788 / .299 /
+.205 (learned-slope factors: 1.017 / .342 / .221 and 1.032 / .319 / .199), both nearly unbiased
+at 3–5 s (−.02 / +.09 and +.03 / +.12) against the mixture's histogram rule .837 / .511 / .533,
+with the fused bulk unchanged (.079 / .073 at 5 s). On this catalogue the prescription works
+for both heads.
+
+**GEOFON.** Pinning is not harmless here: eqdgr_bfix is worse than eqdgr at one station
+(bulk +.031 / +.028 / +.026 vs +.019 / +.014 / +.014; M≥7 −.059 / −.036 / −.047 vs **−.103 /
+−.114 / −.141**), and eqgr_bfix is marginally worse than eqgr. Proposition 2 guarantees that a
+compensating solution exists, not that training finds it; with the prior tilted by 1.3 nats per
+unit over M4–9 the compensating component shifts are large, and the optimizer evidently did not
+recover them in 10 epochs. Fusion with the pinned factor (k = all, M≥7: eqgr_bfix 1.052 / .855 /
+.763, eqdgr_bfix .948 / .788 / .701) is better than with the learned, flat factors (1.64 / 1.24 /
+1.07 and 1.46 / 1.14 / .96) but still behind the mixture's histogram rule (.805 / .696 / .590),
+and costs bulk (.45–.51 vs .38 at 5 s).
+
+**Across catalogues (seed 1, fused top-tail error at 5 s, factor counted once; learned →
+pinned):** INSTANCE eqgr .299 → .258, eqdgr .226 → .286; Chile eqgr .221 → .201, eqdgr .199 →
+.205; GEOFON eqgr 1.070 → .763, eqdgr .961 → .701. Pinning helps wherever the learned slope was
+far from the catalogue's (INSTANCE eqgr, GEOFON) and hurts where the learned slope was already
+the better fusion prior (INSTANCE eqdgr); where it is used, single-station accuracy should be
+re-checked (GEOFON eqdgr lost .05–.09 on M≥7).
+
 ## 2026-10-21 05:30 UTC — Calibrated fusion prior: a cross-fitted one-parameter tilt helps where the learned factor is wrong (Chile), cannot help where bulk and tail want opposite tilts (GEOFON), and does not beat the plain histogram rule on INSTANCE
 
 Rules `lik_prior_cal` and `hist_adj_cal` (`multistation.py`): the fusion prior (the head's own
