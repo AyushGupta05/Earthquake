@@ -238,6 +238,9 @@ large ML labels, which scale ≈1:1 with amplitude.
 | `geofon_prep.py`, `chile_prep.py`, `geofon_eval.py`, `cross_dataset_table.py` | second and third datasets, their evaluator and the cross-dataset summary |
 | `results_tables.py` → `RESULTS.md` | every arm's metrics at 1, 3 and 5 s with paired differences, from the evaluation JSONs |
 | `export_logpmf.py`, `multistation.py`, `multistation_summary.py`, `multistation_table.py` | full-precision log-posterior export and the multi-station (event-level) fusion study with its cross-seed summaries |
+| `fusion_timeline.py` | event magnitude versus time since the first P arrival, fusing whatever each station has |
+| `bias_by_magnitude.py`, `test_fusion.py`, `test_theory.py` | bias-by-magnitude figure and table for every catalogue; synthetic checks of the fusion rules and of the two propositions |
+| `make_results.sh`, `make_notebook.sh` | regenerate RESULTS.md and the executed notebook |
 | `results/` | evaluation JSON, diagnostics, fold summary |
 | `figures/` | frontier, bias-by-magnitude and amplitude-response plots |
 
