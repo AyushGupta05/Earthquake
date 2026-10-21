@@ -446,7 +446,7 @@ class MagNetTrunk(nn.Module):
 
 
 class MagnitudeModel(nn.Module):
-    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3):
+    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3, beta_fixed=None):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
@@ -463,6 +463,15 @@ class MagnitudeModel(nn.Module):
             self.head = head_cls(self.trunk.out_dim, k)
         # optional auxiliary distance classifier (training-only multi-task control)
         self.aux = nn.Linear(self.trunk.out_dim, len(R_CENTERS)) if aux_dist else None
+        if beta_fixed is not None:
+            # pin the GR tail slope of the prior factor (nats per magnitude unit) instead of
+            # learning it: Proposition 2 shows the slope is not identified from single-station
+            # data, and multi-station fusion needs it to equal the catalogue's
+            gr = self.head if hasattr(self.head, 'phi_free') else getattr(self.head, 'prior', None)
+            if gr is None or not hasattr(gr, 'beta'):
+                raise ValueError(f'head {head!r} has no GR prior factor to pin')
+            del gr.beta
+            gr.register_buffer('beta', torch.tensor(float(beta_fixed)))
 
     def forward(self, shape, A, invariant, static, dur_idx):
         return self.head(self.trunk(shape, A, invariant, static, dur_idx), A)

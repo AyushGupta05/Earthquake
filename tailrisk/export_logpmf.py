@@ -73,7 +73,8 @@ def main():
         data.fit_static_norm(tr)
         n_static = data.static_raw.shape[1]
         model = MagnitudeModel(targs['head'], n_static, k=targs.get('k', 6), aux_dist=targs.get('aux_dist', False),
-                               width_mult=targs.get('width_mult', 1.0), kappa_min=targs.get('kappa_min', 0.3)).to(device)
+                               width_mult=targs.get('width_mult', 1.0), kappa_min=targs.get('kappa_min', 0.3),
+                               beta_fixed=targs.get('beta_fixed')).to(device)
         model.load_state_dict(torch.load(arm_dir / f'fold{f}_model.pt', map_location=device))
         model.eval()
         logpmf = np.zeros((len(te), 3, len(PMF_CENTERS)), np.float16)
