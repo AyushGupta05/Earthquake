@@ -1,0 +1,202 @@
+"""Multi-station (event-level) combination of single-station magnitude posteriors.
+
+For a factorized posterior p(m|x) = L(m|x) pi(m) / Z, k stations of one event combine as
+
+    p(m | x_1..x_k)  oc  prod_i L(m|x_i) . pi(m)                      rule 'lik_prior'
+
+(the prior counted once). A posterior without an identifiable prior factor can only be
+combined by rules that are wrong or heuristic:
+
+    prod_i p(m|x_i)                                   'post_prod'   (prior counted k times)
+    (1/k) sum_i p(m|x_i)                              'post_mean'   (no sharpening)
+    prod_i p(m|x_i)/pi_hat(m) . pi_hat(m)             'hist_adj'    (pi_hat = training-label
+                                                       histogram of the fold: logit-adjustment)
+
+Stations are ordered by hypocentral distance (a proxy for P-arrival order); each contributes
+its d-second posterior. Events with >= k usable records are evaluated at k = 1, 2, 3, 4, 6, 8
+and 'all'. Decisions: median and mean of the combined posterior. Metrics: event-level MAE over
+all events, M>=T1 events and M>=T2 events, with a cluster bootstrap over aftershock sequences
+for paired differences.
+
+Inputs are the float16 *log*-posteriors written by export_logpmf.py (the saved PMFs underflow
+in the tail), plus each fold's learned log prior for GR-factorized heads.
+
+  python tailrisk/multistation.py --arms mix_nll,mixgr_nll,eqgr_nll,eqdgr_nll --thr 4,5 --out results/multistation_instance.json
+"""
+import argparse
+import json
+from pathlib import Path
+
+import numpy as np
+
+from common import DURATIONS, PMF_CENTERS, WORK, load_meta
+from evaluate import wmed_from_pmf
+
+RULES = ('post_prod', 'post_mean', 'hist_adj', 'lik_prior')
+
+
+def load_logpmf(arm, n, root):
+    lp = np.full((n, 3, len(PMF_CENTERS)), np.nan, np.float16)
+    prior = {}
+    for f in sorted((root / arm).glob('fold*.npz')):
+        z = np.load(f)
+        lp[z['rows']] = z['logpmf']
+        if 'log_prior' in z:
+            prior[int(f.stem[4:])] = z['log_prior'].astype(np.float32)
+    return lp, prior
+
+
+def train_hist_logprior(mag, fold, nf):
+    """Fold-wise log of the training-label histogram on the PMF grid (0.5-count smoothing)."""
+    out = {}
+    for f in range(nf):
+        y = mag[fold != f]
+        idx = np.round((y - PMF_CENTERS[0]) * 10).astype(int).clip(0, len(PMF_CENTERS) - 1)
+        h = np.bincount(idx, minlength=len(PMF_CENTERS)).astype(np.float64) + 0.5
+        out[f] = np.log(h / h.sum()).astype(np.float32)
+    return out
+
+
+def combine(lp_rows, rule, k, phi_ev, pihat_ev):
+    """lp_rows: (n_ev, k, K) float32 log-posteriors of the k stations. Returns normalized pmf."""
+    if rule == 'post_mean':
+        S = np.logaddexp.reduce(lp_rows, axis=1) - np.log(k)
+    else:
+        S = lp_rows.sum(1)
+        if rule == 'lik_prior':
+            S = S - (k - 1) * phi_ev
+        elif rule == 'hist_adj':
+            S = S - (k - 1) * pihat_ev
+    S = S - S.max(1, keepdims=True)
+    p = np.exp(S)
+    return p / p.sum(1, keepdims=True)
+
+
+def decide(p):
+    med = wmed_from_pmf(p, np.array([1.0]))[:, 0]
+    mean = p @ PMF_CENTERS.astype(np.float32)
+    return {'median': med, 'mean': mean}
+
+
+class EventBoot:
+    def __init__(self, cluster_ev, reps, seed=0):
+        self.cl = np.unique(cluster_ev, return_inverse=True)[1]
+        self.nc = self.cl.max() + 1
+        self.w = np.random.default_rng(seed).multinomial(self.nc, np.full(self.nc, 1 / self.nc), size=reps).astype(np.float64)
+
+    def rep_means(self, err, mask):
+        """Replicate means of err over events in mask: (reps,)."""
+        S = np.bincount(self.cl[mask], err[mask], self.nc)
+        N = np.bincount(self.cl[mask], minlength=self.nc).astype(np.float64)
+        with np.errstate(invalid='ignore', divide='ignore'):
+            return (self.w @ S) / (self.w @ N)
+
+
+def ci(d):
+    d = d[np.isfinite(d)]
+    if len(d) < 50:
+        return None
+    return {'mean': float(d.mean()), 'lo': float(np.quantile(d, .025)), 'hi': float(np.quantile(d, .975)), 'n_reps': int(len(d))}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--arms', required=True)
+    ap.add_argument('--root', default=str(WORK / 'logpmf'))
+    ap.add_argument('--thr', default='4,5')
+    ap.add_argument('--ks', default='1,2,3,4,6,8,all')
+    ap.add_argument('--reps', type=int, default=1000)
+    ap.add_argument('--out', required=True)
+    args = ap.parse_args()
+    thr = [float(t) for t in args.thr.split(',')]
+    arms = args.arms.split(',')
+    root = Path(args.root)
+    meta = load_meta()
+    mag, ev, cl, fold, hyp = meta['mag'], meta['event'], meta['cluster'], meta['fold'].astype(int), meta['hyp_km']
+    n = len(mag)
+    lp, phi = {}, {}
+    for a in arms:
+        lp[a], phi[a] = load_logpmf(a, n, root)
+        print(a, 'folds with prior:', sorted(phi[a]), flush=True)
+    pihat = train_hist_logprior(mag, fold, int(fold.max()) + 1)
+    usable = np.all([np.isfinite(lp[a][:, 0, 0]) for a in arms], 0) & np.isfinite(hyp)
+    # order usable records by (event, hypocentral distance)
+    order = np.lexsort((hyp, ev))
+    order = order[usable[order]]
+    ev_o = ev[order]
+    starts = np.r_[0, np.nonzero(np.diff(ev_o))[0] + 1]
+    sizes = np.diff(np.r_[starts, len(order)])
+    ev_ids = ev_o[starts]
+    ev_mag = mag[order[starts]]
+    ev_fold = fold[order[starts]]
+    ev_cl = cl[order[starts]]
+    print(f'{len(ev_ids)} events with usable records; sizes: median {np.median(sizes):.0f}, '
+          f'>=4: {(sizes >= 4).sum()}, >=8: {(sizes >= 8).sum()}', flush=True)
+    rep = {'arms': arms, 'thr': thr, 'ks': {}, 'metrics': {}, 'vs_ref': {}}
+    ks = [k for k in args.ks.split(',')]
+    for ks_ in ks:
+        kk = None if ks_ == 'all' else int(ks_)
+        sel = sizes >= (kk or 1)
+        idx_ev = np.nonzero(sel)[0]
+        m_ev = ev_mag[idx_ev]
+        masks = {'all': np.ones(len(idx_ev), bool)}
+        for t in thr:
+            masks[f'M>={t:g}'] = m_ev >= t - 1e-6
+        rep['ks'][ks_] = {'n_events': int(len(idx_ev)), **{f'n_{k}': int(v.sum()) for k, v in masks.items()}}
+        boot = EventBoot(ev_cl[idx_ev], args.reps)
+        if kk is not None:
+            rows = np.stack([order[starts[idx_ev] + j] for j in range(kk)], 1)       # (n_ev, k)
+        for d_i, d in enumerate(DURATIONS):
+            reps_store = {}
+            for a in arms:
+                phi_ev = np.stack([phi[a][f] for f in ev_fold[idx_ev]]) if phi[a] else None
+                pihat_ev = np.stack([pihat[f] for f in ev_fold[idx_ev]])
+                for rule in RULES:
+                    if rule == 'lik_prior' and phi_ev is None:
+                        continue
+                    if kk is not None:
+                        lpr = lp[a][rows, d_i].astype(np.float32)                   # (n_ev, k, K)
+                        p = combine(lpr, rule, kk, phi_ev, pihat_ev)
+                    else:   # all stations of each event, ragged: reduce over sorted rows
+                        x = lp[a][order, d_i].astype(np.float32)
+                        if rule == 'post_mean':
+                            S = np.stack([np.logaddexp.reduce(x[s:s + z], axis=0) - np.log(z) for s, z in zip(starts[idx_ev], sizes[idx_ev])])
+                        else:
+                            S = np.add.reduceat(x, starts, axis=0)[idx_ev]
+                            kv = sizes[idx_ev][:, None].astype(np.float32)
+                            if rule == 'lik_prior':
+                                S = S - (kv - 1) * phi_ev
+                            elif rule == 'hist_adj':
+                                S = S - (kv - 1) * pihat_ev
+                        S = S - S.max(1, keepdims=True)
+                        p = np.exp(S); p /= p.sum(1, keepdims=True)
+                    for act, dec in decide(p).items():
+                        err = np.abs(dec - m_ev)
+                        key = f'{a}:{rule}:{act}'
+                        met = rep['metrics'].setdefault(key, {}).setdefault(ks_, {})
+                        met[f'{d}s'] = {mk: float(err[mv].mean()) if mv.any() else None for mk, mv in masks.items()}
+                        reps_store[key] = {mk: boot.rep_means(err, mv) for mk, mv in masks.items()}
+            # paired differences: every config against the mixture's three rules and against its own post_prod
+            for key, r in reps_store.items():
+                a, rule, act = key.split(':')
+                refs = [f'{arms[0]}:{rr}:{act}' for rr in ('post_prod', 'post_mean', 'hist_adj')] + [f'{a}:post_prod:{act}']
+                for ref in refs:
+                    if ref == key or ref not in reps_store:
+                        continue
+                    out = rep['vs_ref'].setdefault(key, {}).setdefault(ref, {}).setdefault(ks_, {})
+                    out[f'{d}s'] = {mk: ci(r[mk] - reps_store[ref][mk]) for mk in masks}
+            print(f'k={ks_} {d}s done', flush=True)
+    Path(args.out).write_text(json.dumps(rep, indent=1))
+    # compact view: event-level MAE of the top tail vs k, median action
+    top = f'M>={thr[-1]:g}'
+    for d in DURATIONS:
+        print(f'\n=== {d}s  event-level MAE, median action; columns k = {ks}; rows arm:rule  [{top} events | all events]')
+        for key in rep['metrics']:
+            if not key.endswith(':median'):
+                continue
+            vals = [rep['metrics'][key][k_][f'{d}s'] for k_ in ks]
+            print(f'{key[:-7]:<24}' + ' '.join(f'{(v[top] if v[top] is not None else float("nan")):6.3f}/{v["all"]:.3f}' for v in vals))
+
+
+if __name__ == '__main__':
+    main()

@@ -3,7 +3,9 @@
 **Started 18–19 Oct 2026.** A self-contained, re-runnable study of **reducing high-magnitude
 (tail) error of single-station early magnitude estimates at 1, 3 and 5 s after the P arrival,
 without worsening bulk error**, on INSTANCE (1,159,249 records, 54,008 events). The full
-dated log, including negative results, is in [FINDINGS.md](FINDINGS.md); the theory is in
+dated log, including negative results, is in [FINDINGS.md](FINDINGS.md); every arm's metrics
+at 1, 3 and 5 s on every dataset, with paired differences, are tabulated in
+[RESULTS.md](RESULTS.md); the theory is in
 [THEORY.md](THEORY.md); the prior-art audit (what is new, what is not) is in
 [NOVELTY.md](NOVELTY.md). An explanatory notebook is in
 [tail_risk_study.ipynb](tail_risk_study.ipynb).
@@ -199,6 +201,9 @@ large ML labels, which scale ≈1:1 with amplitude.
 | `gbm_baseline.py` | E3WS-style classical baseline |
 | `test_decisions.py` | decision-rule checks against brute force |
 | `make_figures.py`, `build_notebook.py` | figures and the explanatory notebook |
+| `geofon_prep.py`, `chile_prep.py`, `geofon_eval.py`, `cross_dataset_table.py` | second and third datasets, their evaluator and the cross-dataset summary |
+| `results_tables.py` → `RESULTS.md` | every arm's metrics at 1, 3 and 5 s with paired differences, from the evaluation JSONs |
+| `export_logpmf.py`, `multistation.py` | full-precision log-posterior export and the multi-station (event-level) combination study |
 | `results/` | evaluation JSON, diagnostics, fold summary |
 | `figures/` | frontier, bias-by-magnitude and amplitude-response plots |
 
