@@ -44,3 +44,19 @@ for A0 in (0.0, 2.0, 4.0):                             # inside the simulated su
         print(f'A0={A0:+.1f} delta={delta}: GR prior max rel. deviation {err_gr:.1e} | cliff prior {err_cliff:.2f}')
         assert err_gr < 1e-6
 print('GR equivariance holds exactly with unknown distance; a prior cliff breaks it (as expected).')
+
+# Proposition 2: an exponential tilt of a Gaussian mixture is a shifted, re-weighted mixture,
+# so (likelihood, beta) and (tilted likelihood, 0) give the same posterior.
+rng = np.random.default_rng(0)
+for beta in (-2.3, -1.2, 0.7):
+    w = rng.dirichlet(np.ones(4)); mu = rng.uniform(1, 6, 4); sig = rng.uniform(0.1, 0.8, 4)
+    comp = np.exp(-0.5 * ((M[:, None] - mu) / sig) ** 2) / sig
+    tilted = (comp @ w) * np.exp(beta * M)
+    w2 = w * np.exp(beta * mu + 0.5 * beta ** 2 * sig ** 2)
+    comp2 = np.exp(-0.5 * ((M[:, None] - (mu + beta * sig ** 2)) / sig) ** 2) / sig
+    direct = comp2 @ w2
+    tilted /= tilted.sum(); direct /= direct.sum()
+    err = np.abs(tilted - direct).max() / tilted.max()
+    print(f'beta={beta:+.1f}: tilt-vs-shift max rel. deviation {err:.1e}')
+    assert err < 1e-10
+print('The prior tail slope is absorbed by a component shift: not identified from single-station data.')

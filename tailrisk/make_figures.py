@@ -99,12 +99,43 @@ def reliability_plot(calib, out):
     plt.close(fig)
 
 
+def multistation_plot(ms, out, name):
+    """Event-level MAE vs number of combined stations, per combination rule (median action)."""
+    ks = list(ms['ks'])
+    thr = ms['thr']
+    top = f'M>={thr[-1]:g}'
+    fig, axes = plt.subplots(2, 3, figsize=(15, 8), sharex=True)
+    style = {'post_prod': ':', 'post_mean': '--', 'hist_adj': '-.', 'lik_prior': '-'}
+    colors = {}
+    for d_i, d in enumerate(('1s', '3s', '5s')):
+        for r_i, sub in enumerate((top, 'all')):
+            ax = axes[r_i, d_i]
+            for key, by_k in ms['metrics'].items():
+                if not key.endswith(':median'):
+                    continue
+                arm, rule, _ = key.split(':')
+                vals = [by_k[k][d][sub] for k in ks]
+                c = colors.setdefault(arm, f'C{len(colors)}')
+                ax.plot(range(len(ks)), vals, style[rule], color=c, marker='o', ms=3, label=f'{arm.replace("_nll", "")} {rule}')
+            ax.set_title(f'{d[0]} s: {sub} events, event-level MAE')
+            ax.set_xticks(range(len(ks)))
+            ax.set_xticklabels(ks)
+            ax.grid(alpha=.3)
+            if r_i == 1:
+                ax.set_xlabel('stations combined (nearest first)')
+    axes[0, 0].legend(fontsize=7, ncol=2)
+    fig.tight_layout()
+    fig.savefig(out / f'multistation_{name}.png', dpi=130)
+    plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--eval', required=True)
     ap.add_argument('--calib', default=None, help='calibration_check.py JSON')
     ap.add_argument('--diag', default=None)
     ap.add_argument('--out', required=True)
+    ap.add_argument('--multistation', default=None, help='name=path pairs of multistation.py JSONs, comma-separated')
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -116,6 +147,10 @@ def main():
         response_plot(json.loads(Path(args.diag).read_text()), out)
     if args.calib:
         reliability_plot(json.loads(Path(args.calib).read_text()), out)
+    if args.multistation:
+        for item in args.multistation.split(','):
+            name, path = item.split('=', 1)
+            multistation_plot(json.loads(Path(path).read_text()), out, name)
     print('figures in', out)
 
 

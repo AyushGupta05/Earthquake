@@ -10,7 +10,9 @@ combined by rules that are wrong or heuristic:
     prod_i p(m|x_i)                                   'post_prod'   (prior counted k times)
     (1/k) sum_i p(m|x_i)                              'post_mean'   (no sharpening)
     prod_i p(m|x_i)/pi_hat(m) . pi_hat(m)             'hist_adj'    (pi_hat = training-label
-                                                       histogram of the fold: logit-adjustment)
+                                                       histogram of the fold, smoothed with a
+                                                       0.25-unit kernel and floored at 1e-5:
+                                                       the logit-adjustment analogue)
 
 Stations are ordered by hypocentral distance (a proxy for P-arrival order); each contributes
 its d-second posterior. Events with >= k usable records are evaluated at k = 1, 2, 3, 4, 6, 8
@@ -35,6 +37,23 @@ from evaluate import wmed_from_pmf
 RULES = ('post_prod', 'post_mean', 'hist_adj', 'lik_prior')
 
 
+def extend_prior(phi):
+    """The learned prior is defined on the head's grid (up to M8.5); beyond it the GR tail is
+    linear, so extrapolate with the slope of the last two defined bins."""
+    phi = phi.astype(np.float64).copy()
+    ok = np.isfinite(phi)
+    if ok.all():
+        return phi.astype(np.float32)
+    last = np.nonzero(ok)[0][-1]
+    slope = phi[last] - phi[last - 1]
+    for j in range(last + 1, len(phi)):
+        phi[j] = phi[j - 1] + slope
+    first = np.nonzero(ok)[0][0]
+    for j in range(first - 1, -1, -1):
+        phi[j] = phi[j + 1] - (phi[first + 1] - phi[first])
+    return phi.astype(np.float32)
+
+
 def load_logpmf(arm, n, root):
     lp = np.full((n, 3, len(PMF_CENTERS)), np.nan, np.float16)
     prior = {}
@@ -42,18 +61,24 @@ def load_logpmf(arm, n, root):
         z = np.load(f)
         lp[z['rows']] = z['logpmf']
         if 'log_prior' in z:
-            prior[int(f.stem[4:])] = z['log_prior'].astype(np.float32)
+            prior[int(f.stem[4:])] = extend_prior(z['log_prior'])
     return lp, prior
 
 
-def train_hist_logprior(mag, fold, nf):
-    """Fold-wise log of the training-label histogram on the PMF grid (0.5-count smoothing)."""
+def train_hist_logprior(mag, fold, nf, sigma=0.25, floor=1e-5):
+    """Fold-wise log of the training-label histogram on the PMF grid, Gaussian-smoothed
+    (sigma magnitude units) and floored at `floor` of the total, so that empty bins do not
+    receive an unbounded correction."""
     out = {}
+    c = PMF_CENTERS.astype(np.float64)
     for f in range(nf):
         y = mag[fold != f]
         idx = np.round((y - PMF_CENTERS[0]) * 10).astype(int).clip(0, len(PMF_CENTERS) - 1)
-        h = np.bincount(idx, minlength=len(PMF_CENTERS)).astype(np.float64) + 0.5
-        out[f] = np.log(h / h.sum()).astype(np.float32)
+        h = np.bincount(idx, minlength=len(PMF_CENTERS)).astype(np.float64)
+        kern = np.exp(-0.5 * ((c[:, None] - c[None, :]) / sigma) ** 2)
+        hs = kern @ h
+        hs = hs / hs.sum()
+        out[f] = np.log(np.maximum(hs, floor)).astype(np.float32)
     return out
 
 
@@ -107,6 +132,8 @@ def main():
     ap.add_argument('--ks', default='1,2,3,4,6,8,all')
     ap.add_argument('--reps', type=int, default=1000)
     ap.add_argument('--out', required=True)
+    ap.add_argument('--hist-sigma', type=float, default=0.25, help='kernel width (magnitude units) of the smoothed training-label prior')
+    ap.add_argument('--hist-floor', type=float, default=1e-5, help='floor of the smoothed training-label prior (fraction of total)')
     args = ap.parse_args()
     thr = [float(t) for t in args.thr.split(',')]
     arms = args.arms.split(',')
@@ -118,7 +145,7 @@ def main():
     for a in arms:
         lp[a], phi[a] = load_logpmf(a, n, root)
         print(a, 'folds with prior:', sorted(phi[a]), flush=True)
-    pihat = train_hist_logprior(mag, fold, int(fold.max()) + 1)
+    pihat = train_hist_logprior(mag, fold, int(fold.max()) + 1, args.hist_sigma, args.hist_floor)
     usable = np.all([np.isfinite(lp[a][:, 0, 0]) for a in arms], 0) & np.isfinite(hyp)
     # order usable records by (event, hypocentral distance)
     order = np.lexsort((hyp, ev))
@@ -132,7 +159,7 @@ def main():
     ev_cl = cl[order[starts]]
     print(f'{len(ev_ids)} events with usable records; sizes: median {np.median(sizes):.0f}, '
           f'>=4: {(sizes >= 4).sum()}, >=8: {(sizes >= 8).sum()}', flush=True)
-    rep = {'arms': arms, 'thr': thr, 'ks': {}, 'metrics': {}, 'vs_ref': {}}
+    rep = {'arms': arms, 'thr': thr, 'hist_sigma': args.hist_sigma, 'hist_floor': args.hist_floor, 'ks': {}, 'metrics': {}, 'vs_ref': {}}
     ks = [k for k in args.ks.split(',')]
     for ks_ in ks:
         kk = None if ks_ == 'all' else int(ks_)
@@ -175,6 +202,7 @@ def main():
                         key = f'{a}:{rule}:{act}'
                         met = rep['metrics'].setdefault(key, {}).setdefault(ks_, {})
                         met[f'{d}s'] = {mk: float(err[mv].mean()) if mv.any() else None for mk, mv in masks.items()}
+                        met[f'{d}s'].update({f'{mk}_bias': float((dec - m_ev)[mv].mean()) if mv.any() else None for mk, mv in masks.items()})
                         reps_store[key] = {mk: boot.rep_means(err, mv) for mk, mv in masks.items()}
             # paired differences: every config against the mixture's three rules and against its own post_prod
             for key, r in reps_store.items():
