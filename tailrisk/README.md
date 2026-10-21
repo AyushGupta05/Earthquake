@@ -183,7 +183,12 @@ learned slopes range from −1.85 (eqdgr, INSTANCE) to +0.02 (GEOFON) nats per u
 catalogue slopes of −2.3 to −1.3; with its own factor the distance-marginalized head's fused
 M≥5 estimates are nearly unbiased (−.13 / +.06 / +.05) where the plain head's stay at −.69 /
 −.38 / −.29. The histogram rule's level depends on its smoothing and floor (±.06 for the
-mixture; the ordering plain-equivariant < mixture holds in every setting at 3–5 s). Tables: [results/multistation_summary_instance.md](results/multistation_summary_instance.md),
+mixture; the ordering plain-equivariant < mixture holds in every setting at 3–5 s). Pinning
+the factor's slope to the catalogue b-value or calibrating a one-parameter tilt on held-out
+fused events fixes some heads on some catalogues (Chile: eqdgr .177 at 5 s) and not others
+(GEOFON: bulk and tail want opposite tilts), so the fusion prior must be validated per
+catalogue; with any sensible prior divided out, the equivariant heads give the best fused
+large-event error on all three (.20–.23 vs .25, .18–.20 vs .53, .52–.54 vs .60 at 5 s). Tables: [results/multistation_summary_instance.md](results/multistation_summary_instance.md),
 […chile.md](results/multistation_summary_chile.md), […geofon.md](results/multistation_summary_geofon.md); figures `figures/multistation_*`.
 
 **Known limitation:** in the 2012 Emilia sequence (fold 1, mostly ML-labelled large events),

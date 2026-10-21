@@ -335,6 +335,17 @@ mechanism visible: the naive product is more biased than the nearest station alo
 −.93 / −.67 / −.62 against −.62 / −.56 / −.53 at 1 / 3 / 5 s), the histogram rule leaves −.25 /
 −.22 / −.15, the plain head with its flat learned factor stays at −.69 / −.38 / −.29, and the
 distance-marginalized head with its own factor is nearly unbiased (−.13 / +.06 / +.05).
+Pinning the factor's slope to the catalogue b-value during training leaves single-station
+error unchanged, as the proposition predicts, repairs the plain head's fusion (.32 / .22 / .26)
+but over-corrects the distance-marginalized head; a cross-fitted one-parameter tilt of the
+fusion prior, chosen on held-out fused events, makes the GR heads' own factor the best rule on
+Chile (eqdgr .282 / .177 at 3 / 5 s) and cannot help on GEOFON, where bulk and tail want
+opposite tilts (with a tail objective the equivariant heads reach .52–.54 at 5 s against the
+mixture's .60, at +.20 bulk). The fusion prior is therefore catalogue- and head-specific and
+must be validated on held-out fused events; what holds throughout is that the naive product is
+worst and that, with a sensible prior divided out, the equivariant heads give the best fused
+large-event error on every catalogue (.20–.23 vs .25 on INSTANCE, .18–.20 vs .53 on Chile,
+.52–.54 vs .60 on GEOFON at 5 s).
 
 ## 6. Limitations
 

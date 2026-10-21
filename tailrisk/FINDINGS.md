@@ -120,6 +120,99 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 05:30 UTC — Calibrated fusion prior: a cross-fitted one-parameter tilt helps where the learned factor is wrong (Chile), cannot help where bulk and tail want opposite tilts (GEOFON), and does not beat the plain histogram rule on INSTANCE
+
+Rules `lik_prior_cal` and `hist_adj_cal` (`multistation.py`): the fusion prior (the head's own
+factor, or the training histogram) gets one tilt γ·max(m − 3.5, 0) per held-out fold, γ ∈
+[−3, 3] chosen on the *other* folds' fused events at k = all (leakage-free). Two objectives:
+mean fused event MAE over all events (default; `multistation_*_s{1,2,3}.json`) or over the
+tail events (`--cal-on tail`; GEOFON only, `multistation_geofon_s*_caltail.json`). Three
+seeds; k = all stations; event-level MAE of the top tail at 1 / 3 / 5 s, three-seed means:
+
+| | uncalibrated | calibrated (all-event objective) | calibrated (tail objective) |
+|---|---|---|---|
+| INSTANCE M≥5, mixture ÷ histogram | .331 / .264 / .252 | .482 / .374 / .361 | — |
+| INSTANCE M≥5, eqgr ÷ histogram | .304 / .202 / .207 | .518 / .313 / .272 | — |
+| INSTANCE M≥5, eqdgr own factor | .273 / .203 / .226 | .412 / .213 / .212 | — |
+| Chile M≥6, mixture ÷ histogram | .840 / .547 / .526 | .907 / .632 / .602 | — |
+| Chile M≥6, mixgr own factor | 1.283 / .830 / .793 | .998 / .492 / .483 | — |
+| Chile M≥6, eqgr own factor | 1.017 / .342 / .221 | .758 / .317 / **.196** | — |
+| Chile M≥6, eqdgr own factor | 1.032 / .319 / .199 | .781 / **.282 / .177** | — |
+| GEOFON M≥7, mixture ÷ histogram | .864 / .693 / .603 | 1.135 / .797 / .658 | 1.015 / .751 / .646 |
+| GEOFON M≥7, eqgr own factor | 1.636 / 1.236 / 1.070 | 1.636 / 1.292 / 1.123 | .769 / .635 / **.522** |
+| GEOFON M≥7, eqdgr own factor | 1.458 / 1.136 / .961 | 1.556 / 1.210 / 1.025 | .746 / .615 / .541 |
+| GEOFON M≥7, eqdgr ÷ histogram | 1.039 / .728 / .609 | .716 / .645 / .481 (bulk .82) | .685 / .698 / .542 (bulk .88) |
+
+* **INSTANCE.** The all-event objective is dominated by the hundreds of M3.5–4.5 events that
+  the hinge touches, and the tilt it picks worsens the 31 M≥5 events for the histogram rule
+  (+.15 / +.11 / +.11) and leaves eqdgr's own factor about where it was (.412 / .213 / .212 vs
+  .273 / .203 / .226). Fused bulk is unchanged (.168 at 5 s for eqdgr). The uncalibrated
+  rules of the 01:40 entry stand.
+* **Chile.** Calibration turns every GR head's own factor into its best rule at 3 and 5 s:
+  eqdgr .282 / .177 and eqgr .317 / .196 (from .319 / .199 and .342 / .221), and repairs the
+  prior-only head's flat factor (.793 → .483). It makes the histogram rule worse. Fused bulk
+  unchanged (eqdgr .073 at 5 s, the best of any rule). Chosen tilts are consistent across
+  folds (eqdgr: −0.75 to −1.0 at 5 s).
+* **GEOFON.** Bulk (M4.5–6) and the M≥7 tail want opposite tilts: with the all-event
+  objective the GR heads' factors stay flat and gain nothing; with the tail objective the
+  equivariant heads reach .52–.54 at 5 s against the mixture's best .60, at +.20 bulk. The
+  only rule that improves the GEOFON tail without a tail-specific objective, eqdgr ÷ histogram
+  calibrated (.481 at 5 s), destroys the bulk (.82 vs .35). No single tilt serves both.
+
+**What this settles.** The prior that fusion must divide out is catalogue- and head-specific
+and must be validated on held-out *fused* events; it is neither the catalogue b-value (04:20
+entry) nor the learned factor in general, and a one-parameter correction recovers it only
+where bulk and tail agree on it (INSTANCE, Chile). What does not change across any rule,
+objective or catalogue: the naive product is worst, and wherever a sensible prior is divided
+out the equivariant heads give the best fused large-event error (INSTANCE .20–.23 vs .25,
+Chile .18–.20 vs .53, GEOFON .52–.54 vs .60 at 5 s) and the best fused bulk on the two
+local/regional networks.
+
+## 2026-10-21 04:20 UTC — Pinning the prior slope to the catalogue b-value: single-station results unchanged (as Proposition 2 predicts); fusion with the pinned factor repairs the plain head's tail but is not the best rule overall
+
+`--beta-fixed −2.29` (INSTANCE's empirical ln-density slope above M3.5, b = 1.00) replaces the
+learned tail slope of the prior factor by a constant; `eqgr_bfix`, `eqdgr_bfix` (seed 1;
+`eval_bfix.json`, `multistation_instance_bfix.json`).
+
+**Single-station, Δ vs mix_nll (median action, 1 / 3 / 5 s).** eqgr_bfix: bulk −.0007 / −.0010 /
+**−.0030**, M≥4 **−.011** / −.009 / **−.020**, M≥5 −.045 / **−.117 / −.161**, false-M4 6.2 / 5.4 /
+4.8 per 10⁴ (the mixture's 6.3 / 5.2 / 4.6; the learned-slope eqgr had 7.8 / 6.0 / 5.2).
+eqdgr_bfix: bulk −.0007 / **−.0027 / −.0044**, M≥5 −.124 / **−.174 / −.192**, false-M4 10.4 / 7.7 /
+6.2 (learned slope: 12.2 / 7.7 / 5.5). Absolute M≥5 MAE at 5 s: .527 (eqgr_bfix) vs .548
+(eqgr), .495 (eqdgr_bfix) vs .503 (eqdgr). Pinning the slope changes nothing that matters at
+one station — the tilt is absorbed by the mixture, as the proposition says — and removes the
+plain head's small 1 s false-alarm excess.
+
+**Fusion (k = all stations, M≥5 event MAE / all-events MAE, signed M≥5 bias in parentheses).**
+
+| rule | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| mixture, ÷ training histogram | .327 / .249 (−.25) | .272 / .199 (−.22) | .242 / .176 (−.15) |
+| eqgr, learned factor once | .693 / .244 (−.69) | .387 / .193 (−.37) | .299 / .168 (−.28) |
+| **eqgr_bfix, pinned factor once** | .323 / .266 (−.16) | .224 / .203 (−.03) | .258 / .175 (−.04) |
+| eqdgr, learned factor once | .271 / .240 (−.13) | .210 / .191 (+.06) | .226 / .169 (+.05) |
+| eqdgr_bfix, pinned factor once | .262 / .263 (+.04) | .292 / .205 (+.16) | .286 / .178 (+.11) |
+
+* For the plain head the prescription works: with the catalogue slope in the factor, "prior
+  counted once" is nearly unbiased and matches the histogram rule's tail (vs the mixture's
+  histogram rule: +.002 / −.039 / +.018, n.s.), where the learned factor under-corrected by
+  .3–.4 units.
+* For the distance-marginalized head it does not: its *learned* slope (−1.85) fused better than
+  the catalogue's (−2.29), which now over-corrects (+.16 / +.11 bias at 3 / 5 s). So the prior a
+  trained posterior actually carries is only approximately the label histogram — the
+  interval-censored fit, finite capacity and the sequence structure of the data all move it —
+  and no single a-priori slope is right for every head.
+* Both pinned heads lose the fused *bulk* advantage at 1 s (+.019 / +.016 vs the mixture's
+  histogram rule, CIs exclude zero) that the learned-slope heads had (−.004 / −.007): with the
+  tail pinned, the free part of the factor adapts and the fused bulk suffers.
+
+**Reading.** The slope of the prior factor is free at one station (Proposition 2, now confirmed
+empirically: pinning it leaves single-station error unchanged), so it must be *chosen* for
+fusion. Neither the catalogue b-value nor the learned value is right for every head; the
+fused large-event bias is the observable that tells which, and it can be driven to zero with a
+single tilt parameter calibrated on held-out fused events. That calibrated rule is the next
+step. Chile (β = −1.79) and GEOFON (β = −1.32) pinned-slope arms are queued.
+
 ## 2026-10-21 01:50 UTC — INSTANCE held-station test now includes the distance-marginalized head: its M≥5 gain survives on stations never seen in training
 
 `eqdgr_nll_hs` (20% of stations withheld, seed 1) joins the three held-station arms of 19 Oct;
