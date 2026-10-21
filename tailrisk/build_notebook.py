@@ -259,6 +259,16 @@ and Chile; on GEOFON every head saturates.
 
 ![bias by magnitude](figures/bias_by_magnitude_all.png)
 """)]
+    if (HERE / 'figures' / 'reliability_ens3.png').exists():
+        cells += [md("""
+## 13. Reliability of the tail probabilities (three-seed ensembles, INSTANCE)
+
+P(M≥4) and P(M≥5) binned on a log scale against observed frequency (`results/calibration_ens3.json`).
+The distance-marginalized head is on the diagonal for P(M≥4) at 5 s where the mixture is
+under-confident; both structured heads over-predict P(M≥5) in the top bin.
+
+![reliability](figures/reliability_ens3.png)
+""")]
     findings = Path(args.findings)
     if findings.exists():
         cells.append(md('## Findings (from FINDINGS.md)\n\n' + findings.read_text()))

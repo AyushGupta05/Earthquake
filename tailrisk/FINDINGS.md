@@ -166,6 +166,15 @@ average correct, M≥4 probabilities, and its M≥5 probabilities are somewhat t
 mixture's probabilities are too low throughout, which is the same under-estimation seen in the
 point estimates.
 
+**Chile (`results/chile_calibration_ens3.json`, 67 M≥5 events).** The picture differs: for
+P(M≥5) the Brier scores tie (5 s: mixture .00046, plain .00044, distance-marginalized .00046; at
+1 and 3 s the mixture is marginally better, .00063 vs .00070 and .00047 vs .00050) and the
+reliability terms are tiny for all three, but in the mid bins at 5 s the structured heads
+over-predict (predicted .42 / .57 / .73 → observed .27 / .41 / .60 for the plain head and .23 /
+.39 / .53 for the distance-marginalized head) where the mixture is closer (.37 / .50 / .69). On
+this catalogue the structured heads' better point estimates of M≥6 events do not come with
+better-calibrated tail probabilities; a probability-based alert would need recalibration.
+
 ## 2026-10-21 12:50 UTC — Event magnitude versus time since the first P arrival: with the naive rule the free mixture's M≥5 estimate never improves as stations arrive; with the prior divided out the equivariant heads reach .3 within 4 s of the first P on INSTANCE and Chile
 
 `fusion_timeline.py`: at wall-clock time T after an event's first P, each station contributes its
