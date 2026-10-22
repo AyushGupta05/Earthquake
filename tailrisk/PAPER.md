@@ -257,8 +257,11 @@ itself moves both heads along the trade-off (+.004–.005 bulk, −.02 M≥4). *
 mixture reaches the standard eqgr's M≥4 error but not its M≥5 or bulk error. For the
 distance-marginalized head the width check gives bulk −.0027/−.0065/−.0083 and M≥5
 −.112/−.163/−.171, and 20 epochs give bulk −.0064/−.0084/−.0104 with the 1 s false-alarm excess
-gone and M≥5 −.120/−.142 at 3/5 s; five-seed ensembles reproduce the three-seed differences
-for both heads.
+gone and M≥5 −.120/−.142 at 3/5 s, replicated in three seeds against an equally trained
+mixture (bulk −.0040/−.0061/−.0073, M≥5 −.106/−.154/−.161, false-M4 equal) and, with the same
+sign, on Chile (bulk −.0045/−.0064/−.0080, M≥6 −.107/−.229/−.310) and GEOFON (M≥7
+−.073/−.062/−.084 at +.009 bulk); five-seed ensembles reproduce the three-seed differences for
+both heads.
 
 *Second dataset (negative for the equivariant component).* On a GEOFON subset (31,020
 records within 2,000 km, 2,212 events, 276 M≥6 and 50 M≥7, labels mostly mb, 78% of traces at

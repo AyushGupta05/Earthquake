@@ -142,9 +142,14 @@ eqgr − mix differences are unchanged or larger (width: bulk −.002/−.003/�
 mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error. The same holds for
 the distance-marginalized head: at 1.5× width its bulk gain grows (−.0027 / −.0065 / −.0083) with
 M≥5 −.112 / −.163 / −.171, and at 20 epochs its bulk gain triples (−.0064 / −.0084 / −.0104) and
-its 1 s false-alarm excess disappears while M≥5 stays at −.12 / −.14 (3 / 5 s). Five-seed
-ensembles reproduce the three-seed results for both heads (M≥5 −.022 / −.095 / −.138 and −.119 /
-−.168 / −.183).
+its 1 s false-alarm excess disappears while M≥5 stays at −.12 / −.14 (3 / 5 s); replicated in
+three seeds against the equally trained mixture (ensembles: bulk −.0040 / −.0061 / −.0073, M≥5
+−.106 / −.154 / −.161, false-M4 equal), and on Chile (bulk −.005 / −.006 / −.008, M≥6 −.11 / −.23
+/ −.31) and GEOFON (M≥7 −.07 / −.06 / −.08 at half the bulk cost of the 10-epoch head), where 20
+epochs hurt both models slightly (Chile) or help both strongly (GEOFON). Five-seed ensembles
+reproduce the three-seed results for both heads (M≥5 −.022 / −.095 / −.138 and −.119 / −.168 /
+−.183). On INSTANCE the 20-epoch distance-marginalized head is the single best model of the
+study: lower bulk error than any mixture, the same M≥5 gain, the mixture's false-alarm rate.
 
 **Third dataset, Northern Chile (regional, 40–230 km; 505k station traces picked with
 STA/LTA + AIC from the TEAM-LM release; 67 M≥5, 12 M≥6 events; three-seed ensembles, 20 Oct).**

@@ -120,6 +120,37 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-22 21:40 UTC — 20 epochs replicated: on INSTANCE the distance-marginalized head's larger bulk gain and vanishing false-alarm cost hold in three seeds; on Chile longer training helps neither model and on GEOFON it helps both, and in every case the head keeps its advantage over the equally trained mixture
+
+20-epoch arms of the mixture and the distance-marginalized head on Chile and GEOFON (seed 1;
+`chile_eval_e20.json`, `geofon_eval_e20.json`) and seeds 2–3 on INSTANCE with three-seed
+ensembles (`eval_e20_ens3.json`, `eval_e20_seeds23.json`). Δ = arm − the 20-epoch mixture
+(same seeds / ensemble), median action, 1 / 3 / 5 s.
+
+| | bulk | top tail | false-M4 per 10⁴ |
+|---|---|---|---|
+| INSTANCE, eqdgr 20 ep, ensembles (3 v 3) | **−.0040 / −.0061 / −.0073** | M≥5 −.106 / **−.154 / −.161** | +.2 / ±0 / ±0 (n.s.) |
+| INSTANCE, seed 2 / seed 3 | −.006 / −.009 / −.010 (both) | M≥5 −.10 / −.17 / −.16 and −.09 / −.17 / −.16 | ±0 |
+| INSTANCE, 10-epoch mixture ensemble vs 20-epoch | **+.0025 / +.0032 / +.0033** | M≥4 **+.019 / +.019 / +.022** | −.1 |
+| Chile, eqdgr 20 ep | **−.0045 / −.0064 / −.0080** | M≥6 **−.107 / −.229 / −.310** | — |
+| Chile, 10-epoch mixture vs 20-epoch | **−.0022 / −.0039 / −.0046** | M≥6 −.002 / **+.061** / +.029 | — |
+| GEOFON, eqdgr 20 ep | **+.014 / +.009 / +.009** | M≥7 **−.073 / −.062 / −.084** | — |
+| GEOFON, 10-epoch mixture vs 20-epoch | **+.020 / +.020 / +.020** | M≥7 **+.042 / +.123 / +.133** | — |
+
+* Training length is a property of the catalogue, not of the head: 20 epochs improve the
+  mixture on INSTANCE (bulk −.003, M≥4 −.02) and strongly on the small GEOFON set (bulk −.02,
+  M≥7 −.04 to −.13), and slightly hurt it on Chile (bulk +.002 to +.005). The
+  distance-marginalized head moves the same way on each catalogue.
+* Against the equally trained mixture the head keeps its advantage everywhere: INSTANCE bulk
+  −.004 / −.006 / −.007 with M≥5 −.15 / −.16 at 3 / 5 s and no false-alarm excess (three
+  seeds agree: the 1 s cost of the 10-epoch head is gone at 20 epochs); Chile bulk −.005 / −.006
+  / −.008 and M≥6 −.11 / −.23 / −.31; GEOFON M≥7 −.07 / −.06 / −.08 at a bulk cost halved to
+  +.009 (from +.019 at 10 epochs).
+* Practical reading for INSTANCE: the 20-epoch distance-marginalized head is the single best
+  model of the study on this catalogue — lower bulk error than any mixture, the same M≥5
+  gain, and the mixture's false-alarm rate — and its 10-epoch version was already the most
+  portable across catalogues.
+
 ## 2026-10-21 20:20 UTC — Capacity, training length and five seeds for the distance-marginalized head on INSTANCE: its gains hold or grow at 1.5× width and at 20 epochs, and the five-seed ensembles replicate the three-seed result
 
 `eqdgr_nll_w15` (trunk width ×1.5) and `eqdgr_nll_e20` (20 epochs) against the matching mixture
