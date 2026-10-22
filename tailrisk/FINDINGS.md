@@ -120,6 +120,39 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-22 22:10 UTC — Fusion with the 20-epoch distance-marginalized head: the histogram rule is its best fusion prior (M≥5 .22 / .19 / .23 at all stations, three seeds); its own learned factor no longer is, as Proposition 2 predicts for a re-trained split
+
+`multistation.py` and `fusion_timeline.py` on the three 20-epoch seeds of the mixture and the
+distance-marginalized head (`multistation_summary_instance_e20.md`,
+`fusion_timeline_summary_instance_e20.md`). Event-level M≥5 MAE at k = all stations, 1 / 3 / 5 s,
+three-seed means (all-events MAE at 5 s in parentheses):
+
+| rule | mixture, 20 epochs | distance-marginalized, 20 epochs |
+|---|---|---|
+| naive product | .908 / .641 / .577 (.178) | .739 / .327 / .270 (.171) |
+| ÷ training histogram | .368 / .296 / .285 (.168) | **.224 / .193 / .229** (.167) |
+| own factor once | — | .269 / .319 / .313 (.171) |
+| nearest station only | .676 / .640 / .684 | .911 / .864 / .727 |
+
+* With the histogram rule the 20-epoch head fuses to .22 / .19 / .23, better than the 10-epoch
+  head's best rule (.27 / .20 / .23) and far better than the 20-epoch mixture's (.37 / .30 / .29),
+  at equal fused bulk (.167 vs .168 at 5 s). In wall-clock time it is ahead of the mixture's
+  best rule from 6 s after the first P (.27 vs .34 at 6 s, .23 vs .33 at 10 s, .23 vs .29 at
+  20 s).
+* Its *own* factor counted once is now the worse rule (.27 / .32 / .31), whereas for the
+  10-epoch head it was the best: the learned tail slope moved with training length, from
+  −1.85 nats per unit at 10 epochs (folds −1.34 to −2.31) to −2.73 at 20 epochs (−2.30 to
+  −3.04, all three seeds alike), now steeper than the catalogue's −2.29, so counting it once
+  over-corrects — exactly the non-identifiability of Proposition 2, and the same over-correction
+  the pinned slope showed on 21 Oct. The practical rule stands: divide out the training-label
+  prior, and validate the fused bias per model.
+* Its nearest-station estimate of M≥5 events is poor (.91 / .86 / .73 vs .68 / .64 / .68 for
+  the mixture; one seed 1.21 at 1 s): with longer training the head leans harder on the
+  distance mixture, and the single nearest station, often the one with the most saturated
+  record, mis-places the distance hypothesis. Two or more stations repair this at once (k = 4:
+  .47 / .43 / .33 with the histogram rule); single-station deployment of the 20-epoch head at
+  1 s should be avoided or combined with the prior-only head as in the 16:45 entry of 20 Oct.
+
 ## 2026-10-22 21:40 UTC — 20 epochs replicated: on INSTANCE the distance-marginalized head's larger bulk gain and vanishing false-alarm cost hold in three seeds; on Chile longer training helps neither model and on GEOFON it helps both, and in every case the head keeps its advantage over the equally trained mixture
 
 20-epoch arms of the mixture and the distance-marginalized head on Chile and GEOFON (seed 1;
