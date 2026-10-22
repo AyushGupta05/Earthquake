@@ -139,7 +139,12 @@ buys only the largest events. Details in FINDINGS.md.
 **Capacity and training length.** At 1.5× trunk width (2.2× parameters) and at 20 epochs the
 eqgr − mix differences are unchanged or larger (width: bulk −.002/−.003/−.003, M≥4
 −.018/−.021/−.027; epochs: bulk −.000/−.002/−.004, M≥4 −.014/−.011/−.017). A 2.2×-larger free
-mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error.
+mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error. The same holds for
+the distance-marginalized head: at 1.5× width its bulk gain grows (−.0027 / −.0065 / −.0083) with
+M≥5 −.112 / −.163 / −.171, and at 20 epochs its bulk gain triples (−.0064 / −.0084 / −.0104) and
+its 1 s false-alarm excess disappears while M≥5 stays at −.12 / −.14 (3 / 5 s). Five-seed
+ensembles reproduce the three-seed results for both heads (M≥5 −.022 / −.095 / −.138 and −.119 /
+−.168 / −.183).
 
 **Third dataset, Northern Chile (regional, 40–230 km; 505k station traces picked with
 STA/LTA + AIC from the TEAM-LM release; 67 M≥5, 12 M≥6 events; three-seed ensembles, 20 Oct).**

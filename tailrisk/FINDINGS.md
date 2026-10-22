@@ -120,6 +120,35 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-21 20:20 UTC — Capacity, training length and five seeds for the distance-marginalized head on INSTANCE: its gains hold or grow at 1.5× width and at 20 epochs, and the five-seed ensembles replicate the three-seed result
+
+`eqdgr_nll_w15` (trunk width ×1.5) and `eqdgr_nll_e20` (20 epochs) against the matching mixture
+arms (`eval_w15_3.json`, `eval_e20_3.json`), and five-seed ensembles of the mixture, plain and
+distance-marginalized heads (`eval_ens5.json`; single seeds 4 and 5 in `eval_seeds45.json`).
+Δ = arm − matching mixture, median action, 1 / 3 / 5 s (bold: CI excludes zero).
+
+| | bulk | M≥4 MAE | M≥5 MAE | false-M4 per 10⁴ |
+|---|---|---|---|---|
+| plain, ×1.5 width | **−.0022 / −.0025 / −.0034** | **−.018 / −.021 / −.027** | −.031 / **−.109 / −.133** | +.1 / **+.1** / +.1 |
+| distance-marg., ×1.5 width | **−.0027 / −.0065 / −.0083** | −.021 / **−.027 / −.031** | −.112 / **−.163 / −.171** | **+.4 / +.3 / +.2** |
+| plain, 20 epochs | −.0001 / **−.0017 / −.0038** | **−.014 / −.011 / −.017** | −.047 / **−.098 / −.110** | ±0 |
+| distance-marg., 20 epochs | **−.0064 / −.0084 / −.0104** | +.002 / −.007 / −.014 (n.s.) | −.065 / **−.120 / −.142** | +.2 / ±0 / ±0 |
+| plain, 5-seed ensembles | −.0004 / −.0012 / **−.0023** | **−.015 / −.014 / −.024** | −.022 / **−.095 / −.138** | **+.2** / +.1 / ±0 |
+| distance-marg., 5-seed ensembles | −.0007 / **−.0032 / −.0047** | −.015 / −.017 / −.023 (n.s.) | −.119 / **−.168 / −.183** | **+.4 / +.2 / +.1** |
+
+* Capacity: at 2.2× the parameters the distance-marginalized head's bulk gain is larger
+  (−.008 at 5 s vs −.005 at the standard width) and its M≥5 gain unchanged, so the gain is not
+  what a bigger free mixture would also learn.
+* Training length: at 20 epochs its bulk gain triples (−.0064 / −.0084 / −.0104) and its 1 s
+  false-alarm excess disappears, while its M≥4 gain shrinks to insignificance and the M≥5 gain
+  is kept (−.12 / −.14 at 3 / 5 s). Longer training moves this head toward the bulk; the
+  tail gain survives.
+* Seeds: the five-seed ensembles reproduce the three-seed ones (plain: M≥5 −.022 / −.095 /
+  −.138 vs −.024 / −.105 / −.149; distance-marginalized: −.119 / −.168 / −.183 vs −.122 /
+  −.174 / −.189), and seeds 4 and 5 individually fall inside the spread of seeds 1–3. The
+  mixture's own seed-to-seed spread (seed 5 − seed 4) is −.001 / −.002 / −.002 bulk and ±.01
+  M≥5, i.e. an order of magnitude below the between-head differences.
+
 ## 2026-10-21 13:00 UTC — Seed × fold sign test for the distance-marginalized head on INSTANCE: ahead of the mixture on M≥5 error in 33/45 cells (p = .002) and on bulk in 30/45 (p = .04); M≥4 event error is a coin flip
 
 `seed_consistency.py --pairs mix_nll:eqdgr_nll,…_s2,…_s3` (`results/seedcons_eqdgr_nll_vs_mix_nll.json`),
