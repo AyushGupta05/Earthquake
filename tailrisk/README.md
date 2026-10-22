@@ -282,7 +282,11 @@ large ML labels, which scale ≈1:1 with amplitude.
 | `figures/` | frontier, bias-by-magnitude and amplitude-response plots |
 
 Large arrays (waveform copy, per-record predictions, checkpoints) live in
-`/mnt/eew-research/runs/tailwork` on the AWS host and are not in Git.
+`/mnt/eew-research/runs/tailwork` on the AWS host (regenerable exports and later arms on the
+instance-store scratch disk `/mnt/scratch`) and are not in Git. Compute used for the whole
+study, 18–22 Oct 2026: one g5.xlarge (A10G) running continuously, roughly 100 instance-hours,
+plus 300 GB of EBS — about 110 USD of credits at on-demand prices (estimate; no billing API
+was available from the host).
 
 Reproduce one arm: `python tailrisk/train.py --arm eqgr_nll --head eqgr --loss nll --epochs 10`
 (≈1 h on one A10G for all 5 folds), then
