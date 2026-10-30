@@ -36,7 +36,10 @@ best fused large-event and bulk error on the two local/regional networks. Traine
 event above a magnitude cap (M4.0 on INSTANCE, M5.0 on Chile), the equivariant heads still
 under-predict the held-out events above it by only about .25–.55 units at 3–5 s (mean bias up
 to M7), matching or beating a free mixture trained on the full catalogue, while the identically
-trained free mixture saturates at the cap. On GEOFON, whose labels switch from mb to Mw at the
+trained free mixture saturates at the cap. On a fourth catalogue held out and pre-registered
+before training (STEAD, 718 M≥5 events), the plain equivariant head lowers M≥5 error at 3 and 5 s
+with bulk error unchanged, meeting the pre-registered rule. The distance-marginalized head lowers
+it by .08–.11 but exceeds the bulk guard at 1 s by .0004. On GEOFON, whose labels switch from mb to Mw at the
 cap, a pre-registered version of this test failed against amplitude augmentation. Because the
 distance-marginalized head models
 distance and magnitude jointly, the same trained model can be conditioned on a located event's
@@ -246,6 +249,25 @@ Against plain cross-entropy (three-seed ensembles) the margins are larger: M≥4
 rate at 1 s. Absolute values for the eqgr ensemble: bulk
 .320/.263/.230; M≥4 .737/.553/.497; M≥5 1.010/.638/.537. On the unseen Central Italy sequence,
 5 s M≥5 MAE falls from 1.008 (CE) to 0.502.
+
+**Pre-registered fourth catalogue (STEAD).** Every arm, endpoint, threshold and decision rule was
+fixed and committed before any model was trained on STEAD (`PREREGISTRATION_STEAD.md`). STEAD
+has 996,894 records, 718 M≥5 events in 456 sequences and 63 M≥6 events in 51. The rule asks for
+lower record-level M≥5 error at 3 and 5 s with jackknife intervals excluding zero, and bulk error
+no more than .002 higher at every deadline. Three-seed ensembles against the free mixture:
+
+| | Δ M≥5 MAE 1 / 3 / 5 s | Δ M≥6 MAE 1 / 3 / 5 s | Δ bulk MAE 1 / 3 / 5 s | verdict |
+|---|---|---|---|---|
+| `eqgr` | −.010 / **−.056 / −.069** | −.09 / −.23 / −.32 | +.0012 / −.0000 / −.0001 | confirmed |
+| `eqdgr` (primary) | **−.045 / −.084 / −.106** | **−.25 / −.37 / −.45** | +.0024 / +.0004 / +.0000 | 1 s bulk guard missed by .0004 |
+
+False M≥4 predictions are level (5.9–7.2 per 10⁴ for all three). The gains hold in each seed, in
+each of five pre-specified regions, on moment-magnitude labels alone and without gain-QC suspects.
+On M≥5 at 3 / 5 s, 303 / 304 of 456 sequences favour the distance-marginalized head. The κ ≡ 1 head
+has a larger tail gain (M≥5 −.12 at 5 s) but costs .005–.010 bulk error. A pre-registered pooled
+analysis over the four catalogues (random effects, HKSJ interval) gives tail Δ −.06 / −.12 / −.17.
+Its interval excludes zero at 1 s only, and the pooled 1 s bulk is +.004, so that secondary claim
+is not met (`results/robust_stead_ens3.md`, `meta_eqdgr.md`).
 
 **Classical amplitude laws.** The classical magnitude relations are fitted per fold on the same
 training rows and scored as arms, with a Gaussian predictive distribution whose SD is the

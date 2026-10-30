@@ -10,6 +10,22 @@ at 1, 3 and 5 s on every dataset, with paired differences, are tabulated in
 [NOVELTY.md](NOVELTY.md). An explanatory notebook is in
 [tail_risk_study.ipynb](tail_risk_study.ipynb).
 
+## Pre-registered out-of-sample test (STEAD, 30 Oct 2026)
+
+[PREREGISTRATION_STEAD.md](PREREGISTRATION_STEAD.md) fixed every arm, endpoint and decision rule
+before any model saw STEAD (996,894 records; 718 M ≥ 5 events in 456 sequences). Three-seed
+ensembles against the free Gaussian mixture, with jackknife intervals over sequences:
+
+| | M ≥ 5 MAE at 3 s / 5 s | bulk MAE at 1 / 3 / 5 s | verdict |
+|---|---|---|---|
+| plain equivariant head (`eqgr`) | **−.056 / −.069** (intervals exclude 0) | +.0012 / −.0000 / −.0001 | **confirmed** |
+| distance-marginalized head (`eqdgr`, primary) | **−.084 / −.106** (intervals exclude 0); M ≥ 6 −.37 / −.45 | **+.0024** / +.0004 / +.0000 | not confirmed: 1 s bulk above the +.002 guard by .0004 |
+
+Both heads gain in every seed, every pre-specified region and on moment-magnitude labels alone,
+with no rise in false alarms. The pre-registered pooled analysis over four catalogues falls just
+short: its conservative interval includes zero at 3 s and 5 s, though 351 and 359 of 521
+large-event sequences favour the distance-marginalized head. Details in FINDINGS.md (10:25 entry).
+
 ## Independent checks (30 Oct 2026)
 
 An adversarial audit ([AUDIT_2026-10-30.md](AUDIT_2026-10-30.md)) found no leakage and reproduced
