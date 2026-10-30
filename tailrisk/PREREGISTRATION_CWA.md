@@ -1,6 +1,6 @@
 # Pre-registered test on a fifth catalogue: CWA (Taiwan)
 
-Written 30 Oct 2026 at about 21:10 UTC, while the cache is being built, before any model has been
+Written 30 Oct 2026 at about 21:05 UTC (commit 5be5d4f), while the cache is being built, before any model has been
 trained or evaluated on CWA, and committed before the first CWA training run starts. Only metadata
 summaries (trace, event and family counts; unit checks against the catalogue PGA / PGV) have been
 looked at. Nothing below may change after CWA results are seen.

@@ -4,6 +4,62 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 21:10 UTC — Pre-registered equal-information test: **not met** pooled (HKSJ includes zero), though every catalogue favours the equivariant head at 5 s and STEAD alone passes; distance knowledge itself carries about half of the conditioned gain. Also: the heads carry over to the MagNet trunk; κ ≡ 1 wins the tail on INSTANCE too; zero-shot transfer fails for every head
+
+**Equal information** (`PREREGISTRATION_EQUALINFO.md`, commit cbe6476). Three-seed ensembles, both
+heads conditioned on the catalogue distance: `eqdgr`|r − `mixdgr`|r (the free distance-mixture
+head). Jackknife per catalogue, pooled with `meta_analysis.py`.
+
+| catalogue (threshold) | Δ tail 1 / 3 / 5 s | jackknife SE | clusters favouring at 5 s | Δ bulk |
+|---|---|---|---|---|
+| INSTANCE (M ≥ 5) | −.124 / −.156 / −.160 | .06–.07 | 9 / 11 | +.0007 to +.0009 |
+| Chile (M ≥ 6) | +.004 / −.197 / −.269 | .03–.06 | 8 / 8 | −.0005 to −.0015 |
+| GEOFON (M ≥ 7) | +.016 / −.010 / −.044 | .01–.02 | 32 / 46 | +.0014 to +.0055 |
+| STEAD (M ≥ 5) | −.027 / **−.068 / −.083** | .009–.010 | 326 / 456 | +.0001 to −.0008 |
+| pooled, random effects | −.014 / −.094 / −.120 | HKSJ [−.229, +.042] at 3 s, [−.273, +.033] at 5 s | 340 / 521 (3 s), 375 / 521 (5 s) | +.0005 / −.0004 / −.0007 |
+
+The decision rule needs the pooled HKSJ interval to exclude zero at 3 and 5 s, and it does not.
+The bulk guard passes. **The pre-registered claim is not met.** The STEAD-alone criterion of the
+same pre-registration passes, with intervals excluding zero at 3 and 5 s. The between-catalogue SD
+(τ ≈ .06) comes mainly from GEOFON's small effect, where the learned slope is the wrong one (08:55
+entry). With σ = .1 (26% distance error) the picture is the same: −.104 / −.130 pooled, HKSJ
+including zero, 367 / 376 of 521 sequences.
+
+**What distance alone does.** The free distance head conditioned on the same distance against the
+free mixture (`mixdgr`|r − `mix`) gives tail Δ −.106 / −.112 at 3 / 5 s, pooled HKSJ [−.129, −.083] /
+[−.122, −.101] (τ = 0, all four catalogues agree), and bulk −.05 to −.06. So of the known-distance
+gain over the free mixture (−.18 / −.23, 10:35 entry) about half is distance knowledge, available
+to any head with a distance latent. The other half is equivariance: consistent in direction on
+every catalogue, significant on STEAD alone, not significant pooled.
+
+**MagNet trunk** (INSTANCE, seed 1). The published CNN + BiLSTM trunk is given the equivariant heads.
+Against the same trunk with a free mixture, `magnet_eqdgr` gives M ≥ 5 −.74 / −.80 at 3 / 5 s and
+`magnet_eqgr` −.66 / −.78 (11 of 11 sequences each), with M ≥ 4 −.19 to −.22 and bulk −.03 to −.05,
+at +13 to +22 false M4 per 10⁴. The head carries over to a different trunk. Our own trunk is still
+better (`eqdgr_nll` − `magnet_eqdgr`: bulk −.05, M ≥ 5 −.10 / −.08).
+
+**κ ≡ 1 on INSTANCE** (seed 1). `eqgr_k1_nll` beats the learned slope on M ≥ 5 by .088 / .080 at
+3 / 5 s (intervals excluding zero, 5 of 11 sequences), at +.002 / +.002 bulk and −1 to −2 false M4
+per 10⁴. Capped at M4, κ ≡ 1 is better by .11 / .07, with fewer false alarms. With STEAD, GEOFON and
+INSTANCE, the fixed unit slope (Zhang, Zhang & Tian 2021) has the better large-event error on three
+of four catalogues. The learned slope κ(s) buys .002–.008 of bulk error. Chile is the exception,
+where the learned slope wins the tail. NOVELTY.md's statement that the learned slope matters is
+restricted to bulk error accordingly.
+
+**Zero-shot transfer** (no station metadata; seed 1). Models trained on one catalogue and applied
+to the other are poor for every head: INSTANCE → Chile bulk .34–.40 against .21 native, Chile →
+INSTANCE .56–.85 against .35. Label-shift adjustment helps little. The equivariant heads do not
+fix transfer. INSTANCE → Chile, `eqdgr_ns` has the best M ≥ 6 (2.01 / 1.65 / 1.62 against the
+mixture's 2.38 / 1.92 / 1.87). Chile → INSTANCE, the equivariant heads are worse on M ≥ 5. Native
+no-static training replicates the main pattern (Chile M ≥ 6 `eqdgr_ns` .58 / .48 against `mix_ns`
+.82 / .83).
+
+Files: `results/robust_{instance,chile,geofon,stead}_equalinfo.{json,md}`,
+`meta4_equalinfo{,_s10}.{json,md}`, `meta4_freedist_vs_mix.{json,md}`, `eval_magnet_trunk.json`,
+`robust_instance_magnet_trunk.{json,md}`, `eval_k1.json`, `robust_instance_k1.{json,md}`,
+`eval_{transfer_from_chile,transfer_from_chile_ls,native_ns}.json`,
+`chile_eval_{transfer_from_instance,transfer_from_instance_ls,native_ns}.json`.
+
 ## 2026-10-30 12:05 UTC — Event-level fusion once the event is located: switching each station to the distance-conditioned posterior after four stations have their P cuts the fused all-event error by 15–25% from 6 s on; the large-event effect is catalogue-dependent
 
 Exploratory. `fusion_timeline.py --located` (new option) makes a pseudo-arm. Each station uses the
