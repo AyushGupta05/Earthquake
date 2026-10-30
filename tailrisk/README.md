@@ -31,7 +31,9 @@ p(distance, magnitude | x) jointly and marginalizes distance at inference.
    3 and 5 s (pooled interval excluding zero, also with 26% distance error). Bulk error drops
    12–30%, and event-level fused error drops 15–25% once four stations have triggered. Against the
    classical amplitude law with the same distance it wins on three catalogues and loses on GEOFON
-   M ≥ 7. The equal-information test against a free distance head is pre-registered and ⟨pending⟩.
+   M ≥ 7. Given the same distance, it also beats a free distance head on every catalogue at 5 s,
+   significantly on STEAD alone. The pre-registered pooled interval includes zero. About half of
+   the known-distance gain is distance knowledge itself.
 4. **Trained without large events.** Capped at M4 / M5 / M5 / M6, the equivariant heads cut
    above-cap error by .3–1.0 against the identically capped free mixture on every catalogue. Mostly
    this comes from the prior swap of Proposition 3, which helps even a free likelihood.
@@ -41,8 +43,10 @@ p(distance, magnitude | x) jointly and marginalizes distance at inference.
   tail. Their labels switch from mb to Mw at the cap.
 * Chile's full-data and capped advantages shrink on independent magnitudes. The truncation margin
   trades tail error for fewer false alarms.
-* With full data, the free-likelihood prior factor alone adds little. The early κ ≡ 1 construction
-  of Zhang et al. extrapolates further but costs bulk error.
+* With full data, the free-likelihood prior factor alone adds little. The fixed unit slope (κ ≡ 1,
+  Zhang et al.) has the better large-event error on three of four catalogues. The learned slope
+  buys bulk accuracy, not tail.
+* Zero-shot transfer between INSTANCE and Chile is poor for every head.
 
 ## Pre-registered out-of-sample test (STEAD, 30 Oct 2026)
 

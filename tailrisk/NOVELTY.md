@@ -11,8 +11,11 @@ the closest prior work and states the precise difference.
   exactly log-amplitude-equivariant predicted distribution with unit slope. The published 2024
   version of Zhang & Zhang feeds the log factor as an input instead (the row below describes only
   that version). The increments here are the learned, waveform-dependent slope κ(s), the mixture
-  sharing the shift, and the learned GR-tail prior factor kept at test time; a κ ≡ 1 ablation on
-  the same trunk is run to show the learned slope matters.
+  sharing the shift, and the learned GR-tail prior factor kept at test time. *Result of the
+  κ ≡ 1 ablation (30 Oct):* on STEAD, GEOFON (capped) and INSTANCE the unit slope gives *lower*
+  large-event error than the learned slope (by .03–.4), at .002–.01 more bulk error. Chile is the
+  exception. So the learned slope buys bulk accuracy, not tail accuracy, and the large-event
+  advantage over free networks comes from equivariance itself (shared by κ ≡ 1) and the GR factor.
 * **The Gutenberg algorithm row was wrong.** Meier et al. 2015 state that their kNN densities are
   posteriors that already embed the GR × distance prior, and they combine stations by multiplying
   those posteriors (their eq. 5) without dividing the prior out; Yin 2018 multiplies them again as

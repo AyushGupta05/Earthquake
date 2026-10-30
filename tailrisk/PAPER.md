@@ -325,8 +325,17 @@ Pooled over the four catalogues, the tail difference against the free mixture is
 error. Bulk error is lower on every catalogue, and 382 / 398 of 521 large-event sequences favour
 the head (Figure `figures/pooled_forest_condR.png`). The free mixture is not given the distance,
 so this is a statement about the deployable system rather than about equivariance alone. The
-equal-information comparison against a free distance head conditioned the same way is
-pre-registered (`PREREGISTRATION_EQUALINFO.md`) ⟨pending⟩.
+equal-information comparison was pre-registered (`PREREGISTRATION_EQUALINFO.md`). Conditioned on
+the same distance, the equivariant distance head beats the free distance-mixture head on the top
+tail in every catalogue at 5 s: INSTANCE −.16, Chile −.27, GEOFON −.04, STEAD −.08. That holds in
+340 / 375 of 521 sequences at 3 / 5 s, with no bulk cost, and STEAD alone has intervals excluding
+zero. The pooled HKSJ interval includes zero ([−.23, +.04], [−.27, +.03]), so the pre-registered
+pooled claim is not met. Distance knowledge alone, the free distance head conditioned against the
+free mixture, accounts for about half of the known-distance gain (−.11, consistent across all four
+catalogues). On the MagNet trunk the equivariant heads lower INSTANCE M≥5 error by .66–.80 against
+the same trunk with a free mixture (11 of 11 sequences), so the head carries over to another
+architecture. The fixed unit slope (κ ≡ 1) has the better large-event error on three of four
+catalogues, at .002–.01 bulk cost. The learned slope buys bulk accuracy, not tail.
 
 ### 5.2 Frontier and dominated alternatives
 
