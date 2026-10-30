@@ -36,7 +36,9 @@ best fused large-event and bulk error on the two local/regional networks. Traine
 event above a magnitude cap (M4.0 on INSTANCE, M5.0 on Chile), the equivariant heads still
 under-predict the held-out events above it by only about .25–.55 units at 3–5 s (mean bias up
 to M7), matching or beating a free mixture trained on the full catalogue, while the identically
-trained free mixture saturates at the cap. Because the distance-marginalized head models
+trained free mixture saturates at the cap. On GEOFON, whose labels switch from mb to Mw at the
+cap, a pre-registered version of this test failed against amplitude augmentation. Because the
+distance-marginalized head models
 distance and magnitude jointly, the same trained model can be conditioned on a located event's
 distance at inference. That lowers INSTANCE bulk error by 30% and M≥4 error by 42%. With equal
 information it beats both the classical inverse amplitude law and an identically conditioned
@@ -280,8 +282,16 @@ higher at every deadline (intervals excluding zero), with a top-bin bias near �
 Even with distance known, equivariance is what removes the saturation, as the classical forward
 law shows. The bias that remains for the largest events does not change with conditioning, so it
 reflects the window not yet carrying the event's size rather than distance ambiguity
-(`results/eval_condR.json`, `eval_condR_free.json`, `chile_eval_condR.json`; three-seed and GEOFON
-⟨pending⟩).
+(`results/eval_condR.json`, `eval_condR_free.json`, `chile_eval_condR.json`). The three-seed ensembles
+confirm this against the free-mixture ensemble. Bulk error is lower by .065–.095 on INSTANCE, .025–.033
+on Chile and .089–.097 on GEOFON, where the marginal head had cost .014–.019. The top tail is
+lower by .24–.28 (INSTANCE M ≥ 5), .28 / .39 at 3 / 5 s (Chile M ≥ 6) and .14–.17 (GEOFON M ≥ 7). M ≥ 4
+(INSTANCE), M ≥ 5 (Chile) and M ≥ 6 (GEOFON) improve at every deadline, all with jackknife intervals
+excluding zero. Pooled over the three catalogues, the HKSJ interval excludes zero at 3 s, and 55 of 65
+large-event sequences favour the conditioned head at 3 and 5 s. Against the classical law with the
+same distance, the network is better on INSTANCE and Chile but worse on GEOFON M ≥ 7 (by .25–.45),
+where the classical law has no prior to shrink its estimate (`results/robust_*_condR3.md`,
+`meta3_condR_vs_*.md`).
 
 ### 5.2 Frontier and dominated alternatives
 
@@ -365,6 +375,19 @@ amplitude law the equivariant head learns, which is the content of Proposition 3
 its response is 1.03 per decade in both decades against .41 and .20 for the capped mixture.
 (The prior-only control is being rerun: a label-binning bug at the cap, found by an
 independent audit and since fixed, confounded it on Chile.)
+
+**GEOFON (pre-registered, not confirmed).** Trained below M6.0 and scored on 276 M ≥ 6 events in 208
+clusters, the equivariant heads beat the identically capped free mixture: M ≥ 6 −.28 / −.31 at 3 / 5 s
+for the distance-marginalized ensemble, M ≥ 7 −.44 / −.54, jackknife intervals excluding zero. But
+the mixture with amplitude augmentation is better on M ≥ 6 (+.07, intervals excluding zero). The
+heads' M < 6 error is .02–.03 above the capped mixture's, so two of the three pre-registered
+criteria fail. The κ ≡ 1 head and the oracle-distance classical law extrapolate furthest, at the
+largest bulk costs. The reason is the catalogue's labels. Below the cap they are mostly mb
+(81% of M4–5); above it almost all Mw. The heads learn the mb amplitude slope (.44–.61 per decade,
+against .98 for κ ≡ 1 and .68 for augmentation) and carry it to the Mw events. So capped-training
+extrapolation holds where the magnitude scale is consistent across the cap (INSTANCE, Chile), and
+the learned slope cannot anticipate a change of scale it never saw
+(`results/geofon_eval_cap60*.json`, `robust_geofon_cap60.md`, `cap_response_geofon.json`).
 
 Truncating the prior is not enough for heads with a latent training label: truncating the
 distance-marginalized head's joint over (distance bin, magnitude) is not identified, and on
@@ -554,6 +577,12 @@ identified, so fusion with it is only correct by coincidence; pinning the slope 
 catalogue b-value during training leaves single-station error unchanged but is the right fusion
 prior only for some heads and catalogues. The fusion study orders
 stations by distance rather than by measured arrival and gives every station the same window.
+Extrapolation past a training cap needs the amplitude law below the cap to hold above it. On
+GEOFON it does not. The labels switch from mb to Mw at about M6, and the pre-registered capped
+test there failed: the equivariant heads beat the capped free mixture but not amplitude
+augmentation, and they cost bulk error. The single-station tail of the very largest
+teleseismically recorded events (GEOFON M ≥ 7) is estimated better by the classical inverse law
+given the true distance, at a large bulk and false-alarm cost.
 
 ## 7. Conclusion
 
