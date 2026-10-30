@@ -4,6 +4,37 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 05:00 UTC — Interim: capped-training extrapolation on INSTANCE (trained on M < 4.0) replicates, including on moment-magnitude labels
+
+Interim, seed 1, point estimates computed directly from the saved out-of-fold predictions;
+bootstrap intervals follow when the second host's batch (`eval_cap40*.json`) completes. Every
+M ≥ 4 record (346 events) and every M ≥ 5 record (31 events) lies beyond the training range.
+Record-level MAE at 1 / 3 / 5 s; FP4 = share of M < 3.5 records predicted ≥ 3.95, per 10⁴.
+
+| arm | bulk MAE | M≥4 MAE | M≥5 MAE | FP4 per 10⁴ | bias, M5.5–6.6 |
+|---|---|---|---|---|---|
+| `mix_cap40` (free mixture, M < 4) | .331 / .274 / .242 | 1.025 / .856 / .810 | 1.805 / 1.605 / 1.566 | 0 / 0 / 0 | −2.21 / −2.05 / −2.03 |
+| `eqgr_cap40` (M < 4) | .331 / .273 / .238 | .807 / .616 / .550 | 1.100 / .673 / .555 | 11.6 / 10.3 / 9.3 | −1.21 / −.60 / −.46 |
+| **`eqdgr_cap40`** (M < 4) | .328 / .268 / .233 | .779 / .580 / .522 | **.978 / .582 / .511** | 14.8 / 11.7 / 8.8 | −1.02 / −.50 / −.43 |
+| *all magnitudes:* `mix_nll` | .327 / .269 / .237 | .763 / .577 / .530 | 1.052 / .765 / .703 | 6.3 / 5.3 / 4.6 | −1.30 / −1.02 / −.97 |
+| *all magnitudes:* `eqdgr_nll` | .326 / .266 / .232 | .739 / .559 / .504 | .898 / .579 / .505 | 12.1 / 7.7 / 5.5 | −.93 / −.49 / −.40 |
+
+**Not an amplitude-label artefact.** Chile's labels are amplitude magnitudes, so extrapolating
+them could be easier for an amplitude-equivariant model. INSTANCE trains on mostly local
+magnitudes (97% of events below M3.5 are ML), while 22 of its 31 M ≥ 5 events carry moment
+magnitudes. On those 22 Mw events (event-level MAE, 1 / 3 / 5 s): `mix_cap40` 1.83 / 1.62 / 1.58,
+`eqgr_cap40` 1.14 / .64 / .49, `eqdgr_cap40` .99 / .53 / .44; with all magnitudes in training,
+`mix_nll` 1.05 / .72 / .64 and `eqdgr_nll` .89 / .52 / .44. The distance-marginalized head
+trained without a single M ≥ 4 label matches itself trained on everything at 3–5 s and beats
+the free mixture trained on everything. The Chile capped arms are also being retrained on the
+relabelled caches (independent M_EXT and MW_SIPPL magnitudes for the large events).
+
+**Cost.** The capped equivariant heads raise false M4 alarms at 9–15 per 10⁴ small records,
+against 5–6 for the full-data free mixture (the full-data distance head is at 6–12). The capped
+free mixture's zero is the other face of its saturation: it cannot predict M4 at all.
+
+Figure: `figures/capped_extrapolation.png` (`capped_figure.py`, data from `cap_curve_data.py`).
+
 ## 2026-10-30 04:40 UTC — Capped-training extrapolation on Chile: trained only on M < 5.0, the equivariant head predicts M6+ events better than a free mixture trained *with* them; a training leak in the distance-marginalized head, and its fix
 
 **Design (Proposition 3).** Every head is trained on Chile records with M < 5.0 only
