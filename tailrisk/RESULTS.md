@@ -1,6 +1,6 @@
 # Detailed results at 1, 3 and 5 s
 
-Contents: 1. INSTANCE, single seeds, main arms and baselines; 2. INSTANCE, three-seed ensembles; 3. INSTANCE, distance-marginalized head, three-seed ensembles; 4. INSTANCE, size-matched six-model averages; 5. INSTANCE, distance-marginalized free mixture and distance variants (single seeds); 6. INSTANCE, pinned prior slope (beta −2.29), single seeds; 7. INSTANCE, held stations (20% withheld; records at held stations; four arms, seed 1); 8. INSTANCE, held stations (records at seen stations; four arms, seed 1); 9. INSTANCE, held stations, three-seed ensembles (records at held stations); 10. INSTANCE, held stations, three-seed ensembles (records at seen stations); 11. INSTANCE, MagNet-style control; 12. INSTANCE, 1.5x trunk width (three heads); 13. INSTANCE, 20 epochs (three heads); 14. INSTANCE, 20 epochs, three-seed ensembles (reference: 20-epoch mixture ensemble); 15. INSTANCE, 20 epochs, seeds 2 and 3 (reference: 20-epoch mixture seed 2); 16. INSTANCE, five-seed ensembles; 17. INSTANCE, seeds 4 and 5 (single seeds; reference mixture seed 4); 18. GEOFON regional subset, three-seed ensembles; 19. GEOFON, distance-marginalized heads, three-seed ensembles; 20. GEOFON, pinned prior slope (beta −1.32), single seeds; 21. GEOFON, 20 epochs (reference: 20-epoch mixture); 22. Northern Chile, three-seed ensembles; 23. Northern Chile, size-matched six-model averages; 24. Northern Chile, pinned prior slope (beta −1.79), single seeds; 25. Northern Chile, 20 epochs (reference: 20-epoch mixture); 26. Northern Chile, held stations (7 of 22 withheld; records at held stations; seed 1); 27. Northern Chile, held stations (records at seen stations; seed 1); 28. Northern Chile, held stations, three-seed ensembles (records at held stations); 29. Northern Chile, held stations, three-seed ensembles (records at seen stations); 30. fusion: instance; 31. fusion: chile; 32. fusion: geofon; 33. fusion: geofon_caltail; 34. fusion timeline: instance; 35. fusion timeline: chile; 36. fusion timeline: chile_measured; 37. fusion timeline: geofon; 38. fusion: instance_e20; 39. fusion timeline: instance_e20.
+Contents: 1. INSTANCE, single seeds, main arms and baselines; 2. INSTANCE, three-seed ensembles; 3. INSTANCE, distance-marginalized head, three-seed ensembles; 4. INSTANCE, size-matched six-model averages; 5. INSTANCE, distance-marginalized free mixture and distance variants (single seeds); 6. INSTANCE, pinned prior slope (beta −2.29), single seeds; 7. INSTANCE, held stations (20% withheld; records at held stations; four arms, seed 1); 8. INSTANCE, held stations (records at seen stations; four arms, seed 1); 9. INSTANCE, held stations, three-seed ensembles (records at held stations); 10. INSTANCE, held stations, three-seed ensembles (records at seen stations); 11. INSTANCE, MagNet-style control; 12. INSTANCE, 1.5x trunk width (three heads); 13. INSTANCE, 20 epochs (three heads); 14. INSTANCE, 20 epochs, three-seed ensembles (reference: 20-epoch mixture ensemble); 15. INSTANCE, 20 epochs, seeds 2 and 3 (reference: 20-epoch mixture seed 2); 16. INSTANCE, five-seed ensembles; 17. INSTANCE, seeds 4 and 5 (single seeds; reference mixture seed 4); 18. GEOFON regional subset, three-seed ensembles; 19. GEOFON, distance-marginalized heads, three-seed ensembles; 20. GEOFON, pinned prior slope (beta −1.32), single seeds; 21. GEOFON, 20 epochs (reference: 20-epoch mixture); 22. Northern Chile, three-seed ensembles; 23. Northern Chile, size-matched six-model averages; 24. Northern Chile, pinned prior slope (beta −1.79), single seeds; 25. Northern Chile, 20 epochs (reference: 20-epoch mixture); 26. Northern Chile, held stations (7 of 22 withheld; records at held stations; seed 1); 27. Northern Chile, held stations (records at seen stations; seed 1); 28. STEAD (pre-registered fourth catalogue), three-seed ensembles; 29. STEAD, capped at M5.0 (pre-registered), seed 1; 30. STEAD, capped at M5.0, baselines and classical law; 31. INSTANCE, classical amplitude laws as arms; 32. INSTANCE, conditioned on a known distance (seed 1); 33. INSTANCE, capped at M4.0; 34. INSTANCE, capped at M4.0, augmentation and pinned slope; 35. Northern Chile, classical amplitude laws as arms; 36. Northern Chile, conditioned on a known distance (seed 1); 37. GEOFON, capped at M6.0 (pre-registered), seed 1; 38. GEOFON, capped at M6.0, three-seed ensembles; 39. GEOFON, capped at M6.0, baselines and classical law; 40. Northern Chile, held stations, three-seed ensembles (records at held stations); 41. Northern Chile, held stations, three-seed ensembles (records at seen stations); 42. fusion: instance; 43. fusion: chile; 44. fusion: geofon; 45. fusion: geofon_caltail; 46. fusion timeline: instance; 47. fusion timeline: chile; 48. fusion timeline: chile_measured; 49. fusion timeline: geofon; 50. fusion: instance_e20; 51. fusion timeline: instance_e20; 52. robust_stead_ens3; 53. meta_eqdgr; 54. robust_stead_cap50; 55. meta4_condR_vs_mix.
 
 Generated by `results_tables.py` from the evaluation JSONs in `results/`. Every arm, every deadline, absolute metrics and paired differences. MAE in magnitude units; bias = mean (estimate − label) on the tail; false-M4 = share of M<3.5 records estimated ≥ 3.95, per 10⁴; NLL = negative log-likelihood of the 0.1-wide label bin; CRPS of the predictive CDF. Ensembles ("k models") average their members' posteriors. Bold differences have a 95% cluster-bootstrap interval (1,000 replicates over aftershock sequences) excluding zero.
 
@@ -2101,6 +2101,1065 @@ Source: `results/chile_eval_hs_seen.json`; 339,996 records; Δ = arm − `mix_nl
 | eqgr_nll_hs | +0.000 [-0.000, +0.001] | **-0.102 [-0.143, -0.060]** | **-0.412 [-0.574, -0.269]** | **-0.112 [-0.154, -0.070]** |
 | eqdgr_nll_hs | **-0.008 [-0.008, -0.007]** | **-0.112 [-0.154, -0.072]** | **-0.379 [-0.607, -0.195]** | **-0.115 [-0.163, -0.070]** |
 
+## STEAD (pre-registered fourth catalogue), three-seed ensembles
+
+Source: `results/stead_eval_ens3.json`; 996,894 records; Δ = arm − `mix_nll (3 models)`.
+
+
+### STEAD (pre-registered fourth catalogue), three-seed ensembles — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll (3 models) | 0.234 | 0.166 | 0.965 | 0.807 | 1.552 | 0.815 | 1.504 | -1.552 | 0.235 | 2.442 | 0.172 |
+| eqdgr_nll (3 models) | 0.236 | 0.165 | 0.982 | 0.762 | 1.298 | 0.774 | 1.270 | -1.237 | 0.237 | 2.451 | 0.175 |
+| eqgr_nll (3 models) | 0.235 | 0.166 | 0.970 | 0.798 | 1.463 | 0.814 | 1.439 | -1.451 | 0.236 | 2.455 | 0.174 |
+
+### STEAD (pre-registered fourth catalogue), three-seed ensembles — 1 s, paired differences vs `mix_nll (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll (3 models) | **+0.002 [+0.001, +0.004]** | **-0.046 [-0.070, -0.022]** | **-0.251 [-0.357, -0.116]** | **-0.041 [-0.068, -0.016]** |
+| eqgr_nll (3 models) | **+0.001 [+0.001, +0.002]** | -0.010 [-0.026, +0.006] | **-0.088 [-0.153, -0.006]** | -0.002 [-0.018, +0.014] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll (3 models) | **+0.002 [+0.001, +0.003]** | **-0.050 [-0.074, -0.027]** | **-0.248 [-0.354, -0.112]** | **-0.044 [-0.071, -0.019]** |
+| eqgr_nll (3 models) | **+0.001 [+0.001, +0.002]** | **-0.017 [-0.031, -0.002]** | **-0.088 [-0.152, -0.006]** | -0.007 [-0.022, +0.008] |
+
+### STEAD (pre-registered fourth catalogue), three-seed ensembles — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll (3 models) | 0.195 | 0.134 | 0.836 | 0.670 | 1.241 | 0.694 | 1.278 | -1.241 | 0.196 | 2.244 | 0.144 |
+| eqdgr_nll (3 models) | 0.195 | 0.133 | 0.844 | 0.587 | 0.867 | 0.611 | 0.855 | -0.740 | 0.196 | 2.251 | 0.144 |
+| eqgr_nll (3 models) | 0.195 | 0.133 | 0.835 | 0.615 | 1.014 | 0.647 | 1.066 | -0.992 | 0.196 | 2.253 | 0.145 |
+
+### STEAD (pre-registered fourth catalogue), three-seed ensembles — 3 s, paired differences vs `mix_nll (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll (3 models) | +0.000 [-0.001, +0.002] | **-0.084 [-0.105, -0.062]** | **-0.376 [-0.475, -0.286]** | **-0.082 [-0.108, -0.056]** |
+| eqgr_nll (3 models) | -0.000 [-0.000, +0.000] | **-0.056 [-0.071, -0.042]** | **-0.227 [-0.283, -0.164]** | **-0.047 [-0.063, -0.030]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll (3 models) | +0.000 [-0.001, +0.001] | **-0.093 [-0.114, -0.071]** | **-0.379 [-0.479, -0.289]** | **-0.088 [-0.114, -0.062]** |
+| eqgr_nll (3 models) | -0.000 [-0.001, +0.000] | **-0.067 [-0.082, -0.053]** | **-0.237 [-0.296, -0.171]** | **-0.055 [-0.071, -0.040]** |
+
+### STEAD (pre-registered fourth catalogue), three-seed ensembles — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll (3 models) | 0.178 | 0.121 | 0.786 | 0.648 | 1.200 | 0.671 | 1.220 | -1.200 | 0.179 | 2.150 | 0.132 |
+| eqdgr_nll (3 models) | 0.178 | 0.120 | 0.789 | 0.543 | 0.746 | 0.574 | 0.719 | -0.619 | 0.179 | 2.161 | 0.132 |
+| eqgr_nll (3 models) | 0.178 | 0.121 | 0.784 | 0.579 | 0.879 | 0.613 | 0.920 | -0.857 | 0.179 | 2.160 | 0.132 |
+
+### STEAD (pre-registered fourth catalogue), three-seed ensembles — 5 s, paired differences vs `mix_nll (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll (3 models) | +0.000 [-0.001, +0.002] | **-0.105 [-0.129, -0.080]** | **-0.456 [-0.546, -0.366]** | **-0.097 [-0.124, -0.070]** |
+| eqgr_nll (3 models) | -0.000 [-0.000, +0.000] | **-0.069 [-0.087, -0.051]** | **-0.320 [-0.395, -0.240]** | **-0.058 [-0.077, -0.039]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll (3 models) | -0.000 [-0.001, +0.001] | **-0.116 [-0.140, -0.091]** | **-0.468 [-0.559, -0.380]** | **-0.107 [-0.133, -0.080]** |
+| eqgr_nll (3 models) | -0.000 [-0.001, +0.000] | **-0.081 [-0.099, -0.062]** | **-0.335 [-0.409, -0.252]** | **-0.067 [-0.085, -0.048]** |
+
+## STEAD, capped at M5.0 (pre-registered), seed 1
+
+Source: `results/stead_eval_cap50.json`; 996,894 records; Δ = arm − `mix_cap50`.
+
+
+### STEAD, capped at M5.0 (pre-registered), seed 1 — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap50 | 0.242 | 0.171 | 0.993 | 1.020 | 1.900 | 1.035 | 1.868 | -1.900 | 0.242 | 2.447 | 0.173 |
+| mix_cap50_aug15 | 0.267 | 0.191 | 1.071 | 0.681 | 1.324 | 0.693 | 1.256 | -1.322 | 0.267 | 2.560 | 0.191 |
+| eqgr_cap50 | 0.243 | 0.172 | 0.997 | 0.823 | 1.490 | 0.857 | 1.525 | -1.480 | 0.243 | 2.455 | 0.174 |
+| eqdgr_cap50_cond | 0.245 | 0.171 | 1.015 | 0.786 | 1.324 | 0.799 | 1.261 | -1.239 | 0.245 | 2.455 | 0.175 |
+| mixgr_cap50 | 0.241 | 0.171 | 0.993 | 0.912 | 1.762 | 0.923 | 1.707 | -1.762 | 0.246 | 2.448 | 0.174 |
+
+### STEAD, capped at M5.0 (pre-registered), seed 1 — 1 s, paired differences vs `mix_cap50` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| mix_cap50_aug15 | **+0.026 [+0.025, +0.027]** | **-0.339 [-0.361, -0.315]** | **-0.578 [-0.652, -0.508]** | **-0.342 [-0.370, -0.311]** |
+| eqgr_cap50 | **+0.001 [+0.001, +0.002]** | **-0.198 [-0.225, -0.172]** | **-0.404 [-0.525, -0.262]** | **-0.178 [-0.201, -0.154]** |
+| eqdgr_cap50_cond | **+0.003 [+0.002, +0.005]** | **-0.234 [-0.264, -0.206]** | **-0.575 [-0.689, -0.436]** | **-0.235 [-0.267, -0.203]** |
+| mixgr_cap50 | -0.000 [-0.001, +0.000] | **-0.107 [-0.119, -0.096]** | **-0.139 [-0.173, -0.111]** | **-0.111 [-0.123, -0.100]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| mix_cap50_aug15 | **+0.025 [+0.024, +0.026]** | **-0.350 [-0.372, -0.327]** | **-0.584 [-0.656, -0.515]** | **-0.357 [-0.385, -0.325]** |
+| eqgr_cap50 | **+0.001 [+0.001, +0.002]** | **-0.217 [-0.244, -0.192]** | **-0.418 [-0.534, -0.283]** | **-0.199 [-0.222, -0.177]** |
+| eqdgr_cap50_cond | **+0.003 [+0.002, +0.005]** | **-0.251 [-0.281, -0.223]** | **-0.592 [-0.706, -0.459]** | **-0.254 [-0.286, -0.223]** |
+| mixgr_cap50 | **+0.004 [+0.004, +0.005]** | **-0.126 [-0.138, -0.114]** | **-0.151 [-0.186, -0.120]** | **-0.130 [-0.141, -0.119]** |
+
+### STEAD, capped at M5.0 (pre-registered), seed 1 — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap50 | 0.202 | 0.139 | 0.861 | 0.898 | 1.698 | 0.918 | 1.696 | -1.698 | 0.202 | 2.250 | 0.145 |
+| mix_cap50_aug15 | 0.219 | 0.152 | 0.921 | 0.537 | 0.989 | 0.561 | 0.988 | -0.989 | 0.219 | 2.337 | 0.157 |
+| eqgr_cap50 | 0.202 | 0.139 | 0.861 | 0.634 | 1.070 | 0.675 | 1.163 | -1.005 | 0.202 | 2.253 | 0.145 |
+| eqdgr_cap50_cond | 0.202 | 0.138 | 0.868 | 0.614 | 0.923 | 0.645 | 0.908 | -0.798 | 0.203 | 2.255 | 0.145 |
+| mixgr_cap50 | 0.202 | 0.139 | 0.861 | 0.783 | 1.526 | 0.802 | 1.505 | -1.526 | 0.206 | 2.249 | 0.145 |
+
+### STEAD, capped at M5.0 (pre-registered), seed 1 — 3 s, paired differences vs `mix_cap50` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| mix_cap50_aug15 | **+0.017 [+0.016, +0.018]** | **-0.362 [-0.388, -0.334]** | **-0.707 [-0.784, -0.603]** | **-0.356 [-0.385, -0.326]** |
+| eqgr_cap50 | -0.000 [-0.001, +0.000] | **-0.265 [-0.295, -0.238]** | **-0.620 [-0.771, -0.458]** | **-0.243 [-0.267, -0.219]** |
+| eqdgr_cap50_cond | +0.000 [-0.001, +0.002] | **-0.284 [-0.314, -0.255]** | **-0.772 [-0.895, -0.621]** | **-0.273 [-0.306, -0.239]** |
+| mixgr_cap50 | -0.000 [-0.001, +0.000] | **-0.115 [-0.133, -0.100]** | **-0.171 [-0.211, -0.127]** | **-0.115 [-0.135, -0.099]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| mix_cap50_aug15 | **+0.016 [+0.015, +0.017]** | **-0.374 [-0.401, -0.347]** | **-0.712 [-0.786, -0.614]** | **-0.372 [-0.400, -0.342]** |
+| eqgr_cap50 | -0.000 [-0.001, +0.000] | **-0.283 [-0.311, -0.255]** | **-0.637 [-0.783, -0.479]** | **-0.262 [-0.286, -0.237]** |
+| eqdgr_cap50_cond | +0.000 [-0.001, +0.001] | **-0.302 [-0.331, -0.272]** | **-0.785 [-0.904, -0.644]** | **-0.291 [-0.325, -0.260]** |
+| mixgr_cap50 | **+0.004 [+0.002, +0.005]** | **-0.128 [-0.143, -0.114]** | **-0.169 [-0.208, -0.127]** | **-0.129 [-0.145, -0.115]** |
+
+### STEAD, capped at M5.0 (pre-registered), seed 1 — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap50 | 0.184 | 0.125 | 0.809 | 0.880 | 1.668 | 0.897 | 1.662 | -1.668 | 0.185 | 2.155 | 0.132 |
+| mix_cap50_aug15 | 0.199 | 0.136 | 0.864 | 0.490 | 0.881 | 0.506 | 0.867 | -0.881 | 0.199 | 2.234 | 0.142 |
+| eqgr_cap50 | 0.184 | 0.125 | 0.807 | 0.601 | 0.927 | 0.645 | 0.996 | -0.841 | 0.185 | 2.159 | 0.132 |
+| eqdgr_cap50_cond | 0.184 | 0.124 | 0.808 | 0.574 | 0.801 | 0.610 | 0.782 | -0.672 | 0.185 | 2.164 | 0.132 |
+| mixgr_cap50 | 0.184 | 0.126 | 0.813 | 0.752 | 1.477 | 0.771 | 1.452 | -1.477 | 0.189 | 2.156 | 0.133 |
+
+### STEAD, capped at M5.0 (pre-registered), seed 1 — 5 s, paired differences vs `mix_cap50` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| mix_cap50_aug15 | **+0.014 [+0.013, +0.015]** | **-0.390 [-0.417, -0.361]** | **-0.786 [-0.863, -0.692]** | **-0.391 [-0.421, -0.358]** |
+| eqgr_cap50 | -0.000 [-0.001, +0.000] | **-0.279 [-0.310, -0.251]** | **-0.735 [-0.866, -0.590]** | **-0.252 [-0.276, -0.226]** |
+| eqdgr_cap50_cond | -0.001 [-0.002, +0.001] | **-0.306 [-0.337, -0.274]** | **-0.866 [-0.975, -0.724]** | **-0.287 [-0.320, -0.254]** |
+| mixgr_cap50 | +0.000 [-0.001, +0.001] | **-0.128 [-0.148, -0.110]** | **-0.191 [-0.231, -0.149]** | **-0.126 [-0.147, -0.107]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| mix_cap50_aug15 | **+0.014 [+0.013, +0.015]** | **-0.405 [-0.431, -0.376]** | **-0.789 [-0.863, -0.698]** | **-0.408 [-0.438, -0.377]** |
+| eqgr_cap50 | -0.000 [-0.001, +0.000] | **-0.300 [-0.329, -0.273]** | **-0.751 [-0.879, -0.609]** | **-0.274 [-0.300, -0.248]** |
+| eqdgr_cap50_cond | -0.000 [-0.001, +0.001] | **-0.326 [-0.357, -0.294]** | **-0.881 [-0.988, -0.743]** | **-0.309 [-0.344, -0.276]** |
+| mixgr_cap50 | **+0.005 [+0.003, +0.006]** | **-0.144 [-0.163, -0.128]** | **-0.185 [-0.221, -0.145]** | **-0.142 [-0.159, -0.127]** |
+
+## STEAD, capped at M5.0, baselines and classical law
+
+Source: `results/stead_eval_cap50_base.json`; 996,894 records; Δ = arm − `mix_cap50`.
+
+
+### STEAD, capped at M5.0, baselines and classical law — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap50 | 0.242 | 0.171 | 0.993 | 1.020 | 1.900 | 1.035 | 1.868 | -1.900 | 0.242 | 2.447 | 0.173 |
+| eqgr_k1_cap50 | 0.251 | 0.178 | 1.022 | 0.765 | 1.182 | 0.776 | 1.127 | -1.037 | 0.252 | 2.492 | 0.180 |
+| magnet_cap50 | 0.344 | 0.260 | 1.294 | 1.308 | 2.453 | 1.283 | 2.270 | -2.453 | 0.345 | 2.879 | 0.247 |
+| eqdgr_cap50_cond | 0.245 | 0.171 | 1.015 | 0.786 | 1.324 | 0.799 | 1.261 | -1.239 | 0.245 | 2.455 | 0.175 |
+| lin_invR_cap50 | 0.434 | 0.373 | 1.356 | 0.741 | 1.210 | 0.790 | 1.198 | -1.159 | 0.456 | 3.172 | 0.321 |
+| lin_fwdR_cap50 | 0.357 | 0.284 | 1.225 | 1.378 | 2.195 | 1.413 | 2.173 | -2.195 | 0.359 | 2.970 | 0.259 |
+
+### STEAD, capped at M5.0, baselines and classical law — 1 s, paired differences vs `mix_cap50` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap50 | **+0.010 [+0.009, +0.011]** | **-0.254 [-0.287, -0.221]** | **-0.720 [-0.841, -0.583]** | **-0.258 [-0.296, -0.219]** |
+| magnet_cap50 | **+0.103 [+0.100, +0.106]** | **+0.289 [+0.237, +0.339]** | **+0.541 [+0.261, +0.800]** | **+0.246 [+0.183, +0.305]** |
+| eqdgr_cap50_cond | **+0.003 [+0.002, +0.005]** | **-0.234 [-0.264, -0.206]** | **-0.575 [-0.689, -0.436]** | **-0.235 [-0.267, -0.203]** |
+| lin_invR_cap50 | **+0.192 [+0.185, +0.201]** | **-0.279 [-0.327, -0.232]** | **-0.688 [-0.842, -0.501]** | **-0.246 [-0.289, -0.207]** |
+| lin_fwdR_cap50 | **+0.115 [+0.107, +0.128]** | **+0.357 [+0.318, +0.396]** | **+0.295 [+0.198, +0.408]** | **+0.377 [+0.327, +0.423]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap50 | **+0.010 [+0.009, +0.010]** | **-0.280 [-0.312, -0.247]** | **-0.743 [-0.865, -0.614]** | **-0.285 [-0.323, -0.248]** |
+| magnet_cap50 | **+0.103 [+0.100, +0.106]** | **+0.276 [+0.224, +0.328]** | **+0.526 [+0.245, +0.789]** | **+0.231 [+0.168, +0.290]** |
+| eqdgr_cap50_cond | **+0.003 [+0.002, +0.005]** | **-0.251 [-0.281, -0.223]** | **-0.592 [-0.706, -0.459]** | **-0.254 [-0.286, -0.223]** |
+| lin_invR_cap50 | **+0.214 [+0.206, +0.223]** | **-0.292 [-0.338, -0.245]** | **-0.703 [-0.854, -0.523]** | **-0.261 [-0.304, -0.224]** |
+| lin_fwdR_cap50 | **+0.117 [+0.108, +0.130]** | **+0.345 [+0.306, +0.383]** | **+0.281 [+0.186, +0.388]** | **+0.362 [+0.312, +0.408]** |
+
+### STEAD, capped at M5.0, baselines and classical law — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap50 | 0.202 | 0.139 | 0.861 | 0.898 | 1.698 | 0.918 | 1.696 | -1.698 | 0.202 | 2.250 | 0.145 |
+| eqgr_k1_cap50 | 0.207 | 0.143 | 0.881 | 0.599 | 0.771 | 0.624 | 0.722 | -0.482 | 0.208 | 2.283 | 0.149 |
+| magnet_cap50 | 0.298 | 0.222 | 1.152 | 1.133 | 2.143 | 1.105 | 1.962 | -2.143 | 0.298 | 2.736 | 0.214 |
+| eqdgr_cap50_cond | 0.202 | 0.138 | 0.868 | 0.614 | 0.923 | 0.645 | 0.908 | -0.798 | 0.203 | 2.255 | 0.145 |
+| lin_invR_cap50 | 0.388 | 0.332 | 1.226 | 0.561 | 0.845 | 0.615 | 0.875 | -0.732 | 0.401 | 3.051 | 0.283 |
+| lin_fwdR_cap50 | 0.330 | 0.266 | 1.110 | 1.116 | 1.731 | 1.146 | 1.749 | -1.731 | 0.332 | 2.886 | 0.239 |
+
+### STEAD, capped at M5.0, baselines and classical law — 3 s, paired differences vs `mix_cap50` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap50 | **+0.006 [+0.005, +0.006]** | **-0.299 [-0.332, -0.266]** | **-0.929 [-1.047, -0.810]** | **-0.293 [-0.331, -0.256]** |
+| magnet_cap50 | **+0.096 [+0.094, +0.099]** | **+0.235 [+0.180, +0.292]** | **+0.432 [+0.136, +0.691]** | **+0.186 [+0.122, +0.245]** |
+| eqdgr_cap50_cond | +0.000 [-0.001, +0.002] | **-0.284 [-0.314, -0.255]** | **-0.772 [-0.895, -0.621]** | **-0.273 [-0.306, -0.239]** |
+| lin_invR_cap50 | **+0.186 [+0.180, +0.191]** | **-0.338 [-0.380, -0.295]** | **-0.849 [-1.000, -0.645]** | **-0.304 [-0.349, -0.260]** |
+| lin_fwdR_cap50 | **+0.128 [+0.122, +0.137]** | **+0.216 [+0.178, +0.255]** | +0.037 [-0.087, +0.193] | **+0.228 [+0.177, +0.276]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap50 | **+0.005 [+0.005, +0.006]** | **-0.318 [-0.351, -0.286]** | **-0.938 [-1.054, -0.819]** | **-0.315 [-0.353, -0.279]** |
+| magnet_cap50 | **+0.096 [+0.094, +0.098]** | **+0.222 [+0.166, +0.279]** | **+0.418 [+0.117, +0.682]** | **+0.170 [+0.106, +0.231]** |
+| eqdgr_cap50_cond | +0.000 [-0.001, +0.001] | **-0.302 [-0.331, -0.272]** | **-0.785 [-0.904, -0.644]** | **-0.291 [-0.325, -0.260]** |
+| lin_invR_cap50 | **+0.198 [+0.192, +0.203]** | **-0.351 [-0.393, -0.307]** | **-0.863 [-1.012, -0.662]** | **-0.319 [-0.365, -0.276]** |
+| lin_fwdR_cap50 | **+0.129 [+0.122, +0.138]** | **+0.203 [+0.165, +0.241]** | +0.023 [-0.096, +0.177] | **+0.212 [+0.162, +0.262]** |
+
+### STEAD, capped at M5.0, baselines and classical law — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap50 | 0.184 | 0.125 | 0.809 | 0.880 | 1.668 | 0.897 | 1.662 | -1.668 | 0.185 | 2.155 | 0.132 |
+| eqgr_k1_cap50 | 0.189 | 0.128 | 0.826 | 0.546 | 0.670 | 0.573 | 0.612 | -0.336 | 0.189 | 2.184 | 0.136 |
+| magnet_cap50 | 0.277 | 0.203 | 1.101 | 1.023 | 1.993 | 0.985 | 1.774 | -1.993 | 0.277 | 2.655 | 0.198 |
+| eqdgr_cap50_cond | 0.184 | 0.124 | 0.808 | 0.574 | 0.801 | 0.610 | 0.782 | -0.672 | 0.185 | 2.164 | 0.132 |
+| lin_invR_cap50 | 0.375 | 0.319 | 1.204 | 0.509 | 0.719 | 0.564 | 0.733 | -0.597 | 0.386 | 3.021 | 0.273 |
+| lin_fwdR_cap50 | 0.323 | 0.261 | 1.083 | 1.045 | 1.590 | 1.077 | 1.601 | -1.590 | 0.325 | 2.864 | 0.234 |
+
+### STEAD, capped at M5.0, baselines and classical law — 5 s, paired differences vs `mix_cap50` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap50 | **+0.005 [+0.004, +0.005]** | **-0.333 [-0.365, -0.301]** | **-1.001 [-1.111, -0.895]** | **-0.323 [-0.365, -0.282]** |
+| magnet_cap50 | **+0.092 [+0.090, +0.094]** | **+0.144 [+0.085, +0.203]** | +0.309 [-0.021, +0.623] | **+0.086 [+0.020, +0.145]** |
+| eqdgr_cap50_cond | -0.001 [-0.002, +0.001] | **-0.306 [-0.337, -0.274]** | **-0.866 [-0.975, -0.724]** | **-0.287 [-0.320, -0.254]** |
+| lin_invR_cap50 | **+0.190 [+0.185, +0.196]** | **-0.372 [-0.414, -0.328]** | **-0.946 [-1.091, -0.755]** | **-0.334 [-0.383, -0.290]** |
+| lin_fwdR_cap50 | **+0.139 [+0.133, +0.146]** | **+0.165 [+0.125, +0.204]** | -0.075 [-0.197, +0.084] | **+0.179 [+0.130, +0.227]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap50 | **+0.004 [+0.004, +0.005]** | **-0.353 [-0.384, -0.321]** | **-1.021 [-1.131, -0.916]** | **-0.346 [-0.386, -0.307]** |
+| magnet_cap50 | **+0.092 [+0.090, +0.094]** | **+0.128 [+0.069, +0.189]** | +0.294 [-0.039, +0.612] | **+0.068 [+0.001, +0.129]** |
+| eqdgr_cap50_cond | -0.000 [-0.001, +0.001] | **-0.326 [-0.357, -0.294]** | **-0.881 [-0.988, -0.743]** | **-0.309 [-0.344, -0.276]** |
+| lin_invR_cap50 | **+0.201 [+0.195, +0.207]** | **-0.388 [-0.429, -0.344]** | **-0.961 [-1.103, -0.772]** | **-0.353 [-0.402, -0.308]** |
+| lin_fwdR_cap50 | **+0.140 [+0.134, +0.147]** | **+0.149 [+0.109, +0.186]** | -0.090 [-0.209, +0.065] | **+0.160 [+0.110, +0.209]** |
+
+## INSTANCE, classical amplitude laws as arms
+
+Source: `results/eval_classical.json`; 1,159,249 records; Δ = arm − `mix_nll`.
+
+
+### INSTANCE, classical amplitude laws as arms — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll | 0.328 | 0.240 | 1.213 | 0.764 | 1.051 | 0.775 | 1.009 | -1.019 | 6.3 | 0.330 | 2.753 | 0.235 |
+| eqdgr_nll | 0.327 | 0.239 | 1.218 | 0.738 | 0.898 | 0.758 | 0.883 | -0.784 | 12.2 | 0.329 | 2.745 | 0.235 |
+| lin_invR | 0.980 | 0.768 | 3.086 | 0.915 | 0.857 | 0.882 | 0.902 | -0.324 | 1625.8 | 1.083 | 4.022 | 0.750 |
+| lin_inv | 1.287 | 0.877 | 4.165 | 1.316 | 0.926 | 1.336 | 0.898 | -0.175 | 2625.2 | 2.892 | 5.039 | 1.680 |
+| lin_fwdR | 0.418 | 0.336 | 1.377 | 1.408 | 2.349 | 1.434 | 2.400 | -2.349 | 1.4 | 0.418 | 3.112 | 0.300 |
+
+### INSTANCE, classical amplitude laws as arms — 1 s, paired differences vs `mix_nll` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqdgr_nll | -0.000 [-0.002, +0.001] | -0.019 [-0.060, +0.018] | -0.139 [-0.322, +0.024] | -0.014 [-0.058, +0.020] | **+5.4 [+2.7, +7.3]** |
+| lin_invR | **+0.609 [+0.471, +0.765]** | **+0.132 [+0.004, +0.250]** | -0.191 [-0.404, +0.069] | +0.094 [-0.029, +0.208] | **+1457.1 [+874.4, +2062.9]** |
+| lin_inv | **+0.887 [+0.654, +1.155]** | **+0.541 [+0.453, +0.617]** | -0.103 [-0.322, +0.153] | **+0.555 [+0.483, +0.627]** | **+2325.9 [+1403.1, +3379.3]** |
+| lin_fwdR | **+0.087 [+0.073, +0.099]** | **+0.619 [+0.425, +0.777]** | **+1.271 [+0.916, +1.475]** | **+0.640 [+0.415, +0.794]** | **-5.2 [-7.6, -3.7]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | -0.001 [-0.002, +0.000] | -0.019 [-0.067, +0.021] | -0.135 [-0.327, +0.027] | -0.014 [-0.064, +0.021] |
+| lin_invR | **+0.706 [+0.554, +0.875]** | **+0.213 [+0.061, +0.371]** | -0.054 [-0.232, +0.139] | **+0.163 [+0.016, +0.320]** |
+| lin_inv | **+2.384 [+1.820, +3.037]** | **+2.409 [+1.410, +3.672]** | **+2.600 [+0.836, +4.590]** | **+2.402 [+1.456, +3.579]** |
+| lin_fwdR | **+0.084 [+0.070, +0.097]** | **+0.628 [+0.439, +0.781]** | **+1.260 [+0.913, +1.457]** | **+0.650 [+0.430, +0.799]** |
+
+### INSTANCE, classical amplitude laws as arms — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll | 0.270 | 0.195 | 1.057 | 0.577 | 0.765 | 0.594 | 0.706 | -0.740 | 5.2 | 0.272 | 2.560 | 0.194 |
+| eqdgr_nll | 0.268 | 0.190 | 1.065 | 0.559 | 0.578 | 0.586 | 0.558 | -0.409 | 7.7 | 0.269 | 2.538 | 0.192 |
+| lin_invR | 0.904 | 0.736 | 2.855 | 0.785 | 0.687 | 0.754 | 0.727 | -0.157 | 1336.4 | 0.966 | 3.911 | 0.669 |
+| lin_inv | 1.257 | 0.864 | 4.106 | 1.382 | 0.936 | 1.403 | 0.952 | 0.021 | 2359.4 | 2.192 | 4.757 | 1.405 |
+| lin_fwdR | 0.410 | 0.333 | 1.340 | 1.325 | 2.216 | 1.354 | 2.264 | -2.216 | 2.4 | 0.410 | 3.088 | 0.294 |
+
+### INSTANCE, classical amplitude laws as arms — 3 s, paired differences vs `mix_nll` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqdgr_nll | **-0.003 [-0.005, -0.002]** | -0.014 [-0.038, +0.012] | **-0.173 [-0.345, -0.011]** | -0.006 [-0.036, +0.022] | **+2.3 [+1.2, +3.0]** |
+| lin_invR | **+0.589 [+0.446, +0.748]** | **+0.183 [+0.033, +0.327]** | -0.078 [-0.329, +0.161] | +0.144 [-0.008, +0.276] | **+1194.4 [+711.5, +1703.3]** |
+| lin_inv | **+0.919 [+0.703, +1.167]** | **+0.782 [+0.655, +0.920]** | **+0.180 [+0.027, +0.366]** | **+0.797 [+0.697, +0.916]** | **+2066.5 [+1161.6, +3096.7]** |
+| lin_fwdR | **+0.135 [+0.116, +0.153]** | **+0.723 [+0.516, +0.886]** | **+1.427 [+1.050, +1.643]** | **+0.742 [+0.512, +0.895]** | **-3.3 [-5.7, -1.5]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.003 [-0.004, -0.002]** | -0.016 [-0.046, +0.015] | **-0.177 [-0.374, -0.001]** | -0.008 [-0.044, +0.025] |
+| lin_invR | **+0.647 [+0.497, +0.813]** | **+0.230 [+0.068, +0.397]** | +0.013 [-0.224, +0.193] | **+0.185 [+0.021, +0.342]** |
+| lin_inv | **+1.775 [+1.317, +2.307]** | **+1.965 [+1.088, +3.073]** | **+2.094 [+0.462, +3.908]** | **+1.935 [+1.143, +2.948]** |
+| lin_fwdR | **+0.133 [+0.113, +0.152]** | **+0.729 [+0.528, +0.886]** | **+1.411 [+1.042, +1.626]** | **+0.749 [+0.523, +0.897]** |
+
+### INSTANCE, classical amplitude laws as arms — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll | 0.238 | 0.168 | 0.990 | 0.530 | 0.703 | 0.548 | 0.644 | -0.677 | 4.6 | 0.240 | 2.427 | 0.172 |
+| eqdgr_nll | 0.234 | 0.162 | 0.994 | 0.504 | 0.503 | 0.535 | 0.479 | -0.330 | 5.5 | 0.235 | 2.396 | 0.168 |
+| lin_invR | 0.859 | 0.703 | 2.704 | 0.729 | 0.615 | 0.697 | 0.650 | -0.090 | 1224.4 | 0.905 | 3.853 | 0.630 |
+| lin_inv | 1.199 | 0.839 | 3.946 | 1.354 | 0.964 | 1.359 | 0.968 | 0.150 | 2135.4 | 1.739 | 4.519 | 1.174 |
+| lin_fwdR | 0.405 | 0.328 | 1.319 | 1.278 | 2.140 | 1.309 | 2.186 | -2.140 | 3.2 | 0.405 | 3.073 | 0.289 |
+
+### INSTANCE, classical amplitude laws as arms — 5 s, paired differences vs `mix_nll` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqdgr_nll | **-0.005 [-0.006, -0.004]** | -0.022 [-0.049, +0.007] | **-0.184 [-0.373, -0.018]** | -0.010 [-0.041, +0.018] | **+1.0 [+0.4, +2.0]** |
+| lin_invR | **+0.579 [+0.442, +0.729]** | **+0.172 [+0.019, +0.324]** | -0.086 [-0.336, +0.157] | +0.132 [-0.019, +0.271] | **+1085.1 [+609.6, +1585.9]** |
+| lin_inv | **+0.899 [+0.700, +1.128]** | **+0.796 [+0.650, +0.966]** | **+0.267 [+0.157, +0.405]** | **+0.796 [+0.677, +0.948]** | **+1868.0 [+1039.2, +2809.8]** |
+| lin_fwdR | **+0.160 [+0.137, +0.183]** | **+0.724 [+0.521, +0.881]** | **+1.417 [+1.054, +1.631]** | **+0.744 [+0.522, +0.892]** | **-1.8 [-4.2, -0.1]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.005 [-0.006, -0.004]** | -0.023 [-0.056, +0.008] | **-0.187 [-0.395, -0.011]** | -0.013 [-0.048, +0.019] |
+| lin_invR | **+0.622 [+0.482, +0.776]** | **+0.208 [+0.047, +0.376]** | -0.015 [-0.255, +0.180] | **+0.164 [+0.006, +0.318]** |
+| lin_inv | **+1.389 [+1.042, +1.793]** | **+1.514 [+0.874, +2.331]** | **+1.666 [+0.406, +3.094]** | **+1.478 [+0.906, +2.220]** |
+| lin_fwdR | **+0.158 [+0.134, +0.182]** | **+0.729 [+0.532, +0.881]** | **+1.401 [+1.043, +1.621]** | **+0.750 [+0.533, +0.894]** |
+
+## INSTANCE, conditioned on a known distance (seed 1)
+
+Source: `results/eval_condR.json`; 1,159,249 records; Δ = arm − `lin_invR`.
+
+
+### INSTANCE, conditioned on a known distance (seed 1) — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| lin_invR | 0.980 | 0.768 | 3.086 | 0.915 | 0.857 | 0.882 | 0.902 | -0.324 | 1625.8 | 1.083 | 4.022 | 0.750 |
+| eqdgr_nll | 0.327 | 0.239 | 1.218 | 0.738 | 0.898 | 0.758 | 0.883 | -0.784 | 12.2 | 0.329 | 2.745 | 0.235 |
+| eqdgr_nll_condR | 0.229 | 0.173 | 0.836 | 0.512 | 0.800 | 0.546 | 0.843 | -0.751 | 3.7 | 0.230 | 2.425 | 0.164 |
+| eqdgr_nll_condR_s10 | 0.234 | 0.177 | 0.858 | 0.537 | 0.820 | 0.568 | 0.844 | -0.771 | 2.6 | 0.235 | 2.437 | 0.167 |
+| eqdgr_nll_condR_s20 | 0.260 | 0.196 | 0.947 | 0.593 | 0.835 | 0.619 | 0.846 | -0.769 | 3.4 | 0.260 | 2.534 | 0.186 |
+
+### INSTANCE, conditioned on a known distance (seed 1) — 1 s, paired differences vs `lin_invR` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqdgr_nll | **-0.609 [-0.766, -0.472]** | -0.150 [-0.307, +0.001] | +0.052 [-0.118, +0.259] | -0.108 [-0.262, +0.036] | **-1451.7 [-2055.6, -869.4]** |
+| eqdgr_nll_condR | **-0.709 [-0.860, -0.575]** | **-0.385 [-0.504, -0.263]** | -0.057 [-0.239, +0.114] | **-0.326 [-0.453, -0.196]** | **-1459.6 [-2065.3, -878.1]** |
+| eqdgr_nll_condR_s10 | **-0.703 [-0.856, -0.569]** | **-0.358 [-0.483, -0.236]** | -0.033 [-0.212, +0.140] | **-0.303 [-0.433, -0.179]** | **-1461.0 [-2065.9, -879.9]** |
+| eqdgr_nll_condR_s20 | **-0.677 [-0.831, -0.544]** | **-0.301 [-0.432, -0.176]** | -0.015 [-0.185, +0.165] | **-0.251 [-0.387, -0.132]** | **-1460.3 [-2064.7, -879.0]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.707 [-0.876, -0.556]** | **-0.233 [-0.439, -0.051]** | -0.080 [-0.274, +0.145] | **-0.177 [-0.380, -0.004]** |
+| eqdgr_nll_condR | **-0.808 [-0.971, -0.660]** | **-0.459 [-0.626, -0.306]** | -0.207 [-0.376, +0.016] | **-0.387 [-0.564, -0.232]** |
+| eqdgr_nll_condR_s10 | **-0.803 [-0.967, -0.654]** | **-0.434 [-0.606, -0.281]** | -0.182 [-0.367, +0.040] | **-0.365 [-0.545, -0.216]** |
+| eqdgr_nll_condR_s20 | **-0.777 [-0.942, -0.630]** | **-0.379 [-0.557, -0.223]** | -0.161 [-0.355, +0.052] | **-0.315 [-0.503, -0.170]** |
+
+### INSTANCE, conditioned on a known distance (seed 1) — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| lin_invR | 0.904 | 0.736 | 2.855 | 0.785 | 0.687 | 0.754 | 0.727 | -0.157 | 1336.4 | 0.966 | 3.911 | 0.669 |
+| eqdgr_nll | 0.268 | 0.190 | 1.065 | 0.559 | 0.578 | 0.586 | 0.558 | -0.409 | 7.7 | 0.269 | 2.538 | 0.192 |
+| eqdgr_nll_condR | 0.185 | 0.139 | 0.693 | 0.337 | 0.491 | 0.371 | 0.519 | -0.435 | 2.0 | 0.186 | 2.223 | 0.133 |
+| eqdgr_nll_condR_s10 | 0.192 | 0.144 | 0.713 | 0.360 | 0.510 | 0.388 | 0.517 | -0.444 | 1.5 | 0.192 | 2.251 | 0.137 |
+| eqdgr_nll_condR_s20 | 0.215 | 0.161 | 0.800 | 0.419 | 0.524 | 0.445 | 0.520 | -0.426 | 1.9 | 0.215 | 2.354 | 0.154 |
+
+### INSTANCE, conditioned on a known distance (seed 1) — 3 s, paired differences vs `lin_invR` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqdgr_nll | **-0.592 [-0.751, -0.450]** | **-0.197 [-0.363, -0.038]** | -0.096 [-0.253, +0.144] | -0.150 [-0.309, +0.006] | **-1192.0 [-1700.5, -709.4]** |
+| eqdgr_nll_condR | **-0.678 [-0.823, -0.549]** | **-0.428 [-0.549, -0.320]** | **-0.193 [-0.335, -0.056]** | **-0.373 [-0.497, -0.263]** | **-1197.9 [-1705.6, -716.2]** |
+| eqdgr_nll_condR_s10 | **-0.671 [-0.817, -0.542]** | **-0.405 [-0.527, -0.296]** | -0.170 [-0.319, +0.009] | **-0.354 [-0.479, -0.252]** | **-1198.5 [-1705.8, -717.0]** |
+| eqdgr_nll_condR_s20 | **-0.647 [-0.796, -0.516]** | **-0.343 [-0.474, -0.226]** | -0.153 [-0.308, +0.041] | **-0.296 [-0.427, -0.189]** | **-1198.1 [-1705.3, -716.6]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.650 [-0.816, -0.501]** | **-0.246 [-0.441, -0.070]** | -0.190 [-0.392, +0.067] | **-0.193 [-0.383, -0.023]** |
+| eqdgr_nll_condR | **-0.738 [-0.889, -0.601]** | **-0.470 [-0.617, -0.344]** | **-0.299 [-0.459, -0.129]** | **-0.407 [-0.562, -0.282]** |
+| eqdgr_nll_condR_s10 | **-0.731 [-0.883, -0.595]** | **-0.447 [-0.598, -0.320]** | **-0.275 [-0.456, -0.080]** | **-0.389 [-0.545, -0.270]** |
+| eqdgr_nll_condR_s20 | **-0.708 [-0.863, -0.570]** | **-0.388 [-0.548, -0.254]** | **-0.258 [-0.444, -0.048]** | **-0.333 [-0.493, -0.209]** |
+
+### INSTANCE, conditioned on a known distance (seed 1) — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| lin_invR | 0.859 | 0.703 | 2.704 | 0.729 | 0.615 | 0.697 | 0.650 | -0.090 | 1224.4 | 0.905 | 3.853 | 0.630 |
+| eqdgr_nll | 0.234 | 0.162 | 0.994 | 0.504 | 0.503 | 0.535 | 0.479 | -0.330 | 5.5 | 0.235 | 2.396 | 0.168 |
+| eqdgr_nll_condR | 0.171 | 0.128 | 0.647 | 0.290 | 0.413 | 0.319 | 0.432 | -0.355 | 1.6 | 0.172 | 2.148 | 0.122 |
+| eqdgr_nll_condR_s10 | 0.177 | 0.133 | 0.665 | 0.311 | 0.424 | 0.335 | 0.421 | -0.355 | 1.1 | 0.177 | 2.177 | 0.127 |
+| eqdgr_nll_condR_s20 | 0.195 | 0.144 | 0.743 | 0.370 | 0.440 | 0.394 | 0.429 | -0.340 | 1.4 | 0.194 | 2.257 | 0.139 |
+
+### INSTANCE, conditioned on a known distance (seed 1) — 5 s, paired differences vs `lin_invR` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqdgr_nll | **-0.584 [-0.734, -0.448]** | **-0.194 [-0.372, -0.027]** | -0.097 [-0.253, +0.161] | -0.143 [-0.309, +0.018] | **-1084.0 [-1585.3, -608.0]** |
+| eqdgr_nll_condR | **-0.652 [-0.783, -0.534]** | **-0.419 [-0.535, -0.318]** | **-0.198 [-0.331, -0.061]** | **-0.367 [-0.487, -0.266]** | **-1088.3 [-1588.0, -613.8]** |
+| eqdgr_nll_condR_s10 | **-0.645 [-0.777, -0.528]** | **-0.397 [-0.516, -0.294]** | -0.183 [-0.326, +0.003] | **-0.350 [-0.468, -0.256]** | **-1088.9 [-1588.3, -614.5]** |
+| eqdgr_nll_condR_s20 | **-0.626 [-0.763, -0.504]** | **-0.336 [-0.467, -0.220]** | -0.164 [-0.314, +0.046] | **-0.290 [-0.416, -0.185]** | **-1088.6 [-1588.1, -614.1]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.627 [-0.780, -0.487]** | **-0.232 [-0.429, -0.053]** | -0.172 [-0.373, +0.114] | **-0.176 [-0.365, -0.009]** |
+| eqdgr_nll_condR | **-0.697 [-0.830, -0.575]** | **-0.450 [-0.587, -0.336]** | **-0.285 [-0.440, -0.122]** | **-0.393 [-0.536, -0.278]** |
+| eqdgr_nll_condR_s10 | **-0.691 [-0.825, -0.569]** | **-0.429 [-0.568, -0.312]** | **-0.270 [-0.441, -0.065]** | **-0.376 [-0.519, -0.268]** |
+| eqdgr_nll_condR_s20 | **-0.672 [-0.811, -0.547]** | **-0.370 [-0.522, -0.239]** | **-0.250 [-0.430, -0.017]** | **-0.317 [-0.468, -0.200]** |
+
+## INSTANCE, capped at M4.0
+
+Source: `results/eval_cap40.json`; 1,159,249 records; Δ = arm − `mix_cap40`.
+
+
+### INSTANCE, capped at M4.0 — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap40 | 0.332 | 0.243 | 1.238 | 1.025 | 1.807 | 1.034 | 1.758 | -1.807 | 0.0 | 0.334 | 2.837 | 0.239 |
+| mixgr_cap40 | 0.332 | 0.244 | 1.234 | 0.716 | 1.061 | 0.731 | 1.022 | -1.044 | 25.5 | 0.357 | 2.801 | 0.244 |
+| eqgr_cap40 | 0.332 | 0.243 | 1.232 | 0.807 | 1.097 | 0.822 | 1.105 | -1.008 | 11.6 | 0.335 | 2.766 | 0.238 |
+| eqdgr_cap40 | 0.329 | 0.239 | 1.236 | 0.779 | 0.978 | 0.804 | 0.990 | -0.864 | 15.0 | 0.331 | 2.754 | 0.236 |
+
+### INSTANCE, capped at M4.0 — 1 s, paired differences vs `mix_cap40` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| mixgr_cap40 | +0.001 [-0.001, +0.005] | **-0.308 [-0.337, -0.276]** | **-0.746 [-0.802, -0.690]** | **-0.301 [-0.330, -0.262]** | **+28.2 [+17.9, +39.6]** |
+| eqgr_cap40 | -0.000 [-0.002, +0.001] | **-0.215 [-0.249, -0.170]** | **-0.707 [-0.873, -0.532]** | **-0.208 [-0.244, -0.165]** | **+12.7 [+8.4, +17.8]** |
+| eqdgr_cap40 | **-0.003 [-0.005, -0.002]** | **-0.240 [-0.289, -0.178]** | **-0.817 [-1.056, -0.536]** | **-0.224 [-0.284, -0.165]** | **+14.6 [+11.8, +16.3]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| mixgr_cap40 | **+0.026 [+0.015, +0.040]** | **-0.414 [-0.450, -0.366]** | **-0.813 [-0.857, -0.754]** | **-0.405 [-0.445, -0.353]** |
+| eqgr_cap40 | +0.001 [-0.000, +0.003] | **-0.276 [-0.313, -0.227]** | **-0.798 [-0.973, -0.606]** | **-0.271 [-0.309, -0.224]** |
+| eqdgr_cap40 | **-0.003 [-0.006, -0.002]** | **-0.285 [-0.342, -0.219]** | **-0.864 [-1.109, -0.580]** | **-0.268 [-0.337, -0.203]** |
+
+### INSTANCE, capped at M4.0 — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap40 | 0.275 | 0.197 | 1.084 | 0.857 | 1.605 | 0.869 | 1.552 | -1.605 | 0.0 | 0.277 | 2.652 | 0.199 |
+| mixgr_cap40 | 0.275 | 0.197 | 1.086 | 0.557 | 0.793 | 0.577 | 0.738 | -0.762 | 25.3 | 0.300 | 2.609 | 0.203 |
+| eqgr_cap40 | 0.274 | 0.196 | 1.079 | 0.615 | 0.671 | 0.635 | 0.671 | -0.502 | 10.3 | 0.277 | 2.573 | 0.197 |
+| eqdgr_cap40 | 0.270 | 0.191 | 1.084 | 0.580 | 0.582 | 0.611 | 0.577 | -0.400 | 11.9 | 0.271 | 2.547 | 0.194 |
+
+### INSTANCE, capped at M4.0 — 3 s, paired differences vs `mix_cap40` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| mixgr_cap40 | +0.001 [-0.001, +0.004] | **-0.300 [-0.331, -0.272]** | **-0.814 [-0.898, -0.747]** | **-0.291 [-0.318, -0.258]** | **+28.4 [+16.7, +41.4]** |
+| eqgr_cap40 | -0.001 [-0.004, +0.000] | **-0.237 [-0.277, -0.184]** | **-0.923 [-1.072, -0.736]** | **-0.230 [-0.273, -0.179]** | **+11.4 [+6.9, +16.7]** |
+| eqdgr_cap40 | **-0.006 [-0.008, -0.004]** | **-0.272 [-0.308, -0.223]** | **-1.007 [-1.211, -0.782]** | **-0.254 [-0.298, -0.201]** | **+12.1 [+10.9, +14.2]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| mixgr_cap40 | **+0.026 [+0.014, +0.041]** | **-0.392 [-0.419, -0.355]** | **-0.854 [-0.927, -0.801]** | **-0.383 [-0.413, -0.343]** |
+| eqgr_cap40 | -0.000 [-0.002, +0.001] | **-0.290 [-0.333, -0.233]** | **-1.003 [-1.179, -0.791]** | **-0.286 [-0.331, -0.234]** |
+| eqdgr_cap40 | **-0.006 [-0.008, -0.005]** | **-0.313 [-0.355, -0.257]** | **-1.055 [-1.290, -0.818]** | **-0.293 [-0.345, -0.237]** |
+
+### INSTANCE, capped at M4.0 — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap40 | 0.243 | 0.171 | 1.021 | 0.810 | 1.566 | 0.824 | 1.512 | -1.566 | 0.0 | 0.245 | 2.522 | 0.177 |
+| mixgr_cap40 | 0.242 | 0.169 | 1.021 | 0.518 | 0.756 | 0.537 | 0.708 | -0.708 | 23.6 | 0.268 | 2.473 | 0.180 |
+| eqgr_cap40 | 0.239 | 0.167 | 1.009 | 0.550 | 0.554 | 0.572 | 0.547 | -0.366 | 9.2 | 0.242 | 2.426 | 0.172 |
+| eqdgr_cap40 | 0.235 | 0.163 | 1.013 | 0.522 | 0.507 | 0.557 | 0.496 | -0.312 | 9.0 | 0.237 | 2.400 | 0.169 |
+
+### INSTANCE, capped at M4.0 — 5 s, paired differences vs `mix_cap40` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| mixgr_cap40 | -0.001 [-0.003, +0.002] | **-0.294 [-0.332, -0.267]** | **-0.817 [-0.920, -0.710]** | **-0.287 [-0.318, -0.258]** | **+26.9 [+14.6, +40.5]** |
+| eqgr_cap40 | **-0.004 [-0.006, -0.003]** | **-0.256 [-0.298, -0.199]** | **-0.999 [-1.148, -0.826]** | **-0.247 [-0.291, -0.193]** | **+10.2 [+6.3, +14.8]** |
+| eqdgr_cap40 | **-0.009 [-0.010, -0.008]** | **-0.284 [-0.322, -0.234]** | **-1.042 [-1.220, -0.851]** | **-0.263 [-0.305, -0.210]** | **+9.4 [+7.8, +11.8]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| mixgr_cap40 | **+0.026 [+0.011, +0.043]** | **-0.382 [-0.411, -0.353]** | **-0.862 [-0.955, -0.778]** | **-0.375 [-0.400, -0.345]** |
+| eqgr_cap40 | **-0.003 [-0.004, -0.001]** | **-0.303 [-0.344, -0.247]** | **-1.071 [-1.248, -0.877]** | **-0.296 [-0.341, -0.245]** |
+| eqdgr_cap40 | **-0.008 [-0.010, -0.007]** | **-0.320 [-0.360, -0.266]** | **-1.086 [-1.291, -0.882]** | **-0.298 [-0.346, -0.242]** |
+
+## INSTANCE, capped at M4.0, augmentation and pinned slope
+
+Source: `results/eval_cap40_bfix_aug.json`; 1,159,249 records; Δ = arm − `mix_cap40`.
+
+
+### INSTANCE, capped at M4.0, augmentation and pinned slope — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap40 | 0.332 | 0.243 | 1.238 | 1.025 | 1.807 | 1.034 | 1.758 | -1.807 | 0.0 | 0.334 | 2.837 | 0.239 |
+| eqgr_cap40_bfix | 0.329 | 0.241 | 1.224 | 0.807 | 1.083 | 0.822 | 1.093 | -0.993 | 9.8 | 0.332 | 2.758 | 0.236 |
+| eqdgr_cap40_bfix | 0.331 | 0.241 | 1.240 | 0.765 | 0.928 | 0.784 | 0.931 | -0.787 | 18.2 | 0.333 | 2.758 | 0.237 |
+| mix_cap40_aug05 | 0.339 | 0.259 | 1.225 | 0.910 | 1.594 | 0.918 | 1.541 | -1.594 | 0.6 | 0.338 | 2.867 | 0.243 |
+| mix_cap40_aug15 | 0.363 | 0.283 | 1.265 | 0.757 | 1.129 | 0.761 | 1.077 | -1.126 | 11.2 | 0.361 | 2.936 | 0.260 |
+
+### INSTANCE, capped at M4.0, augmentation and pinned slope — 1 s, paired differences vs `mix_cap40` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqgr_cap40_bfix | **-0.002 [-0.004, -0.001]** | **-0.218 [-0.253, -0.186]** | **-0.725 [-0.918, -0.551]** | **-0.210 [-0.237, -0.177]** | **+10.9 [+6.6, +16.1]** |
+| eqdgr_cap40_bfix | -0.001 [-0.005, +0.001] | **-0.255 [-0.293, -0.205]** | **-0.868 [-1.064, -0.637]** | **-0.245 [-0.291, -0.195]** | **+18.6 [+16.2, +22.7]** |
+| mix_cap40_aug05 | **+0.007 [+0.006, +0.009]** | **-0.112 [-0.133, -0.085]** | **-0.217 [-0.255, -0.170]** | **-0.113 [-0.137, -0.080]** | **+0.6 [+0.3, +1.2]** |
+| mix_cap40_aug15 | **+0.031 [+0.029, +0.033]** | **-0.257 [-0.329, -0.181]** | **-0.671 [-0.760, -0.567]** | **-0.264 [-0.340, -0.175]** | **+11.5 [+9.9, +14.3]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap40_bfix | -0.002 [-0.003, +0.000] | **-0.274 [-0.308, -0.240]** | **-0.799 [-0.975, -0.619]** | **-0.266 [-0.295, -0.230]** |
+| eqdgr_cap40_bfix | **-0.002 [-0.005, -0.000]** | **-0.303 [-0.346, -0.247]** | **-0.921 [-1.127, -0.684]** | **-0.291 [-0.345, -0.234]** |
+| mix_cap40_aug05 | **+0.004 [+0.003, +0.006]** | **-0.130 [-0.156, -0.098]** | **-0.239 [-0.266, -0.214]** | **-0.131 [-0.158, -0.094]** |
+| mix_cap40_aug15 | **+0.027 [+0.025, +0.029]** | **-0.289 [-0.370, -0.207]** | **-0.704 [-0.800, -0.595]** | **-0.296 [-0.380, -0.199]** |
+
+### INSTANCE, capped at M4.0, augmentation and pinned slope — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap40 | 0.275 | 0.197 | 1.084 | 0.857 | 1.605 | 0.869 | 1.552 | -1.605 | 0.0 | 0.277 | 2.652 | 0.199 |
+| eqgr_cap40_bfix | 0.272 | 0.194 | 1.070 | 0.604 | 0.638 | 0.626 | 0.636 | -0.476 | 9.2 | 0.274 | 2.560 | 0.195 |
+| eqdgr_cap40_bfix | 0.270 | 0.191 | 1.087 | 0.570 | 0.552 | 0.597 | 0.542 | -0.336 | 14.7 | 0.272 | 2.548 | 0.194 |
+| mix_cap40_aug05 | 0.279 | 0.207 | 1.070 | 0.730 | 1.357 | 0.744 | 1.297 | -1.357 | 0.7 | 0.279 | 2.660 | 0.200 |
+| mix_cap40_aug15 | 0.292 | 0.220 | 1.095 | 0.595 | 0.811 | 0.607 | 0.743 | -0.805 | 6.3 | 0.291 | 2.706 | 0.210 |
+
+### INSTANCE, capped at M4.0, augmentation and pinned slope — 3 s, paired differences vs `mix_cap40` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqgr_cap40_bfix | **-0.004 [-0.006, -0.003]** | **-0.251 [-0.289, -0.211]** | **-0.957 [-1.106, -0.764]** | **-0.241 [-0.272, -0.198]** | **+10.1 [+6.3, +15.0]** |
+| eqdgr_cap40_bfix | **-0.005 [-0.008, -0.004]** | **-0.285 [-0.320, -0.242]** | **-1.038 [-1.215, -0.826]** | **-0.268 [-0.306, -0.221]** | **+15.5 [+12.3, +19.9]** |
+| mix_cap40_aug05 | **+0.004 [+0.003, +0.004]** | **-0.124 [-0.144, -0.096]** | **-0.254 [-0.317, -0.177]** | **-0.123 [-0.151, -0.089]** | **+0.8 [+0.4, +1.2]** |
+| mix_cap40_aug15 | **+0.017 [+0.015, +0.018]** | **-0.252 [-0.316, -0.177]** | **-0.780 [-0.899, -0.657]** | **-0.254 [-0.325, -0.166]** | **+6.7 [+5.0, +9.2]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap40_bfix | **-0.003 [-0.005, -0.001]** | **-0.300 [-0.336, -0.256]** | **-1.021 [-1.187, -0.814]** | **-0.290 [-0.324, -0.246]** |
+| eqdgr_cap40_bfix | **-0.005 [-0.007, -0.004]** | **-0.326 [-0.363, -0.278]** | **-1.088 [-1.291, -0.869]** | **-0.309 [-0.353, -0.257]** |
+| mix_cap40_aug05 | **+0.002 [+0.001, +0.003]** | **-0.140 [-0.167, -0.107]** | **-0.268 [-0.314, -0.219]** | **-0.139 [-0.167, -0.102]** |
+| mix_cap40_aug15 | **+0.014 [+0.013, +0.016]** | **-0.282 [-0.357, -0.201]** | **-0.800 [-0.929, -0.674]** | **-0.284 [-0.363, -0.192]** |
+
+### INSTANCE, capped at M4.0, augmentation and pinned slope — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=4 MAE | M>=5 MAE | M>=4 event-MAE | M>=5 event-MAE | M>=5 bias | false-M4 /10⁴ | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap40 | 0.243 | 0.171 | 1.021 | 0.810 | 1.566 | 0.824 | 1.512 | -1.566 | 0.0 | 0.245 | 2.522 | 0.177 |
+| eqgr_cap40_bfix | 0.237 | 0.166 | 1.000 | 0.541 | 0.542 | 0.569 | 0.540 | -0.337 | 8.0 | 0.239 | 2.417 | 0.171 |
+| eqdgr_cap40_bfix | 0.235 | 0.163 | 1.015 | 0.511 | 0.478 | 0.542 | 0.466 | -0.259 | 11.8 | 0.238 | 2.402 | 0.170 |
+| mix_cap40_aug05 | 0.245 | 0.178 | 1.004 | 0.673 | 1.302 | 0.690 | 1.243 | -1.302 | 0.6 | 0.245 | 2.517 | 0.177 |
+| mix_cap40_aug15 | 0.256 | 0.187 | 1.026 | 0.539 | 0.723 | 0.555 | 0.659 | -0.717 | 4.5 | 0.256 | 2.561 | 0.184 |
+
+### INSTANCE, capped at M4.0, augmentation and pinned slope — 5 s, paired differences vs `mix_cap40` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE | Δ false-M4 /10⁴ |
+|---|---|---|---|---|---|
+| eqgr_cap40_bfix | **-0.006 [-0.008, -0.005]** | **-0.267 [-0.303, -0.226]** | **-1.013 [-1.150, -0.837]** | **-0.252 [-0.286, -0.207]** | **+8.8 [+5.7, +12.5]** |
+| eqdgr_cap40_bfix | **-0.008 [-0.010, -0.007]** | **-0.297 [-0.333, -0.250]** | **-1.072 [-1.233, -0.893]** | **-0.279 [-0.317, -0.230]** | **+12.7 [+9.0, +17.4]** |
+| mix_cap40_aug05 | **+0.002 [+0.000, +0.002]** | **-0.134 [-0.156, -0.105]** | **-0.270 [-0.356, -0.173]** | **-0.132 [-0.159, -0.098]** | **+0.6 [+0.4, +0.9]** |
+| mix_cap40_aug15 | **+0.012 [+0.010, +0.014]** | **-0.262 [-0.323, -0.188]** | **-0.829 [-0.943, -0.705]** | **-0.262 [-0.328, -0.177]** | **+4.8 [+3.2, +7.1]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=4 MAE | Δ M>=5 MAE | Δ M>=4 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap40_bfix | **-0.006 [-0.007, -0.004]** | **-0.310 [-0.345, -0.267]** | **-1.071 [-1.227, -0.882]** | **-0.295 [-0.330, -0.251]** |
+| eqdgr_cap40_bfix | **-0.008 [-0.009, -0.007]** | **-0.333 [-0.370, -0.283]** | **-1.119 [-1.307, -0.921]** | **-0.314 [-0.355, -0.263]** |
+| mix_cap40_aug05 | +0.000 [-0.002, +0.001] | **-0.148 [-0.174, -0.116]** | **-0.281 [-0.351, -0.214]** | **-0.146 [-0.172, -0.110]** |
+| mix_cap40_aug15 | **+0.010 [+0.007, +0.012]** | **-0.289 [-0.357, -0.211]** | **-0.845 [-0.968, -0.720]** | **-0.289 [-0.361, -0.200]** |
+
+## Northern Chile, classical amplitude laws as arms
+
+Source: `results/chile_eval_classical.json`; 505,666 records; Δ = arm − `mix_nll`.
+
+
+### Northern Chile, classical amplitude laws as arms — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll | 0.208 | 0.153 | 0.861 | 0.857 | 1.260 | 0.882 | 1.364 | -1.259 | 0.210 | 2.317 | 0.149 |
+| eqdgr_nll | 0.205 | 0.151 | 0.852 | 0.845 | 1.258 | 0.862 | 1.321 | -1.230 | 0.207 | 2.306 | 0.148 |
+| lin_invR | 0.377 | 0.287 | 1.461 | 0.845 | 1.188 | 0.854 | 1.255 | -1.155 | 0.391 | 3.204 | 0.288 |
+| lin_inv | 0.578 | 0.446 | 2.151 | 1.373 | 1.327 | 1.419 | 1.381 | 0.475 | 0.612 | 3.563 | 0.443 |
+| lin_fwdR | 0.303 | 0.239 | 1.234 | 2.244 | 3.052 | 2.272 | 3.119 | -3.052 | 0.302 | 2.840 | 0.219 |
+
+### Northern Chile, classical amplitude laws as arms — 1 s, paired differences vs `mix_nll` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.003 [-0.003, -0.002]** | -0.012 [-0.050, +0.028] | -0.002 [-0.134, +0.122] | -0.019 [-0.058, +0.026] |
+| lin_invR | **+0.169 [+0.158, +0.180]** | -0.013 [-0.068, +0.042] | -0.071 [-0.154, +0.032] | -0.028 [-0.088, +0.031] |
+| lin_inv | **+0.372 [+0.339, +0.422]** | **+0.521 [+0.426, +0.614]** | +0.055 [-0.353, +0.394] | **+0.542 [+0.457, +0.633]** |
+| lin_fwdR | **+0.096 [+0.089, +0.103]** | **+1.387 [+1.319, +1.459]** | **+1.799 [+1.640, +2.015]** | **+1.391 [+1.322, +1.465]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.003 [-0.004, -0.002]** | +0.003 [-0.032, +0.038] | +0.049 [-0.068, +0.165] | -0.004 [-0.040, +0.037] |
+| lin_invR | **+0.181 [+0.168, +0.197]** | +0.005 [-0.050, +0.058] | -0.033 [-0.121, +0.075] | -0.011 [-0.070, +0.045] |
+| lin_inv | **+0.404 [+0.368, +0.452]** | **+0.562 [+0.468, +0.663]** | +0.176 [-0.209, +0.529] | **+0.588 [+0.497, +0.691]** |
+| lin_fwdR | **+0.092 [+0.085, +0.099]** | **+1.404 [+1.338, +1.475]** | **+1.837 [+1.668, +2.053]** | **+1.408 [+1.340, +1.482]** |
+
+### Northern Chile, classical amplitude laws as arms — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll | 0.164 | 0.116 | 0.738 | 0.591 | 0.861 | 0.598 | 0.867 | -0.861 | 0.166 | 2.073 | 0.119 |
+| eqdgr_nll | 0.160 | 0.111 | 0.730 | 0.554 | 0.600 | 0.561 | 0.604 | -0.354 | 0.162 | 2.033 | 0.116 |
+| lin_invR | 0.331 | 0.254 | 1.270 | 0.628 | 0.610 | 0.618 | 0.602 | -0.271 | 0.341 | 3.042 | 0.251 |
+| lin_inv | 0.509 | 0.399 | 1.841 | 1.345 | 1.422 | 1.378 | 1.427 | 1.038 | 0.528 | 3.430 | 0.381 |
+| lin_fwdR | 0.278 | 0.218 | 1.089 | 1.789 | 2.332 | 1.809 | 2.382 | -2.332 | 0.278 | 2.773 | 0.203 |
+
+### Northern Chile, classical amplitude laws as arms — 3 s, paired differences vs `mix_nll` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.004 [-0.005, -0.003]** | -0.034 [-0.069, +0.010] | **-0.262 [-0.374, -0.142]** | -0.034 [-0.067, +0.011] |
+| lin_invR | **+0.167 [+0.159, +0.175]** | +0.037 [-0.018, +0.098] | **-0.254 [-0.388, -0.124]** | +0.021 [-0.046, +0.088] |
+| lin_inv | **+0.346 [+0.323, +0.375]** | **+0.756 [+0.678, +0.844]** | **+0.552 [+0.118, +0.866]** | **+0.782 [+0.707, +0.867]** |
+| lin_fwdR | **+0.114 [+0.105, +0.122]** | **+1.198 [+1.145, +1.260]** | **+1.487 [+1.374, +1.659]** | **+1.213 [+1.144, +1.295]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.004 [-0.005, -0.003]** | -0.021 [-0.052, +0.019] | **-0.200 [-0.317, -0.068]** | -0.022 [-0.054, +0.019] |
+| lin_invR | **+0.176 [+0.166, +0.188]** | +0.051 [-0.004, +0.109] | **-0.212 [-0.343, -0.073]** | +0.034 [-0.031, +0.098] |
+| lin_inv | **+0.363 [+0.338, +0.393]** | **+0.787 [+0.709, +0.871]** | **+0.666 [+0.266, +0.975]** | **+0.816 [+0.735, +0.902]** |
+| lin_fwdR | **+0.112 [+0.103, +0.121]** | **+1.212 [+1.158, +1.273]** | **+1.530 [+1.423, +1.694]** | **+1.226 [+1.159, +1.308]** |
+
+### Northern Chile, classical amplitude laws as arms — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_nll | 0.148 | 0.102 | 0.696 | 0.556 | 0.858 | 0.560 | 0.844 | -0.858 | 0.150 | 1.966 | 0.108 |
+| eqdgr_nll | 0.142 | 0.096 | 0.685 | 0.468 | 0.484 | 0.469 | 0.455 | -0.241 | 0.144 | 1.906 | 0.103 |
+| lin_invR | 0.329 | 0.253 | 1.255 | 0.615 | 0.586 | 0.601 | 0.548 | 0.083 | 0.337 | 3.011 | 0.247 |
+| lin_inv | 0.510 | 0.402 | 1.842 | 1.447 | 1.682 | 1.496 | 1.717 | 1.363 | 0.527 | 3.431 | 0.380 |
+| lin_fwdR | 0.274 | 0.215 | 1.044 | 1.606 | 2.046 | 1.622 | 2.078 | -2.046 | 0.275 | 2.763 | 0.201 |
+
+### Northern Chile, classical amplitude laws as arms — 5 s, paired differences vs `mix_nll` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.006 [-0.007, -0.005]** | **-0.086 [-0.129, -0.037]** | **-0.377 [-0.557, -0.235]** | **-0.089 [-0.134, -0.038]** |
+| lin_invR | **+0.180 [+0.174, +0.187]** | +0.060 [-0.000, +0.122] | **-0.276 [-0.510, -0.079]** | +0.042 [-0.024, +0.109] |
+| lin_inv | **+0.363 [+0.341, +0.390]** | **+0.894 [+0.805, +0.991]** | **+0.830 [+0.532, +1.110]** | **+0.938 [+0.840, +1.034]** |
+| lin_fwdR | **+0.126 [+0.115, +0.135]** | **+1.051 [+1.007, +1.101]** | **+1.203 [+1.109, +1.351]** | **+1.064 [+1.010, +1.129]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.006 [-0.007, -0.005]** | **-0.078 [-0.120, -0.030]** | **-0.331 [-0.522, -0.178]** | **-0.081 [-0.127, -0.032]** |
+| lin_invR | **+0.188 [+0.180, +0.199]** | **+0.072 [+0.012, +0.130]** | **-0.239 [-0.483, -0.028]** | +0.054 [-0.014, +0.120] |
+| lin_inv | **+0.378 [+0.354, +0.406]** | **+0.936 [+0.840, +1.034]** | **+1.013 [+0.786, +1.297]** | **+0.987 [+0.877, +1.090]** |
+| lin_fwdR | **+0.125 [+0.114, +0.135]** | **+1.063 [+1.019, +1.111]** | **+1.241 [+1.155, +1.382]** | **+1.076 [+1.023, +1.138]** |
+
+## Northern Chile, conditioned on a known distance (seed 1)
+
+Source: `results/chile_eval_condR.json`; 505,666 records; Δ = arm − `lin_invR`.
+
+
+### Northern Chile, conditioned on a known distance (seed 1) — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| lin_invR | 0.377 | 0.287 | 1.461 | 0.845 | 1.188 | 0.854 | 1.255 | -1.155 | 0.391 | 3.204 | 0.288 |
+| eqdgr_nll | 0.205 | 0.151 | 0.852 | 0.845 | 1.258 | 0.862 | 1.321 | -1.230 | 0.207 | 2.306 | 0.148 |
+| eqdgr_nll_condR | 0.181 | 0.137 | 0.729 | 0.799 | 1.291 | 0.819 | 1.389 | -1.285 | 0.182 | 2.209 | 0.130 |
+| eqdgr_nll_condR_s10 | 0.188 | 0.141 | 0.763 | 0.822 | 1.277 | 0.842 | 1.361 | -1.262 | 0.189 | 2.230 | 0.135 |
+| eqdgr_nll_condR_s20 | 0.196 | 0.146 | 0.796 | 0.833 | 1.261 | 0.851 | 1.335 | -1.239 | 0.197 | 2.266 | 0.141 |
+| mix_nll | 0.208 | 0.153 | 0.861 | 0.857 | 1.260 | 0.882 | 1.364 | -1.259 | 0.210 | 2.317 | 0.149 |
+
+### Northern Chile, conditioned on a known distance (seed 1) — 1 s, paired differences vs `lin_invR` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.171 [-0.183, -0.160]** | +0.001 [-0.058, +0.059] | +0.069 [-0.054, +0.191] | +0.009 [-0.046, +0.063] |
+| eqdgr_nll_condR | **-0.196 [-0.208, -0.185]** | -0.046 [-0.102, +0.008] | +0.105 [-0.019, +0.219] | -0.035 [-0.089, +0.015] |
+| eqdgr_nll_condR_s10 | **-0.189 [-0.201, -0.177]** | -0.022 [-0.078, +0.031] | +0.091 [-0.017, +0.208] | -0.012 [-0.065, +0.039] |
+| eqdgr_nll_condR_s20 | **-0.181 [-0.193, -0.169]** | -0.011 [-0.066, +0.045] | +0.074 [-0.037, +0.193] | -0.002 [-0.056, +0.051] |
+| mix_nll | **-0.169 [-0.180, -0.158]** | +0.013 [-0.042, +0.068] | +0.071 [-0.032, +0.154] | +0.028 [-0.031, +0.088] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.184 [-0.200, -0.171]** | -0.002 [-0.061, +0.056] | +0.083 [-0.024, +0.194] | +0.007 [-0.049, +0.060] |
+| eqdgr_nll_condR | **-0.209 [-0.226, -0.195]** | -0.050 [-0.106, +0.004] | +0.102 [-0.021, +0.216] | -0.039 [-0.094, +0.011] |
+| eqdgr_nll_condR_s10 | **-0.202 [-0.219, -0.188]** | -0.030 [-0.085, +0.024] | +0.085 [-0.021, +0.201] | -0.019 [-0.072, +0.031] |
+| eqdgr_nll_condR_s20 | **-0.194 [-0.210, -0.181]** | -0.019 [-0.075, +0.036] | +0.063 [-0.051, +0.181] | -0.011 [-0.064, +0.042] |
+| mix_nll | **-0.181 [-0.197, -0.168]** | -0.005 [-0.058, +0.050] | +0.033 [-0.075, +0.121] | +0.011 [-0.045, +0.070] |
+
+### Northern Chile, conditioned on a known distance (seed 1) — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| lin_invR | 0.331 | 0.254 | 1.270 | 0.628 | 0.610 | 0.618 | 0.602 | -0.271 | 0.341 | 3.042 | 0.251 |
+| eqdgr_nll | 0.160 | 0.111 | 0.730 | 0.554 | 0.600 | 0.561 | 0.604 | -0.354 | 0.162 | 2.033 | 0.116 |
+| eqdgr_nll_condR | 0.136 | 0.097 | 0.614 | 0.497 | 0.586 | 0.507 | 0.612 | -0.436 | 0.137 | 1.900 | 0.098 |
+| eqdgr_nll_condR_s10 | 0.144 | 0.103 | 0.648 | 0.524 | 0.580 | 0.532 | 0.592 | -0.385 | 0.145 | 1.943 | 0.104 |
+| eqdgr_nll_condR_s20 | 0.152 | 0.108 | 0.682 | 0.538 | 0.574 | 0.544 | 0.578 | -0.351 | 0.153 | 1.991 | 0.110 |
+| mix_nll | 0.164 | 0.116 | 0.738 | 0.591 | 0.861 | 0.598 | 0.867 | -0.861 | 0.166 | 2.073 | 0.119 |
+
+### Northern Chile, conditioned on a known distance (seed 1) — 3 s, paired differences vs `lin_invR` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.171 [-0.179, -0.163]** | **-0.072 [-0.116, -0.023]** | -0.007 [-0.067, +0.062] | **-0.056 [-0.107, -0.002]** |
+| eqdgr_nll_condR | **-0.196 [-0.206, -0.186]** | **-0.130 [-0.171, -0.088]** | -0.019 [-0.113, +0.115] | **-0.110 [-0.161, -0.059]** |
+| eqdgr_nll_condR_s10 | **-0.187 [-0.197, -0.177]** | **-0.102 [-0.144, -0.056]** | -0.027 [-0.099, +0.056] | **-0.084 [-0.134, -0.033]** |
+| eqdgr_nll_condR_s20 | **-0.179 [-0.188, -0.170]** | **-0.088 [-0.131, -0.042]** | -0.035 [-0.097, +0.022] | **-0.073 [-0.121, -0.020]** |
+| mix_nll | **-0.167 [-0.175, -0.159]** | -0.037 [-0.098, +0.018] | **+0.254 [+0.124, +0.388]** | -0.021 [-0.088, +0.046] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.180 [-0.192, -0.170]** | **-0.072 [-0.116, -0.024]** | +0.012 [-0.052, +0.096] | **-0.057 [-0.107, -0.006]** |
+| eqdgr_nll_condR | **-0.205 [-0.219, -0.193]** | **-0.133 [-0.174, -0.091]** | -0.022 [-0.117, +0.115] | **-0.113 [-0.164, -0.062]** |
+| eqdgr_nll_condR_s10 | **-0.197 [-0.210, -0.186]** | **-0.108 [-0.149, -0.063]** | -0.030 [-0.100, +0.055] | **-0.090 [-0.139, -0.041]** |
+| eqdgr_nll_condR_s20 | **-0.188 [-0.201, -0.178]** | **-0.094 [-0.136, -0.049]** | -0.039 [-0.095, +0.017] | **-0.079 [-0.127, -0.028]** |
+| mix_nll | **-0.176 [-0.188, -0.166]** | -0.051 [-0.109, +0.004] | **+0.212 [+0.073, +0.343]** | -0.034 [-0.098, +0.031] |
+
+### Northern Chile, conditioned on a known distance (seed 1) — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=5 MAE | M>=6 MAE | M>=5 event-MAE | M>=6 event-MAE | M>=6 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| lin_invR | 0.329 | 0.253 | 1.255 | 0.615 | 0.586 | 0.601 | 0.548 | 0.083 | 0.337 | 3.011 | 0.247 |
+| eqdgr_nll | 0.142 | 0.096 | 0.685 | 0.468 | 0.484 | 0.469 | 0.455 | -0.241 | 0.144 | 1.906 | 0.103 |
+| eqdgr_nll_condR | 0.114 | 0.079 | 0.557 | 0.419 | 0.471 | 0.423 | 0.461 | -0.348 | 0.114 | 1.720 | 0.082 |
+| eqdgr_nll_condR_s10 | 0.125 | 0.087 | 0.593 | 0.441 | 0.473 | 0.444 | 0.451 | -0.299 | 0.125 | 1.796 | 0.090 |
+| eqdgr_nll_condR_s20 | 0.134 | 0.092 | 0.632 | 0.456 | 0.474 | 0.457 | 0.446 | -0.260 | 0.134 | 1.857 | 0.097 |
+| mix_nll | 0.148 | 0.102 | 0.696 | 0.556 | 0.858 | 0.560 | 0.844 | -0.858 | 0.150 | 1.966 | 0.108 |
+
+### Northern Chile, conditioned on a known distance (seed 1) — 5 s, paired differences vs `lin_invR` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.186 [-0.194, -0.180]** | **-0.146 [-0.189, -0.099]** | **-0.101 [-0.177, -0.024]** | **-0.131 [-0.181, -0.081]** |
+| eqdgr_nll_condR | **-0.215 [-0.225, -0.207]** | **-0.195 [-0.234, -0.149]** | -0.111 [-0.242, +0.069] | **-0.177 [-0.227, -0.122]** |
+| eqdgr_nll_condR_s10 | **-0.204 [-0.213, -0.196]** | **-0.173 [-0.215, -0.123]** | -0.110 [-0.215, +0.027] | **-0.156 [-0.208, -0.104]** |
+| eqdgr_nll_condR_s20 | **-0.195 [-0.203, -0.187]** | **-0.157 [-0.199, -0.110]** | **-0.111 [-0.196, -0.018]** | **-0.143 [-0.192, -0.092]** |
+| mix_nll | **-0.180 [-0.187, -0.174]** | -0.060 [-0.122, +0.000] | **+0.276 [+0.079, +0.510]** | -0.042 [-0.109, +0.024] |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=5 MAE | Δ M>=6 MAE | Δ M>=5 event-MAE |
+|---|---|---|---|---|
+| eqdgr_nll | **-0.194 [-0.205, -0.185]** | **-0.150 [-0.193, -0.103]** | -0.092 [-0.180, +0.010] | **-0.135 [-0.184, -0.086]** |
+| eqdgr_nll_condR | **-0.223 [-0.236, -0.213]** | **-0.198 [-0.237, -0.152]** | -0.113 [-0.245, +0.069] | **-0.180 [-0.231, -0.124]** |
+| eqdgr_nll_condR_s10 | **-0.213 [-0.225, -0.203]** | **-0.178 [-0.219, -0.130]** | -0.113 [-0.217, +0.026] | **-0.162 [-0.212, -0.111]** |
+| eqdgr_nll_condR_s20 | **-0.203 [-0.215, -0.194]** | **-0.164 [-0.205, -0.118]** | **-0.114 [-0.198, -0.025]** | **-0.150 [-0.197, -0.100]** |
+| mix_nll | **-0.188 [-0.199, -0.180]** | **-0.072 [-0.130, -0.012]** | **+0.239 [+0.028, +0.483]** | -0.054 [-0.120, +0.014] |
+
+## GEOFON, capped at M6.0 (pre-registered), seed 1
+
+Source: `results/geofon_eval_cap60.json`; 31,020 records; Δ = arm − `mix_cap60`.
+
+
+### GEOFON, capped at M6.0 (pre-registered), seed 1 — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 | 0.559 | 0.423 | 1.957 | 1.239 | 2.033 | 1.277 | 2.045 | -2.033 | 0.564 | 3.780 | 0.412 |
+| mix_cap60_aug15 | 0.593 | 0.477 | 1.916 | 0.976 | 1.604 | 0.992 | 1.628 | -1.604 | 0.594 | 3.476 | 0.424 |
+| eqgr_cap60 | 0.564 | 0.435 | 1.955 | 1.091 | 1.843 | 1.132 | 1.874 | -1.843 | 0.563 | 3.427 | 0.407 |
+| eqdgr_cap60_cond | 0.560 | 0.437 | 1.912 | 0.997 | 1.665 | 1.029 | 1.696 | -1.665 | 0.561 | 3.443 | 0.404 |
+| mixgr_cap60 | 0.542 | 0.416 | 1.887 | 0.992 | 1.757 | 1.030 | 1.766 | -1.757 | 0.542 | 3.383 | 0.390 |
+
+### GEOFON, capped at M6.0 (pre-registered), seed 1 — 1 s, paired differences vs `mix_cap60` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| mix_cap60_aug15 | **+0.034 [+0.024, +0.044]** | **-0.264 [-0.298, -0.226]** | **-0.428 [-0.492, -0.364]** | **-0.286 [-0.315, -0.257]** |
+| eqgr_cap60 | +0.005 [-0.001, +0.011] | **-0.148 [-0.171, -0.129]** | **-0.190 [-0.246, -0.137]** | **-0.146 [-0.167, -0.123]** |
+| eqdgr_cap60_cond | +0.002 [-0.006, +0.009] | **-0.243 [-0.273, -0.213]** | **-0.368 [-0.440, -0.301]** | **-0.248 [-0.273, -0.225]** |
+| mixgr_cap60 | **-0.017 [-0.024, -0.009]** | **-0.247 [-0.263, -0.232]** | **-0.276 [-0.317, -0.238]** | **-0.247 [-0.265, -0.230]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| mix_cap60_aug15 | **+0.030 [+0.020, +0.041]** | **-0.272 [-0.307, -0.237]** | **-0.423 [-0.485, -0.362]** | **-0.291 [-0.319, -0.261]** |
+| eqgr_cap60 | -0.001 [-0.008, +0.006] | **-0.189 [-0.211, -0.170]** | **-0.230 [-0.288, -0.179]** | **-0.188 [-0.209, -0.168]** |
+| eqdgr_cap60_cond | -0.003 [-0.012, +0.005] | **-0.261 [-0.292, -0.232]** | **-0.382 [-0.455, -0.315]** | **-0.265 [-0.290, -0.240]** |
+| mixgr_cap60 | **-0.022 [-0.032, -0.013]** | **-0.290 [-0.308, -0.273]** | **-0.313 [-0.353, -0.276]** | **-0.287 [-0.304, -0.269]** |
+
+### GEOFON, capped at M6.0 (pre-registered), seed 1 — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 | 0.499 | 0.377 | 1.801 | 1.092 | 1.882 | 1.136 | 1.894 | -1.882 | 0.504 | 3.724 | 0.369 |
+| mix_cap60_aug15 | 0.518 | 0.410 | 1.730 | 0.744 | 1.333 | 0.771 | 1.355 | -1.333 | 0.521 | 3.330 | 0.371 |
+| eqgr_cap60 | 0.494 | 0.376 | 1.770 | 0.915 | 1.608 | 0.953 | 1.622 | -1.608 | 0.494 | 3.297 | 0.357 |
+| eqdgr_cap60_cond | 0.490 | 0.378 | 1.735 | 0.813 | 1.428 | 0.851 | 1.450 | -1.426 | 0.492 | 3.309 | 0.354 |
+| mixgr_cap60 | 0.477 | 0.364 | 1.700 | 0.827 | 1.572 | 0.880 | 1.587 | -1.572 | 0.478 | 3.256 | 0.344 |
+
+### GEOFON, capped at M6.0 (pre-registered), seed 1 — 3 s, paired differences vs `mix_cap60` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| mix_cap60_aug15 | **+0.019 [+0.009, +0.030]** | **-0.349 [-0.388, -0.312]** | **-0.549 [-0.624, -0.479]** | **-0.366 [-0.396, -0.336]** |
+| eqgr_cap60 | -0.005 [-0.011, +0.000] | **-0.178 [-0.208, -0.150]** | **-0.275 [-0.341, -0.215]** | **-0.183 [-0.208, -0.160]** |
+| eqdgr_cap60_cond | **-0.008 [-0.017, -0.001]** | **-0.280 [-0.315, -0.249]** | **-0.455 [-0.548, -0.366]** | **-0.285 [-0.315, -0.259]** |
+| mixgr_cap60 | **-0.022 [-0.030, -0.014]** | **-0.265 [-0.282, -0.249]** | **-0.309 [-0.345, -0.275]** | **-0.256 [-0.273, -0.239]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| mix_cap60_aug15 | **+0.017 [+0.006, +0.027]** | **-0.350 [-0.389, -0.312]** | **-0.531 [-0.603, -0.464]** | **-0.366 [-0.398, -0.337]** |
+| eqgr_cap60 | **-0.010 [-0.017, -0.004]** | **-0.217 [-0.248, -0.190]** | **-0.315 [-0.383, -0.251]** | **-0.225 [-0.251, -0.201]** |
+| eqdgr_cap60_cond | **-0.012 [-0.021, -0.005]** | **-0.299 [-0.334, -0.268]** | **-0.466 [-0.561, -0.375]** | **-0.305 [-0.337, -0.277]** |
+| mixgr_cap60 | **-0.026 [-0.036, -0.017]** | **-0.299 [-0.319, -0.280]** | **-0.337 [-0.373, -0.303]** | **-0.289 [-0.306, -0.271]** |
+
+### GEOFON, capped at M6.0 (pre-registered), seed 1 — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 | 0.472 | 0.355 | 1.732 | 1.023 | 1.792 | 1.067 | 1.808 | -1.792 | 0.479 | 3.677 | 0.350 |
+| mix_cap60_aug15 | 0.489 | 0.387 | 1.643 | 0.632 | 1.178 | 0.662 | 1.193 | -1.178 | 0.492 | 3.260 | 0.349 |
+| eqgr_cap60 | 0.463 | 0.348 | 1.694 | 0.827 | 1.470 | 0.862 | 1.484 | -1.470 | 0.463 | 3.221 | 0.335 |
+| eqdgr_cap60_cond | 0.455 | 0.347 | 1.638 | 0.705 | 1.244 | 0.746 | 1.263 | -1.236 | 0.457 | 3.218 | 0.329 |
+| mixgr_cap60 | 0.447 | 0.340 | 1.620 | 0.752 | 1.467 | 0.802 | 1.483 | -1.467 | 0.449 | 3.190 | 0.322 |
+
+### GEOFON, capped at M6.0 (pre-registered), seed 1 — 5 s, paired differences vs `mix_cap60` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| mix_cap60_aug15 | **+0.016 [+0.004, +0.028]** | **-0.391 [-0.429, -0.355]** | **-0.614 [-0.687, -0.544]** | **-0.405 [-0.434, -0.375]** |
+| eqgr_cap60 | **-0.009 [-0.015, -0.004]** | **-0.197 [-0.226, -0.170]** | **-0.323 [-0.394, -0.252]** | **-0.205 [-0.229, -0.183]** |
+| eqdgr_cap60_cond | **-0.017 [-0.027, -0.010]** | **-0.318 [-0.355, -0.286]** | **-0.549 [-0.642, -0.456]** | **-0.321 [-0.352, -0.293]** |
+| mixgr_cap60 | **-0.025 [-0.033, -0.018]** | **-0.271 [-0.291, -0.255]** | **-0.325 [-0.357, -0.292]** | **-0.265 [-0.282, -0.249]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| mix_cap60_aug15 | **+0.014 [+0.001, +0.026]** | **-0.390 [-0.428, -0.355]** | **-0.590 [-0.661, -0.521]** | **-0.404 [-0.433, -0.374]** |
+| eqgr_cap60 | **-0.015 [-0.022, -0.009]** | **-0.239 [-0.269, -0.211]** | **-0.365 [-0.437, -0.293]** | **-0.249 [-0.273, -0.227]** |
+| eqdgr_cap60_cond | **-0.021 [-0.031, -0.013]** | **-0.340 [-0.378, -0.308]** | **-0.562 [-0.657, -0.466]** | **-0.344 [-0.375, -0.316]** |
+| mixgr_cap60 | **-0.030 [-0.040, -0.022]** | **-0.304 [-0.325, -0.285]** | **-0.352 [-0.385, -0.319]** | **-0.296 [-0.312, -0.280]** |
+
+## GEOFON, capped at M6.0, three-seed ensembles
+
+Source: `results/geofon_eval_cap60_ens.json`; 31,020 records; Δ = arm − `mix_cap60 (3 models)`.
+
+
+### GEOFON, capped at M6.0, three-seed ensembles — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 (3 models) | 0.554 | 0.419 | 1.936 | 1.249 | 2.040 | 1.282 | 2.053 | -2.040 | 0.560 | 3.763 | 0.411 |
+| eqgr_cap60 (3 models) | 0.559 | 0.430 | 1.944 | 1.088 | 1.839 | 1.130 | 1.869 | -1.839 | 0.558 | 3.421 | 0.406 |
+| eqdgr_cap60_cond (3 models) | 0.556 | 0.432 | 1.901 | 0.997 | 1.674 | 1.032 | 1.706 | -1.674 | 0.557 | 3.445 | 0.404 |
+| mix_nll (3 models) | 0.528 | 0.407 | 1.828 | 0.889 | 1.550 | 0.892 | 1.546 | -1.550 | 0.531 | 3.304 | 0.382 |
+
+### GEOFON, capped at M6.0, three-seed ensembles — 1 s, paired differences vs `mix_cap60 (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap60 (3 models) | +0.005 [-0.001, +0.011] | **-0.161 [-0.181, -0.142]** | **-0.201 [-0.248, -0.156]** | **-0.152 [-0.173, -0.130]** |
+| eqdgr_cap60_cond (3 models) | +0.003 [-0.006, +0.011] | **-0.252 [-0.282, -0.224]** | **-0.365 [-0.433, -0.302]** | **-0.249 [-0.272, -0.225]** |
+| mix_nll (3 models) | **-0.025 [-0.033, -0.017]** | **-0.360 [-0.394, -0.320]** | **-0.490 [-0.552, -0.431]** | **-0.390 [-0.414, -0.369]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap60 (3 models) | -0.002 [-0.009, +0.005] | **-0.200 [-0.222, -0.181]** | **-0.240 [-0.291, -0.194]** | **-0.195 [-0.215, -0.176]** |
+| eqdgr_cap60_cond (3 models) | -0.002 [-0.011, +0.006] | **-0.266 [-0.297, -0.239]** | **-0.374 [-0.444, -0.309]** | **-0.263 [-0.286, -0.240]** |
+| mix_nll (3 models) | **-0.028 [-0.038, -0.019]** | **-0.434 [-0.467, -0.394]** | **-0.567 [-0.628, -0.508]** | **-0.464 [-0.489, -0.443]** |
+
+### GEOFON, capped at M6.0, three-seed ensembles — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 (3 models) | 0.493 | 0.375 | 1.773 | 1.094 | 1.876 | 1.136 | 1.890 | -1.876 | 0.499 | 3.703 | 0.368 |
+| eqgr_cap60 (3 models) | 0.489 | 0.372 | 1.764 | 0.915 | 1.614 | 0.959 | 1.638 | -1.614 | 0.490 | 3.301 | 0.358 |
+| eqdgr_cap60_cond (3 models) | 0.484 | 0.372 | 1.716 | 0.816 | 1.437 | 0.858 | 1.463 | -1.435 | 0.487 | 3.312 | 0.354 |
+| mix_nll (3 models) | 0.454 | 0.345 | 1.626 | 0.665 | 1.240 | 0.681 | 1.240 | -1.240 | 0.458 | 3.150 | 0.329 |
+
+### GEOFON, capped at M6.0, three-seed ensembles — 3 s, paired differences vs `mix_cap60 (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap60 (3 models) | -0.004 [-0.009, +0.001] | **-0.179 [-0.205, -0.154]** | **-0.263 [-0.320, -0.209]** | **-0.177 [-0.201, -0.155]** |
+| eqdgr_cap60_cond (3 models) | **-0.009 [-0.017, -0.002]** | **-0.279 [-0.312, -0.249]** | **-0.440 [-0.532, -0.358]** | **-0.279 [-0.308, -0.254]** |
+| mix_nll (3 models) | **-0.038 [-0.047, -0.030]** | **-0.430 [-0.464, -0.390]** | **-0.635 [-0.701, -0.567]** | **-0.456 [-0.480, -0.433]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap60 (3 models) | **-0.010 [-0.016, -0.004]** | **-0.214 [-0.243, -0.189]** | **-0.299 [-0.360, -0.243]** | **-0.217 [-0.239, -0.196]** |
+| eqdgr_cap60_cond (3 models) | **-0.013 [-0.021, -0.005]** | **-0.296 [-0.329, -0.265]** | **-0.448 [-0.540, -0.364]** | **-0.297 [-0.328, -0.272]** |
+| mix_nll (3 models) | **-0.041 [-0.051, -0.032]** | **-0.486 [-0.522, -0.446]** | **-0.690 [-0.756, -0.622]** | **-0.515 [-0.540, -0.491]** |
+
+### GEOFON, capped at M6.0, three-seed ensembles — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 (3 models) | 0.466 | 0.351 | 1.704 | 1.024 | 1.789 | 1.067 | 1.804 | -1.789 | 0.474 | 3.664 | 0.349 |
+| eqgr_cap60 (3 models) | 0.458 | 0.343 | 1.679 | 0.825 | 1.472 | 0.863 | 1.493 | -1.472 | 0.459 | 3.227 | 0.335 |
+| eqdgr_cap60_cond (3 models) | 0.450 | 0.342 | 1.627 | 0.714 | 1.253 | 0.755 | 1.277 | -1.247 | 0.454 | 3.229 | 0.329 |
+| mix_nll (3 models) | 0.425 | 0.321 | 1.544 | 0.577 | 1.110 | 0.597 | 1.097 | -1.110 | 0.429 | 3.079 | 0.308 |
+
+### GEOFON, capped at M6.0, three-seed ensembles — 5 s, paired differences vs `mix_cap60 (3 models)` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap60 (3 models) | **-0.008 [-0.014, -0.003]** | **-0.199 [-0.227, -0.173]** | **-0.318 [-0.381, -0.258]** | **-0.203 [-0.225, -0.180]** |
+| eqdgr_cap60_cond (3 models) | **-0.016 [-0.025, -0.008]** | **-0.310 [-0.347, -0.277]** | **-0.537 [-0.628, -0.450]** | **-0.312 [-0.341, -0.283]** |
+| mix_nll (3 models) | **-0.041 [-0.051, -0.032]** | **-0.447 [-0.478, -0.412]** | **-0.680 [-0.742, -0.615]** | **-0.470 [-0.492, -0.448]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_cap60 (3 models) | **-0.015 [-0.021, -0.009]** | **-0.236 [-0.265, -0.208]** | **-0.355 [-0.420, -0.293]** | **-0.242 [-0.264, -0.220]** |
+| eqdgr_cap60_cond (3 models) | **-0.020 [-0.029, -0.012]** | **-0.329 [-0.366, -0.295]** | **-0.547 [-0.642, -0.458]** | **-0.332 [-0.362, -0.304]** |
+| mix_nll (3 models) | **-0.045 [-0.056, -0.035]** | **-0.500 [-0.531, -0.465]** | **-0.730 [-0.791, -0.666]** | **-0.525 [-0.547, -0.502]** |
+
+## GEOFON, capped at M6.0, baselines and classical law
+
+Source: `results/geofon_eval_cap60_base.json`; 31,020 records; Δ = arm − `mix_cap60`.
+
+
+### GEOFON, capped at M6.0, baselines and classical law — 1 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 | 0.559 | 0.423 | 1.957 | 1.239 | 2.033 | 1.277 | 2.045 | -2.033 | 0.564 | 3.780 | 0.412 |
+| eqgr_k1_cap60 | 0.651 | 0.524 | 2.112 | 0.848 | 1.278 | 0.869 | 1.298 | -1.211 | 0.647 | 3.541 | 0.466 |
+| magnet_cap60 | 0.719 | 0.573 | 2.259 | 1.680 | 2.354 | 1.673 | 2.374 | -2.354 | 0.719 | 3.736 | 0.522 |
+| lin_invR_cap60 | 0.717 | 0.581 | 2.316 | 0.897 | 0.971 | 0.906 | 1.006 | -0.679 | 0.721 | 3.659 | 0.517 |
+| lin_fwdR_cap60 | 0.517 | 0.411 | 1.747 | 1.222 | 1.852 | 1.230 | 1.864 | -1.852 | 0.517 | 3.402 | 0.375 |
+| eqdgr_cap60_cond | 0.560 | 0.437 | 1.912 | 0.997 | 1.665 | 1.029 | 1.696 | -1.665 | 0.561 | 3.443 | 0.404 |
+
+### GEOFON, capped at M6.0, baselines and classical law — 1 s, paired differences vs `mix_cap60` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap60 | **+0.092 [+0.075, +0.109]** | **-0.392 [-0.436, -0.347]** | **-0.754 [-0.857, -0.656]** | **-0.408 [-0.448, -0.369]** |
+| magnet_cap60 | **+0.160 [+0.138, +0.184]** | **+0.441 [+0.386, +0.500]** | **+0.322 [+0.234, +0.412]** | **+0.395 [+0.346, +0.443]** |
+| lin_invR_cap60 | **+0.158 [+0.130, +0.187]** | **-0.343 [-0.416, -0.265]** | **-1.060 [-1.166, -0.951]** | **-0.372 [-0.442, -0.306]** |
+| lin_fwdR_cap60 | **-0.042 [-0.056, -0.027]** | -0.018 [-0.060, +0.026] | **-0.180 [-0.256, -0.101]** | **-0.049 [-0.094, -0.001]** |
+| eqdgr_cap60_cond | +0.002 [-0.006, +0.009] | **-0.243 [-0.273, -0.213]** | **-0.368 [-0.440, -0.301]** | **-0.248 [-0.273, -0.225]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap60 | **+0.083 [+0.064, +0.101]** | **-0.433 [-0.478, -0.389]** | **-0.787 [-0.891, -0.691]** | **-0.450 [-0.488, -0.412]** |
+| magnet_cap60 | **+0.155 [+0.135, +0.177]** | **+0.394 [+0.344, +0.446]** | **+0.280 [+0.196, +0.364]** | **+0.353 [+0.305, +0.398]** |
+| lin_invR_cap60 | **+0.157 [+0.128, +0.186]** | **-0.374 [-0.450, -0.298]** | **-1.082 [-1.184, -0.977]** | **-0.398 [-0.467, -0.328]** |
+| lin_fwdR_cap60 | **-0.047 [-0.060, -0.034]** | **-0.064 [-0.109, -0.022]** | **-0.222 [-0.295, -0.147]** | **-0.091 [-0.136, -0.042]** |
+| eqdgr_cap60_cond | -0.003 [-0.012, +0.005] | **-0.261 [-0.292, -0.232]** | **-0.382 [-0.455, -0.315]** | **-0.265 [-0.290, -0.240]** |
+
+### GEOFON, capped at M6.0, baselines and classical law — 3 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 | 0.499 | 0.377 | 1.801 | 1.092 | 1.882 | 1.136 | 1.894 | -1.882 | 0.504 | 3.724 | 0.369 |
+| eqgr_k1_cap60 | 0.567 | 0.447 | 1.921 | 0.709 | 1.001 | 0.735 | 1.028 | -0.895 | 0.564 | 3.402 | 0.406 |
+| magnet_cap60 | 0.713 | 0.561 | 2.381 | 1.716 | 2.575 | 1.723 | 2.600 | -2.575 | 0.713 | 3.869 | 0.523 |
+| lin_invR_cap60 | 0.628 | 0.512 | 2.084 | 0.758 | 0.811 | 0.768 | 0.845 | -0.377 | 0.631 | 3.535 | 0.453 |
+| lin_fwdR_cap60 | 0.477 | 0.388 | 1.570 | 1.035 | 1.627 | 1.049 | 1.634 | -1.627 | 0.477 | 3.292 | 0.344 |
+| eqdgr_cap60_cond | 0.490 | 0.378 | 1.735 | 0.813 | 1.428 | 0.851 | 1.450 | -1.426 | 0.492 | 3.309 | 0.354 |
+
+### GEOFON, capped at M6.0, baselines and classical law — 3 s, paired differences vs `mix_cap60` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap60 | **+0.068 [+0.053, +0.081]** | **-0.384 [-0.438, -0.331]** | **-0.881 [-1.000, -0.764]** | **-0.402 [-0.446, -0.356]** |
+| magnet_cap60 | **+0.215 [+0.188, +0.242]** | **+0.624 [+0.565, +0.677]** | **+0.694 [+0.553, +0.828]** | **+0.586 [+0.532, +0.640]** |
+| lin_invR_cap60 | **+0.130 [+0.104, +0.156]** | **-0.335 [-0.406, -0.266]** | **-1.069 [-1.172, -0.969]** | **-0.368 [-0.436, -0.308]** |
+| lin_fwdR_cap60 | **-0.021 [-0.035, -0.007]** | **-0.058 [-0.108, -0.010]** | **-0.256 [-0.347, -0.167]** | **-0.089 [-0.136, -0.039]** |
+| eqdgr_cap60_cond | **-0.008 [-0.017, -0.001]** | **-0.280 [-0.315, -0.249]** | **-0.455 [-0.548, -0.366]** | **-0.285 [-0.315, -0.259]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap60 | **+0.060 [+0.044, +0.074]** | **-0.422 [-0.475, -0.369]** | **-0.913 [-1.035, -0.796]** | **-0.442 [-0.485, -0.398]** |
+| magnet_cap60 | **+0.209 [+0.185, +0.235]** | **+0.580 [+0.526, +0.631]** | **+0.652 [+0.517, +0.785]** | **+0.544 [+0.491, +0.595]** |
+| lin_invR_cap60 | **+0.127 [+0.101, +0.152]** | **-0.365 [-0.437, -0.296]** | **-1.090 [-1.195, -0.989]** | **-0.396 [-0.465, -0.334]** |
+| lin_fwdR_cap60 | **-0.027 [-0.040, -0.013]** | **-0.102 [-0.152, -0.055]** | **-0.297 [-0.388, -0.208]** | **-0.131 [-0.179, -0.081]** |
+| eqdgr_cap60_cond | **-0.012 [-0.021, -0.005]** | **-0.299 [-0.334, -0.268]** | **-0.466 [-0.561, -0.375]** | **-0.305 [-0.337, -0.277]** |
+
+### GEOFON, capped at M6.0, baselines and classical law — 5 s, absolute (median action unless stated)
+
+| arm | MAE | MedAE | CVaR95 | M>=6 MAE | M>=7 MAE | M>=6 event-MAE | M>=7 event-MAE | M>=7 bias | mean-action MAE | NLL | CRPS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mix_cap60 | 0.472 | 0.355 | 1.732 | 1.023 | 1.792 | 1.067 | 1.808 | -1.792 | 0.479 | 3.677 | 0.350 |
+| eqgr_k1_cap60 | 0.531 | 0.414 | 1.854 | 0.628 | 0.836 | 0.660 | 0.862 | -0.691 | 0.529 | 3.330 | 0.381 |
+| magnet_cap60 | 0.675 | 0.536 | 2.265 | 1.558 | 2.410 | 1.567 | 2.427 | -2.410 | 0.675 | 3.706 | 0.489 |
+| lin_invR_cap60 | 0.583 | 0.471 | 1.961 | 0.681 | 0.686 | 0.697 | 0.713 | -0.203 | 0.585 | 3.464 | 0.420 |
+| lin_fwdR_cap60 | 0.457 | 0.374 | 1.477 | 0.941 | 1.486 | 0.956 | 1.489 | -1.486 | 0.457 | 3.230 | 0.328 |
+| eqdgr_cap60_cond | 0.455 | 0.347 | 1.638 | 0.705 | 1.244 | 0.746 | 1.263 | -1.236 | 0.457 | 3.218 | 0.329 |
+
+### GEOFON, capped at M6.0, baselines and classical law — 5 s, paired differences vs `mix_cap60` (median action; 95% cluster-bootstrap CI)
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap60 | **+0.058 [+0.044, +0.071]** | **-0.395 [-0.450, -0.343]** | **-0.956 [-1.066, -0.845]** | **-0.407 [-0.452, -0.362]** |
+| magnet_cap60 | **+0.203 [+0.179, +0.229]** | **+0.535 [+0.476, +0.590]** | **+0.619 [+0.482, +0.746]** | **+0.500 [+0.447, +0.554]** |
+| lin_invR_cap60 | **+0.110 [+0.086, +0.135]** | **-0.342 [-0.414, -0.276]** | **-1.104 [-1.211, -1.002]** | **-0.370 [-0.438, -0.304]** |
+| lin_fwdR_cap60 | **-0.016 [-0.031, -0.000]** | **-0.083 [-0.135, -0.033]** | **-0.306 [-0.403, -0.217]** | **-0.113 [-0.161, -0.063]** |
+| eqdgr_cap60_cond | **-0.017 [-0.027, -0.010]** | **-0.318 [-0.355, -0.286]** | **-0.549 [-0.642, -0.456]** | **-0.321 [-0.352, -0.293]** |
+
+*Mean action:*
+
+| arm | Δ MAE | Δ M>=6 MAE | Δ M>=7 MAE | Δ M>=6 event-MAE |
+|---|---|---|---|---|
+| eqgr_k1_cap60 | **+0.050 [+0.034, +0.063]** | **-0.435 [-0.491, -0.383]** | **-0.991 [-1.106, -0.879]** | **-0.449 [-0.494, -0.405]** |
+| magnet_cap60 | **+0.196 [+0.172, +0.223]** | **+0.491 [+0.435, +0.543]** | **+0.575 [+0.442, +0.701]** | **+0.456 [+0.406, +0.508]** |
+| lin_invR_cap60 | **+0.106 [+0.081, +0.131]** | **-0.377 [-0.448, -0.309]** | **-1.130 [-1.242, -1.027]** | **-0.402 [-0.471, -0.338]** |
+| lin_fwdR_cap60 | **-0.022 [-0.038, -0.007]** | **-0.128 [-0.181, -0.079]** | **-0.350 [-0.447, -0.260]** | **-0.156 [-0.205, -0.106]** |
+| eqdgr_cap60_cond | **-0.021 [-0.031, -0.013]** | **-0.340 [-0.378, -0.308]** | **-0.562 [-0.657, -0.466]** | **-0.344 [-0.375, -0.316]** |
+
 ## Northern Chile, held stations, three-seed ensembles (records at held stations)
 
 Source: `results/chile_eval_hs_held_ens3.json`; 165,670 records; Δ = arm − `mix_nll_hs (3 models)`.
@@ -3681,4 +4740,706 @@ Source: `results/fusion_timeline_summary_instance_e20.md` (from `multistation_su
 | eqdgr_nll_e20:post_mean | +0.027 [-0.352,+0.407] | -0.100 [-0.326,+0.032] | -0.022 [-0.160,+0.107] | +0.009 [-0.174,+0.123] | +0.046 [-0.120,+0.151] | +0.027 [-0.102,+0.102] | +0.003 [-0.118,+0.102] | -0.014 [-0.116,+0.065] |
 | eqdgr_nll_e20:hist_adj | +0.058 [-0.143,+0.229] | -0.096 [-0.325,+0.091] | -0.018 [-0.205,+0.157] | -0.085 [-0.210,+0.021] | -0.103 [-0.179,+0.007] | **-0.129 [-0.194,-0.023]** | **-0.102 [-0.167,-0.012]** | -0.078 [-0.150,+0.035] |
 | eqdgr_nll_e20:lik_prior | +0.156 [-0.043,+0.312] | -0.019 [-0.186,+0.138] | +0.041 [-0.112,+0.221] | +0.067 [-0.094,+0.277] | +0.105 [-0.033,+0.363] | -0.009 [-0.129,+0.114] | -0.003 [-0.118,+0.140] | +0.039 [-0.076,+0.193] |
+
+
+
+# Multi-station fusion (robust_stead_ens3)
+
+Source: `results/robust_stead_ens3.md` (from `multistation_summary.py`; event-level MAE, median action; k = nearest stations combined; per-seed values in brackets).
+# Robust tail comparison — `/mnt/scratch/stead`
+
+Records evaluated: 996,894 (145,128 GK clusters). Subset: all records. Bootstrap: 1000 replicates, seed 0. Δ = arm − ref, observed on the full sample. Jackknife: delete-one-cluster over the clusters carrying the metric, t(G−1). FP4 = share of records with label < 3.5 estimated ≥ 3.95, per 10⁴.
+
+* M≥5: 1,676 records, 718 events, 456 clusters; largest cluster 24 holds 3% of the tail records
+* M≥6: 121 records, 63 events, 51 clusters; largest cluster 24 holds 19% of the tail records
+
+## `eqdgr_nll+eqdgr_nll_s2+eqdgr_nll_s3` − `mix_nll+mix_nll_s2+mix_nll_s3`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2337 | 0.2361 | **+0.0024** | [+0.0012, +0.0037] | [+0.0012, +0.0036] (145128) | [+0.0019, +0.0027] | +0.0027 (-13%) | 70734 / 74394 | 7.6e-22 |
+| 1s | M>=5_MAE | 0.8074 | 0.7621 | **-0.0453** | [-0.0701, -0.0224] | [-0.0693, -0.0213] (456) | [-0.0483, -0.0395] | -0.0395 (15%) | 265 / 191 | 0.000614 |
+| 1s | M>=5_eventMAE | 0.8154 | 0.7742 | **-0.0412** | [-0.0684, -0.0159] | [-0.0676, -0.0148] (456) | [-0.0446, -0.0366] | -0.0434 (0%) | 265 / 191 | 0.000614 |
+| 1s | M>=6_MAE | 1.5518 | 1.2983 | **-0.2534** | [-0.3570, -0.1162] | [-0.3863, -0.1205] (51) | [-0.2881, -0.2100] | -0.2100 (33%) | 38 / 13 | 0.000621 |
+| 1s | M>=6_eventMAE | 1.5035 | 1.2702 | **-0.2333** | [-0.3185, -0.1438] | [-0.3280, -0.1387] (51) | [-0.2523, -0.2202] | -0.2451 (-0%) | 39 / 12 | 0.000198 |
+| 1s | FP4_per_1e4 | 6.75 | 7.13 | **+0.38** | [-0.19, +1.00] | [-0.19, +0.95] (139159) | [+0.28, +0.49] | +0.38 (0%) | 157 / 169 | 0.542 |
+| 3s | bulk_MAE | 0.1949 | 0.1952 | **+0.0004** | [-0.0007, +0.0017] | [-0.0008, +0.0015] (145128) | [-0.0001, +0.0006] | +0.0006 (-68%) | 73149 / 71979 | 0.00215 |
+| 3s | M>=5_MAE | 0.6705 | 0.5867 | **-0.0838** | [-0.1047, -0.0616] | [-0.1060, -0.0615] (456) | [-0.0865, -0.0811] | -0.0811 (6%) | 303 / 153 | 1.91e-12 |
+| 3s | M>=5_eventMAE | 0.6937 | 0.6114 | **-0.0824** | [-0.1078, -0.0560] | [-0.1082, -0.0565] (456) | [-0.0862, -0.0784] | -0.0827 (5%) | 304 / 152 | 9.53e-13 |
+| 3s | M>=6_MAE | 1.2415 | 0.8675 | **-0.3740** | [-0.4750, -0.2865] | [-0.4680, -0.2800] (51) | [-0.4036, -0.3529] | -0.3884 (16%) | 47 / 4 | 2.42e-10 |
+| 3s | M>=6_eventMAE | 1.2783 | 0.8545 | **-0.4237** | [-0.5049, -0.3337] | [-0.5052, -0.3422] (51) | [-0.4399, -0.4120] | -0.4318 (3%) | 47 / 4 | 2.42e-10 |
+| 3s | FP4_per_1e4 | 6.49 | 6.33 | **-0.16** | [-0.71, +0.48] | [-0.74, +0.43] (139159) | [-0.25, -0.01] | -0.16 (-0%) | 158 / 143 | 0.42 |
+| 5s | bulk_MAE | 0.1781 | 0.1782 | **+0.0000** | [-0.0011, +0.0019] | [-0.0015, +0.0016] (145128) | [-0.0007, +0.0002] | +0.0002 (-480%) | 73883 / 71245 | 4.45e-12 |
+| 5s | M>=5_MAE | 0.6483 | 0.5427 | **-0.1056** | [-0.1292, -0.0799] | [-0.1297, -0.0815] (456) | [-0.1087, -0.1019] | -0.1019 (6%) | 304 / 152 | 9.53e-13 |
+| 5s | M>=5_eventMAE | 0.6712 | 0.5739 | **-0.0973** | [-0.1237, -0.0700] | [-0.1249, -0.0696] (456) | [-0.1020, -0.0929] | -0.0983 (4%) | 304 / 152 | 9.53e-13 |
+| 5s | M>=6_MAE | 1.2002 | 0.7461 | **-0.4541** | [-0.5464, -0.3659] | [-0.5462, -0.3620] (51) | [-0.4845, -0.4358] | -0.4625 (17%) | 48 / 3 | 1.97e-11 |
+| 5s | M>=6_eventMAE | 1.2197 | 0.7191 | **-0.5007** | [-0.5821, -0.4117] | [-0.5840, -0.4173] (51) | [-0.5214, -0.4879] | -0.5073 (4%) | 48 / 3 | 1.97e-11 |
+| 5s | FP4_per_1e4 | 6.48 | 5.89 | **-0.59** | [-1.19, +0.04] | [-1.21, +0.02] (139159) | [-0.73, -0.47] | -0.60 (-0%) | 172 / 123 | 0.00511 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | +0.0023 | [+0.0013, +0.0033] | [+0.0013, +0.0033] (145128) | 70723 / 74405 |
+| 1s | M>=5_MAE | -0.0494 | [-0.0744, -0.0269] | [-0.0734, -0.0254] (456) | 272 / 184 |
+| 1s | M>=5_eventMAE | -0.0445 | [-0.0712, -0.0193] | [-0.0710, -0.0180] (456) | 272 / 184 |
+| 1s | M>=6_MAE | -0.2509 | [-0.3535, -0.1122] | [-0.3838, -0.1181] (51) | 39 / 12 |
+| 1s | M>=6_eventMAE | -0.2292 | [-0.3143, -0.1403] | [-0.3223, -0.1362] (51) | 40 / 11 |
+| 1s | FP4_per_1e4 | +0.99 | [+0.41, +1.57] | [+0.41, +1.57] (139159) | 138 / 189 |
+| 3s | bulk_MAE | +0.0002 | [-0.0006, +0.0012] | [-0.0007, +0.0012] (145128) | 72836 / 72292 |
+| 3s | M>=5_MAE | -0.0928 | [-0.1137, -0.0709] | [-0.1146, -0.0711] (456) | 310 / 146 |
+| 3s | M>=5_eventMAE | -0.0888 | [-0.1144, -0.0624] | [-0.1145, -0.0631] (456) | 308 / 148 |
+| 3s | M>=6_MAE | -0.3780 | [-0.4789, -0.2888] | [-0.4712, -0.2848] (51) | 47 / 4 |
+| 3s | M>=6_eventMAE | -0.4233 | [-0.5053, -0.3312] | [-0.5086, -0.3380] (51) | 47 / 4 |
+| 3s | FP4_per_1e4 | +0.54 | [-0.00, +1.17] | [-0.07, +1.15] (139159) | 133 / 167 |
+| 5s | bulk_MAE | -0.0000 | [-0.0010, +0.0014] | [-0.0012, +0.0012] (145128) | 73584 / 71544 |
+| 5s | M>=5_MAE | -0.1166 | [-0.1398, -0.0913] | [-0.1405, -0.0928] (456) | 313 / 143 |
+| 5s | M>=5_eventMAE | -0.1071 | [-0.1330, -0.0802] | [-0.1345, -0.0797] (456) | 311 / 145 |
+| 5s | M>=6_MAE | -0.4655 | [-0.5593, -0.3796] | [-0.5579, -0.3732] (51) | 48 / 3 |
+| 5s | M>=6_eventMAE | -0.5087 | [-0.5867, -0.4201] | [-0.5934, -0.4239] (51) | 48 / 3 |
+| 5s | FP4_per_1e4 | -0.18 | [-0.73, +0.45] | [-0.78, +0.42] (139159) | 151 / 131 |
+
+## `eqgr_nll+eqgr_nll_s2+eqgr_nll_s3` − `mix_nll+mix_nll_s2+mix_nll_s3`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2337 | 0.2349 | **+0.0012** | [+0.0006, +0.0017] | [+0.0007, +0.0017] (145128) | [+0.0011, +0.0014] | +0.0013 (-7%) | 71481 / 73646 | 1.34e-08 |
+| 1s | M>=5_MAE | 0.8074 | 0.7978 | **-0.0096** | [-0.0260, +0.0057] | [-0.0255, +0.0064] (456) | [-0.0123, -0.0062] | -0.0062 (37%) | 235 / 221 | 0.543 |
+| 1s | M>=5_eventMAE | 0.8154 | 0.8139 | **-0.0015** | [-0.0183, +0.0140] | [-0.0176, +0.0147] (456) | [-0.0036, +0.0019] | -0.0011 (32%) | 232 / 224 | 0.743 |
+| 1s | M>=6_MAE | 1.5518 | 1.4633 | **-0.0884** | [-0.1531, -0.0063] | [-0.1710, -0.0059] (51) | [-0.1104, -0.0647] | -0.0647 (41%) | 34 / 17 | 0.0241 |
+| 1s | M>=6_eventMAE | 1.5035 | 1.4390 | **-0.0645** | [-0.1270, -0.0025] | [-0.1272, -0.0019] (51) | [-0.0781, -0.0549] | -0.0631 (7%) | 34 / 17 | 0.0241 |
+| 1s | FP4_per_1e4 | 6.75 | 7.17 | **+0.42** | [-0.11, +0.97] | [-0.10, +0.94] (139159) | [+0.36, +0.56] | +0.43 (0%) | 116 / 156 | 0.0179 |
+| 3s | bulk_MAE | 0.1949 | 0.1948 | **-0.0000** | [-0.0005, +0.0004] | [-0.0005, +0.0004] (145128) | [-0.0001, +0.0001] | +0.0001 (418%) | 73313 / 71815 | 8.51e-05 |
+| 3s | M>=5_MAE | 0.6705 | 0.6148 | **-0.0557** | [-0.0707, -0.0416] | [-0.0711, -0.0402] (456) | [-0.0572, -0.0525] | -0.0525 (9%) | 276 / 180 | 8.03e-06 |
+| 3s | M>=5_eventMAE | 0.6937 | 0.6469 | **-0.0468** | [-0.0625, -0.0303] | [-0.0631, -0.0306] (456) | [-0.0487, -0.0434] | -0.0456 (8%) | 276 / 180 | 8.03e-06 |
+| 3s | M>=6_MAE | 1.2415 | 1.0138 | **-0.2277** | [-0.2830, -0.1639] | [-0.2880, -0.1674] (51) | [-0.2408, -0.2125] | -0.2158 (23%) | 42 / 9 | 3.39e-06 |
+| 3s | M>=6_eventMAE | 1.2783 | 1.0659 | **-0.2124** | [-0.2675, -0.1484] | [-0.2722, -0.1526] (51) | [-0.2297, -0.2032] | -0.2093 (6%) | 42 / 9 | 3.39e-06 |
+| 3s | FP4_per_1e4 | 6.49 | 6.24 | **-0.25** | [-0.77, +0.37] | [-0.85, +0.34] (139159) | [-0.43, -0.15] | -0.26 (-0%) | 139 / 124 | 0.388 |
+| 5s | bulk_MAE | 0.1781 | 0.1781 | **-0.0001** | [-0.0004, +0.0004] | [-0.0004, +0.0003] (145128) | [-0.0002, +0.0000] | +0.0000 (160%) | 72960 / 72168 | 0.0379 |
+| 5s | M>=5_MAE | 0.6483 | 0.5793 | **-0.0690** | [-0.0866, -0.0511] | [-0.0871, -0.0508] (456) | [-0.0710, -0.0645] | -0.0645 (9%) | 293 / 163 | 1.19e-09 |
+| 5s | M>=5_eventMAE | 0.6712 | 0.6130 | **-0.0582** | [-0.0774, -0.0390] | [-0.0772, -0.0392] (456) | [-0.0608, -0.0543] | -0.0565 (8%) | 293 / 163 | 1.19e-09 |
+| 5s | M>=6_MAE | 1.2002 | 0.8786 | **-0.3215** | [-0.3949, -0.2402] | [-0.4102, -0.2328] (51) | [-0.3342, -0.2918] | -0.2918 (26%) | 47 / 4 | 2.42e-10 |
+| 5s | M>=6_eventMAE | 1.2197 | 0.9199 | **-0.2998** | [-0.3635, -0.2209] | [-0.3715, -0.2281] (51) | [-0.3222, -0.2895] | -0.2931 (7%) | 47 / 4 | 2.42e-10 |
+| 5s | FP4_per_1e4 | 6.48 | 6.03 | **-0.44** | [-0.90, +0.09] | [-0.93, +0.04] (139159) | [-0.59, -0.39] | -0.45 (-0%) | 142 / 93 | 0.00168 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | +0.0011 | [+0.0007, +0.0015] | [+0.0007, +0.0015] (145128) | 71065 / 74063 |
+| 1s | M>=5_MAE | -0.0168 | [-0.0315, -0.0023] | [-0.0316, -0.0020] (456) | 247 / 209 |
+| 1s | M>=5_eventMAE | -0.0065 | [-0.0222, +0.0082] | [-0.0217, +0.0088] (456) | 247 / 209 |
+| 1s | M>=6_MAE | -0.0884 | [-0.1522, -0.0061] | [-0.1673, -0.0096] (51) | 33 / 18 |
+| 1s | M>=6_eventMAE | -0.0672 | [-0.1292, -0.0083] | [-0.1287, -0.0057] (51) | 34 / 17 |
+| 1s | FP4_per_1e4 | +0.79 | [+0.30, +1.31] | [+0.29, +1.29] (139159) | 101 / 161 |
+| 3s | bulk_MAE | -0.0001 | [-0.0005, +0.0003] | [-0.0005, +0.0002] (145128) | 72985 / 72143 |
+| 3s | M>=5_MAE | -0.0668 | [-0.0821, -0.0529] | [-0.0819, -0.0516] (456) | 287 / 169 |
+| 3s | M>=5_eventMAE | -0.0553 | [-0.0706, -0.0400] | [-0.0710, -0.0397] (456) | 288 / 168 |
+| 3s | M>=6_MAE | -0.2378 | [-0.2957, -0.1715] | [-0.3010, -0.1746] (51) | 44 / 7 |
+| 3s | M>=6_eventMAE | -0.2218 | [-0.2777, -0.1559] | [-0.2824, -0.1612] (51) | 44 / 7 |
+| 3s | FP4_per_1e4 | +0.23 | [-0.24, +0.84] | [-0.31, +0.78] (139159) | 116 / 135 |
+| 5s | bulk_MAE | -0.0001 | [-0.0005, +0.0003] | [-0.0005, +0.0003] (145128) | 72498 / 72630 |
+| 5s | M>=5_MAE | -0.0804 | [-0.0992, -0.0625] | [-0.0988, -0.0620] (456) | 301 / 155 |
+| 5s | M>=5_eventMAE | -0.0669 | [-0.0855, -0.0477] | [-0.0857, -0.0481] (456) | 301 / 155 |
+| 5s | M>=6_MAE | -0.3366 | [-0.4092, -0.2521] | [-0.4285, -0.2448] (51) | 47 / 4 |
+| 5s | M>=6_eventMAE | -0.3151 | [-0.3791, -0.2348] | [-0.3874, -0.2427] (51) | 47 / 4 |
+| 5s | FP4_per_1e4 | -0.15 | [-0.61, +0.35] | [-0.62, +0.32] (139159) | 123 / 98 |
+
+## `mixgr_nll+mixgr_nll_s2+mixgr_nll_s3` − `mix_nll+mix_nll_s2+mix_nll_s3`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2337 | 0.2336 | **-0.0001** | [-0.0004, +0.0001] | [-0.0004, +0.0001] (145128) | [-0.0002, -0.0001] | -0.0001 (10%) | 72887 / 72241 | 0.0904 |
+| 1s | M>=5_MAE | 0.8074 | 0.7980 | **-0.0094** | [-0.0146, -0.0037] | [-0.0150, -0.0037] (456) | [-0.0112, -0.0088] | -0.0097 (0%) | 265 / 191 | 0.000614 |
+| 1s | M>=5_eventMAE | 0.8154 | 0.8040 | **-0.0114** | [-0.0168, -0.0056] | [-0.0170, -0.0057] (456) | [-0.0121, -0.0107] | -0.0113 (6%) | 266 / 190 | 0.000432 |
+| 1s | M>=6_MAE | 1.5518 | 1.5182 | **-0.0336** | [-0.0554, -0.0174] | [-0.0535, -0.0137] (51) | [-0.0385, -0.0290] | -0.0385 (7%) | 36 / 15 | 0.0046 |
+| 1s | M>=6_eventMAE | 1.5035 | 1.4660 | **-0.0375** | [-0.0583, -0.0186] | [-0.0575, -0.0175] (51) | [-0.0410, -0.0342] | -0.0378 (4%) | 35 / 16 | 0.011 |
+| 1s | FP4_per_1e4 | 6.75 | 6.30 | **-0.45** | [-0.83, -0.09] | [-0.82, -0.09] (139159) | [-0.50, -0.37] | -0.46 (-0%) | 95 / 62 | 0.0104 |
+| 3s | bulk_MAE | 0.1949 | 0.1947 | **-0.0002** | [-0.0004, -0.0000] | [-0.0004, -0.0000] (145128) | [-0.0002, -0.0002] | -0.0002 (15%) | 72935 / 72193 | 0.0518 |
+| 3s | M>=5_MAE | 0.6705 | 0.6547 | **-0.0158** | [-0.0213, -0.0092] | [-0.0219, -0.0097] (456) | [-0.0170, -0.0151] | -0.0169 (-4%) | 278 / 178 | 3.26e-06 |
+| 3s | M>=5_eventMAE | 0.6937 | 0.6794 | **-0.0143** | [-0.0202, -0.0079] | [-0.0208, -0.0079] (456) | [-0.0156, -0.0132] | -0.0132 (12%) | 275 / 181 | 1.24e-05 |
+| 3s | M>=6_MAE | 1.2415 | 1.2166 | **-0.0249** | [-0.0571, +0.0001] | [-0.0588, +0.0090] (51) | [-0.0388, -0.0212] | -0.0388 (-26%) | 38 / 13 | 0.000621 |
+| 3s | M>=6_eventMAE | 1.2783 | 1.2356 | **-0.0427** | [-0.0656, -0.0169] | [-0.0683, -0.0170] (51) | [-0.0505, -0.0399] | -0.0399 (11%) | 38 / 13 | 0.000621 |
+| 3s | FP4_per_1e4 | 6.49 | 5.88 | **-0.61** | [-0.94, -0.28] | [-0.95, -0.28] (139159) | [-0.64, -0.54] | -0.62 (-0%) | 98 / 50 | 9.83e-05 |
+| 5s | bulk_MAE | 0.1781 | 0.1778 | **-0.0003** | [-0.0005, -0.0001] | [-0.0005, -0.0001] (145128) | [-0.0003, -0.0003] | -0.0003 (17%) | 73079 / 72049 | 0.00691 |
+| 5s | M>=5_MAE | 0.6483 | 0.6294 | **-0.0189** | [-0.0250, -0.0124] | [-0.0251, -0.0127] (456) | [-0.0201, -0.0181] | -0.0201 (-3%) | 290 / 166 | 6.84e-09 |
+| 5s | M>=5_eventMAE | 0.6712 | 0.6526 | **-0.0186** | [-0.0254, -0.0108] | [-0.0260, -0.0112] (456) | [-0.0204, -0.0169] | -0.0169 (14%) | 290 / 166 | 6.84e-09 |
+| 5s | M>=6_MAE | 1.2002 | 1.1633 | **-0.0368** | [-0.0704, -0.0120] | [-0.0714, -0.0022] (51) | [-0.0511, -0.0330] | -0.0511 (-12%) | 43 / 8 | 6.87e-07 |
+| 5s | M>=6_eventMAE | 1.2197 | 1.1651 | **-0.0546** | [-0.0793, -0.0272] | [-0.0814, -0.0278] (51) | [-0.0639, -0.0514] | -0.0514 (10%) | 43 / 8 | 6.87e-07 |
+| 5s | FP4_per_1e4 | 6.48 | 6.09 | **-0.39** | [-0.72, -0.09] | [-0.69, -0.09] (139159) | [-0.41, -0.34] | -0.40 (-0%) | 80 / 57 | 0.0598 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | -0.0001 | [-0.0003, +0.0001] | [-0.0003, +0.0001] (145128) | 72946 / 72182 |
+| 1s | M>=5_MAE | -0.0119 | [-0.0168, -0.0070] | [-0.0169, -0.0069] (456) | 272 / 184 |
+| 1s | M>=5_eventMAE | -0.0117 | [-0.0177, -0.0059] | [-0.0176, -0.0059] (456) | 271 / 185 |
+| 1s | M>=6_MAE | -0.0369 | [-0.0597, -0.0200] | [-0.0564, -0.0174] (51) | 36 / 15 |
+| 1s | M>=6_eventMAE | -0.0367 | [-0.0594, -0.0172] | [-0.0575, -0.0159] (51) | 36 / 15 |
+| 1s | FP4_per_1e4 | -0.20 | [-0.59, +0.17] | [-0.58, +0.18] (139159) | 89 / 74 |
+| 3s | bulk_MAE | -0.0002 | [-0.0004, -0.0000] | [-0.0004, -0.0000] (145128) | 72926 / 72202 |
+| 3s | M>=5_MAE | -0.0185 | [-0.0239, -0.0124] | [-0.0244, -0.0126] (456) | 277 / 179 |
+| 3s | M>=5_eventMAE | -0.0154 | [-0.0214, -0.0087] | [-0.0221, -0.0087] (456) | 276 / 180 |
+| 3s | M>=6_MAE | -0.0288 | [-0.0586, -0.0048] | [-0.0604, +0.0027] (51) | 38 / 13 |
+| 3s | M>=6_eventMAE | -0.0437 | [-0.0692, -0.0162] | [-0.0721, -0.0153] (51) | 38 / 13 |
+| 3s | FP4_per_1e4 | -0.25 | [-0.54, +0.03] | [-0.55, +0.05] (139159) | 81 / 64 |
+| 5s | bulk_MAE | -0.0003 | [-0.0005, -0.0001] | [-0.0005, -0.0001] (145128) | 72878 / 72250 |
+| 5s | M>=5_MAE | -0.0205 | [-0.0265, -0.0144] | [-0.0264, -0.0146] (456) | 294 / 162 |
+| 5s | M>=5_eventMAE | -0.0186 | [-0.0254, -0.0113] | [-0.0260, -0.0112] (456) | 293 / 163 |
+| 5s | M>=6_MAE | -0.0406 | [-0.0703, -0.0175] | [-0.0717, -0.0094] (51) | 42 / 9 |
+| 5s | M>=6_eventMAE | -0.0541 | [-0.0804, -0.0252] | [-0.0832, -0.0249] (51) | 42 / 9 |
+| 5s | FP4_per_1e4 | -0.21 | [-0.52, +0.09] | [-0.51, +0.09] (139159) | 73 / 62 |
+
+
+
+# Multi-station fusion (meta_eqdgr)
+
+Source: `results/meta_eqdgr.md` (from `multistation_summary.py`; event-level MAE, median action; k = nearest stations combined; per-seed values in brackets).
+# Pooled cross-catalogue comparison: `eqdgr_nll+eqdgr_nll_s2+eqdgr_nll_s3:mix_nll+mix_nll_s2+mix_nll_s3` (median action)
+
+Δ = arm − reference at each catalogue's primary threshold; SE = delete-one-cluster jackknife.
+Pooled: fixed effect, DerSimonian–Laird random effects (normal), HKSJ (t, k − 1 df). Sign test over
+all tail-carrying clusters.
+
+## 1s
+
+| catalogue | threshold | Δ tail MAE | jackknife SE | clusters | Δ<0 / Δ>0 | Δ bulk MAE |
+|---|---|---|---|---|---|---|
+| INSTANCE | M≥5 | -0.1354 | 0.1122 | 11 | 6 / 5 | -0.0006 |
+| Chile | M≥6 | -0.0117 | 0.0509 | 8 | 5 / 3 | -0.0025 |
+| GEOFON | M≥7 | -0.0946 | 0.0215 | 46 | 35 / 11 | +0.0242 |
+| STEAD | M≥5 | -0.0453 | 0.0122 | 456 | 265 / 191 | +0.0024 |
+
+Pooled tail Δ: fixed -0.0561 [-0.0764, -0.0358]; random -0.0613 [-0.0985, -0.0240]; HKSJ [-0.1180, -0.0045]; τ = 0.0238, Q p = 0.154
+Pooled bulk Δ: random +0.0038 [-0.0005, +0.0081]
+Clusters favouring the arm: 311 of 521 (sign test p = 1.11e-05)
+
+## 3s
+
+| catalogue | threshold | Δ tail MAE | jackknife SE | clusters | Δ<0 / Δ>0 | Δ bulk MAE |
+|---|---|---|---|---|---|---|
+| INSTANCE | M≥5 | -0.1893 | 0.1153 | 11 | 7 / 4 | -0.0029 |
+| Chile | M≥6 | -0.2717 | 0.0599 | 8 | 8 / 0 | -0.0042 |
+| GEOFON | M≥7 | -0.0881 | 0.0251 | 46 | 33 / 13 | +0.0171 |
+| STEAD | M≥5 | -0.0838 | 0.0113 | 456 | 303 / 153 | +0.0004 |
+
+Pooled tail Δ: fixed -0.0906 [-0.1105, -0.0708]; random -0.1241 [-0.1859, -0.0622]; HKSJ [-0.2555, +0.0074]; τ = 0.0474, Q p = 0.0167
+Pooled bulk Δ: random +0.0014 [-0.0028, +0.0055]
+Clusters favouring the arm: 351 of 521 (sign test p = 1.63e-15)
+
+## 5s
+
+| catalogue | threshold | Δ tail MAE | jackknife SE | clusters | Δ<0 / Δ>0 | Δ bulk MAE |
+|---|---|---|---|---|---|---|
+| INSTANCE | M≥5 | -0.2064 | 0.1272 | 11 | 8 / 3 | -0.0044 |
+| Chile | M≥6 | -0.3829 | 0.0737 | 8 | 8 / 0 | -0.0057 |
+| GEOFON | M≥7 | -0.1229 | 0.0233 | 46 | 39 / 7 | +0.0158 |
+| STEAD | M≥5 | -0.1056 | 0.0123 | 456 | 304 / 152 | +0.0000 |
+
+Pooled tail Δ: fixed -0.1158 [-0.1368, -0.0949]; random -0.1646 [-0.2393, -0.0899]; HKSJ [-0.3477, +0.0185]; τ = 0.0589, Q p = 0.00237
+Pooled bulk Δ: random +0.0006 [-0.0043, +0.0054]
+Clusters favouring the arm: 359 of 521 (sign test p = 3.55e-18)
+
+
+
+
+# Multi-station fusion (robust_stead_cap50)
+
+Source: `results/robust_stead_cap50.md` (from `multistation_summary.py`; event-level MAE, median action; k = nearest stations combined; per-seed values in brackets).
+# Robust tail comparison — `/mnt/scratch/stead`
+
+Records evaluated: 996,894 (145,128 GK clusters). Subset: all records. Bootstrap: 1000 replicates, seed 0. Δ = arm − ref, observed on the full sample. Jackknife: delete-one-cluster over the clusters carrying the metric, t(G−1). FP4 = share of records with label < 3.5 estimated ≥ 3.95, per 10⁴.
+
+* M≥5: 1,676 records, 718 events, 456 clusters; largest cluster 24 holds 3% of the tail records
+* M≥6: 121 records, 63 events, 51 clusters; largest cluster 24 holds 19% of the tail records
+
+## `eqdgr_cap50_cond` − `mix_cap50`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2416 | 0.2449 | **+0.0033** | [+0.0018, +0.0050] | [+0.0018, +0.0048] (145128) | [+0.0027, +0.0037] | +0.0037 (-10%) | 70491 / 74637 | 1.42e-27 |
+| 1s | M>=5_MAE | 1.0196 | 0.7857 | **-0.2340** | [-0.2641, -0.2063] | [-0.2629, -0.2051] (456) | [-0.2367, -0.2271] | -0.2271 (6%) | 365 / 91 | 6.35e-40 |
+| 1s | M>=5_eventMAE | 1.0345 | 0.7991 | **-0.2354** | [-0.2668, -0.2031] | [-0.2672, -0.2036] (456) | [-0.2393, -0.2296] | -0.2351 (5%) | 364 / 92 | 2.53e-39 |
+| 1s | M>=6_MAE | 1.8998 | 1.3240 | **-0.5758** | [-0.6886, -0.4362] | [-0.7182, -0.4334] (51) | [-0.6110, -0.5304] | -0.5304 (25%) | 47 / 4 | 2.42e-10 |
+| 1s | M>=6_eventMAE | 1.8679 | 1.2609 | **-0.6069** | [-0.7083, -0.4984] | [-0.7134, -0.5005] (51) | [-0.6240, -0.5911] | -0.6229 (2%) | 47 / 4 | 2.42e-10 |
+| 1s | FP4_per_1e4 | 6.60 | 8.45 | **+1.85** | [+1.04, +2.69] | [+1.05, +2.65] (139159) | [+1.68, +2.03] | +1.87 (0%) | 142 / 264 | 1.45e-09 |
+| 3s | bulk_MAE | 0.2018 | 0.2022 | **+0.0004** | [-0.0006, +0.0015] | [-0.0007, +0.0014] (145128) | [-0.0000, +0.0006] | +0.0006 (-57%) | 72572 / 72556 | 0.969 |
+| 3s | M>=5_MAE | 0.8984 | 0.6140 | **-0.2843** | [-0.3138, -0.2546] | [-0.3143, -0.2544] (456) | [-0.2869, -0.2767] | -0.2767 (6%) | 380 / 76 | 1.14e-49 |
+| 3s | M>=5_eventMAE | 0.9178 | 0.6445 | **-0.2733** | [-0.3061, -0.2391] | [-0.3057, -0.2409] (456) | [-0.2776, -0.2678] | -0.2727 (5%) | 382 / 74 | 4.42e-51 |
+| 3s | M>=6_MAE | 1.6977 | 0.9231 | **-0.7746** | [-0.8951, -0.6210] | [-0.9233, -0.6259] (51) | [-0.8063, -0.7301] | -0.7301 (24%) | 48 / 3 | 1.97e-11 |
+| 3s | M>=6_eventMAE | 1.6957 | 0.9075 | **-0.7882** | [-0.9001, -0.6691] | [-0.9042, -0.6721] (51) | [-0.8132, -0.7710] | -0.7994 (3%) | 48 / 3 | 1.97e-11 |
+| 3s | FP4_per_1e4 | 6.28 | 7.25 | **+0.97** | [+0.37, +1.53] | [+0.37, +1.57] (139159) | [+0.89, +1.08] | +0.98 (0%) | 145 / 227 | 2.49e-05 |
+| 5s | bulk_MAE | 0.1844 | 0.1839 | **-0.0005** | [-0.0015, +0.0008] | [-0.0016, +0.0007] (145128) | [-0.0010, -0.0003] | -0.0004 (27%) | 73341 / 71787 | 4.57e-05 |
+| 5s | M>=5_MAE | 0.8799 | 0.5740 | **-0.3059** | [-0.3366, -0.2736] | [-0.3369, -0.2750] (456) | [-0.3090, -0.2987] | -0.2987 (5%) | 369 / 87 | 2.19e-42 |
+| 5s | M>=5_eventMAE | 0.8973 | 0.6097 | **-0.2875** | [-0.3203, -0.2541] | [-0.3215, -0.2536] (456) | [-0.2928, -0.2825] | -0.2897 (4%) | 371 / 85 | 1.18e-43 |
+| 5s | M>=6_MAE | 1.6677 | 0.8012 | **-0.8665** | [-0.9750, -0.7240] | [-0.9976, -0.7354] (51) | [-0.9069, -0.8373] | -0.8373 (22%) | 49 / 2 | 1.18e-12 |
+| 5s | M>=6_eventMAE | 1.6617 | 0.7823 | **-0.8794** | [-0.9892, -0.7556] | [-0.9986, -0.7602] (51) | [-0.9182, -0.8635] | -0.8962 (3%) | 49 / 2 | 1.18e-12 |
+| 5s | FP4_per_1e4 | 6.37 | 6.33 | **-0.04** | [-0.62, +0.52] | [-0.64, +0.56] (139159) | [-0.18, +0.06] | -0.04 (-0%) | 175 / 173 | 0.957 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | +0.0031 | [+0.0019, +0.0045] | [+0.0018, +0.0043] (145128) | 70411 / 74717 |
+| 1s | M>=5_MAE | -0.2513 | [-0.2815, -0.2232] | [-0.2801, -0.2224] (456) | 372 / 84 |
+| 1s | M>=5_eventMAE | -0.2545 | [-0.2856, -0.2233] | [-0.2859, -0.2232] (456) | 372 / 84 |
+| 1s | M>=6_MAE | -0.5930 | [-0.7056, -0.4590] | [-0.7341, -0.4520] (51) | 47 / 4 |
+| 1s | M>=6_eventMAE | -0.6204 | [-0.7177, -0.5137] | [-0.7236, -0.5172] (51) | 47 / 4 |
+| 1s | FP4_per_1e4 | +3.01 | [+2.13, +3.93] | [+2.13, +3.88] (139159) | 99 / 304 |
+| 3s | bulk_MAE | +0.0003 | [-0.0006, +0.0015] | [-0.0007, +0.0014] (145128) | 72380 / 72748 |
+| 3s | M>=5_MAE | -0.3017 | [-0.3308, -0.2724] | [-0.3314, -0.2719] (456) | 383 / 73 |
+| 3s | M>=5_eventMAE | -0.2922 | [-0.3252, -0.2596] | [-0.3247, -0.2597] (456) | 384 / 72 |
+| 3s | M>=6_MAE | -0.7871 | [-0.9037, -0.6437] | [-0.9286, -0.6455] (51) | 48 / 3 |
+| 3s | M>=6_eventMAE | -0.8013 | [-0.9125, -0.6793] | [-0.9170, -0.6856] (51) | 48 / 3 |
+| 3s | FP4_per_1e4 | +1.75 | [+1.24, +2.31] | [+1.18, +2.33] (139159) | 115 / 249 |
+| 5s | bulk_MAE | -0.0004 | [-0.0013, +0.0009] | [-0.0015, +0.0008] (145128) | 73069 / 72059 |
+| 5s | M>=5_MAE | -0.3263 | [-0.3573, -0.2939] | [-0.3575, -0.2951] (456) | 381 / 75 |
+| 5s | M>=5_eventMAE | -0.3094 | [-0.3437, -0.2760] | [-0.3440, -0.2748] (456) | 383 / 73 |
+| 5s | M>=6_MAE | -0.8809 | [-0.9885, -0.7431] | [-1.0108, -0.7511] (51) | 49 / 2 |
+| 5s | M>=6_eventMAE | -0.8936 | [-1.0086, -0.7680] | [-1.0161, -0.7711] (51) | 49 / 2 |
+| 5s | FP4_per_1e4 | +0.87 | [+0.28, +1.50] | [+0.26, +1.47] (139159) | 139 / 195 |
+
+## `eqgr_cap50` − `mix_cap50`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2416 | 0.2428 | **+0.0013** | [+0.0006, +0.0019] | [+0.0006, +0.0019] (145128) | [+0.0012, +0.0015] | +0.0015 (-15%) | 71324 / 73804 | 7.64e-11 |
+| 1s | M>=5_MAE | 1.0196 | 0.8225 | **-0.1971** | [-0.2249, -0.1718] | [-0.2232, -0.1710] (456) | [-0.1996, -0.1891] | -0.1891 (7%) | 375 / 81 | 2.91e-46 |
+| 1s | M>=5_eventMAE | 1.0345 | 0.8571 | **-0.1775** | [-0.2012, -0.1544] | [-0.2011, -0.1538] (456) | [-0.1801, -0.1738] | -0.1782 (5%) | 376 / 80 | 6.24e-47 |
+| 1s | M>=6_MAE | 1.8998 | 1.4904 | **-0.4094** | [-0.5245, -0.2622] | [-0.5660, -0.2527] (51) | [-0.4364, -0.3447] | -0.3447 (32%) | 46 / 5 | 2.33e-09 |
+| 1s | M>=6_eventMAE | 1.8679 | 1.5249 | **-0.3430** | [-0.4328, -0.2601] | [-0.4305, -0.2555] (51) | [-0.3547, -0.3164] | -0.3456 (4%) | 46 / 5 | 2.33e-09 |
+| 1s | FP4_per_1e4 | 6.60 | 8.83 | **+2.23** | [+1.63, +2.89] | [+1.57, +2.88] (139159) | [+2.11, +2.29] | +2.26 (0%) | 108 / 267 | 1.17e-16 |
+| 3s | bulk_MAE | 0.2018 | 0.2017 | **-0.0001** | [-0.0007, +0.0005] | [-0.0007, +0.0005] (145128) | [-0.0002, +0.0001] | +0.0000 (104%) | 72351 / 72777 | 0.265 |
+| 3s | M>=5_MAE | 0.8984 | 0.6336 | **-0.2648** | [-0.2949, -0.2384] | [-0.2932, -0.2363] (456) | [-0.2671, -0.2551] | -0.2551 (7%) | 388 / 68 | 1.76e-55 |
+| 3s | M>=5_eventMAE | 0.9178 | 0.6752 | **-0.2427** | [-0.2667, -0.2185] | [-0.2675, -0.2178] (456) | [-0.2462, -0.2390] | -0.2416 (5%) | 388 / 68 | 1.76e-55 |
+| 3s | M>=6_MAE | 1.6977 | 1.0701 | **-0.6276** | [-0.7711, -0.4580] | [-0.8199, -0.4353] (51) | [-0.6494, -0.5445] | -0.5445 (30%) | 47 / 4 | 2.42e-10 |
+| 3s | M>=6_eventMAE | 1.6957 | 1.1632 | **-0.5326** | [-0.6431, -0.4034] | [-0.6509, -0.4143] (51) | [-0.5675, -0.5102] | -0.5490 (2%) | 47 / 4 | 2.42e-10 |
+| 3s | FP4_per_1e4 | 6.28 | 7.83 | **+1.55** | [+0.89, +2.29] | [+0.86, +2.24] (139159) | [+1.33, +1.59] | +1.57 (0%) | 121 / 218 | 1.53e-07 |
+| 5s | bulk_MAE | 0.1844 | 0.1842 | **-0.0002** | [-0.0008, +0.0003] | [-0.0008, +0.0003] (145128) | [-0.0004, -0.0001] | -0.0002 (36%) | 72684 / 72444 | 0.53 |
+| 5s | M>=5_MAE | 0.8799 | 0.6014 | **-0.2785** | [-0.3099, -0.2513] | [-0.3070, -0.2500] (456) | [-0.2812, -0.2693] | -0.2693 (6%) | 394 / 62 | 3.76e-60 |
+| 5s | M>=5_eventMAE | 0.8973 | 0.6454 | **-0.2519** | [-0.2764, -0.2255] | [-0.2776, -0.2262] (456) | [-0.2554, -0.2478] | -0.2520 (5%) | 394 / 62 | 3.76e-60 |
+| 5s | M>=6_MAE | 1.6677 | 0.9274 | **-0.7403** | [-0.8656, -0.5898] | [-0.9044, -0.5762] (51) | [-0.7585, -0.6718] | -0.6718 (27%) | 49 / 2 | 1.18e-12 |
+| 5s | M>=6_eventMAE | 1.6617 | 0.9964 | **-0.6653** | [-0.7715, -0.5649] | [-0.7668, -0.5638] (51) | [-0.6870, -0.6396] | -0.6789 (3%) | 49 / 2 | 1.18e-12 |
+| 5s | FP4_per_1e4 | 6.37 | 7.49 | **+1.12** | [+0.52, +1.79] | [+0.48, +1.76] (139159) | [+0.97, +1.17] | +1.13 (0%) | 150 / 206 | 0.0035 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | +0.0012 | [+0.0006, +0.0018] | [+0.0007, +0.0018] (145128) | 71087 / 74041 |
+| 1s | M>=5_MAE | -0.2163 | [-0.2440, -0.1923] | [-0.2416, -0.1910] (456) | 388 / 68 |
+| 1s | M>=5_eventMAE | -0.1992 | [-0.2225, -0.1768] | [-0.2225, -0.1758] (456) | 389 / 67 |
+| 1s | M>=6_MAE | -0.4233 | [-0.5337, -0.2832] | [-0.5733, -0.2732] (51) | 46 / 5 |
+| 1s | M>=6_eventMAE | -0.3607 | [-0.4506, -0.2755] | [-0.4476, -0.2738] (51) | 46 / 5 |
+| 1s | FP4_per_1e4 | +3.37 | [+2.66, +4.12] | [+2.63, +4.10] (139159) | 81 / 320 |
+| 3s | bulk_MAE | -0.0001 | [-0.0005, +0.0004] | [-0.0005, +0.0004] (145128) | 72089 / 73039 |
+| 3s | M>=5_MAE | -0.2822 | [-0.3114, -0.2555] | [-0.3102, -0.2541] (456) | 396 / 60 |
+| 3s | M>=5_eventMAE | -0.2620 | [-0.2862, -0.2375] | [-0.2870, -0.2370] (456) | 397 / 59 |
+| 3s | M>=6_MAE | -0.6438 | [-0.7829, -0.4790] | [-0.8297, -0.4579] (51) | 47 / 4 |
+| 3s | M>=6_eventMAE | -0.5539 | [-0.6611, -0.4287] | [-0.6678, -0.4399] (51) | 47 / 4 |
+| 3s | FP4_per_1e4 | +2.42 | [+1.76, +3.22] | [+1.69, +3.14] (139159) | 95 / 253 |
+| 5s | bulk_MAE | -0.0001 | [-0.0006, +0.0003] | [-0.0006, +0.0003] (145128) | 72132 / 72996 |
+| 5s | M>=5_MAE | -0.2997 | [-0.3294, -0.2728] | [-0.3277, -0.2717] (456) | 403 / 53 |
+| 5s | M>=5_eventMAE | -0.2743 | [-0.2997, -0.2481] | [-0.3005, -0.2481] (456) | 403 / 53 |
+| 5s | M>=6_MAE | -0.7559 | [-0.8793, -0.6089] | [-0.9164, -0.5955] (51) | 49 / 2 |
+| 5s | M>=6_eventMAE | -0.6836 | [-0.7920, -0.5844] | [-0.7854, -0.5818] (51) | 49 / 2 |
+| 5s | FP4_per_1e4 | +1.87 | [+1.30, +2.50] | [+1.25, +2.49] (139159) | 109 / 219 |
+
+## `eqdgr_cap50_cond` − `mix_cap50_aug15`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2671 | 0.2449 | **-0.0223** | [-0.0235, -0.0208] | [-0.0236, -0.0210] (145128) | [-0.0228, -0.0221] | -0.0221 (2%) | 86411 / 58717 | 0 |
+| 1s | M>=5_MAE | 0.6812 | 0.7857 | **+0.1045** | [+0.0846, +0.1240] | [+0.0843, +0.1246] (456) | [+0.1025, +0.1095] | +0.1095 (-2%) | 136 / 320 | 3.61e-18 |
+| 1s | M>=5_eventMAE | 0.6926 | 0.7991 | **+0.1066** | [+0.0863, +0.1284] | [+0.0854, +0.1277] (456) | [+0.1034, +0.1103] | +0.1034 (8%) | 136 / 320 | 3.61e-18 |
+| 1s | M>=6_MAE | 1.3237 | 1.3240 | **+0.0003** | [-0.0990, +0.1170] | [-0.1283, +0.1289] (51) | [-0.0177, +0.0522] | +0.0522 | 26 / 25 | 1 |
+| 1s | M>=6_eventMAE | 1.2556 | 1.2609 | **+0.0053** | [-0.0762, +0.0794] | [-0.0736, +0.0842] (51) | [-0.0068, +0.0154] | -0.0067 (221%) | 26 / 25 | 1 |
+| 1s | FP4_per_1e4 | 17.98 | 8.45 | **-9.53** | [-11.06, -8.10] | [-11.04, -8.02] (139159) | [-9.69, -9.18] | -9.65 (-0%) | 662 / 118 | 1.34e-92 |
+| 3s | bulk_MAE | 0.2187 | 0.2022 | **-0.0165** | [-0.0176, -0.0151] | [-0.0177, -0.0153] (145128) | [-0.0170, -0.0164] | -0.0165 (1%) | 85507 / 59621 | 0 |
+| 3s | M>=5_MAE | 0.5368 | 0.6140 | **+0.0773** | [+0.0601, +0.0948] | [+0.0586, +0.0960] (456) | [+0.0742, +0.0806] | +0.0800 (-0%) | 164 / 292 | 2.15e-09 |
+| 3s | M>=5_eventMAE | 0.5607 | 0.6445 | **+0.0838** | [+0.0629, +0.1046] | [+0.0625, +0.1050] (456) | [+0.0803, +0.0870] | +0.0803 (9%) | 165 / 291 | 3.86e-09 |
+| 3s | M>=6_MAE | 0.9889 | 0.9231 | **-0.0658** | [-0.1445, +0.0167] | [-0.1457, +0.0141] (51) | [-0.0834, -0.0478] | -0.0521 (36%) | 31 / 20 | 0.161 |
+| 3s | M>=6_eventMAE | 0.9878 | 0.9075 | **-0.0802** | [-0.1670, -0.0010] | [-0.1630, +0.0025] (51) | [-0.1009, -0.0678] | -0.1009 (-20%) | 31 / 20 | 0.161 |
+| 3s | FP4_per_1e4 | 14.42 | 7.25 | **-7.17** | [-8.63, -5.95] | [-8.51, -5.83] (139159) | [-7.31, -6.89] | -7.27 (-0%) | 526 / 112 | 4.9e-65 |
+| 5s | bulk_MAE | 0.1986 | 0.1839 | **-0.0147** | [-0.0154, -0.0138] | [-0.0154, -0.0139] (145128) | [-0.0149, -0.0146] | -0.0147 (1%) | 85455 / 59673 | 0 |
+| 5s | M>=5_MAE | 0.4897 | 0.5740 | **+0.0843** | [+0.0654, +0.1041] | [+0.0642, +0.1043] (456) | [+0.0802, +0.0882] | +0.0873 (-1%) | 138 / 318 | 1.98e-17 |
+| 5s | M>=5_eventMAE | 0.5057 | 0.6097 | **+0.1040** | [+0.0800, +0.1282] | [+0.0776, +0.1304] (456) | [+0.0954, +0.1084] | +0.0954 (13%) | 141 / 315 | 2.35e-16 |
+| 5s | M>=6_MAE | 0.8812 | 0.8012 | **-0.0800** | [-0.1501, -0.0044] | [-0.1516, -0.0085] (51) | [-0.1005, -0.0647] | -0.0743 (25%) | 37 / 14 | 0.00177 |
+| 5s | M>=6_eventMAE | 0.8673 | 0.7823 | **-0.0851** | [-0.1543, -0.0080] | [-0.1634, -0.0067] (51) | [-0.1122, -0.0755] | -0.1122 (-26%) | 38 / 13 | 0.000621 |
+| 5s | FP4_per_1e4 | 13.03 | 6.33 | **-6.70** | [-7.93, -5.49] | [-7.95, -5.45] (139159) | [-6.81, -6.45] | -6.79 (-0%) | 470 / 75 | 6.77e-71 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | -0.0215 | [-0.0224, -0.0203] | [-0.0224, -0.0205] (145128) | 85868 / 59260 |
+| 1s | M>=5_MAE | +0.0985 | [+0.0779, +0.1177] | [+0.0783, +0.1187] (456) | 134 / 322 |
+| 1s | M>=5_eventMAE | +0.1023 | [+0.0816, +0.1241] | [+0.0812, +0.1234] (456) | 134 / 322 |
+| 1s | M>=6_MAE | -0.0116 | [-0.1124, +0.1057] | [-0.1446, +0.1213] (51) | 25 / 26 |
+| 1s | M>=6_eventMAE | -0.0020 | [-0.0820, +0.0723] | [-0.0795, +0.0756] (51) | 25 / 26 |
+| 1s | FP4_per_1e4 | -9.09 | [-10.67, -7.68] | [-10.63, -7.56] (139159) | 639 / 127 |
+| 3s | bulk_MAE | -0.0159 | [-0.0169, -0.0147] | [-0.0170, -0.0148] (145128) | 85178 / 59949 |
+| 3s | M>=5_MAE | +0.0727 | [+0.0560, +0.0895] | [+0.0546, +0.0907] (456) | 161 / 295 |
+| 3s | M>=5_eventMAE | +0.0802 | [+0.0589, +0.1011] | [+0.0591, +0.1012] (456) | 165 / 291 |
+| 3s | M>=6_MAE | -0.0733 | [-0.1514, +0.0040] | [-0.1494, +0.0029] (51) | 33 / 18 |
+| 3s | M>=6_eventMAE | -0.0856 | [-0.1726, -0.0059] | [-0.1679, -0.0034] (51) | 33 / 18 |
+| 3s | FP4_per_1e4 | -6.97 | [-8.40, -5.76] | [-8.30, -5.64] (139159) | 509 / 118 |
+| 5s | bulk_MAE | -0.0140 | [-0.0147, -0.0132] | [-0.0147, -0.0133] (145128) | 85006 / 60122 |
+| 5s | M>=5_MAE | +0.0787 | [+0.0600, +0.0987] | [+0.0591, +0.0984] (456) | 145 / 311 |
+| 5s | M>=5_eventMAE | +0.0994 | [+0.0761, +0.1224] | [+0.0735, +0.1253] (456) | 146 / 310 |
+| 5s | M>=6_MAE | -0.0919 | [-0.1649, -0.0192] | [-0.1626, -0.0212] (51) | 35 / 16 |
+| 5s | M>=6_eventMAE | -0.0965 | [-0.1642, -0.0239] | [-0.1715, -0.0215] (51) | 35 / 16 |
+| 5s | FP4_per_1e4 | -6.35 | [-7.51, -5.23] | [-7.53, -5.17] (139159) | 452 / 79 |
+
+## `eqgr_cap50` − `mix_cap50_aug15`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2671 | 0.2428 | **-0.0243** | [-0.0253, -0.0234] | [-0.0253, -0.0234] (145128) | [-0.0245, -0.0241] | -0.0243 (1%) | 87035 / 58093 | 0 |
+| 1s | M>=5_MAE | 0.6812 | 0.8225 | **+0.1414** | [+0.1181, +0.1633] | [+0.1186, +0.1641] (456) | [+0.1385, +0.1475] | +0.1475 (-1%) | 110 / 346 | 1.78e-29 |
+| 1s | M>=5_eventMAE | 0.6926 | 0.8571 | **+0.1645** | [+0.1421, +0.1858] | [+0.1423, +0.1868] (456) | [+0.1604, +0.1667] | +0.1604 (7%) | 110 / 346 | 1.78e-29 |
+| 1s | M>=6_MAE | 1.3237 | 1.4904 | **+0.1667** | [+0.0454, +0.3143] | [+0.0021, +0.3314] (51) | [+0.1507, +0.2379] | +0.2379 (-16%) | 11 / 40 | 5.7e-05 |
+| 1s | M>=6_eventMAE | 1.2556 | 1.5249 | **+0.2692** | [+0.1843, +0.3503] | [+0.1858, +0.3527] (51) | [+0.2578, +0.2891] | +0.2706 (4%) | 11 / 40 | 5.7e-05 |
+| 1s | FP4_per_1e4 | 17.98 | 8.83 | **-9.15** | [-10.89, -7.59] | [-10.83, -7.46] (139159) | [-9.33, -8.69] | -9.27 (-0%) | 663 / 166 | 4.91e-71 |
+| 3s | bulk_MAE | 0.2187 | 0.2017 | **-0.0169** | [-0.0176, -0.0163] | [-0.0177, -0.0162] (145128) | [-0.0171, -0.0169] | -0.0171 (1%) | 85504 / 59624 | 0 |
+| 3s | M>=5_MAE | 0.5368 | 0.6336 | **+0.0969** | [+0.0762, +0.1168] | [+0.0770, +0.1168] (456) | [+0.0944, +0.1016] | +0.1016 (-2%) | 137 / 319 | 8.5e-18 |
+| 3s | M>=5_eventMAE | 0.5607 | 0.6752 | **+0.1144** | [+0.0953, +0.1324] | [+0.0954, +0.1334] (456) | [+0.1114, +0.1159] | +0.1114 (8%) | 137 / 319 | 8.5e-18 |
+| 3s | M>=6_MAE | 0.9889 | 1.0701 | **+0.0812** | [-0.0104, +0.2020] | [-0.0425, +0.2048] (51) | [+0.0656, +0.1335] | +0.1335 (-33%) | 12 / 39 | 0.000198 |
+| 3s | M>=6_eventMAE | 0.9878 | 1.1632 | **+0.1754** | [+0.0823, +0.2740] | [+0.0823, +0.2685] (51) | [+0.1496, +0.1900] | +0.1496 (19%) | 13 / 38 | 0.000621 |
+| 3s | FP4_per_1e4 | 14.42 | 7.83 | **-6.59** | [-7.99, -5.31] | [-7.94, -5.24] (139159) | [-6.80, -6.28] | -6.68 (-0%) | 530 / 146 | 4.98e-52 |
+| 5s | bulk_MAE | 0.1986 | 0.1842 | **-0.0144** | [-0.0155, -0.0135] | [-0.0154, -0.0134] (145128) | [-0.0145, -0.0140] | -0.0145 (1%) | 84586 / 60542 | 0 |
+| 5s | M>=5_MAE | 0.4897 | 0.6014 | **+0.1117** | [+0.0897, +0.1332] | [+0.0902, +0.1333] (456) | [+0.1081, +0.1167] | +0.1167 (-1%) | 107 / 349 | 5.38e-31 |
+| 5s | M>=5_eventMAE | 0.5057 | 0.6454 | **+0.1397** | [+0.1177, +0.1613] | [+0.1179, +0.1615] (456) | [+0.1332, +0.1418] | +0.1332 (9%) | 108 / 348 | 1.75e-30 |
+| 5s | M>=6_MAE | 0.8812 | 0.9274 | **+0.0461** | [-0.0403, +0.1574] | [-0.0655, +0.1578] (51) | [+0.0319, +0.0912] | +0.0912 (-60%) | 17 / 34 | 0.0241 |
+| 5s | M>=6_eventMAE | 0.8673 | 0.9964 | **+0.1290** | [+0.0407, +0.2141] | [+0.0388, +0.2193] (51) | [+0.1051, +0.1446] | +0.1051 (22%) | 18 / 33 | 0.0489 |
+| 5s | FP4_per_1e4 | 13.03 | 7.49 | **-5.54** | [-6.64, -4.35] | [-6.74, -4.34] (139159) | [-5.70, -5.29] | -5.61 (-0%) | 463 / 131 | 2.14e-44 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | -0.0233 | [-0.0242, -0.0224] | [-0.0242, -0.0224] (145128) | 86305 / 58823 |
+| 1s | M>=5_MAE | +0.1335 | [+0.1105, +0.1548] | [+0.1115, +0.1554] (456) | 115 / 341 |
+| 1s | M>=5_eventMAE | +0.1577 | [+0.1344, +0.1787] | [+0.1361, +0.1793] (456) | 114 / 342 |
+| 1s | M>=6_MAE | +0.1581 | [+0.0383, +0.3013] | [-0.0035, +0.3197] (51) | 11 / 40 |
+| 1s | M>=6_eventMAE | +0.2578 | [+0.1749, +0.3365] | [+0.1774, +0.3382] (51) | 11 / 40 |
+| 1s | FP4_per_1e4 | -8.74 | [-10.51, -7.16] | [-10.47, -7.00] (139159) | 641 / 184 |
+| 3s | bulk_MAE | -0.0163 | [-0.0170, -0.0156] | [-0.0170, -0.0156] (145128) | 85042 / 60086 |
+| 3s | M>=5_MAE | +0.0922 | [+0.0722, +0.1111] | [+0.0728, +0.1115] (456) | 137 / 319 |
+| 3s | M>=5_eventMAE | +0.1103 | [+0.0918, +0.1280] | [+0.0918, +0.1288] (456) | 138 / 318 |
+| 3s | M>=6_MAE | +0.0700 | [-0.0229, +0.1883] | [-0.0506, +0.1906] (51) | 13 / 38 |
+| 3s | M>=6_eventMAE | +0.1618 | [+0.0714, +0.2575] | [+0.0710, +0.2527] (51) | 14 / 37 |
+| 3s | FP4_per_1e4 | -6.31 | [-7.65, -4.97] | [-7.71, -4.91] (139159) | 514 / 157 |
+| 5s | bulk_MAE | -0.0137 | [-0.0148, -0.0128] | [-0.0147, -0.0128] (145128) | 84133 / 60995 |
+| 5s | M>=5_MAE | +0.1053 | [+0.0836, +0.1263] | [+0.0843, +0.1263] (456) | 116 / 340 |
+| 5s | M>=5_eventMAE | +0.1345 | [+0.1128, +0.1556] | [+0.1128, +0.1562] (456) | 117 / 339 |
+| 5s | M>=6_MAE | +0.0332 | [-0.0511, +0.1399] | [-0.0761, +0.1425] (51) | 17 / 34 |
+| 5s | M>=6_eventMAE | +0.1135 | [+0.0272, +0.1975] | [+0.0267, +0.2004] (51) | 18 / 33 |
+| 5s | FP4_per_1e4 | -5.35 | [-6.40, -4.26] | [-6.51, -4.19] (139159) | 457 / 133 |
+
+## `eqdgr_cap50_cond` − `eqgr_k1_cap50`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2513 | 0.2449 | **-0.0064** | [-0.0073, -0.0052] | [-0.0075, -0.0053] (145128) | [-0.0068, -0.0063] | -0.0063 (2%) | 77043 / 68085 | 2.59e-122 |
+| 1s | M>=5_MAE | 0.7651 | 0.7857 | **+0.0205** | [-0.0026, +0.0435] | [-0.0019, +0.0430] (456) | [+0.0174, +0.0231] | +0.0203 (4%) | 197 / 259 | 0.00423 |
+| 1s | M>=5_eventMAE | 0.7757 | 0.7991 | **+0.0234** | [-0.0083, +0.0525] | [-0.0079, +0.0547] (456) | [+0.0178, +0.0266] | +0.0178 (28%) | 200 / 256 | 0.00993 |
+| 1s | M>=6_MAE | 1.1817 | 1.3240 | **+0.1423** | [+0.0685, +0.2403] | [+0.0551, +0.2295] (51) | [+0.1288, +0.1660] | +0.1660 (6%) | 16 / 35 | 0.011 |
+| 1s | M>=6_eventMAE | 1.1273 | 1.2609 | **+0.1336** | [+0.0220, +0.2345] | [+0.0205, +0.2468] (51) | [+0.1149, +0.1530] | +0.1149 (18%) | 16 / 35 | 0.011 |
+| 1s | FP4_per_1e4 | 11.92 | 8.45 | **-3.47** | [-4.28, -2.62] | [-4.28, -2.66] (139159) | [-3.56, -3.30] | -3.52 (-0%) | 374 / 142 | 4.14e-25 |
+| 3s | bulk_MAE | 0.2074 | 0.2022 | **-0.0052** | [-0.0058, -0.0045] | [-0.0058, -0.0045] (145128) | [-0.0054, -0.0051] | -0.0052 (1%) | 76939 / 68189 | 8.72e-117 |
+| 3s | M>=5_MAE | 0.5989 | 0.6140 | **+0.0151** | [-0.0047, +0.0352] | [-0.0048, +0.0350] (456) | [+0.0130, +0.0169] | +0.0152 (3%) | 207 / 249 | 0.0547 |
+| 3s | M>=5_eventMAE | 0.6236 | 0.6445 | **+0.0209** | [-0.0078, +0.0493] | [-0.0078, +0.0497] (456) | [+0.0174, +0.0243] | +0.0175 (21%) | 205 / 251 | 0.035 |
+| 3s | M>=6_MAE | 0.7715 | 0.9231 | **+0.1517** | [+0.0622, +0.2706] | [+0.0288, +0.2745] (51) | [+0.1367, +0.2015] | +0.2015 (-8%) | 16 / 35 | 0.011 |
+| 3s | M>=6_eventMAE | 0.7220 | 0.9075 | **+0.1856** | [+0.0883, +0.2841] | [+0.0865, +0.2847] (51) | [+0.1639, +0.2063] | +0.1639 (16%) | 16 / 35 | 0.011 |
+| 3s | FP4_per_1e4 | 10.12 | 7.25 | **-2.87** | [-3.62, -2.19] | [-3.60, -2.14] (139159) | [-2.94, -2.71] | -2.91 (-0%) | 327 / 143 | 1.2e-17 |
+| 5s | bulk_MAE | 0.1890 | 0.1839 | **-0.0051** | [-0.0057, -0.0044] | [-0.0057, -0.0044] (145128) | [-0.0053, -0.0050] | -0.0051 (-0%) | 77311 / 67817 | 3.72e-137 |
+| 5s | M>=5_MAE | 0.5460 | 0.5740 | **+0.0279** | [+0.0076, +0.0498] | [+0.0066, +0.0492] (456) | [+0.0260, +0.0305] | +0.0292 (-1%) | 194 / 262 | 0.00167 |
+| 5s | M>=5_eventMAE | 0.5731 | 0.6097 | **+0.0366** | [+0.0035, +0.0681] | [+0.0027, +0.0705] (456) | [+0.0309, +0.0427] | +0.0309 (20%) | 193 / 263 | 0.00121 |
+| 5s | M>=6_MAE | 0.6702 | 0.8012 | **+0.1310** | [+0.0409, +0.2527] | [+0.0064, +0.2555] (51) | [+0.1134, +0.1796] | +0.1796 (-11%) | 14 / 37 | 0.00177 |
+| 5s | M>=6_eventMAE | 0.6124 | 0.7823 | **+0.1699** | [+0.0613, +0.2823] | [+0.0585, +0.2813] (51) | [+0.1383, +0.1955] | +0.1383 (22%) | 14 / 37 | 0.00177 |
+| 5s | FP4_per_1e4 | 9.17 | 6.33 | **-2.84** | [-3.70, -2.10] | [-3.63, -2.05] (139159) | [-2.88, -2.65] | -2.88 (-0%) | 278 / 117 | 3.19e-16 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | -0.0064 | [-0.0073, -0.0054] | [-0.0074, -0.0055] (145128) | 77078 / 68050 |
+| 1s | M>=5_MAE | +0.0284 | [+0.0053, +0.0513] | [+0.0065, +0.0503] (456) | 192 / 264 |
+| 1s | M>=5_eventMAE | +0.0319 | [+0.0008, +0.0602] | [+0.0018, +0.0620] (456) | 192 / 264 |
+| 1s | M>=6_MAE | +0.1478 | [+0.0732, +0.2461] | [+0.0581, +0.2375] (51) | 16 / 35 |
+| 1s | M>=6_eventMAE | +0.1439 | [+0.0369, +0.2468] | [+0.0343, +0.2535] (51) | 16 / 35 |
+| 1s | FP4_per_1e4 | -4.56 | [-5.45, -3.68] | [-5.41, -3.71] (139159) | 433 / 131 |
+| 3s | bulk_MAE | -0.0051 | [-0.0057, -0.0043] | [-0.0057, -0.0044] (145128) | 76845 / 68283 |
+| 3s | M>=5_MAE | +0.0168 | [-0.0025, +0.0372] | [-0.0028, +0.0364] (456) | 203 / 253 |
+| 3s | M>=5_eventMAE | +0.0234 | [-0.0047, +0.0519] | [-0.0047, +0.0515] (456) | 199 / 257 |
+| 3s | M>=6_MAE | +0.1479 | [+0.0630, +0.2614] | [+0.0289, +0.2669] (51) | 16 / 35 |
+| 3s | M>=6_eventMAE | +0.1806 | [+0.0837, +0.2803] | [+0.0816, +0.2796] (51) | 16 / 35 |
+| 3s | FP4_per_1e4 | -3.65 | [-4.50, -2.87] | [-4.48, -2.82] (139159) | 359 / 134 |
+| 5s | bulk_MAE | -0.0048 | [-0.0055, -0.0041] | [-0.0055, -0.0041] (145128) | 77277 / 67851 |
+| 5s | M>=5_MAE | +0.0275 | [+0.0076, +0.0484] | [+0.0070, +0.0481] (456) | 192 / 264 |
+| 5s | M>=5_eventMAE | +0.0378 | [+0.0053, +0.0678] | [+0.0052, +0.0704] (456) | 191 / 265 |
+| 5s | M>=6_MAE | +0.1370 | [+0.0543, +0.2490] | [+0.0257, +0.2483] (51) | 14 / 37 |
+| 5s | M>=6_eventMAE | +0.1686 | [+0.0568, +0.2745] | [+0.0602, +0.2770] (51) | 14 / 37 |
+| 5s | FP4_per_1e4 | -3.65 | [-4.57, -2.82] | [-4.53, -2.77] (139159) | 313 / 103 |
+
+## `eqdgr_cap50_cond` − `magnet_cap50`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.3444 | 0.2449 | **-0.0995** | [-0.1021, -0.0968] | [-0.1022, -0.0969] (145128) | [-0.1000, -0.0992] | -0.0993 (1%) | 103615 / 41513 | 0 |
+| 1s | M>=5_MAE | 1.3084 | 0.7857 | **-0.5227** | [-0.5908, -0.4596] | [-0.5873, -0.4581] (456) | [-0.5283, -0.5012] | -0.5012 (7%) | 373 / 83 | 6.05e-45 |
+| 1s | M>=5_eventMAE | 1.2828 | 0.7991 | **-0.4837** | [-0.5419, -0.4193] | [-0.5457, -0.4217] (456) | [-0.4925, -0.4690] | -0.4718 (7%) | 373 / 83 | 6.05e-45 |
+| 1s | M>=6_MAE | 2.4534 | 1.3240 | **-1.1294** | [-1.4544, -0.7495] | [-1.5696, -0.6892] (51) | [-1.1733, -0.9336] | -0.9336 (33%) | 49 / 2 | 1.18e-12 |
+| 1s | M>=6_eventMAE | 2.2697 | 1.2609 | **-1.0087** | [-1.1962, -0.8290] | [-1.1986, -0.8188] (51) | [-1.0423, -0.9849] | -1.0200 (4%) | 49 / 2 | 1.18e-12 |
+| 1s | FP4_per_1e4 | 17.08 | 8.45 | **-8.63** | [-10.64, -6.79] | [-10.63, -6.63] (139159) | [-8.75, -8.00] | -8.74 (-0%) | 733 / 271 | 1.01e-49 |
+| 3s | bulk_MAE | 0.2982 | 0.2022 | **-0.0960** | [-0.0989, -0.0931] | [-0.0988, -0.0932] (145128) | [-0.0968, -0.0955] | -0.0955 (2%) | 106286 / 38842 | 0 |
+| 3s | M>=5_MAE | 1.1335 | 0.6140 | **-0.5194** | [-0.5942, -0.4555] | [-0.5867, -0.4521] (456) | [-0.5256, -0.4969] | -0.4969 (7%) | 367 / 89 | 3.83e-41 |
+| 3s | M>=5_eventMAE | 1.1051 | 0.6445 | **-0.4606** | [-0.5219, -0.3958] | [-0.5231, -0.3981] (456) | [-0.4700, -0.4458] | -0.4533 (7%) | 366 / 90 | 1.57e-40 |
+| 3s | M>=6_MAE | 2.1433 | 0.9231 | **-1.2201** | [-1.5377, -0.8297] | [-1.6561, -0.7842] (51) | [-1.2645, -1.0277] | -1.0277 (32%) | 46 / 5 | 2.33e-09 |
+| 3s | M>=6_eventMAE | 1.9625 | 0.9075 | **-1.0550** | [-1.2506, -0.8520] | [-1.2644, -0.8455] (51) | [-1.0932, -1.0181] | -1.0467 (6%) | 46 / 5 | 2.33e-09 |
+| 3s | FP4_per_1e4 | 18.25 | 7.25 | **-11.00** | [-12.93, -9.25] | [-12.88, -9.12] (139159) | [-11.15, -10.52] | -11.15 (-0%) | 810 / 209 | 5.21e-84 |
+| 5s | bulk_MAE | 0.2765 | 0.1839 | **-0.0926** | [-0.0949, -0.0901] | [-0.0950, -0.0902] (145128) | [-0.0932, -0.0921] | -0.0921 (2%) | 107057 / 38071 | 0 |
+| 5s | M>=5_MAE | 1.0231 | 0.5740 | **-0.4491** | [-0.5250, -0.3824] | [-0.5195, -0.3788] (456) | [-0.4547, -0.4249] | -0.4249 (8%) | 344 / 112 | 1.73e-28 |
+| 5s | M>=5_eventMAE | 0.9847 | 0.6097 | **-0.3750** | [-0.4341, -0.3113] | [-0.4363, -0.3137] (456) | [-0.3866, -0.3621] | -0.3724 (6%) | 342 / 114 | 1.6e-27 |
+| 5s | M>=6_MAE | 1.9933 | 0.8012 | **-1.1921** | [-1.5426, -0.7741] | [-1.6582, -0.7260] (51) | [-1.2438, -0.9845] | -0.9845 (33%) | 44 / 7 | 1.21e-07 |
+| 5s | M>=6_eventMAE | 1.7736 | 0.7823 | **-0.9914** | [-1.2122, -0.7716] | [-1.2253, -0.7575] (51) | [-1.0454, -0.9512] | -1.0114 (3%) | 44 / 7 | 1.21e-07 |
+| 5s | FP4_per_1e4 | 23.90 | 6.33 | **-17.57** | [-19.91, -15.37] | [-19.94, -15.19] (139159) | [-17.80, -17.05] | -17.80 (-0%) | 1073 / 133 | 4.78e-183 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | -0.0997 | [-0.1024, -0.0970] | [-0.1025, -0.0970] (145128) | 103557 / 41571 |
+| 1s | M>=5_MAE | -0.5278 | [-0.5967, -0.4642] | [-0.5927, -0.4629] (456) | 374 / 82 |
+| 1s | M>=5_eventMAE | -0.4877 | [-0.5463, -0.4232] | [-0.5501, -0.4254] (456) | 374 / 82 |
+| 1s | M>=6_MAE | -1.1325 | [-1.4605, -0.7465] | [-1.5783, -0.6867] (51) | 49 / 2 |
+| 1s | M>=6_eventMAE | -1.0046 | [-1.1890, -0.8248] | [-1.1947, -0.8145] (51) | 49 / 2 |
+| 1s | FP4_per_1e4 | -8.01 | [-10.01, -6.16] | [-10.03, -5.99] (139159) | 717 / 290 |
+| 3s | bulk_MAE | -0.0956 | [-0.0983, -0.0928] | [-0.0984, -0.0929] (145128) | 106016 / 39112 |
+| 3s | M>=5_MAE | -0.5239 | [-0.5982, -0.4593] | [-0.5916, -0.4562] (456) | 367 / 89 |
+| 3s | M>=5_eventMAE | -0.4640 | [-0.5254, -0.3994] | [-0.5269, -0.4012] (456) | 366 / 90 |
+| 3s | M>=6_MAE | -1.2190 | [-1.5344, -0.8303] | [-1.6531, -0.7849] (51) | 46 / 5 |
+| 3s | M>=6_eventMAE | -1.0494 | [-1.2441, -0.8461] | [-1.2598, -0.8389] (51) | 46 / 5 |
+| 3s | FP4_per_1e4 | -10.61 | [-12.51, -8.87] | [-12.47, -8.76] (139159) | 804 / 222 |
+| 5s | bulk_MAE | -0.0919 | [-0.0942, -0.0895] | [-0.0943, -0.0895] (145128) | 106631 / 38497 |
+| 5s | M>=5_MAE | -0.4540 | [-0.5304, -0.3863] | [-0.5250, -0.3830] (456) | 342 / 114 |
+| 5s | M>=5_eventMAE | -0.3788 | [-0.4380, -0.3147] | [-0.4406, -0.3171] (456) | 343 / 113 |
+| 5s | M>=6_MAE | -1.1923 | [-1.5435, -0.7733] | [-1.6613, -0.7232] (51) | 44 / 7 |
+| 5s | M>=6_eventMAE | -0.9865 | [-1.2081, -0.7654] | [-1.2221, -0.7510] (51) | 44 / 7 |
+| 5s | FP4_per_1e4 | -17.08 | [-19.32, -14.87] | [-19.43, -14.73] (139159) | 1063 / 138 |
+
+## `mixgr_cap50` − `mix_cap50`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2416 | 0.2415 | **-0.0001** | [-0.0006, +0.0004] | [-0.0006, +0.0004] (145128) | [-0.0001, +0.0001] | +0.0000 (102%) | 72254 / 72873 | 0.105 |
+| 1s | M>=5_MAE | 1.0196 | 0.9124 | **-0.1072** | [-0.1190, -0.0958] | [-0.1193, -0.0951] (456) | [-0.1083, -0.1038] | -0.1072 (3%) | 378 / 78 | 2.75e-48 |
+| 1s | M>=5_eventMAE | 1.0345 | 0.9232 | **-0.1113** | [-0.1230, -0.1000] | [-0.1232, -0.0994] (456) | [-0.1125, -0.1090] | -0.1090 (7%) | 377 / 79 | 1.32e-47 |
+| 1s | M>=6_MAE | 1.8998 | 1.7616 | **-0.1382** | [-0.1726, -0.1111] | [-0.1694, -0.1070] (51) | [-0.1454, -0.1338] | -0.1454 (15%) | 47 / 4 | 2.42e-10 |
+| 1s | M>=6_eventMAE | 1.8679 | 1.7073 | **-0.1606** | [-0.1969, -0.1221] | [-0.2003, -0.1208] (51) | [-0.1690, -0.1537] | -0.1586 (6%) | 47 / 4 | 2.42e-10 |
+| 1s | FP4_per_1e4 | 6.60 | 8.75 | **+2.14** | [+1.33, +3.22] | [+1.13, +3.15] (139159) | [+1.70, +2.19] | +2.17 (0%) | 95 / 215 | 7.67e-12 |
+| 3s | bulk_MAE | 0.2018 | 0.2016 | **-0.0002** | [-0.0011, +0.0004] | [-0.0010, +0.0006] (145128) | [-0.0003, +0.0002] | -0.0002 (16%) | 72150 / 72978 | 0.0299 |
+| 3s | M>=5_MAE | 0.8984 | 0.7829 | **-0.1155** | [-0.1329, -0.1002] | [-0.1323, -0.0987] (456) | [-0.1169, -0.1104] | -0.1146 (4%) | 380 / 76 | 1.14e-49 |
+| 3s | M>=5_eventMAE | 0.9178 | 0.8020 | **-0.1158** | [-0.1350, -0.0988] | [-0.1356, -0.0960] (456) | [-0.1172, -0.1076] | -0.1076 (12%) | 381 / 75 | 2.26e-50 |
+| 3s | M>=6_MAE | 1.6977 | 1.5257 | **-0.1720** | [-0.2115, -0.1275] | [-0.2175, -0.1266] (51) | [-0.1812, -0.1611] | -0.1611 (24%) | 47 / 4 | 2.42e-10 |
+| 3s | M>=6_eventMAE | 1.6957 | 1.5047 | **-0.1910** | [-0.2452, -0.1341] | [-0.2476, -0.1344] (51) | [-0.2035, -0.1768] | -0.1768 (12%) | 47 / 4 | 2.42e-10 |
+| 3s | FP4_per_1e4 | 6.28 | 8.64 | **+2.36** | [+1.40, +3.53] | [+1.22, +3.51] (139159) | [+1.87, +2.42] | +2.39 (0%) | 62 / 194 | 5.17e-17 |
+| 5s | bulk_MAE | 0.1844 | 0.1844 | **+0.0000** | [-0.0007, +0.0006] | [-0.0006, +0.0007] (145128) | [-0.0001, +0.0003] | +0.0000 (5%) | 72327 / 72801 | 0.214 |
+| 5s | M>=5_MAE | 0.8799 | 0.7520 | **-0.1279** | [-0.1475, -0.1103] | [-0.1472, -0.1087] (456) | [-0.1295, -0.1220] | -0.1279 (3%) | 388 / 68 | 1.76e-55 |
+| 5s | M>=5_eventMAE | 0.8973 | 0.7708 | **-0.1264** | [-0.1470, -0.1072] | [-0.1478, -0.1051] (456) | [-0.1290, -0.1179] | -0.1179 (11%) | 389 / 67 | 3.06e-56 |
+| 5s | M>=6_MAE | 1.6677 | 1.4767 | **-0.1910** | [-0.2308, -0.1493] | [-0.2325, -0.1494] (51) | [-0.2006, -0.1815] | -0.1870 (21%) | 47 / 4 | 2.42e-10 |
+| 5s | M>=6_eventMAE | 1.6617 | 1.4520 | **-0.2097** | [-0.2635, -0.1517] | [-0.2675, -0.1518] (51) | [-0.2228, -0.1920] | -0.1920 (13%) | 47 / 4 | 2.42e-10 |
+| 5s | FP4_per_1e4 | 6.37 | 8.83 | **+2.46** | [+1.42, +3.68] | [+1.29, +3.62] (139159) | [+2.03, +2.50] | +2.49 (0%) | 89 / 196 | 2.11e-10 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | +0.0043 | [+0.0036, +0.0051] | [+0.0036, +0.0051] (145128) | 69081 / 76047 |
+| 1s | M>=5_MAE | -0.1260 | [-0.1378, -0.1143] | [-0.1383, -0.1137] (456) | 400 / 56 |
+| 1s | M>=5_eventMAE | -0.1300 | [-0.1415, -0.1188] | [-0.1418, -0.1182] (456) | 400 / 56 |
+| 1s | M>=6_MAE | -0.1492 | [-0.1857, -0.1197] | [-0.1844, -0.1141] (51) | 47 / 4 |
+| 1s | M>=6_eventMAE | -0.1667 | [-0.2026, -0.1293] | [-0.2073, -0.1261] (51) | 47 / 4 |
+| 1s | FP4_per_1e4 | +5.89 | [+4.56, +7.46] | [+4.39, +7.39] (139159) | 56 / 335 |
+| 3s | bulk_MAE | +0.0035 | [+0.0018, +0.0047] | [+0.0020, +0.0050] (145128) | 69584 / 75544 |
+| 3s | M>=5_MAE | -0.1279 | [-0.1431, -0.1141] | [-0.1429, -0.1130] (456) | 406 / 50 |
+| 3s | M>=5_eventMAE | -0.1295 | [-0.1452, -0.1150] | [-0.1457, -0.1132] (456) | 406 / 50 |
+| 3s | M>=6_MAE | -0.1693 | [-0.2079, -0.1266] | [-0.2112, -0.1273] (51) | 47 / 4 |
+| 3s | M>=6_eventMAE | -0.1902 | [-0.2425, -0.1342] | [-0.2451, -0.1352] (51) | 47 / 4 |
+| 3s | FP4_per_1e4 | +6.54 | [+4.99, +8.29] | [+4.84, +8.24] (139159) | 47 / 357 |
+| 5s | bulk_MAE | +0.0045 | [+0.0030, +0.0058] | [+0.0031, +0.0059] (145128) | 69533 / 75595 |
+| 5s | M>=5_MAE | -0.1446 | [-0.1634, -0.1276] | [-0.1633, -0.1258] (456) | 401 / 55 |
+| 5s | M>=5_eventMAE | -0.1426 | [-0.1586, -0.1270] | [-0.1591, -0.1261] (456) | 402 / 54 |
+| 5s | M>=6_MAE | -0.1848 | [-0.2215, -0.1449] | [-0.2224, -0.1473] (51) | 46 / 5 |
+| 5s | M>=6_eventMAE | -0.2019 | [-0.2505, -0.1450] | [-0.2554, -0.1484] (51) | 46 / 5 |
+| 5s | FP4_per_1e4 | +9.28 | [+7.28, +11.54] | [+7.09, +11.48] (139159) | 51 / 411 |
+
+## `eqdgr_cap50_cond` − `lin_invR_cap50`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.4341 | 0.2449 | **-0.1893** | [-0.1967, -0.1827] | [-0.1962, -0.1823] (145128) | [-0.1907, -0.1868] | -0.1907 (1%) | 104916 / 40211 | 0 |
+| 1s | M>=5_MAE | 0.7414 | 0.7857 | **+0.0443** | [+0.0021, +0.0850] | [+0.0016, +0.0870] (456) | [+0.0354, +0.0539] | +0.0402 (12%) | 215 / 241 | 0.242 |
+| 1s | M>=5_eventMAE | 0.7898 | 0.7991 | **+0.0094** | [-0.0282, +0.0538] | [-0.0324, +0.0511] (456) | [+0.0052, +0.0163] | +0.0113 (-14%) | 215 / 241 | 0.242 |
+| 1s | M>=6_MAE | 1.2097 | 1.3240 | **+0.1143** | [+0.0139, +0.2117] | [+0.0169, +0.2117] (51) | [+0.0970, +0.1301] | +0.1234 (13%) | 19 / 32 | 0.0919 |
+| 1s | M>=6_eventMAE | 1.1983 | 1.2609 | **+0.0627** | [-0.0682, +0.1787] | [-0.0646, +0.1899] (51) | [+0.0451, +0.0917] | +0.0490 (26%) | 19 / 32 | 0.0919 |
+| 1s | FP4_per_1e4 | 66.18 | 8.45 | **-57.73** | [-67.47, -49.88] | [-66.41, -49.05] (139159) | [-58.44, -54.38] | -58.44 (0%) | 2570 / 231 | 0 |
+| 3s | bulk_MAE | 0.3877 | 0.2022 | **-0.1855** | [-0.1901, -0.1802] | [-0.1904, -0.1806] (145128) | [-0.1870, -0.1849] | -0.1870 (0%) | 109416 / 35712 | 0 |
+| 3s | M>=5_MAE | 0.5611 | 0.6140 | **+0.0530** | [+0.0171, +0.0874] | [+0.0199, +0.0861] (456) | [+0.0498, +0.0608] | +0.0502 (8%) | 205 / 251 | 0.035 |
+| 3s | M>=5_eventMAE | 0.6151 | 0.6445 | **+0.0295** | [-0.0080, +0.0717] | [-0.0108, +0.0697] (456) | [+0.0227, +0.0370] | +0.0292 (6%) | 204 / 252 | 0.0276 |
+| 3s | M>=6_MAE | 0.8448 | 0.9231 | **+0.0783** | [-0.0314, +0.1593] | [-0.0155, +0.1722] (51) | [+0.0640, +0.0998] | +0.0651 (33%) | 19 / 32 | 0.0919 |
+| 3s | M>=6_eventMAE | 0.8754 | 0.9075 | **+0.0321** | [-0.1088, +0.1539] | [-0.1027, +0.1669] (51) | [+0.0105, +0.0720] | +0.0105 (69%) | 19 / 32 | 0.0919 |
+| 3s | FP4_per_1e4 | 49.14 | 7.25 | **-41.89** | [-48.42, -36.10] | [-48.12, -35.67] (139159) | [-42.45, -39.90] | -42.45 (-0%) | 1984 / 219 | 0 |
+| 5s | bulk_MAE | 0.3749 | 0.1839 | **-0.1910** | [-0.1960, -0.1858] | [-0.1962, -0.1858] (145128) | [-0.1924, -0.1900] | -0.1924 (1%) | 113067 / 32061 | 0 |
+| 5s | M>=5_MAE | 0.5090 | 0.5740 | **+0.0650** | [+0.0302, +0.0987] | [+0.0320, +0.0980] (456) | [+0.0612, +0.0721] | +0.0616 (8%) | 198 / 258 | 0.00567 |
+| 5s | M>=5_eventMAE | 0.5640 | 0.6097 | **+0.0458** | [+0.0057, +0.0887] | [+0.0052, +0.0863] (456) | [+0.0365, +0.0533] | +0.0422 (12%) | 198 / 258 | 0.00567 |
+| 5s | M>=6_MAE | 0.7186 | 0.8012 | **+0.0826** | [-0.0265, +0.1630] | [-0.0158, +0.1809] (51) | [+0.0608, +0.1031] | +0.0608 (40%) | 23 / 28 | 0.576 |
+| 5s | M>=6_eventMAE | 0.7334 | 0.7823 | **+0.0489** | [-0.0909, +0.1773] | [-0.0873, +0.1851] (51) | [+0.0168, +0.0876] | +0.0168 (67%) | 23 / 28 | 0.576 |
+| 5s | FP4_per_1e4 | 44.48 | 6.33 | **-38.15** | [-44.52, -32.82] | [-44.22, -32.07] (139159) | [-38.65, -35.73] | -38.65 (-0%) | 1854 / 180 | 0 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | -0.2113 | [-0.2193, -0.2036] | [-0.2190, -0.2036] (145128) | 106418 / 38710 |
+| 1s | M>=5_MAE | +0.0395 | [-0.0028, +0.0807] | [-0.0029, +0.0818] (456) | 217 / 239 |
+| 1s | M>=5_eventMAE | +0.0058 | [-0.0318, +0.0507] | [-0.0359, +0.0474] (456) | 215 / 241 |
+| 1s | M>=6_MAE | +0.1113 | [+0.0127, +0.2092] | [+0.0138, +0.2087] (51) | 19 / 32 |
+| 1s | M>=6_eventMAE | +0.0669 | [-0.0616, +0.1831] | [-0.0594, +0.1931] (51) | 19 / 32 |
+| 1s | FP4_per_1e4 | -57.11 | [-66.77, -49.24] | [-65.70, -48.51] (139159) | 2553 / 246 |
+| 3s | bulk_MAE | -0.1978 | [-0.2029, -0.1921] | [-0.2031, -0.1926] (145128) | 109882 / 35246 |
+| 3s | M>=5_MAE | +0.0488 | [+0.0135, +0.0832] | [+0.0160, +0.0816] (456) | 207 / 249 |
+| 3s | M>=5_eventMAE | +0.0264 | [-0.0111, +0.0695] | [-0.0140, +0.0668] (456) | 205 / 251 |
+| 3s | M>=6_MAE | +0.0794 | [-0.0321, +0.1604] | [-0.0161, +0.1749] (51) | 19 / 32 |
+| 3s | M>=6_eventMAE | +0.0377 | [-0.1039, +0.1631] | [-0.1009, +0.1763] (51) | 19 / 32 |
+| 3s | FP4_per_1e4 | -41.49 | [-47.98, -35.82] | [-47.67, -35.32] (139159) | 1975 / 232 |
+| 5s | bulk_MAE | -0.2016 | [-0.2069, -0.1959] | [-0.2071, -0.1960] (145128) | 113246 / 31882 |
+| 5s | M>=5_MAE | +0.0605 | [+0.0260, +0.0940] | [+0.0277, +0.0934] (456) | 199 / 257 |
+| 5s | M>=5_eventMAE | +0.0425 | [+0.0030, +0.0852] | [+0.0017, +0.0833] (456) | 199 / 257 |
+| 5s | M>=6_MAE | +0.0824 | [-0.0262, +0.1640] | [-0.0158, +0.1805] (51) | 23 / 28 |
+| 5s | M>=6_eventMAE | +0.0536 | [-0.0899, +0.1832] | [-0.0849, +0.1921] (51) | 23 / 28 |
+| 5s | FP4_per_1e4 | -37.65 | [-43.91, -32.28] | [-43.69, -31.62] (139159) | 1844 / 193 |
+
+## `eqdgr_cap50_cond` − `mix_nll`
+
+### Median action
+
+| deadline | metric | ref | arm | Δ | bootstrap 95% | jackknife 95% (G) | LOCO range | Δ w/o largest (its share of Δ) | clusters Δ<0 / Δ>0 | sign p |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1s | bulk_MAE | 0.2408 | 0.2449 | **+0.0040** | [+0.0026, +0.0060] | [+0.0024, +0.0057] (145128) | [+0.0033, +0.0044] | +0.0044 (-6%) | 70455 / 74673 | 1.75e-28 |
+| 1s | M>=5_MAE | 0.8140 | 0.7857 | **-0.0283** | [-0.0544, -0.0056] | [-0.0532, -0.0034] (456) | [-0.0310, -0.0233] | -0.0233 (20%) | 245 / 211 | 0.122 |
+| 1s | M>=5_eventMAE | 0.8229 | 0.7991 | **-0.0238** | [-0.0536, +0.0068] | [-0.0542, +0.0066] (456) | [-0.0283, -0.0179] | -0.0233 (7%) | 246 / 210 | 0.101 |
+| 1s | M>=6_MAE | 1.5402 | 1.3240 | **-0.2162** | [-0.3163, -0.0836] | [-0.3393, -0.0931] (51) | [-0.2527, -0.1818] | -0.1818 (32%) | 39 / 12 | 0.000198 |
+| 1s | M>=6_eventMAE | 1.5086 | 1.2609 | **-0.2476** | [-0.3435, -0.1539] | [-0.3388, -0.1565] (51) | [-0.2654, -0.2330] | -0.2602 (-0%) | 41 / 10 | 1.47e-05 |
+| 1s | FP4_per_1e4 | 7.46 | 8.45 | **+0.99** | [+0.46, +1.56] | [+0.43, +1.55] (139159) | [+0.92, +1.08] | +1.00 (0%) | 185 / 255 | 0.000982 |
+| 3s | bulk_MAE | 0.2008 | 0.2022 | **+0.0014** | [+0.0002, +0.0031] | [-0.0000, +0.0028] (145128) | [+0.0008, +0.0016] | +0.0016 (-13%) | 72647 / 72481 | 0.665 |
+| 3s | M>=5_MAE | 0.6761 | 0.6140 | **-0.0620** | [-0.0839, -0.0378] | [-0.0855, -0.0386] (456) | [-0.0653, -0.0593] | -0.0605 (5%) | 283 / 173 | 2.92e-07 |
+| 3s | M>=5_eventMAE | 0.6983 | 0.6445 | **-0.0538** | [-0.0840, -0.0240] | [-0.0831, -0.0245] (456) | [-0.0580, -0.0477] | -0.0544 (4%) | 283 / 173 | 2.92e-07 |
+| 3s | M>=6_MAE | 1.2234 | 0.9231 | **-0.3003** | [-0.4058, -0.1945] | [-0.4054, -0.1953] (51) | [-0.3295, -0.2792] | -0.3150 (15%) | 45 / 6 | 1.83e-08 |
+| 3s | M>=6_eventMAE | 1.2666 | 0.9075 | **-0.3591** | [-0.4472, -0.2579] | [-0.4554, -0.2627] (51) | [-0.3785, -0.3368] | -0.3637 (4%) | 45 / 6 | 1.83e-08 |
+| 3s | FP4_per_1e4 | 7.23 | 7.25 | **+0.02** | [-0.63, +0.69] | [-0.67, +0.71] (139159) | [-0.05, +0.21] | +0.02 (0%) | 190 / 209 | 0.368 |
+| 5s | bulk_MAE | 0.1838 | 0.1839 | **+0.0001** | [-0.0009, +0.0014] | [-0.0010, +0.0013] (145128) | [-0.0004, +0.0003] | +0.0003 (-108%) | 73367 / 71761 | 2.52e-05 |
+| 5s | M>=5_MAE | 0.6544 | 0.5740 | **-0.0804** | [-0.1038, -0.0545] | [-0.1044, -0.0565] (456) | [-0.0833, -0.0779] | -0.0780 (6%) | 296 / 160 | 1.91e-10 |
+| 5s | M>=5_eventMAE | 0.6772 | 0.6097 | **-0.0674** | [-0.0995, -0.0388] | [-0.0983, -0.0366] (456) | [-0.0727, -0.0625] | -0.0701 (1%) | 295 / 161 | 3.55e-10 |
+| 5s | M>=6_MAE | 1.1944 | 0.8012 | **-0.3932** | [-0.5019, -0.2912] | [-0.4979, -0.2886] (51) | [-0.4245, -0.3720] | -0.4135 (15%) | 49 / 2 | 1.18e-12 |
+| 5s | M>=6_eventMAE | 1.2232 | 0.7823 | **-0.4409** | [-0.5287, -0.3386] | [-0.5395, -0.3423] (51) | [-0.4728, -0.4251] | -0.4528 (2%) | 49 / 2 | 1.18e-12 |
+| 5s | FP4_per_1e4 | 7.22 | 6.33 | **-0.89** | [-1.65, -0.10] | [-1.67, -0.10] (139159) | [-1.03, -0.67] | -0.90 (-0%) | 201 / 156 | 0.0197 |
+
+### Mean action
+
+| deadline | metric | Δ | bootstrap 95% | jackknife 95% (G) | clusters Δ<0 / Δ>0 |
+|---|---|---|---|---|---|
+| 1s | bulk_MAE | +0.0038 | [+0.0027, +0.0054] | [+0.0025, +0.0052] (145128) | 70347 / 74781 |
+| 1s | M>=5_MAE | -0.0340 | [-0.0590, -0.0111] | [-0.0587, -0.0093] (456) | 247 / 209 |
+| 1s | M>=5_eventMAE | -0.0285 | [-0.0582, +0.0020] | [-0.0584, +0.0014] (456) | 251 / 205 |
+| 1s | M>=6_MAE | -0.2175 | [-0.3190, -0.0828] | [-0.3435, -0.0915] (51) | 39 / 12 |
+| 1s | M>=6_eventMAE | -0.2432 | [-0.3372, -0.1497] | [-0.3337, -0.1527] (51) | 41 / 10 |
+| 1s | FP4_per_1e4 | +1.66 | [+1.11, +2.25] | [+1.10, +2.22] (139159) | 162 / 279 |
+| 3s | bulk_MAE | +0.0013 | [+0.0003, +0.0028] | [+0.0001, +0.0025] (145128) | 72356 / 72772 |
+| 3s | M>=5_MAE | -0.0713 | [-0.0926, -0.0482] | [-0.0940, -0.0485] (456) | 291 / 165 |
+| 3s | M>=5_eventMAE | -0.0612 | [-0.0899, -0.0327] | [-0.0902, -0.0322] (456) | 290 / 166 |
+| 3s | M>=6_MAE | -0.3102 | [-0.4130, -0.2105] | [-0.4122, -0.2082] (51) | 46 / 5 |
+| 3s | M>=6_eventMAE | -0.3644 | [-0.4535, -0.2600] | [-0.4612, -0.2676] (51) | 46 / 5 |
+| 3s | FP4_per_1e4 | +0.58 | [-0.18, +1.31] | [-0.15, +1.31] (139159) | 172 / 240 |
+| 5s | bulk_MAE | +0.0003 | [-0.0006, +0.0015] | [-0.0008, +0.0014] (145128) | 72996 / 72132 |
+| 5s | M>=5_MAE | -0.0908 | [-0.1133, -0.0658] | [-0.1146, -0.0671] (456) | 297 / 159 |
+| 5s | M>=5_eventMAE | -0.0757 | [-0.1071, -0.0471] | [-0.1064, -0.0451] (456) | 295 / 161 |
+| 5s | M>=6_MAE | -0.4066 | [-0.5156, -0.3033] | [-0.5100, -0.3032] (51) | 47 / 4 |
+| 5s | M>=6_eventMAE | -0.4487 | [-0.5378, -0.3453] | [-0.5480, -0.3494] (51) | 47 / 4 |
+| 5s | FP4_per_1e4 | -0.26 | [-1.00, +0.50] | [-1.01, +0.48] (139159) | 186 / 179 |
+
+
+
+# Multi-station fusion (meta4_condR_vs_mix)
+
+Source: `results/meta4_condR_vs_mix.md` (from `multistation_summary.py`; event-level MAE, median action; k = nearest stations combined; per-seed values in brackets).
+# Pooled cross-catalogue comparison: `eqdgr_nll_condR+eqdgr_nll_s2_condR+eqdgr_nll_s3_condR:mix_nll+mix_nll_s2+mix_nll_s3` (median action)
+
+Δ = arm − reference at each catalogue's primary threshold; SE = delete-one-cluster jackknife.
+Pooled: fixed effect, DerSimonian–Laird random effects (normal), HKSJ (t, k − 1 df). Sign test over
+all tail-carrying clusters.
+
+## 1s
+
+| catalogue | threshold | Δ tail MAE | jackknife SE | clusters | Δ<0 / Δ>0 | Δ bulk MAE |
+|---|---|---|---|---|---|---|
+| INSTANCE | M≥5 | -0.2375 | 0.1273 | 11 | 9 / 2 | -0.0952 |
+| Chile | M≥6 | +0.0307 | 0.0508 | 8 | 4 / 4 | -0.0250 |
+| GEOFON | M≥7 | -0.1677 | 0.0267 | 46 | 40 / 6 | -0.0894 |
+| STEAD | M≥5 | -0.1319 | 0.0170 | 456 | 300 / 156 | -0.0411 |
+
+Pooled tail Δ: fixed -0.1307 [-0.1575, -0.1039]; random -0.1138 [-0.1882, -0.0393]; HKSJ [-0.2677, +0.0402]; τ = 0.0604, Q p = 0.00525
+Pooled bulk Δ: random -0.0618 [-0.0891, -0.0344]
+Clusters favouring the arm: 353 of 521 (sign test p = 3.71e-16)
+
+## 3s
+
+| catalogue | threshold | Δ tail MAE | jackknife SE | clusters | Δ<0 / Δ>0 | Δ bulk MAE |
+|---|---|---|---|---|---|---|
+| INSTANCE | M≥5 | -0.2587 | 0.1250 | 11 | 9 / 2 | -0.0821 |
+| Chile | M≥6 | -0.2755 | 0.0465 | 8 | 7 / 1 | -0.0270 |
+| GEOFON | M≥7 | -0.1360 | 0.0283 | 46 | 39 / 7 | -0.0931 |
+| STEAD | M≥5 | -0.1709 | 0.0141 | 456 | 327 / 129 | -0.0305 |
+
+Pooled tail Δ: fixed -0.1724 [-0.1961, -0.1486]; random -0.1842 [-0.2367, -0.1317]; HKSJ [-0.2799, -0.0884]; τ = 0.0379, Q p = 0.07
+Pooled bulk Δ: random -0.0547 [-0.0767, -0.0326]
+Clusters favouring the arm: 382 of 521 (sign test p = 3.17e-27)
+
+## 5s
+
+| catalogue | threshold | Δ tail MAE | jackknife SE | clusters | Δ<0 / Δ>0 | Δ bulk MAE |
+|---|---|---|---|---|---|---|
+| INSTANCE | M≥5 | -0.2810 | 0.1310 | 11 | 9 / 2 | -0.0648 |
+| Chile | M≥6 | -0.3860 | 0.0508 | 8 | 8 / 0 | -0.0325 |
+| GEOFON | M≥7 | -0.1656 | 0.0221 | 46 | 38 / 8 | -0.0966 |
+| STEAD | M≥5 | -0.1907 | 0.0141 | 456 | 343 / 113 | -0.0211 |
+
+Pooled tail Δ: fixed -0.1947 [-0.2172, -0.1721]; random -0.2328 [-0.3070, -0.1585]; HKSJ [-0.3936, -0.0719]; τ = 0.0612, Q p = 0.000938
+Pooled bulk Δ: random -0.0516 [-0.0779, -0.0253]
+Clusters favouring the arm: 398 of 521 (sign test p = 7.91e-35)
+
 

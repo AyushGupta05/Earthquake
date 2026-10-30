@@ -30,10 +30,22 @@ ARGS=(
  "Northern Chile, 20 epochs (reference: 20-epoch mixture)=results/chile_eval_e20.json:M>=5,M>=6"
  "Northern Chile, held stations (7 of 22 withheld; records at held stations; seed 1)=results/chile_eval_hs_held.json:M>=5,M>=6"
  "Northern Chile, held stations (records at seen stations; seed 1)=results/chile_eval_hs_seen.json:M>=5,M>=6"
+ "STEAD (pre-registered fourth catalogue), three-seed ensembles=results/stead_eval_ens3.json:M>=5,M>=6"
+ "STEAD, capped at M5.0 (pre-registered), seed 1=results/stead_eval_cap50.json:M>=5,M>=6"
+ "STEAD, capped at M5.0, baselines and classical law=results/stead_eval_cap50_base.json:M>=5,M>=6"
+ "INSTANCE, classical amplitude laws as arms=results/eval_classical.json:M>=4,M>=5"
+ "INSTANCE, conditioned on a known distance (seed 1)=results/eval_condR.json:M>=4,M>=5"
+ "INSTANCE, capped at M4.0=results/eval_cap40.json:M>=4,M>=5"
+ "INSTANCE, capped at M4.0, augmentation and pinned slope=results/eval_cap40_bfix_aug.json:M>=4,M>=5"
+ "Northern Chile, classical amplitude laws as arms=results/chile_eval_classical.json:M>=5,M>=6"
+ "Northern Chile, conditioned on a known distance (seed 1)=results/chile_eval_condR.json:M>=5,M>=6"
+ "GEOFON, capped at M6.0 (pre-registered), seed 1=results/geofon_eval_cap60.json:M>=6,M>=7"
+ "GEOFON, capped at M6.0, three-seed ensembles=results/geofon_eval_cap60_ens.json:M>=6,M>=7"
+ "GEOFON, capped at M6.0, baselines and classical law=results/geofon_eval_cap60_base.json:M>=6,M>=7"
 )
 if [ -f results/chile_eval_hs_held_ens3.json ]; then
   ARGS+=("Northern Chile, held stations, three-seed ensembles (records at held stations)=results/chile_eval_hs_held_ens3.json:M>=5,M>=6")
   ARGS+=("Northern Chile, held stations, three-seed ensembles (records at seen stations)=results/chile_eval_hs_seen_ens3.json:M>=5,M>=6")
 fi
-$PY results_tables.py "${ARGS[@]}" --include=results/multistation_summary_instance.md --include=results/multistation_summary_chile.md --include=results/multistation_summary_geofon.md --include=results/multistation_summary_geofon_caltail.md --include=results/fusion_timeline_summary_instance.md --include=results/fusion_timeline_summary_chile.md --include=results/fusion_timeline_summary_chile_measured.md --include=results/fusion_timeline_summary_geofon.md --include=results/multistation_summary_instance_e20.md --include=results/fusion_timeline_summary_instance_e20.md > RESULTS.md
+$PY results_tables.py "${ARGS[@]}" --include=results/multistation_summary_instance.md --include=results/multistation_summary_chile.md --include=results/multistation_summary_geofon.md --include=results/multistation_summary_geofon_caltail.md --include=results/fusion_timeline_summary_instance.md --include=results/fusion_timeline_summary_chile.md --include=results/fusion_timeline_summary_chile_measured.md --include=results/fusion_timeline_summary_geofon.md --include=results/multistation_summary_instance_e20.md --include=results/fusion_timeline_summary_instance_e20.md --include=results/robust_stead_ens3.md --include=results/meta_eqdgr.md --include=results/robust_stead_cap50.md --include=results/meta4_condR_vs_mix.md > RESULTS.md
 echo "RESULTS.md: $(wc -l < RESULTS.md) lines, $(grep -c '^## ' RESULTS.md) sections"
