@@ -4,6 +4,58 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 09:15 UTC — INSTANCE capped (M < 4.0) complete. The prior swap of Proposition 3 does most of the extrapolation, even for a free likelihood; equivariance adds tail (n.s.) and halves the false alarms; the truncation margin removes the remaining false-alarm cost. A head trained only on M < 4 then matches the free mixture trained on everything
+
+Seed 1, median action, 1 / 3 / 5 s; jackknife over the 11 M ≥ 5 sequences. INSTANCE has no
+labels in the masked cap bin, so the binning bug never applied here.
+
+| trained below M4.0 | bulk MAE | M ≥ 4 MAE | M ≥ 5 MAE | false M4 per 10⁴ |
+|---|---|---|---|---|
+| `mix_cap40` (free mixture) | .332 / .275 / .243 | 1.025 / .857 / .810 | 1.807 / 1.605 / 1.566 | 0 / 0 / 0 |
+| `mix_cap40_aug15` (augmentation ±1.5 decades) | .363 / .292 / .256 | .757 / .595 / .539 | 1.129 / .811 / .723 | 11 / 6 / 4 |
+| `mixgr_cap40` (free mixture × GR factor, truncated in training) | .332 / .275 / .242 | .716 / .557 / .518 | 1.061 / .793 / .756 | 28 / 28 / 27 |
+| `eqgr_cap40` | .332 / .274 / .239 | .807 / .615 / .550 | 1.097 / .671 / .554 | 13 / 11 / 10 |
+| `eqdgr_cap40` (joint truncation) | .329 / .270 / .235 | .779 / .580 / .522 | .978 / .582 / .507 | 15 / 12 / 9 |
+| `eqdgr_cap40_cond` (conditional truncation) | .330 / .272 / .237 | .803 / .614 / .552 | 1.042 / .665 / .578 | 13 / 16 / 15 |
+| `eqdgr_cap40_cond_m10` (+ truncation margin 1.0) | .330 / .268 / .233 | .825 / .627 / .565 | 1.131 / .734 / .631 | **9 / 5 / 3** |
+| *`mix_nll` (all magnitudes)* | *.328 / .270 / .238* | *.764 / .577 / .530* | *1.051 / .765 / .703* | *6 / 5 / 5* |
+
+1. **The prior swap alone recovers most of the extrapolation.** The free mixture with a GR factor
+   is truncated at the cap in training and untruncated at test. On M ≥ 5 that gives −.75 / −.81 /
+   −.81 against the plain capped mixture, jackknife intervals excluding zero, with unchanged
+   bulk error. This is Proposition 3's swap applied to a free likelihood. The likelihood of a
+   head trained against a truncated prior need not encode the cap, because the prior does that.
+   So the posterior with the untruncated prior rises past it. The cost is 25 extra false M4
+   predictions per 10⁴ small records. (Chile's prior-only control was confounded by the binning
+   bug; its rerun is in the Chile queue.)
+2. **Equivariance on top of the swap** adds M ≥ 5 +.04 / −.12 / −.20 (`eqgr`) and −.08 / −.21 / −.25
+   (`eqdgr`), not significant over 11 sequences. It halves the false alarms (−11 to −15 per 10⁴)
+   and lowers bulk error by up to .007. The capped amplitude response (04:30 entry) and the
+   GEOFON result suggest the equivariant likelihood matters most where the learned slope is right.
+   So the mechanism claim is restated: **the truncated-in-training, untruncated-at-test GR factor
+   is the main extrapolation device; the equivariant likelihood makes it cleaner (fewer false
+   alarms, more tail at 3–5 s).**
+3. **Against amplitude augmentation** (the existing data-side remedy) the equivariant heads win on
+   INSTANCE. `eqdgr_cap40` gives M ≥ 5 −.15 / **−.23 / −.22** (intervals excluding zero at 3 / 5 s) and
+   `eqdgr_cap40_cond` −.09 / **−.15 / −.15**, both with .02–.03 lower bulk error. GEOFON (08:55 entry)
+   is the opposite. Augmentation's unit slope suits GEOFON's Mw tail, and the learned mb slope
+   does not.
+4. **The conditional truncation costs a little here.** `eqdgr_cap40_cond` − `eqdgr_cap40`: M ≥ 5
+   +.06 / +.08 / +.07 (n.s.), M ≥ 4 +.02 / +.03 / +.03 (intervals excluding zero). The joint
+   truncation did not leak on INSTANCE, so the fix that Chile needs is not free.
+5. **The truncation margin removes the false-alarm cost.** `eqdgr_cap40_cond_m10` − `eqdgr_cap40_cond`:
+   false M4 −4.7 / −10.5 / −11.7 per 10⁴ (bootstrap intervals excluding zero; the cluster jackknife
+   over 19,280 clusters is wider). M ≥ 5 +.09 / +.07 / +.05 (n.s.), M ≥ 4 +.01 to +.02, bulk −.0005 to
+   −.004. This is the predicted effect (THEORY.md, remark after Proposition 3). Against the free
+   mixture trained on all magnitudes, the margin head is level on every metric: M ≥ 5 +.08 / −.03 /
+   −.07, false M4 +2.3 / −0.2 / −1.2, bulk +.002 / −.002 / −.005, all n.s. That is a model that never
+   saw an M ≥ 4 label. The same margin on Chile `eqgr` (09:00 note) was neutral, as expected where
+   capped false alarms were already rare.
+
+Files: `results/eval_cap40{,_bfix_aug,_vs_full}.json`, `robust_instance_cap40_attr.{json,md}`,
+`robust_instance_cap40_cond.{json,md}`. Seeds 2–3 of `mix_cap40`, `eqgr_cap40` and `eqdgr_cap40_cond`,
+and the `eqgr` margin arm, are training on SageMaker.
+
 ## 2026-10-30 08:55 UTC — Pre-registered capped test on GEOFON: **not confirmed**. The equivariant heads beat the identically capped mixture by .28–.31 on M ≥ 6, but amplitude augmentation beats them on the tail and the bulk guard fails. Cause: the label type changes at the cap (mb below, Mw above)
 
 `PREREGISTRATION_GEOFON_CAP.md` (commit 25e1657, written before training). The heads are trained
