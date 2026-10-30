@@ -416,8 +416,9 @@ This is Proposition 3's swap, and it works with a free likelihood as well. Its c
 extra false M≥4 predictions per 10⁴ small records. The equivariant likelihood adds .12–.25 at 3–5 s
 (not significant over 11 sequences), halves those false alarms and lowers bulk error. The truncation
 margin (THEORY.md) removes the rest of the false-alarm cost: 9 / 5 / 3 per 10⁴, against 13 / 16 / 15
-without it and 6 / 5 / 5 for the mixture trained on all magnitudes. Its M≥5 cost is small and
-not significant. The distance-marginalized head with conditional truncation and margin, trained
+without it and 6 / 5 / 5 for the mixture trained on all magnitudes. It does so at a tail cost:
+M≥5 +.05 to +.09 (not significant) on this head and +.12 to +.19 (significant) on the plain
+equivariant head. It is therefore a trade-off, not a free fix. The distance-marginalized head with conditional truncation and margin, trained
 only on M<4, is then level with the free mixture trained on every magnitude on bulk, M≥4, M≥5 and
 false alarms. On INSTANCE the equivariant heads also beat amplitude augmentation on M≥5 at 3 and 5 s
 (−.23 / −.22 for the joint-truncation head, intervals excluding zero), at .02–.03 lower bulk error.

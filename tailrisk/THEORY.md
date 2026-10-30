@@ -164,8 +164,13 @@ P(m ≥ C | x, y < C − Δ) of 1. That is negligible once Δ is a few posterior
 costs almost no bias, and it charges the model for any mass it hides above C on those records.
 The near-cap labels keep the truncation that lets the head extrapolate. Predicted effect: the
 capped heads' false-alarm rate falls toward the uncapped heads', with large-event estimates
-unchanged. Δ = 1.0 is fixed in advance, more than twice the largest bulk posterior SD; under
-test on INSTANCE and Chile.
+unchanged. Δ = 1.0 is fixed in advance, more than twice the largest bulk posterior SD.
+*Measured (30 Oct, INSTANCE capped at M4.0):* the false-alarm part holds on both heads (−5 to −12
+per 10⁴). The tail is not unchanged. M ≥ 5 error rises by .05–.09 on `eqdgr` (n.s.) and .12–.19 on
+`eqgr` (significant). The "negligible bias" argument assumes the true posterior puts little mass
+above C for labels below C − Δ. At 1–5 s the posteriors of M3 records evidently do reach above M4
+often enough that the penalty also pulls genuine tail mass down. A larger margin would trade the
+other way.
 
 **Classical counterpart.** Under selection on M, a forward regression of M on log amplitude is
 biased (truncation acts on the response), while the inverse regression of log amplitude on M is

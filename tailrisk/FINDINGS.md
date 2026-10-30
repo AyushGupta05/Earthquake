@@ -4,6 +4,26 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 11:25 UTC — INSTANCE capped with three seeds: replicated (M ≥ 5 −.82 / −.99 / −1.04 against the capped mixture, 11 of 11 sequences; level with the full-data mixture). Correction: the truncation margin has a real tail cost on the plain head
+
+Three-seed ensembles, trained below M4.0. Jackknife over 11 M ≥ 5 sequences / 194 M ≥ 4 clusters.
+
+| Δ (1 / 3 / 5 s) | bulk MAE | M ≥ 4 MAE | M ≥ 5 MAE | false M4 per 10⁴ |
+|---|---|---|---|---|
+| `eqdgr_cap40_cond` ens − `mix_cap40` ens | −.002 / −.006 / −.008 | **−.24 / −.26 / −.28** | **−.82 / −.99 / −1.04** (11 / 11) | +10.5 / +6.4 / +4.6 |
+| `eqgr_cap40` ens − `mix_cap40` ens | −.001 / −.003 / −.004 | **−.23 / −.26 / −.28** | **−.71 / −.95 / −1.04** (11 / 11) | +8.1 / +7.4 / +6.7 |
+| `eqdgr_cap40_cond` ens − `mix_nll` ens (all magnitudes) | +.001 / −.002 / −.004 | +.024 / +.022 / +.007 | −.05 / −.13 / −.17 (n.s.) | +5.5 / +2.2 / +1.3 |
+| `eqgr_cap40_m10` − `eqgr_cap40` (margin) | −.003 / −.003 / −.001 | +.035 / +.017 / +.011 | **+.19 / +.15 / +.12** (0–1 of 11 favour) | **−7.9 / −6.7 / −6.0** |
+
+**Correction to the 09:15 entry, point 5.** The truncation margin removes the false-alarm cost on
+both heads as predicted. On `eqgr` it also raises M ≥ 5 error by .12–.19, with intervals excluding
+zero. On `eqdgr` (cond) the same margin cost +.05 to +.09, n.s. So the margin is a trade-off between
+tail and false alarms, not a free fix. With it, `eqgr` capped is level with the full-data mixture at
+3–5 s on M ≥ 5 (+.06 / −.03, n.s.) and has fewer false alarms, but it is no longer ahead of the
+unmargined head on the tail. The remark in THEORY.md is qualified accordingly.
+
+Files: `results/robust_instance_cap40_ens3.{json,md}`.
+
 ## 2026-10-30 11:15 UTC — Chile retrained on independent magnitudes (audit M1): the full-data tail gain survives only on M ≥ 6 (−.13 to −.20 at 3–5 s, significant on MW_SIPPL, n.s. on M_EXT); capped training still beats the capped mixture by a wide margin but only ties the full-data mixture
 
 Chile's MA labels are amplitude-derived. The relabelled caches replace the large events' labels by
@@ -299,7 +319,8 @@ labels in the masked cap bin, so the binning bug never applied here.
 4. **The conditional truncation costs a little here.** `eqdgr_cap40_cond` − `eqdgr_cap40`: M ≥ 5
    +.06 / +.08 / +.07 (n.s.), M ≥ 4 +.02 / +.03 / +.03 (intervals excluding zero). The joint
    truncation did not leak on INSTANCE, so the fix that Chile needs is not free.
-5. **The truncation margin removes the false-alarm cost.** `eqdgr_cap40_cond_m10` − `eqdgr_cap40_cond`:
+5. **The truncation margin removes the false-alarm cost** (*see the 11:25 correction: on `eqgr` it
+   also costs .12–.19 on M ≥ 5*). `eqdgr_cap40_cond_m10` − `eqdgr_cap40_cond`:
    false M4 −4.7 / −10.5 / −11.7 per 10⁴ (bootstrap intervals excluding zero; the cluster jackknife
    over 19,280 clusters is wider). M ≥ 5 +.09 / +.07 / +.05 (n.s.), M ≥ 4 +.01 to +.02, bulk −.0005 to
    −.004. This is the predicted effect (THEORY.md, remark after Proposition 3). Against the free
