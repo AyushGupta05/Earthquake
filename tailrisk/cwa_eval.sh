@@ -57,4 +57,12 @@ S5E="--spec INSTANCE:$R/robust_instance_equalinfo.json:5 --spec Chile:$R/robust_
 S5K="--spec INSTANCE:$R/robust_instance_condR3.json:5 --spec Chile:$R/robust_chile_condR3.json:6 --spec GEOFON:$R/robust_geofon_condR3.json:7 --spec STEAD:$R/robust_stead_condR3.json:5 --spec CWA:$R/robust_cwa_condR3.json:5"
 ../.venv/bin/python meta_analysis.py $S5K --pair "$K:$M" --out $R/meta5_condR_vs_mix.json > /dev/null 2>&1
 echo "$(date -u) meta rc=$?" >> $L
+# mechanical verdict and an unattended commit of the results, so they are on record overnight
+../.venv/bin/python cwa_verdict.py > $W/logs/cwa_verdict.log 2>&1; echo "$(date -u) verdict rc=$?" >> $L
+cp $C/folds.json $R/cwa_folds.json
+git add results/cwa_eval_*.json results/robust_cwa_*.json results/robust_cwa_*.md results/meta5_*.json results/meta5_*.md results/CWA_VERDICT.md results/cwa_folds.json 2>/dev/null
+git commit -q -m "CWA (Taiwan) pre-registered results and mechanical verdict (unattended commit from cwa_eval.sh)
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>" && git push -q origin main
+echo "$(date -u) committed rc=$?" >> $L
 echo "$(date -u) cwa_eval done" >> $L

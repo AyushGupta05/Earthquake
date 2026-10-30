@@ -4,7 +4,7 @@ Before an arm starts, the host claims it with an S3 conditional write (If-None-M
 <prefix>/claims/<arm>; an arm whose claim already exists, or whose fold4.npz is already in
 <prefix>/arms/<arm>/, is skipped. Finished arms (and their logs) are uploaded to <prefix>/arms/ and
 <prefix>/logs/. The same queue can therefore be served by EC2 hosts and SageMaker containers at once.
-A host that dies leaves its claim in place; delete the claim object to release the arm.
+A claim older than --stale hours whose arm is still unfinished is taken over (its lane died).
 
   TAILWORK_DIR=<cache> python claim_runner.py --queue sm_queues/queue_cwa.txt \
       --prefix s3://instance-earthquake-data/sm/cwa --gpu 0
@@ -34,6 +34,7 @@ def main():
     ap.add_argument('--prefix', required=True)
     ap.add_argument('--gpu', default='0')
     ap.add_argument('--python', default=sys.executable)
+    ap.add_argument('--stale', type=float, default=4.0, help='hours after which another lane may take over a claim')
     args = ap.parse_args()
     work = Path(os.environ['TAILWORK_DIR'])
     (work / 'logs').mkdir(parents=True, exist_ok=True)
@@ -50,13 +51,22 @@ def main():
             continue
         except ClientError:
             pass
+        body = f'{me} {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}'.encode()
         try:
-            s3.put_object(Bucket=bucket, Key=f'{key}/claims/{arm}', Body=f'{me} {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}'.encode(),
-                          IfNoneMatch='*')
+            s3.put_object(Bucket=bucket, Key=f'{key}/claims/{arm}', Body=body, IfNoneMatch='*')
         except ClientError as e:
-            if e.response['Error']['Code'] in ('PreconditionFailed', 'ConditionalRequestConflict'):
+            if e.response['Error']['Code'] not in ('PreconditionFailed', 'ConditionalRequestConflict'):
+                raise
+            # claimed by another lane; take it over only if that claim is stale (older than
+            # --stale hours with no finished arm), which means its lane died mid-training
+            try:
+                age = time.time() - s3.head_object(Bucket=bucket, Key=f'{key}/claims/{arm}')['LastModified'].timestamp()
+            except ClientError:
                 continue
-            raise
+            if age < args.stale * 3600:
+                continue
+            s3.put_object(Bucket=bucket, Key=f'{key}/claims/{arm}', Body=body + b' (takeover)')
+            print(time.strftime('%H:%M:%S'), me, 'takes over stale claim', arm, flush=True)
         print(time.strftime('%H:%M:%S'), me, 'start', arm, flush=True)
         log = work / 'logs' / f'{arm}.log'
         env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(args.gpu))

@@ -17,5 +17,14 @@ else
   for f in meta.npz wave16.npy scale.npy folds.json events.csv; do aws s3 cp $D/$f $C/$f --only-show-errors; done
 fi
 export TAILWORK_DIR=$C TAILWORK_MAXMAG=9.5
-$PY claim_runner.py --queue sm_queues/queue_cwa.txt --prefix $P --gpu 0 >> $C/claim_runner.log 2>&1
-echo "$(date -u) queue exhausted" >> $C/claim_runner.log
+# keep passing over the queue until every arm is finished in S3, so a lane that died elsewhere
+# (stale claim) is picked up here; the SageMaker lanes make one pass and exit
+ARMS=$(sed -E 's/.*--arm ([^ ]+).*/\1/' sm_queues/queue_cwa.txt)
+all_done() { for a in $ARMS; do aws s3 ls $P/arms/$a/fold4.npz > /dev/null 2>&1 || return 1; done; }
+until all_done; do
+  $PY claim_runner.py --queue sm_queues/queue_cwa.txt --prefix $P --gpu 0 >> $C/claim_runner.log 2>&1
+  echo "$(date -u) pass done" >> $C/claim_runner.log
+  all_done && break
+  sleep 900
+done
+echo "$(date -u) all arms finished" >> $C/claim_runner.log
