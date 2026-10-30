@@ -73,11 +73,14 @@ STEAD is added under a pre-registered pooled analysis. Conditioned on distance (
 also beats the free-mixture ensemble on GEOFON, on bulk and on M ≥ 6–7. There the classical law
 with the same distance is still better on M ≥ 7.
 
-**A pre-registered failure (GEOFON, 30 Oct).** Trained below M6.0, the equivariant heads beat the
-identically capped free mixture on GEOFON's 276 M ≥ 6 events, but not amplitude augmentation, and
-their bulk error rose. GEOFON's labels switch from mb to Mw at about M6, so the amplitude slope
-learned below the cap is the wrong one above it. Capped-training extrapolation is claimed only
-where the magnitude scale is consistent across the cap.
+**Two pre-registered capped-training failures (GEOFON, STEAD; 30 Oct).** Trained below a magnitude
+cap (M6.0 on GEOFON, M5.0 on STEAD), the equivariant heads again beat the identically capped free
+mixture by a wide margin. On STEAD they even beat the free mixture trained on every magnitude. But
+on the top tail they did not beat amplitude augmentation, the existing data-side remedy, so both
+pre-registered tests failed their decision rule. In both catalogues the labels switch from mb to Mw
+at the cap, so the amplitude slope learned below it is the wrong one above it. That explanation is
+post hoc. Capped-training extrapolation beyond augmentation is shown only on catalogues with a
+consistent magnitude scale (INSTANCE, Chile), and those tests were not pre-registered.
 
 ## Result in one paragraph
 

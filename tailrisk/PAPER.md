@@ -39,8 +39,11 @@ to M7), matching or beating a free mixture trained on the full catalogue, while 
 trained free mixture saturates at the cap. On a fourth catalogue held out and pre-registered
 before training (STEAD, 718 M≥5 events), the plain equivariant head lowers M≥5 error at 3 and 5 s
 with bulk error unchanged, meeting the pre-registered rule. The distance-marginalized head lowers
-it by .08–.11 but exceeds the bulk guard at 1 s by .0004. On GEOFON, whose labels switch from mb to Mw at the
-cap, a pre-registered version of this test failed against amplitude augmentation. Because the
+it by .08–.11 but exceeds the bulk guard at 1 s by .0004. In both pre-registered capped tests (GEOFON
+cap M6, STEAD cap M5) the equivariant heads again beat the identically capped mixture. But they did
+not beat amplitude augmentation on the top tail. In both catalogues the labels switch from mb to Mw
+at the cap. So extrapolation beyond the data-side baseline is shown only where the magnitude scale
+is consistent across the cap. Because the
 distance-marginalized head models
 distance and magnitude jointly, the same trained model can be conditioned on a located event's
 distance at inference. That lowers INSTANCE bulk error by 30% and M≥4 error by 42%. With equal
@@ -437,6 +440,17 @@ against .98 for κ ≡ 1 and .68 for augmentation) and carry it to the Mw events
 extrapolation holds where the magnitude scale is consistent across the cap (INSTANCE, Chile), and
 the learned slope cannot anticipate a change of scale it never saw
 (`results/geofon_eval_cap60*.json`, `robust_geofon_cap60.md`, `cap_response_geofon.json`).
+
+**STEAD (pre-registered, not confirmed).** Trained below M5.0 and scored on 718 M ≥ 5 events in 456
+clusters, the primary head (`eqdgr`, conditional truncation) beats the capped free mixture. M ≥ 5
+error falls by .28 / .31 at 3 / 5 s and M ≥ 6 by .77 / .87, with bulk error level. It also beats
+the free mixture trained on all of STEAD (M ≥ 5 −.06 / −.08, M ≥ 6 −.30 / −.39). But the augmented
+mixture is better on M ≥ 5, by .08 at 3 and 5 s, which fails the pre-registered comparison. On
+M ≥ 6 the head is level at 3 s and better at 5 s (−.08). It has .015–.022 lower bulk error and half
+the false alarms. As on GEOFON, STEAD's M4–5 labels are mostly mb (62%) and its M ≥ 5 labels mostly
+Mw. The label-scale explanation is post hoc. The two capped tests where the method beat
+augmentation (INSTANCE, Chile) were not pre-registered, and the two pre-registered ones failed
+against it (`results/robust_stead_cap50.md`).
 
 Truncating the prior is not enough for heads with a latent training label: truncating the
 distance-marginalized head's joint over (distance bin, magnitude) is not identified, and on
