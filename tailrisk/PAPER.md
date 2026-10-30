@@ -45,7 +45,8 @@ distance-marginalized head models
 distance and magnitude jointly, the same trained model can be conditioned on a located event's
 distance at inference. That lowers INSTANCE bulk error by 30% and M≥4 error by 42%. With equal
 information it beats both the classical inverse amplitude law and an identically conditioned
-free head on M≥5 events.
+free head on M≥5 events, and pooled over four catalogues it beats the free mixture on the largest
+events at 3 and 5 s with lower bulk error on every catalogue.
 
 ## 1. Introduction
 
@@ -313,7 +314,16 @@ excluding zero. Pooled over the three catalogues, the HKSJ interval excludes zer
 large-event sequences favour the conditioned head at 3 and 5 s. Against the classical law with the
 same distance, the network is better on INSTANCE and Chile but worse on GEOFON M ≥ 7 (by .25–.45),
 where the classical law has no prior to shrink its estimate (`results/robust_*_condR3.md`,
-`meta3_condR_vs_*.md`).
+`meta3_condR_vs_*.md`). On STEAD the conditioned ensemble lowers bulk error by .041 / .031 / .021
+and M≥5 error by .13 / .17 / .19 against the free-mixture ensemble. It also removes the marginal
+head's 1 s bulk excess, and beats the classical law with the same distance on M≥5 by .05–.06.
+Pooled over the four catalogues, the tail difference against the free mixture is −.18 / −.23 at
+3 / 5 s. Its HKSJ intervals ([−.28, −.09], [−.39, −.07]) exclude zero, also with a 26% distance
+error. Bulk error is lower on every catalogue, and 382 / 398 of 521 large-event sequences favour
+the head (Figure `figures/pooled_forest_condR.png`). The free mixture is not given the distance,
+so this is a statement about the deployable system rather than about equivariance alone. The
+equal-information comparison against a free distance head conditioned the same way is
+pre-registered (`PREREGISTRATION_EQUALINFO.md`) ⟨pending⟩.
 
 ### 5.2 Frontier and dominated alternatives
 
