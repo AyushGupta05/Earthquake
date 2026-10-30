@@ -158,6 +158,36 @@ def ci(d):
     return {'mean': float(d.mean()), 'lo': float(np.quantile(d, .025)), 'hi': float(np.quantile(d, .975)), 'n_reps': int(len(d))}
 
 
+def collapse_by_station(lp, meta, extra=()):
+    """Merge the co-located instruments of each (event, station) into one posterior: the mean of
+    their log-posteriors (a geometric mean, so the training prior is still counted once), then
+    renormalized. Returns the collapsed log-posteriors per arm and the per-group metadata
+    (mag, event, cluster, fold, hyp_km, and any `extra` fields, averaged)."""
+    ev, st = meta['event'].astype(np.int64), meta['station'].astype(np.int64)
+    ok = np.all([np.isfinite(v[:, 0, 0]) for v in lp.values()], 0) & np.isfinite(meta['hyp_km'])
+    idx = np.nonzero(ok)[0]
+    key = ev[idx] * (int(st.max()) + 1) + st[idx]
+    order = np.argsort(key, kind='stable')
+    idx, key = idx[order], key[order]
+    starts = np.r_[0, np.nonzero(np.diff(key))[0] + 1]
+    sizes = np.diff(np.r_[starts, len(idx)]).astype(np.float32)
+    out_lp = {}
+    for a, v in lp.items():
+        x = v[idx].astype(np.float32)
+        S = np.add.reduceat(x, starts, axis=0) / sizes[:, None, None]
+        S = S - S.max(-1, keepdims=True)
+        S = S - np.log(np.exp(S).sum(-1, keepdims=True))
+        out_lp[a] = S.astype(np.float16)
+    first = idx[starts]
+    m = {k: meta[k][first] for k in ('mag', 'event', 'cluster', 'fold', 'station')}
+    m['hyp_km'] = np.minimum.reduceat(meta['hyp_km'][idx], starts)
+    for k in extra:
+        vals = meta[k][idx].astype(np.float64)
+        m[k] = np.add.reduceat(np.nan_to_num(vals, nan=0.0), starts) / np.maximum(np.add.reduceat(np.isfinite(vals).astype(float), starts), 1)
+    print(f'collapsed {len(idx)} records to {len(starts)} station-event groups ({len(idx) / len(starts):.2f} instruments per station)', flush=True)
+    return out_lp, m
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arms', required=True)
@@ -169,6 +199,7 @@ def main():
     ap.add_argument('--hist-sigma', type=float, default=0.25, help='kernel width (magnitude units) of the smoothed training-label prior')
     ap.add_argument('--hist-floor', type=float, default=1e-5, help='floor of the smoothed training-label prior (fraction of total)')
     ap.add_argument('--cal-on', default='all', choices=['all', 'tail'], help='events whose fused MAE selects the calibrated tilt (cross-fitted over folds)')
+    ap.add_argument('--dedupe-stations', action='store_true', help='merge co-located instruments of a station into one posterior per event before fusing (audit M4)')
     args = ap.parse_args()
     thr = [float(t) for t in args.thr.split(',')]
     arms = args.arms.split(',')
@@ -181,6 +212,9 @@ def main():
         lp[a], phi[a] = load_logpmf(a, n, root)
         print(a, 'folds with prior:', sorted(phi[a]), flush=True)
     pihat = train_hist_logprior(mag, fold, int(fold.max()) + 1, args.hist_sigma, args.hist_floor)
+    if args.dedupe_stations:
+        lp, cm = collapse_by_station(lp, meta)
+        mag, ev, cl, fold, hyp = cm['mag'], cm['event'], cm['cluster'], cm['fold'].astype(int), cm['hyp_km']
     usable = np.all([np.isfinite(lp[a][:, 0, 0]) for a in arms], 0) & np.isfinite(hyp)
     # order usable records by (event, hypocentral distance)
     order = np.lexsort((hyp, ev))
@@ -194,7 +228,7 @@ def main():
     ev_cl = cl[order[starts]]
     print(f'{len(ev_ids)} events with usable records; sizes: median {np.median(sizes):.0f}, '
           f'>=4: {(sizes >= 4).sum()}, >=8: {(sizes >= 8).sum()}', flush=True)
-    rep = {'arms': arms, 'thr': thr, 'hist_sigma': args.hist_sigma, 'hist_floor': args.hist_floor, 'ks': {}, 'metrics': {}, 'vs_ref': {}, 'gamma': {}}
+    rep = {'arms': arms, 'thr': thr, 'hist_sigma': args.hist_sigma, 'hist_floor': args.hist_floor, 'dedupe_stations': bool(args.dedupe_stations), 'ks': {}, 'metrics': {}, 'vs_ref': {}, 'gamma': {}}
     ks = [k for k in args.ks.split(',')]
     # calibrated tilt per arm and deadline (cross-fitted over folds at k = all, on M>=thr[0] events)
     gamma = {}

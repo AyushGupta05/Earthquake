@@ -1,0 +1,5 @@
+--arm mix_nll --head mix --loss nll --epochs 10
+--arm eqdgr_nll --head eqdgr --loss nll --epochs 10
+--arm eqgr_nll --head eqgr --loss nll --epochs 10
+--arm mixgr_nll --head mixgr --loss nll --epochs 10
+--arm eqgr_k1_nll --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0

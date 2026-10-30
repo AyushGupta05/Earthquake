@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 
 from common import PMF_CENTERS, WORK, load_meta
-from multistation import EventBoot, ci, decide, load_logpmf, normalize, train_hist_logprior
+from multistation import EventBoot, ci, collapse_by_station, decide, load_logpmf, normalize, train_hist_logprior
 
 V_P = 6.5
 TIMES = (2, 3, 4, 6, 8, 10, 15, 20)
@@ -33,6 +33,7 @@ def main():
     ap.add_argument('--thr', default='4,5')
     ap.add_argument('--reps', type=int, default=1000)
     ap.add_argument('--out', required=True)
+    ap.add_argument('--dedupe-stations', action='store_true', help='merge co-located instruments of a station into one posterior per event (audit M4)')
     ap.add_argument('--timing', default='proxy', choices=['proxy', 'measured'],
                     help="'proxy': t_i = hyp_km / V_P; 'measured': per-station P delays from meta['p_after_network_s'] (Chile)")
     args = ap.parse_args()
@@ -46,6 +47,10 @@ def main():
     for a in arms:
         lp[a], phi[a] = load_logpmf(a, n, root)
     pihat = train_hist_logprior(mag, fold, int(fold.max()) + 1)
+    if args.dedupe_stations:
+        extra = ('p_after_network_s',) if args.timing == 'measured' else ()
+        lp, meta = collapse_by_station(lp, meta, extra)
+        mag, ev, cl, fold, hyp = meta['mag'], meta['event'], meta['cluster'], meta['fold'].astype(int), meta['hyp_km']
     usable = np.all([np.isfinite(lp[a][:, 0, 0]) for a in arms], 0) & np.isfinite(hyp)
     order = np.lexsort((hyp, ev))
     order = order[usable[order]]
@@ -67,7 +72,7 @@ def main():
     for t in thr:
         masks[f'M>={t:g}'] = ev_mag >= t - 1e-6
     boot = EventBoot(ev_cl, args.reps)
-    rep = {'arms': arms, 'thr': thr, 'v_p': V_P, 'timing': args.timing, 'times': TIMES, 'n_events': int(len(starts)),
+    rep = {'arms': arms, 'thr': thr, 'v_p': V_P, 'timing': args.timing, 'dedupe_stations': bool(args.dedupe_stations), 'times': TIMES, 'n_events': int(len(starts)),
            'n_tail': {k: int(v.sum()) for k, v in masks.items()}, 'metrics': {}, 'vs_ref': {}, 'stations_used': {}}
     pihat_ev = np.stack([pihat[f] for f in ev_fold])
     for T in TIMES:

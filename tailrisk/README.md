@@ -10,6 +10,22 @@ at 1, 3 and 5 s on every dataset, with paired differences, are tabulated in
 [NOVELTY.md](NOVELTY.md). An explanatory notebook is in
 [tail_risk_study.ipynb](tail_risk_study.ipynb).
 
+## Independent checks (30 Oct 2026)
+
+An adversarial audit ([AUDIT_2026-10-30.md](AUDIT_2026-10-30.md)) found no leakage and reproduced
+the headline numbers from the saved predictions, but qualified three claims: the INSTANCE M≥5
+gains come from 31 events in only 11 sequences, about 72% of the gain from the 2016–17 Central
+Italy sequence (the M≥4 gains are robust); the distance-marginalized head roughly doubles the
+false-M4 rate on unseen stations (an earlier 10× unit error hid this; corrected below); and
+Chile's tail gain is measured against an amplitude-derived label. A literature review
+([LITREVIEW_2026-10-30.md](LITREVIEW_2026-10-30.md)) found the κ = 1 form of the equivariance in
+Zhang, Zhang & Tian 2021 and the fusion fix in the classifier-combination literature, and no
+precedent for the learned slope κ(s) with a learned GR-tail factor, the fusion diagnosis in EEW, or
+a controlled capped-training test. The decisive tests now running are pre-registered
+([PREREGISTRATION_STEAD.md](PREREGISTRATION_STEAD.md)): STEAD (718 M≥5 events in 456 sequences),
+training below a magnitude cap, a κ ≡ 1 ablation, the MagNet trunk, and zero-shot transfer
+between catalogues. FINDINGS.md has the details.
+
 ## Result in one paragraph
 
 A deep magnitude posterior of the form

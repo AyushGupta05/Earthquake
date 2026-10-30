@@ -120,6 +120,45 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-30 01:30 UTC — Independent audit and literature review: what they change, and what is being done
+
+Two independent sessions reviewed the study on 30 Oct: an adversarial audit of code and
+evaluation (`AUDIT_2026-10-30.md`) and a literature search for prior art (`LITREVIEW_2026-10-30.md`).
+
+**What the audit confirmed.** No leakage that invalidates the comparisons: folds, clusters and
+held stations are clean; inputs are causal on INSTANCE; normalization uses training rows only;
+every arm uses the same schedule; `eqgr` was specified before its results; an independent
+recomputation from the saved fold PMFs reproduces the headline numbers to four decimals. The
+**M≥4 claims are robust** (194 clusters; eqgr ensemble Δ at 5 s −.028, jackknife [−.055,−.001]).
+
+**What it found, and the response:**
+
+| finding | response |
+|---|---|
+| H1: the 31 INSTANCE M≥5 events are 11 sequences; Central Italy carries ~72% of every M≥5 gain; outside it the gain is −.06 to −.09, and a small-cluster jackknife interval includes zero for every M≥5 comparison except eqgr on held stations | `robust_tail.py` (jackknife t(G−1), LOCO, Δ without the largest cluster, cluster sign tests, observed Δ) is being written; the README will report M≥5 as "31 events in 11 sequences" with those intervals. The decisive test of the tail claim moves to catalogues with many sequences: STEAD (718 M≥5 events in 456 clusters, pre-registered) and the capped-training test (346 M≥4 events above the cap). |
+| H2: false-M4 rates from 21 Oct onward were per 10³ written as per 10⁴ in five places, hiding that `eqdgr` doubles the false-alarm rate on unseen stations (17.9 vs 9.0 per 10⁴ at 1 s) | Corrected in README, PAPER and FINDINGS (erratum, this commit series). |
+| M1: Chile's labels (MA) are amplitude-derived; scored against independent magnitudes (M_EXT, MW_SIPPL) most of the M≥5 and about half of the M≥6 gain disappears | Relabelled Chile caches are being built; mix and eqdgr will be retrained on M_EXT and MW_SIPPL. Until then the Chile tail gain is described as fidelity to an amplitude-based label. |
+| M2: the 45-cell sign tests treat dependent cells as independent | Replaced by cluster-level sign tests in `robust_tail.py`; the old p-values are withdrawn. |
+| M3: `eqdgr`, the 20-epoch model and the "best fusion rule" were chosen on the same folds | Pre-registered, locked test on STEAD (`PREREGISTRATION_STEAD.md`, committed before training). "Single best model" is now marked post hoc. |
+| M4: fusion counted co-located instruments (HH+HN) as separate stations | `--dedupe-stations` merges each station's instruments into one posterior; the fusion studies are being rerun. |
+| L1: reported Δ are bootstrap means | `robust_tail.py` reports observed Δ. |
+| L2–L8 | Noted; all arm-neutral (Visso duplicate entries, GK window residue, temporal "standard split", GEOFON resampling, oracle bulk-capped numbers, Chile picker). |
+
+**What the literature review found.** The κ = 1 core (an exactly log-amplitude-equivariant
+predicted magnitude distribution for EEW) is anticipated by Zhang, Zhang & Tian 2021 and the arXiv
+versions of Zhang & Zhang; the joint magnitude–distance posterior with distance marginalized is
+the Gutenberg algorithm's structure (Meier et al. 2015, kNN); the algebra of Propositions 1–2 is
+classical (Malmquist, Tinti & Mulargia, exponential tilting); dividing the training prior out of
+fused posteriors is textbook (Kittler, BCM, ProbEn, Geffner et al.). Not found anywhere: a learned
+waveform-dependent slope κ(s) inside a mixture sharing the shift; a learned GR-tail prior factor
+kept at test time and shaped to preserve equivariance; the non-identifiability of that factor's
+slope and its fusion consequence; the diagnosis that EEW posterior fusion double-counts the prior
+(the Gutenberg algorithm itself multiplies posteriors); and a controlled capped-training
+extrapolation test. Response: a κ ≡ 1 ablation (the Zhang construction on the same trunk) is
+queued on INSTANCE, on the capped test and on STEAD; NOVELTY.md and PAPER.md will cite the
+precedents; one in-domain 2026 paper (P. Zhang, X. Zhang & Tian, single-station on INSTANCE) could
+not be read and is being retried.
+
 ## 2026-10-30 00:30 UTC — Held-station test of the 20-epoch distance-marginalized head: longer training helps on seen stations and hurts on unseen ones, for both models; at unseen stations the 10-epoch head is the best model
 
 `eqdgr_nll_e20_hs` and `mix_nll_e20_hs` (20 epochs, same 20% of INSTANCE stations withheld,
