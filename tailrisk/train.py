@@ -58,7 +58,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     n_static = data.static_raw.shape[1]
     model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult, kappa_min=args.kappa_min,
                            beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap, kappa_fixed=args.kappa_fixed,
-                           cap_conditional=args.cap_latent == 'conditional').to(device)
+                           cap_conditional=args.cap_latent == 'conditional', cap_margin=args.cap_margin).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -188,6 +188,10 @@ def main():
                     help='joint latent heads (eqdgr/eqsgr) under --train-mag-cap: truncate the whole joint over '
                          '(latent, magnitude) (original) or only the magnitude conditional, with the latent '
                          'marginal from the untruncated joint (models.joint_log_prob)')
+    ap.add_argument('--cap-margin', type=float, default=None,
+                    help='under --train-mag-cap: labels at least this far below the cap are scored by the '
+                         'untruncated posterior, the rest by the truncated one (models.MarginTruncated; eqgr, '
+                         'mixgr, eqdgr). Default: every label by the truncated posterior')
     ap.add_argument('--hold-stations', type=float, default=0.0,
                     help='fraction of stations withheld from training in every fold (held-station test)')
     ap.add_argument('--max-train', type=int, default=0, help='smoke test: subsample training rows')

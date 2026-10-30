@@ -241,6 +241,23 @@ rate at 1 s. Absolute values for the eqgr ensemble: bulk
 .320/.263/.230; M≥4 .737/.553/.497; M≥5 1.010/.638/.537. On the unseen Central Italy sequence,
 5 s M≥5 MAE falls from 1.008 (CE) to 0.502.
 
+**Classical amplitude laws.** The classical magnitude relations are fitted per fold on the same
+training rows and scored as arms, with a Gaussian predictive distribution whose SD is the
+training residual. They come in two directions. The forward regression of M on log amplitude
+and the catalogue distance underestimates the largest events by 2–3 units even when trained on
+all magnitudes (INSTANCE M≥5 MAE 2.35 / 2.22 / 2.14). This is regression dilution: E[M | A, R]
+shrinks toward the bulk, the classical form of saturation. The inverse law regresses log
+amplitude on M and log distance, then solves for M. It does not shrink, and with the true
+catalogue distance it ties the distance-marginalized head on INSTANCE M≥5 (.86 / .69 / .62
+against .90 / .58 / .50; jackknife intervals over 11 sequences include zero). On Chile it trails
+the head at 3–5 s (M≥5 Δ −.07 / −.15, intervals excluding zero). Its bulk error is two to four
+times the network's (INSTANCE .98 / .90 / .86, Chile .38 / .33 / .33). Its NLL is 1.1–1.5 nats
+worse. On INSTANCE it predicts M≥4 for 12–16% of M<3.5 records, against 0.05–0.12% for the
+networks. Without distance, the inverse law is worse on every metric. The equivariant head thus
+reaches the oracle-distance inverse law's large-event accuracy while keeping the free network's
+bulk accuracy, calibration and false-alarm rate, with no distance input
+(`results/eval_classical.json`, `chile_eval_classical.json`).
+
 ### 5.2 Frontier and dominated alternatives
 
 Every baseline is dominated on the bulk/tail frontier at all three deadlines. The

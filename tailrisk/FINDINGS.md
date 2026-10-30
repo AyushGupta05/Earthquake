@@ -4,6 +4,70 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 06:55 UTC — Classical amplitude laws as ordinary arms (all magnitudes): with the true catalogue distance the inverse law ties the networks on large events, at 2–4× their bulk error and 100–300× their false-M4 rate; without distance, or in the forward direction, it fails
+
+The audit's classical baseline, rerun as arms (`linear_arms.py`): fitted per fold on the training
+rows, Gaussian predictive distribution with the training residual SD, scored by the same
+evaluation and robust statistics as the networks. The networks get no distance; `invR` and
+`fwdR` use the catalogue hypocentral distance (an oracle at 1–5 s after the first P).
+Median action, 1 / 3 / 5 s.
+
+INSTANCE (1,159,249 records; M ≥ 5: 31 events in 11 sequences)
+
+| arm | bulk MAE | M ≥ 4 MAE | M ≥ 5 MAE | false M4 per 10⁴ (M < 3.5) | NLL / CRPS at 5 s |
+|---|---|---|---|---|---|
+| `mix_nll` (free mixture) | .328 / .270 / .238 | .764 / .577 / .530 | 1.051 / .765 / .703 | 6.3 / 5.2 / 4.6 | 2.43 / .172 |
+| `eqdgr_nll` | .327 / .268 / .234 | .738 / .559 / .504 | .898 / .578 / .503 | 12.2 / 7.7 / 5.5 | 2.40 / .168 |
+| `lin_invR` A ~ M + log R, solved for M | .980 / .904 / .859 | .915 / .785 / .729 | .857 / .687 / .615 | 1626 / 1336 / 1224 | 3.85 / .630 |
+| `lin_inv` A ~ M + invariants | 1.287 / 1.257 / 1.199 | 1.316 / 1.382 / 1.354 | .926 / .936 / .964 | 2625 / 2359 / 2135 | 4.52 / 1.174 |
+| `lin_fwdR` M ~ A + log R | .418 / .410 / .405 | 1.408 / 1.325 / 1.278 | 2.349 / 2.216 / 2.140 | 1.4 / 2.4 / 3.2 | 3.07 / .289 |
+
+Northern Chile (505,666 records, MA labels; M ≥ 6: 12 events in 8 clusters)
+
+| arm | bulk MAE | M ≥ 5 MAE | M ≥ 6 MAE | top-bin bias | NLL / CRPS at 5 s |
+|---|---|---|---|---|---|
+| `mix_nll` | .208 / .164 / .148 | .857 / .591 / .556 | 1.260 / .861 / .858 | −1.26 / −.86 / −.86 | 1.97 / .108 |
+| `eqdgr_nll` | .205 / .160 / .142 | .845 / .554 / .468 | 1.258 / .600 / .484 | −1.23 / −.35 / −.24 | 1.91 / .103 |
+| `lin_invR` | .377 / .331 / .329 | .845 / .628 / .615 | 1.188 / .610 / .586 | −1.16 / −.27 / +.08 | 3.01 / .247 |
+| `lin_inv` | .578 / .509 / .510 | 1.373 / 1.345 / 1.447 | 1.327 / 1.422 / 1.682 | +.48 / +1.04 / +1.36 | 3.43 / .380 |
+| `lin_fwdR` | .303 / .278 / .274 | 2.244 / 1.789 / 1.606 | 3.052 / 2.332 / 2.046 | −3.05 / −2.33 / −2.05 | 2.76 / .201 |
+
+`eqdgr_nll` − `lin_invR`, delete-one-cluster jackknife (t, G − 1) and cluster bootstrap:
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| INSTANCE bulk | −.652 | −.636 | −.625 (all intervals exclude 0) |
+| INSTANCE M ≥ 5 (11 seq.) | +.041 [−.171, +.252], 4 / 7 | −.109 [−.329, +.111], 8 / 3 | −.112 [−.339, +.115], 8 / 3 |
+| Chile bulk | −.171 | −.171 | −.186 (all exclude 0) |
+| Chile M ≥ 5 (28 clusters) | +.000 [−.059, +.059] | **−.074 [−.123, −.025]**, 20 / 8 | **−.148 [−.194, −.101]**, 22 / 6 |
+| Chile M ≥ 6 (8 clusters) | +.069 [−.067, +.206] | −.010 [−.068, +.047] | **−.102 [−.180, −.024]**, 6 / 2 |
+
+Reading.
+
+1. **The forward direction fails even with all magnitudes and the true distance.** `lin_fwdR`
+   underestimates the top bin by 2–3 units: regression dilution. E[M | A, R] shrinks toward the
+   bulk by the ratio of signal to noise variance in A, here about one third of the inverse slope.
+   Training on large events does not cure a forward law. That is the classical form of
+   magnitude saturation, and the free network's −.7 to −1.3 top-bin bias is its smooth analogue.
+2. **The inverse law with the true distance is a strong tail baseline.** On INSTANCE M ≥ 5 it is
+   statistically tied with the distance-marginalized head at every deadline. It is slightly ahead
+   at 1 s, where distance carries the most information and the network has the least waveform.
+   On Chile the head is ahead at 3–5 s (M ≥ 5 and, at 5 s, M ≥ 6), with intervals excluding zero.
+3. **It is not a usable estimator.** Its bulk error is 2× (Chile) to 4× (INSTANCE) the
+   network's. Its proper scores are far worse: NLL +1.1 to +1.5 nats, CRPS 2.4–3.7×. On INSTANCE
+   it calls 12–16% of M < 3.5 records M ≥ 4, against 0.05–0.12% for the networks. A single
+   residual SD in magnitude units, divided by a slope of about .5–.7, is a very wide
+   distribution, and its median wanders. Without distance (`lin_inv`) it is worse on everything.
+4. **So the networks' tail advantage over the free mixture is not "a better classical law".**
+   The equivariant head matches the oracle-distance inverse law on the events where the free
+   network saturates. It keeps the free network's bulk accuracy, calibration and false-alarm
+   rate, and it uses no distance. The like-for-like comparison, the same head conditioned on the
+   catalogue distance, is the next entry.
+
+Files: `results/eval_classical.json`, `chile_eval_classical.json`,
+`robust_{instance,chile}_classical.{json,md}`; arms `lin_{fwd,fwdR,inv,invR}` and `_cap40` /
+`_cap50b` under each work directory.
+
 ## 2026-10-30 05:10 UTC — Independent audit of the capped-training result: no leak, headline numbers reproduced; a label-binning bug at the cap, two overstated comparisons, and a classical baseline
 
 An adversarial audit (a separate agent, read-only, CPU) tried to break the capped-training

@@ -135,8 +135,16 @@ any latent that is *not* observed, such as a mixture's component index: componen
 above C are invisible to the truncated likelihood, so their weight is unconstrained. The audit
 of 30 Oct measured it in the capped plain head (5–8× more likelihood weight above M4.5 on small
 records than the uncapped head, a 1.5–2× higher false-M4 rate, unchanged large-event estimates).
-A remedy for unobserved latents, such as penalizing the untruncated mass above C for records far
-below it, has not been tried.
+A remedy for unobserved latents is a *truncation margin* (`--cap-margin Δ`,
+`models.MarginTruncated`). Labels at least Δ below C are scored by the untruncated posterior,
+labels within Δ of C by the truncated one. For y < C − Δ the selection-correct likelihood is
+p(y | x) / P(m < C | x), and under the true posterior the denominator is within
+P(m ≥ C | x, y < C − Δ) of 1. That is negligible once Δ is a few posterior SDs. So dropping it
+costs almost no bias, and it charges the model for any mass it hides above C on those records.
+The near-cap labels keep the truncation that lets the head extrapolate. Predicted effect: the
+capped heads' false-alarm rate falls toward the uncapped heads', with large-event estimates
+unchanged. Δ = 1.0 is fixed in advance, more than twice the largest bulk posterior SD; under
+test on INSTANCE and Chile.
 
 **Classical counterpart.** Under selection on M, a forward regression of M on log amplitude is
 biased (truncation acts on the response), while the inverse regression of log amplitude on M is

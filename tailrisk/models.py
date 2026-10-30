@@ -210,6 +210,34 @@ class Binned:
         return self.p @ frac
 
 
+class MarginTruncated:
+    """Training posterior of a capped GR head with a truncation margin.
+
+    Under a training cap C the selection-correct likelihood of a label y is the truncated
+    posterior p(y | x) / P(m < C | x). Components of a mixture that lie wholly above C are invisible
+    to it, so their weight is unconstrained (THEORY.md, remark after Proposition 3), which shows as
+    spurious tail mass and false alarms on small records. For labels far below the cap the
+    denominator is ~1 under the true posterior, so scoring them by the untruncated posterior is
+    nearly unbiased and penalizes that hidden mass; labels within `margin` of the cap keep the
+    truncated likelihood, which is what lets the head extrapolate.
+    """
+
+    def __init__(self, trunc, full, cap, margin):
+        self.trunc, self.full, self.cap, self.margin = trunc, full, cap, margin
+
+    def _far(self, y):
+        return y < self.cap - self.margin - 1e-6
+
+    def log_prob_label(self, y):
+        return torch.where(self._far(y), self.full.log_prob_label(y), self.trunc.log_prob_label(y))
+
+    def log_prob_joint(self, y, rbin):
+        return torch.where(self._far(y), self.full.log_prob_joint(y, rbin), self.trunc.log_prob_joint(y, rbin))
+
+    def __getattr__(self, name):          # mean, sd, cdf, ... of the truncated posterior
+        return getattr(self.__dict__['trunc'], name)
+
+
 class EquivariantGRHead(nn.Module):
     """Equivariant mixture likelihood x learned global magnitude prior factor.
 
@@ -240,6 +268,9 @@ class EquivariantGRHead(nn.Module):
         # joint latent heads (eqdgr, eqsgr): truncate only p(b | latent, x) and take p(latent | x)
         # from the untruncated joint (see joint_log_prob); False = truncate the whole joint
         self.cap_conditional = False
+        # truncation margin: labels at least this far below the cap are scored by the untruncated
+        # posterior (see MarginTruncated); None = every label by the truncated one
+        self.cap_margin = None
 
     def log_prior(self):
         c = self.centers
@@ -257,8 +288,14 @@ class EquivariantGRHead(nn.Module):
         edges = torch.cat([self.centers - 0.05, self.centers[-1:] + 0.05])
         Fe = mix.cdf(edges)                                   # (B, K+1)
         mass = (Fe[:, 1:] - Fe[:, :-1]).clamp_min(1e-30)
-        logp = mass.log() + self.effective_log_prior()[None]
-        return Binned(logp.log_softmax(-1), self.centers)
+        out = Binned((mass.log() + self.effective_log_prior()[None]).log_softmax(-1), self.centers)
+        if self.margin_active():
+            full = Binned((mass.log() + self.log_prior()[None]).log_softmax(-1), self.centers)
+            return MarginTruncated(out, full, self.train_cap, self.cap_margin)
+        return out
+
+    def margin_active(self):
+        return self.training and math.isfinite(self.train_cap) and self.cap_margin is not None
 
 
 class EquivariantHybridHead(nn.Module):
@@ -385,8 +422,15 @@ class EquivariantDistanceGRHead(nn.Module):
         z = (edges[None, None, :] - d.mu[..., None]) / d.sigma[..., None]           # (B, R, K+1)
         Fe = torch.special.ndtr(z)
         mass = (Fe[..., 1:] - Fe[..., :-1]).clamp_min(1e-30)
-        logj = joint_log_prob(d.logit_w.log_softmax(-1)[..., None] + mass.log(), self.prior)
-        return JointBinned(torch.logsumexp(logj, 1), centers, logj)
+        log_wm = d.logit_w.log_softmax(-1)[..., None] + mass.log()
+        logj = joint_log_prob(log_wm, self.prior)
+        out = JointBinned(torch.logsumexp(logj, 1), centers, logj)
+        if self.prior.margin_active():
+            full = log_wm + self.prior.log_prior()[None, None]
+            full = full - torch.logsumexp(full.flatten(1), 1)[:, None, None]
+            return MarginTruncated(out, JointBinned(torch.logsumexp(full, 1), centers, full), self.prior.train_cap,
+                                   self.prior.cap_margin)
+        return out
 
 
 class EquivariantScaleMixtureGRHead(nn.Module):
@@ -491,7 +535,7 @@ class MagNetTrunk(nn.Module):
 
 class MagnitudeModel(nn.Module):
     def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3, beta_fixed=None,
-                 train_cap=None, kappa_fixed=None, cap_conditional=False):
+                 train_cap=None, kappa_fixed=None, cap_conditional=False, cap_margin=None):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
@@ -527,6 +571,7 @@ class MagnitudeModel(nn.Module):
             if gr is not None and hasattr(gr, 'train_cap'):
                 gr.train_cap = float(train_cap)
                 gr.cap_conditional = bool(cap_conditional)
+                gr.cap_margin = None if cap_margin is None else float(cap_margin)
         if kappa_fixed is not None:
             eqh = next((m for m in self.head.modules() if isinstance(m, (EquivariantMixtureHead, EquivariantDistanceHead))), None)
             if eqh is None:
