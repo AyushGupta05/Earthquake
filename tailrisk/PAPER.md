@@ -284,6 +284,16 @@ capped distance-marginalized head's event error (.99 / .53 / .44) equals that of
 trained on everything (.89 / .52 / .44). The cost is the false-alarm rate: 9–15 false M ≥ 4
 predictions per 10⁴ small records against 5–6 for the full-data mixture.
 
+The amplitude response shows why (Figure `figures/capped_amplitude_response.png`). Amplifying
+held-out records just below the cap by one and then two decades raises the capped free
+mixture's estimate by .37 and then .21 units per decade on INSTANCE (3 s), stalling below the
+cap; the capped equivariant head rises by .66 and .67, the same slope as the identical head
+trained on every magnitude (.68 and .68). Removing the large events does not change the
+amplitude law the equivariant head learns, which is the content of Proposition 3; on Chile
+its response is 1.03 per decade in both decades against .41 and .20 for the capped mixture.
+The capped prior-only model responds negatively: its free likelihood is unconstrained above
+the cap, where the truncated prior hid it during training.
+
 Truncating the prior is not enough for heads with a latent training label: truncating the
 distance-marginalized head's joint over (distance bin, magnitude) is not identified, and on
 Chile four of five folds moved the wrong bins' components above the cap, where they reappeared at
