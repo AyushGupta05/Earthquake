@@ -65,14 +65,14 @@ California–Nevada).
 Hyperparameters, epochs, folds, labels, thresholds, the decision action (median), the
 reference arm and this decision rule.
 
-## Amendment 1 (30 Oct, 07:15 UTC): where the seeds run
+## Amendment 1 (30 Oct, 07:10 UTC; commit a062bc6): where the seeds run
 
 Seeds 2 and 3 of the four three-seed arms run in a SageMaker training job (`sm_run.sh`,
 `sm_queues/queue_sm_stead.txt`, 4 × A10G, the same container PyTorch version 2.8 as the hosts),
 because the EC2 GPU quota is full. Code, data, arguments and seeds are unchanged; GPU type and
 non-determinism may differ, which the three-seed design already absorbs. Nothing else changes.
 
-## Amendment 2 (30 Oct, 07:15 UTC): pooled cross-catalogue analysis (secondary)
+## Amendment 2 (30 Oct, 07:10 UTC; commit a062bc6): pooled cross-catalogue analysis (secondary)
 
 Written before any STEAD model has been evaluated. No STEAD evaluation file exists, and the
 per-fold summaries that `train.py` prints into the STEAD training logs have not been read.
