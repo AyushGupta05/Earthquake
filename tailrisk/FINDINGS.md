@@ -4,6 +4,82 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 05:10 UTC — Independent audit of the capped-training result: no leak, headline numbers reproduced; a label-binning bug at the cap, two overstated comparisons, and a classical baseline
+
+An adversarial audit (a separate agent, read-only, CPU) tried to break the capped-training
+result. Report: scratchpad `AUDIT_CAP.md`, summarized here with the responses.
+
+**No problem found.** Every capped arm's training rows match the cap in every fold (max label 3.9
+on INSTANCE, 4.99 on Chile), static normalization is fitted after the cap, no sequence or event
+spans folds, every arm scores identical rows, the truncation is active in training and absent at
+evaluation for every GR head, static inputs are instrument metadata only, and the mean action
+gives the same ordering. Headline numbers recomputed independently to three decimals (Chile M ≥ 6
+`eqgr_cap50` .654 / .532, `mix_cap50` 1.610 / 1.590; INSTANCE M ≥ 5 `eqdgr_cap40` .978 / .582 /
+.507, `mix_cap40` 1.807 / 1.605 / 1.566; the 22 Mw events likewise). Capped-vs-capped is
+unanimous across sequences: 8/8 Chile M ≥ 6 clusters, 11/11 INSTANCE M ≥ 5 clusters.
+
+**Findings and responses.**
+
+* **Label-binning bug at the cap (minor for the method, material for one control).** Labels in
+  [cap − 0.05, cap) round into the cap's own 0.1 bin, which the truncated prior masks, so each
+  costs ~10⁴ nats (Chile: 84 training rows; INSTANCE: none, its labels are on the 0.1 grid). It
+  shows as loss spikes in the Chile capped GR heads and flattens their learned tail slope
+  (β −.20 to −.30 capped vs −.53 to −.67 uncapped). Its effect on `eqgr_cap50` is small (the
+  pinned-slope arm agrees), but it confounds the prior-only control `mixgr_cap50` (β ≈ 0, +1.2 bias
+  at M4–4.5, 149 false M4 per 10⁴), so the 04:15 and 04:30 entries' reading of that control is
+  withdrawn until the rerun. **Fix:** `common.cap_keep` keeps a row only if its bin lies below the
+  cap (`--cap-filter bin`, the new default; old arms replay with the old filter). INSTANCE rows
+  are unchanged; every Chile capped arm is being retrained under the fix (suffix `b`,
+  `capcond_batch_v2.sh`); the STEAD capped pre-registration was amended before any capped STEAD
+  arm ran (23 affected rows there).
+* **"Capped `eqgr` beats the free mixture trained on all magnitudes" on Chile M ≥ 6 holds only on
+  the amplitude labels (material).** Scored against Chile's independent magnitudes: M_EXT M ≥ 6 (9
+  events) `eqgr_cap50` .692 / .573 at 3 / 5 s vs `mix_nll` (three seeds) .673–.703 / .687–.708;
+  MW_SIPPL M ≥ 6 (6 events) .673 / .614 vs .616–.687 / .659–.673. So it is a tie at 3 s and a modest
+  gain at 5 s. MA runs .1–.4 above M_EXT for these events. The capped-vs-capped gap survives
+  relabelling (M_EXT: .69 / .57 vs `mix_cap50` 1.47 / 1.44). The claim is restated below.
+* **The INSTANCE headline arm `eqdgr_cap40` was trained with the joint truncation (material for
+  wording, not for the conclusion).** It finished before the conditional fix; the gross leak did
+  not occur, but small records carry P(m ≥ 5) > .3 at 2.0 per 10⁴ vs .1–.3 for `eqdgr_nll`. The
+  leak-free reference is `eqgr_cap40` (M ≥ 5 1.10 / .67 / .55), still about one unit better than
+  `mix_cap40`; `eqdgr_cap40_cond` is queued.
+* **A mixture's component index is also an unobserved latent (minor).** Capped `eqgr_cap40` puts
+  5–8× more likelihood weight on components centred above M4.5 for small records than `eqgr_nll`
+  (.0016 / .0010 / .0007 vs .0002 / .0002 / .0001), raising small-record P(m ≥ 5) 5–10× and the
+  false-M4 rate 1.5–2×; per-event tail predictions of capped and uncapped heads agree. This is the
+  likely source of the capped heads' extra false alarms. THEORY.md's remark now covers it.
+* **"Keeps rising linearly" is built in (minor).** `cap_response.py` adds δ to A only, and the
+  equivariant trunk never sees A, so the location shifts by exactly κ(s)·δ. The evidence in the
+  04:30 entry is the *value* of κ under the cap (equal to the full-data κ within .04 per decade on
+  INSTANCE) and the contrast with the free heads, not the linearity.
+* **Classical baseline (matters for the framing).** Fitted on the same capped rows and folds
+  (`linear_baseline.py`):
+
+  | classical law (trained below the cap) | Chile bulk | Chile M ≥ 6 (1 / 3 / 5 s) | INSTANCE bulk | INSTANCE M ≥ 5 |
+  |---|---|---|---|---|
+  | forward regression M ~ A (+ invariants) | .32–.36 | 2.26–3.37 (bias −2.3 to −3.4) | .47–.51 | 2.48–3.05 (saturated) |
+  | inverse law A ~ M + invariants, solved for M | .53–.62 | 1.43 / 1.55 / 1.90 (overshoots) | 1.8–3.2 | 2.7–4.5 |
+  | inverse law A ~ M + log R, **true catalogue distance** | .34–.39 | 1.21 / .61 / .59 | .91–1.08 | 1.01 / .80 / .71 |
+  | `eqgr_cap50` / `eqdgr_cap40` (no distance input) | .15–.21 | 1.56 / .65 / .53 | .23–.33 | .98 / .58 / .51 |
+
+  Forward regression saturates like the free network, because truncation on M biases E[M | A];
+  the inverse (generative) direction A | M is not biased by selection on M, which is the
+  classical counterpart of Proposition 3. With the true distance the inverse law extrapolates
+  about as well as the equivariant head at 3–5 s (better at 1 s on Chile), at two (Chile) to four
+  (INSTANCE) times its bulk error, and it needs a distance a single station does not have in the
+  first seconds. Without distance it is useless. **Restated contribution:** extrapolating past the
+  training range is a property of a generative amplitude law; the equivariant neural head is that
+  law inside a learned posterior, so it extrapolates like the oracle-distance classical law while
+  keeping the network's bulk accuracy and needing no distance.
+* **Small, clustered tails (minor, already stated).** Chile M ≥ 6: 103 records, 12 events, 8
+  clusters; INSTANCE Mw M ≥ 5: 22 events in 7 clusters (9 from Central Italy). Capped arms are
+  single-seed. On Chile, 7,994 events from the sequences of the 12 M ≥ 6 events sit in other folds
+  (only their M < 5 part is admitted), equally for all arms.
+* **Chile component order may be swapped (minor, affects all arms equally).** The source manifest
+  says ZNE but the cache was built with `--order ENZ`; stored channel 0 has the largest P energy in
+  76% of records, so the picker probably ran on a horizontal. Picks still follow P moveout (median
+  7.6 km/s, ≤ 1.7% S-like). To be checked in `chile_prep.py`.
+
 ## 2026-10-30 04:30 UTC — Mechanism of the capped-training result: the equivariant heads keep the amplitude law they learned below the cap; the free mixture flattens at the cap
 
 **Test.** Held-out records just below the cap (INSTANCE M3.5–4.0, Chile M4.5–5.0; up to 2,000
@@ -30,10 +106,10 @@ the same slope in both decades, and their slope equals that of the same head tra
 magnitudes to within .04 per decade on INSTANCE: removing every large event from training does
 not change the amplitude law they learn. This is Proposition 3's mechanism, measured.
 (iii) Augmentation bends, like the free mixture trained on all data. (iv) The capped prior-only
-model responds *negatively* and starts above the cap: with a free likelihood, the mass above the
-cap is unconstrained in training because the truncated prior hides it, so at test time it is
-arbitrary, exactly as Proposition 3 states for free likelihoods. This also explains its +0.6
-bias just below the cap and its +.03 to +.05 bulk cost. The INSTANCE learned slope (.6–.8) is
+model responds *negatively* and starts above the cap. *[Corrected 05:10: this control is
+confounded by the label-binning bug at the cap found by the audit; its reading is withdrawn until
+the rerun `mixgr_cap50b`. Also, the equivariant heads' linearity is built in (the trunk never
+sees A); the evidence is the value of κ, not the linearity.]* The INSTANCE learned slope (.6–.8) is
 below Chile's (≈ 1.0), consistent with different magnitude types and distance ranges.
 
 ## 2026-10-30 04:25 UTC — Interim: capped-training extrapolation on INSTANCE (trained on M < 4.0) replicates, including on moment-magnitude labels
@@ -47,7 +123,7 @@ Record-level MAE at 1 / 3 / 5 s; FP4 = share of M < 3.5 records predicted ≥ 3.
 |---|---|---|---|---|---|
 | `mix_cap40` (free mixture, M < 4) | .331 / .274 / .242 | 1.025 / .856 / .810 | 1.805 / 1.605 / 1.566 | 0 / 0 / 0 | −2.21 / −2.05 / −2.03 |
 | `eqgr_cap40` (M < 4) | .331 / .273 / .238 | .807 / .616 / .550 | 1.100 / .673 / .555 | 11.6 / 10.3 / 9.3 | −1.21 / −.60 / −.46 |
-| **`eqdgr_cap40`** (M < 4) | .328 / .268 / .233 | .779 / .580 / .522 | **.978 / .582 / .511** | 14.8 / 11.7 / 8.8 | −1.02 / −.50 / −.43 |
+| **`eqdgr_cap40`** (M < 4; joint truncation, see the 05:10 audit entry) | .328 / .268 / .233 | .779 / .580 / .522 | **.978 / .582 / .511** | 14.8 / 11.7 / 8.8 | −1.02 / −.50 / −.43 |
 | *all magnitudes:* `mix_nll` | .327 / .269 / .237 | .763 / .577 / .530 | 1.052 / .765 / .703 | 6.3 / 5.3 / 4.6 | −1.30 / −1.02 / −.97 |
 | *all magnitudes:* `eqdgr_nll` | .326 / .266 / .232 | .739 / .559 / .504 | .898 / .579 / .505 | 12.1 / 7.7 / 5.5 | −.93 / −.49 / −.40 |
 
@@ -121,11 +197,14 @@ n = 505,666 records; `results/chile_eval_cap50*.json`.
 **What this shows.**
 1. The free mixture saturates at the cap, as Proposition 3 predicts: it under-predicts M6–6.5
    events by 1.4 units at 3–5 s. The equivariant head, which never saw an M ≥ 5 label, is within
-   .24–.30 of them, and on M ≥ 6 it beats the free mixture trained on the full catalogue (.65 vs
-   .86 at 3 s, .53 vs .86 at 5 s). Bulk error is unchanged.
+   .24–.30 of them, and on M ≥ 6 its MA-label error is below the free mixture trained on the full
+   catalogue (.65 vs .86 at 3 s, .53 vs .86 at 5 s). *[Corrected 05:10: on the independent M_EXT
+   and MW_SIPPL labels this is a tie at 3 s and a modest gain at 5 s; see the audit entry.]*
+   Bulk error is unchanged.
 2. The gain is the equivariant likelihood, not the prior: the prior-only head pushes mass up
-   indiscriminately (+0.6 bias at M4.5–5, bulk +.03 to +.05) and stays saturated above M6
-   (its free likelihood is unconstrained above the cap; see the 04:30 entry).
+   indiscriminately (+0.6 bias at M4.5–5, bulk +.03 to +.05) and stays saturated above M6.
+   *[Corrected 05:10: this control is confounded by the label-binning bug at the cap; rerun
+   pending as `mixgr_cap50b`.]*
 3. Augmentation helps the free mixture (M≥6 1.59 → .98 at 5 s at ±1.5 decades) at a bulk cost
    (+.006 to +.015) and remains far behind the equivariant head at 3–5 s (M≥6 .98 vs .53).
 4. At 1 s every head saturates at M6+ (bias −1.2 to −1.8), consistent with the physical limit

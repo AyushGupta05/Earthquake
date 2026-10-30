@@ -278,21 +278,23 @@ INSTANCE event and every M ≥ 5 Chile event then lies beyond the training range
 |---|---|---|---|
 | free mixture | 1.81 / 1.61 / 1.57 | 1.96 / 1.61 / 1.59 | reference |
 | free mixture + amplitude augmentation (±1.5 decades) | ⟨pending⟩ | 1.68 / 1.03 / .98 | +.009 to +.015 (Chile) |
-| free mixture × GR prior factor (prior only) | ⟨pending⟩ | 1.49 / 1.53 / 1.56 | +.03 to +.05 (Chile) |
+| free mixture × GR prior factor (prior only) | ⟨pending⟩ | ⟨rerun pending: binning bug⟩ | ⟨pending⟩ |
 | equivariant × GR prior factor (`eqgr`) | 1.10 / .67 / .56 | 1.56 / .65 / .53 | −.004 to +.003 |
-| distance-marginalized (`eqdgr`) | .98 / .58 / .51 | ⟨pending: retrained with the conditional cap⟩ | −.009 to −.003 (INSTANCE) |
+| distance-marginalized (`eqdgr`; INSTANCE arm used the joint truncation) | .98 / .58 / .51 | ⟨pending: retrained with the conditional cap⟩ | −.009 to −.003 (INSTANCE) |
 | *free mixture trained on all magnitudes* | *1.05 / .77 / .70* | *1.26 / .86 / .86* | |
 
 (1 / 3 / 5 s, seed 1; Chile Δ eqgr − free mixture: M≥6 −.40 / −.97 / −1.07, cluster-bootstrap
 intervals excluding zero.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
 events by 1.4 units and M5.5–6.6 INSTANCE events by 2.0 units at 3–5 s. The equivariant heads,
 which never saw a label above the cap, are within .24–.30 (Chile, `eqgr`) and .43–.50
-(INSTANCE, `eqdgr`) of them. At 3–5 s they match the free mixture trained *with* the large events on INSTANCE (M ≥ 5
-Δ −.18 / −.20, jackknife intervals over 11 sequences include zero; against the identically capped
-mixture −1.02 / −1.06, intervals [−1.35, −.70] and [−1.34, −.78], all 11 sequences) and are ahead
-of it on Chile's M ≥ 6 events in point estimate (⟨intervals pending⟩). The prior-only
-model shows the gain is not the untruncated GR tail: it shifts mass up indiscriminately (+0.6
-bias just below the cap, bulk +.03 to +.05) and stays saturated above it. Augmentation, the
+(INSTANCE, `eqdgr`) of them. At 3–5 s they match the free mixture trained *with* the large events. On INSTANCE the M ≥ 5
+Δ is −.18 / −.20, with jackknife intervals over 11 sequences that include zero. Against the
+identically capped mixture it is −1.02 / −1.06, with intervals [−1.35, −.70] and [−1.34, −.78],
+and every one of the 11 sequences favours the capped equivariant head. On Chile's independent
+magnitudes (M_EXT, MW_SIPPL) the M ≥ 6 comparison with the full-data mixture is a tie at 3 s and a
+modest gain at 5 s; on the amplitude labels MA it looks larger (.65 vs .86). Whether the
+untruncated GR tail alone helps is tested by the prior-only control, which is being rerun (see
+below). Augmentation, the
 data-side way to teach an amplitude law, recovers part of the gap at a bulk cost. At 1 s every
 head saturates at M6+, as the physical saturation of a 1 s window near M5.7 requires; equivariance
 cannot add information that is not yet in the waveform. Because Chile's labels are amplitude
@@ -302,15 +304,25 @@ capped distance-marginalized head's event error (.99 / .53 / .44) equals that of
 trained on everything (.89 / .52 / .44). The cost is the false-alarm rate: 9–15 false M ≥ 4
 predictions per 10⁴ small records against 5–6 for the full-data mixture.
 
+A classical baseline sharpens what this shows. Fitted on the same capped rows, a forward
+regression of magnitude on log amplitude saturates like the free network (Chile M ≥ 6 bias −2.3
+to −3.4), because truncation on M biases E[M | A]. The inverse law, log amplitude regressed on M
+and solved for M, is not biased by selection on M. Given the true catalogue distance, it
+extrapolates about as well as the equivariant head at 3–5 s (Chile M ≥ 6 .61 / .59; INSTANCE
+M ≥ 5 .80 / .71), but at two to four times its bulk error. It also needs a distance that a single
+station does not know in the first seconds, and without one it is unusable. The equivariant head
+is that generative amplitude law inside a learned posterior. It extrapolates like the
+oracle-distance law and keeps the network's bulk accuracy without a distance input.
+
 The amplitude response shows why (Figure `figures/capped_amplitude_response.png`). Amplifying
 held-out records just below the cap by one and then two decades raises the capped free
 mixture's estimate by .37 and then .21 units per decade on INSTANCE (3 s), stalling below the
-cap; the capped equivariant head rises by .66 and .67, the same slope as the identical head
-trained on every magnitude (.68 and .68). Removing the large events does not change the
+cap. The capped equivariant head rises by .66 and .67. Its linearity is built in, but its learned
+slope is the same as that of the identical head trained on every magnitude (.68 and .68). Removing the large events does not change the
 amplitude law the equivariant head learns, which is the content of Proposition 3; on Chile
 its response is 1.03 per decade in both decades against .41 and .20 for the capped mixture.
-The capped prior-only model responds negatively: its free likelihood is unconstrained above
-the cap, where the truncated prior hid it during training.
+(The prior-only control is being rerun: a label-binning bug at the cap, found by an
+independent audit and since fixed, confounded it on Chile.)
 
 Truncating the prior is not enough for heads with a latent training label: truncating the
 distance-marginalized head's joint over (distance bin, magnitude) is not identified, and on

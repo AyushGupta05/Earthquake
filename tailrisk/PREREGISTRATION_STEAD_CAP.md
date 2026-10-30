@@ -61,7 +61,7 @@ suspects; per region (as in `PREREGISTRATION_STEAD.md`).
 Seven arms of about one GPU-hour each, queued after STEAD seed 3 on the second host (or on a
 further host if the GPU quota allows).
 
-## Amendment 1 (30 Oct 2026, 05:10 UTC; before any capped STEAD arm has started)
+## Amendment 1 (30 Oct 2026, 05:08 UTC, commit 2d995a1; before any capped STEAD arm has started)
 
 An adversarial audit of the INSTANCE and Chile capped runs found an implementation bug: labels in
 [cap − 0.05, cap) round into the cap's own 0.1 bin, which the truncated prior factor masks, so

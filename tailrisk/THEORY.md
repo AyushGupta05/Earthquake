@@ -130,7 +130,20 @@ p_θ(M | r, x, M < C), with p_θ(r | x) taken from the untruncated joint (`--cap
 conditional`, `models.joint_log_prob`). Each conditional is then a truncated Gaussian
 regression, which is identified. The marginal of r is fitted on a sample selected on M, which
 biases it only through P(M < C | r, x), negligible when the cap sits well above the bulk. Without
-a cap the two losses coincide exactly.
+a cap the two losses coincide exactly. The same non-identifiability, in a milder form, applies to
+any latent that is *not* observed, such as a mixture's component index: components lying wholly
+above C are invisible to the truncated likelihood, so their weight is unconstrained. The audit
+of 30 Oct measured it in the capped plain head (5–8× more likelihood weight above M4.5 on small
+records than the uncapped head, a 1.5–2× higher false-M4 rate, unchanged large-event estimates).
+A remedy for unobserved latents, such as penalizing the untruncated mass above C for records far
+below it, has not been tried.
+
+**Classical counterpart.** Under selection on M, a forward regression of M on log amplitude is
+biased (truncation acts on the response), while the inverse regression of log amplitude on M is
+not (truncation acts on the regressor). Fitted on capped rows, the forward law saturates like a
+free network and the inverse law extrapolates (`linear_baseline.py`), though without a distance
+term its bulk error is large. The equivariant head is the generative, inverse-direction law
+inside a learned posterior, which is why it extrapolates.
 
 ## Relation to the decision rule
 
