@@ -35,7 +35,7 @@ station alone; dividing out the training prior repairs it, and the equivariant h
 best fused large-event and bulk error on the two local/regional networks. Trained without any
 event above a magnitude cap (M4.0 on INSTANCE, M5.0 on Chile), the equivariant heads still
 under-predict the held-out events above it by only about .25–.55 units at 3–5 s (mean bias up
-to M7), matching or beating a free mixture trained on the full catalogue, while the identically
+to M7), roughly matching a free mixture trained on the full catalogue, while the identically
 trained free mixture saturates at the cap. On a fourth catalogue held out and pre-registered
 before training (STEAD, 718 M≥5 events), the plain equivariant head lowers M≥5 error at 3 and 5 s
 with bulk error unchanged, meeting the pre-registered rule. The distance-marginalized head lowers
@@ -375,7 +375,9 @@ INSTANCE event and every M ≥ 5 Chile event then lies beyond the training range
 (1 / 3 / 5 s, seed 1; Chile rows rerun with the bin-consistent cap filter. Chile Δ distance-marginalized −
 free mixture: M≥6 −.47 / −.97 / −1.12; against augmentation −.16 / −.36 / −.44, all 8 clusters favouring
 the head at 3–5 s. Three-seed capped ensemble against the three-seed mixture trained on all magnitudes:
-M≥6 −.18 / −.31 at 3 / 5 s, jackknife intervals excluding zero, on amplitude labels.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
+M≥6 −.18 / −.31 at 3 / 5 s, jackknife intervals excluding zero, on amplitude labels. Retrained and scored on
+independent magnitudes (M_EXT, MW_SIPPL) that comparison is a tie, while the gain over the capped mixture
+holds in full.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
 events by 1.4 units and M5.5–6.6 INSTANCE events by 2.0 units at 3–5 s. The equivariant heads,
 which never saw a label above the cap, are within .24–.30 (Chile, `eqgr`) and .43–.50
 (INSTANCE, `eqdgr`) of them. At 3–5 s they match the free mixture trained *with* the large events. On INSTANCE the M ≥ 5
@@ -642,6 +644,9 @@ identified, so fusion with it is only correct by coincidence; pinning the slope 
 catalogue b-value during training leaves single-station error unchanged but is the right fusion
 prior only for some heads and catalogues. The fusion study orders
 stations by distance rather than by measured arrival and gives every station the same window.
+On Chile the labels of the large events are amplitude magnitudes. Retrained on independent
+magnitudes, the full-data tail gain of the distance-marginalized head is confined to M≥6 at 3–5 s
+(−.13 to −.20; significant on one of the two relabellings).
 Extrapolation past a training cap needs the amplitude law below the cap to hold above it. On
 GEOFON it does not. The labels switch from mb to Mw at about M6, and the pre-registered capped
 test there failed: the equivariant heads beat the capped free mixture but not amplitude
