@@ -4,6 +4,93 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 10:25 UTC — Pre-registered STEAD test: the method is **confirmed** through the plain equivariant head (`eqgr`). The primary distance-marginalized head has the larger tail gain at every deadline but misses the 1 s bulk guard by .0004, so under the rule it is **not confirmed**. The pooled four-catalogue secondary claim is **not met**
+
+`PREREGISTRATION_STEAD.md` (written and committed before any STEAD model was trained; amendments 1–2
+before any STEAD evaluation). STEAD: 996,894 records, 718 M ≥ 5 events in 456 GK clusters,
+63 M ≥ 6 in 51. Three-seed ensembles (posterior mixtures), median action, observed differences;
+intervals are the delete-one-cluster jackknife (t, G − 1) over the clusters carrying the tail.
+Driver `stead_eval.sh`; nothing was tuned on STEAD.
+
+Absolute values (1 / 3 / 5 s):
+
+| ensemble | bulk MAE (E3) | M ≥ 5 MAE (E1) | M ≥ 5 event MAE (E2) | M ≥ 6 MAE | false M4 per 10⁴ (E4) | NLL at 5 s |
+|---|---|---|---|---|---|---|
+| `mix` (reference) | .2337 / .1949 / .1781 | .807 / .670 / .648 | .815 / .694 / .671 | 1.552 / 1.241 / 1.200 | 6.8 / 6.5 / 6.5 | 2.150 |
+| `eqdgr` (primary) | .2361 / .1952 / .1782 | .762 / .587 / .543 | .774 / .611 / .574 | 1.298 / .867 / .746 | 7.1 / 6.3 / 5.9 | 2.161 |
+| `eqgr` (secondary) | .2349 / .1948 / .1781 | .798 / .615 / .579 | .814 / .647 / .613 | 1.463 / 1.014 / .879 | 7.2 / 6.2 / 6.0 | 2.160 |
+| `mixgr` (prior only) | .2336 / .1947 / .1778 | .798 / .655 / .629 | .804 / .679 / .653 | 1.518 / 1.217 / 1.163 | 6.3 / 5.9 / 6.1 | — |
+
+**Decision rule.**
+
+| head | E1 at 3 s | E1 at 5 s | E3 at 1 / 3 / 5 s (≤ +.002) | verdict |
+|---|---|---|---|---|
+| `eqdgr` | **−.084 [−.106, −.062]** | **−.106 [−.130, −.082]** | **+.0024** / +.0004 / +.0000 | criterion 1 passes; criterion 2 fails at 1 s (by .0004) → **not confirmed** |
+| `eqgr` | **−.056 [−.071, −.040]** | **−.069 [−.087, −.051]** | +.0012 / −.0000 / −.0001 | **confirmed** |
+
+Supporting numbers:
+* E1 at 1 s: `eqdgr` −.045 [−.069, −.021], `eqgr` −.010 (n.s.).
+* E2 (event level), `eqdgr` −.041 / −.082 / −.097 and `eqgr` −.002 / −.047 / −.058. All exclude zero except `eqgr` at 1 s.
+* Sequences favouring `eqdgr` on M ≥ 5: 265, 303 and 304 of 456. On M ≥ 6 (51 clusters):
+  −.25 / −.37 / −.45, with 38, 47 and 48 of 51 favouring it.
+* The 1 s bulk excess of `eqdgr` (+.0024, interval [+.0012, +.0036]) appears in every seed (+.0031 to
+  +.0034). Its 3 s and 5 s bulk is level.
+* E4 is level with the reference at every deadline: `eqdgr` +0.4 / −0.2 / −0.6 per 10⁴, all n.s.
+* NLL is .01 nats worse for both equivariant heads; CRPS is equal.
+
+**Seeds (descriptive).** In every seed both heads lower M ≥ 5 error at 3 and 5 s. Ranges: `eqdgr`
+−.064 to −.088 and −.091 to −.103; `eqgr` −.048 to −.062 and −.062 to −.071. Bulk at 1 s:
+`eqdgr` +.0031 to +.0034, `eqgr` +.0020 to +.0024.
+
+**Pre-specified subgroups** (not part of the decision). `eqdgr` M ≥ 5 at 3 / 5 s, with
+jackknife intervals excluding zero in every row:
+
+| subgroup | M ≥ 5 clusters | Δ M ≥ 5 at 3 s | Δ M ≥ 5 at 5 s |
+|---|---|---|---|
+| Mw-type labels only | 355 | −.078 | −.108 |
+| gain-QC suspects excluded | 452 | −.084 | −.106 |
+| Alaska–Aleutians | 138 | −.075 | −.089 |
+| Chile–Argentina | 81 | −.071 | −.090 |
+| Greece–Aegean | 56 | −.151 | −.175 |
+| New Zealand | 34 | −.195 | −.220 |
+| California–Nevada | 36 | −.067 | −.102 |
+
+`eqgr` is negative in every row too (−.031 to −.144). California–Nevada, the one dense local
+network, also has lower bulk error for both heads (−.002).
+
+**Secondary ablation and context.** κ ≡ 1 (`eqgr_k1_nll`, seed 1) has the best tail of the
+equivariant heads: M ≥ 5 −.042 / −.097 / −.123 and M ≥ 6 −.32 / −.46 / −.53 against `mix_nll`. Its bulk
+cost is +.010 / +.006 / +.005, which would fail the bulk guard, and NLL is +.03. Against it, the
+learned slope gives up .02–.05 on M ≥ 5 for .004–.008 of bulk error. The classical inverse law with
+the catalogue distance is about level with `eqdgr` on M ≥ 5 (+.022 / +.026 / +.034, n.s.). It has
+twice the bulk error (.39 against .195) and 45–68 false M4 per 10⁴.
+
+**Pooled four-catalogue analysis (amendment 2), `eqdgr` − `mix`.**
+
+| | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| random-effects Δ | −.061 | −.124 | −.165 |
+| HKSJ interval (3 df) | **[−.118, −.005]** | [−.256, +.007] | [−.348, +.019] |
+| pooled bulk Δ | +.0038 | +.0014 | +.0006 |
+| sequences favouring (of 521) | 311 (p = 1e−5) | 351 (p = 2e−15) | 359 (p = 4e−18) |
+
+The HKSJ interval must exclude zero at 3 s and 5 s, and it does not (it reaches +.007 and +.019).
+The pooled bulk guard fails at 1 s. **The secondary claim is not met.** The between-catalogue SD τ is
+.05–.06, with GEOFON's +.016 bulk cost the outlier. For `eqgr` the pooled tail Δ is +.014 / −.058 /
+−.110, with HKSJ intervals including zero.
+
+**Reading.** On the held-out fourth catalogue, chosen and locked before any model saw it, both
+equivariant heads lower large-event error at 3 and 5 s by robust margins. That holds in every seed,
+region and label-type subgroup, with no rise in false alarms. The plain head does it with level
+bulk error and passes the pre-registered rule. The distance-marginalized head gives 50% more tail
+gain (M ≥ 5 −.08 / −.11, M ≥ 6 −.37 / −.45). It pays .0024 of bulk error at 1 s, a 1% relative cost,
+which the rule set at .002, so under the rule it is not confirmed. The bulk guard was chosen in
+advance, and the result is reported against it unchanged.
+
+Files: `results/robust_stead_{ens3,ens3_mw,ens3_noqc,ens3_region_*,k1}.{json,md}`,
+`stead_eval_{ens3,ens3_prior,seed_s1,seed_s2,seed_s3,k1_classical}.json`, `meta_eqdgr.{json,md}`,
+`meta_eqgr.{json,md}`. The pre-registered capped STEAD test is evaluated when its seven arms finish.
+
 ## 2026-10-30 09:15 UTC — INSTANCE capped (M < 4.0) complete. The prior swap of Proposition 3 does most of the extrapolation, even for a free likelihood; equivariance adds tail (n.s.) and halves the false alarms; the truncation margin removes the remaining false-alarm cost. A head trained only on M < 4 then matches the free mixture trained on everything
 
 Seed 1, median action, 1 / 3 / 5 s; jackknife over the 11 M ≥ 5 sequences. INSTANCE has no
