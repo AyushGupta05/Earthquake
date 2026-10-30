@@ -1,6 +1,6 @@
 # Pre-registered capped-training test on GEOFON (fourth capped catalogue)
 
-Written 30 Oct 2026 at about 07:20 UTC, before any capped GEOFON arm has been trained, and
+Written 30 Oct 2026 at about 07:10 UTC (commit 25e1657), before any capped GEOFON arm has been trained, and
 committed before they are queued. It repeats the extrapolation test of Proposition 3 (THEORY.md),
 which was designed on INSTANCE and Chile, on the catalogue with the most independent large
 events. Nothing below may change after capped GEOFON results are seen.
