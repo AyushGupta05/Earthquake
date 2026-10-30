@@ -13,6 +13,9 @@ sync_all() {
   ./sm_sync.sh $E/tailwork-relabel-mext-1030/checkpoints/arms_mext /mnt/scratch/chile_relabel_mext relabel_mext_sm_arms
   ./sm_sync.sh $E/tailwork-relabel-mwsippl2-1030/checkpoints/arms_mwsippl /mnt/scratch/chile_relabel_mwsippl relabel_mwsippl_sm_arms
   ./sm_sync.sh s3://instance-earthquake-data/tailwork-transfer-20261030/instance/arms $W arms
+  for j in tailwork-stead-s1-mixgr-use2-g6e2xlarge tailwork-stead-s1-k1-use2-g5xlarge; do
+    ./sm_sync.sh s3://instance-earthquake-data-use2/sm/jobs/$j/checkpoints/arms /mnt/scratch/stead stead_sm_arms
+  done
 }
 echo "$(date -u) start" >> $L
 while true; do
