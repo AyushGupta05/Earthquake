@@ -37,8 +37,14 @@ rob equalinfo --pairs $K:$F,$K10:$F10,$F:$M
 rob condR3 --pairs $K:$M,$K10:$M,$K:$E,$K:lin_invR,$K10:lin_invR,$E:lin_invR
 # D3
 ev cap50 --arms mix_cap50,mix_cap50_aug15,eqgr_cap50,eqdgr_cap50_cond,mixgr_cap50 --ref mix_cap50
-ev cap50_base --arms mix_cap50,eqgr_k1_cap50,eqdgr_cap50_cond,lin_invR_cap50,lin_fwdR_cap50 --ref mix_cap50
-rob cap50 --pairs eqdgr_cap50_cond:mix_cap50,eqgr_cap50:mix_cap50,eqdgr_cap50_cond:mix_cap50_aug15,eqgr_cap50:mix_cap50_aug15,mixgr_cap50:mix_cap50,eqdgr_cap50_cond:eqgr_k1_cap50,eqdgr_cap50_cond:lin_invR_cap50,eqdgr_cap50_cond:mix_nll
+ev cap50_base --arms mix_cap50,eqgr_k1_cap50,eqdgr_k1_cap50_cond,eqdgr_kp10_cap50_cond,eqdgr_cap50_cond,lin_invR_cap50 --ref mix_cap50
+rob cap50 --pairs eqdgr_cap50_cond:mix_cap50,eqgr_cap50:mix_cap50,eqdgr_cap50_cond:mix_cap50_aug15,eqgr_cap50:mix_cap50_aug15,mixgr_cap50:mix_cap50,eqdgr_cap50_cond:eqgr_k1_cap50,eqdgr_cap50_cond:lin_invR_cap50,eqdgr_cap50_cond:mix_nll,eqdgr_k1_cap50_cond:mix_cap50,eqdgr_k1_cap50_cond:mix_cap50_aug15,eqdgr_kp10_cap50_cond:mix_cap50,eqdgr_kp10_cap50_cond:mix_cap50_aug15,eqdgr_kp10_cap50_cond:eqdgr_k1_cap50_cond
+# D5: hybrid (slope prior) against kappa = 1 and against the mixture; kappa = 1 against the mixture
+Z=eqdgr_k1_nll+eqdgr_k1_nll_s2+eqdgr_k1_nll_s3; H=eqdgr_kp10_nll+eqdgr_kp10_nll_s2+eqdgr_kp10_nll_s3
+ZQ=eqgr_k1_nll+eqgr_k1_nll_s2+eqgr_k1_nll_s3; HQ=eqgr_kp10_nll+eqgr_kp10_nll_s2+eqgr_kp10_nll_s3
+rob hybrid --pairs $H:$M,$H:$Z,$Z:$M,$H:$E,$HQ:$M,$HQ:$ZQ,$ZQ:$M,$HQ:$Q,eqdgr_kp3_nll:eqdgr_nll,eqdgr_kp3_nll:eqdgr_k1_nll,eqgr_kp3_nll:eqgr_nll
+ev hybrid --arms $M,$E,$Z,$H --ref $M
+ev hybrid_plain --arms $M,$Q,$ZQ,$HQ --ref $M
 # context: kappa = 1 and classical law on full data
 rob k1 --pairs eqgr_nll:eqgr_k1_nll,eqgr_k1_nll:mix_nll,$E:lin_invR
 # D4: five-catalogue pooling

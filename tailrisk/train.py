@@ -20,7 +20,7 @@ from torch.nn import functional as F
 
 from common import (DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, GPUData, cap_keep, decisions,
                     load_meta, metric_table)
-from models import MagnitudeModel, distance_bin
+from models import EquivariantDistanceHead, EquivariantMixtureHead, MagnitudeModel, distance_bin
 
 
 def label_weights(y_train, y, kind, sigma=0.2, power=0.5, clip=20.0):
@@ -59,6 +59,12 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult, kappa_min=args.kappa_min,
                            beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap, kappa_fixed=args.kappa_fixed,
                            cap_conditional=args.cap_latent == 'conditional', cap_margin=args.cap_margin).to(device)
+    # slope prior (--kappa-prior): the equivariant slope kappa(s) is pulled toward --kappa-center
+    # (1 = the local-magnitude definition) with a quadratic penalty per record, so that shapes the
+    # data do not pin down keep the physical slope while the bulk may deviate
+    eqh = next((m for m in model.modules() if isinstance(m, (EquivariantMixtureHead, EquivariantDistanceHead))), None)
+    if args.kappa_prior > 0 and eqh is None:
+        raise ValueError(f'head {args.head!r} has no equivariant slope for --kappa-prior')
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -109,6 +115,8 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
                     if aux is not None:
                         ce = F.cross_entropy(aux, r_bin[idx], reduction='none') * r_valid[idx]
                         term = term + (w * ce).sum() / w.sum()
+                    if args.kappa_prior > 0:
+                        term = term + args.kappa_prior * ((eqh.last_kappa.float()[:, 0] - args.kappa_center) ** 2 * w).sum() / w.sum()
                     loss = loss + term / len(DURATIONS)
             opt.zero_grad(set_to_none=True)
             loss.backward()
@@ -172,6 +180,10 @@ def main():
                     help='amplitude-scaling augmentation half-width in log10 units (label shifted equally)')
     ap.add_argument('--width-mult', type=float, default=1.0, help='trunk width multiplier (capacity check)')
     ap.add_argument('--kappa-min', type=float, default=0.3, help='lower bound of the equivariant slope kappa(s)')
+    ap.add_argument('--kappa-prior', type=float, default=0.0,
+                    help='weight of the quadratic prior pulling the learned slope kappa(s) toward --kappa-center '
+                         '(hybrid between the learned slope and the fixed unit slope); 0 = off')
+    ap.add_argument('--kappa-center', type=float, default=1.0)
     ap.add_argument('--kappa-fixed', type=float, default=None,
                     help='fix the equivariant slope (1.0 reproduces the kappa=1 construction of Zhang, Zhang & Tian 2021)')
     ap.add_argument('--beta-fixed', type=float, default=None,

@@ -71,3 +71,41 @@ Every outcome, including failures, goes into FINDINGS.md and the README.
 
 The cache is built on the second GPU host. Training runs on the EC2 GPU hosts and/or SageMaker,
 with the queue in `sm_queues/queue_cwa.txt`. Where an arm runs does not change it.
+
+## Amendment 1 (30 Oct 2026, about 21:35 UTC; before the CWA cache is complete and before any CWA model has trained)
+
+**Reason.** On STEAD, GEOFON and INSTANCE the fixed unit slope (κ ≡ 1, the construction of Zhang,
+Zhang & Tian 2021) has lower large-event error than the learned slope κ(s), at .002–.01 more bulk
+error (FINDINGS.md, 21:05 entry). The learned slope therefore buys bulk accuracy, not tail
+accuracy, and the method has not been shown to beat that prior construction on the tail. This
+amendment adds the κ ≡ 1 construction in the distance-marginalized form, and a hybrid, to the CWA
+test, so that CWA decides whether the method beats the closest existing approach.
+
+**New head: slope prior (`--kappa-prior λ`, `train.py`).** The learned slope κ(s) is pulled toward
+the local-magnitude value 1 by a quadratic penalty λ·(κ(s) − 1)² per record, added to the NLL.
+Shapes the data pin down keep their learned slope; shapes the data do not pin down (the rare
+large events) revert to 1. λ = 10 is primary and λ = 3 secondary, both fixed here without any
+data-based tuning; no other value will be run on CWA.
+
+**Added arms** (all 10 epochs, defaults otherwise; `_k1` = `--kappa-fixed 1.0`, `_kp10` =
+`--kappa-prior 10`, `_kp3` = `--kappa-prior 3`):
+
+| arm | seeds | role |
+|---|---|---|
+| `eqgr_k1_nll` | 1 (already listed), 2, 3 | κ ≡ 1, plain form |
+| `eqdgr_k1_nll` | 1, 2, 3 | κ ≡ 1, distance-marginalized form (closest prior art, strongest form) |
+| `eqgr_kp10_nll`, `eqdgr_kp10_nll` | 1, 2, 3 | hybrid, primary λ |
+| `eqgr_kp3_nll`, `eqdgr_kp3_nll` | 1 | hybrid, secondary λ (reported only) |
+| `eqdgr_k1_cap50_cond`, `eqdgr_kp10_cap50_cond` | 1 | κ ≡ 1 and hybrid under the M < 5 cap |
+
+**Decision rule D5 (hybrid against the closest existing approach).** H = `eqdgr_kp10` three-seed
+ensemble, Z = `eqdgr_k1` three-seed ensemble, M = `mix` three-seed ensemble. D5 is met if
+(i) H meets D1 against M, and (ii) against Z, H's E3 (bulk MAE) is lower at every deadline with
+jackknife intervals excluding zero, and H's E1 (M ≥ 5 MAE) at 3 s and at 5 s is not higher, that is
+Δ ≤ 0 or a jackknife interval that includes zero. Secondary: the same with the plain forms
+(`eqgr_kp10` against `eqgr_k1`). Reported, not decided on: Z against M under D1 (whether κ ≡ 1
+alone would pass), the capped κ ≡ 1 and hybrid arms against `mix_cap50` and `mix_cap50_aug15`
+with the D3 statistics, and λ = 3.
+
+If D5 fails because Z has the lower tail error, the honest statement is that the learned slope
+is a bulk refinement of an existing construction, and the paper will say so.

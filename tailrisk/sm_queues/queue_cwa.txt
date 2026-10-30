@@ -5,6 +5,17 @@
 --arm mix_cap50 --head mix --loss nll --epochs 10 --train-mag-cap 5.0
 --arm eqdgr_cap50_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional
 --arm mix_cap50_aug15 --head mix --loss nll --epochs 10 --train-mag-cap 5.0 --amp-aug 1.5
+--arm eqgr_k1_nll_s2 --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0 --seed 2
+--arm eqgr_k1_nll_s3 --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0 --seed 3
+--arm eqdgr_k1_nll --head eqdgr --loss nll --epochs 10 --kappa-fixed 1.0
+--arm eqdgr_k1_nll_s2 --head eqdgr --loss nll --epochs 10 --kappa-fixed 1.0 --seed 2
+--arm eqdgr_k1_nll_s3 --head eqdgr --loss nll --epochs 10 --kappa-fixed 1.0 --seed 3
+--arm eqdgr_kp10_nll --head eqdgr --loss nll --epochs 10 --kappa-prior 10
+--arm eqdgr_kp10_nll_s2 --head eqdgr --loss nll --epochs 10 --kappa-prior 10 --seed 2
+--arm eqdgr_kp10_nll_s3 --head eqdgr --loss nll --epochs 10 --kappa-prior 10 --seed 3
+--arm eqgr_kp10_nll --head eqgr --loss nll --epochs 10 --kappa-prior 10
+--arm eqgr_kp10_nll_s2 --head eqgr --loss nll --epochs 10 --kappa-prior 10 --seed 2
+--arm eqgr_kp10_nll_s3 --head eqgr --loss nll --epochs 10 --kappa-prior 10 --seed 3
 --arm mix_nll_s2 --head mix --loss nll --epochs 10 --seed 2
 --arm eqdgr_nll_s2 --head eqdgr --loss nll --epochs 10 --seed 2
 --arm eqgr_nll_s2 --head eqgr --loss nll --epochs 10 --seed 2
@@ -20,3 +31,7 @@
 --arm eqgr_k1_nll --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0
 --arm mixgr_cap50 --head mixgr --loss nll --epochs 10 --train-mag-cap 5.0
 --arm eqgr_k1_cap50 --head eqgr --loss nll --epochs 10 --train-mag-cap 5.0 --kappa-fixed 1.0
+--arm eqdgr_kp3_nll --head eqdgr --loss nll --epochs 10 --kappa-prior 3
+--arm eqgr_kp3_nll --head eqgr --loss nll --epochs 10 --kappa-prior 3
+--arm eqdgr_k1_cap50_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional --kappa-fixed 1.0
+--arm eqdgr_kp10_cap50_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional --kappa-prior 10

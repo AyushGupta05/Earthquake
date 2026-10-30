@@ -182,6 +182,7 @@ class EquivariantMixtureHead(nn.Module):
         kappa = self.kappa_min + (1.5 - self.kappa_min) * torch.sigmoid(self.kappa(h).float())
         if self.kappa_fixed is not None:
             kappa = torch.full_like(kappa, float(self.kappa_fixed))
+        self.last_kappa = kappa                     # read by train.py for the slope prior (--kappa-prior)
         mu = kappa * (A.float() - A0)[:, None] + g
         return Mixture(w, mu, F.softplus(s) + self.min_sigma)
 
@@ -363,6 +364,7 @@ class EquivariantDistanceHead(nn.Module):
         kappa = 0.3 + 1.2 * torch.sigmoid(self.kappa(h).float())
         if self.kappa_fixed is not None:
             kappa = torch.full_like(kappa, float(self.kappa_fixed))
+        self.last_kappa = kappa
         mu = kappa * (A.float() - A0)[:, None] + g
         return DistanceMixture(w, mu, F.softplus(s) + self.min_sigma)
 
