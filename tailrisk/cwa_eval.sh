@@ -10,7 +10,8 @@ cd "$(dirname "$0")"
 L=$W/logs/cwa_eval.log
 echo "$(date -u) start" >> $L
 ARMS=$(sed -E 's/.*--arm ([^ ]+).*/\1/' sm_queues/queue_cwa.txt)
-until for a in $ARMS; do aws s3 ls $P/arms/$a/fold4.npz > /dev/null 2>&1 || exit 1; done; do sleep 300; done
+have_all() { for a in $ARMS; do aws s3 ls $P/arms/$a/fold4.npz > /dev/null 2>&1 || return 1; done; }
+until have_all; do sleep 300; done
 echo "$(date -u) all arms in S3" >> $L
 for a in $ARMS; do [ -f $C/arms/$a/fold4.npz ] || aws s3 cp $P/arms/$a $C/arms/$a --recursive --only-show-errors; done
 export TAILWORK_DIR=$C TAILWORK_MAXMAG=9.5
