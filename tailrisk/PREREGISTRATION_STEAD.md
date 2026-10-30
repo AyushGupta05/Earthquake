@@ -64,3 +64,34 @@ California–Nevada).
 
 Hyperparameters, epochs, folds, labels, thresholds, the decision action (median), the
 reference arm and this decision rule.
+
+## Amendment 1 (30 Oct, 07:15 UTC): where the seeds run
+
+Seeds 2 and 3 of the four three-seed arms run in a SageMaker training job (`sm_run.sh`,
+`sm_queues/queue_sm_stead.txt`, 4 × A10G, the same container PyTorch version 2.8 as the hosts),
+because the EC2 GPU quota is full. Code, data, arguments and seeds are unchanged; GPU type and
+non-determinism may differ, which the three-seed design already absorbs. Nothing else changes.
+
+## Amendment 2 (30 Oct, 07:15 UTC): pooled cross-catalogue analysis (secondary)
+
+Written before any STEAD model has been evaluated. No STEAD evaluation file exists, and the
+per-fold summaries that `train.py` prints into the STEAD training logs have not been read.
+
+Each smaller catalogue has too few independent large-event sequences for a small-cluster-robust
+interval on its own (INSTANCE: 11 M ≥ 5 sequences). So the head's tail effect is also estimated
+by pooling the four catalogues. This adds a secondary claim and changes nothing in the STEAD
+decision rule above.
+
+- Contrast: `eqdgr` three-seed ensemble − `mix` three-seed ensemble (median action). `eqgr` is
+  reported the same way, as secondary.
+- Per catalogue: record-level MAE at its primary threshold. These are the thresholds the paper
+  already reports: INSTANCE M ≥ 5, Chile M ≥ 6, GEOFON M ≥ 7, and STEAD M ≥ 5 (E1). Each
+  catalogue contributes its observed Δ and its delete-one-cluster jackknife SE
+  (`robust_tail.py`).
+- Pooled estimate: DerSimonian–Laird random effects. The interval of record is the
+  Hartung–Knapp–Sidik–Jonkman interval (t on 3 df). Fixed-effect and normal random-effects
+  intervals are also reported. A pooled sign test runs over all tail-carrying clusters.
+  `meta_analysis.py` implements all of this.
+- Secondary claim holds if the HKSJ interval for the pooled tail Δ excludes zero at 3 s and at
+  5 s, and the pooled bulk Δ (random effects) is ≤ +0.002 at every deadline.
+- Reported whatever the outcome, together with each catalogue's row and τ.
