@@ -73,3 +73,9 @@ Also reported, as context and **not part of the decision rule**: the classical l
 of `linear_baseline.py` fitted on the same capped training rows and folds. These are forward
 regression of M on amplitude, and the inverse law A = a + bM + c·z solved for M, with z either
 the scale-free invariants or the true catalogue log distance (an oracle the networks do not get).
+
+## Amendment 2 (30 Oct 2026, about 07:20 UTC; before any capped STEAD arm has started)
+
+Compute only: the seven arms run in a SageMaker training job (`sm_queues/queue_sm_stead.txt`, after
+seeds 2–3 of the main test; 4 × A10G, PyTorch 2.8), because the EC2 GPU quota is full. Code, data,
+arguments and seed are unchanged.
