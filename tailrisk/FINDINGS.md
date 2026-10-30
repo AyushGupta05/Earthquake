@@ -4,7 +4,7 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
-## 2026-10-30 04:40 UTC — Mechanism of the capped-training result: the equivariant heads keep the amplitude law they learned below the cap; the free mixture flattens at the cap
+## 2026-10-30 04:30 UTC — Mechanism of the capped-training result: the equivariant heads keep the amplitude law they learned below the cap; the free mixture flattens at the cap
 
 **Test.** Held-out records just below the cap (INSTANCE M3.5–4.0, Chile M4.5–5.0; up to 2,000
 per fold, five folds) have their ground motion multiplied by 10^x for x = 0 … 2 decades, and the
@@ -109,7 +109,7 @@ n = 505,666 records; `results/chile_eval_cap50*.json`.
    .86 at 3 s, .53 vs .86 at 5 s). Bulk error is unchanged.
 2. The gain is the equivariant likelihood, not the prior: the prior-only head pushes mass up
    indiscriminately (+0.6 bias at M4.5–5, bulk +.03 to +.05) and stays saturated above M6
-   (its free likelihood is unconstrained above the cap; see the 04:40 entry).
+   (its free likelihood is unconstrained above the cap; see the 04:30 entry).
 3. Augmentation helps the free mixture (M≥6 1.59 → .98 at 5 s at ±1.5 decades) at a bulk cost
    (+.006 to +.015) and remains far behind the equivariant head at 3–5 s (M≥6 .98 vs .53).
 4. At 1 s every head saturates at M6+ (bias −1.2 to −1.8), consistent with the physical limit
