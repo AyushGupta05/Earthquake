@@ -1,0 +1,4 @@
+--arm magnet_cap40 --head magnet --loss nll --epochs 10 --train-mag-cap 4.0
+--arm eqgr_k1_nll --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0
+--arm eqgr_k1_cap40 --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0 --train-mag-cap 4.0
+--arm eq_k1_nll --head eq --loss nll --epochs 10 --kappa-fixed 1.0
