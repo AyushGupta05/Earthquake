@@ -184,9 +184,9 @@ ensembles (`eval_e20_ens3.json`, `eval_e20_seeds23.json`). Δ = arm − the 20-e
 
 | | bulk | top tail | false-M4 per 10⁴ |
 |---|---|---|---|
-| INSTANCE, eqdgr 20 ep, ensembles (3 v 3) | **−.0040 / −.0061 / −.0073** | M≥5 −.106 / **−.154 / −.161** | +.2 / ±0 / ±0 (n.s.) |
-| INSTANCE, seed 2 / seed 3 | −.006 / −.009 / −.010 (both) | M≥5 −.10 / −.17 / −.16 and −.09 / −.17 / −.16 | ±0 |
-| INSTANCE, 10-epoch mixture ensemble vs 20-epoch | **+.0025 / +.0032 / +.0033** | M≥4 **+.019 / +.019 / +.022** | −.1 |
+| INSTANCE, eqdgr 20 ep, ensembles (3 v 3) | **−.0040 / −.0061 / −.0073** | M≥5 −.106 / **−.154 / −.161** | +1.6 [−0.1,+2.9] / +0.3 / −0.1 (abs. 7.9 vs 6.0 at 1 s) |
+| INSTANCE, seed 2 / seed 3 | −.006 / −.009 / −.010 (both) | M≥5 −.10 / −.17 / −.16 and −.09 / −.17 / −.16 | +1.1 / +0.3 / −0.4 and +0.8 / +0.7 / +0.1 |
+| INSTANCE, 10-epoch mixture ensemble vs 20-epoch | **+.0025 / +.0032 / +.0033** | M≥4 **+.019 / +.019 / +.022** | **−0.9** / −0.4 / −0.3 |
 | Chile, eqdgr 20 ep | **−.0045 / −.0064 / −.0080** | M≥6 **−.107 / −.229 / −.310** | — |
 | Chile, 10-epoch mixture vs 20-epoch | **−.0022 / −.0039 / −.0046** | M≥6 −.002 / **+.061** / +.029 | — |
 | GEOFON, eqdgr 20 ep | **+.014 / +.009 / +.009** | M≥7 **−.073 / −.062 / −.084** | — |
@@ -197,8 +197,8 @@ ensembles (`eval_e20_ens3.json`, `eval_e20_seeds23.json`). Δ = arm − the 20-e
   M≥7 −.04 to −.13), and slightly hurt it on Chile (bulk +.002 to +.005). The
   distance-marginalized head moves the same way on each catalogue.
 * Against the equally trained mixture the head keeps its advantage everywhere: INSTANCE bulk
-  −.004 / −.006 / −.007 with M≥5 −.15 / −.16 at 3 / 5 s and no false-alarm excess (three
-  seeds agree: the 1 s cost of the 10-epoch head is gone at 20 epochs); Chile bulk −.005 / −.006
+  −.004 / −.006 / −.007 with M≥5 −.15 / −.16 at 3 / 5 s and a 1 s false-alarm excess reduced
+  from +4.0 to +1.6 per 10⁴ (n.s.; three seeds agree on the reduction); Chile bulk −.005 / −.006
   / −.008 and M≥6 −.11 / −.23 / −.31; GEOFON M≥7 −.07 / −.06 / −.08 at a bulk cost halved to
   +.009 (from +.019 at 10 epochs).
 * Practical reading for INSTANCE: the 20-epoch distance-marginalized head is the single best
@@ -215,18 +215,18 @@ distance-marginalized heads (`eval_ens5.json`; single seeds 4 and 5 in `eval_see
 
 | | bulk | M≥4 MAE | M≥5 MAE | false-M4 per 10⁴ |
 |---|---|---|---|---|
-| plain, ×1.5 width | **−.0022 / −.0025 / −.0034** | **−.018 / −.021 / −.027** | −.031 / **−.109 / −.133** | +.1 / **+.1** / +.1 |
-| distance-marg., ×1.5 width | **−.0027 / −.0065 / −.0083** | −.021 / **−.027 / −.031** | −.112 / **−.163 / −.171** | **+.4 / +.3 / +.2** |
-| plain, 20 epochs | −.0001 / **−.0017 / −.0038** | **−.014 / −.011 / −.017** | −.047 / **−.098 / −.110** | ±0 |
-| distance-marg., 20 epochs | **−.0064 / −.0084 / −.0104** | +.002 / −.007 / −.014 (n.s.) | −.065 / **−.120 / −.142** | +.2 / ±0 / ±0 |
-| plain, 5-seed ensembles | −.0004 / −.0012 / **−.0023** | **−.015 / −.014 / −.024** | −.022 / **−.095 / −.138** | **+.2** / +.1 / ±0 |
-| distance-marg., 5-seed ensembles | −.0007 / **−.0032 / −.0047** | −.015 / −.017 / −.023 (n.s.) | −.119 / **−.168 / −.183** | **+.4 / +.2 / +.1** |
+| plain, ×1.5 width | **−.0022 / −.0025 / −.0034** | **−.018 / −.021 / −.027** | −.031 / **−.109 / −.133** | +0.6 / **+1.1** / +0.8 |
+| distance-marg., ×1.5 width | **−.0027 / −.0065 / −.0083** | −.021 / **−.027 / −.031** | −.112 / **−.163 / −.171** | **+4.1 / +2.9 / +1.6** |
+| plain, 20 epochs | −.0001 / **−.0017 / −.0038** | **−.014 / −.011 / −.017** | −.047 / **−.098 / −.110** | +0.1 / −0.2 / +0.1 |
+| distance-marg., 20 epochs | **−.0064 / −.0084 / −.0104** | +.002 / −.007 / −.014 (n.s.) | −.065 / **−.120 / −.142** | +1.6 / +0.2 / −0.3 |
+| plain, 5-seed ensembles | −.0004 / −.0012 / **−.0023** | **−.015 / −.014 / −.024** | −.022 / **−.095 / −.138** | **+1.6** / +0.5 / +0.5 |
+| distance-marg., 5-seed ensembles | −.0007 / **−.0032 / −.0047** | −.015 / −.017 / −.023 (n.s.) | −.119 / **−.168 / −.183** | **+4.0 / +1.6 / +0.9** |
 
 * Capacity: at 2.2× the parameters the distance-marginalized head's bulk gain is larger
   (−.008 at 5 s vs −.005 at the standard width) and its M≥5 gain unchanged, so the gain is not
   what a bigger free mixture would also learn.
 * Training length: at 20 epochs its bulk gain triples (−.0064 / −.0084 / −.0104) and its 1 s
-  false-alarm excess disappears, while its M≥4 gain shrinks to insignificance and the M≥5 gain
+  false-alarm excess falls from +4.0 to +1.6 per 10⁴ (n.s.), while its M≥4 gain shrinks to insignificance and the M≥5 gain
   is kept (−.12 / −.14 at 3 / 5 s). Longer training moves this head toward the bulk; the
   tail gain survives.
 * Seeds: the five-seed ensembles reproduce the three-seed ones (plain: M≥5 −.022 / −.095 /
@@ -398,19 +398,19 @@ per-seed Δ = eqdgr_hs − mix_hs of the same seed, and three-seed ensembles
 
 | | bulk | M≥5 MAE | false-M4 per 10⁴ |
 |---|---|---|---|
-| seed 1 | −.003 / −.002 / −.004 | −.158 / **−.201 / −.217** | −.4 / +.3 / −.3 (n.s.) |
-| seed 2 | +.001 / −.000 / −.003 | −.159 / **−.207 / −.197** | **+1.0 / +.6 / +.4** |
-| seed 3 | +.002 / +.002 / +.001 | −.146 / **−.215 / −.202** | +.3 / +.1 / −.2 (n.s.) |
-| ensembles (3 v 3) | −.000 / −.001 / −.002 (n.s.) | −.154 [−.316,+.012] / **−.216 [−.367,−.062] / −.218 [−.367,−.063]** | **+.9 / +.6 / +.4** |
+| seed 1 | −.003 / −.002 / −.004 | −.158 / **−.201 / −.217** | −3.5 / +2.7 / −2.7 (n.s.) |
+| seed 2 | +.001 / −.000 / −.003 | −.159 / **−.207 / −.197** | **+9.9 / +6.0 / +4.2** |
+| seed 3 | +.002 / +.002 / +.001 | −.146 / **−.215 / −.202** | +2.7 / +1.5 / −1.8 (n.s.) |
+| ensembles (3 v 3) | −.000 / −.001 / −.002 (n.s.) | −.154 [−.316,+.012] / **−.216 [−.367,−.062] / −.218 [−.367,−.063]** | **+9.4 / +6.3 / +4.3** (abs. 17.9 vs 9.0, 11.4 vs 6.1, 9.0 vs 5.5) |
 
 **Seen stations (879,437 records), ensembles:** bulk −.001 / **−.004 / −.007**, M≥4 **−.031 /
-−.024 / −.027**, M≥5 **−.160 / −.195 / −.194** (all CIs exclude zero), false-M4 **+.6 / +.3 /
-+.2 per 10⁴**.
+−.024 / −.027**, M≥5 **−.160 / −.195 / −.194** (all CIs exclude zero), false-M4 **+6.1 / +3.3 /
++2.0 per 10⁴** (abs. 12.4 vs 6.0 at 1 s).
 
 The large-event gain on stations never seen in training is the same size in all three seeds
 and in the ensemble (−.20 to −.22 at 3 and 5 s, intervals excluding zero), at equal bulk error;
-the head's small false-alarm excess appears on held stations too (+.4 to +.9 per 10⁴ for the
-ensemble). This completes the held-station evidence for the portable model on INSTANCE; the
+the head's false-alarm rate roughly doubles on held stations (ensemble 17.9 vs 9.0 per 10⁴ at
+1 s, Δ +9.4 [+7.5,+13.1]; +6.3 and +4.3 at 3 and 5 s). This completes the held-station evidence for the portable model on INSTANCE; the
 Chile replication (seeds 2–3) is running.
 
 ## 2026-10-21 05:45 UTC — Pinned prior slope on Chile and GEOFON: harmless and useful for fusion on Chile; on GEOFON it costs the distance-marginalized head accuracy and does not make fusion competitive
@@ -551,10 +551,12 @@ four-arm evaluation on records at held stations only (279,812 records; `eval_hs_
 
 Absolute M≥5 MAE at held stations, 5 s: mixture .771, prior-only .702, plain equivariant .624,
 distance-marginalized .538. So on unseen stations the distance-marginalized head keeps the
-largest M≥5 gain of any arm (as on seen stations), at equal bulk error and equal false-M4 rate.
+largest M≥5 gain of any arm (as on seen stations), at equal bulk error and, for this seed, a
+false-M4 difference that is not significant (−3.5 / +2.7 / −2.7 per 10⁴; the three-seed
+ensemble shows a doubling, 21 Oct 09:05 entry).
 On the seen-station subset (879,437 records; `eval_hs_seen4.json`) the full-data pattern
 repeats: eqdgr_hs − mix_hs M≥5 **−.169 [−.316,−.044] / −.191 [−.326,−.085] / −.195
-[−.350,−.077]**, bulk −.001 / **−.004 / −.007**, false-M4 **+.7 / +.3 / +.2 per 10⁴** (its known
+[−.350,−.077]**, bulk −.001 / **−.004 / −.007**, false-M4 **+6.9 / +3.2 / +1.8 per 10⁴** (its known
 1 s cost; absent on the held-station subset); eqgr_hs M≥5 **−.075 / −.107 / −.135**, bulk
 −.002 / **−.002 / −.003**, false-M4 equal. Absolute M≥5 MAE at 5 s, seen stations: mixture
 .703, prior-only .650, plain .556, distance-marginalized .493.

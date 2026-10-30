@@ -108,8 +108,11 @@ distance-marginalized head, added to this test on 21 Oct (`eqdgr_nll_hs`), keeps
 M≥5 gain on unseen stations: −.158 / **−.201 [−.345,−.060] / −.217 [−.365,−.066]** at equal bulk
 error (absolute M≥5 MAE at 5 s: mixture .771, plain equivariant .624, distance-marginalized
 .538); replicated in seeds 2 and 3 (−.207 / −.197 and −.215 / −.202 at 3 / 5 s) and as
-three-seed ensembles (**−.216 [−.367,−.062] / −.218 [−.367,−.063]**, bulk equal, false-M4 +.4 to
-+.9 per 10⁴).
+three-seed ensembles (**−.216 [−.367,−.062] / −.218 [−.367,−.063]**, bulk equal). Its cost is a
+**doubled false-alarm rate on unseen stations**: false M≥4 on M<3.5 records rises from 9.0 to 17.9
+per 10⁴ at 1 s (Δ +9.4 [+7.5,+13.1]), 6.1 → 11.4 at 3 s and 5.5 → 9.0 at 5 s; on seen stations
+6.0 → 12.4 at 1 s. (Corrected 30 Oct: earlier text gave these as +.4 to +.9 per 10⁴, a 10× unit
+error found by the audit, `AUDIT_2026-10-30.md`.)
 
 Ablations and exploratory heads:
 * `eq_nll`: equivariant, no prior factor. Hurts bulk (+.005).
@@ -142,15 +145,17 @@ eqgr − mix differences are unchanged or larger (width: bulk −.002/−.003/�
 mixture matches the standard eqgr on M≥4 error but not on M≥5 or bulk error. The same holds for
 the distance-marginalized head: at 1.5× width its bulk gain grows (−.0027 / −.0065 / −.0083) with
 M≥5 −.112 / −.163 / −.171, and at 20 epochs its bulk gain triples (−.0064 / −.0084 / −.0104) and
-its 1 s false-alarm excess disappears while M≥5 stays at −.12 / −.14 (3 / 5 s); replicated in
-three seeds against the equally trained mixture (ensembles: bulk −.0040 / −.0061 / −.0073, M≥5
-−.106 / −.154 / −.161, false-M4 equal), and on Chile (bulk −.005 / −.006 / −.008, M≥6 −.11 / −.23
+its 1 s false-alarm excess shrinks from +4.0 to +1.6 per 10⁴ (n.s.) while M≥5 stays at −.12 / −.14
+(3 / 5 s); replicated in three seeds against the equally trained mixture (ensembles: bulk −.0040 /
+−.0061 / −.0073, M≥5 −.106 / −.154 / −.161, false-M4 7.9 vs 6.0 per 10⁴ at 1 s, Δ +1.6
+[−0.1,+2.9], equal at 3–5 s), and on Chile (bulk −.005 / −.006 / −.008, M≥6 −.11 / −.23
 / −.31) and GEOFON (M≥7 −.07 / −.06 / −.08 at half the bulk cost of the 10-epoch head), where 20
 epochs hurt both models slightly (Chile) or help both strongly (GEOFON). Five-seed ensembles
 reproduce the three-seed results for both heads (M≥5 −.022 / −.095 / −.138 and −.119 / −.168 /
 −.183). On INSTANCE the 20-epoch distance-marginalized head is the single best model of the
-study on stations seen in training: lower bulk error than any mixture, the same M≥5 gain, the
-mixture's false-alarm rate. On stations never seen in training, 20 epochs hurt both models and
+study on stations seen in training (a post-hoc observation: it was chosen on the same folds):
+lower bulk error than any mixture, the same M≥5 gain, a false-alarm rate within 1.6 per 10⁴ of
+the mixture's. On stations never seen in training, 20 epochs hurt both models and
 the 10-epoch distance-marginalized head is best (bulk .006–.008 and M≥5 .01–.05 lower than its
 20-epoch version).
 

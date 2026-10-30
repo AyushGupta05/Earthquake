@@ -175,9 +175,13 @@ class EquivariantMixtureHead(nn.Module):
             span = 1.5 - kappa_min
             self.kappa.bias.fill_(math.log((1.0 - kappa_min) / (span - (1.0 - kappa_min))))   # kappa = 1.0 at init
 
+    kappa_fixed = None          # set to a number for the fixed-slope ablation (1.0 = Zhang et al. 2021 construction)
+
     def forward(self, h, A):
         w, g, s = self.lin(h).float().split(self.k, -1)
         kappa = self.kappa_min + (1.5 - self.kappa_min) * torch.sigmoid(self.kappa(h).float())
+        if self.kappa_fixed is not None:
+            kappa = torch.full_like(kappa, float(self.kappa_fixed))
         mu = kappa * (A.float() - A0)[:, None] + g
         return Mixture(w, mu, F.softplus(s) + self.min_sigma)
 
@@ -312,9 +316,13 @@ class EquivariantDistanceHead(nn.Module):
             self.kappa.weight.zero_()
             self.kappa.bias.fill_(math.log(0.7 / 0.5))
 
+    kappa_fixed = None
+
     def forward(self, h, A):
         w, g, s = self.lin(h).float().split(self.n, -1)
         kappa = 0.3 + 1.2 * torch.sigmoid(self.kappa(h).float())
+        if self.kappa_fixed is not None:
+            kappa = torch.full_like(kappa, float(self.kappa_fixed))
         mu = kappa * (A.float() - A0)[:, None] + g
         return DistanceMixture(w, mu, F.softplus(s) + self.min_sigma)
 
@@ -461,7 +469,7 @@ class MagNetTrunk(nn.Module):
 
 class MagnitudeModel(nn.Module):
     def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3, beta_fixed=None,
-                 train_cap=None):
+                 train_cap=None, kappa_fixed=None):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
@@ -496,6 +504,11 @@ class MagnitudeModel(nn.Module):
             gr = self.head if hasattr(self.head, 'phi_free') else getattr(self.head, 'prior', None)
             if gr is not None and hasattr(gr, 'train_cap'):
                 gr.train_cap = float(train_cap)
+        if kappa_fixed is not None:
+            eqh = next((m for m in self.head.modules() if isinstance(m, (EquivariantMixtureHead, EquivariantDistanceHead))), None)
+            if eqh is None:
+                raise ValueError(f'head {head!r} has no equivariant slope to fix')
+            eqh.kappa_fixed = float(kappa_fixed)
 
     def forward(self, shape, A, invariant, static, dur_idx):
         return self.head(self.trunk(shape, A, invariant, static, dur_idx), A)

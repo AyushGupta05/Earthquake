@@ -246,7 +246,8 @@ station and event were both unseen (279,812 records, 341 M≥4 events): M≥5 �
 false-M4 rate lower (1.2 vs 2.9 per 10³ at 1 s) and CVaR95 lower at every deadline; the
 distance-marginalized head keeps the largest M≥5 gain there, −.158 / −.201 [−.345,−.060] /
 −.217 [−.365,−.066] for seed 1 and −.154 / −.216 [−.367,−.062] / −.218 [−.367,−.063] for
-three-seed ensembles, at equal bulk error and +.4 to +.9 false M≥4 per 10⁴ (M≥5 MAE at 5 s,
+three-seed ensembles, at equal bulk error but a doubled false-alarm rate on unseen stations (false M≥4
+on M<3.5 records 17.9 vs 9.0 per 10⁴ at 1 s, 11.4 vs 6.1 at 3 s, 9.0 vs 5.5 at 5 s) (M≥5 MAE at 5 s,
 seed 1: mixture .771, plain head .624, distance-marginalized .538). *Standard
 split* (train 2005–17, VAL 2018): M≥4 −.025/−.022/−.038 vs the mixture with bulk equal or
 better. *Training length.* At 20 epochs the eqgr − mix differences are unchanged (bulk
@@ -257,8 +258,8 @@ itself moves both heads along the trade-off (+.004–.005 bulk, −.02 M≥4). *
 mixture reaches the standard eqgr's M≥4 error but not its M≥5 or bulk error. For the
 distance-marginalized head the width check gives bulk −.0027/−.0065/−.0083 and M≥5
 −.112/−.163/−.171, and 20 epochs give bulk −.0064/−.0084/−.0104 with the 1 s false-alarm excess
-gone and M≥5 −.120/−.142 at 3/5 s, replicated in three seeds against an equally trained
-mixture (bulk −.0040/−.0061/−.0073, M≥5 −.106/−.154/−.161, false-M4 equal) and, with the same
+reduced from +4.0 to +1.6 per 10⁴ (n.s.) and M≥5 −.120/−.142 at 3/5 s, replicated in three seeds against an equally trained
+mixture (bulk −.0040/−.0061/−.0073, M≥5 −.106/−.154/−.161, false-M4 +1.6 [−0.1,+2.9] per 10⁴ at 1 s, equal at 3–5 s) and, with the same
 sign, on Chile (bulk −.0045/−.0064/−.0080, M≥6 −.107/−.229/−.310) and GEOFON (M≥7
 −.073/−.062/−.084 at +.009 bulk); five-seed ensembles reproduce the three-seed differences for
 both heads.

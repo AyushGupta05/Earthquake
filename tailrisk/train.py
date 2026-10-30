@@ -57,7 +57,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     data.fit_static_norm(train_idx)
     n_static = data.static_raw.shape[1]
     model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult, kappa_min=args.kappa_min,
-                           beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap).to(device)
+                           beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap, kappa_fixed=args.kappa_fixed).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -171,6 +171,8 @@ def main():
                     help='amplitude-scaling augmentation half-width in log10 units (label shifted equally)')
     ap.add_argument('--width-mult', type=float, default=1.0, help='trunk width multiplier (capacity check)')
     ap.add_argument('--kappa-min', type=float, default=0.3, help='lower bound of the equivariant slope kappa(s)')
+    ap.add_argument('--kappa-fixed', type=float, default=None,
+                    help='fix the equivariant slope (1.0 reproduces the kappa=1 construction of Zhang, Zhang & Tian 2021)')
     ap.add_argument('--beta-fixed', type=float, default=None,
                     help='pin the GR tail slope of the prior factor (nats per magnitude unit, e.g. -2.29 for b = 1) instead of learning it')
     ap.add_argument('--no-static', action='store_true', help='no station metadata inputs (catalogue-agnostic model for transfer tests)')

@@ -80,7 +80,7 @@ def main():
         avail = sorted(int(q.stem[4]) for q in src_dir.glob('fold?_model.pt'))
         f_src = k if k in avail else avail[0]
         model = MagnitudeModel(targs['head'], 1, k=targs.get('k', 6), width_mult=targs.get('width_mult', 1.0),
-                               kappa_min=targs.get('kappa_min', 0.3), beta_fixed=targs.get('beta_fixed')).to(device)
+                               kappa_min=targs.get('kappa_min', 0.3), beta_fixed=targs.get('beta_fixed'), kappa_fixed=targs.get('kappa_fixed')).to(device)
         model.load_state_dict(torch.load(src_dir / f'fold{f_src}_model.pt', map_location=device))
         model.eval()
         y_src = src_meta['mag'][src_fold != f_src]
