@@ -72,19 +72,49 @@ estimates on every catalogue tested.
 
 ## 2. Related work
 
-Bayesian early warning (Virtual Seismologist; the Gutenberg algorithm; Yang et al. 2022)
-combines hand-built amplitude or frequency likelihoods with a Gutenberg–Richter prior; we
-keep that structure and learn the likelihood from waveforms end-to-end. TEAM-LM uses a
-Gaussian-mixture head and large-event resampling; it is our strongest baseline. Zhang & Zhang
-(2024) separate amplitude from shape by feeding the log normalization factor as an input and
-induce the scaling law with synthetic "generalized" events; both the free-amplitude-input
-design and augmentation-induced symmetry are baselines here and lose. Logit adjustment,
-balanced softmax and Balanced MSE use a *known* label prior to remove training imbalance; our
-prior factor is learned, shape-constrained and retained because the target is the natural
-distribution. Deep imbalanced regression (LDS/FDS) reweights; we show reweighting moves along
-the bulk/tail trade-off rather than improving the posterior. Gain-invariant networks exist in
-audio and vision, but as invariances of the input, not as an equivariance of a label
-distribution with a learned, input-dependent slope. A fuller audit is in NOVELTY.md.
+Deep-learning early-warning magnitude estimators keep amplitude in the waveform (Mousavi &
+Beroza 2020) or feed the log normalization factor as a free input (Münchmeyer et al. 2021; Zhang &
+Zhang 2024), and underestimate the largest events, which Münchmeyer et al. attribute to the
+Gutenberg–Richter (GR) imbalance of the training data. Closest to our likelihood, Zhang, Zhang &
+Tian (2021) and the preprint of Zhang & Zhang (2023) predict a distribution over a normalized
+magnitude M − log A_max and add log A_max back, which makes the prediction exactly equivariant to
+amplitude scaling with unit slope; P. Zhang et al. (2026) apply a related pseudo-normalization to
+single-station INSTANCE records (abstract only; full text not reached). We generalize this
+construction in three ways: the slope κ(s) is learned and depends on the scale-free waveform, all
+components of a Gaussian mixture share the equivariant shift, and the posterior carries a learned
+global prior factor, free below the completeness magnitude and GR-linear above it, that preserves
+the equivariance. The unit-slope head is one of our ablations (`--kappa-fixed 1`).
+
+Bayesian early warning has long combined amplitude likelihoods with a GR prior (Cua & Heaton 2007;
+Lancieri & Zollo 2008; Meier et al. 2015), and the constant magnitude shift that a GR prior induces
+under Gaussian errors is classical (Tinti & Mulargia 1985; cf. Eddington 1913; Malmquist 1922). The
+Gutenberg algorithm (Meier et al. 2015) also forms a joint magnitude–distance posterior from
+single-station amplitudes and marginalizes distance, as our distance-marginalized head does, but
+with a nearest-neighbour likelihood that cannot exceed the training amplitudes. Proposition 1
+states when the GR shift makes the exact posterior equivariant despite unknown distance, site and
+path.
+
+Fusing per-sensor posteriors requires dividing out the prior that each was computed under: the
+product rule of Kittler et al. (1998), the Bayesian committee machine (Tresp 2000) and, for deep
+networks, probabilistic ensembling (ProbEn; Chen et al. 2022) and compositional score modelling
+(Geffner et al. 2023). We found no early-warning system that does so: the Gutenberg algorithm
+multiplies per-station posteriors that already contain the GR prior, and neural systems average
+station magnitudes (Zhang & Zhang 2024). We measure the resulting bias on three catalogues, and
+Proposition 2 adds that a learned prior factor's tail slope is not identified from single-station
+data, so the prior to divide out is the training-label prior. Consistent with ProbEn and the robust
+BCM literature, which prior works best is empirical and catalogue-specific in our data too.
+
+Training on a label-truncated catalogue is a truncated-likelihood problem (Daskalakis et al. 2019;
+Ilyas et al. 2020), and replacing the training prior by the target prior at inference is the
+proposal correction of neural posterior estimation (Papamakarios & Murray 2016; Deistler et al.
+2022). Both are valid only inside the training support. Proposition 3 shows that exact equivariance
+carries the likelihood above a training cap, up to the window-dependent magnitude at which early
+P amplitudes saturate physically (about M5.7 at 1 s, 6.5–6.7 at 3 s and 7.0 at 5 s; Meier et al.
+2015; Trugman et al. 2019). Logit adjustment, balanced softmax and Balanced MSE use a known label
+prior to remove training imbalance for a balanced target; our prior factor is learned,
+shape-constrained and kept, because the target is the natural distribution. Deep imbalanced
+regression (LDS/FDS) reweights, which we show moves along the bulk/tail trade-off rather than
+improving the posterior. A fuller audit is in NOVELTY.md and LITREVIEW_2026-10-30.md.
 
 ## 3. Method
 

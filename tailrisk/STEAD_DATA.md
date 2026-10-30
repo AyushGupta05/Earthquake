@@ -224,6 +224,47 @@ raw counts:
 - These records were **not dropped**, because the check uses magnitudes from every fold.
   `suspect` is row-aligned with the cache if a run wants to exclude or stratify them.
 
+## Subgroups (`subgroups.npz`, pre-registered masks)
+
+`/mnt/scratch/stead/subgroups.npz` is row-aligned with `meta.npz` (996,894 rows). It was built by
+`/mnt/scratch/stead/make_subgroups.py` on 30 Oct, after the S3 backup, so neither file is in
+that backup. It holds:
+
+- **`mw_tail`** (bool): the event's label type starts with `Mw` (Mw, Mww, Mwr, Mwc, Mwb). It is
+  constant within an event.
+- **`gain_suspect`** (bool): `suspect` from `gain_qc.npz`.
+- **`region`** (int8) with **`region_names`**: codes 0–7 are Alaska-Aleutians, Chile-Argentina,
+  Greece-Aegean, New Zealand, California-Nevada, Central America, Cascadia and other.
+  - Regions use the event epicentre, tested in this order with the first match winning:
+    - California-Nevada: 32 < lat < 42.5, −125.5 < lon < −114
+    - Alaska-Aleutians: lat > 50 and (lon < −129 or lon > 170)
+    - Cascadia: 42.5 ≤ lat < 50, −130 < lon < −116
+    - Chile-Argentina: −45 < lat < −15, −76 < lon < −65
+    - Greece-Aegean: 34 < lat < 42, 19 < lon < 30
+    - New Zealand: −48 < lat < −34, 165 < lon < 180
+    - Central America: 0 < lat < 20, −95 < lon < −77
+    - everything else is other, including Hawaii and Puerto Rico
+- **`one_record_per_station_event`** (bool): True for the first row of each (event, station)
+  pair. Only 117 rows are False, including 2 at M≥5, because `stead_prep.py` already removed
+  copies within one family. What remains is two families at one station, such as HH plus EH.
+
+| subgroup | records | M≥5 events | M≥6 events | M≥5 records | M≥6 records |
+|---|---|---|---|---|---|
+| all | 996,894 | 718 | 63 | 1,676 | 121 |
+| `mw_tail` | 8,166 | 525 | 56 | 1,195 | 104 |
+| not `mw_tail` | 988,728 | 193 | 7 | 481 | 17 |
+| `gain_suspect` | 6,148 | 16 | 0 | 16 | 0 |
+| not `gain_suspect` | 990,746 | 710 | 63 | 1,660 | 121 |
+| `one_record_per_station_event` | 996,777 | 718 | 63 | 1,674 | 121 |
+| Alaska-Aleutians | 208,030 | 233 | 27 | 656 | 65 |
+| Chile-Argentina | 3,870 | 158 | 8 | 201 | 9 |
+| Greece-Aegean | 17,819 | 85 | 8 | 235 | 11 |
+| New Zealand | 1,769 | 51 | 6 | 84 | 9 |
+| California-Nevada | 602,326 | 50 | 3 | 243 | 8 |
+| Central America | 831 | 25 | 3 | 32 | 3 |
+| Cascadia | 35,803 | 17 | 3 | 49 | 9 |
+| other | 126,446 | 99 | 5 | 176 | 7 |
+
 ## Known issues
 
 1. **1–45 Hz pre-filter (STEAD processing).** Energy below 1 Hz is attenuated. This lowers large

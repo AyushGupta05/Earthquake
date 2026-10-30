@@ -299,3 +299,130 @@ product-of-experts, federated EP and decentralized-fusion references) are in the
 folder, `~/Library/Application Support/Claude/side-session-notes/local_3aba941c-c398-4d1d-a335-0d20cb969822/litreview_2026-10-30/`
 (`lit_A_eew_ml.md`, `lit_B_fusion_prior.md`, `lit_C_equiv_extrap.md`, `lit_main_notes.md`). Only the entries
 that bear on the five claims are carried into this file.
+
+---
+
+## Update — 30 Oct 2026 (follow-up requested by the main session)
+
+### U1. The previously unverified papers
+
+**P. Zhang, X. Zhang & Tian (2026), *Applied Computing and Geosciences* 30, 100356 [3].**
+
+Access attempts:
+- OpenAlex lists it as gold open access (CC BY-NC-ND, published 25 May 2026), with no repository copy beyond DOAJ.
+- ScienceDirect refused both plain fetches and the in-app browser ("There was a problem providing the content you requested").
+- DOAJ served a Cloudflare challenge. I did not try to get past either check.
+- SSRN returned 403.
+- No arXiv / ESSOAr / EarthArXiv version, author page or GitHub/Zenodo code was found.
+
+**The full text was not read.** The complete abstract was read through the OpenAlex and Semantic Scholar APIs [A]. It establishes the following:
+
+| Question | What the abstract says | Status |
+|---|---|---|
+| Output M − κ·log A, κ fixed or learned? | "Pseudo-normalization": the input is normalized but "preserving the normalization factor", so the network can "decouple waveform shape features from amplitude scaling". Normalized waveforms predict "the epicentral distance and magnitude contribution excluding the absolute amplitude". | Additive recombination with the log normalization factor is clear. The slope is not stated. The authors' earlier papers [1, 2] use a fixed slope of 1, so **κ ≡ 1 is likely but unconfirmed**. Nothing suggests a learned or waveform-dependent slope. |
+| Prior factor? | None mentioned. Output is "one-dimensional Gaussian distributions" to quantify uncertainty. | No evidence of a GR or label prior. |
+| Distance co-output or marginalized? | "Simultaneous estimation of magnitude and epicentral distance". | **Co-output**, not marginalized. Distance does not enter the magnitude likelihood as a latent, as far as the abstract says. |
+| INSTANCE split and metrics | Trained on INSTANCE with a "multi-time-window strategy". Test MAE 0.1977 (magnitude) and 1.67 km (epicentral distance). | Split, windows and per-magnitude-bin error unknown. The pooled MAE is not comparable with the study's bulk/tail MAE without the split. |
+| Large-magnitude error | Not reported in the abstract. | Unknown. |
+
+**Action:** ask someone with ordinary web access to download the open PDF from https://doi.org/10.1016/j.acags.2026.100356 and check:
+- the exact magnitude reconstruction formula;
+- the INSTANCE split (event- or record-level; temporal or random);
+- any error-by-magnitude figure.
+
+If it is κ ≡ 1 on INSTANCE, the queued κ ≡ 1 ablation *is* this construction on the study's trunk, which is the right comparison.
+
+**Kuang, Yuan & Zhang (2021), *SRL* 92(4) [7].**
+- Closed access; OpenAlex reports no repository copy. The full abstract was read [A]:
+  - a network-wide encoder–decoder "MagNet" whose output is "a Gaussian probability distribution representing the magnitude";
+  - "trained with an augmented data set, which includes 21,700 training samples with evenly distributed magnitudes";
+  - test mean error −0.017 ± 0.21 for 600 M3–5.9 events;
+  - "it remains challenging for large earthquakes (magnitude > 6.5), due to the lack of sufficient historical large earthquakes".
+- How the augmentation creates evenly distributed magnitudes (amplitude rescaling with a label shift, or resampling) **remains unverified**.
+- Either way it is a *flat training prior with no test-time correction* (the CREIME pattern [9]), not an equivariant head.
+- If the full text shows Richter-type amplitude rescaling, it is the published precedent for the study's `cat_aug` baseline.
+
+**Thapa et al. (2026), *Bull. Earthquake Eng.* 24, 3465–3492; preprint Research Square rs-7479899 [72] [V, preprint read].**
+- U-Net++ with attention for P detection, double-integrated acceleration features, and Gaussian-labelled picks.
+- Magnitude is computed from an energy relation, M = log₁₀(E_total) + C (eq. 14), where E_total is the summed squared displacement. The paper calls this "Gutenberg–Richter's relation", but it is the energy–magnitude relation, not the frequency law.
+- MCMC (emcee, 32 walkers) samples the magnitude, with the target stated as "P(M | D) is proportional to the likelihood". **The prior is therefore implicitly flat; there is no Gutenberg–Richter frequency prior.**
+- Data: a STEAD subsample "covering magnitudes from M3.0 to M8.0" and described as balanced.
+- Relevance: low. A fixed parametric amplitude–energy law, with no learned equivariant head, no prior factor and no extrapolation test.
+
+### U2. Physical saturation limit the capped-training results must respect
+
+These are the magnitudes above which early-window P amplitude stops growing with final magnitude. Windows run from the P arrival (Meier 2015/2016, Trugman 2019) or from the rupture onset (Münchmeyer 2022). Values marked † are my interpolations in log t between published values.
+
+| Window | Trugman et al. 2019 model (weak predictability; peak displacement; K-NET/KiK-net) | Meier et al. 2015 (filter-bank PGV, Gutenberg algorithm) | Meier et al. 2016 (near-source pgd, < 25 km) | Münchmeyer et al. 2022 (source time functions) |
+|---|---|---|---|---|
+| 1 s | **M ≈ 5.7** | "clear magnitude saturation for events with M > 6" at 1 s | Bin medians for M5.5–6.0 and M6.0–6.5 start to diverge at ~1 s, but the bins are not statistically distinct | Buckets "mostly identical" for the first ~2 s |
+| 2 s | M ≈ 6.4 | for windows < 4 s, "saturation starts at M ∼ 6.5" | — | Mw 6.5–7.0 bucket separates at ~2 s |
+| 3 s | M ≈ 6.7 † | M > 6.5 not significantly higher than M ≈ 6.5 at 3 s | M6.5–8 indistinguishable from M6.0–6.5 | — |
+| 4–5 s | M ≈ 7.0 at 4 s; ≈ 7.1 at 5 s † | — | M6.5–8 separates from M6.0–6.5 only after **5–6 s** | Mw 7.0–7.5 separates at ~8 s |
+| 8–10 s | M ≈ 7.4 at 8 s | M > 7.5: "even 10 s are not long enough" | — | Mw 7.5–8.0 at ~16 s; 8.0–8.5 at 25–40 s |
+
+Sources and checks:
+- Trugman values as quoted in TEAM-LM [4] ("magnitude saturation at approximately magnitude 5.7 after 1 s; 6.4 after 2 s; 7.0 after 4 s; 7.4 after 8 s") [V in TEAM-LM; Trugman's own text not reachable: OSTI refused the connection and Wiley is closed].
+- Meier 2015 [16] [V]. Meier, Heaton & Clinton 2016 [70] [V]. Münchmeyer, Leser & Tilmann 2022 [71] [V].
+- The common physical reading: magnitude becomes identifiable only after about half the rupture duration.
+
+Implications for the capped-training claim:
+- At **1 s**, no amplitude-based estimator should recover magnitudes much above **M ≈ 5.7–6**.
+  - A cap at M5 on INSTANCE leaves only ~0.7–1 magnitude units of physically recoverable extrapolation at 1 s.
+  - The README's observation that "at 1 s every head stays strongly biased on the largest events" is expected physics, not a model failure.
+- At **3 s** the limit is **M ≈ 6.5–6.7**; at **5 s** it is **M ≈ 7.0–7.1**, or about 6.5 if one follows Meier 2016's near-source 5–6 s separation time.
+- INSTANCE's largest events (M6–6.5) therefore sit near the 3 s limit and below the 5 s limit, so extrapolation gains there at 3–5 s are physically possible.
+- GEOFON's M≥7 tail lies **above** the 3 s limit and at the 5 s limit, so saturation of every head there (README: "on GEOFON all heads saturate") is expected.
+- **Suggested presentation:** plot the capped-training bias by magnitude bin with a vertical line at the Trugman saturation magnitude for each window. Claim extrapolation only between the cap and that line.
+
+Caveats:
+- These limits are for *peak* displacement or velocity at mostly near-source distances. The study's A is the RMS of the whole window, which grows more slowly than the peak, so its saturation may set in at slightly lower magnitudes.
+- At far-regional distances the P window also contains path-dependent coda.
+- TEAM-LM observed its own saturation *below* these thresholds (Italy ≈ M5.5, Chile ≈ M6.0) and attributed it to data sparsity. That is the effect the capped-training test is designed to separate from physics.
+
+### U3. Draft "Related work" for PAPER.md (≈450 words, ready to paste; citation keys as in the reference list)
+
+Note: "Chen et al. 2022" is ProbEn [38]. Do not confuse it with Chen et al. 2023 (PISL) [65] if both enter the bibliography.
+
+> **Related work.** Deep-learning early-warning magnitude estimators keep amplitude in the waveform (Mousavi &
+> Beroza 2020) or feed the log normalization factor as a free input (Münchmeyer et al. 2021; Zhang & Zhang
+> 2024), and underestimate the largest events, which Münchmeyer et al. attribute to the Gutenberg–Richter (GR)
+> imbalance of the training data. Closest to
+> our likelihood, Zhang, Zhang & Tian (2021) and the preprint of Zhang & Zhang (2023) predict a distribution
+> over a normalized magnitude M − log A_max and add log A_max back, which makes the prediction exactly
+> equivariant to amplitude scaling with unit slope; P. Zhang et al. (2026) apply a related pseudo-normalization
+> to single-station INSTANCE records. We generalize this construction in three ways: the slope κ(s) is learned
+> and depends on the scale-free waveform, all components of a Gaussian mixture share the equivariant shift,
+> and the posterior carries a learned global prior factor, free below the completeness magnitude and GR-linear
+> above it, that preserves the equivariance. The unit-slope head is one of our ablations.
+>
+> Bayesian early warning has long combined amplitude likelihoods with a GR prior (Cua & Heaton 2007; Lancieri
+> & Zollo 2008; Meier et al. 2015), and the constant magnitude shift that a GR prior induces under Gaussian
+> errors is classical (Tinti & Mulargia 1985; cf. Eddington 1913). The Gutenberg algorithm (Meier et al. 2015)
+> also forms a joint magnitude–distance posterior from single-station amplitudes and marginalizes distance, as
+> our distance-marginalized head does, but with a nearest-neighbour likelihood that cannot exceed the training
+> amplitudes. Proposition 1 states when this shift makes the exact posterior equivariant despite unknown
+> distance, site and path.
+>
+> Fusing per-sensor posteriors requires dividing out the prior that each was computed under: the product rule
+> of Kittler et al. (1998), the Bayesian committee machine (Tresp 2000) and, for deep networks, probabilistic
+> ensembling (Chen et al. 2022) and compositional score modelling (Geffner et al. 2023). We found no early-warning
+> system that does so: the Gutenberg algorithm multiplies per-station posteriors that already contain the GR
+> prior, and neural systems average station magnitudes (Zhang & Zhang 2024). We measure the resulting bias on
+> three catalogues, and Proposition 2 adds that a learned prior factor's tail slope is not identified from
+> single-station data, so the prior to divide out is the training-label prior.
+>
+> Finally, training on a label-truncated catalogue is a truncated-likelihood problem (Daskalakis et al. 2019;
+> Ilyas et al. 2020), and replacing the training prior by the target prior at inference is the proposal
+> correction of neural posterior estimation (Papamakarios & Murray 2016; Deistler et al. 2022). Both are valid
+> only inside the training support. Proposition 3 shows that exact equivariance carries the likelihood above
+> the cap, up to the window-dependent magnitude at which early P amplitudes saturate physically (Meier et al.
+> 2015; Trugman et al. 2019).
+
+Before pasting, check one point: the sentence on P. Zhang et al. (2026) rests on its abstract only (U1).
+
+### References added in this update
+
+70. Meier, M.-A., Heaton, T., Clinton, J. (2016). Evidence for universal earthquake rupture initiation behavior. *GRL* 43(15), 7991–7996. https://doi.org/10.1002/2016GL070081 [V]
+71. Münchmeyer, J., Leser, U., Tilmann, F. (2022). A probabilistic view on rupture predictability: all earthquakes evolve similarly. https://arxiv.org/abs/2203.08622 [V]
+72. Thapa, S., Basnet, R., Panwar, A., Rayat, S. S., Verma, A., Dahiya, S., Rathod, A. P. S. (2026). A physics-informed deep learning and probabilistic inference framework for real-time single-station earthquake detection and magnitude estimation. *Bull. Earthquake Eng.* 24, 3465–3492. https://doi.org/10.1007/s10518-026-02403-1 ; preprint https://doi.org/10.21203/rs.3.rs-7479899/v1 [V, preprint]

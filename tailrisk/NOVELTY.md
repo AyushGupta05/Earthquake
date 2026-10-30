@@ -4,6 +4,29 @@ Written 19 Oct 2026 after a bounded literature search (web search and primary-pa
 not a systematic review; absence from this list is not proof of absence). Each row names
 the closest prior work and states the precise difference.
 
+## Corrections from the 30 Oct literature review (LITREVIEW_2026-10-30.md)
+
+* **κ = 1 precedent.** Zhang, Zhang & Tian 2021 (GRL) and the arXiv versions of Zhang & Zhang
+  (2023) already predict a magnitude distribution over M − log A_max and add log A_max back: an
+  exactly log-amplitude-equivariant predicted distribution with unit slope. The published 2024
+  version of Zhang & Zhang feeds the log factor as an input instead (the row below describes only
+  that version). The increments here are the learned, waveform-dependent slope κ(s), the mixture
+  sharing the shift, and the learned GR-tail prior factor kept at test time; a κ ≡ 1 ablation on
+  the same trunk is run to show the learned slope matters.
+* **The Gutenberg algorithm row was wrong.** Meier et al. 2015 state that their kNN densities are
+  posteriors that already embed the GR × distance prior, and they combine stations by multiplying
+  those posteriors (their eq. 5) without dividing the prior out; Yin 2018 multiplies them again as
+  "likelihoods". So the field's own Bayesian algorithm makes the double-counting error the fusion
+  study diagnoses. The Virtual Seismologist applies its prior once.
+* **The fusion fix is textbook** (Kittler et al. 1998; Bayesian committee machine; hybrid HMM/ANN
+  scaled likelihoods; ProbEn 2022; MVAE 2018; Geffner et al. 2023). What is new is its diagnosis
+  and measurement in EEW and the non-identifiability of a learned factor's slope.
+* **Propositions 1–3 rest on classical algebra** (Eddington/Malmquist; Tinti & Mulargia 1985;
+  exponential tilting; truncated regression and SNPE proposal correction); their value is the
+  design consequence, and they are presented as short, cited results.
+* The "augmentation-induced homogeneity (2025)" row below could not be located and should be
+  treated as unreferenced.
+
 ## The claim
 
 The method is the posterior
@@ -24,7 +47,7 @@ decade upward vs 0.54–0.66 downward on held-out large events).
 
 | prior work | what it does | how this differs |
 |---|---|---|
-| Bayesian EEW with a GR prior: Virtual Seismologist (Cua & Heaton 2007), Gutenberg algorithm (Meier et al. 2015), Yang et al. 2022 | Parametric amplitude/frequency likelihoods × Gutenberg–Richter prior; analytic posteriors. Meier et al. note magnitude saturation that depends on signal length | Same Bayesian structure, but the likelihood is a neural network trained end-to-end on waveforms; the GR structure is a constraint on that network's head, and the prior below completeness is learned rather than assumed. The equivariance proposition is, as far as found, not stated in this literature |
+| Bayesian EEW with a GR prior: Virtual Seismologist (Cua & Heaton 2007), Gutenberg algorithm (Meier et al. 2015), Yang et al. 2022 | Virtual Seismologist: parametric amplitude likelihoods × GR prior, prior applied once. Gutenberg algorithm: kNN posteriors over (M, log R) that embed the GR prior, multiplied across stations (prior counted per station). Meier et al. note magnitude saturation that depends on signal length | Same Bayesian structure, but the likelihood is a neural network trained end-to-end on waveforms; the GR structure is a constraint on that network's head, and the prior below completeness is learned rather than assumed. The equivariance proposition is, as far as found, not stated in this literature |
 | TEAM-LM (Münchmeyer et al. 2021) | Gaussian-mixture magnitude head; magnitude resampling; saturation attributed to few large training events | Run as the `mix_nll` control (same trunk). The new method beats it with CIs excluding zero. TEAM-LM uses no prior factor and no equivariance |
 | Zhang & Zhang 2024, "generalized earthquakes" | Per-station normalization with the log normalization factor as a separate input channel; synthetic training events scaled with the Hutton–Boore ML relation; Gaussian labels; large events augmented | Log amplitude as a *free input* is exactly the `mix_nll` / `cat_ce` baselines here. Inducing the amplitude law through synthetic/augmented data is the `cat_aug` baseline, which is dominated even by plain CE. Here the law is imposed on the output distribution with a learned slope |
 | MagNet (Mousavi & Beroza 2020) | CNN + BiLSTM regressor on un-normalized waveforms (amplitude retained), MSE | Run as the `magnet_nll` control (same inputs, Gaussian NLL). No structural amplitude constraint, no prior |
@@ -52,9 +75,10 @@ every deadline and on M≥5/M≥6 error at 3–5 s, where the plain form loses t
 
 ## Multi-station fusion (added 21 Oct)
 
-Closest prior art: Bayesian EEW (Virtual Seismologist, Cua & Heaton 2007; the Gutenberg
-algorithm, Meier et al. 2015) multiplies hand-built per-station likelihoods and applies the
-GR prior once; network systems such as ElarmS average per-station magnitudes; TEAM/TEAM-LM
+Closest prior art: the Virtual Seismologist (Cua & Heaton 2007) multiplies parametric
+per-station likelihoods and applies the GR prior once; the Gutenberg algorithm (Meier et al.
+2015) multiplies per-station kNN posteriors that already embed the GR prior, so the prior is
+counted once per station (corrected 30 Oct); network systems such as ElarmS average per-station magnitudes; TEAM/TEAM-LM
 fuse stations inside the network. What is new here: (i) the demonstration, on three
 catalogues and three seeds, that the natural fusion of *neural* posteriors (their product)
 counts the training prior once per station and makes M≥5–7 event estimates worse than the
