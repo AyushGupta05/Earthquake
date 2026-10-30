@@ -101,7 +101,10 @@ path.
 Fusing per-sensor posteriors requires dividing out the prior that each was computed under: the
 product rule of Kittler et al. (1998), the Bayesian committee machine (Tresp 2000) and, for deep
 networks, probabilistic ensembling (ProbEn; Chen et al. 2022) and compositional score modelling
-(Geffner et al. 2023). We found no early-warning system that does so: the Gutenberg algorithm
+(Geffner et al. 2023). In seismology, Münchmeyer, Leser & Tilmann (2022) note that a network
+trained on a catalogue resampled by ρ(M) learns ρ(M)·P(M|O) and divide ρ out (the prior-shift
+correction of Saerens et al. 2002), but for a single network rather than for fusion. We found no
+early-warning system that divides the prior out when fusing stations: the Gutenberg algorithm
 multiplies per-station posteriors that already contain the GR prior, and neural systems average
 station magnitudes (Zhang & Zhang 2024). We measure the resulting bias on three catalogues, and
 Proposition 2 adds that a learned prior factor's tail slope is not identified from single-station
@@ -114,7 +117,19 @@ proposal correction of neural posterior estimation (Papamakarios & Murray 2016; 
 2022). Both are valid only inside the training support. Proposition 3 shows that exact equivariance
 carries the likelihood above a training cap, up to the window-dependent magnitude at which early
 P amplitudes saturate physically (about M5.7 at 1 s, 6.5–6.7 at 3 s and 7.0 at 5 s; Meier et al.
-2015; Trugman et al. 2019). Logit adjustment, balanced softmax and Balanced MSE use a known label
+2015; Trugman et al. 2019). Saturation near the top of the training distribution is well
+documented: Münchmeyer et al. (2021b) show that the saturation threshold falls as the training
+set is subsampled and test, incidentally, on an Mw 6.5 event above the training maximum (Mw 6.1),
+and TEAM (Münchmeyer et al. 2021a) frames the same event as a test of extrapolation for ground
+motion. To our knowledge no study of learned magnitude estimation has run a controlled
+capped-training test, training only below a magnitude cap and comparing an unconstrained network
+with a structurally constrained one on the events above it; the unit-slope normalization of Zhang
+et al. (2021) and Zhang & Zhang (2024) was not evaluated beyond its training range. The closest
+design we found is for wavefield forecasting: WaveCastNet (Lyu et al. 2025) trains on simulated
+point sources below M4.5 and tests on M4.5–7 ruptures, where accuracy falls above M6. In machine
+learning, exact units or scale equivariance improves out-of-range generalization (Villar et al.
+2023; Wang, Walters & Yu 2021), and ReLU networks extrapolate only as far as the built-in structure
+allows (Xu et al. 2021); our test is the magnitude-label analogue, with a truncated prior. Logit adjustment, balanced softmax and Balanced MSE use a known label
 prior to remove training imbalance for a balanced target; our prior factor is learned,
 shape-constrained and kept, because the target is the natural distribution. Deep imbalanced
 regression (LDS/FDS) reweights, which we show moves along the bulk/tail trade-off rather than

@@ -27,6 +27,21 @@ the closest prior work and states the precise difference.
 * The "augmentation-induced homogeneity (2025)" row below could not be located and should be
   treated as unreferenced.
 
+## Capped-training test: prior art (30 Oct; LITREVIEW_CAPPED_2026-10-30.md)
+
+A focused search (web, full texts where reachable; publisher pages often blocked) found no study
+of learned magnitude estimation that trains only below a magnitude cap and compares an
+unconstrained network with a structurally constrained one on the events above it. The claim is
+worded narrowly because of four neighbours: TEAM-LM (Münchmeyer et al. 2021b) studies how
+saturation moves with training-set size and composition and tests incidentally on an event
+0.4 units above its training maximum; TEAM (2021a) frames that event as an extrapolation test for
+PGA; WaveCastNet (Lyu et al. 2025, Nat. Commun.) runs a deliberate capped design (simulations below
+M4.5, tests to M7) for wavefield forecasting; and Zhang, Zhang & Tian (2021) / Zhang & Zhang
+(2024) introduced the κ = 1 normalized-magnitude target without testing beyond their training
+range. Dividing a network's output by its training sampling prior also appears in Münchmeyer,
+Leser & Tilmann (2022). Confidence about 75–80% for the main venues; lower for low-visibility and
+non-English venues.
+
 ## The claim
 
 The method is the posterior
