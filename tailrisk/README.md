@@ -28,8 +28,11 @@ between catalogues. FINDINGS.md has the details.
 
 **First capped-training result (Chile, trained on M < 5.0 only).** The free mixture saturates at
 the cap: it under-predicts M6–6.5 events by 1.4 units at 3–5 s. The equivariant head never saw an
-M ≥ 5 label, yet it is within .24–.30 of them. On M ≥ 6 it beats the free mixture trained on the
-full catalogue: MAE .65 vs .86 at 3 s and .53 vs .86 at 5 s, with bulk error unchanged. Amplitude
+M ≥ 5 label, yet it is within .24–.30 of them. On M ≥ 6 its error is below that of the free
+mixture trained on the full catalogue (.65 vs .86 at 3 s, .53 vs .86 at 5 s; intervals pending),
+with bulk error unchanged. On INSTANCE capped at M4.0 the capped heads cut M ≥ 5 error by about
+one unit against the identically capped mixture in all 11 sequences, and match the mixture
+trained on all magnitudes. Amplitude
 augmentation narrows the gap only partly, at a bulk cost. At 1 s every head saturates, as the
 physical limit of about M5.7 predicts. The capped distance-marginalized head leaked probability
 above the cap during training; THEORY.md explains why and gives the fix, which is being retrained.

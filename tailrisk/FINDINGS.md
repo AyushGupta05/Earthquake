@@ -57,13 +57,29 @@ magnitudes (97% of events below M3.5 are ML), while 22 of its 31 M ≥ 5 events 
 magnitudes. On those 22 Mw events (event-level MAE, 1 / 3 / 5 s): `mix_cap40` 1.83 / 1.62 / 1.58,
 `eqgr_cap40` 1.14 / .64 / .49, `eqdgr_cap40` .99 / .53 / .44; with all magnitudes in training,
 `mix_nll` 1.05 / .72 / .64 and `eqdgr_nll` .89 / .52 / .44. The distance-marginalized head
-trained without a single M ≥ 4 label matches itself trained on everything at 3–5 s and beats
-the free mixture trained on everything. The Chile capped arms are also being retrained on the
+trained without a single M ≥ 4 label matches itself trained on everything at 3–5 s and is ahead
+of the free mixture trained on everything in point estimate (see the robust statistics below:
+the intervals against that reference include zero). The Chile capped arms are also being retrained on the
 relabelled caches (independent M_EXT and MW_SIPPL magnitudes for the large events).
 
 **Cost.** The capped equivariant heads raise false M4 alarms at 9–15 per 10⁴ small records,
 against 5–6 for the full-data free mixture (the full-data distance head is at 6–12). The capped
 free mixture's zero is the other face of its saturation: it cannot predict M4 at all.
+
+**Small-cluster-robust statistics** (`robust_tail.py`, `results/robust_instance_cap40.md`; median
+action; jackknife over the 11 sequences holding M ≥ 5 events and the 194 holding M ≥ 4 events):
+
+| comparison | M≥5 Δ (jackknife 95%) at 1 / 3 / 5 s | sequences Δ<0 | M≥4 Δ at 1 / 3 / 5 s | bulk Δ at 5 s | FP4 Δ per 10⁴ |
+|---|---|---|---|---|---|
+| `eqdgr_cap40` − `mix_cap40` | −.83 [−1.19, −.46] / −1.02 [−1.35, −.70] / −1.06 [−1.34, −.78] | 11 / 11 | −.25 / −.28 / −.29 (all exclude 0) | −.0086 | +15 / +12 / +9 |
+| `eqgr_cap40` − `mix_cap40` | −.71 [−.91, −.51] / −.93 [−1.16, −.70] / −1.01 [−1.24, −.78] | 11 / 11 | −.22 / −.24 / −.26 (all exclude 0) | −.0043 | +12 / +10 / +9 |
+| `eqdgr_cap40` − `mix_nll` (full data) | −.07 [−.41, +.26] / −.18 [−.47, +.10] / −.20 [−.48, +.09] | 4–6 / 11 | +.015 / +.004 / −.008 (n.s.) | −.0035 | +8.7 / +6.6 / +4.5 |
+| `eqgr_cap40` − `mix_nll` (full data) | +.05 / −.09 / −.15 (n.s.) | 4–6 / 11 | +.02 at 5 s (n.s.) | +.0008 | +4.7 at 5 s |
+
+So against the identically capped free mixture the gain is large and holds in every sequence;
+against the free mixture trained *with* the large events the capped equivariant heads are
+statistically indistinguishable on M ≥ 4 and M ≥ 5 error (point estimates favour them at 3–5 s),
+with lower bulk error and roughly twice its false-alarm rate.
 
 Figure: `figures/capped_extrapolation.png` (`capped_figure.py`, data from `cap_curve_data.py`).
 

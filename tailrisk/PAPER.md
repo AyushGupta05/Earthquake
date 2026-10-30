@@ -272,7 +272,10 @@ INSTANCE event and every M ≥ 5 Chile event then lies beyond the training range
 intervals excluding zero.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
 events by 1.4 units and M5.5–6.6 INSTANCE events by 2.0 units at 3–5 s. The equivariant heads,
 which never saw a label above the cap, are within .24–.30 (Chile, `eqgr`) and .43–.50
-(INSTANCE, `eqdgr`) of them, and at 3–5 s they beat the free mixture trained *with* the large events. The prior-only
+(INSTANCE, `eqdgr`) of them. At 3–5 s they match the free mixture trained *with* the large events on INSTANCE (M ≥ 5
+Δ −.18 / −.20, jackknife intervals over 11 sequences include zero; against the identically capped
+mixture −1.02 / −1.06, intervals [−1.35, −.70] and [−1.34, −.78], all 11 sequences) and are ahead
+of it on Chile's M ≥ 6 events in point estimate (⟨intervals pending⟩). The prior-only
 model shows the gain is not the untruncated GR tail: it shifts mass up indiscriminately (+0.6
 bias just below the cap, bulk +.03 to +.05) and stays saturated above it. Augmentation, the
 data-side way to teach an amplitude law, recovers part of the gap at a bulk cost. At 1 s every
