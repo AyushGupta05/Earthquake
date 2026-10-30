@@ -4,6 +4,10 @@
 #
 #   sm_launch.sh JOB INSTANCE_TYPE DATA_S3_PREFIX QUEUE_FILE "TAILWORK_MAXMAG=9.5,TAILWORK_MAXLOGR=3.0" [HOURS]
 #
+# DATA_S3_PREFIX may also be a comma-separated list: the first is channel `data` (the default
+# work directory), and NAME=PREFIX entries become channel `data_NAME`, selected by queue lines
+# starting with `@NAME ` (see sm_run.sh).
+#
 # REGION (default us-east-1) picks the region; BUCKET must then be a bucket in that region and
 # DATA a prefix in it (training channels must be in the job's region).
 #
@@ -23,11 +27,18 @@ TMP=$(mktemp -d)
 cp "$QUEUE" $TMP/queue.txt
 cp "$HERE/sm_run.sh" $TMP/sm_run.sh
 aws s3 cp $TMP $P/code --recursive --only-show-errors --region $REGION
+CHANNELS=$(python3 -c "
+import json, sys
+ch = [{'ChannelName': 'code', 'DataSource': {'S3DataSource': {'S3DataType': 'S3Prefix', 'S3Uri': sys.argv[1] + '/code/', 'S3DataDistributionType': 'FullyReplicated'}}}]
+for i, d in enumerate(sys.argv[2].split(',')):
+    name, uri = d.split('=', 1) if '=' in d else ('', d)
+    ch.append({'ChannelName': 'data' + ('_' + name if name else ''), 'DataSource': {'S3DataSource': {'S3DataType': 'S3Prefix', 'S3Uri': uri, 'S3DataDistributionType': 'FullyReplicated'}}})
+print(json.dumps(ch))" "$P" "$DATA")
 ENVJSON=$(python3 -c "import json,sys; print(json.dumps(dict(kv.split('=',1) for kv in sys.argv[1].split(',') if kv)))" "$ENVS")
 aws sagemaker create-training-job --region $REGION --training-job-name "$JOB" \
   --role-arn "$ROLE" \
   --algorithm-specification "{\"TrainingImage\":\"$IMAGE\",\"TrainingInputMode\":\"File\",\"ContainerEntrypoint\":[\"bash\",\"/opt/ml/input/data/code/sm_run.sh\"]}" \
-  --input-data-config "[{\"ChannelName\":\"code\",\"DataSource\":{\"S3DataSource\":{\"S3DataType\":\"S3Prefix\",\"S3Uri\":\"$P/code/\",\"S3DataDistributionType\":\"FullyReplicated\"}}},{\"ChannelName\":\"data\",\"DataSource\":{\"S3DataSource\":{\"S3DataType\":\"S3Prefix\",\"S3Uri\":\"$DATA\",\"S3DataDistributionType\":\"FullyReplicated\"}}}]" \
+  --input-data-config "$CHANNELS" \
   --output-data-config "{\"S3OutputPath\":\"$P/output\"}" \
   --checkpoint-config "{\"S3Uri\":\"$P/checkpoints\",\"LocalPath\":\"/opt/ml/checkpoints\"}" \
   --resource-config "{\"InstanceType\":\"$TYPE\",\"InstanceCount\":1,\"VolumeSizeInGB\":100}" \

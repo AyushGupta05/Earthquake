@@ -8,3 +8,12 @@
 --arm mix_cap40_s3 --head mix --loss nll --epochs 10 --train-mag-cap 4.0 --seed 3
 --arm eqgr_cap40_s3 --head eqgr --loss nll --epochs 10 --train-mag-cap 4.0 --seed 3
 --arm eqdgr_cap40_cond_s3 --head eqdgr --loss nll --epochs 10 --train-mag-cap 4.0 --cap-latent conditional --seed 3
+--arm magnet_mix --head magnet_mix --loss nll --epochs 10
+--arm magnet_eqgr --head magnet_eqgr --loss nll --epochs 10
+--arm magnet_eqdgr --head magnet_eqdgr --loss nll --epochs 10
+--arm eqgr_k1_nll --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0
+--arm eqgr_k1_cap40 --head eqgr --loss nll --epochs 10 --kappa-fixed 1.0 --train-mag-cap 4.0
+--arm eq_k1_nll --head eq --loss nll --epochs 10 --kappa-fixed 1.0
+--arm mix_ns --head mix --loss nll --epochs 10 --no-static
+--arm eqdgr_ns --head eqdgr --loss nll --epochs 10 --no-static
+--arm eqgr_ns --head eqgr --loss nll --epochs 10 --no-static

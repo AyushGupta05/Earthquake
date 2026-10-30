@@ -1,0 +1,12 @@
+@mext --arm mix_nll --head mix --loss nll --epochs 10
+@mext --arm eqdgr_nll --head eqdgr --loss nll --epochs 10
+@mext --arm eqgr_nll --head eqgr --loss nll --epochs 10
+@mext --arm mix_cap50 --head mix --loss nll --epochs 10 --train-mag-cap 5.0
+@mext --arm eqgr_cap50 --head eqgr --loss nll --epochs 10 --train-mag-cap 5.0
+@mext --arm eqdgr_cap50_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional
+@mwsippl --arm mix_nll --head mix --loss nll --epochs 10
+@mwsippl --arm eqdgr_nll --head eqdgr --loss nll --epochs 10
+@mwsippl --arm eqgr_nll --head eqgr --loss nll --epochs 10
+@mwsippl --arm mix_cap50 --head mix --loss nll --epochs 10 --train-mag-cap 5.0
+@mwsippl --arm eqgr_cap50 --head eqgr --loss nll --epochs 10 --train-mag-cap 5.0
+@mwsippl --arm eqdgr_cap50_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional
