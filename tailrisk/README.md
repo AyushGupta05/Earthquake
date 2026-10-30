@@ -53,7 +53,15 @@ M ≥ 4 error by 42%. With the same distance it beats the classical inverse law 
 INSTANCE and Chile. It also beats a free head conditioned the same way at every deadline, so
 equivariance, not distance, removes the saturation. Pooled over INSTANCE, Chile and GEOFON, the
 distance-marginalized head beats the free mixture in 55 of 65 large-event sequences at 5 s;
-STEAD is added under a pre-registered pooled analysis.
+STEAD is added under a pre-registered pooled analysis. Conditioned on distance (three seeds), it
+also beats the free-mixture ensemble on GEOFON, on bulk and on M ≥ 6–7. There the classical law
+with the same distance is still better on M ≥ 7.
+
+**A pre-registered failure (GEOFON, 30 Oct).** Trained below M6.0, the equivariant heads beat the
+identically capped free mixture on GEOFON's 276 M ≥ 6 events, but not amplitude augmentation, and
+their bulk error rose. GEOFON's labels switch from mb to Mw at about M6, so the amplitude slope
+learned below the cap is the wrong one above it. Capped-training extrapolation is claimed only
+where the magnitude scale is consistent across the cap.
 
 ## Result in one paragraph
 
