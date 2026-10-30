@@ -81,8 +81,8 @@ per-station likelihoods and applies the GR prior once; the Gutenberg algorithm (
 counted once per station (corrected 30 Oct); network systems such as ElarmS average per-station magnitudes; TEAM/TEAM-LM
 fuse stations inside the network. What is new here: (i) the demonstration, on three
 catalogues and three seeds, that the natural fusion of *neural* posteriors (their product)
-counts the training prior once per station and makes M≥5–7 event estimates worse than the
-nearest station alone, with averaging no better; (ii) the proof that the tail slope of a
+counts the training prior once per station and leaves M≥5–7 event estimates no better than
+the nearest station alone (much worse at 1 s on INSTANCE, .67 → .92), with averaging no better; (ii) the proof that the tail slope of a
 learned prior factor is not identified from single-station data (THEORY.md, Proposition 2),
 so "prior counted once" with a learned factor is only correct when that factor happens to
 match the catalogue's, which the measured slopes show is not generally the case; (iii) the
@@ -116,4 +116,9 @@ without the prior hurts bulk; `mixgr_nll` without equivariance loses the M≥5 e
 * Held-station test (`*_hs` arms: 20% of stations withheld from training; metrics on
   held-event-and-held-station records) on INSTANCE and on Northern Chile, and a
   published-architecture control (`magnet_nll`).
+* Capped-training extrapolation (Proposition 3): every head trained on Chile M < 5.0 only and
+  scored on the 67 held-out M ≥ 5 events; the equivariant head's M ≥ 6 error is .53 at 5 s
+  against 1.59 for the identically trained free mixture and .98 for the mixture with amplitude
+  augmentation (30 Oct; INSTANCE capped at M4.0 and the κ ≡ 1 and MagNet baselines under the
+  same cap follow).
   Results are logged in FINDINGS.md when complete.

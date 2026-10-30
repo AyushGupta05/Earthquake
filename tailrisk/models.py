@@ -237,6 +237,9 @@ class EquivariantGRHead(nn.Module):
         # untruncated factor is used, so the likelihood learned below the cap is combined with
         # the Gutenberg-Richter tail above it. inf = no cap.
         self.train_cap = float('inf')
+        # joint latent heads (eqdgr, eqsgr): truncate only p(b | latent, x) and take p(latent | x)
+        # from the untruncated joint (see joint_log_prob); False = truncate the whole joint
+        self.cap_conditional = False
 
     def log_prior(self):
         c = self.centers
@@ -340,6 +343,28 @@ class JointBinned(Binned):
         return lj.gather(1, idx[:, None])[:, 0]
 
 
+def joint_log_prob(log_wm, prior):
+    """log p(r, b | x) of a joint latent head from log w_r + log P(b | r, x), shape (B, R, K).
+
+    Evaluation, or training without a magnitude cap: the joint normalized over (r, b) with the
+    prior factor applied once. Training with a cap: if prior.cap_conditional, the latent label's
+    marginal comes from the untruncated joint and only the magnitude conditional is truncated,
+    log p(r | x) + log p(b | r, x, b < cap); otherwise the whole joint is truncated (the original
+    behaviour). Truncating the joint lets the network raise p(r_true | x, b < cap) by moving the
+    components of the wrong latent values above the cap, where the truncated prior hides them;
+    nothing penalizes that during training and it is undone at evaluation (on Chile capped at
+    M5.0 it put 30-80% of the mass of M<3 records above M6 in four of five folds).
+    """
+    lp = prior.log_prior()
+    logj = log_wm + prior.effective_log_prior()[None, None]
+    capped = prior.training and math.isfinite(prior.train_cap)
+    if not (capped and prior.cap_conditional):
+        return logj - torch.logsumexp(logj.flatten(1), 1)[:, None, None]
+    full = log_wm + lp[None, None]
+    log_r = torch.logsumexp(full, -1, keepdim=True) - torch.logsumexp(full.flatten(1), 1)[:, None, None]
+    return log_r + logj.log_softmax(-1)
+
+
 class EquivariantDistanceGRHead(nn.Module):
     """Distance-aware equivariant likelihood x learned bulk prior x GR-linear tail.
 
@@ -360,9 +385,7 @@ class EquivariantDistanceGRHead(nn.Module):
         z = (edges[None, None, :] - d.mu[..., None]) / d.sigma[..., None]           # (B, R, K+1)
         Fe = torch.special.ndtr(z)
         mass = (Fe[..., 1:] - Fe[..., :-1]).clamp_min(1e-30)
-        logj = d.logit_w.log_softmax(-1)[..., None] + mass.log() + self.prior.effective_log_prior()[None, None]
-        logz = torch.logsumexp(logj.flatten(1), 1)[:, None, None]
-        logj = logj - logz
+        logj = joint_log_prob(d.logit_w.log_softmax(-1)[..., None] + mass.log(), self.prior)
         return JointBinned(torch.logsumexp(logj, 1), centers, logj)
 
 
@@ -390,9 +413,8 @@ class EquivariantScaleMixtureGRHead(nn.Module):
             m = head(h, A)
             Fe = m.cdf(edges)
             parts.append((Fe[:, 1:] - Fe[:, :-1]).clamp_min(1e-30).log())
-        logj = (self.type_logit(h).float().log_softmax(-1)[..., None] + torch.stack(parts, 1)
-                + self.prior.effective_log_prior()[None, None])
-        logj = logj - torch.logsumexp(logj.flatten(1), 1)[:, None, None]
+        logj = joint_log_prob(self.type_logit(h).float().log_softmax(-1)[..., None] + torch.stack(parts, 1),
+                              self.prior)
         return JointBinned(torch.logsumexp(logj, 1), centers, logj)
 
 
@@ -469,7 +491,7 @@ class MagNetTrunk(nn.Module):
 
 class MagnitudeModel(nn.Module):
     def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3, beta_fixed=None,
-                 train_cap=None, kappa_fixed=None):
+                 train_cap=None, kappa_fixed=None, cap_conditional=False):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
@@ -504,6 +526,7 @@ class MagnitudeModel(nn.Module):
             gr = self.head if hasattr(self.head, 'phi_free') else getattr(self.head, 'prior', None)
             if gr is not None and hasattr(gr, 'train_cap'):
                 gr.train_cap = float(train_cap)
+                gr.cap_conditional = bool(cap_conditional)
         if kappa_fixed is not None:
             eqh = next((m for m in self.head.modules() if isinstance(m, (EquivariantMixtureHead, EquivariantDistanceHead))), None)
             if eqh is None:

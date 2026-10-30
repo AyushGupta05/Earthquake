@@ -57,7 +57,8 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     data.fit_static_norm(train_idx)
     n_static = data.static_raw.shape[1]
     model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult, kappa_min=args.kappa_min,
-                           beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap, kappa_fixed=args.kappa_fixed).to(device)
+                           beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap, kappa_fixed=args.kappa_fixed,
+                           cap_conditional=args.cap_latent == 'conditional').to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -179,6 +180,10 @@ def main():
     ap.add_argument('--train-mag-cap', type=float, default=None,
                     help='extrapolation test: train only on records with label < cap (a catalogue without large '
                          'events); GR heads truncate their prior factor at the cap during training only')
+    ap.add_argument('--cap-latent', choices=('joint', 'conditional'), default='joint',
+                    help='joint latent heads (eqdgr/eqsgr) under --train-mag-cap: truncate the whole joint over '
+                         '(latent, magnitude) (original) or only the magnitude conditional, with the latent '
+                         'marginal from the untruncated joint (models.joint_log_prob)')
     ap.add_argument('--hold-stations', type=float, default=0.0,
                     help='fraction of stations withheld from training in every fold (held-station test)')
     ap.add_argument('--max-train', type=int, default=0, help='smoke test: subsample training rows')

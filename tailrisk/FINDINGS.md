@@ -4,6 +4,90 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 04:40 UTC — Capped-training extrapolation on Chile: trained only on M < 5.0, the equivariant head predicts M6+ events better than a free mixture trained *with* them; a training leak in the distance-marginalized head, and its fix
+
+**Design (Proposition 3).** Every head is trained on Chile records with M < 5.0 only
+(`--train-mag-cap 5.0`; same folds, schedule and seed 1 as the full-data arms) and scored on all
+held-out records, so every M ≥ 5 event (67 events, 12 with M ≥ 6) lies entirely beyond the
+training range. GR heads truncate their prior factor at the cap during training only.
+Baselines trained the same way: the free mixture (TEAM-LM-style), the free mixture with the GR
+factor (`mixgr`, prior only), and the free mixture with amplitude-scaling augmentation of ±0.5
+and ±1.5 decades (the Zhang & Zhang-type way of inducing an amplitude law). `_bfix` pins the
+tail slope to the catalogue b-value (−1.79 nats per unit). Median action; MAE at 1 / 3 / 5 s;
+n = 505,666 records; `results/chile_eval_cap50*.json`.
+
+| arm (trained on M < 5.0) | bulk MAE | M≥5 MAE | M≥6 MAE |
+|---|---|---|---|
+| `mix_cap50` (free mixture) | .208 / .165 / .149 | 1.155 / .935 / .898 | 1.956 / 1.610 / 1.590 |
+| `mix_cap50_aug05` | .214 / .168 / .152 | 1.065 / .801 / .762 | 1.799 / 1.341 / 1.312 |
+| `mix_cap50_aug15` | .222 / .174 / .157 | .957 / .649 / .592 | 1.675 / 1.026 / .980 |
+| `mixgr_cap50` (prior only) | .241 / .208 / .196 | .778 / .692 / .664 | 1.486 / 1.533 / 1.555 |
+| **`eqgr_cap50`** | .211 / .167 / .149 | .971 / **.587 / .502** | 1.562 / **.654 / .532** |
+| `eqgr_cap50_bfix` | .209 / .165 / .149 | .974 / .586 / .501 | 1.488 / .650 / .540 |
+| *for reference, trained on all magnitudes:* `mix_nll` | .208 / .164 / .148 | .857 / .591 / .556 | 1.260 / .861 / .858 |
+| *trained on all magnitudes:* `eqdgr_nll` | .205 / .160 / .142 | .845 / .554 / .468 | 1.258 / .600 / .484 |
+
+Δ `eqgr_cap50` − `mix_cap50` (cluster bootstrap): bulk +.003 / +.003 / +.0005; M≥5 −.18 / −.34 /
+−.39 and M≥6 −.40 / −.97 / −1.07, every interval excluding zero (e.g. M≥6 at 5 s [−1.35, −.88]).
+
+**Signed bias by magnitude bin** (mean of median − label, 1 / 3 / 5 s):
+
+| arm | 5.0–5.5 | 5.5–6.0 | 6.0–6.5 | 6.5–7.0 |
+|---|---|---|---|---|
+| `mix_cap50` | −.92 / −.74 / −.70 | −1.23 / −1.02 / −.99 | −1.78 / −1.43 / −1.41 | −2.07 / −1.74 / −1.71 |
+| `mix_cap50_aug15` | −.73 / −.51 / −.45 | −.91 / −.62 / −.59 | −1.47 / −.86 / −.82 | −1.88 / −1.15 / −1.11 |
+| `eqgr_cap50` | −.62 / −.38 / −.34 | −.73 / −.36 / −.35 | −1.35 / **−.30 / −.24** | −1.73 / −.54 / −.45 |
+| `mix_nll` (all data) | −.67 / −.43 / −.40 | −.74 / −.52 / −.52 | −1.17 / −.68 / −.69 | −1.19 / −1.05 / −1.01 |
+
+**What this shows.**
+1. The free mixture saturates at the cap, as Proposition 3 predicts: it under-predicts M6–6.5
+   events by 1.4 units at 3–5 s. The equivariant head, which never saw an M ≥ 5 label, is within
+   .24–.30 of them, and on M ≥ 6 it beats the free mixture trained on the full catalogue (.65 vs
+   .86 at 3 s, .53 vs .86 at 5 s). Bulk error is unchanged.
+2. The gain is the equivariant likelihood, not the prior: the prior-only head pushes mass up
+   indiscriminately (+0.6 bias at M4.5–5, bulk +.03 to +.05) and stays saturated above M6.
+3. Augmentation helps the free mixture (M≥6 1.59 → .98 at 5 s at ±1.5 decades) at a bulk cost
+   (+.006 to +.015) and remains far behind the equivariant head at 3–5 s (M≥6 .98 vs .53).
+4. At 1 s every head saturates at M6+ (bias −1.2 to −1.8), consistent with the physical limit
+   of about M5.7 for a 1 s window (LITREVIEW_2026-10-30.md): equivariance cannot recover
+   information that is not yet in the waveform. At 3 s (limit ≈ M6.5–6.7) the equivariant head's
+   bias stays near −.3 through M6.5 and grows above it; at 5 s (limit ≈ M7) it is −.45 at M6.5–7.
+5. Pinning the slope to the b-value changes nothing for this head (rows 5–6), as Proposition 2
+   predicts for single-station error.
+
+**A training leak in the capped distance-marginalized head.** `eqdgr_cap50` has bulk MAE 4.0–4.4
+(`eqdgr_cap50_bfix` 1.2–1.5): in four of five folds it puts 30–80% of the probability of M < 3
+records above M6. Cause: the head normalizes a joint over (distance bin, magnitude), and
+truncating that joint lets training raise the true bin's probability by moving the wrong bins'
+components above the cap, where the truncated prior hides them; at test time they reappear.
+The INSTANCE run capped at M4.0 did not do this (per-fold M<3 mass above M5 ≤ .0004). THEORY.md
+(remark after Proposition 3) gives the argument and the fix: truncate only the magnitude
+conditional and take the distance marginal from the untruncated joint (`--cap-latent
+conditional`, bit-identical to the old loss without a cap, unit-tested against the old code).
+`eqdgr_cap50_cond`, `eqdgr_cap50_bfix_cond` and `eqdgr_cap40_cond` are training now, together
+with two more existing-method baselines under the same cap: κ ≡ 1 (`eqgr_k1_cap50`, the Zhang,
+Zhang & Tian 2021 construction) and the published MagNet architecture (`magnet_cap50`,
+`magnet_cap40`). The small-cluster-robust statistics (`robust_tail.py`) run on the full set.
+
+## 2026-10-30 04:20 UTC — Fusion with co-located instruments merged into one station: conclusions unchanged
+
+**Why.** The audit noted that INSTANCE has several instruments (e.g. HH and HN channels) at one
+site, so "k stations" could count one site twice and its fused errors could be optimistic. The
+fusion and wall-clock studies were rerun with `--dedupe-stations` (geometric mean of the
+co-located instruments' posteriors before fusion), three seeds each; `results/*dedup*`.
+
+**Result.** Chile has one instrument per site and is unchanged to the third decimal; GEOFON moves
+by ≤ .013. On INSTANCE the median number of distinct stations with data at 20 s after the first
+P drops from 14 to 11, so about a fifth of the "stations" were co-located instruments. At all
+stations, M≥5 event errors move by ≤ .02 (e.g. free mixture with the prior divided out .327 /
+.259 / .257 vs .331 / .264 / .252 before; `eqdgr` .244 / .221 / .252 vs .262 / .221 / .229), and
+all-event errors change by +.001 to −.020 (mostly small decreases). The naive product still
+fails: the free mixture's M≥5 error at all stations is .906 / .636 / .580, against .327 / .259 /
+.257 with the prior divided out and .653 / .635 / .649 at its nearest station alone (so at 1 s
+the product is worse than one station, at 3–5 s it barely beats it). In wall-clock time the free
+mixture's naive-product estimate still stays at .58–.74 for 20 s while the structured heads with
+the prior divided out reach about .3 within 4–6 s. No conclusion in the fusion entries changes.
+
 ## 2026-10-21 01:40 UTC — Multi-station fusion: the naive product of free posteriors makes large-event estimates *worse* as stations are added; dividing out the training prior repairs it; the equivariant heads keep their advantage at the event level on INSTANCE and Chile, tie on GEOFON
 
 **Question.** EEW systems combine stations. For a factorized posterior p(m|x) ∝ L(m|x)·π(m),

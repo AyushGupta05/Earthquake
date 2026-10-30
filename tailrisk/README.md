@@ -26,6 +26,15 @@ a controlled capped-training test. The decisive tests now running are pre-regist
 training below a magnitude cap, a κ ≡ 1 ablation, the MagNet trunk, and zero-shot transfer
 between catalogues. FINDINGS.md has the details.
 
+**First capped-training result (Chile, trained on M < 5.0 only).** The free mixture saturates at
+the cap: it under-predicts M6–6.5 events by 1.4 units at 3–5 s. The equivariant head never saw an
+M ≥ 5 label, yet it is within .24–.30 of them. On M ≥ 6 it beats the free mixture trained on the
+full catalogue: MAE .65 vs .86 at 3 s and .53 vs .86 at 5 s, with bulk error unchanged. Amplitude
+augmentation narrows the gap only partly, at a bulk cost. At 1 s every head saturates, as the
+physical limit of about M5.7 predicts. The capped distance-marginalized head leaked probability
+above the cap during training; THEORY.md explains why and gives the fix, which is being retrained.
+Merging co-located instruments before fusion changes no fusion conclusion.
+
 ## Result in one paragraph
 
 A deep magnitude posterior of the form

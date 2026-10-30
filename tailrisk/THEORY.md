@@ -117,6 +117,21 @@ heads must saturate at the cap; equivariant heads with the untruncated tail shou
 extent that real waveforms are self-similar (corner frequency and rupture duration break it for
 the largest events, which bounds how far the extrapolation can reach).
 
+**Remark (heads with a latent training label).** The distance-marginalized head (`eqdgr`) models
+a joint p_θ(r, M | x) over a distance bin r that is observed during training and marginalized at
+test time; the scale-mixture head does the same with the magnitude type. Truncating that joint,
+p_θ(r, M | x)·1[M < C] / P_θ(M < C | x), is *not* identified: the components p_θ(M | r′, x) of
+the wrong bins r′ ≠ r can be moved above C, where the truncated factor hides them. That costs
+nothing during training and raises p_θ(r | x, M < C), so a training run may take it, and it is
+undone at test time when the full factor returns. On Chile capped at M5.0 it happened in four
+of five folds (30–80% of the mass of M < 3 records above M6); on INSTANCE capped at M4.0 it did
+not happen. The remedy truncates only the magnitude conditional: −log p_θ(r | x) − log
+p_θ(M | r, x, M < C), with p_θ(r | x) taken from the untruncated joint (`--cap-latent
+conditional`, `models.joint_log_prob`). Each conditional is then a truncated Gaussian
+regression, which is identified. The marginal of r is fitted on a sample selected on M, which
+biases it only through P(M < C | r, x), negligible when the cap sits well above the bulk. Without
+a cap the two losses coincide exactly.
+
 ## Relation to the decision rule
 
 For any posterior p, the tail-weighted median a_r (r times the weight on M ≥ 4) is the

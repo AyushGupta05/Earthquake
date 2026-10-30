@@ -1,0 +1,4 @@
+--arm eqdgr_cap50_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional
+--arm eqgr_k1_cap50 --head eqgr --loss nll --epochs 10 --train-mag-cap 5.0 --kappa-fixed 1.0
+--arm magnet_cap50 --head magnet --loss nll --epochs 10 --train-mag-cap 5.0
+--arm eqdgr_cap50_bfix_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --beta-fixed -1.79 --cap-latent conditional
