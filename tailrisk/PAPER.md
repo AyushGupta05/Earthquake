@@ -32,7 +32,11 @@ moment-magnitude slope the model learns. Fusing the stations of an event exposes
 structural failure: the product of free neural posteriors counts the training prior once per
 station, and on all three catalogues the fused M≥5–7 estimate is no better than the nearest
 station alone; dividing out the training prior repairs it, and the equivariant heads keep the
-best fused large-event and bulk error on the two local/regional networks.
+best fused large-event and bulk error on the two local/regional networks. Trained without any
+event above a magnitude cap (M4.0 on INSTANCE, M5.0 on Chile), the equivariant heads still
+under-predict the held-out events above it by only about .25–.55 units at 3–5 s (mean bias up
+to M7), matching or beating a free mixture trained on the full catalogue, while the identically
+trained free mixture saturates at the cap.
 
 ## 1. Introduction
 
@@ -176,7 +180,7 @@ counts the prior k times, averaged, or divided by an assumed prior before multip
 second proposition (THEORY.md) shows that the factor learned here is only determined up to an
 exponential tilt in the GR tail, because a tilted Gaussian mixture is again a Gaussian mixture
 with shifted components; single-station training therefore cannot pin the slope, and the prior
-to divide out is the label distribution the posteriors were trained under. Section 5.7 compares
+to divide out is the label distribution the posteriors were trained under. Section 5.8 compares
 the four rules.
 
 ## 4. Data and protocol
@@ -246,7 +250,47 @@ error of M[6.5, 7) records is −1.50 for the mixture, −.65 for the plain head
 distance-marginalized head on INSTANCE, −1.01 / −.41 / −.31 on Chile, and −1.29 / −1.22 / −1.16
 on GEOFON's M[7.5, 8) bin; the bins below M5 coincide across heads (`results/bias_by_magnitude.md`).
 
-### 5.4 Ablations
+### 5.4 Training without large events (Proposition 3)
+
+The sharpest test of the mechanism removes the large events from training altogether. Every
+head is trained only on records whose label is below a cap, M < 4.0 on INSTANCE and M < 5.0 on
+Chile, with the same folds, schedule and seed, and scored on all held-out records; GR heads
+truncate their prior factor at the cap during training only (Proposition 3). Every M ≥ 4
+INSTANCE event and every M ≥ 5 Chile event then lies beyond the training range
+(Figure `figures/capped_extrapolation.png`).
+
+| trained below the cap | INSTANCE M≥5 MAE (cap 4.0) | Chile M≥6 MAE (cap 5.0) | bulk MAE change |
+|---|---|---|---|
+| free mixture | 1.81 / 1.61 / 1.57 | 1.96 / 1.61 / 1.59 | reference |
+| free mixture + amplitude augmentation (±1.5 decades) | ⟨pending⟩ | 1.68 / 1.03 / .98 | +.009 to +.015 (Chile) |
+| free mixture × GR prior factor (prior only) | ⟨pending⟩ | 1.49 / 1.53 / 1.56 | +.03 to +.05 (Chile) |
+| equivariant × GR prior factor (`eqgr`) | 1.10 / .67 / .56 | 1.56 / .65 / .53 | −.004 to +.003 |
+| distance-marginalized (`eqdgr`) | .98 / .58 / .51 | ⟨pending: retrained with the conditional cap⟩ | −.009 to −.003 (INSTANCE) |
+| *free mixture trained on all magnitudes* | *1.05 / .77 / .70* | *1.26 / .86 / .86* | |
+
+(1 / 3 / 5 s, seed 1; Chile Δ eqgr − free mixture: M≥6 −.40 / −.97 / −1.07, cluster-bootstrap
+intervals excluding zero.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
+events by 1.4 units and M5.5–6.6 INSTANCE events by 2.0 units at 3–5 s. The equivariant heads,
+which never saw a label above the cap, are within .24–.30 (Chile, `eqgr`) and .43–.50
+(INSTANCE, `eqdgr`) of them, and at 3–5 s they beat the free mixture trained *with* the large events. The prior-only
+model shows the gain is not the untruncated GR tail: it shifts mass up indiscriminately (+0.6
+bias just below the cap, bulk +.03 to +.05) and stays saturated above it. Augmentation, the
+data-side way to teach an amplitude law, recovers part of the gap at a bulk cost. At 1 s every
+head saturates at M6+, as the physical saturation of a 1 s window near M5.7 requires; equivariance
+cannot add information that is not yet in the waveform. Because Chile's labels are amplitude
+magnitudes, the INSTANCE result is the cleaner one: its training labels below the cap are 97%
+local magnitudes, while 22 of the 31 M ≥ 5 events carry moment magnitudes, and on those 22 the
+capped distance-marginalized head's event error (.99 / .53 / .44) equals that of the same head
+trained on everything (.89 / .52 / .44). The cost is the false-alarm rate: 9–15 false M ≥ 4
+predictions per 10⁴ small records against 5–6 for the full-data mixture.
+
+Truncating the prior is not enough for heads with a latent training label: truncating the
+distance-marginalized head's joint over (distance bin, magnitude) is not identified, and on
+Chile four of five folds moved the wrong bins' components above the cap, where they reappeared at
+test time. Truncating only the magnitude conditional fixes this (THEORY.md, remark after
+Proposition 3); the retrained arms are ⟨pending⟩.
+
+### 5.5 Ablations
 
 Three seeds each, sign tests over 45 seed×fold×deadline cells. The prior factor alone
 (`mixgr`) is a strict Pareto improvement over the mixture (bulk better in 40/45, M≥4 in 31/45).
@@ -265,7 +309,7 @@ mixing without equivariance (`mixdgr`), has the best bulk error of any single mo
 datasets, the prior factor and distance mixing move bulk error, and only the equivariant
 likelihood moves the high-magnitude tail.
 
-### 5.5 Robustness
+### 5.6 Robustness
 
 *Seeds.* eqgr beats the mixture on M≥4 error in 36/45 cells; all nine exceptions are the
 Emilia fold. The distance-marginalized head beats it on M≥5 error in 33/45 cells (13/15 at 3 s
@@ -327,7 +371,7 @@ negative in all nine seed × deadline cells, with the same large-event gains at 
 (M≥5 −.043 [−.074,−.006] / −.090 [−.137,−.040]; M≥6 −.28 [−.40,−.15] / −.39 [−.57,−.23]) and
 an equal tail at 1 s; the prior factor alone is neutral on every axis. The mean action gives
 the same picture (5 s: bulk −.0055, M≥5 −.071, M≥6 −.32, CIs exclude zero). The size-matched
-comparison of §5.4 repeats here: the six-model average of the prior-only and distance-marginalized
+comparison of §5.5 repeats here: the six-model average of the prior-only and distance-marginalized
 heads beats the six-model free + prior-only average on bulk at every deadline (−.0033 / −.0040 /
 −.0049) and on M≥5 and M≥6 at 3 and 5 s (−.061 / −.088 and −.25 / −.33), all intervals excluding
 zero, with no false-alarm cost. With 7 of the 22 stations withheld from training (seed 1),
@@ -343,7 +387,7 @@ error (and a higher 1 s false-alarm rate), on GEOFON it is the only arm that imp
 and on Chile it dominates. The plain form is its collapse to a single distance hypothesis,
 which suffices on a dense local network.
 
-### 5.6 What does not improve
+### 5.7 What does not improve
 
 The worst 1% of errors over all records (CVaR99) are unchanged; they are dominated by
 records whose waveform carries little magnitude information at the deadline. At 1 s the M≥5
@@ -351,7 +395,7 @@ difference is within noise. In the Emilia sequence, where the large events carry
 the method is worse than the mixture (M≥4 +.06 at 1–3 s): one learned slope near the M_w
 value under-responds to amplitude for M_L labels, which scale about 1:1 with amplitude.
 
-### 5.7 Multi-station fusion
+### 5.8 Multi-station fusion
 
 Table 3 summarizes the fused event-level error of the top tail with every station of the event
 (three-seed means, median action; full per-k and per-seed tables in
@@ -425,7 +469,8 @@ structure; the comparisons are to re-implementations of baseline ideas on a shar
 to the authors' code. The method does not help where the waveform is uninformative, and its
 false-alarm cost at 1 s, while small, is real. The learned prior factor's tail slope is not
 identified, so fusion with it is only correct by coincidence; pinning the slope to the
-catalogue b-value during training is the obvious remedy and was not run. The fusion study orders
+catalogue b-value during training leaves single-station error unchanged but is the right fusion
+prior only for some heads and catalogues. The fusion study orders
 stations by distance rather than by measured arrival and gives every station the same window.
 
 ## 7. Conclusion
