@@ -329,10 +329,12 @@ INSTANCE event and every M ≥ 5 Chile event then lies beyond the training range
 | trained below the cap | INSTANCE M≥5 MAE (cap 4.0) | Chile M≥6 MAE (cap 5.0) | bulk MAE change |
 |---|---|---|---|
 | free mixture | 1.81 / 1.61 / 1.57 | 1.96 / 1.61 / 1.59 | reference |
-| free mixture + amplitude augmentation (±1.5 decades) | ⟨pending⟩ | 1.68 / 1.03 / .98 | +.009 to +.015 (Chile) |
-| free mixture × GR prior factor (prior only) | ⟨pending⟩ | ⟨rerun pending: binning bug⟩ | ⟨pending⟩ |
-| equivariant × GR prior factor (`eqgr`) | 1.10 / .67 / .56 | 1.56 / .65 / .53 | −.004 to +.003 |
-| distance-marginalized (`eqdgr`; INSTANCE arm used the joint truncation) | .98 / .58 / .51 | ⟨pending: retrained with the conditional cap⟩ | −.009 to −.003 (INSTANCE) |
+| free mixture + amplitude augmentation (±1.5 decades) | 1.13 / .81 / .72 | 1.68 / 1.03 / .98 | +.012 to +.031 |
+| free mixture × GR prior factor (prior swap only) | 1.06 / .79 / .76 | ⟨rerun pending: binning bug⟩ | −.001 to +.001 (INSTANCE) |
+| equivariant × GR prior factor (`eqgr`) | 1.10 / .67 / .55 | 1.56 / .65 / .53 | −.004 to +.003 |
+| distance-marginalized (`eqdgr`), joint truncation | .98 / .58 / .51 | (leaked; see below) | −.009 to −.003 (INSTANCE) |
+| distance-marginalized, conditional truncation | 1.04 / .67 / .58 | ⟨pending⟩ | −.006 to −.001 (INSTANCE) |
+| … + truncation margin 1.0 (false M4: 9 / 5 / 3 per 10⁴) | 1.13 / .73 / .63 | ⟨pending⟩ | −.010 to −.002 (INSTANCE) |
 | *free mixture trained on all magnitudes* | *1.05 / .77 / .70* | *1.26 / .86 / .86* | |
 
 (1 / 3 / 5 s, seed 1; Chile Δ eqgr − free mixture: M≥6 −.40 / −.97 / −1.07, cluster-bootstrap
@@ -365,6 +367,21 @@ M ≥ 5 .80 / .71), but at two to four times its bulk error. It also needs a dis
 station does not know in the first seconds, and without one it is unusable. The equivariant head
 is that generative amplitude law inside a learned posterior. It extrapolates like the
 oracle-distance law and keeps the network's bulk accuracy without a distance input.
+
+**What does the extrapolating.** The prior-only control on INSTANCE is a free mixture whose GR
+factor is truncated at the cap during training and untruncated at test. It recovers most of the
+gap: M≥5 −.75 / −.81 / −.81 against the plain capped mixture (jackknife intervals excluding zero),
+with unchanged bulk error. A likelihood trained against a truncated prior need not encode the cap,
+because the prior does that, so restoring the untruncated prior lets the posterior rise past it.
+This is Proposition 3's swap, and it works with a free likelihood as well. Its cost is about 25
+extra false M≥4 predictions per 10⁴ small records. The equivariant likelihood adds .12–.25 at 3–5 s
+(not significant over 11 sequences), halves those false alarms and lowers bulk error. The truncation
+margin (THEORY.md) removes the rest of the false-alarm cost: 9 / 5 / 3 per 10⁴, against 13 / 16 / 15
+without it and 6 / 5 / 5 for the mixture trained on all magnitudes. Its M≥5 cost is small and
+not significant. The distance-marginalized head with conditional truncation and margin, trained
+only on M<4, is then level with the free mixture trained on every magnitude on bulk, M≥4, M≥5 and
+false alarms. On INSTANCE the equivariant heads also beat amplitude augmentation on M≥5 at 3 and 5 s
+(−.23 / −.22 for the joint-truncation head, intervals excluding zero), at .02–.03 lower bulk error.
 
 The amplitude response shows why (Figure `figures/capped_amplitude_response.png`). Amplifying
 held-out records just below the cap by one and then two decades raises the capped free
