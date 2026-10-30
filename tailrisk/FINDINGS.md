@@ -4,7 +4,7 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
-## 2026-10-30 21:10 UTC — Pre-registered equal-information test: **not met** pooled (HKSJ includes zero), though every catalogue favours the equivariant head at 5 s and STEAD alone passes; distance knowledge itself carries about half of the conditioned gain. Also: the heads carry over to the MagNet trunk; κ ≡ 1 wins the tail on INSTANCE too; zero-shot transfer fails for every head
+## 2026-10-30 21:05 UTC — Pre-registered equal-information test: **not met** pooled (HKSJ includes zero), though every catalogue favours the equivariant head at 5 s and STEAD alone passes; distance knowledge itself carries about half of the conditioned gain. Also: the heads carry over to the MagNet trunk; κ ≡ 1 wins the tail on INSTANCE too; zero-shot transfer fails for every head
 
 **Equal information** (`PREREGISTRATION_EQUALINFO.md`, commit cbe6476). Three-seed ensembles, both
 heads conditioned on the catalogue distance: `eqdgr`|r − `mixdgr`|r (the free distance-mixture
