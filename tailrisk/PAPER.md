@@ -36,7 +36,11 @@ best fused large-event and bulk error on the two local/regional networks. Traine
 event above a magnitude cap (M4.0 on INSTANCE, M5.0 on Chile), the equivariant heads still
 under-predict the held-out events above it by only about .25–.55 units at 3–5 s (mean bias up
 to M7), matching or beating a free mixture trained on the full catalogue, while the identically
-trained free mixture saturates at the cap.
+trained free mixture saturates at the cap. Because the distance-marginalized head models
+distance and magnitude jointly, the same trained model can be conditioned on a located event's
+distance at inference. That lowers INSTANCE bulk error by 30% and M≥4 error by 42%. With equal
+information it beats both the classical inverse amplitude law and an identically conditioned
+free head on M≥5 events.
 
 ## 1. Introduction
 
@@ -257,6 +261,27 @@ networks. Without distance, the inverse law is worse on every metric. The equiva
 reaches the oracle-distance inverse law's large-event accuracy while keeping the free network's
 bulk accuracy, calibration and false-alarm rate, with no distance input
 (`results/eval_classical.json`, `chile_eval_classical.json`).
+
+**Conditioning on a known distance.** The distance-marginalized head models the joint posterior
+over a log-distance bin and magnitude. So the trained model also gives the posterior
+conditioned on a distance, p(m | x, r̂) ∝ Σ_r p(r, m | x) N(r̂; r, σ²), without retraining. By the
+corollary to Proposition 1 (THEORY.md) that conditional is itself equivariant. A warning system
+can use the marginal before it has located the event and the conditional after. With the
+catalogue distance (seed 1), INSTANCE bulk error falls from .327 / .268 / .234 to
+.229 / .185 / .171. M≥4 error falls from .74 / .56 / .50 to .51 / .34 / .29, false M≥4
+predictions from 12 / 8 / 6 to 4 / 2 / 2 per 10⁴, and NLL by .25–.32 nats. A 26% distance error
+(σ = .1 in log10 km) keeps most of the gain. On Chile the bulk gain is .024–.029 and the M≥5 gain
+.05, with jackknife intervals excluding zero. With the same distance, the conditioned head beats
+the oracle-distance inverse law on M≥5 at 3 and 5 s on both catalogues. On INSTANCE the margin
+is −.20 and −.20 (jackknife over 11 sequences, intervals excluding zero), on Chile −.13 and −.20
+(28 clusters). It keeps a third to half of that law's bulk error. The free distance-mixture
+head, conditioned the same way, gains as much in bulk and M≥4 error. Its M≥5 error stays .14–.17
+higher at every deadline (intervals excluding zero), with a top-bin bias near −.6 against −.4.
+Even with distance known, equivariance is what removes the saturation, as the classical forward
+law shows. The bias that remains for the largest events does not change with conditioning, so it
+reflects the window not yet carrying the event's size rather than distance ambiguity
+(`results/eval_condR.json`, `eval_condR_free.json`, `chile_eval_condR.json`; three-seed and GEOFON
+⟨pending⟩).
 
 ### 5.2 Frontier and dominated alternatives
 

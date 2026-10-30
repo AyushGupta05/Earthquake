@@ -42,6 +42,19 @@ physical limit of about M5.7 predicts. The capped distance-marginalized head lea
 above the cap during training; THEORY.md explains why and gives the fix, which is being retrained.
 Merging co-located instruments before fusion changes no fusion conclusion.
 
+**Classical laws and known distance (30 Oct).** The classical magnitude relations were fitted per
+fold and scored as arms. The forward law (magnitude on amplitude and distance) underestimates
+the largest events by 2–3 units even when trained on every magnitude. The inverse law, solved for
+magnitude with the true catalogue distance, ties the networks on large events but has two to four
+times their bulk error and calls 12–16% of small INSTANCE records M ≥ 4. The distance-marginalized
+head models distance and magnitude jointly, so the trained model can also be conditioned on a
+known distance at inference, with no retraining. On INSTANCE that lowers bulk error by 30% and
+M ≥ 4 error by 42%. With the same distance it beats the classical inverse law on M ≥ 5 at 3–5 s on
+INSTANCE and Chile. It also beats a free head conditioned the same way at every deadline, so
+equivariance, not distance, removes the saturation. Pooled over INSTANCE, Chile and GEOFON, the
+distance-marginalized head beats the free mixture in 55 of 65 large-event sequences at 5 s;
+STEAD is added under a pre-registered pooled analysis.
+
 ## Result in one paragraph
 
 A deep magnitude posterior of the form
