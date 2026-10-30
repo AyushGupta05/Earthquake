@@ -48,6 +48,16 @@ p(distance, magnitude | x) jointly and marginalizes distance at inference.
   buys bulk accuracy, not tail.
 * Zero-shot transfer between INSTANCE and Chile is poor for every head.
 
+## Running now (30 Oct 2026, evening): fifth catalogue, CWA Taiwan
+
+[PREREGISTRATION_CWA.md](PREREGISTRATION_CWA.md) (with amendment 1) fixes the arms and five decision
+rules for a fifth, held-out catalogue: 1.24 M traces, 317 M ≥ 5 events, one magnitude type (ML)
+throughout. It adds the closest prior construction (κ ≡ 1) in the distance-marginalized form and a
+new slope-prior hybrid, with rule D5 asking whether the hybrid beats κ ≡ 1 on bulk without losing
+the tail. The 37 arms train on a shared S3-claimed queue; `cwa_eval.sh` then runs the
+pre-registered analyses unattended and `cwa_verdict.py` writes the mechanical PASS / FAIL per rule
+to `results/CWA_VERDICT.md`, committed from the host.
+
 ## Pre-registered out-of-sample test (STEAD, 30 Oct 2026)
 
 [PREREGISTRATION_STEAD.md](PREREGISTRATION_STEAD.md) fixed every arm, endpoint and decision rule
