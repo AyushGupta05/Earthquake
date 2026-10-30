@@ -33,12 +33,20 @@ def main():
     ap.add_argument('--thr', default='4,5')
     ap.add_argument('--reps', type=int, default=1000)
     ap.add_argument('--out', required=True)
+    ap.add_argument('--located', default='', help="pseudo-arms MARG|COND@K,...: each station uses COND's posterior once at "
+                    "least K stations of the event have their P (a network location exists), MARG's before")
     ap.add_argument('--dedupe-stations', action='store_true', help='merge co-located instruments of a station into one posterior per event (audit M4)')
     ap.add_argument('--timing', default='proxy', choices=['proxy', 'measured'],
                     help="'proxy': t_i = hyp_km / V_P; 'measured': per-station P delays from meta['p_after_network_s'] (Chile)")
     args = ap.parse_args()
     thr = [float(t) for t in args.thr.split(',')]
     arms = args.arms.split(',')
+    located = []
+    for spec in filter(None, args.located.split(',')):
+        pair, k = spec.split('@')
+        marg, cond = pair.split('|')
+        located.append((f'{cond}@loc{k}', marg, cond, int(k)))
+        arms += [a for a in (marg, cond) if a not in arms]
     root = Path(args.root)
     meta = load_meta()
     mag, ev, cl, fold, hyp = meta['mag'], meta['event'], meta['cluster'], meta['fold'].astype(int), meta['hyp_km']
@@ -72,7 +80,7 @@ def main():
     for t in thr:
         masks[f'M>={t:g}'] = ev_mag >= t - 1e-6
     boot = EventBoot(ev_cl, args.reps)
-    rep = {'arms': arms, 'thr': thr, 'v_p': V_P, 'timing': args.timing, 'dedupe_stations': bool(args.dedupe_stations), 'times': TIMES, 'n_events': int(len(starts)),
+    rep = {'arms': arms, 'located': [l[0] for l in located], 'thr': thr, 'v_p': V_P, 'timing': args.timing, 'dedupe_stations': bool(args.dedupe_stations), 'times': TIMES, 'n_events': int(len(starts)),
            'n_tail': {k: int(v.sum()) for k, v in masks.items()}, 'metrics': {}, 'vs_ref': {}, 'stations_used': {}}
     pihat_ev = np.stack([pihat[f] for f in ev_fold])
     for T in TIMES:
@@ -87,8 +95,15 @@ def main():
         e_sel = ev_idx[sel]                                                   # sorted: contiguous groups
         g_start = np.r_[0, np.nonzero(np.diff(e_sel))[0] + 1] if sel.any() else np.zeros(0, int)
         g_ev = e_sel[g_start]
-        for a in arms:
-            x = lp[a][order[sel], d_idx[sel]].astype(np.float32)                  # (n_sel, K)
+        n_trig = np.bincount(ev_idx[t_rel <= T], minlength=len(starts))           # stations with their P by time T
+        for a in arms + [loc[0] for loc in located]:
+            loc = next((l for l in located if l[0] == a), None)
+            if loc is None:
+                x = lp[a][order[sel], d_idx[sel]].astype(np.float32)              # (n_sel, K)
+            else:
+                use_c = (n_trig[ev_idx[sel]] >= loc[3])[:, None]
+                x = np.where(use_c, lp[loc[2]][order[sel], d_idx[sel]], lp[loc[1]][order[sel], d_idx[sel]]).astype(np.float32)
+            src = a if loc is None else loc[2]
             S = np.zeros((len(starts), len(PMF_CENTERS)), np.float32)
             M = np.full((len(starts), len(PMF_CENTERS)), -np.inf, np.float32)   # logsumexp for the mean rule
             E = np.zeros_like(S)
@@ -96,7 +111,7 @@ def main():
                 S[g_ev] = np.add.reduceat(x, g_start, axis=0)
                 M[g_ev] = np.maximum.reduceat(x, g_start, axis=0)
                 E[g_ev] = np.add.reduceat(np.exp(x - M[e_sel]), g_start, axis=0)
-            phi_ev = np.stack([phi[a][f] for f in ev_fold]) if phi[a] else None
+            phi_ev = np.stack([phi[src][f] for f in ev_fold]) if phi[src] else None
             for rule in RULES:
                 if rule == 'lik_prior' and phi_ev is None:
                     continue

@@ -4,6 +4,38 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 12:05 UTC — Event-level fusion once the event is located: switching each station to the distance-conditioned posterior after four stations have their P cuts the fused all-event error by 15–25% from 6 s on; the large-event effect is catalogue-dependent
+
+Exploratory. `fusion_timeline.py --located` (new option) makes a pseudo-arm. Each station uses the
+distance-marginalized head's posterior conditioned on its catalogue distance (σ = 0, or σ = .1 for
+a 26% location error) once at least four stations of the event have their P by wall-clock time T,
+and the marginal posterior before. Co-located instruments are merged. Fusion with the training
+prior divided out (`hist_adj`, the rule the fusion study recommends). P times are the
+distance proxy on INSTANCE; Chile also has measured P delays. `located_fusion.sh`; three seeds.
+Event-level MAE, median action.
+
+| T after first P | 3 s | 6 s | 10 s | 20 s |
+|---|---|---|---|---|
+| INSTANCE, all events: mix / eqdgr / located (σ 0) | .229 / .233 / .200 | .189 / .186 / .161 | .177 / .176 / .149 | .175 / .174 / .145 |
+| INSTANCE, M ≥ 5: mix / eqdgr / located σ 0 / located σ .1 | .43 / .48 / .53 / .45 | .32 / .43 / .37 / .31 | .31 / .27 / .31 / .26 | .26 / .26 / .22 / **.19** |
+| Chile, all events: mix / eqdgr / located (σ 0) | .124 / .118 / .117 | .101 / .094 / .087 | .085 / .080 / .068 | .078 / .074 / .058 |
+| Chile, M ≥ 6: mix / eqdgr / located σ 0 / located σ .1 | .75 / .31 / .31 / .31 | .67 / .24 / .33 / .31 | .59 / .20 / .27 / .25 | .54 / .21 / .29 / .24 |
+
+(means over the three seeds; Chile with measured P delays gives the same picture.)
+
+* **All events:** a located event's fused estimate improves by .025–.03 on INSTANCE and .015–.02 on
+  Chile from about 6 s on (15–25%). This is the single-station conditioning gain carried to the
+  event level. Before four stations have triggered (T ≤ 3 s on Chile) nothing changes.
+* **Largest events:** on INSTANCE the located head with a 26% distance error has the best fused M ≥ 5
+  error from 10 s on (.19 at 20 s, against .26 for the mixture and the marginal head). On Chile
+  M ≥ 6 the marginal head stays best after 6 s; conditioning costs .05–.12 there, though both
+  remain far ahead of the mixture. With σ = 0 the tail is worse than with σ = .1 on both catalogues.
+  Fusing many exact-distance posteriors compounds their small biases, so a realistic location
+  error is the better setting.
+* Not pre-registered and seeds are descriptive. No interval statistics were run.
+
+Files: `results/located_timeline_{instance,chile,chile_measured}_s{1,2,3}.json`.
+
 ## 2026-10-30 11:25 UTC — INSTANCE capped with three seeds: replicated (M ≥ 5 −.82 / −.99 / −1.04 against the capped mixture, 11 of 11 sequences; level with the full-data mixture). Correction: the truncation margin has a real tail cost on the plain head
 
 Three-seed ensembles, trained below M4.0. Jackknife over 11 M ≥ 5 sequences / 194 M ≥ 4 clusters.
