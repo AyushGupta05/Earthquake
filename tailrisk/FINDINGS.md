@@ -4,6 +4,68 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 11:10 UTC — Pre-registered capped test on STEAD: **not confirmed**. The equivariant heads trained below M5 beat the identically capped mixture by .28–.31 on M ≥ 5 and .77–.87 on M ≥ 6, and even beat the free mixture trained on all of STEAD, but amplitude augmentation is better on M ≥ 5
+
+`PREREGISTRATION_STEAD_CAP.md` (commit bc5ab2b, amendments 1–2). Seed 1, trained on M < 5.0 (bin
+filter), all 996,894 records scored. Median action, 1 / 3 / 5 s; jackknife over 456 M ≥ 5 /
+51 M ≥ 6 clusters.
+
+| arm (trained below M5.0) | M < 5 MAE (C4) | M ≥ 5 MAE (C1) | M ≥ 5 event MAE (C2) | M ≥ 6 MAE (C3) | false M4 per 10⁴ (C5) |
+|---|---|---|---|---|---|
+| `mix_cap50` | .2402 / .2007 / .1832 | 1.020 / .898 / .880 | 1.035 / .918 / .897 | 1.900 / 1.698 / 1.668 | 6.6 / 6.3 / 6.4 |
+| `mix_cap50_aug15` | .2665 / .2181 / .1981 | .681 / .537 / .490 | .693 / .561 / .506 | 1.324 / .989 / .881 | 18.0 / 14.4 / 13.0 |
+| `mixgr_cap50` | .2404 / .2006 / .1835 | .912 / .783 / .752 | .923 / .802 / .771 | 1.762 / 1.526 / 1.477 | 8.8 / 8.6 / 8.8 |
+| `eqgr_cap50` | .2418 / .2010 / .1835 | .823 / .634 / .601 | .857 / .675 / .645 | 1.490 / 1.070 / .927 | 8.8 / 7.8 / 7.5 |
+| `eqdgr_cap50_cond` (primary) | .2439 / .2015 / .1832 | .786 / .614 / .574 | .799 / .645 / .610 | 1.324 / .923 / .801 | 8.5 / 7.3 / 6.3 |
+| `eqgr_k1_cap50` (κ ≡ 1) | .2504 / .2067 / .1884 | .765 / .599 / .546 | .776 / .624 / .573 | 1.182 / .771 / .670 | 11.9 / 10.1 / 9.2 |
+| `magnet_cap50` | .3428 / .2968 / .2752 | 1.308 / 1.133 / 1.023 | 1.283 / 1.105 / .985 | 2.453 / 2.143 / 1.993 | 17 / 18 / 24 |
+| `lin_invR_cap50` (classical, oracle distance) | .434 / .387 / .375 | .741 / .561 / .509 | .790 / .615 / .564 | 1.210 / .845 / .719 | 66 / 49 / 44 |
+| *`mix_nll` (all magnitudes, seed 1)* | | *.814 / .676 / .654* | *.823 / .698 / .677* | *1.540 / 1.223 / 1.194* | *7.5 / 7.2 / 7.2* |
+
+**Decision rule (3 and 5 s), primary `eqdgr_cap50_cond`:**
+1. C1 against `mix_cap50`: −.284 [−.314, −.254] and −.306 [−.337, −.275]. **Pass.**
+2. C1 against `mix_cap50_aug15`: +.077 [+.059, +.096] and +.084 [+.064, +.104]. Augmentation is
+   better. **Fail.**
+3. C4 against `mix_cap50`: +.0008 and +.0000 (+.0037 at 1 s, not part of the rule). **Pass.**
+
+Secondary `eqgr_cap50`: criterion 1 passes (−.265, −.279); criterion 2 fails (+.097, +.112).
+**Extrapolation is not confirmed on STEAD.**
+
+Context (not part of the decision):
+* On M ≥ 6 the primary head is level with augmentation at 3 s (−.066, n.s.) and better at 5 s
+  (−.080 [−.152, −.009]).
+* Against augmentation, it has .015–.022 lower bulk error and half the false alarms (6–8 against
+  13–18 per 10⁴).
+* The capped primary head beats the free mixture trained on all magnitudes. M ≥ 5: −.028 / −.062 /
+  −.080. M ≥ 6: −.22 / −.30 / −.39. Bulk: +.004 / +.001 / .000. All tail intervals exclude zero.
+  The capped head never saw an M ≥ 5 label.
+* The prior swap alone (`mixgr`) recovers −.11 to −.13 on M ≥ 5 here, far less than on INSTANCE.
+* κ ≡ 1 is better than the learned slope on the tail (M ≥ 5 −.02 / −.03, M ≥ 6 −.13 to −.15), at
+  +.005 bulk.
+* The Mw-only and gain-QC subgroups give the same numbers within .01.
+
+**Pattern across the four capped tests.**
+
+| | label scale across the cap | head vs augmentation on the top tail | pre-registered? |
+|---|---|---|---|
+| INSTANCE (cap 4) | ML below, ML and Mw above (switch at about M5) | head better, −.15 to −.23 | no |
+| Chile (cap 5) | amplitude magnitude MA throughout | head better (M ≥ 6 .65 / .53 against 1.03 / .98) | no |
+| GEOFON (cap 6) | 81% mb at M4–5 → almost all Mw above 6 | augmentation better, +.07 | yes, failed |
+| STEAD (cap 5) | 62% mb at M4–5 → 66% Mw at M5–6, 82% above 6 | augmentation better on M ≥ 5 (+.08); head level or better on M ≥ 6 | yes, failed |
+
+The equivariant head extrapolates the amplitude law it learned below the cap. Where the label
+definition changes at the cap (mb → Mw), that law is the wrong one, and augmentation's imposed
+unit slope happens to fit the new scale better. This explanation is post hoc. It fits all four
+results and the measured slopes (GEOFON .44–.61 learned against ≈1 needed). But the two tests in
+which the method beat augmentation were not pre-registered, and the two pre-registered ones failed.
+Stated plainly: **capped-training extrapolation beyond the existing data-side baseline is
+demonstrated only on catalogues with a consistent magnitude scale, and was not confirmed in either
+pre-registered test.** What did hold in every capped test is the gain over the identically capped
+free mixture, which saturates at the cap. That holds with lower bulk error than augmentation and
+with false alarms at or below the mixture's.
+
+Files: `results/stead_eval_cap50{,_base,_vs_full}.json`, `robust_stead_cap50{,_mw,_noqc}.{json,md}`.
+
 ## 2026-10-30 10:35 UTC — Distance-informed inference on STEAD, and pooled over four catalogues: conditioned on distance, the distance-marginalized head beats the free mixture on large events at 3 and 5 s on every catalogue (pooled HKSJ interval excluding zero) with lower bulk error everywhere
 
 Exploratory, not pre-registered. STEAD three-seed `eqdgr` ensembles conditioned on the catalogue
