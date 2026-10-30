@@ -4,6 +4,42 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 10:35 UTC — Distance-informed inference on STEAD, and pooled over four catalogues: conditioned on distance, the distance-marginalized head beats the free mixture on large events at 3 and 5 s on every catalogue (pooled HKSJ interval excluding zero) with lower bulk error everywhere
+
+Exploratory, not pre-registered. STEAD three-seed `eqdgr` ensembles conditioned on the catalogue
+distance (`K`, σ = 0; `K10`, σ = .1), against the free-mixture ensemble (`M`) and the classical
+inverse law with the same distance. Jackknife over the 456 M ≥ 5 / 51 M ≥ 6 clusters.
+
+| STEAD | Δ bulk MAE 1 / 3 / 5 s | Δ M ≥ 5 MAE | Δ M ≥ 6 MAE | Δ false M4 per 10⁴ |
+|---|---|---|---|---|
+| `K` − `M` | **−.041 / −.031 / −.021** | **−.132 / −.171 / −.191** | **−.29 / −.39 / −.45** | −1.8 / −2.5 / −2.9 |
+| `K10` − `M` | −.037 / −.026 / −.018 | −.126 / −.163 / −.182 | −.30 / −.39 / −.46 | −2.3 / −3.0 / −3.3 |
+| `K` − `eqdgr` (marginal) | −.044 / −.031 / −.021 | −.087 / −.087 / −.085 | −.04 / −.01 / +.00 (n.s.) | −2.2 / −2.4 / −2.3 |
+| `K` − `lin_invR` | −.243 / −.224 / −.219 | **−.064 / −.061 / −.051** | +.06 / +.02 / +.03 (n.s.) | −63 / −46 / −41 |
+
+Every interval excludes zero except those marked n.s. Conditioning removes the marginal head's
+1 s bulk excess that failed the pre-registered rule (+.0024 → −.041). Absolute, `K`:
+bulk .193 / .164 / .157, M ≥ 5 .676 / .500 / .458, M ≥ 6 1.257 / .856 / .750.
+
+Pooled over INSTANCE, Chile, GEOFON and STEAD (`meta4_*`):
+
+| contrast | Δ tail, random effects (1 / 3 / 5 s) | HKSJ interval at 3 s / 5 s | pooled Δ bulk | sequences favouring (of 521) |
+|---|---|---|---|---|
+| `K` − `M` | −.114 / −.184 / −.233 | **[−.280, −.088] / [−.394, −.072]** | −.062 / −.055 / −.052 | 353 / 382 / 398 |
+| `K10` − `M` | −.114 / −.177 / −.222 | **[−.259, −.096] / [−.371, −.073]** | −.057 / −.050 / −.046 | 363 / 402 / 414 |
+| `K` − `lin_invR` | +.116 / +.005 / −.022 | [−.32, +.33] / [−.34, +.29] | −.27 / −.24 / −.23 | 272 / 281 / 290 |
+
+So with a located event, even with a 26% distance error, the trained head is better than the free
+mixture on the largest events of every catalogue and better on bulk. This would meet the
+pre-registered pooled criteria that the marginal head missed (10:25 entry), but it is not that
+test. The free mixture here has no distance. Against the classical law with the same distance,
+the network wins on INSTANCE, Chile M ≥ 5 and STEAD M ≥ 5, and loses on GEOFON M ≥ 7, so the pooled
+tail is level (τ = .17). The equal-information test against a free distance head conditioned the
+same way is pre-registered (`PREREGISTRATION_EQUALINFO.md`, commit cbe6476) and training.
+
+Files: `results/robust_stead_condR3.{json,md}`, `meta4_condR_vs_mix.{json,md}`,
+`meta4_condR10_vs_mix.{json,md}`, `meta4_condR_vs_invR.{json,md}`.
+
 ## 2026-10-30 10:25 UTC — Pre-registered STEAD test: the method is **confirmed** through the plain equivariant head (`eqgr`). The primary distance-marginalized head has the larger tail gain at every deadline but misses the 1 s bulk guard by .0004, so under the rule it is **not confirmed**. The pooled four-catalogue secondary claim is **not met**
 
 `PREREGISTRATION_STEAD.md` (written and committed before any STEAD model was trained; amendments 1–2
