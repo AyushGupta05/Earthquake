@@ -149,7 +149,10 @@ three seeds against the equally trained mixture (ensembles: bulk −.0040 / −.
 epochs hurt both models slightly (Chile) or help both strongly (GEOFON). Five-seed ensembles
 reproduce the three-seed results for both heads (M≥5 −.022 / −.095 / −.138 and −.119 / −.168 /
 −.183). On INSTANCE the 20-epoch distance-marginalized head is the single best model of the
-study: lower bulk error than any mixture, the same M≥5 gain, the mixture's false-alarm rate.
+study on stations seen in training: lower bulk error than any mixture, the same M≥5 gain, the
+mixture's false-alarm rate. On stations never seen in training, 20 epochs hurt both models and
+the 10-epoch distance-marginalized head is best (bulk .006–.008 and M≥5 .01–.05 lower than its
+20-epoch version).
 
 **Third dataset, Northern Chile (regional, 40–230 km; 505k station traces picked with
 STA/LTA + AIC from the TEAM-LM release; 67 M≥5, 12 M≥6 events; three-seed ensembles, 20 Oct).**

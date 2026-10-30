@@ -52,10 +52,13 @@ def fallback_gains(meta):
 class GPUData:
     """Waveforms (float16, per-record scaled) and per-record static inputs on GPU."""
 
-    def __init__(self, device, meta=None, rows=None):
+    def __init__(self, device, meta=None, rows=None, no_static=False, work=None):
+        # work: another catalogue's cache directory (cross-catalogue transfer); no_static: replace
+        # station metadata by a single zero feature so that models are catalogue-agnostic
+        work = WORK if work is None else Path(work)
         self.meta = load_meta() if meta is None else meta
-        wave = np.load(WORK / 'wave16.npy', mmap_mode='r')
-        scale = np.load(WORK / 'scale.npy')
+        wave = np.load(work / 'wave16.npy', mmap_mode='r')
+        scale = np.load(work / 'scale.npy')
         n = len(scale)
         self.rows = np.arange(n) if rows is None else np.asarray(rows)
         self.device = device
@@ -70,8 +73,11 @@ class GPUData:
         else:                                     # INSTANCE counts cache: physical = (x - mean) * std / gain
             pf = CACHE_STD[None, :] / fallback_gains(self.meta)[self.rows]
         self.phys_factor = torch.from_numpy(pf.astype(np.float32)).to(device)
-        static = np.concatenate([self.meta['static'],
-                                 self.meta['sta_lat'][:, None], self.meta['sta_lon'][:, None]], 1)
+        if no_static:
+            static = np.zeros((len(self.meta['mag']), 1), np.float32)
+        else:
+            static = np.concatenate([self.meta['static'],
+                                     self.meta['sta_lat'][:, None], self.meta['sta_lon'][:, None]], 1)
         static = static[self.rows].astype(np.float32)
         static = np.nan_to_num(static, nan=0.0)
         self.static_raw = torch.from_numpy(static).to(device)

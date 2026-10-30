@@ -54,7 +54,7 @@ def main():
     rec = json.loads((arm_dir / 'record.json').read_text())
     targs = rec['args']
     meta = load_meta()
-    data = GPUData(device, meta)
+    data = GPUData(device, meta, no_static=targs.get('no_static', False))
     fold = torch.from_numpy(meta['fold'].astype(np.int64)).to(device)
     held_row = None
     if targs.get('hold_stations', 0) > 0:
@@ -70,6 +70,8 @@ def main():
         te = torch.nonzero(fold == f)[:, 0]
         if held_row is not None:
             tr = tr[~held_row[tr]]
+        if targs.get('train_mag_cap') is not None:
+            tr = tr[data.mag[tr] < targs['train_mag_cap'] - 1e-6]
         data.fit_static_norm(tr)
         n_static = data.static_raw.shape[1]
         model = MagnitudeModel(targs['head'], n_static, k=targs.get('k', 6), aux_dist=targs.get('aux_dist', False),

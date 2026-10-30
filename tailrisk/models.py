@@ -228,18 +228,29 @@ class EquivariantGRHead(nn.Module):
         self.n_free = int((centers < self.M_C - 1e-6).sum())
         self.phi_free = nn.Parameter(torch.zeros(self.n_free))
         self.beta = nn.Parameter(torch.zeros(()))
+        # magnitude cap of a truncated training catalogue: during training the prior factor is
+        # multiplied by 1[m < cap] (the training population's prior); at evaluation the
+        # untruncated factor is used, so the likelihood learned below the cap is combined with
+        # the Gutenberg-Richter tail above it. inf = no cap.
+        self.train_cap = float('inf')
 
     def log_prior(self):
         c = self.centers
         tail = self.phi_free[-1] + self.beta * (c[self.n_free:] - c[self.n_free - 1])
         return torch.cat([self.phi_free, tail])
 
+    def effective_log_prior(self):
+        lp = self.log_prior()
+        if self.training and math.isfinite(self.train_cap):
+            lp = lp + torch.where(self.centers >= self.train_cap - 1e-6, -1e4, 0.0).to(lp.dtype)
+        return lp
+
     def forward(self, h, A):
         mix = self.mix(h, A)
         edges = torch.cat([self.centers - 0.05, self.centers[-1:] + 0.05])
         Fe = mix.cdf(edges)                                   # (B, K+1)
         mass = (Fe[:, 1:] - Fe[:, :-1]).clamp_min(1e-30)
-        logp = mass.log() + self.log_prior()[None]
+        logp = mass.log() + self.effective_log_prior()[None]
         return Binned(logp.log_softmax(-1), self.centers)
 
 
@@ -341,7 +352,7 @@ class EquivariantDistanceGRHead(nn.Module):
         z = (edges[None, None, :] - d.mu[..., None]) / d.sigma[..., None]           # (B, R, K+1)
         Fe = torch.special.ndtr(z)
         mass = (Fe[..., 1:] - Fe[..., :-1]).clamp_min(1e-30)
-        logj = d.logit_w.log_softmax(-1)[..., None] + mass.log() + self.prior.log_prior()[None, None]
+        logj = d.logit_w.log_softmax(-1)[..., None] + mass.log() + self.prior.effective_log_prior()[None, None]
         logz = torch.logsumexp(logj.flatten(1), 1)[:, None, None]
         logj = logj - logz
         return JointBinned(torch.logsumexp(logj, 1), centers, logj)
@@ -372,7 +383,7 @@ class EquivariantScaleMixtureGRHead(nn.Module):
             Fe = m.cdf(edges)
             parts.append((Fe[:, 1:] - Fe[:, :-1]).clamp_min(1e-30).log())
         logj = (self.type_logit(h).float().log_softmax(-1)[..., None] + torch.stack(parts, 1)
-                + self.prior.log_prior()[None, None])
+                + self.prior.effective_log_prior()[None, None])
         logj = logj - torch.logsumexp(logj.flatten(1), 1)[:, None, None]
         return JointBinned(torch.logsumexp(logj, 1), centers, logj)
 
@@ -428,8 +439,11 @@ class MagNetTrunk(nn.Module):
     probabilistic version of MagNet's MSE output.
     """
 
-    def __init__(self, n_static, hidden=100, dropout=0.2):
+    def __init__(self, n_static, hidden=100, dropout=0.2, free_amplitude=True):
         super().__init__()
+        # free_amplitude=False feeds the scale-free shape only (trunk-transfer test of the
+        # equivariant heads, which receive the log amplitude A directly)
+        self.free_amplitude = free_amplitude
         self.conv1 = nn.Conv1d(3, 64, 3, padding=1)
         self.conv2 = nn.Conv1d(64, 32, 3, padding=1)
         self.drop = nn.Dropout(dropout)
@@ -438,7 +452,7 @@ class MagNetTrunk(nn.Module):
         self.out_dim = 2 * hidden + n_static + 3
 
     def forward(self, shape, A, invariant, static, dur_idx):
-        x = shape * torch.pow(10.0, (A.float() - A0))[:, None, None]
+        x = shape * torch.pow(10.0, (A.float() - A0))[:, None, None] if self.free_amplitude else shape
         h = self.pool(self.drop(self.conv1(x)))
         h = self.pool(self.drop(self.conv2(h)))
         _, (hn, _) = self.lstm(h.transpose(1, 2))
@@ -446,18 +460,24 @@ class MagNetTrunk(nn.Module):
 
 
 class MagnitudeModel(nn.Module):
-    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3, beta_fixed=None):
+    def __init__(self, head, n_static, k=6, aux_dist=False, width_mult=1.0, kappa_min=0.3, beta_fixed=None,
+                 train_cap=None):
         super().__init__()
         if head == 'magnet':
             self.trunk = MagNetTrunk(n_static)
             self.head = MixtureHead(self.trunk.out_dim, 1)
             self.aux = None
             return
-        head_cls, free_amplitude = HEADS[head]
-        self.trunk = Trunk(n_static, free_amplitude, width_mult=width_mult)
-        if head == 'cat':
+        # 'magnet_<head>': the published-architecture trunk under any head (trunk-transfer test);
+        # amplitude-free heads get the scale-free MagNet trunk
+        magnet = head.startswith('magnet_')
+        base = head[len('magnet_'):] if magnet else head
+        head_cls, free_amplitude = HEADS[base]
+        self.trunk = (MagNetTrunk(n_static, free_amplitude=free_amplitude) if magnet
+                      else Trunk(n_static, free_amplitude, width_mult=width_mult))
+        if base == 'cat':
             self.head = head_cls(self.trunk.out_dim)
-        elif head in ('eq', 'eqgr'):
+        elif base in ('eq', 'eqgr'):
             self.head = head_cls(self.trunk.out_dim, k, kappa_min=kappa_min)
         else:
             self.head = head_cls(self.trunk.out_dim, k)
@@ -472,6 +492,10 @@ class MagnitudeModel(nn.Module):
                 raise ValueError(f'head {head!r} has no GR prior factor to pin')
             del gr.beta
             gr.register_buffer('beta', torch.tensor(float(beta_fixed)))
+        if train_cap is not None:
+            gr = self.head if hasattr(self.head, 'phi_free') else getattr(self.head, 'prior', None)
+            if gr is not None and hasattr(gr, 'train_cap'):
+                gr.train_cap = float(train_cap)
 
     def forward(self, shape, A, invariant, static, dur_idx):
         return self.head(self.trunk(shape, A, invariant, static, dur_idx), A)

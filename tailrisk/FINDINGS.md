@@ -120,6 +120,28 @@ Floor 10⁻⁶: .298 / .176, .229 / .172, .488 / .177. The level of the fused ta
 distance-marginalized head's broad posteriors make it floor-sensitive (.19 to .49), which is
 why its own factor, which needs no such choice, is the better rule for it.
 
+## 2026-10-30 00:30 UTC — Held-station test of the 20-epoch distance-marginalized head: longer training helps on seen stations and hurts on unseen ones, for both models; at unseen stations the 10-epoch head is the best model
+
+`eqdgr_nll_e20_hs` and `mix_nll_e20_hs` (20 epochs, same 20% of INSTANCE stations withheld,
+seed 1), evaluated together with the 10-epoch held-station arms against the 20-epoch mixture
+(`eval_hs_e20_{held,seen}.json`). Δ vs mix_nll_e20_hs, median action, 1 / 3 / 5 s:
+
+| | held stations: bulk | held: M≥5 | seen stations: bulk | seen: M≥5 |
+|---|---|---|---|---|
+| eqdgr, 20 epochs | +.0002 / −.0032 / **−.0044** | −.070 / −.111 / −.121 (CIs reach +.003 to +.08) | **−.0077 / −.0105 / −.0120** | −.119 / **−.120 / −.124** |
+| mixture, 10 epochs | **−.0049 / −.0083 / −.0064** | **+.079 / +.064 / +.045** | **−.0038 / −.0038 / −.0034** | **+.055 / +.057** / +.048 |
+| eqdgr, 10 epochs | **−.0076 / −.0102 / −.0101** | −.079 / **−.137 / −.172** | **−.0049 / −.0079 / −.0102** | −.114 / **−.134 / −.148** |
+
+* On stations seen in training, 20 epochs improve the bulk of the distance-marginalized head
+  by about .003–.005 over its 10-epoch version (as on the full data, 22 Oct entry).
+* On stations never seen in training the opposite holds for both models: the 10-epoch mixture
+  has lower bulk error than the 20-epoch mixture (−.005 to −.008), and the 10-epoch
+  distance-marginalized head beats its 20-epoch version by .006–.008 bulk and .01–.05 on M≥5.
+  Longer training fits station-specific detail that does not transfer.
+* So the 22 Oct "single best INSTANCE model" statement needs a qualifier: 20 epochs for a
+  fixed network, 10 epochs for a network that must serve new stations. Against an equally
+  trained mixture the distance-marginalized head wins on both subsets at both lengths.
+
 ## 2026-10-22 22:10 UTC — Fusion with the 20-epoch distance-marginalized head: the histogram rule is its best fusion prior (M≥5 .22 / .19 / .23 at all stations, three seeds); its own learned factor no longer is, as Proposition 2 predicts for a re-trained split
 
 `multistation.py` and `fusion_timeline.py` on the three 20-epoch seeds of the mixture and the

@@ -57,7 +57,7 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
     data.fit_static_norm(train_idx)
     n_static = data.static_raw.shape[1]
     model = MagnitudeModel(args.head, n_static, k=args.k, aux_dist=args.aux_dist, width_mult=args.width_mult, kappa_min=args.kappa_min,
-                           beta_fixed=args.beta_fixed).to(device)
+                           beta_fixed=args.beta_fixed, train_cap=args.train_mag_cap).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
     steps_per_epoch = math.ceil(len(train_idx) / args.batch)
     total = steps_per_epoch * args.epochs
@@ -96,9 +96,10 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
                         A = A + delta
                     dur = torch.full((len(idx),), d_i, device=device, dtype=torch.long)
                     dist, aux = model.forward_train(shape, A, inv, static, dur)
-                    if args.head == 'eqtgr':   # joint likelihood over (reported scale, magnitude)
+                    base_head = args.head[len('magnet_'):] if args.head.startswith('magnet_') else args.head
+                    if base_head == 'eqtgr':   # joint likelihood over (reported scale, magnitude)
                         term = (w * -dist.log_prob_joint(y_fit, scale_idx[idx])).sum() / w.sum()
-                    elif args.head in ('eqd', 'eqdgr', 'mixd', 'mixdgr'):   # joint likelihood p(r|s) p(m|r,x); marginal if r missing
+                    elif base_head in ('eqd', 'eqdgr', 'mixd', 'mixdgr'):   # joint likelihood p(r|s) p(m|r,x); marginal if r missing
                         lp = torch.where(r_valid[idx], dist.log_prob_joint(y_fit, r_bin[idx]),
                                          dist.log_prob_label(y_fit))
                         term = (w * -lp).sum() / w.sum()
@@ -153,7 +154,8 @@ def train_fold(args, data, train_idx, test_idx, fold_name, out_dir, device, extr
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--arm', required=True)
-    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr', 'eqdgr', 'eqtgr', 'magnet', 'mixd', 'mixdgr'], required=True)
+    ap.add_argument('--head', choices=['cat', 'mix', 'eq', 'eqgr', 'eqh', 'eqd', 'mixgr', 'eqdgr', 'eqtgr', 'magnet', 'mixd', 'mixdgr',
+                                       'magnet_mix', 'magnet_mixgr', 'magnet_eqgr', 'magnet_eqdgr'], required=True)
     ap.add_argument('--aux-dist', action='store_true', help='auxiliary distance classifier (training only)')
     ap.add_argument('--loss', choices=['nll', 'hubce'], default='nll')
     ap.add_argument('--weighting', choices=['none', 'invsqrt', 'lds'], default='none')
@@ -171,6 +173,10 @@ def main():
     ap.add_argument('--kappa-min', type=float, default=0.3, help='lower bound of the equivariant slope kappa(s)')
     ap.add_argument('--beta-fixed', type=float, default=None,
                     help='pin the GR tail slope of the prior factor (nats per magnitude unit, e.g. -2.29 for b = 1) instead of learning it')
+    ap.add_argument('--no-static', action='store_true', help='no station metadata inputs (catalogue-agnostic model for transfer tests)')
+    ap.add_argument('--train-mag-cap', type=float, default=None,
+                    help='extrapolation test: train only on records with label < cap (a catalogue without large '
+                         'events); GR heads truncate their prior factor at the cap during training only')
     ap.add_argument('--hold-stations', type=float, default=0.0,
                     help='fraction of stations withheld from training in every fold (held-station test)')
     ap.add_argument('--max-train', type=int, default=0, help='smoke test: subsample training rows')
@@ -183,7 +189,7 @@ def main():
     out_dir = Path(args.out) / args.arm
     out_dir.mkdir(parents=True, exist_ok=True)
     meta = load_meta()
-    data = GPUData(device, meta)
+    data = GPUData(device, meta, no_static=args.no_static)
     fold = torch.from_numpy(meta['fold'].astype(np.int64)).to(device)
     split = torch.from_numpy(meta['split'].astype(np.int64)).to(device)
     record = {'args': vars(args), 'folds': {}}
@@ -200,9 +206,14 @@ def main():
         held_sta = np.random.default_rng(0).random(int(station.max()) + 1) < args.hold_stations
         held_row = torch.from_numpy(held_sta[station]).to(device)
         record['held_stations'] = int(held_sta.sum())
+    if args.train_mag_cap is not None and args.amp_aug > 0 and args.head not in ('mix', 'cat', 'eq', 'magnet', 'mixd', 'eqd', 'eqh'):
+        raise SystemExit('amplitude augmentation creates labels above the cap, which a truncated prior factor forbids')
     for name, tr, te in plan:
         if held_row is not None:
             tr = tr[~held_row[tr]]
+        if args.train_mag_cap is not None:
+            tr = tr[data.mag[tr] < args.train_mag_cap - 1e-6]
+        record.setdefault('train_records', {})[name] = {'n': int(len(tr)), 'max_label': float(data.mag[tr].max())}
         if args.max_train:
             g = torch.Generator(device=device).manual_seed(0)
             tr = tr[torch.randperm(len(tr), device=device, generator=g)[:args.max_train]]

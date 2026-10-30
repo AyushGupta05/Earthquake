@@ -90,6 +90,33 @@ tail slope is free. The multi-station study (`multistation.py`) tests exactly th
 posterior product, the posterior mean, the product with the learned factor counted once, and
 the product with the empirical training-label prior counted once.
 
+## Proposition 3 (extrapolation beyond a truncated training catalogue)
+
+Suppose the training catalogue contains only events with M < C (a cap), while the target
+population follows π(M) with the Gutenberg–Richter tail above C. The training population has
+p_train(M, x) ∝ p(x | M) π(M) 1[M < C], so its Bayes posterior is
+p_train(M | x) ∝ p(x | M) π(M) 1[M < C], and the target posterior is p(M | x) ∝ p(x | M) π(M).
+For a factorized model p_θ(M | x) ∝ L_θ(M | x) · e^φ(M):
+
+* training with the factor φ_train = φ + log 1[M < C] fits L_θ ∝ p(x | M) on M < C, and replacing
+  φ_train by φ at test time yields the target posterior — *if* L_θ is also right for M ≥ C;
+* nothing in the training data constrains L_θ above C. A free likelihood is arbitrary there,
+  and a free posterior (no factor) cannot even express the swap: it has learned that
+  P(M ≥ C | x) = 0;
+* under the assumptions of Proposition 1, p(x | M) for M ≥ C is determined by values below C:
+  scaling a record by 10^(−κδ) maps an event of magnitude M to one of magnitude M − δ with the
+  same shape distribution, so p(A, s | M) = p(A − κδ, s | M − δ). An equivariant likelihood,
+  whose dependence on (A, M) is through κ(s)(A − A₀) − M alone, therefore carries what it
+  learned below the cap to every magnitude above it, and the swap of φ_train for φ is the exact
+  Bayes extrapolation.
+
+The tail slope of φ is then either learned from the labels between M_C = 3.5 and the cap or
+pinned to the catalogue b-value (`--beta-fixed`). The prediction is testable: train every head
+on M < C only (`train.py --train-mag-cap C`), and compare them on held-out events above C. Free
+heads must saturate at the cap; equivariant heads with the untruncated tail should not, to the
+extent that real waveforms are self-similar (corner frequency and rupture duration break it for
+the largest events, which bounds how far the extrapolation can reach).
+
 ## Relation to the decision rule
 
 For any posterior p, the tail-weighted median a_r (r times the weight on M ≥ 4) is the

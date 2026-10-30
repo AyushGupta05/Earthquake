@@ -1,0 +1,8 @@
+--arm mix_cap40 --head mix --loss nll --epochs 10 --train-mag-cap 4.0
+--arm eqdgr_cap40 --head eqdgr --loss nll --epochs 10 --train-mag-cap 4.0
+--arm eqgr_cap40 --head eqgr --loss nll --epochs 10 --train-mag-cap 4.0
+--arm eqdgr_cap40_bfix --head eqdgr --loss nll --epochs 10 --train-mag-cap 4.0 --beta-fixed -2.29
+--arm eqgr_cap40_bfix --head eqgr --loss nll --epochs 10 --train-mag-cap 4.0 --beta-fixed -2.29
+--arm mixgr_cap40 --head mixgr --loss nll --epochs 10 --train-mag-cap 4.0
+--arm mix_cap40_aug15 --head mix --loss nll --epochs 10 --train-mag-cap 4.0 --amp-aug 1.5
+--arm mix_cap40_aug05 --head mix --loss nll --epochs 10 --train-mag-cap 4.0 --amp-aug 0.5
