@@ -1,9 +1,10 @@
 # Pre-registered capped-training test on STEAD
 
-Written 30 Oct 2026 at about 05:15 UTC, **before any STEAD model has finished training and
-before any STEAD prediction has been seen**, and committed before these arms are queued. It
+Written 30 Oct 2026 at about 04:25 UTC, **before any STEAD arm has finished training (one fold
+of the reference arm had) and before any STEAD prediction has been looked at**, and committed
+before these arms are queued (first commit bc5ab2b; this wording and the time corrected after). It
 extends `PREREGISTRATION_STEAD.md` with the extrapolation test of Proposition 3 (THEORY.md),
-which was designed on INSTANCE and Chile (FINDINGS.md, 30 Oct 04:40 and 05:00). Nothing below
+which was designed on INSTANCE and Chile (FINDINGS.md, 30 Oct 04:15 and 04:25). Nothing below
 may change after STEAD results are seen.
 
 ## Data

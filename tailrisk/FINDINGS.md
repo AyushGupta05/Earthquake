@@ -4,7 +4,7 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
-## 2026-10-30 05:00 UTC — Interim: capped-training extrapolation on INSTANCE (trained on M < 4.0) replicates, including on moment-magnitude labels
+## 2026-10-30 04:25 UTC — Interim: capped-training extrapolation on INSTANCE (trained on M < 4.0) replicates, including on moment-magnitude labels
 
 Interim, seed 1, point estimates computed directly from the saved out-of-fold predictions;
 bootstrap intervals follow when the second host's batch (`eval_cap40*.json`) completes. Every
@@ -35,7 +35,7 @@ free mixture's zero is the other face of its saturation: it cannot predict M4 at
 
 Figure: `figures/capped_extrapolation.png` (`capped_figure.py`, data from `cap_curve_data.py`).
 
-## 2026-10-30 04:40 UTC — Capped-training extrapolation on Chile: trained only on M < 5.0, the equivariant head predicts M6+ events better than a free mixture trained *with* them; a training leak in the distance-marginalized head, and its fix
+## 2026-10-30 04:15 UTC — Capped-training extrapolation on Chile: trained only on M < 5.0, the equivariant head predicts M6+ events better than a free mixture trained *with* them; a training leak in the distance-marginalized head, and its fix
 
 **Design (Proposition 3).** Every head is trained on Chile records with M < 5.0 only
 (`--train-mag-cap 5.0`; same folds, schedule and seed 1 as the full-data arms) and scored on all
@@ -100,7 +100,7 @@ with two more existing-method baselines under the same cap: κ ≡ 1 (`eqgr_k1_c
 Zhang & Tian 2021 construction) and the published MagNet architecture (`magnet_cap50`,
 `magnet_cap40`). The small-cluster-robust statistics (`robust_tail.py`) run on the full set.
 
-## 2026-10-30 04:20 UTC — Fusion with co-located instruments merged into one station: conclusions unchanged
+## 2026-10-30 04:10 UTC — Fusion with co-located instruments merged into one station: conclusions unchanged
 
 **Why.** The audit noted that INSTANCE has several instruments (e.g. HH and HN channels) at one
 site, so "k stations" could count one site twice and its fused errors could be optimistic. The
