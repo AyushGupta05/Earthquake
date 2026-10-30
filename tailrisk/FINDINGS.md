@@ -4,6 +4,36 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 11:15 UTC — Chile retrained on independent magnitudes (audit M1): the full-data tail gain survives only on M ≥ 6 (−.13 to −.20 at 3–5 s, significant on MW_SIPPL, n.s. on M_EXT); capped training still beats the capped mixture by a wide margin but only ties the full-data mixture
+
+Chile's MA labels are amplitude-derived. The relabelled caches replace the large events' labels by
+M_EXT (65 M ≥ 5 events / 29 clusters, 9 M ≥ 6 / 7) or MW_SIPPL (44 / 21; 6 / 5). Every arm is
+retrained on them (seed 1; SageMaker), and tail records are restricted to events with an independent
+label. Jackknife intervals; 1 / 3 / 5 s.
+
+| Δ (seed 1) | M_EXT M ≥ 5 | M_EXT M ≥ 6 | MW_SIPPL M ≥ 5 | MW_SIPPL M ≥ 6 | bulk |
+|---|---|---|---|---|---|
+| `eqdgr_nll` − `mix_nll` | +.015 / +.015 / −.010 | −.009 / −.134 / −.195 (n.s.) | +.039 / −.011 / −.038 | +.018 / **−.204 / −.193** | −.002 to −.006 |
+| `eqgr_nll` − `mix_nll` | +.082 / +.022 / +.002 | +.10 / −.13 / −.23 | +.088 / −.014 / −.038 | +.11 / −.22 / **−.23** | +.000 to +.002 |
+| `eqdgr_cap50_cond` − `mix_cap50` | **−.15 / −.32 / −.36** | **−.27 / −.85 / −.94** | **−.18 / −.25 / −.28** | **−.58 / −.75 / −.72** | −.002 to −.006 |
+| `eqdgr_cap50_cond` − `mix_nll` | +.15 / +.04 / +.005 | +.38 / −.09 / −.21 | +.11 / +.06 / +.04 | +.07 / −.09 / −.05 | −.001 to −.006 |
+
+* **Full data:** on independent labels the distance-marginalized head's Chile tail advantage is
+  confined to M ≥ 6 at 3–5 s. That is −.20 / −.19 on MW_SIPPL (5 of 5 and 4 of 5 clusters, intervals
+  excluding zero) and −.13 / −.20 on M_EXT (n.s., 7 clusters). On MA labels the same comparison was
+  −.27 / −.38 at M ≥ 6 and −.03 / −.09 at M ≥ 5. Its bulk advantage is unchanged.
+* **Capped (M < 5):** against the identically capped mixture the gain holds fully on both labelings,
+  with 20–29 of 21–29 clusters favouring the head on M ≥ 5. Against the free mixture trained on all
+  magnitudes it is a tie: M ≥ 5 slightly worse (+.005 to +.06), M ≥ 6 slightly better at 3–5 s, n.s.
+  The "three capped seeds beat three full-data seeds on M ≥ 6" result of the 11:10 entry is
+  specific to the amplitude labels.
+* This is the audit's point (05:10 entry) confirmed by retraining, not only rescoring. Part of the
+  Chile tail result, both full-data and capped, comes from the label being an amplitude magnitude,
+  which an amplitude-equivariant model fits by construction.
+
+Files: `results/robust_chile_relabel_{mext,mwsippl}.{json,md}`,
+`robust_chile_relabel_cap50_{mext,mwsippl}.{json,md}`.
+
 ## 2026-10-30 11:10 UTC — Chile capped (M < 5.0) rerun with the binning fix and the conditional truncation: the leak is gone, the head beats augmentation (M ≥ 6 −.36 / −.44 at 3 / 5 s, 8 of 8 clusters), and three seeds of the capped head beat three seeds of the free mixture trained on all magnitudes
 
 Bin-consistent cap filter (`--cap-filter bin`, the 05:10 audit fix), suffix `b`. Median action,
