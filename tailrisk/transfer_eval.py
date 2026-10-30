@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from common import DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, GPUData, decisions, load_meta
+from common import DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, GPUData, cap_keep, decisions, load_meta
 from models import Binned, MagnitudeModel, Mixture, log_interval
 
 GRID = torch.round(torch.arange(-1.0, 8.5 + 1e-6, 0.1) * 10) / 10      # the GR heads' 0.1 grid
@@ -85,7 +85,7 @@ def main():
         model.eval()
         y_src = src_meta['mag'][src_fold != f_src]
         if targs.get('train_mag_cap') is not None:
-            y_src = y_src[y_src < targs['train_mag_cap'] - 1e-6]
+            y_src = y_src[cap_keep(y_src, targs['train_mag_cap'], targs.get('cap_filter', 'label'))]
         shift = (hist_logprior(dst_meta['mag'][dst_fold != k]) - hist_logprior(y_src)).to(device)
         te = torch.nonzero(torch.from_numpy(dst_fold == k).to(device))[:, 0]
         res = {name: (np.zeros((len(te), 3, len(DECISION_NAMES)), np.float32), np.zeros((len(te), 3, len(PMF_CENTERS)), np.float16)) for name in out_dirs}

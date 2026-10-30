@@ -18,7 +18,7 @@ import numpy as np
 import torch
 from torch.nn import functional as F
 
-from common import (DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, GPUData, decisions,
+from common import (DECISION_NAMES, DURATIONS, PMF_CENTERS, WORK, GPUData, cap_keep, decisions,
                     load_meta, metric_table)
 from models import MagnitudeModel, distance_bin
 
@@ -180,6 +180,10 @@ def main():
     ap.add_argument('--train-mag-cap', type=float, default=None,
                     help='extrapolation test: train only on records with label < cap (a catalogue without large '
                          'events); GR heads truncate their prior factor at the cap during training only')
+    ap.add_argument('--cap-filter', choices=('bin', 'label'), default='bin',
+                    help="rows kept under --train-mag-cap: 'bin' = the label's 0.1 bin lies below the cap (default "
+                         "since 30 Oct); 'label' = label < cap (original; labels in [cap-0.05, cap) then fall in the "
+                         "masked cap bin)")
     ap.add_argument('--cap-latent', choices=('joint', 'conditional'), default='joint',
                     help='joint latent heads (eqdgr/eqsgr) under --train-mag-cap: truncate the whole joint over '
                          '(latent, magnitude) (original) or only the magnitude conditional, with the latent '
@@ -219,7 +223,7 @@ def main():
         if held_row is not None:
             tr = tr[~held_row[tr]]
         if args.train_mag_cap is not None:
-            tr = tr[data.mag[tr] < args.train_mag_cap - 1e-6]
+            tr = tr[cap_keep(data.mag[tr], args.train_mag_cap, args.cap_filter)]
         record.setdefault('train_records', {})[name] = {'n': int(len(tr)), 'max_label': float(data.mag[tr].max())}
         if args.max_train:
             g = torch.Generator(device=device).manual_seed(0)

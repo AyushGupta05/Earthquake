@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from common import DURATIONS, PMF_CENTERS, WORK, GPUData, load_meta
+from common import DURATIONS, PMF_CENTERS, WORK, GPUData, cap_keep, load_meta
 from models import Binned, MagnitudeModel, Mixture, log_interval
 
 
@@ -71,7 +71,7 @@ def main():
         if held_row is not None:
             tr = tr[~held_row[tr]]
         if targs.get('train_mag_cap') is not None:
-            tr = tr[data.mag[tr] < targs['train_mag_cap'] - 1e-6]
+            tr = tr[cap_keep(data.mag[tr], targs['train_mag_cap'], targs.get('cap_filter', 'label'))]
         data.fit_static_norm(tr)
         n_static = data.static_raw.shape[1]
         model = MagnitudeModel(targs['head'], n_static, k=targs.get('k', 6), aux_dist=targs.get('aux_dist', False),

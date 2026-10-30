@@ -14,7 +14,7 @@ import json
 import numpy as np
 import torch
 
-from common import DURATIONS, PMF_CENTERS, WORK, GPUData, load_meta
+from common import DURATIONS, PMF_CENTERS, WORK, GPUData, cap_keep, load_meta
 from export_logpmf import binned_logpmf, mixture_logpmf
 from models import Binned, MagnitudeModel, Mixture
 
@@ -45,7 +45,7 @@ def main():
                 continue
             tr = torch.nonzero(fold != f)[:, 0]
             if targs.get('train_mag_cap') is not None:
-                tr = tr[mag_t[tr] < targs['train_mag_cap'] - 1e-6]
+                tr = tr[cap_keep(mag_t[tr], targs['train_mag_cap'], targs.get('cap_filter', 'label'))]
             data.fit_static_norm(tr)
             model = MagnitudeModel(targs['head'], data.static_raw.shape[1], k=targs.get('k', 6),
                                    kappa_min=targs.get('kappa_min', 0.3), beta_fixed=targs.get('beta_fixed'),

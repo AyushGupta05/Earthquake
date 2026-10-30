@@ -1,0 +1,7 @@
+--arm eqgr_cap50b --head eqgr --loss nll --epochs 10 --train-mag-cap 5.0
+--arm eqdgr_cap50b_cond --head eqdgr --loss nll --epochs 10 --train-mag-cap 5.0 --cap-latent conditional
+--arm mix_cap50b --head mix --loss nll --epochs 10 --train-mag-cap 5.0
+--arm mixgr_cap50b --head mixgr --loss nll --epochs 10 --train-mag-cap 5.0
+--arm eqgr_k1_cap50b --head eqgr --loss nll --epochs 10 --train-mag-cap 5.0 --kappa-fixed 1.0
+--arm magnet_cap50b --head magnet --loss nll --epochs 10 --train-mag-cap 5.0
+--arm mix_cap50b_aug15 --head mix --loss nll --epochs 10 --train-mag-cap 5.0 --amp-aug 1.5

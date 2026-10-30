@@ -30,6 +30,24 @@ DECISION_NAMES = (['mean'] + [f'wmed_r{r:g}' for r in RATIOS] + [f'q{q:g}' for q
                   + ['p_ge4', 'p_ge45', 'p_ge5', 'nll_bin', 'crps', 'sd'])
 
 
+def cap_keep(mag, cap, mode='bin'):
+    """Training rows kept under a magnitude cap (extrapolation test).
+
+    mode 'label' (original): label < cap. mode 'bin' (30 Oct fix): the label's 0.1 bin, as the
+    binned heads round it (centres -1.0 + 0.1 k), lies below the cap. With 'label', labels in
+    [cap - 0.05, cap) round into the cap's own bin, which the truncated prior factor masks, so
+    each such record costs ~1e4 nats (Chile MA labels have two decimals). Works on numpy arrays
+    and torch tensors.
+    """
+    if mode == 'label':
+        return mag < cap - 1e-6
+    if mode != 'bin':
+        raise ValueError(mode)
+    lib = torch if isinstance(mag, torch.Tensor) else np
+    centre = -1.0 + lib.round((mag + 1.0) * 10) / 10
+    return centre < cap - 1e-6
+
+
 def load_meta():
     m = np.load(WORK / 'meta.npz', allow_pickle=True)
     return {k: m[k] for k in m.files}

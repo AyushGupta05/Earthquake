@@ -60,3 +60,16 @@ suspects; per region (as in `PREREGISTRATION_STEAD.md`).
 
 Seven arms of about one GPU-hour each, queued after STEAD seed 3 on the second host (or on a
 further host if the GPU quota allows).
+
+## Amendment 1 (30 Oct 2026, 05:10 UTC; before any capped STEAD arm has started)
+
+An adversarial audit of the INSTANCE and Chile capped runs found an implementation bug: labels in
+[cap − 0.05, cap) round into the cap's own 0.1 bin, which the truncated prior factor masks, so
+each such training record costs about 10⁴ nats. STEAD has 23 such rows. All STEAD capped arms
+therefore use the bin-consistent filter (`--cap-filter bin`, the default from this commit on):
+a record is kept if its label's bin lies below the cap. Nothing else changes.
+
+Also reported, as context and **not part of the decision rule**: the classical log-amplitude laws
+of `linear_baseline.py` fitted on the same capped training rows and folds. These are forward
+regression of M on amplitude, and the inverse law A = a + bM + c·z solved for M, with z either
+the scale-free invariants or the true catalogue log distance (an oracle the networks do not get).
