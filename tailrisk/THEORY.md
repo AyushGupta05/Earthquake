@@ -50,6 +50,18 @@ Two consequences:
   .54–.66 for the downward response. That asymmetry is saturation where training data end;
   the equivariant head removes it by construction.
 
+**Corollary (conditioning on distance).** Write z = (r, z′) with r the log distance. The same
+proof, run with p(z′ | r) in place of p(z), shows that p(M | A, s, r) is equivariant too. Its
+G_{s,r} is narrower, because it no longer averages over r. The distance-marginalized head
+(`eqdgr`) models the joint p(r, M | x) with exactly this structure: an equivariant Gaussian per
+distance bin, with weights p(r | s). So one trained model gives both posteriors. The marginal
+serves a station that does not yet know its distance. The conditional p(M | r̂, x) ∝ Σ_r p(r, M | x)
+N(r̂; r, σ²) serves a station once a network location r̂ with log-error σ exists (`condr_arms.py`;
+no retraining). The GR shrinkage −b ln10 σ²/κ uses the residual scatter given what is conditioned
+on, so conditioning lowers the scatter and that constant shift with it. Any bias that remains for
+the largest events is therefore not shrinkage: it is the waveform not yet carrying the event's
+size (rupture still growing).
+
 ## Where the assumptions fail, and how the method handles it
 
 | failure | effect on the Bayes posterior | handled by |
@@ -109,6 +121,15 @@ For a factorized model p_θ(M | x) ∝ L_θ(M | x) · e^φ(M):
   whose dependence on (A, M) is through κ(s)(A − A₀) − M alone, therefore carries what it
   learned below the cap to every magnitude above it, and the swap of φ_train for φ is the exact
   Bayes extrapolation.
+
+*Measured (30 Oct).* The swap matters even for a free likelihood. On INSTANCE capped at M4.0 a
+free mixture × GR factor, truncated in training and untruncated at test, cuts M ≥ 5 error from
+1.6 to .8 at 3–5 s, against .55–.67 for the equivariant heads. A likelihood fitted next to a
+truncated prior is not itself forced to vanish above C, so it is "free" there in practice rather
+than adversarial. Equivariance pins it down, which shows as fewer false alarms and a further
+(not significant) tail gain. When the scale changes across the cap (GEOFON: mb below, Mw above),
+the amplitude law learned below C is the wrong one above, and neither head reaches a unit-slope
+baseline.
 
 The tail slope of φ is then either learned from the labels between M_C = 3.5 and the cap or
 pinned to the catalogue b-value (`--beta-fixed`). The prediction is testable: train every head
