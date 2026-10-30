@@ -10,6 +10,40 @@ at 1, 3 and 5 s on every dataset, with paired differences, are tabulated in
 [NOVELTY.md](NOVELTY.md). An explanatory notebook is in
 [tail_risk_study.ipynb](tail_risk_study.ipynb).
 
+## Bottom line (30 Oct 2026, four catalogues)
+
+**The method.** p(m | x) ∝ L_θ(m | A, s) · exp φ(m). L_θ is a Gaussian-mixture likelihood that is
+exactly equivariant to log amplitude, with a learned slope κ(s). φ is one learned prior factor, free
+below M3.5 and Gutenberg–Richter-linear above. Its distance-marginalized form models
+p(distance, magnitude | x) jointly and marginalizes distance at inference.
+
+**What holds:**
+1. **Pre-registered fourth catalogue (STEAD, 718 M ≥ 5 events).** The plain equivariant head lowers
+   M ≥ 5 error at 3 and 5 s (−.056 / −.069, jackknife intervals over 456 sequences excluding zero) with
+   bulk error unchanged. That meets the rule fixed before training. The distance-marginalized head
+   gains more (−.084 / −.106; M ≥ 6 −.37 / −.45), but exceeds the 1 s bulk guard by .0004, so under the
+   rule it is not confirmed.
+2. **Across catalogues.** In 351 and 359 of 521 large-event sequences (3 / 5 s) the
+   distance-marginalized head beats the TEAM-LM-style free mixture. The pre-registered pooled
+   interval narrowly includes zero.
+3. **With a known distance (no retraining).** The same trained head can be conditioned on a located
+   event's distance. Then it beats the free mixture on the largest events of all four catalogues at
+   3 and 5 s (pooled interval excluding zero, also with 26% distance error). Bulk error drops
+   12–30%, and event-level fused error drops 15–25% once four stations have triggered. Against the
+   classical amplitude law with the same distance it wins on three catalogues and loses on GEOFON
+   M ≥ 7. The equal-information test against a free distance head is pre-registered and ⟨pending⟩.
+4. **Trained without large events.** Capped at M4 / M5 / M5 / M6, the equivariant heads cut
+   above-cap error by .3–1.0 against the identically capped free mixture on every catalogue. Mostly
+   this comes from the prior swap of Proposition 3, which helps even a free likelihood.
+
+**What did not hold:**
+* Both pre-registered capped tests (GEOFON, STEAD) failed against amplitude augmentation on the top
+  tail. Their labels switch from mb to Mw at the cap.
+* Chile's full-data and capped advantages shrink on independent magnitudes. The truncation margin
+  trades tail error for fewer false alarms.
+* With full data, the free-likelihood prior factor alone adds little. The early κ ≡ 1 construction
+  of Zhang et al. extrapolates further but costs bulk error.
+
 ## Pre-registered out-of-sample test (STEAD, 30 Oct 2026)
 
 [PREREGISTRATION_STEAD.md](PREREGISTRATION_STEAD.md) fixed every arm, endpoint and decision rule
