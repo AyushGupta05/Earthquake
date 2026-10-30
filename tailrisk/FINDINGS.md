@@ -4,6 +4,178 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 08:55 UTC — Pre-registered capped test on GEOFON: **not confirmed**. The equivariant heads beat the identically capped mixture by .28–.31 on M ≥ 6, but amplitude augmentation beats them on the tail and the bulk guard fails. Cause: the label type changes at the cap (mb below, Mw above)
+
+`PREREGISTRATION_GEOFON_CAP.md` (commit 25e1657, written before training). The heads are trained
+on records whose label bin is below M6.0 and scored on all 31,020 records (276 M ≥ 6 events in
+208 clusters, 50 M ≥ 7 in 46). Median action, 1 / 3 / 5 s.
+
+| arm (trained below M6.0) | M < 6 MAE (G4) | M ≥ 6 MAE (G1) | M ≥ 7 MAE (G3) | false alarms* | response per decade (1st / 2nd) at 3 s |
+|---|---|---|---|---|---|
+| `mix_cap60` (3-seed ens.) | .467 / .419 / .397 | 1.249 / 1.094 / 1.024 | 2.04 / 1.88 / 1.79 | 0 | .25 / .14 |
+| `mix_cap60_aug15` | .546 / .490 / .471 | .976 / .744 / .632 | 1.60 / 1.33 / 1.18 | 78 / 61 / 70 | .68 / .37 |
+| `eqgr_cap60` (3-seed ens.) | .493 / .436 / .412 | 1.088 / .916 / .825 | 1.84 / 1.61 / 1.47 | 16 / 12 / 13 | .44 / .44 |
+| `eqdgr_cap60_cond` (3-seed ens.) | .502 / .443 / .418 | .997 / .816 / .714 | 1.67 / 1.44 / 1.25 | 32 / 26 / 21 | .61 / .60 |
+| `eqgr_k1_cap60` (κ ≡ 1) | .627 / .549 / .519 | .848 / .709 / .628 | 1.28 / 1.00 / .84 | — | .98 / .86 |
+| `magnet_cap60` | .599 / .589 / .565 | 1.680 / 1.716 / 1.558 | 2.35 / 2.58 / 2.41 | — | — |
+| `lin_invR_cap60` (classical, oracle distance) | .695 / .612 / .571 | .897 / .758 / .681 | .97 / .81 / .69 | 564 / 355 / 286 | — |
+| *`mix_nll` all magnitudes (3-seed ens.)* | *.484 / .428 / .406* | *.889 / .665 / .577* | *1.55 / 1.24 / 1.11* | | *.54 / .37* |
+
+\* M < 5 records predicted ≥ 5.95, per 10⁴. Full-data `eqgr_nll` and `eqdgr_nll` respond .55 and
+.67 per decade (the capped `eqgr` .44).
+
+**Decision rule (3 and 5 s), primary `eqdgr_cap60_cond`:**
+1. Ensemble G1 against the `mix_cap60` ensemble: −.279 [−.311, −.246] and −.310 [−.346, −.275]
+   (jackknife over 208 clusters). **Pass.**
+2. Seed-1 G1 against `mix_cap60_aug15`: +.070 [+.050, +.090] and +.073 [+.055, +.091].
+   Augmentation is better. **Fail.**
+3. Ensemble G4 against the `mix_cap60` ensemble: +.025 and +.021, above the +.005 guard.
+   **Fail.**
+
+Secondary `eqgr_cap60` fails 2 (+.12 to +.18) and 3 (+.018, +.015). **Extrapolation is not
+confirmed on GEOFON.** The equivariant heads are still far better than the capped free mixture
+and than MagNet (M ≥ 7 −1.15 at 3 s). Against augmentation they have .03 lower bulk error and half
+the false alarms, but a worse tail. κ ≡ 1 and the oracle-distance classical law are best on the
+tail, at the largest bulk costs. No capped arm reaches the free mixture trained on all magnitudes
+(M ≥ 6 .67 / .58).
+
+**Why it fails here.** GEOFON's label type changes at the cap. M4–5 labels are 81% mb, M5–6 48% mb
+and 37% Mw, and M ≥ 6 almost all Mw (mB- or Mwp-based). A head trained below M6 learns the
+amplitude slope of mb labels, .44–.61 magnitude units per decade (capped `eqgr` even lower than
+its full-data twin, .44 vs .55). It carries that slope to Mw events, whose apparent slope at these
+windows is steeper. Augmentation and κ ≡ 1 impose a unit slope, which happens to suit them better.
+The classical law's fitted A-on-M slope (.55–.68) implies an even steeper inverse. This is the
+"mixed ML / Mw labels" failure the method's assumptions list (THEORY.md table). Proposition 3
+requires the amplitude law below the cap to hold above it, and on GEOFON the label definition
+breaks that. INSTANCE (local magnitudes below the cap, 22 of 31 M ≥ 5 events in Mw) did not show
+it. Its label-type change happens at M ~5, well above the M4.0 cap, and the capped head matched
+full-data training on the Mw subset. The claim is restricted accordingly: capped training
+extrapolates where the label scale is consistent across the cap.
+
+Files: `results/geofon_eval_cap60{,_base,_ens}.json`, `geofon_eval_classical.json`,
+`robust_geofon_cap60.{json,md}`, `cap_response_geofon.json`.
+
+## 2026-10-30 08:55 UTC — Distance-informed inference with three seeds and on GEOFON; pooled over three catalogues
+
+Three-seed ensembles conditioned on the catalogue distance (`K`), against the free-mixture ensemble
+(`M`), median action; jackknife intervals over the clusters carrying the tail.
+
+| catalogue | Δ bulk MAE (1 / 3 / 5 s) | Δ top-tail MAE | Δ M ≥ 4 (INSTANCE) / M ≥ 5 (Chile) / M ≥ 6 (GEOFON) |
+|---|---|---|---|
+| INSTANCE (M ≥ 5, 11 seq.) | −.095 / −.082 / −.065 | −.24 / −.26 / −.28 (intervals reach +.01 to +.05) | −.25 / −.24 / −.24 (all exclude 0) |
+| Chile (M ≥ 6, 8 clusters) | −.025 / −.027 / −.033 | +.03 / **−.28 / −.39** | −.04 / −.10 / −.14 (all exclude 0) |
+| GEOFON (M ≥ 7, 46 clusters) | −.089 / −.093 / −.097 | **−.17 / −.14 / −.17** | −.08 / −.04 / −.04 (all exclude 0) |
+
+On GEOFON, distance removes the distance-marginalized head's bulk cost. The marginal head was
++.014 to +.019 behind the mixture; conditioned, it is .09 ahead, and −.11 against itself.
+Pooled over the three catalogues (`meta_analysis.py`), Δ top-tail against the mixture is −.11 /
+**−.21 / −.27** (random effects). The HKSJ interval excludes zero at 3 s ([−.41, −.004]) and just
+includes it at 5 s ([−.57, +.02]). Sequences favouring the head: 53 / 55 / 55 of 65.
+
+Against the classical inverse law with the same distance, the result splits by catalogue:
+
+| catalogue | Δ bulk | Δ top-tail (1 / 3 / 5 s) |
+|---|---|---|
+| INSTANCE M ≥ 5 | −.75 / −.72 / −.69 | −.06 / **−.19 / −.20** |
+| Chile M ≥ 6 (M ≥ 5) | −.20 / −.20 / −.22 | +.13 / −.04 / −.12 (M ≥ 5 −.04 / **−.14 / −.20**) |
+| GEOFON M ≥ 7 (M ≥ 6) | −.34 / −.28 / −.25 | **+.45 / +.29 / +.25** (M ≥ 6 **−.11 / −.15 / −.14**) |
+
+On GEOFON M ≥ 7 the oracle-distance classical law is clearly better (.94 / .81 / .69 against
+1.38 / 1.10 / .94). Its cost is .25–.34 more bulk error and false M ≥ 6 calls on 3–6% of M < 5
+records. The network's remaining M ≥ 7 deficit has two parts. One is the same label-type slope
+problem as the capped test. The other is the Gutenberg–Richter shrinkage that a median under the
+natural prior applies to wide posteriors; the classical law has no prior. So the claim "with the
+same information the network beats the classical law on the tail" holds for local and regional
+networks (INSTANCE, Chile M ≥ 5) and not for the largest GEOFON events.
+
+Files: `results/robust_{instance,chile,geofon}_condR3.{json,md}`,
+`meta3_condR_vs_{mix,invR}.{json,md}`, `meta3_condR10_vs_invR.{json,md}`.
+
+**Also (09:00):** the first truncation-margin arm (Chile `eqgr_cap50b_m10`, seed 1) against the
+same arm without the margin: bulk −.001 / −.002 / .000, M ≥ 6 −.07 / −.05 / −.03 (n.s.). Chile's
+false-alarm rate is too low to test what the margin targets; INSTANCE arms are training. The
+capped Chile result replicates in seed 2 (`eqgr_cap50b_s2` − `mix_cap50b_s2`: M ≥ 6 −.31 / −1.03 /
+−1.12, jackknife intervals excluding zero). **Transparency:** while checking job progress after
+amendment 2 of the STEAD pre-registration, two STEAD fold-4 training-log summaries were displayed:
+the reference `mix_nll_s2`, and the start of `eqdgr_nll`'s 1 s line. The STEAD analyses had already
+been fixed and committed, and nothing about them changes.
+
+## 2026-10-30 07:30 UTC — Distance-informed inference: one trained distance-marginalized head, conditioned on a known distance at test time, cuts INSTANCE bulk error by 30% and M ≥ 4 error by 42%; with the same distance it beats the classical inverse law and an identically conditioned free head on M ≥ 5
+
+`eqdgr` models the joint p(r, m | x) over a log-distance bin and magnitude, and marginalizes r at
+inference. `condr_arms.py` instead conditions on a distance r̂, with no retraining:
+p(m | x, r̂) ∝ Σ_r p(r, m | x) N(r̂; r, σ²). This uses the catalogue hypocentral distance, which a
+network location supplies after a few stations. σ = 0 is the exact bin; σ = .1 / .2 (log10 km,
+≈ 26% / 58%) mimic location error. The same is done for the free distance-mixture head `mixdgr`,
+which has the same latent but no equivariance. The comparison of record is the classical
+inverse law fitted with the same catalogue distance (`lin_invR`). Seed 1, median action, 1 / 3 / 5 s.
+
+INSTANCE
+
+| arm | bulk MAE | M ≥ 4 MAE | M ≥ 5 MAE | top-bin bias | false M4 per 10⁴ | NLL at 5 s |
+|---|---|---|---|---|---|---|
+| `eqdgr_nll` (marginal, no distance) | .327 / .268 / .234 | .738 / .559 / .504 | .898 / .578 / .503 | −.78 / −.41 / −.33 | 12.2 / 7.7 / 5.5 | 2.40 |
+| `eqdgr_nll` given r (σ = 0) | **.229 / .185 / .171** | **.512 / .337 / .290** | **.800 / .491 / .413** | −.75 / −.43 / −.35 | 3.7 / 2.0 / 1.6 | 2.15 |
+| given r̂, σ = .1 | .234 / .192 / .177 | .537 / .360 / .311 | .820 / .510 / .424 | −.77 / −.44 / −.35 | 2.6 / 1.5 / 1.1 | 2.18 |
+| given r̂, σ = .2 | .260 / .215 / .195 | .593 / .419 / .370 | .835 / .524 / .440 | −.77 / −.43 / −.34 | 3.4 / 1.9 / 1.4 | 2.26 |
+| `mixdgr_nll` given r (free head) | .228 / .184 / .170 | .516 / .350 / .303 | .939 / .655 / .585 | −.92 / −.63 / −.56 | 3.5 / 2.1 / 1.7 | 2.13 |
+| `lin_invR` (classical, same distance) | .980 / .904 / .859 | .915 / .785 / .729 | .857 / .687 / .615 | −.32 / −.16 / −.09 | 1626 / 1336 / 1224 | 3.85 |
+
+Jackknife over the 11 M ≥ 5 sequences (t on 10 df), Δ M ≥ 5 MAE:
+
+| contrast | 1 s | 3 s | 5 s |
+|---|---|---|---|
+| `eqdgr` given r − `lin_invR` | −.057 [−.271, +.157] | **−.196 [−.363, −.029]** | **−.202 [−.357, −.047]** |
+| `eqdgr` given r̂ (σ = .1) − `lin_invR` | −.037 [−.250, +.176] | −.177 [−.369, +.015] | **−.192 [−.377, −.006]** |
+| `eqdgr` given r − `mixdgr` given r | **−.139 [−.265, −.012]** | **−.164 [−.301, −.026]** | **−.172 [−.297, −.047]** |
+| `eqdgr` given r − `eqdgr` marginal | −.097 [−.261, +.066] | −.087 [−.232, +.058] | −.090 [−.232, +.052] |
+
+M ≥ 4 against `lin_invR` is −.40 / −.45 / −.44, with 184–186 of 194 sequences favouring the head.
+Equivariant against free, both given r: M ≥ 4 −.004 / −.012 / −.013, bulk +.001.
+
+Northern Chile (seed 1; `mixdgr` not trained there)
+
+| arm | bulk MAE | M ≥ 5 MAE | M ≥ 6 MAE | top-bin bias |
+|---|---|---|---|---|
+| `eqdgr_nll` (marginal) | .205 / .160 / .142 | .845 / .554 / .468 | 1.258 / .600 / .484 | −1.23 / −.35 / −.24 |
+| `eqdgr_nll` given r | .181 / .136 / .114 | .799 / .497 / .419 | 1.291 / .586 / .471 | −1.29 / −.44 / −.35 |
+| given r̂, σ = .1 | .188 / .144 / .125 | .822 / .524 / .441 | 1.277 / .580 / .473 | −1.26 / −.38 / −.30 |
+| `lin_invR` | .377 / .331 / .329 | .845 / .628 / .615 | 1.188 / .610 / .586 | −1.16 / −.27 / +.08 |
+
+Given r against marginal: M ≥ 5 is −.045 / −.057 / −.049, jackknife over 28 clusters excluding
+zero at every deadline (21 / 28 favour). Bulk is −.024 to −.029, and M ≥ 6 is unchanged. Against
+`lin_invR`: M ≥ 5 −.131 [−.175, −.087] at 3 s and −.196 [−.240, −.153] at 5 s (23 / 28 and
+25 / 28). M ≥ 6 is n.s. at 3 s, and −.115 [−.277, +.047] at 5 s (σ = .2: −.111 [−.200, −.023]).
+
+Reading.
+
+1. **A free byproduct of the distance-marginalized form.** The trained joint posterior answers
+   "magnitude given this waveform and this distance" exactly (THEORY.md, corollary to
+   Proposition 1). A system can use the marginal at the first station and switch to the
+   conditional once it has a location, with one model. On INSTANCE, a local network with a
+   wide range of distances, this lowers bulk error by 30% and M ≥ 4 error by 42%. It cuts false
+   M4 alarms threefold and lowers NLL by .25–.32 nats. A 26% distance error keeps most of it. On
+   Chile the gain is smaller: bulk −.024 to −.029, M ≥ 5 −.05.
+2. **Given the same distance, the network beats the classical law on the tail.** The
+   distance-conditioned head is ahead of the inverse classical law with the same oracle distance
+   on M ≥ 5 at 3 and 5 s, on both catalogues, with small-cluster-robust intervals excluding zero.
+   It has a third (INSTANCE) to half (Chile) of the bulk error and 1/400 of the false alarms.
+   Without distance it had tied that law (06:55 entry).
+3. **Equivariance, not distance, fixes the tail.** Conditioned on the same distance, the free
+   distance-mixture head improves bulk and M ≥ 4 as much as the equivariant one. Its M ≥ 5 error
+   stays .14–.17 higher at every deadline (jackknife intervals excluding zero), and its top-bin
+   bias stays near −.6 at 3–5 s against −.4. This mirrors the classical result: forward
+   regression saturates even with distance, the inverse law does not.
+4. **The remaining bias of the largest events is not distance ambiguity.** Conditioning does
+   not change the top-bin bias (INSTANCE −.43 / −.35 at 3 / 5 s; Chile slightly worse). So the
+   residual is the waveform not yet carrying the event's size, not GR shrinkage from an
+   unknown distance.
+
+Seed 1 only. Seeds 2–3 for INSTANCE and Chile, and GEOFON seeds 1–3, are running
+(`condr_batch2.sh`), with the pooled comparison against the classical law. Files:
+`results/eval_condR.json`, `eval_condR_free.json`, `chile_eval_condR.json`,
+`robust_{instance,chile}_condR.{json,md}`.
+
 ## 2026-10-30 06:55 UTC — Classical amplitude laws as ordinary arms (all magnitudes): with the true catalogue distance the inverse law ties the networks on large events, at 2–4× their bulk error and 100–300× their false-M4 rate; without distance, or in the forward direction, it fails
 
 The audit's classical baseline, rerun as arms (`linear_arms.py`): fitted per fold on the training
