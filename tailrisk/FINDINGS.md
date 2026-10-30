@@ -4,6 +4,47 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-30 11:10 UTC — Chile capped (M < 5.0) rerun with the binning fix and the conditional truncation: the leak is gone, the head beats augmentation (M ≥ 6 −.36 / −.44 at 3 / 5 s, 8 of 8 clusters), and three seeds of the capped head beat three seeds of the free mixture trained on all magnitudes
+
+Bin-consistent cap filter (`--cap-filter bin`, the 05:10 audit fix), suffix `b`. Median action,
+1 / 3 / 5 s; jackknife over 28 M ≥ 5 / 8 M ≥ 6 clusters. MA (amplitude) labels; the relabelled
+retraining on independent magnitudes is in `relabel_eval.sh`.
+
+| trained below M5.0 (seed 1) | bulk MAE | M ≥ 5 MAE | M ≥ 6 MAE | top-bin bias |
+|---|---|---|---|---|
+| `mix_cap50b` | .208 / .165 / .149 | 1.179 / .975 / .946 | 2.001 / 1.666 / 1.648 | −2.00 / −1.67 / −1.65 |
+| `mix_cap50b_aug15` | .223 / .174 / .157 | .968 / .657 / .593 | 1.691 / 1.061 / .983 | −1.69 / −1.06 / −.98 |
+| `mixgr_cap50b` (prior swap only) | .209 / .166 / .150 | .998 / .783 / .767 | 1.741 / 1.389 / 1.392 | −1.74 / −1.39 / −1.39 |
+| `eqgr_k1_cap50b` (κ ≡ 1) | .212 / .167 / .150 | .933 / .608 / .545 | 1.553 / .760 / .690 | −1.55 / −.74 / −.68 |
+| `magnet_cap50b` | .253 / .246 / .256 | 1.721 / 1.243 / 1.120 | 2.983 / 2.377 / 2.043 | −2.98 / −2.38 / −2.04 |
+| `eqgr_cap50b` | .211 / .167 / .149 | .996 / .592 / .510 | 1.659 / .721 / .554 | −1.65 / −.60 / −.47 |
+| `eqdgr_cap50b_cond` | **.206 / .161 / .143** | **.941 / .581 / .490** | **1.527 / .701 / .538** | −1.52 / −.57 / −.39 |
+| *`mix_nll` (all magnitudes)* | *.208 / .164 / .148* | *.857 / .591 / .556* | *1.260 / .861 / .858* | |
+
+* **The leak is gone.** `eqdgr_cap50b_cond` has the lowest bulk error of any Chile arm, capped or
+  not (−.002 to −.006 below the full-data mixture). The joint-truncation arm leaked 30–80% of
+  small records' mass above M6 (04:15 entry).
+* **Against augmentation** (`eqdgr_cap50b_cond` − `mix_cap50b_aug15`): M ≥ 5 −.03 / **−.08 / −.10**
+  (28 clusters, 19 of 28 favour the head), M ≥ 6 **−.16 / −.36 / −.44** (6 / 8 / 8 of 8), bulk −.013 to
+  −.017. `eqgr_cap50b` is likewise ahead at 3–5 s (M ≥ 6 −.34 / −.43). On Chile the method beats the
+  data-side baseline, unlike GEOFON and STEAD.
+* **Prior swap alone** (bug-free now) gives M ≥ 5 −.18 / −.19 / −.18 and M ≥ 6 −.26 / −.28 / −.26
+  against the capped mixture: a third to a quarter of the equivariant heads' gain here (on
+  INSTANCE it was most of it).
+* **κ ≡ 1** is worse than the learned slope at 5 s (M ≥ 5 +.035, M ≥ 6 +.14, 8 / 8 clusters), as
+  expected where the amplitude scale (MA) is consistent across the cap.
+* **Three seeds.** Capped `eqdgr` ensemble − capped mixture ensemble: M ≥ 6 −.44 / −1.03 / −1.13
+  (jackknife excluding zero), bulk −.002 / −.004 / −.006. Capped `eqdgr` ensemble − full-data mixture
+  ensemble: M ≥ 6 +.26 / **−.18 / −.31** (intervals excluding zero at 3 and 5 s, [−.30, −.06] and
+  [−.47, −.15]), bulk −.002 / −.004 / −.006. On the amplitude labels, three capped seeds that never saw
+  an M ≥ 5 label beat three full-data seeds on M ≥ 6 at 3–5 s.
+* **Truncation margin** on this head (`_m10`): M ≥ 6 +.12 / −.02 / +.00 (n.s.), bulk −.001, false
+  alarms −0.3 to −0.5 per 10⁴ from a base near 1. Neutral, as expected where capped false alarms
+  are already rare.
+
+Files: `results/chile_eval_cap50b{,_base,_vs_full}.json`, `robust_chile_cap50b.{json,md}`,
+`robust_chile_cap50b_ens3.{json,md}`.
+
 ## 2026-10-30 11:10 UTC — Pre-registered capped test on STEAD: **not confirmed**. The equivariant heads trained below M5 beat the identically capped mixture by .28–.31 on M ≥ 5 and .77–.87 on M ≥ 6, and even beat the free mixture trained on all of STEAD, but amplitude augmentation is better on M ≥ 5
 
 `PREREGISTRATION_STEAD_CAP.md` (commit bc5ab2b, amendments 1–2). Seed 1, trained on M < 5.0 (bin

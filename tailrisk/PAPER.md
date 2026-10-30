@@ -363,17 +363,19 @@ INSTANCE event and every M ≥ 5 Chile event then lies beyond the training range
 
 | trained below the cap | INSTANCE M≥5 MAE (cap 4.0) | Chile M≥6 MAE (cap 5.0) | bulk MAE change |
 |---|---|---|---|
-| free mixture | 1.81 / 1.61 / 1.57 | 1.96 / 1.61 / 1.59 | reference |
-| free mixture + amplitude augmentation (±1.5 decades) | 1.13 / .81 / .72 | 1.68 / 1.03 / .98 | +.012 to +.031 |
-| free mixture × GR prior factor (prior swap only) | 1.06 / .79 / .76 | ⟨rerun pending: binning bug⟩ | −.001 to +.001 (INSTANCE) |
-| equivariant × GR prior factor (`eqgr`) | 1.10 / .67 / .55 | 1.56 / .65 / .53 | −.004 to +.003 |
+| free mixture | 1.81 / 1.61 / 1.57 | 2.00 / 1.67 / 1.65 | reference |
+| free mixture + amplitude augmentation (±1.5 decades) | 1.13 / .81 / .72 | 1.69 / 1.06 / .98 | +.008 to +.031 |
+| free mixture × GR prior factor (prior swap only) | 1.06 / .79 / .76 | 1.74 / 1.39 / 1.39 | −.001 to +.001 |
+| equivariant × GR prior factor (`eqgr`) | 1.10 / .67 / .55 | 1.66 / .72 / .55 | −.004 to +.003 |
 | distance-marginalized (`eqdgr`), joint truncation | .98 / .58 / .51 | (leaked; see below) | −.009 to −.003 (INSTANCE) |
-| distance-marginalized, conditional truncation | 1.04 / .67 / .58 | ⟨pending⟩ | −.006 to −.001 (INSTANCE) |
-| … + truncation margin 1.0 (false M4: 9 / 5 / 3 per 10⁴) | 1.13 / .73 / .63 | ⟨pending⟩ | −.010 to −.002 (INSTANCE) |
+| distance-marginalized, conditional truncation | 1.04 / .67 / .58 | 1.53 / .70 / .54 | −.006 to −.001 |
+| … + truncation margin 1.0 (INSTANCE false M4: 9 / 5 / 3 per 10⁴) | 1.13 / .73 / .63 | 1.65 / .68 / .54 | −.010 to −.001 |
 | *free mixture trained on all magnitudes* | *1.05 / .77 / .70* | *1.26 / .86 / .86* | |
 
-(1 / 3 / 5 s, seed 1; Chile Δ eqgr − free mixture: M≥6 −.40 / −.97 / −1.07, cluster-bootstrap
-intervals excluding zero.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
+(1 / 3 / 5 s, seed 1; Chile rows rerun with the bin-consistent cap filter. Chile Δ distance-marginalized −
+free mixture: M≥6 −.47 / −.97 / −1.12; against augmentation −.16 / −.36 / −.44, all 8 clusters favouring
+the head at 3–5 s. Three-seed capped ensemble against the three-seed mixture trained on all magnitudes:
+M≥6 −.18 / −.31 at 3 / 5 s, jackknife intervals excluding zero, on amplitude labels.) The free mixture saturates at the cap: it under-predicts M6–6.5 Chile
 events by 1.4 units and M5.5–6.6 INSTANCE events by 2.0 units at 3–5 s. The equivariant heads,
 which never saw a label above the cap, are within .24–.30 (Chile, `eqgr`) and .43–.50
 (INSTANCE, `eqdgr`) of them. At 3–5 s they match the free mixture trained *with* the large events. On INSTANCE the M ≥ 5
