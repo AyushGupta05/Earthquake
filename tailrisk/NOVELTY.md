@@ -14,8 +14,10 @@ the closest prior work and states the precise difference.
   sharing the shift, and the learned GR-tail prior factor kept at test time. *Result of the
   κ ≡ 1 ablation (30 Oct):* on STEAD, GEOFON (capped) and INSTANCE the unit slope gives *lower*
   large-event error than the learned slope (by .03–.4), at .002–.01 more bulk error. Chile is the
-  exception. So the learned slope buys bulk accuracy, not tail accuracy, and the large-event
-  advantage over free networks comes from equivariance itself (shared by κ ≡ 1) and the GR factor.
+  exception, and on CWA (31 Oct) the learned slope is .01 better than κ ≡ 1 on the tail while both
+  trail the free mixture. So the slope rule is catalogue-dependent; the large-event advantage over
+  free networks, where it exists, comes from equivariance itself (shared by κ ≡ 1) and the GR factor,
+  and it does not exist where the training set is rich in large events (CWA).
 * **The Gutenberg algorithm row was wrong.** Meier et al. 2015 state that their kNN densities are
   posteriors that already embed the GR × distance prior, and they combine stations by multiplying
   those posteriors (their eq. 5) without dividing the prior out; Yin 2018 multiplies them again as

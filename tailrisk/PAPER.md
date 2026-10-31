@@ -39,7 +39,16 @@ to M7), roughly matching a free mixture trained on the full catalogue, while the
 trained free mixture saturates at the cap. On a fourth catalogue held out and pre-registered
 before training (STEAD, 718 M≥5 events), the plain equivariant head lowers M≥5 error at 3 and 5 s
 with bulk error unchanged, meeting the pre-registered rule. The distance-marginalized head lowers
-it by .08–.11 but exceeds the bulk guard at 1 s by .0004. In both pre-registered capped tests (GEOFON
+it by .08–.11 but exceeds the bulk guard at 1 s by .0004. On a fifth pre-registered catalogue
+(CWA Taiwan, 317 M≥5 events, local magnitude throughout, the most large-event training data of the
+five) the free mixture is better than every equivariant variant on both tail (+.01 to +.02) and
+bulk (+.002 to +.004), and the pooled five-catalogue test fails. The structure therefore helps
+where the free mixture saturates for lack of large events, and not where large events are
+plentiful. What does hold on all five catalogues is the joint distance model conditioned on a
+location: against the free mixture it lowers bulk and large-event error everywhere (pooled −.21 /
+−.24 at 3 / 5 s, intervals excluding zero), and on CWA by a third of the bulk error; a free
+distance head gains as much there, so this is a result about modelling distance, not about
+equivariance. In both pre-registered capped tests (GEOFON
 cap M6, STEAD cap M5) the equivariant heads again beat the identically capped mixture. But they did
 not beat amplitude augmentation on the top tail. In both catalogues the labels switch from mb to Mw
 at the cap. So extrapolation beyond the data-side baseline is shown only where the magnitude scale
@@ -272,6 +281,27 @@ has a larger tail gain (M≥5 −.12 at 5 s) but costs .005–.010 bulk error. A
 analysis over the four catalogues (random effects, HKSJ interval) gives tail Δ −.06 / −.12 / −.17.
 Its interval excludes zero at 1 s only, and the pooled 1 s bulk is +.004, so that secondary claim
 is not met (`results/robust_stead_ens3.md`, `meta_eqdgr.md`).
+
+**Pre-registered fifth catalogue (CWA, Taiwan): negative.** `PREREGISTRATION_CWA.md` and its
+amendment fixed 37 arms and five rules before training: 1.19 M traces, 10,302 events, 317 M≥5
+events in 103 sequences, ML labels throughout, 60% accelerometer records. Three-seed ensembles
+against the free mixture: `eqdgr` M≥5 +.020 / +.021 / +.020 at 1 / 3 / 5 s (jackknife over 103
+sequences [+.015, +.026] at 3 s), M≥6 +.02 / +.04 / +.05, bulk +.004 / +.002 / +.000; `eqgr` M≥5 +.013 /
++.013 / +.011, bulk +.003 / +.003 / +.002. The prior-only ablation is level. The κ ≡ 1 construction and
+a slope-prior hybrid (λ = 10, pulling κ(s) toward 1) are .01 worse than the learned slope, the
+opposite of their ranking on STEAD, GEOFON and INSTANCE. Every head has the same top-bin bias
+(−.95 / −.84 for M≥6 at 3 / 5 s), so CWA's residual error is not the saturation that equivariance
+removes elsewhere. CWA has 82,763 M≥5 training records against 1,757 on INSTANCE, which is where a
+structural constraint has least to add. Pooled over five catalogues the tail difference is −.10 /
+−.13 with HKSJ intervals including zero. Capped at M5, the equivariant heads beat amplitude
+augmentation on M≥5 (.68 / .63 against .77 / .71 at 3 / 5 s), as predicted for a single-scale
+catalogue, but the M<5 error rises by .015 (plain) and .06 (distance-marginalized with conditional
+truncation), over the pre-registered guard (`results/CWA_VERDICT.md`, `robust_cwa_*.md`). Conditioned on the same catalogue distance,
+the equivariant head is also slightly worse than the free distance head (M≥5 +.009 / +.005), so the
+pre-registered equal-information rule fails; but either distance head, once located, cuts CWA
+bulk error by a third and M≥5 error by .27 against the free mixture, in 99–102 of 103 sequences.
+Pooled over five catalogues that known-distance contrast is −.21 / −.24 at 3 / 5 s with HKSJ
+intervals excluding zero and pooled bulk −.07. It was not a pre-registered claim.
 
 **Classical amplitude laws.** The classical magnitude relations are fitted per fold on the same
 training rows and scored as arms, with a Gaussian predictive distribution whose SD is the
@@ -645,7 +675,9 @@ intervals exclude zero) and .24 on INSTANCE's M≥5 events at six seconds agains
 
 ## 6. Limitations
 
-Three catalogues, but one trunk and one training recipe; mixed magnitude types; catalogue P picks
+Five catalogues, but one trunk and one training recipe; on the fifth (CWA) the method is
+worse than the free mixture on every metric, so its benefit is conditional on the training set
+lacking large events; mixed magnitude types; catalogue P picks
 rather than an online picker; a sequence-based rather than physically certified independence
 structure; the comparisons are to re-implementations of baseline ideas on a shared trunk, not
 to the authors' code. The method does not help where the waveform is uninformative, and its

@@ -4,6 +4,103 @@ All numbers are pooled out-of-fold predictions over 1,159,249 INSTANCE records (
 events, 31 M≥5) from 5 leave-sequence-out folds. Δ = arm − reference, with 95% cluster-bootstrap
 intervals (1,000 replicates; whole GK sequences resampled). Negative Δ in an error is better.
 
+## 2026-10-31 13:10 UTC — Pre-registered fifth catalogue (CWA, Taiwan): **the method fails.** The free mixture beats every equivariant variant on M ≥ 5 (by .01–.02) and on bulk (by .002–.004), with jackknife intervals over 103 sequences excluding zero. D1, D4 and D5 all fail. The hybrid equals κ ≡ 1, and both trail the learned slope here
+
+`PREREGISTRATION_CWA.md` (commit 5be5d4f) and amendment 1 (e3f0fb1), both committed before any CWA
+model trained. Cache: `cwa_prep.py`, 1,189,768 records at 100 Hz (48,033 dropped for non-finite
+or dead waveforms), 10,302 events, 317 M ≥ 5 events in 103 sequences, 43 M ≥ 6 in 33, local
+magnitude ML throughout, 60% accelerometer (HL, m/s²) and 40% velocity (EH / HH, m/s) records,
+median epicentral distance 98 km. 37 arms trained on the shared claim queue (two EC2 hosts, four
+SageMaker containers) between 22:15 and 02:52 UTC; `cwa_eval.sh` ran unattended;
+`cwa_verdict.py` applied the rules mechanically (`results/CWA_VERDICT.md`). Three-seed
+ensembles, median action, 1 / 3 / 5 s.
+
+| ensemble | bulk MAE | M ≥ 5 MAE | M ≥ 6 MAE | top-bin bias | NLL at 5 s |
+|---|---|---|---|---|---|
+| `mix` (reference) | **.424 / .338 / .307** | **.842 / .616 / .557** | **1.451 / .967 / .862** | −1.45 / −.95 / −.84 | 2.749 |
+| `eqdgr` (primary) | .428 / .340 / .307 | .862 / .636 / .577 | 1.469 / 1.008 / .907 | −1.45 / −.93 / −.81 | 2.742 |
+| `eqgr` (secondary) | .427 / .340 / .309 | .855 / .628 / .568 | 1.470 / .996 / .886 | −1.46 / −.94 / −.82 | 2.760 |
+| `mixgr` (prior only) | .424 / .338 / .307 | .844 / .617 / .559 | 1.453 / .967 / .863 | | |
+| `eqdgr_k1` (κ ≡ 1) | .431 / .342 / .309 | .878 / .646 / .585 | 1.467 / 1.014 / .911 | −1.43 / −.91 / −.79 | |
+| `eqdgr_kp10` (hybrid) | .431 / .342 / .309 | .876 / .646 / .584 | 1.466 / 1.013 / .911 | −1.43 / −.91 / −.80 | |
+
+**D1 (main, against the free mixture): FAIL for both heads.** `eqdgr` − `mix`: M ≥ 5 +.020 / +.021
+/ +.020, jackknife [+.015, +.026] at 3 s and [+.013, +.026] at 5 s; only 18–26 of 103 sequences
+favour the head. M ≥ 6 +.018 / +.041 / +.045 (6–9 of 33 sequences favour it). Bulk +.0043 / +.0023 /
++.0004. `eqgr` − `mix`: M ≥ 5 +.013 / +.013 / +.011, bulk +.003 / +.003 / +.002, all intervals
+excluding zero. The only thing the equivariant heads do better is the false-M4 rate (−10 to −14
+per 10⁴), from a base of 190–400 per 10⁴ that says more about CWA than about the models: the
+catalogue is a triggered network with few small events, so the INSTANCE-designed false-alarm
+metric is not informative here. NLL and CRPS are level.
+
+**D5 (hybrid against κ ≡ 1 and the mixture): FAIL.** The slope prior at λ = 10 makes the head
+indistinguishable from κ ≡ 1 (bulk ±.0002, tail −.0006 / −.0008, all n.s.), and both are .009 /
+.008 worse than the learned slope on M ≥ 5 and .002–.003 worse on bulk. So on CWA, unlike on
+STEAD, GEOFON and INSTANCE, the learned slope beats the unit slope. λ = 3 is reported in
+`robust_cwa_hybrid.md`. Across the five catalogues the ranking of κ(s) against κ ≡ 1 is therefore
+catalogue-dependent, and no slope rule wins everywhere.
+
+**D4 (pooled over five catalogues, `eqdgr` − `mix`): FAIL.** Random-effects Δ −.098 / −.133 at 3 / 5 s,
+HKSJ [−.233, +.037] / [−.312, +.047]; pooled bulk +.0039 / +.0016 / +.0004; 385 of 624 sequences favour
+the head at 5 s. Adding CWA widens the interval (τ grows) rather than narrowing it.
+
+**D2 (equal information, `eqdgr`|r against `mixdgr`|r): FAIL.** Both conditioned on the catalogue
+distance, the equivariant head is worse on M ≥ 5 (+.017 / +.009 / +.005, intervals excluding zero;
+19–35 of 103 sequences favour it) and on bulk (+.003 / +.002 / +.002). Pooled over five catalogues
+the equal-information Δ is −.068 / −.092 at 3 / 5 s with HKSJ [−.18, +.04] / [−.22, +.04], so D4's
+second claim fails as well. **What distance alone does on CWA is the largest effect in the whole
+study:** either distance head conditioned on the location cuts bulk error by a third (`mixdgr`|r
+− `mix` −.126 / −.118 / −.112, `eqdgr`|r −.115 / −.110 at 3 / 5 s) and M ≥ 5 error by .27–.33, in 99–102
+of 103 sequences. Against the classical inverse law with the same distance (bulk 1.3, M ≥ 5 1.2: the
+mixed accelerometer and velocity records defeat a single amplitude law) the network is ahead by
+.9 on both. Pooled over five catalogues, `eqdgr`|r − `mix` is −.21 / −.24 at 3 / 5 s with HKSJ
+[−.29, −.13] / [−.35, −.13], pooled bulk −.07, and 482 / 499 of 624 sequences; this was not a
+pre-registered claim (D4 named the marginal head and the equal-information contrast), and on CWA
+the free distance head would show the same.
+
+**D3 (capped at M5): FAIL on the bulk guard, PASS on both tail criteria.** `eqdgr_cap50_cond`
+against `mix_cap50`: M ≥ 5 −.263 / −.280 at 3 / 5 s, M ≥ 6 −.64 / −.70, 101–102 of 103 sequences and
+33 of 33 M ≥ 6 sequences. Against `mix_cap50_aug15`: M ≥ 5 −.058 / −.052, M ≥ 6 −.18 / −.17, 90–94 of
+103 and 33 of 33. The label-scale prediction from the GEOFON and STEAD failures held: on a
+single-scale catalogue the capped equivariant head beats amplitude augmentation on the tail, with
+every large-event sequence agreeing. But its M < 5 error is .05–.06 above the capped mixture's
+(guard .005), so the rule fails. The secondary `eqgr_cap50` is better still on the tail (−.293 /
+−.309 against the capped mixture, −.088 / −.081 against augmentation) and its all-record MAE is
+lower than the capped mixture's, but its M < 5 error is +.013 to +.018, also over the guard. The
+κ ≡ 1 capped form gives −.065 / −.061 against augmentation at +.024 bulk.
+
+Capped at M5 (seed 1, from `cwa_eval_cap50.json`; the robust statistics follow with D3):
+`mix_cap50` M ≥ 5 1.157 / .977 / .934; `mix_cap50_aug15` .998 / .772 / .707; `eqgr_cap50` .900 / .684 /
+.625; `eqdgr_cap50_cond` .931 / .714 / .655; `mixgr_cap50` .902 / .691 / .643. The capped equivariant
+heads do beat amplitude augmentation on the tail here, as the label-scale explanation predicted
+for an ML-only catalogue, but at a bulk cost: M < 5 MAE `eqgr_cap50` .333 against `mix_cap50`
+.319 (+.015, over the .005 guard) and `eqdgr_cap50_cond` .378 (+.06). The conditional truncation,
+which Chile needed, costs a great deal on CWA.
+
+**Reading.** The fifth catalogue was chosen to be the easiest case for the method's assumptions:
+one magnitude scale throughout, a dense local network, many large events. The method lost on it.
+The top-bin bias is the same for every head (−.95 / −.84 at 3 / 5 s for M ≥ 6), so the saturation
+that equivariance removes elsewhere is not what limits CWA; whatever limits it, the free mixture
+handles better. Two post hoc candidates, not tested: 60% of CWA records are accelerometers whose
+amplitude scales with magnitude differently from velocity records, and the equivariant heads share
+one slope network across both; and CWA's triggered, large-event-rich population gives the free
+mixture far more large-event training data than the other catalogues (82,763 M ≥ 5 records against
+1,757 on INSTANCE), which is precisely where a structural constraint has least to add.
+
+The honest state after five catalogues: the equivariant heads lower large-event error on
+INSTANCE, Chile, GEOFON and STEAD (pre-registered and confirmed for the plain head on STEAD),
+and raise it on CWA. The one result that holds on all five is not about equivariance: a head
+that models distance jointly and is conditioned on the location once it exists beats the free
+mixture on bulk and tail everywhere, and on CWA by a third of the bulk error. They are not better than the free mixture everywhere, and not better than
+κ ≡ 1 on the tail where κ ≡ 1 helps. The claim the paper can support is narrower: the posterior
+structure (equivariant likelihood × GR factor) and the distance-marginalized form extrapolate
+where the free mixture saturates for lack of large-event data; where large events are plentiful
+and the label scale is single, the free mixture is at least as good.
+
+Files: `results/cwa_eval_{ens3,hybrid,hybrid_plain,seed_s1..s3,cap50,cap50_base}.json`,
+`robust_cwa_{ens3,hybrid,equalinfo,condR3,cap50,k1}.{json,md}`, `meta5_*.{json,md}`,
+`CWA_VERDICT.md`, `cwa_folds.json`.
+
 ## 2026-10-30 21:05 UTC — Pre-registered equal-information test: **not met** pooled (HKSJ includes zero), though every catalogue favours the equivariant head at 5 s and STEAD alone passes; distance knowledge itself carries about half of the conditioned gain. Also: the heads carry over to the MagNet trunk; κ ≡ 1 wins the tail on INSTANCE too; zero-shot transfer fails for every head
 
 **Equal information** (`PREREGISTRATION_EQUALINFO.md`, commit cbe6476). Three-seed ensembles, both

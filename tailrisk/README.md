@@ -17,6 +17,13 @@ exactly equivariant to log amplitude, with a learned slope κ(s). φ is one lear
 below M3.5 and Gutenberg–Richter-linear above. Its distance-marginalized form models
 p(distance, magnitude | x) jointly and marginalizes distance at inference.
 
+**Across five catalogues (31 Oct):** the equivariant heads lower large-event error on INSTANCE,
+Chile, GEOFON and STEAD and raise it on CWA (Taiwan), the catalogue with the most large-event
+training data. They are not better than the free mixture everywhere. The claim this study
+supports is narrower than the one it set out to make: the posterior structure extrapolates where
+the free mixture saturates for lack of large events; where large events are plentiful and the
+label scale is single, the free mixture is at least as good.
+
 **What holds:**
 1. **Pre-registered fourth catalogue (STEAD, 718 M ≥ 5 events).** The plain equivariant head lowers
    M ≥ 5 error at 3 and 5 s (−.056 / −.069, jackknife intervals over 456 sequences excluding zero) with
@@ -27,8 +34,10 @@ p(distance, magnitude | x) jointly and marginalizes distance at inference.
    distance-marginalized head beats the TEAM-LM-style free mixture. The pre-registered pooled
    interval narrowly includes zero.
 3. **With a known distance (no retraining).** The same trained head can be conditioned on a located
-   event's distance. Then it beats the free mixture on the largest events of all four catalogues at
-   3 and 5 s (pooled interval excluding zero, also with 26% distance error). Bulk error drops
+   event's distance. Then it beats the free mixture on the largest events of all five catalogues at
+   3 and 5 s (pooled −.21 / −.24, interval excluding zero, also with 26% distance error), and on CWA by
+   a third of the bulk error. A free distance head gains as much on CWA, so this is a result about
+   modelling distance jointly, not about equivariance; it was not pre-registered. Bulk error drops
    12–30%, and event-level fused error drops 15–25% once four stations have triggered. Against the
    classical amplitude law with the same distance it wins on three catalogues and loses on GEOFON
    M ≥ 7. Given the same distance, it also beats a free distance head on every catalogue at 5 s,
@@ -47,16 +56,25 @@ p(distance, magnitude | x) jointly and marginalizes distance at inference.
   Zhang et al.) has the better large-event error on three of four catalogues. The learned slope
   buys bulk accuracy, not tail.
 * Zero-shot transfer between INSTANCE and Chile is poor for every head.
+* On CWA (pre-registered fifth catalogue) every equivariant variant loses to the free mixture on
+  both tail and bulk; the five-catalogue pooled rule fails.
 
-## Running now (30 Oct 2026, evening): fifth catalogue, CWA Taiwan
+## Fifth catalogue, pre-registered: CWA Taiwan (31 Oct 2026) — the method fails
 
-[PREREGISTRATION_CWA.md](PREREGISTRATION_CWA.md) (with amendment 1) fixes the arms and five decision
-rules for a fifth, held-out catalogue: 1.24 M traces, 317 M ≥ 5 events, one magnitude type (ML)
-throughout. It adds the closest prior construction (κ ≡ 1) in the distance-marginalized form and a
-new slope-prior hybrid, with rule D5 asking whether the hybrid beats κ ≡ 1 on bulk without losing
-the tail. The 37 arms train on a shared S3-claimed queue; `cwa_eval.sh` then runs the
-pre-registered analyses unattended and `cwa_verdict.py` writes the mechanical PASS / FAIL per rule
-to `results/CWA_VERDICT.md`, committed from the host.
+[PREREGISTRATION_CWA.md](PREREGISTRATION_CWA.md) (with amendment 1) fixed the arms and five decision
+rules before any model saw CWA: 1.19 M traces, 317 M ≥ 5 events in 103 sequences, one magnitude
+type (ML) throughout. The free Gaussian mixture beats every equivariant variant: M ≥ 5 error is
+.020 / .020 higher for the distance-marginalized head at 3 / 5 s and .013 / .011 higher for the plain
+head, with bulk error .002–.004 higher, all with jackknife intervals excluding zero. The κ ≡ 1
+construction and the new slope-prior hybrid are worse still. The main rule (D1), the pooled
+five-catalogue rule (D4) and the hybrid-versus-prior-art rule (D5) all fail; the mechanical
+verdict is in `results/CWA_VERDICT.md`. Capped at M5, the equivariant heads do beat amplitude
+augmentation on the tail, as the label-scale explanation predicted (every M ≥ 6 sequence agrees), but
+over the bulk guard, so D3 fails too; given the same distance the equivariant head is slightly worse
+than a free distance head (D2 fails). The one thing that works on Taiwan works spectacularly: a
+distance-aware head conditioned on the location cuts bulk error by a third and M ≥ 5 error by .27,
+and the same contrast pooled over all five catalogues has intervals excluding zero. Details in
+FINDINGS.md (31 Oct entry).
 
 ## Pre-registered out-of-sample test (STEAD, 30 Oct 2026)
 
