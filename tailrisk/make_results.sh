@@ -43,7 +43,7 @@ ARGS=(
  "GEOFON, capped at M6.0, three-seed ensembles=results/geofon_eval_cap60_ens.json:M>=6,M>=7"
  "GEOFON, capped at M6.0, baselines and classical law=results/geofon_eval_cap60_base.json:M>=6,M>=7"
  "CWA Taiwan (pre-registered fifth catalogue), three-seed ensembles=results/cwa_eval_ens3.json:M>=5,M>=6"
- "CWA, hybrid slope prior and kappa=1, three-seed ensembles=results/cwa_eval_hybrid.json:M>=5,M>=6"
+ "CWA, hybrid slope prior and unit slope, three-seed ensembles=results/cwa_eval_hybrid.json:M>=5,M>=6"
  "CWA, capped at M5.0 (pre-registered), seed 1=results/cwa_eval_cap50.json:M>=5,M>=6"
  "CWA, capped at M5.0, baselines and classical law=results/cwa_eval_cap50_base.json:M>=5,M>=6"
 )
