@@ -42,10 +42,14 @@ ARGS=(
  "GEOFON, capped at M6.0 (pre-registered), seed 1=results/geofon_eval_cap60.json:M>=6,M>=7"
  "GEOFON, capped at M6.0, three-seed ensembles=results/geofon_eval_cap60_ens.json:M>=6,M>=7"
  "GEOFON, capped at M6.0, baselines and classical law=results/geofon_eval_cap60_base.json:M>=6,M>=7"
+ "CWA Taiwan (pre-registered fifth catalogue), three-seed ensembles=results/cwa_eval_ens3.json:M>=5,M>=6"
+ "CWA, hybrid slope prior and kappa=1, three-seed ensembles=results/cwa_eval_hybrid.json:M>=5,M>=6"
+ "CWA, capped at M5.0 (pre-registered), seed 1=results/cwa_eval_cap50.json:M>=5,M>=6"
+ "CWA, capped at M5.0, baselines and classical law=results/cwa_eval_cap50_base.json:M>=5,M>=6"
 )
 if [ -f results/chile_eval_hs_held_ens3.json ]; then
   ARGS+=("Northern Chile, held stations, three-seed ensembles (records at held stations)=results/chile_eval_hs_held_ens3.json:M>=5,M>=6")
   ARGS+=("Northern Chile, held stations, three-seed ensembles (records at seen stations)=results/chile_eval_hs_seen_ens3.json:M>=5,M>=6")
 fi
-$PY results_tables.py "${ARGS[@]}" --include=results/multistation_summary_instance.md --include=results/multistation_summary_chile.md --include=results/multistation_summary_geofon.md --include=results/multistation_summary_geofon_caltail.md --include=results/fusion_timeline_summary_instance.md --include=results/fusion_timeline_summary_chile.md --include=results/fusion_timeline_summary_chile_measured.md --include=results/fusion_timeline_summary_geofon.md --include=results/multistation_summary_instance_e20.md --include=results/fusion_timeline_summary_instance_e20.md --include=results/robust_stead_ens3.md --include=results/meta_eqdgr.md --include=results/robust_stead_cap50.md --include=results/meta4_condR_vs_mix.md > RESULTS.md
+$PY results_tables.py "${ARGS[@]}" --include=results/multistation_summary_instance.md --include=results/multistation_summary_chile.md --include=results/multistation_summary_geofon.md --include=results/multistation_summary_geofon_caltail.md --include=results/fusion_timeline_summary_instance.md --include=results/fusion_timeline_summary_chile.md --include=results/fusion_timeline_summary_chile_measured.md --include=results/fusion_timeline_summary_geofon.md --include=results/multistation_summary_instance_e20.md --include=results/fusion_timeline_summary_instance_e20.md --include=results/robust_stead_ens3.md --include=results/meta_eqdgr.md --include=results/robust_stead_cap50.md --include=results/meta4_condR_vs_mix.md --include=results/CWA_VERDICT.md --include=results/robust_cwa_ens3.md --include=results/meta5_eqdgr.md --include=results/meta5_condR_vs_mix.md > RESULTS.md
 echo "RESULTS.md: $(wc -l < RESULTS.md) lines, $(grep -c '^## ' RESULTS.md) sections"
